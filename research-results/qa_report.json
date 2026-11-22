@@ -42,6 +42,86 @@
           "whale_threshold_usdt": 100000.0
         }
       }
+    },
+    "ETHUSDT": {
+      "2024-03": {
+        "klines": {
+          "rows": 44640,
+          "timestamp_units": {
+            "ms": 44640
+          },
+          "missing_minute_gaps": 0,
+          "missing_minutes_total": 0,
+          "archive": {
+            "file": "ETHUSDT-1m-2024-03.zip",
+            "download": "downloaded",
+            "checksum_download": "downloaded",
+            "sha256": "dd10515a9b010920bac628f2ec600405ff8e41de7d0f81694fbf391ca54b86b2",
+            "bytes": 1977193
+          }
+        },
+        "aggTrades": {
+          "rows": 53472384,
+          "timestamp_units": {
+            "ms": 53472384
+          },
+          "first_trade_utc": "2024-03-01T00:00:00.010000+00:00",
+          "last_trade_utc": "2024-03-31T23:59:59.641000+00:00",
+          "archive": {
+            "file": "ETHUSDT-aggTrades-2024-03.zip",
+            "download": "downloaded",
+            "checksum_download": "downloaded",
+            "sha256": "0e17b68019a5ae08b3593ab6c0963ae2312db97e788d1d2798cdb497c77d695d",
+            "bytes": 716159134
+          }
+        },
+        "features": {
+          "path": "ETHUSDT-2024-03-1m-orderflow.csv.gz",
+          "rows": 44640,
+          "aggtrade_minutes_with_activity": 44640,
+          "whale_threshold_usdt": 100000.0
+        }
+      }
+    },
+    "SOLUSDT": {
+      "2024-03": {
+        "klines": {
+          "rows": 44640,
+          "timestamp_units": {
+            "ms": 44640
+          },
+          "missing_minute_gaps": 0,
+          "missing_minutes_total": 0,
+          "archive": {
+            "file": "SOLUSDT-1m-2024-03.zip",
+            "download": "downloaded",
+            "checksum_download": "downloaded",
+            "sha256": "78a1baab910e7cfcf53b3f2a4fe7519febbb6cc7407a353f95c83d07eaef1809",
+            "bytes": 1738207
+          }
+        },
+        "aggTrades": {
+          "rows": 53567556,
+          "timestamp_units": {
+            "ms": 53567556
+          },
+          "first_trade_utc": "2024-03-01T00:00:00.018000+00:00",
+          "last_trade_utc": "2024-03-31T23:59:59.460000+00:00",
+          "archive": {
+            "file": "SOLUSDT-aggTrades-2024-03.zip",
+            "download": "downloaded",
+            "checksum_download": "downloaded",
+            "sha256": "d36276e81c0f291ce1382e4e113011f6dce86edc7c13640d3685d1408c6108ae",
+            "bytes": 657880665
+          }
+        },
+        "features": {
+          "path": "SOLUSDT-2024-03-1m-orderflow.csv.gz",
+          "rows": 44640,
+          "aggtrade_minutes_with_activity": 44640,
+          "whale_threshold_usdt": 100000.0
+        }
+      }
     }
   },
   "limitations": [
