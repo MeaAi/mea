@@ -202,7 +202,7 @@ def main():
     symbols=[s.strip().lower() for s in args.symbols.split(",") if s.strip()]
     states={s:SymbolState(s.upper(),args) for s in symbols}
     streams=[]
-    for s in symbols: streams += [f"{s}@aggTrade",f"{s}@bookTicker",f"{s}@depth5@100ms"]
+    for s in symbols: streams += [f"{s}@aggtrade",f"{s}@bookticker",f"{s}@depth5@100ms"]
     url="wss://fstream.binance.com/stream?streams="+"/".join(streams)
     started=time.time(); deadline=started+args.minutes*60
     def on_message(ws, raw):
