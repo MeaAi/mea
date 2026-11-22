@@ -57,8 +57,8 @@ jobs:
             --out research-output
       - name: Run exploratory order-flow diagnostics
         run: |
-          python research/orderflow_diagnostic.py \\
-            --input "research-output/*-1m-orderflow.csv.gz" \\
+          python research/orderflow_diagnostic.py \
+            --input "research-output/*-1m-orderflow.csv.gz" \
             --out research-output/orderflow_diagnostic.json
       - name: Publish readable QA and diagnostic reports back to research branch
         run: |
