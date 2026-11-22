@@ -11,7 +11,7 @@ on:
       end_month:
         description: "End month (YYYY-MM); pilot max 2 months"
         required: true
-        default: "2024-01"
+        default: "2024-02"
         type: string
       symbols:
         description: "Comma-separated symbols (BTCUSDT,ETHUSDT,SOLUSDT)"
@@ -39,7 +39,7 @@ jobs:
     timeout-minutes: 180
     env:
       START_MONTH: ${{ github.event.inputs.start_month || '2024-02' }}
-      END_MONTH: ${{ github.event.inputs.end_month || '2024-01' }}
+      END_MONTH: ${{ github.event.inputs.end_month || '2024-02' }}
       SYMBOLS: ${{ github.event.inputs.symbols || 'BTCUSDT' }}
     steps:
       - name: Checkout research branch
