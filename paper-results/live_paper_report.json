@@ -1,16 +1,16 @@
 {
   "mode": "READ_ONLY_LIVE_PAPER_TRADING",
   "exchange": "Binance USD-M Futures public WebSocket",
-  "started_at": "2026-11-22T22:05:56.620903+00:00",
-  "finished_at": "2026-11-22T22:25:56.843945+00:00",
-  "duration_seconds": 1200.2230422496796,
+  "started_at": "2026-11-22T22:29:18.969706+00:00",
+  "finished_at": "2026-11-22T22:49:19.180480+00:00",
+  "duration_seconds": 1200.2107741832733,
   "symbols": {
     "btcusdt": {
       "symbol": "BTCUSDT",
-      "events": 319632,
+      "events": 221923,
       "signals": 0,
       "trade_imbalance": 0.0,
-      "book_imbalance": 0.725913143514524,
+      "book_imbalance": 0.5908440629470672,
       "taker": {
         "closed_trades": 0,
         "net_total_bp": 0,
@@ -32,10 +32,10 @@
     },
     "ethusdt": {
       "symbol": "ETHUSDT",
-      "events": 343534,
+      "events": 244876,
       "signals": 0,
       "trade_imbalance": 0.0,
-      "book_imbalance": 0.576525117578897,
+      "book_imbalance": 0.08129032258064513,
       "taker": {
         "closed_trades": 0,
         "net_total_bp": 0,
@@ -57,10 +57,10 @@
     },
     "solusdt": {
       "symbol": "SOLUSDT",
-      "events": 97754,
+      "events": 76698,
       "signals": 0,
       "trade_imbalance": 0.0,
-      "book_imbalance": -0.08467469920670834,
+      "book_imbalance": 0.014503927844050036,
       "taker": {
         "closed_trades": 0,
         "net_total_bp": 0,
