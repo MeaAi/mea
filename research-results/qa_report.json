@@ -1,44 +1,44 @@
 {
   "source": "Binance Vision official USD-M Futures monthly archives",
-  "start": "2024-02",
-  "end": "2024-02",
+  "start": "2024-03",
+  "end": "2024-03",
   "symbols": {
     "BTCUSDT": {
-      "2024-02": {
+      "2024-03": {
         "klines": {
-          "rows": 41760,
+          "rows": 44640,
           "timestamp_units": {
-            "ms": 41760
+            "ms": 44640
           },
           "missing_minute_gaps": 0,
           "missing_minutes_total": 0,
           "archive": {
-            "file": "BTCUSDT-1m-2024-02.zip",
+            "file": "BTCUSDT-1m-2024-03.zip",
             "download": "downloaded",
             "checksum_download": "downloaded",
-            "sha256": "1407acbf8ad99911bdf582805699b7e85fdbc346dbe12618ce8b6369f0d8058d",
-            "bytes": 1770127
+            "sha256": "040b8e448e4243072b88b0d9908dfebed91bba943b75f4e831fa5337a2e1dab9",
+            "bytes": 1950611
           }
         },
         "aggTrades": {
-          "rows": 36317913,
+          "rows": 66512993,
           "timestamp_units": {
-            "ms": 36317913
+            "ms": 66512993
           },
-          "first_trade_utc": "2024-02-01T00:00:00.028000+00:00",
-          "last_trade_utc": "2024-02-29T23:59:59.987000+00:00",
+          "first_trade_utc": "2024-03-01T00:00:00.019000+00:00",
+          "last_trade_utc": "2024-03-31T23:59:59.791000+00:00",
           "archive": {
-            "file": "BTCUSDT-aggTrades-2024-02.zip",
+            "file": "BTCUSDT-aggTrades-2024-03.zip",
             "download": "downloaded",
             "checksum_download": "downloaded",
-            "sha256": "3c2426d3f2435ace18b0e9b3acf45144b1710dad08cb184487539d5d829ccef3",
-            "bytes": 472350747
+            "sha256": "8ceb6fd06fc3bff87870e7adc362ca0e2f463f57a04599d2506e40320921401d",
+            "bytes": 847406944
           }
         },
         "features": {
-          "path": "BTCUSDT-2024-02-1m-orderflow.csv.gz",
-          "rows": 41760,
-          "aggtrade_minutes_with_activity": 41760,
+          "path": "BTCUSDT-2024-03-1m-orderflow.csv.gz",
+          "rows": 44640,
+          "aggtrade_minutes_with_activity": 44640,
           "whale_threshold_usdt": 100000.0
         }
       }
