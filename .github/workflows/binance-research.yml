@@ -1,4 +1,4 @@
-name: Binance public-data research pilot # past-only diagnostic run
+name: Binance public-data research pilot # ephemeral storage, compact reports only
 
 on:
   workflow_dispatch:
@@ -30,7 +30,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: binance-public-research-v2
+  group: binance-public-research-v3
   cancel-in-progress: false
 
 jobs:
@@ -62,20 +62,18 @@ jobs:
           python research/orderflow_diagnostic.py \
             --input "research-output/*-1m-orderflow.csv.gz" \
             --out research-output/orderflow_diagnostic.json
-      - name: Publish readable QA and diagnostic reports back to research branch
+      - name: Publish compact reports; discard all downloaded and processed market data
         run: |
           mkdir -p research-results
           cp research-output/qa_report.json research-results/qa_report.json
           cp research-output/orderflow_diagnostic.json research-results/orderflow_diagnostic.json
+          # The runner is ephemeral; keep only small summary reports in the repository.
+          du -ah research-output | sort -h | tail -20
+          rm -rf research-output
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add research-results/qa_report.json research-results/orderflow_diagnostic.json
-          git commit -m "Publish Binance public-data QA report" || echo "No report changes"
+          git commit -m "Publish compact Binance research reports" || echo "No report changes"
+          git fetch origin research/binance-data-pipeline
+          git rebase origin/research/binance-data-pipeline
           git push origin HEAD:research/binance-data-pipeline
-      - name: Keep compressed feature data as optional short-lived artifact
-        uses: actions/upload-artifact@v6
-        with:
-          name: binance-orderflow-pilot
-          path: research-output/*-1m-orderflow.csv.gz
-          if-no-files-found: error
-          retention-days: 7
