@@ -1,0 +1,55 @@
+name: Binance public-data research pilot
+
+on:
+  workflow_dispatch:
+    inputs:
+      start_month:
+        description: "Start month (YYYY-MM)"
+        required: true
+        default: "2024-01"
+        type: string
+      end_month:
+        description: "End month (YYYY-MM); pilot max 2 months"
+        required: true
+        default: "2024-01"
+        type: string
+      symbols:
+        description: "Comma-separated symbols (BTCUSDT,ETHUSDT,SOLUSDT)"
+        required: true
+        default: "BTCUSDT"
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: binance-public-research
+  cancel-in-progress: false
+
+jobs:
+  acquire-and-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Checkout research branch
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download public Binance archives and run data QA
+        run: |
+          python research/binance_public_pipeline.py \
+            --start "${{ inputs.start_month }}" \
+            --end "${{ inputs.end_month }}" \
+            --symbols "${{ inputs.symbols }}" \
+            --out research-output
+      - name: Upload compact QA and feature outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: binance-orderflow-pilot
+          path: |
+            research-output/qa_report.json
+            research-output/*-1m-orderflow.csv.gz
+          if-no-files-found: error
+          retention-days: 7
