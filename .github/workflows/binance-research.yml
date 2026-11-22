@@ -6,7 +6,7 @@ on:
       start_month:
         description: "Start month (YYYY-MM)"
         required: true
-        default: "2024-01"
+        default: "2024-02"
         type: string
       end_month:
         description: "End month (YYYY-MM); pilot max 2 months"
@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 180
     env:
-      START_MONTH: ${{ github.event.inputs.start_month || '2024-01' }}
+      START_MONTH: ${{ github.event.inputs.start_month || '2024-02' }}
       END_MONTH: ${{ github.event.inputs.end_month || '2024-01' }}
       SYMBOLS: ${{ github.event.inputs.symbols || 'BTCUSDT' }}
     steps:
