@@ -16,7 +16,7 @@ on:
       symbols:
         description: "Comma-separated symbols (BTCUSDT,ETHUSDT,SOLUSDT)"
         required: true
-        default: "BTCUSDT"
+        default: "BTCUSDT,ETHUSDT,SOLUSDT"
         type: string
   push:
     branches:
@@ -40,7 +40,7 @@ jobs:
     env:
       START_MONTH: ${{ github.event.inputs.start_month || '2024-03' }}
       END_MONTH: ${{ github.event.inputs.end_month || '2024-03' }}
-      SYMBOLS: ${{ github.event.inputs.symbols || 'BTCUSDT' }}
+      SYMBOLS: ${{ github.event.inputs.symbols || 'BTCUSDT,ETHUSDT,SOLUSDT' }}
     steps:
       - name: Checkout research branch
         uses: actions/checkout@v6
