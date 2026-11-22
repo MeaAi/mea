@@ -38,6 +38,10 @@ class SymbolState:
             "maker": {"position": None, "pending": None, "trades": [], "equity_bp": 0.0}
         }
         self.events = 0
+        self.aggtrade_events = 0
+        self.bookticker_events = 0
+        self.depth_events = 0
+        self.parse_errors = 0
         self.signals = 0
 
     def on_trade(self, d):
@@ -158,7 +162,13 @@ class SymbolState:
 
     def snapshot(self):
         ti, bi, buy, sell = self.features()
-        return {"symbol": self.symbol, "events": self.events, "signals": self.signals,
+        return {"symbol": self.symbol, "events": self.events,
+                "aggtrade_events": self.aggtrade_events,
+                "bookticker_events": self.bookticker_events,
+                "depth_events": self.depth_events,
+                "trades_in_lookback": len(self.trades),
+                "buy_quote_in_lookback": buy, "sell_quote_in_lookback": sell,
+                "signals": self.signals,
                 "trade_imbalance": ti, "book_imbalance": bi,
                 "taker": summary(self.accounts["taker"]),
                 "maker": summary(self.accounts["maker"])}
@@ -197,13 +207,24 @@ def main():
             msg=json.loads(raw); stream=msg.get("stream",""); d=msg.get("data",{})
             sym=stream.split("@")[0]; st=states.get(sym)
             if not st: return
-            if "@aggTrade" in stream: st.on_trade(d)
-            elif "@bookTicker" in stream: st.on_book(d)
-            elif "@depth5" in stream: st.on_depth(d)
-            st.events += 1; st.maybe_signal(time.time())
+            if "@aggTrade" in stream:
+                st.aggtrade_events += 1
+                st.on_trade(d)
+            elif "@bookTicker" in stream:
+                st.bookticker_events += 1
+                st.on_book(d)
+            elif "@depth5" in stream:
+                st.depth_events += 1
+                st.on_depth(d)
+            else:
+                print(json.dumps({"event":"unknown_stream","stream":stream}),flush=True)
+            st.events += 1
+            st.maybe_signal(time.time())
             if time.time() >= deadline: ws.close()
         except Exception as e:
-            print(json.dumps({"event":"parse_error","error":str(e)}),flush=True)
+            for st in states.values(): st.parse_errors += 1
+            print(json.dumps({"event":"parse_error","stream":msg.get("stream") if "msg" in locals() else None,
+                              "error":str(e)}),flush=True)
     def on_error(ws, err): print(json.dumps({"event":"websocket_error","error":str(err)}),flush=True)
     def on_close(ws, code, msg): print(json.dumps({"event":"websocket_closed","code":code,"message":msg}),flush=True)
     def on_open(ws): print(json.dumps({"event":"websocket_connected","symbols":symbols,"started_at":utc()}),flush=True)
