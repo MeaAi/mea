@@ -41,11 +41,11 @@ jobs:
       SYMBOLS: ${{ github.event.inputs.symbols || 'BTCUSDT' }}
     steps:
       - name: Checkout research branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: research/binance-data-pipeline
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - name: Download public Binance archives and run data QA
@@ -65,7 +65,7 @@ jobs:
           git commit -m "Publish Binance public-data QA report" || echo "No report changes"
           git push origin HEAD:research/binance-data-pipeline
       - name: Keep compressed feature data as optional short-lived artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: binance-orderflow-pilot
           path: research-output/*-1m-orderflow.csv.gz
