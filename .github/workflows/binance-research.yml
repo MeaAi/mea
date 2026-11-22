@@ -18,6 +18,11 @@ on:
         required: true
         default: "BTCUSDT"
         type: string
+  push:
+    branches:
+      - research/binance-data-pipeline
+    paths:
+      - ".github/workflows/binance-research.yml"
 
 permissions:
   contents: read
@@ -30,6 +35,10 @@ jobs:
   acquire-and-qa:
     runs-on: ubuntu-latest
     timeout-minutes: 180
+    env:
+      START_MONTH: ${{ github.event.inputs.start_month || '2024-01' }}
+      END_MONTH: ${{ github.event.inputs.end_month || '2024-01' }}
+      SYMBOLS: ${{ github.event.inputs.symbols || 'BTCUSDT' }}
     steps:
       - name: Checkout research branch
         uses: actions/checkout@v4
@@ -40,9 +49,9 @@ jobs:
       - name: Download public Binance archives and run data QA
         run: |
           python research/binance_public_pipeline.py \
-            --start "${{ inputs.start_month }}" \
-            --end "${{ inputs.end_month }}" \
-            --symbols "${{ inputs.symbols }}" \
+            --start "$START_MONTH" \
+            --end "$END_MONTH" \
+            --symbols "$SYMBOLS" \
             --out research-output
       - name: Upload compact QA and feature outputs
         uses: actions/upload-artifact@v4
