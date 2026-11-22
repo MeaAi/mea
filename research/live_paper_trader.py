@@ -233,6 +233,6 @@ def main():
         k:{"signals":v["signals"],"taker_trades":v["taker"]["closed_trades"],
            "taker_net_bp":v["taker"]["net_total_bp"],"maker_trades":v["maker"]["closed_trades"],
            "maker_net_bp":v["maker"]["net_total_bp"]} for k,v in report["symbols"].items()}},indent=2),flush=True)
-    if not any(s["events"] for s in states.values()): sys.exit("No market data received; session invalid.")
+    if not any(s.events for s in states.values()): sys.exit("No market data received; session invalid.")
 
 if __name__=="__main__": main()
