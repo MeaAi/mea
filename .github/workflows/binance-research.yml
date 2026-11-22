@@ -1,4 +1,4 @@
-name: Binance public-data research pilot
+name: Binance public-data research pilot # past-only diagnostic run
 
 on:
   workflow_dispatch:
