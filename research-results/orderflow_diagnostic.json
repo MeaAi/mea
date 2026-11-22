@@ -39,6 +39,42 @@
             "sell_pressure_mean_fwd_bp": 0.14498855690615525
           },
           "strategies": {
+            "ofi_continuation_2bp": {
+              "trades": 3444,
+              "gross_mean_bp": -0.5512773136186414,
+              "net_mean_bp": -2.5512773136186415,
+              "win_rate": 0.39227642276422764,
+              "profit_factor": 0.5587892551092848,
+              "max_drawdown_pct": 58.80328702260618,
+              "cost_bp_round_trip": 2
+            },
+            "ofi_continuation_4bp": {
+              "trades": 3444,
+              "gross_mean_bp": -0.5512773136186414,
+              "net_mean_bp": -4.551277313618642,
+              "win_rate": 0.3124274099883856,
+              "profit_factor": 0.35728344509418286,
+              "max_drawdown_pct": 79.21332594837942,
+              "cost_bp_round_trip": 4
+            },
+            "ofi_continuation_6bp": {
+              "trades": 3444,
+              "gross_mean_bp": -0.5512773136186414,
+              "net_mean_bp": -6.551277313618642,
+              "win_rate": 0.241869918699187,
+              "profit_factor": 0.2323802932253786,
+              "max_drawdown_pct": 89.56318362925151,
+              "cost_bp_round_trip": 6
+            },
+            "ofi_continuation_8bp": {
+              "trades": 3444,
+              "gross_mean_bp": -0.5512773136186414,
+              "net_mean_bp": -8.551277313618641,
+              "win_rate": 0.18234610917537747,
+              "profit_factor": 0.15450795474566004,
+              "max_drawdown_pct": 94.76159046109122,
+              "cost_bp_round_trip": 8
+            },
             "ofi_continuation_10bp": {
               "trades": 3444,
               "gross_mean_bp": -0.5512773136186414,
@@ -65,6 +101,42 @@
               "profit_factor": 0.01996514354713012,
               "max_drawdown_pct": 99.91649192151117,
               "cost_bp_round_trip": 20
+            },
+            "ofi_contrarian_2bp": {
+              "trades": 3444,
+              "gross_mean_bp": 0.5512773136186414,
+              "net_mean_bp": -1.4487226863813585,
+              "win_rate": 0.4294425087108014,
+              "profit_factor": 0.7191755269029988,
+              "max_drawdown_pct": 40.47442235944288,
+              "cost_bp_round_trip": 2
+            },
+            "ofi_contrarian_4bp": {
+              "trades": 3444,
+              "gross_mean_bp": 0.5512773136186414,
+              "net_mean_bp": -3.4487226863813585,
+              "win_rate": 0.3434959349593496,
+              "profit_factor": 0.4600118245317581,
+              "max_drawdown_pct": 69.87276673121124,
+              "cost_bp_round_trip": 4
+            },
+            "ofi_contrarian_6bp": {
+              "trades": 3444,
+              "gross_mean_bp": 0.5512773136186414,
+              "net_mean_bp": -5.448722686381358,
+              "win_rate": 0.27090592334494773,
+              "profit_factor": 0.29917981758784706,
+              "max_drawdown_pct": 84.8044138512019,
+              "cost_bp_round_trip": 6
+            },
+            "ofi_contrarian_8bp": {
+              "trades": 3444,
+              "gross_mean_bp": 0.5512773136186414,
+              "net_mean_bp": -7.448722686381358,
+              "win_rate": 0.21951219512195122,
+              "profit_factor": 0.1977085510834067,
+              "max_drawdown_pct": 92.35237264921835,
+              "cost_bp_round_trip": 8
             },
             "ofi_contrarian_10bp": {
               "trades": 3444,
@@ -93,6 +165,42 @@
               "max_drawdown_pct": 99.87782801462045,
               "cost_bp_round_trip": 20
             },
+            "whale_imbalance_continuation_2bp": {
+              "trades": 3611,
+              "gross_mean_bp": -0.13062076299782632,
+              "net_mean_bp": -2.130620762997826,
+              "win_rate": 0.4156743284408751,
+              "profit_factor": 0.6151687714380768,
+              "max_drawdown_pct": 54.98879201379917,
+              "cost_bp_round_trip": 2
+            },
+            "whale_imbalance_continuation_4bp": {
+              "trades": 3611,
+              "gross_mean_bp": -0.13062076299782632,
+              "net_mean_bp": -4.130620762997826,
+              "win_rate": 0.32982553309332596,
+              "profit_factor": 0.3920180618697759,
+              "max_drawdown_pct": 77.73128515647639,
+              "cost_bp_round_trip": 4
+            },
+            "whale_imbalance_continuation_6bp": {
+              "trades": 3611,
+              "gross_mean_bp": -0.13062076299782632,
+              "net_mean_bp": -6.130620762997826,
+              "win_rate": 0.25560786485738024,
+              "profit_factor": 0.2533786898172089,
+              "max_drawdown_pct": 89.1237730914952,
+              "cost_bp_round_trip": 6
+            },
+            "whale_imbalance_continuation_8bp": {
+              "trades": 3611,
+              "gross_mean_bp": -0.13062076299782632,
+              "net_mean_bp": -8.130620762997827,
+              "win_rate": 0.19717529770146774,
+              "profit_factor": 0.1672487506560456,
+              "max_drawdown_pct": 94.71754929815552,
+              "cost_bp_round_trip": 8
+            },
             "whale_imbalance_continuation_10bp": {
               "trades": 3611,
               "gross_mean_bp": -0.13062076299782632,
@@ -120,6 +228,42 @@
               "max_drawdown_pct": 99.93105711258274,
               "cost_bp_round_trip": 20
             },
+            "whale_imbalance_contrarian_2bp": {
+              "trades": 3611,
+              "gross_mean_bp": 0.13062076299782632,
+              "net_mean_bp": -1.8693792370021738,
+              "win_rate": 0.41318194405981723,
+              "profit_factor": 0.6552111885264601,
+              "max_drawdown_pct": 50.18701915715441,
+              "cost_bp_round_trip": 2
+            },
+            "whale_imbalance_contrarian_4bp": {
+              "trades": 3611,
+              "gross_mean_bp": 0.13062076299782632,
+              "net_mean_bp": -3.8693792370021733,
+              "win_rate": 0.328163943505954,
+              "profit_factor": 0.42044625633447874,
+              "max_drawdown_pct": 75.52469797475926,
+              "cost_bp_round_trip": 4
+            },
+            "whale_imbalance_contrarian_6bp": {
+              "trades": 3611,
+              "gross_mean_bp": 0.13062076299782632,
+              "net_mean_bp": -5.869379237002174,
+              "win_rate": 0.2553309332594849,
+              "profit_factor": 0.27457643531213805,
+              "max_drawdown_pct": 88.05226201513084,
+              "cost_bp_round_trip": 6
+            },
+            "whale_imbalance_contrarian_8bp": {
+              "trades": 3611,
+              "gross_mean_bp": 0.13062076299782632,
+              "net_mean_bp": -7.869379237002174,
+              "win_rate": 0.2021600664635835,
+              "profit_factor": 0.18315128056722316,
+              "max_drawdown_pct": 94.19291075691355,
+              "cost_bp_round_trip": 8
+            },
             "whale_imbalance_contrarian_10bp": {
               "trades": 3611,
               "gross_mean_bp": 0.13062076299782632,
@@ -146,6 +290,132 @@
               "profit_factor": 0.026064403054275907,
               "max_drawdown_pct": 99.9242221887256,
               "cost_bp_round_trip": 20
+            },
+            "ofi_whale_agreement_continuation_2bp": {
+              "trades": 2224,
+              "gross_mean_bp": -0.29819632524901085,
+              "net_mean_bp": -2.2981963252490107,
+              "win_rate": 0.40467625899280574,
+              "profit_factor": 0.5659123994076266,
+              "max_drawdown_pct": 40.25544868854614,
+              "cost_bp_round_trip": 2
+            },
+            "ofi_whale_agreement_continuation_4bp": {
+              "trades": 2224,
+              "gross_mean_bp": -0.29819632524901085,
+              "net_mean_bp": -4.298196325249011,
+              "win_rate": 0.32194244604316546,
+              "profit_factor": 0.3458502548258002,
+              "max_drawdown_pct": 61.68926279567859,
+              "cost_bp_round_trip": 4
+            },
+            "ofi_whale_agreement_continuation_6bp": {
+              "trades": 2224,
+              "gross_mean_bp": -0.29819632524901085,
+              "net_mean_bp": -6.298196325249011,
+              "win_rate": 0.24190647482014388,
+              "profit_factor": 0.2141159399069384,
+              "max_drawdown_pct": 75.43571666267532,
+              "cost_bp_round_trip": 6
+            },
+            "ofi_whale_agreement_continuation_8bp": {
+              "trades": 2224,
+              "gross_mean_bp": -0.29819632524901085,
+              "net_mean_bp": -8.29819632524901,
+              "win_rate": 0.17805755395683454,
+              "profit_factor": 0.1357119800807734,
+              "max_drawdown_pct": 84.25114242340166,
+              "cost_bp_round_trip": 8
+            },
+            "ofi_whale_agreement_continuation_10bp": {
+              "trades": 2224,
+              "gross_mean_bp": -0.29819632524901085,
+              "net_mean_bp": -10.29819632524901,
+              "win_rate": 0.13444244604316546,
+              "profit_factor": 0.087899489926403,
+              "max_drawdown_pct": 89.90727765880712,
+              "cost_bp_round_trip": 10
+            },
+            "ofi_whale_agreement_continuation_14bp": {
+              "trades": 2224,
+              "gross_mean_bp": -0.29819632524901085,
+              "net_mean_bp": -14.29819632524901,
+              "win_rate": 0.07464028776978417,
+              "profit_factor": 0.03871131758723195,
+              "max_drawdown_pct": 95.85712137109287,
+              "cost_bp_round_trip": 14
+            },
+            "ofi_whale_agreement_continuation_20bp": {
+              "trades": 2224,
+              "gross_mean_bp": -0.29819632524901085,
+              "net_mean_bp": -20.29819632524901,
+              "win_rate": 0.030575539568345324,
+              "profit_factor": 0.01353465089053018,
+              "max_drawdown_pct": 98.91163491551296,
+              "cost_bp_round_trip": 20
+            },
+            "ofi_whale_agreement_contrarian_2bp": {
+              "trades": 2224,
+              "gross_mean_bp": 0.29819632524901085,
+              "net_mean_bp": -1.701803674750989,
+              "win_rate": 0.4051258992805755,
+              "profit_factor": 0.6595116439985619,
+              "max_drawdown_pct": 32.80240718101507,
+              "cost_bp_round_trip": 2
+            },
+            "ofi_whale_agreement_contrarian_4bp": {
+              "trades": 2224,
+              "gross_mean_bp": 0.29819632524901085,
+              "net_mean_bp": -3.7018036747509893,
+              "win_rate": 0.32194244604316546,
+              "profit_factor": 0.40962437123046813,
+              "max_drawdown_pct": 56.37055377981062,
+              "cost_bp_round_trip": 4
+            },
+            "ofi_whale_agreement_contrarian_6bp": {
+              "trades": 2224,
+              "gross_mean_bp": 0.29819632524901085,
+              "net_mean_bp": -5.701803674750989,
+              "win_rate": 0.24370503597122303,
+              "profit_factor": 0.2600676168029212,
+              "max_drawdown_pct": 71.97990970982396,
+              "cost_bp_round_trip": 6
+            },
+            "ofi_whale_agreement_contrarian_8bp": {
+              "trades": 2224,
+              "gross_mean_bp": 0.29819632524901085,
+              "net_mean_bp": -7.701803674750989,
+              "win_rate": 0.19559352517985612,
+              "profit_factor": 0.16891025676741753,
+              "max_drawdown_pct": 82.00866310328902,
+              "cost_bp_round_trip": 8
+            },
+            "ofi_whale_agreement_contrarian_10bp": {
+              "trades": 2224,
+              "gross_mean_bp": 0.29819632524901085,
+              "net_mean_bp": -9.70180367475099,
+              "win_rate": 0.1506294964028777,
+              "profit_factor": 0.11189827435372783,
+              "max_drawdown_pct": 88.4710207774603,
+              "cost_bp_round_trip": 10
+            },
+            "ofi_whale_agreement_contrarian_14bp": {
+              "trades": 2224,
+              "gross_mean_bp": 0.29819632524901085,
+              "net_mean_bp": -13.70180367475099,
+              "win_rate": 0.08947841726618705,
+              "profit_factor": 0.05190375775669476,
+              "max_drawdown_pct": 95.26860393131639,
+              "cost_bp_round_trip": 14
+            },
+            "ofi_whale_agreement_contrarian_20bp": {
+              "trades": 2224,
+              "gross_mean_bp": 0.29819632524901085,
+              "net_mean_bp": -19.70180367475099,
+              "win_rate": 0.0341726618705036,
+              "profit_factor": 0.019238697228737358,
+              "max_drawdown_pct": 98.7569277258697,
+              "cost_bp_round_trip": 20
             }
           }
         },
@@ -163,6 +433,42 @@
             "sell_pressure_mean_fwd_bp": 0.12587192643084857
           },
           "strategies": {
+            "ofi_continuation_2bp": {
+              "trades": 1652,
+              "gross_mean_bp": -1.4651720179834542,
+              "net_mean_bp": -3.4651720179834538,
+              "win_rate": 0.42433414043583534,
+              "profit_factor": 0.6379378344981627,
+              "max_drawdown_pct": 46.050621591908445,
+              "cost_bp_round_trip": 2
+            },
+            "ofi_continuation_4bp": {
+              "trades": 1652,
+              "gross_mean_bp": -1.4651720179834542,
+              "net_mean_bp": -5.465172017983454,
+              "win_rate": 0.37772397094430993,
+              "profit_factor": 0.49254180769761663,
+              "max_drawdown_pct": 60.681701116141326,
+              "cost_bp_round_trip": 4
+            },
+            "ofi_continuation_6bp": {
+              "trades": 1652,
+              "gross_mean_bp": -1.4651720179834542,
+              "net_mean_bp": -7.465172017983454,
+              "win_rate": 0.3238498789346247,
+              "profit_factor": 0.3813823207515781,
+              "max_drawdown_pct": 71.34664393746161,
+              "cost_bp_round_trip": 6
+            },
+            "ofi_continuation_8bp": {
+              "trades": 1652,
+              "gross_mean_bp": -1.4651720179834542,
+              "net_mean_bp": -9.465172017983454,
+              "win_rate": 0.274818401937046,
+              "profit_factor": 0.2973277088980849,
+              "max_drawdown_pct": 79.24047745420417,
+              "cost_bp_round_trip": 8
+            },
             "ofi_continuation_10bp": {
               "trades": 1652,
               "gross_mean_bp": -1.4651720179834542,
@@ -189,6 +495,42 @@
               "profit_factor": 0.07455082692774467,
               "max_drawdown_pct": 97.14277462902332,
               "cost_bp_round_trip": 20
+            },
+            "ofi_contrarian_2bp": {
+              "trades": 1652,
+              "gross_mean_bp": 1.4651720179834542,
+              "net_mean_bp": -0.5348279820165458,
+              "win_rate": 0.4600484261501211,
+              "profit_factor": 0.9334447906408506,
+              "max_drawdown_pct": 13.839291800278161,
+              "cost_bp_round_trip": 2
+            },
+            "ofi_contrarian_4bp": {
+              "trades": 1652,
+              "gross_mean_bp": 1.4651720179834542,
+              "net_mean_bp": -2.5348279820165462,
+              "win_rate": 0.40556900726392253,
+              "profit_factor": 0.7235807855471221,
+              "max_drawdown_pct": 36.99890249086447,
+              "cost_bp_round_trip": 4
+            },
+            "ofi_contrarian_6bp": {
+              "trades": 1652,
+              "gross_mean_bp": 1.4651720179834542,
+              "net_mean_bp": -4.534827982016546,
+              "win_rate": 0.35472154963680386,
+              "profit_factor": 0.5643354072185733,
+              "max_drawdown_pct": 53.93619945696309,
+              "cost_bp_round_trip": 6
+            },
+            "ofi_contrarian_8bp": {
+              "trades": 1652,
+              "gross_mean_bp": 1.4651720179834542,
+              "net_mean_bp": -6.534827982016546,
+              "win_rate": 0.31174334140435833,
+              "profit_factor": 0.4435991432930996,
+              "max_drawdown_pct": 66.43535849700586,
+              "cost_bp_round_trip": 8
             },
             "ofi_contrarian_10bp": {
               "trades": 1652,
@@ -217,6 +559,42 @@
               "max_drawdown_pct": 95.36455900680745,
               "cost_bp_round_trip": 20
             },
+            "whale_imbalance_continuation_2bp": {
+              "trades": 1706,
+              "gross_mean_bp": -0.2808864086263751,
+              "net_mean_bp": -2.280886408626375,
+              "win_rate": 0.4454865181711606,
+              "profit_factor": 0.7522419230961227,
+              "max_drawdown_pct": 36.650522505713276,
+              "cost_bp_round_trip": 2
+            },
+            "whale_imbalance_continuation_4bp": {
+              "trades": 1706,
+              "gross_mean_bp": -0.2808864086263751,
+              "net_mean_bp": -4.280886408626375,
+              "win_rate": 0.3939038686987104,
+              "profit_factor": 0.5871574833559511,
+              "max_drawdown_pct": 54.3528374046461,
+              "cost_bp_round_trip": 4
+            },
+            "whale_imbalance_continuation_6bp": {
+              "trades": 1706,
+              "gross_mean_bp": -0.2808864086263751,
+              "net_mean_bp": -6.280886408626375,
+              "win_rate": 0.34642438452520513,
+              "profit_factor": 0.4596148311828672,
+              "max_drawdown_pct": 67.11059213723257,
+              "cost_bp_round_trip": 6
+            },
+            "whale_imbalance_continuation_8bp": {
+              "trades": 1706,
+              "gross_mean_bp": -0.2808864086263751,
+              "net_mean_bp": -8.280886408626374,
+              "win_rate": 0.2895662368112544,
+              "profit_factor": 0.3625651000479961,
+              "max_drawdown_pct": 76.30428444439727,
+              "cost_bp_round_trip": 8
+            },
             "whale_imbalance_continuation_10bp": {
               "trades": 1706,
               "gross_mean_bp": -0.2808864086263751,
@@ -244,6 +622,42 @@
               "max_drawdown_pct": 96.8937497986861,
               "cost_bp_round_trip": 20
             },
+            "whale_imbalance_contrarian_2bp": {
+              "trades": 1706,
+              "gross_mean_bp": 0.2808864086263751,
+              "net_mean_bp": -1.7191135913736248,
+              "win_rate": 0.4525205158264947,
+              "profit_factor": 0.8072573485074397,
+              "max_drawdown_pct": 27.37014724539834,
+              "cost_bp_round_trip": 2
+            },
+            "whale_imbalance_contrarian_4bp": {
+              "trades": 1706,
+              "gross_mean_bp": 0.2808864086263751,
+              "net_mean_bp": -3.719113591373625,
+              "win_rate": 0.39976553341148885,
+              "profit_factor": 0.6304706844360638,
+              "max_drawdown_pct": 47.9181132948538,
+              "cost_bp_round_trip": 4
+            },
+            "whale_imbalance_contrarian_6bp": {
+              "trades": 1706,
+              "gross_mean_bp": 0.2808864086263751,
+              "net_mean_bp": -5.719113591373625,
+              "win_rate": 0.3499413833528722,
+              "profit_factor": 0.49454397895209895,
+              "max_drawdown_pct": 62.724197600109534,
+              "cost_bp_round_trip": 6
+            },
+            "whale_imbalance_contrarian_8bp": {
+              "trades": 1706,
+              "gross_mean_bp": 0.2808864086263751,
+              "net_mean_bp": -7.719113591373625,
+              "win_rate": 0.3048065650644783,
+              "profit_factor": 0.39039163917420217,
+              "max_drawdown_pct": 73.38302422323414,
+              "cost_bp_round_trip": 8
+            },
             "whale_imbalance_contrarian_10bp": {
               "trades": 1706,
               "gross_mean_bp": 0.2808864086263751,
@@ -270,6 +684,132 @@
               "profit_factor": 0.10974867672730551,
               "max_drawdown_pct": 96.5724680104057,
               "cost_bp_round_trip": 20
+            },
+            "ofi_whale_agreement_continuation_2bp": {
+              "trades": 1274,
+              "gross_mean_bp": -0.48006975957128095,
+              "net_mean_bp": -2.480069759571281,
+              "win_rate": 0.4324960753532182,
+              "profit_factor": 0.7162441559170438,
+              "max_drawdown_pct": 30.094479417758713,
+              "cost_bp_round_trip": 2
+            },
+            "ofi_whale_agreement_continuation_4bp": {
+              "trades": 1274,
+              "gross_mean_bp": -0.48006975957128095,
+              "net_mean_bp": -4.480069759571281,
+              "win_rate": 0.38304552590266877,
+              "profit_factor": 0.5486774472652659,
+              "max_drawdown_pct": 45.37740899974783,
+              "cost_bp_round_trip": 4
+            },
+            "ofi_whale_agreement_continuation_6bp": {
+              "trades": 1274,
+              "gross_mean_bp": -0.48006975957128095,
+              "net_mean_bp": -6.480069759571282,
+              "win_rate": 0.3281004709576138,
+              "profit_factor": 0.4219287983943857,
+              "max_drawdown_pct": 57.32125120343463,
+              "cost_bp_round_trip": 6
+            },
+            "ofi_whale_agreement_continuation_8bp": {
+              "trades": 1274,
+              "gross_mean_bp": -0.48006975957128095,
+              "net_mean_bp": -8.48006975957128,
+              "win_rate": 0.2794348508634223,
+              "profit_factor": 0.3275067921707596,
+              "max_drawdown_pct": 66.65508524539415,
+              "cost_bp_round_trip": 8
+            },
+            "ofi_whale_agreement_continuation_10bp": {
+              "trades": 1274,
+              "gross_mean_bp": -0.48006975957128095,
+              "net_mean_bp": -10.48006975957128,
+              "win_rate": 0.24175824175824176,
+              "profit_factor": 0.2560657111441561,
+              "max_drawdown_pct": 74.05234824821221,
+              "cost_bp_round_trip": 10
+            },
+            "ofi_whale_agreement_continuation_14bp": {
+              "trades": 1274,
+              "gross_mean_bp": -0.48006975957128095,
+              "net_mean_bp": -14.48006975957128,
+              "win_rate": 0.18288854003139718,
+              "profit_factor": 0.16055667591779965,
+              "max_drawdown_pct": 84.37240818497052,
+              "cost_bp_round_trip": 14
+            },
+            "ofi_whale_agreement_continuation_20bp": {
+              "trades": 1274,
+              "gross_mean_bp": -0.48006975957128095,
+              "net_mean_bp": -20.48006975957128,
+              "win_rate": 0.11616954474097331,
+              "profit_factor": 0.08457197253671525,
+              "max_drawdown_pct": 92.70672813645298,
+              "cost_bp_round_trip": 20
+            },
+            "ofi_whale_agreement_contrarian_2bp": {
+              "trades": 1274,
+              "gross_mean_bp": 0.48006975957128095,
+              "net_mean_bp": -1.5199302404287192,
+              "win_rate": 0.45604395604395603,
+              "profit_factor": 0.8145937582551168,
+              "max_drawdown_pct": 18.46866360940311,
+              "cost_bp_round_trip": 2
+            },
+            "ofi_whale_agreement_contrarian_4bp": {
+              "trades": 1274,
+              "gross_mean_bp": 0.48006975957128095,
+              "net_mean_bp": -3.519930240428719,
+              "win_rate": 0.39717425431711145,
+              "profit_factor": 0.6235064188554844,
+              "max_drawdown_pct": 36.4589158770562,
+              "cost_bp_round_trip": 4
+            },
+            "ofi_whale_agreement_contrarian_6bp": {
+              "trades": 1274,
+              "gross_mean_bp": 0.48006975957128095,
+              "net_mean_bp": -5.519930240428719,
+              "win_rate": 0.34379905808477235,
+              "profit_factor": 0.4797880009352168,
+              "max_drawdown_pct": 50.70780670578564,
+              "cost_bp_round_trip": 6
+            },
+            "ofi_whale_agreement_contrarian_8bp": {
+              "trades": 1274,
+              "gross_mean_bp": 0.48006975957128095,
+              "net_mean_bp": -7.519930240428718,
+              "win_rate": 0.30141287284144425,
+              "profit_factor": 0.3716717938796382,
+              "max_drawdown_pct": 61.801436964019715,
+              "cost_bp_round_trip": 8
+            },
+            "ofi_whale_agreement_contrarian_10bp": {
+              "trades": 1274,
+              "gross_mean_bp": 0.48006975957128095,
+              "net_mean_bp": -9.51993024042872,
+              "win_rate": 0.260596546310832,
+              "profit_factor": 0.2898599318691017,
+              "max_drawdown_pct": 70.3998614833606,
+              "cost_bp_round_trip": 10
+            },
+            "ofi_whale_agreement_contrarian_14bp": {
+              "trades": 1274,
+              "gross_mean_bp": 0.48006975957128095,
+              "net_mean_bp": -13.51993024042872,
+              "win_rate": 0.18681318681318682,
+              "profit_factor": 0.18129429472088748,
+              "max_drawdown_pct": 82.22864072503017,
+              "cost_bp_round_trip": 14
+            },
+            "ofi_whale_agreement_contrarian_20bp": {
+              "trades": 1274,
+              "gross_mean_bp": 0.48006975957128095,
+              "net_mean_bp": -19.51993024042872,
+              "win_rate": 0.12558869701726844,
+              "profit_factor": 0.09585494470476086,
+              "max_drawdown_pct": 91.73591948601327,
+              "cost_bp_round_trip": 20
             }
           }
         },
@@ -287,6 +827,42 @@
             "sell_pressure_mean_fwd_bp": -0.5124129117828898
           },
           "strategies": {
+            "ofi_continuation_2bp": {
+              "trades": 513,
+              "gross_mean_bp": -0.07000761352864021,
+              "net_mean_bp": -2.0700076135286403,
+              "win_rate": 0.4580896686159844,
+              "profit_factor": 0.8760019941476985,
+              "max_drawdown_pct": 16.988190384392386,
+              "cost_bp_round_trip": 2
+            },
+            "ofi_continuation_4bp": {
+              "trades": 513,
+              "gross_mean_bp": -0.07000761352864021,
+              "net_mean_bp": -4.070007613528641,
+              "win_rate": 0.4327485380116959,
+              "profit_factor": 0.7713333239431777,
+              "max_drawdown_pct": 22.864976937965366,
+              "cost_bp_round_trip": 4
+            },
+            "ofi_continuation_6bp": {
+              "trades": 513,
+              "gross_mean_bp": -0.07000761352864021,
+              "net_mean_bp": -6.070007613528641,
+              "win_rate": 0.40350877192982454,
+              "profit_factor": 0.6799786447529005,
+              "max_drawdown_pct": 29.905906404692985,
+              "cost_bp_round_trip": 6
+            },
+            "ofi_continuation_8bp": {
+              "trades": 513,
+              "gross_mean_bp": -0.07000761352864021,
+              "net_mean_bp": -8.07000761352864,
+              "win_rate": 0.3742690058479532,
+              "profit_factor": 0.6003368287771765,
+              "max_drawdown_pct": 36.63217777471526,
+              "cost_bp_round_trip": 8
+            },
             "ofi_continuation_10bp": {
               "trades": 513,
               "gross_mean_bp": -0.07000761352864021,
@@ -313,6 +889,42 @@
               "profit_factor": 0.29699344096268104,
               "max_drawdown_pct": 65.45023895426012,
               "cost_bp_round_trip": 20
+            },
+            "ofi_contrarian_2bp": {
+              "trades": 513,
+              "gross_mean_bp": 0.07000761352864021,
+              "net_mean_bp": -1.92999238647136,
+              "win_rate": 0.46588693957115007,
+              "profit_factor": 0.8838358045396195,
+              "max_drawdown_pct": 13.996892747174622,
+              "cost_bp_round_trip": 2
+            },
+            "ofi_contrarian_4bp": {
+              "trades": 513,
+              "gross_mean_bp": 0.07000761352864021,
+              "net_mean_bp": -3.9299923864713597,
+              "win_rate": 0.43664717348927873,
+              "profit_factor": 0.7781581357843685,
+              "max_drawdown_pct": 19.782993748673324,
+              "cost_bp_round_trip": 4
+            },
+            "ofi_contrarian_6bp": {
+              "trades": 513,
+              "gross_mean_bp": 0.07000761352864021,
+              "net_mean_bp": -5.929992386471359,
+              "win_rate": 0.41130604288499023,
+              "profit_factor": 0.6858134480887144,
+              "max_drawdown_pct": 27.391622873551853,
+              "cost_bp_round_trip": 6
+            },
+            "ofi_contrarian_8bp": {
+              "trades": 513,
+              "gross_mean_bp": 0.07000761352864021,
+              "net_mean_bp": -7.929992386471359,
+              "win_rate": 0.38791423001949316,
+              "profit_factor": 0.605085555751461,
+              "max_drawdown_pct": 34.35577430295449,
+              "cost_bp_round_trip": 8
             },
             "ofi_contrarian_10bp": {
               "trades": 513,
@@ -341,6 +953,42 @@
               "max_drawdown_pct": 64.39775883566172,
               "cost_bp_round_trip": 20
             },
+            "whale_imbalance_continuation_2bp": {
+              "trades": 520,
+              "gross_mean_bp": -1.6566546728635032,
+              "net_mean_bp": -3.6566546728635028,
+              "win_rate": 0.4519230769230769,
+              "profit_factor": 0.7913110509958585,
+              "max_drawdown_pct": 22.74880044648663,
+              "cost_bp_round_trip": 2
+            },
+            "whale_imbalance_continuation_4bp": {
+              "trades": 520,
+              "gross_mean_bp": -1.6566546728635032,
+              "net_mean_bp": -5.656654672863503,
+              "win_rate": 0.4288461538461538,
+              "profit_factor": 0.6966179927483864,
+              "max_drawdown_pct": 28.61994542221154,
+              "cost_bp_round_trip": 4
+            },
+            "whale_imbalance_continuation_6bp": {
+              "trades": 520,
+              "gross_mean_bp": -1.6566546728635032,
+              "net_mean_bp": -7.656654672863503,
+              "win_rate": 0.40384615384615385,
+              "profit_factor": 0.6134427386528543,
+              "max_drawdown_pct": 35.251898304769995,
+              "cost_bp_round_trip": 6
+            },
+            "whale_imbalance_continuation_8bp": {
+              "trades": 520,
+              "gross_mean_bp": -1.6566546728635032,
+              "net_mean_bp": -9.656654672863503,
+              "win_rate": 0.38076923076923075,
+              "profit_factor": 0.5405258979827784,
+              "max_drawdown_pct": 41.38407490919038,
+              "cost_bp_round_trip": 8
+            },
             "whale_imbalance_continuation_10bp": {
               "trades": 520,
               "gross_mean_bp": -1.6566546728635032,
@@ -368,6 +1016,42 @@
               "max_drawdown_pct": 68.18285256190802,
               "cost_bp_round_trip": 20
             },
+            "whale_imbalance_contrarian_2bp": {
+              "trades": 520,
+              "gross_mean_bp": 1.6566546728635032,
+              "net_mean_bp": -0.3433453271364969,
+              "win_rate": 0.48653846153846153,
+              "profit_factor": 0.978253652954722,
+              "max_drawdown_pct": 11.148988627524158,
+              "cost_bp_round_trip": 2
+            },
+            "whale_imbalance_contrarian_4bp": {
+              "trades": 520,
+              "gross_mean_bp": 1.6566546728635032,
+              "net_mean_bp": -2.343345327136497,
+              "win_rate": 0.45384615384615384,
+              "profit_factor": 0.8608702275140054,
+              "max_drawdown_pct": 14.839943082266608,
+              "cost_bp_round_trip": 4
+            },
+            "whale_imbalance_contrarian_6bp": {
+              "trades": 520,
+              "gross_mean_bp": 1.6566546728635032,
+              "net_mean_bp": -4.343345327136497,
+              "win_rate": 0.4288461538461538,
+              "profit_factor": 0.7582352160166239,
+              "max_drawdown_pct": 20.798583207715144,
+              "cost_bp_round_trip": 6
+            },
+            "whale_imbalance_contrarian_8bp": {
+              "trades": 520,
+              "gross_mean_bp": 1.6566546728635032,
+              "net_mean_bp": -6.343345327136497,
+              "win_rate": 0.4076923076923077,
+              "profit_factor": 0.6684199436688041,
+              "max_drawdown_pct": 28.508161864303915,
+              "cost_bp_round_trip": 8
+            },
             "whale_imbalance_contrarian_10bp": {
               "trades": 520,
               "gross_mean_bp": 1.6566546728635032,
@@ -393,6 +1077,132 @@
               "win_rate": 0.27884615384615385,
               "profit_factor": 0.31959612473365956,
               "max_drawdown_pct": 61.72494044346012,
+              "cost_bp_round_trip": 20
+            },
+            "ofi_whale_agreement_continuation_2bp": {
+              "trades": 467,
+              "gross_mean_bp": -1.5803829375621863,
+              "net_mean_bp": -3.5803829375621863,
+              "win_rate": 0.4346895074946467,
+              "profit_factor": 0.7910181189622626,
+              "max_drawdown_pct": 19.997633837335528,
+              "cost_bp_round_trip": 2
+            },
+            "ofi_whale_agreement_continuation_4bp": {
+              "trades": 467,
+              "gross_mean_bp": -1.5803829375621863,
+              "net_mean_bp": -5.580382937562185,
+              "win_rate": 0.40471092077087795,
+              "profit_factor": 0.6948804199392877,
+              "max_drawdown_pct": 25.00626881865365,
+              "cost_bp_round_trip": 4
+            },
+            "ofi_whale_agreement_continuation_6bp": {
+              "trades": 467,
+              "gross_mean_bp": -1.5803829375621863,
+              "net_mean_bp": -7.580382937562185,
+              "win_rate": 0.39400428265524623,
+              "profit_factor": 0.6110687354009757,
+              "max_drawdown_pct": 31.115119029021248,
+              "cost_bp_round_trip": 6
+            },
+            "ofi_whale_agreement_continuation_8bp": {
+              "trades": 467,
+              "gross_mean_bp": -1.5803829375621863,
+              "net_mean_bp": -9.580382937562186,
+              "win_rate": 0.3618843683083512,
+              "profit_factor": 0.5379711768209776,
+              "max_drawdown_pct": 37.2002057281803,
+              "cost_bp_round_trip": 8
+            },
+            "ofi_whale_agreement_continuation_10bp": {
+              "trades": 467,
+              "gross_mean_bp": -1.5803829375621863,
+              "net_mean_bp": -11.580382937562186,
+              "win_rate": 0.3340471092077088,
+              "profit_factor": 0.47454557901857874,
+              "max_drawdown_pct": 42.74881405600552,
+              "cost_bp_round_trip": 10
+            },
+            "ofi_whale_agreement_continuation_14bp": {
+              "trades": 467,
+              "gross_mean_bp": -1.5803829375621863,
+              "net_mean_bp": -15.580382937562186,
+              "win_rate": 0.29336188436830835,
+              "profit_factor": 0.37114342501337905,
+              "max_drawdown_pct": 52.4212661737627,
+              "cost_bp_round_trip": 14
+            },
+            "ofi_whale_agreement_continuation_20bp": {
+              "trades": 467,
+              "gross_mean_bp": -1.5803829375621863,
+              "net_mean_bp": -21.580382937562185,
+              "win_rate": 0.23554603854389722,
+              "profit_factor": 0.2607798715851919,
+              "max_drawdown_pct": 63.96252554467053,
+              "cost_bp_round_trip": 20
+            },
+            "ofi_whale_agreement_contrarian_2bp": {
+              "trades": 467,
+              "gross_mean_bp": 1.5803829375621863,
+              "net_mean_bp": -0.41961706243781377,
+              "win_rate": 0.49036402569593146,
+              "profit_factor": 0.9728293139690396,
+              "max_drawdown_pct": 9.15305979635137,
+              "cost_bp_round_trip": 2
+            },
+            "ofi_whale_agreement_contrarian_4bp": {
+              "trades": 467,
+              "gross_mean_bp": 1.5803829375621863,
+              "net_mean_bp": -2.4196170624378137,
+              "win_rate": 0.4668094218415418,
+              "profit_factor": 0.8532328447203791,
+              "max_drawdown_pct": 13.817713091009665,
+              "cost_bp_round_trip": 4
+            },
+            "ofi_whale_agreement_contrarian_6bp": {
+              "trades": 467,
+              "gross_mean_bp": 1.5803829375621863,
+              "net_mean_bp": -4.419617062437815,
+              "win_rate": 0.44325481798715205,
+              "profit_factor": 0.7485746947884603,
+              "max_drawdown_pct": 20.99723133429559,
+              "cost_bp_round_trip": 6
+            },
+            "ofi_whale_agreement_contrarian_8bp": {
+              "trades": 467,
+              "gross_mean_bp": 1.5803829375621863,
+              "net_mean_bp": -6.419617062437815,
+              "win_rate": 0.40471092077087795,
+              "profit_factor": 0.6573648470928743,
+              "max_drawdown_pct": 27.75770200650969,
+              "cost_bp_round_trip": 8
+            },
+            "ofi_whale_agreement_contrarian_10bp": {
+              "trades": 467,
+              "gross_mean_bp": 1.5803829375621863,
+              "net_mean_bp": -8.419617062437814,
+              "win_rate": 0.37901498929336186,
+              "profit_factor": 0.5780410874197899,
+              "max_drawdown_pct": 33.94084469211439,
+              "cost_bp_round_trip": 10
+            },
+            "ofi_whale_agreement_contrarian_14bp": {
+              "trades": 467,
+              "gross_mean_bp": 1.5803829375621863,
+              "net_mean_bp": -12.419617062437814,
+              "win_rate": 0.3297644539614561,
+              "profit_factor": 0.449125017331326,
+              "max_drawdown_pct": 44.79605820858563,
+              "cost_bp_round_trip": 14
+            },
+            "ofi_whale_agreement_contrarian_20bp": {
+              "trades": 467,
+              "gross_mean_bp": 1.5803829375621863,
+              "net_mean_bp": -18.419617062437815,
+              "win_rate": 0.2633832976445396,
+              "profit_factor": 0.3130718583055609,
+              "max_drawdown_pct": 58.0222903532659,
               "cost_bp_round_trip": 20
             }
           }
