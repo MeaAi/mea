@@ -55,10 +55,16 @@ jobs:
             --end "$END_MONTH" \
             --symbols "$SYMBOLS" \
             --out research-output
-      - name: Publish readable QA report back to research branch
+      - name: Run exploratory order-flow diagnostics
+        run: |
+          python research/orderflow_diagnostic.py \\
+            --input "research-output/*-1m-orderflow.csv.gz" \\
+            --out research-output/orderflow_diagnostic.json
+      - name: Publish readable QA and diagnostic reports back to research branch
         run: |
           mkdir -p research-results
           cp research-output/qa_report.json research-results/qa_report.json
+          cp research-output/orderflow_diagnostic.json research-results/orderflow_diagnostic.json
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add research-results/qa_report.json
