@@ -42,6 +42,7 @@ class SymbolState:
         self.bookticker_events = 0
         self.depth_events = 0
         self.parse_errors = 0
+        self.unknown_streams = collections.Counter()
         self.signals = 0
 
     def on_trade(self, d):
@@ -166,6 +167,8 @@ class SymbolState:
                 "aggtrade_events": self.aggtrade_events,
                 "bookticker_events": self.bookticker_events,
                 "depth_events": self.depth_events,
+                "parse_errors": self.parse_errors,
+                "unknown_streams": dict(self.unknown_streams),
                 "trades_in_lookback": len(self.trades),
                 "buy_quote_in_lookback": buy, "sell_quote_in_lookback": sell,
                 "signals": self.signals,
@@ -205,18 +208,20 @@ def main():
     def on_message(ws, raw):
         try:
             msg=json.loads(raw); stream=msg.get("stream",""); d=msg.get("data",{})
-            sym=stream.split("@")[0]; st=states.get(sym)
+            stream_l=stream.lower()
+            sym=stream_l.split("@")[0]; st=states.get(sym)
             if not st: return
-            if "@aggTrade" in stream:
+            if "@aggtrade" in stream_l:
                 st.aggtrade_events += 1
                 st.on_trade(d)
-            elif "@bookTicker" in stream:
+            elif "@bookticker" in stream_l:
                 st.bookticker_events += 1
                 st.on_book(d)
-            elif "@depth5" in stream:
+            elif "@depth5" in stream_l:
                 st.depth_events += 1
                 st.on_depth(d)
             else:
+                st.unknown_streams[stream] += 1
                 print(json.dumps({"event":"unknown_stream","stream":stream}),flush=True)
             st.events += 1
             st.maybe_signal(time.time())
