@@ -68,7 +68,7 @@ jobs:
           cp research-output/qa_report.json research-results/qa_report.json
           cp research-output/orderflow_diagnostic.json research-results/orderflow_diagnostic.json
           git config user.name "github-actions[bot]"
-          git config user.email "41898282+users.noreply.github.com"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add research-results/qa_report.json research-results/orderflow_diagnostic.json
           git commit -m "Publish Binance public-data QA report" || echo "No report changes"
           git push origin HEAD:research/binance-data-pipeline
