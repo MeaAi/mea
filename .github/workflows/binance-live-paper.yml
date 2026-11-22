@@ -1,0 +1,59 @@
+name: Binance read-only live paper trading
+on:
+  push:
+    branches: [research/binance-data-pipeline]
+    paths:
+      - "research/live_paper_trader.py"
+      - ".github/workflows/binance-live-paper.yml"
+  workflow_dispatch:
+    inputs:
+      minutes:
+        description: "Observation duration (minutes)"
+        required: true
+        default: "20"
+        type: string
+      symbols:
+        description: "USD-M symbols"
+        required: true
+        default: "BTCUSDT,ETHUSDT,SOLUSDT"
+        type: string
+permissions:
+  contents: write
+concurrency:
+  group: binance-live-paper
+  cancel-in-progress: false
+jobs:
+  paper:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      DURATION: ${{ github.event.inputs.minutes || '20' }}
+      SYMBOLS: ${{ github.event.inputs.symbols || 'BTCUSDT,ETHUSDT,SOLUSDT' }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: research/binance-data-pipeline
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install websocket client
+        run: python -m pip install --disable-pip-version-check websocket-client==1.9.0
+      - name: Run read-only live paper session
+        run: |
+          python research/live_paper_trader.py \
+            --minutes "$DURATION" \
+            --symbols "$SYMBOLS" \
+            --out paper-results/live_paper_report.json
+      - name: Publish compact paper report
+        if: always()
+        run: |
+          mkdir -p paper-results
+          if [ -f paper-results/live_paper_report.json ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add paper-results/live_paper_report.json
+            git commit -m "Publish read-only live paper report" || echo "No report changes"
+            git fetch origin research/binance-data-pipeline
+            git rebase origin/research/binance-data-pipeline
+            git push origin HEAD:research/binance-data-pipeline
+          fi
