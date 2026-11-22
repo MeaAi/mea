@@ -25,7 +25,7 @@ on:
       - ".github/workflows/binance-research.yml"
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: binance-public-research
@@ -42,6 +42,8 @@ jobs:
     steps:
       - name: Checkout research branch
         uses: actions/checkout@v4
+        with:
+          ref: research/binance-data-pipeline
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -53,12 +55,19 @@ jobs:
             --end "$END_MONTH" \
             --symbols "$SYMBOLS" \
             --out research-output
-      - name: Upload compact QA and feature outputs
+      - name: Publish readable QA report back to research branch
+        run: |
+          mkdir -p research-results
+          cp research-output/qa_report.json research-results/qa_report.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research-results/qa_report.json
+          git commit -m "Publish Binance public-data QA report" || echo "No report changes"
+          git push origin HEAD:research/binance-data-pipeline
+      - name: Keep compressed feature data as optional short-lived artifact
         uses: actions/upload-artifact@v4
         with:
           name: binance-orderflow-pilot
-          path: |
-            research-output/qa_report.json
-            research-output/*-1m-orderflow.csv.gz
+          path: research-output/*-1m-orderflow.csv.gz
           if-no-files-found: error
           retention-days: 7
