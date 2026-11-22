@@ -84,6 +84,9 @@ def main():
         test_start=CALIBRATION_MINUTES
         sig_ofi=[0 if i < test_start else (1 if x>=ofi_hi else (-1 if x<=ofi_lo else 0)) for i,x in enumerate(ofi)]
         sig_whale=[0 if i < test_start else (1 if x>=whale_hi else (-1 if x<=whale_lo else 0)) for i,x in enumerate(imbalance)]
+        # Combined signal: trade only when OFI and whale imbalance both cross
+        # their independently calibrated extremes in the same direction.
+        sig_combined=[a if a != 0 and a == b else 0 for a,b in zip(sig_ofi,sig_whale)]
         fwd={}
         for h in (5,15,60):
             ret=[(cl[i+h]/op[i+1]-1)*10000 for i in range(len(cl)-h-1)]
@@ -105,9 +108,9 @@ def main():
                          "ofi_extreme_bucket_test_only":bucket_stats(valid_ofi),
                          "whale_extreme_bucket_test_only":bucket_stats(valid_whale),
                          "strategies":{}}
-            for signal_name,sig in (("ofi",sig_ofi),("whale_imbalance",sig_whale)):
+            for signal_name,sig in (("ofi",sig_ofi),("whale_imbalance",sig_whale),("ofi_whale_agreement",sig_combined)):
                 for mode in ("continuation","contrarian"):
-                    for cost in (10,14,20):
+                    for cost in (2,4,6,8,10,14,20):
                         fwd[str(h)]["strategies"][f"{signal_name}_{mode}_{cost}bp"]=evaluate(op,cl,sig,h,mode,cost,test_start)
         report["files"][Path(path).name]={
             "rows":len(cl),"calibration_rows":test_start,"test_rows":len(cl)-test_start,
