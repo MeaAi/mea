@@ -1,4 +1,4 @@
-name: Binance public-data research pilot # ephemeral storage, compact reports only
+name: Binance public-data research pilot # ephemeral storage, compact reports only; February 2024 validation
 
 on:
   workflow_dispatch:
