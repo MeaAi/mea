@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
-"""Exploratory, no-lookahead order-flow diagnostics for Binance 1m feature files.
-This is not a production backtest: costs are sensitivity assumptions and fills use
-next-minute open / horizon close, with no L2 queue or intrabar execution model.
+"""Exploratory past-only order-flow diagnostics for Binance 1m feature files.
+First seven days calibrate thresholds; remaining days are the test segment.
+Not a production backtest: fills are next-minute open / horizon close, with no
+L2 queue, intrabar execution, funding, market impact, or calibrated fee schedule.
 """
 import argparse, csv, gzip, glob, json, math
 from pathlib import Path
+
+CALIBRATION_MINUTES = 7 * 1440
 
 def quantile(values, q):
     a = sorted(values)
@@ -31,13 +34,14 @@ def load(path):
             qv.append(float(r["quote_volume"]))
     return op, cl, ofi, wb, ws, qv
 
-def evaluate(op, cl, signal, horizon, direction_mode, cost_bp):
-    # Signal at close of minute i; enter at next minute open; exit at close i+h.
+def evaluate(op, cl, signal, horizon, direction_mode, cost_bp, test_start):
+    # Signal at minute i close; entry next minute open; exit at close i+h.
     trades, gross = [], []
-    next_free = 0
-    for i, s in enumerate(signal):
-        if i < next_free or i+ horizon >= len(cl) or i+1 >= len(op): continue
-        if s == 0: continue
+    next_free = test_start
+    for i in range(test_start, len(signal)):
+        s = signal[i]
+        if i < next_free or i + horizon >= len(cl) or i + 1 >= len(op) or s == 0:
+            continue
         direction = s if direction_mode == "continuation" else -s
         entry, exit_px = op[i+1], cl[i+horizon]
         if entry <= 0: continue
@@ -47,8 +51,6 @@ def evaluate(op, cl, signal, horizon, direction_mode, cost_bp):
         next_free = i+horizon
     if not gross: return {"trades":0}
     wins = sum(x > 0 for x in trades)
-    mean = sum(trades)/len(trades)
-    # Trade-level PF; no annualization due single-month pilot.
     pos = sum(x for x in trades if x > 0); neg = -sum(x for x in trades if x < 0)
     eq, peak, maxdd = 1.0, 1.0, 0.0
     for x in trades:
@@ -56,7 +58,7 @@ def evaluate(op, cl, signal, horizon, direction_mode, cost_bp):
         peak = max(peak, eq)
         maxdd = max(maxdd, (peak-eq)/peak)
     return {"trades":len(trades), "gross_mean_bp":sum(gross)/len(gross),
-            "net_mean_bp":mean, "win_rate":wins/len(trades),
+            "net_mean_bp":sum(trades)/len(trades), "win_rate":wins/len(trades),
             "profit_factor":pos/neg if neg else None, "max_drawdown_pct":maxdd*100,
             "cost_bp_round_trip":cost_bp}
 
@@ -66,41 +68,55 @@ def main():
     args=ap.parse_args()
     paths=glob.glob(args.input)
     if not paths: raise SystemExit("No feature files matched")
-    report={"scope":"exploratory one-month order-flow diagnostic; not validated strategy",
+    report={"scope":"exploratory; first 7 days calibration, remainder strictly held-out within each monthly file; not a validated strategy",
             "execution_assumption":"signal at minute close; enter next minute open; exit at horizon close; non-overlapping trades",
-            "cost_scenarios_bp_round_trip":[10,14,20],
-            "files":{}}
+            "threshold_method":"p10/p90 thresholds estimated only from first 7 days; frozen for the test segment",
+            "calibration_days":7, "cost_scenarios_bp_round_trip":[10,14,20], "files":{}}
     for path in paths:
         op,cl,ofi,wb,ws,qv=load(path)
-        # AggTrade totals should reconcile to the Binance kline totals.
-        # OFI is calculated from aggTrades taker buy/sell quote notional.
+        if len(cl) <= CALIBRATION_MINUTES + 60:
+            raise SystemExit(f"{path}: need more than 7 days plus 60 minutes; got {len(cl)} rows")
         imbalance=[(b-s)/(b+s) if b+s else 0.0 for b,s in zip(wb,ws)]
+        train_ofi=ofi[:CALIBRATION_MINUTES]
+        train_whale=imbalance[:CALIBRATION_MINUTES]
+        ofi_lo, ofi_hi = quantile(train_ofi,.1), quantile(train_ofi,.9)
+        whale_lo, whale_hi = quantile(train_whale,.1), quantile(train_whale,.9)
+        test_start=CALIBRATION_MINUTES
+        sig_ofi=[0 if i < test_start else (1 if x>=ofi_hi else (-1 if x<=ofi_lo else 0)) for i,x in enumerate(ofi)]
+        sig_whale=[0 if i < test_start else (1 if x>=whale_hi else (-1 if x<=whale_lo else 0)) for i,x in enumerate(imbalance)]
         fwd={}
         for h in (5,15,60):
             ret=[(cl[i+h]/op[i+1]-1)*10000 for i in range(len(cl)-h-1)]
-            sig_ofi=[1 if x>=quantile(ofi,.9) else (-1 if x<=quantile(ofi,.1) else 0) for x in ofi]
-            sig_whale=[1 if x>=quantile(imbalance,.9) else (-1 if x<=quantile(imbalance,.1) else 0) for x in imbalance]
-            valid_ofi=[(i,sig_ofi[i],ret[i]) for i in range(len(ret)) if sig_ofi[i]]
-            valid_whale=[(i,sig_whale[i],ret[i]) for i in range(len(ret)) if sig_whale[i]]
+            test_end=len(ret)
+            test_ofi=ofi[test_start:test_end]
+            test_whale=imbalance[test_start:test_end]
+            test_ret=ret[test_start:test_end]
+            valid_ofi=[(i,sig_ofi[i],ret[i]) for i in range(test_start,test_end) if sig_ofi[i]]
+            valid_whale=[(i,sig_whale[i],ret[i]) for i in range(test_start,test_end) if sig_whale[i]]
             def bucket_stats(items):
                 if not items: return {}
-                return {"signals":len(items),"long_or_buy_pressure_mean_fwd_bp":sum(x[2] for x in items if x[1]>0)/max(1,sum(x[1]>0 for x in items)),
-                        "short_or_sell_pressure_mean_fwd_bp":sum(x[2] for x in items if x[1]<0)/max(1,sum(x[1]<0 for x in items))}
-            fwd[str(h)]={"ofi_return_corr":corr(ofi[:len(ret)],ret),
-                         "whale_imbalance_return_corr":corr(imbalance[:len(ret)],ret),
-                         "ofi_extreme_bucket":bucket_stats(valid_ofi),
-                         "whale_extreme_bucket":bucket_stats(valid_whale),
+                buys=[x[2] for x in items if x[1]>0]
+                sells=[x[2] for x in items if x[1]<0]
+                return {"signals":len(items),
+                        "buy_pressure_mean_fwd_bp":sum(buys)/len(buys) if buys else None,
+                        "sell_pressure_mean_fwd_bp":sum(sells)/len(sells) if sells else None}
+            fwd[str(h)]={"ofi_return_corr_test_only":corr(test_ofi,test_ret),
+                         "whale_imbalance_return_corr_test_only":corr(test_whale,test_ret),
+                         "ofi_extreme_bucket_test_only":bucket_stats(valid_ofi),
+                         "whale_extreme_bucket_test_only":bucket_stats(valid_whale),
                          "strategies":{}}
-            for signal_name, sig in (("ofi",sig_ofi),("whale_imbalance",sig_whale)):
+            for signal_name,sig in (("ofi",sig_ofi),("whale_imbalance",sig_whale)):
                 for mode in ("continuation","contrarian"):
                     for cost in (10,14,20):
-                        fwd[str(h)]["strategies"][f"{signal_name}_{mode}_{cost}bp"]=evaluate(op,cl,sig,h,mode,cost)
+                        fwd[str(h)]["strategies"][f"{signal_name}_{mode}_{cost}bp"]=evaluate(op,cl,sig,h,mode,cost,test_start)
         report["files"][Path(path).name]={
-            "rows":len(cl),"mean_1m_quote_volume_usdt":sum(qv)/len(qv),
-            "ofi_quote_mean":sum(ofi)/len(ofi),"ofi_quote_p10":quantile(ofi,.1),"ofi_quote_p90":quantile(ofi,.9),
-            "whale_imbalance_mean":sum(imbalance)/len(imbalance),
-            "whale_buy_minutes":sum(x>0 for x in wb),"whale_sell_minutes":sum(x>0 for x in ws),
-            "horizons":fwd}
+            "rows":len(cl),"calibration_rows":test_start,"test_rows":len(cl)-test_start,
+            "thresholds":{"ofi_p10":ofi_lo,"ofi_p90":ofi_hi,"whale_imbalance_p10":whale_lo,"whale_imbalance_p90":whale_hi},
+            "mean_1m_quote_volume_usdt_test":sum(qv[test_start:])/len(qv[test_start:]),
+            "ofi_quote_mean_test":sum(ofi[test_start:])/len(ofi[test_start:]),
+            "whale_imbalance_mean_test":sum(imbalance[test_start:])/len(imbalance[test_start:]),
+            "whale_buy_minutes_test":sum(x>0 for x in wb[test_start:]),
+            "whale_sell_minutes_test":sum(x>0 for x in ws[test_start:]),"horizons":fwd}
     Path(args.out).write_text(json.dumps(report,indent=2),encoding="utf-8")
     print(json.dumps({"output":args.out,"files":list(report["files"])},indent=2))
 if __name__=="__main__": main()
