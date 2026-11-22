@@ -10,7 +10,7 @@ and maker (post at touch; conservative trade-through/queue proxy + fee).
 This is an exploratory live-data simulation, not a validated strategy.
 """
 from __future__ import annotations
-import argparse, collections, json, signal, sys, time
+import argparse, collections, json, signal, sys, time, threading
 from datetime import datetime, timezone
 from pathlib import Path
 import websocket
@@ -201,9 +201,13 @@ def main():
     args=ap.parse_args()
     symbols=[s.strip().lower() for s in args.symbols.split(",") if s.strip()]
     states={s:SymbolState(s.upper(),args) for s in symbols}
-    streams=[]
-    for s in symbols: streams += [f"{s}@aggtrade",f"{s}@bookticker",f"{s}@depth5@100ms"]
-    url="wss://fstream.binance.com/stream?streams="+"/".join(streams)
+    market_streams=[f"{s}@aggTrade" for s in symbols]
+    public_streams=[]
+    for s in symbols: public_streams += [f"{s}@bookTicker",f"{s}@depth5@100ms"]
+    urls = {
+        "market": "wss://fstream.binance.com/market/stream?streams="+"/".join(market_streams),
+        "public": "wss://fstream.binance.com/public/stream?streams="+"/".join(public_streams)
+    }
     started=time.time(); deadline=started+args.minutes*60
     def on_message(ws, raw):
         try:
@@ -234,11 +238,17 @@ def main():
     def on_close(ws, code, msg): print(json.dumps({"event":"websocket_closed","code":code,"message":msg}),flush=True)
     def on_open(ws): print(json.dumps({"event":"websocket_connected","symbols":symbols,"started_at":utc()}),flush=True)
     signal.signal(signal.SIGTERM,stop_handler); signal.signal(signal.SIGINT,stop_handler)
-    app=websocket.WebSocketApp(url,on_open=on_open,on_message=on_message,on_error=on_error,on_close=on_close)
-    # Reconnects are bounded by total session deadline; preserve state within process.
-    while not STOP and time.time()<deadline:
-        app.run_forever(ping_interval=20,ping_timeout=10)
-        if time.time()<deadline and not STOP: time.sleep(2)
+    def run_socket(url):
+        app=websocket.WebSocketApp(url,on_open=on_open,on_message=on_message,on_error=on_error,on_close=on_close)
+        while not STOP and time.time()<deadline:
+            app.run_forever(ping_interval=20,ping_timeout=10)
+            if time.time()<deadline and not STOP: time.sleep(2)
+    # Binance routes aggTrade to /market and bookTicker/depth to /public.
+    # Keep the two feed classes on separate connections; share read-only paper state.
+    workers=[threading.Thread(target=run_socket,args=(url,),daemon=True) for url in urls.values()]
+    for worker in workers: worker.start()
+    while not STOP and time.time()<deadline: time.sleep(0.5)
+    for worker in workers: worker.join(timeout=5)
     finished=time.time()
     report={"mode":"READ_ONLY_LIVE_PAPER_TRADING","exchange":"Binance USD-M Futures public WebSocket",
             "started_at":datetime.fromtimestamp(started,timezone.utc).isoformat(),
