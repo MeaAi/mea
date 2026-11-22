@@ -1,0 +1,53 @@
+{
+  "source": "Binance Vision official USD-M Futures monthly archives",
+  "start": "2024-01",
+  "end": "2024-01",
+  "symbols": {
+    "BTCUSDT": {
+      "2024-01": {
+        "klines": {
+          "rows": 44640,
+          "timestamp_units": {
+            "ms": 44640
+          },
+          "missing_minute_gaps": 0,
+          "missing_minutes_total": 0,
+          "archive": {
+            "file": "BTCUSDT-1m-2024-01.zip",
+            "download": "downloaded",
+            "checksum_download": "downloaded",
+            "sha256": "21eeac04a76a7a35b10467e5e752fb2f8cff77cdeb57df6b50a23ce8d69bb190",
+            "bytes": 1898532
+          }
+        },
+        "aggTrades": {
+          "rows": 40294620,
+          "timestamp_units": {
+            "ms": 40294620
+          },
+          "first_trade_utc": "2024-01-01T00:00:00.038000+00:00",
+          "last_trade_utc": "2024-01-31T23:59:59.885000+00:00",
+          "archive": {
+            "file": "BTCUSDT-aggTrades-2024-01.zip",
+            "download": "downloaded",
+            "checksum_download": "downloaded",
+            "sha256": "d752f50932091dd209803187ca2354a9eadbfe8e4b9c481c3581a1bbb1bd8282",
+            "bytes": 522743749
+          }
+        },
+        "features": {
+          "path": "BTCUSDT-2024-01-1m-orderflow.csv.gz",
+          "rows": 44640,
+          "aggtrade_minutes_with_activity": 44640,
+          "whale_threshold_usdt": 100000.0
+        }
+      }
+    }
+  },
+  "limitations": [
+    "This run performs data acquisition and QA, not a profitability backtest.",
+    "AggTrade buyer-maker=true is classified as aggressive sell; false as aggressive buy.",
+    "Whale is a configurable single aggregate-trade notional threshold, not investor identity.",
+    "No historical L2 queue reconstruction or guaranteed maker fill simulation is performed."
+  ]
+}
