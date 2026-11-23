@@ -1,0 +1,57 @@
+name: BookDepth cost-aware backtest
+
+on:
+  push:
+    branches:
+      - research/binance-data-pipeline
+    paths:
+      - "research/bookdepth_cost_backtest.py"
+      - ".github/workflows/bookdepth-cost-backtest.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cost-backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      START_MONTH: "2024-05"
+      END_MONTH: "2024-06"
+      SYMBOLS: "BTCUSDT,ETHUSDT,SOLUSDT"
+    steps:
+      - name: Checkout research branch
+        uses: actions/checkout@v4
+        with:
+          ref: research/binance-data-pipeline
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download free Binance public futures data
+        run: |
+          python research/binance_public_pipeline.py \
+            --start "$START_MONTH" --end "$END_MONTH" \
+            --symbols "$SYMBOLS" --out research-output
+      - name: Download free Binance BookDepth data
+        run: |
+          python research/binance_bookdepth_pipeline.py \
+            --start "$START_MONTH" --end "$END_MONTH" \
+            --symbols "$SYMBOLS" --out research-output
+      - name: Run cost-aware non-overlapping strategy test
+        run: |
+          python research/bookdepth_cost_backtest.py \
+            --bookdepth "research-output/*-bookdepth-1m.csv.gz" \
+            --orderflow "research-output/*-1m-orderflow.csv.gz" \
+            --out research-output/bookdepth_cost_backtest.json
+      - name: Publish compact report and discard raw data
+        run: |
+          mkdir -p research-results
+          cp research-output/bookdepth_cost_backtest.json research-results/
+          rm -rf research-output
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research-results/bookdepth_cost_backtest.json
+          git commit -m "Publish BookDepth cost-aware backtest results" || exit 0
+          git push
