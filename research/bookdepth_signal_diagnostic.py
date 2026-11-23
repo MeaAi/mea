@@ -51,8 +51,8 @@ def main():
         for t in ts:
             b=books[symbol][t]; f=flows[symbol][t]
             try:
-                bid=float(b["notional_-1"] or 0)+float(b["notional_-2"] or 0)
-                ask=float(b["notional_1"] or 0)+float(b["notional_2"] or 0)
+                bid=float(b["notional_-1pct"] or 0)+float(b["notional_-2pct"] or 0)
+                ask=float(b["notional_1pct"] or 0)+float(b["notional_2pct"] or 0)
                 buy=float(f["agg_taker_buy_quote"] or 0); sell=float(f["agg_taker_sell_quote"] or 0)
                 o=float(f["open"]); c=float(f["close"])
             except (ValueError,KeyError): continue
