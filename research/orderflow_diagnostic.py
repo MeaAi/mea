@@ -34,7 +34,7 @@ def load(path):
             qv.append(float(r["quote_volume"]))
     return op, cl, ofi, wb, ws, qv
 
-def evaluate(op, cl, signal, horizon, direction_mode, cost_bp, test_start, start_equity):
+def evaluate(op, cl, signal, horizon, direction_mode, cost_bp, test_start, start_equity, leverage=1.0):
     # Signal at minute i close; entry next minute open; exit at close i+h.
     trades, gross = [], []
     next_free = test_start
@@ -54,9 +54,9 @@ def evaluate(op, cl, signal, horizon, direction_mode, cost_bp, test_start, start
     pos = sum(x for x in trades if x > 0); neg = -sum(x for x in trades if x < 0)
     eq, peak, maxdd, total_cost = start_equity, start_equity, 0.0, 0.0
     for g, n in zip(gross, trades):
-        notional = eq  # 100% of available equity at 1x; next trade uses remaining equity
+        notional = eq * leverage  # 100% wallet equity as initial margin; position notional scales with leverage
         total_cost += notional * cost_bp / 10000
-        eq *= (1+n/10000)
+        eq *= (1+leverage*n/10000)
         peak = max(peak, eq)
         maxdd = max(maxdd, (peak-eq)/peak)
     return {"trades":len(trades), "starting_equity_usdt":start_equity,
@@ -66,7 +66,9 @@ def evaluate(op, cl, signal, horizon, direction_mode, cost_bp, test_start, start
             "gross_mean_bp":sum(gross)/len(gross),
             "net_mean_bp":sum(trades)/len(trades), "win_rate":wins/len(trades),
             "profit_factor":pos/neg if neg else None, "max_drawdown_pct":maxdd*100,
-            "cost_bp_round_trip":cost_bp}
+            "cost_bp_round_trip":cost_bp, "leverage":leverage,
+            "position_notional_to_equity":leverage,
+            "liquidation_model":"not simulated; leverage results are pre-liquidation sensitivity only"}
 
 def main():
     ap=argparse.ArgumentParser()
@@ -83,7 +85,9 @@ def main():
             "threshold_method":"p10/p90 thresholds estimated only from first 7 days; frozen for the test segment",
             "calibration_days":7, "starting_equity_usdt":args.start_equity,
             "position_sizing":"100% of remaining equity per trade at 1x; equity compounded after every closed trade",
-            "cost_scenarios_bp_round_trip":[2,4,6,8,10,14,20], "files":{}}
+            "cost_scenarios_bp_round_trip":[2,4,6,8,10,14,20],
+            "leverage_scenarios":[1,2,3],
+            "leverage_method":"100% of current wallet equity allocated as initial margin; notional = equity * leverage; PnL and all per-notional costs scale with leverage; equity compounds after each closed trade. This is a pre-liquidation sensitivity, NOT a liquidation-aware futures simulation.", "files":{}}
     for path in paths:
         op,cl,ofi,wb,ws,qv=load(path)
         if len(cl) <= CALIBRATION_MINUTES + 60:
@@ -132,7 +136,8 @@ def main():
             for signal_name,sig in (("taker_imbalance",sig_ofi),("taker_absorption",sig_absorption),("whale_imbalance_legacy",sig_whale),("whale_share",sig_whale_share),("ofi_whale_agreement_legacy",sig_combined),("ofi_whale_share_agreement",sig_combined_share)):
                 for mode in ("continuation","contrarian"):
                     for cost in (2,4,6,8,10,14,20):
-                        fwd[str(h)]["strategies"][f"{signal_name}_{mode}_{cost}bp"]=evaluate(op,cl,sig,h,mode,cost,test_start,args.start_equity)
+                        for lev in (1.0,2.0,3.0):
+                            fwd[str(h)]["strategies"][f"{signal_name}_{mode}_{cost}bp_{lev:g}x"]=evaluate(op,cl,sig,h,mode,cost,test_start,args.start_equity,leverage=lev)
         report["files"][Path(path).name]={
             "rows":len(cl),"calibration_rows":test_start,"test_rows":len(cl)-test_start,
             "thresholds":{"ofi_p10":ofi_lo,"ofi_p90":ofi_hi,"whale_imbalance_legacy_p10":whale_lo,"whale_imbalance_legacy_p90":whale_hi,"whale_share_p10":whale_share_lo,"whale_share_p90":whale_share_hi},
