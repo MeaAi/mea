@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Report-aligned failed-breakout/liquidity-trap proxy backtest.
+Monthly files are merged by symbol before any chronological split.
 Uses Binance Vision 1m klines + aggTrades aggregated to minute. No L2, OI,
 funding, queue/fill model, or wallet-level positioning; those are explicit gaps.
 All signals use closed bars only; entry is next 1m open; stop-first on ambiguous
