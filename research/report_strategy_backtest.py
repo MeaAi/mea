@@ -85,7 +85,7 @@ def make_signals(rows, symbol):
                         "score":round(score,4),"threshold":threshold})
     return signals
 
-def simulate(rows, signals, symbol, cost_bp, fraction, leverage=1.0, start_idx=0, end_idx=None):
+def simulate(rows, signals, symbol, friction_bp, fraction, taker_fee_bp=5.0, maker_entry=False, leverage=1.0, start_idx=0, end_idx=None):
     cfg={"BTCUSDT":(1.0,2.5,2.0),"ETHUSDT":(2.0,1.5,2.0),"SOLUSDT":(1.0,3.0,1.25)}
     stop_mult,activate_r,trail_r=cfg.get(symbol,(1.0,2.0,2.0))
     if end_idx is None: end_idx=len(rows)
@@ -117,13 +117,24 @@ def simulate(rows, signals, symbol, cost_bp, fraction, leverage=1.0, start_idx=0
             exit_px=bar["c"]; exit_idx=j
         if exit_px is None or exit_idx is None: continue
         gross=direction*(exit_px/entry-1)*10000
-        notional=equity*fraction*leverage
-        net_bp=gross-cost_bp
-        pnl=notional*net_bp/10000
+        entry_notional=equity*fraction*leverage
+        exit_notional=entry_notional*(exit_px/entry)
+        entry_fee_rate=2.0 if maker_entry else taker_fee_bp
+        entry_fee=entry_notional*entry_fee_rate/10000
+        exit_fee=exit_notional*taker_fee_bp/10000
+        execution_friction=entry_notional*friction_bp/10000
+        gross_pnl=entry_notional*gross/10000
+        total_fees=entry_fee+exit_fee
+        pnl=gross_pnl-total_fees-execution_friction
+        net_bp=pnl/entry_notional*10000 if entry_notional else 0.0
         equity+=pnl
         peak=max(peak,equity); maxdd=max(maxdd,(peak-equity)/peak if peak else 0)
         trades.append({"entry_i":i+1,"exit_i":exit_idx,"gross_bp":gross,"net_bp":net_bp,
-                       "cost_bp":cost_bp,"pnl_usdt":pnl,"equity":equity,"exit":reason,
+                       "entry_notional_usdt":entry_notional,"exit_notional_usdt":exit_notional,
+                       "entry_fee_usdt":entry_fee,"exit_fee_usdt":exit_fee,
+                       "total_commission_usdt":total_fees,"execution_friction_usdt":execution_friction,
+                       "friction_bp":friction_bp,"entry_fee_bp":entry_fee_rate,"exit_fee_bp":taker_fee_bp,
+                       "pnl_usdt":pnl,"equity":equity,"exit":reason,
                        "score":sig["score"],"fraction":fraction})
         free=exit_idx+1
         if equity<=0: break
@@ -149,8 +160,9 @@ def main():
     report={"strategy":"Failed-breakout / liquidity-trap reversal (report-aligned proxy)",
       "method":"15m 20-bar sweep/reclaim; 5m CVD divergence and aggressive-flow absorption proxy; 4h EMA regime proxy; next-1m-open entry; structural stop and conditional trailing.",
       "chronological_split":"50% train / 20% validation / 30% untouched OOS; fixed rules, no parameter fitting on OOS",
-      "execution":"1x leverage; non-overlapping positions; 4h max hold; stop-first on ambiguous OHLC bars; 100 USDT starting equity; fee/slippage deducted from notional each trade.",
-      "cost_scenarios_round_trip_bp":[12,14,16,18],
+      "execution":"1x leverage; non-overlapping positions; 4h max hold; stop-first on ambiguous OHLC bars; 100 USDT starting equity; entry and exit commissions are calculated separately on each actual fill notional and deducted from equity trade by trade.",
+      "commission_model":{"default_entry":"taker","default_exit":"taker","taker_fee_bp_per_fill":5.0,"maker_entry_fee_bp_per_fill":2.0,"fee_calibration":"Illustrative VIP0-style rates only; replace with the account actual Binance fee tier and discounts before final validation.","commission_formula":"entry_notional * entry_fee_rate + exit_notional * exit_fee_rate; exit_notional scales with exit/entry price."},
+      "execution_friction_scenarios_round_trip_bp":[2,4,6,8],
       "position_fractions":[0.10,0.25,0.50,1.00],
       "limitations":["Score weights are a transparent proxy because the source report's exact weights/normalization were not reproducibly specified.",
        "No historical L2 book, queue position, maker fills, OI, long/short account ratio, liquidation stream, or funding history.",
@@ -168,10 +180,11 @@ def main():
         for name,(lo,hi) in sections.items():
             ss=[s for s in signals if lo<=s["i"]<hi]
             result["split"][name]={"minute_range":[lo,hi],"signals":len(ss),"costs":{}}
-            for cost in (12,14,16,18):
-                result["split"][name]["costs"][str(cost)+"bp"]={}
+            for friction in (2,4,6,8):
+                scenario_key="commission_10bp_rt_plus_friction_"+str(friction)+"bp"
+                result["split"][name]["costs"][scenario_key]={}
                 for frac in (.10,.25,.50,1.0):
-                    result["split"][name]["costs"][str(cost)+"bp"][str(frac)] = simulate(rows,ss,symbol,cost,frac,start_idx=lo,end_idx=hi)
+                    result["split"][name]["costs"][scenario_key][str(frac)] = simulate(rows,ss,symbol,friction,frac,taker_fee_bp=5.0,start_idx=lo,end_idx=hi)
         report["files"][Path(path).name]=result
         print(f"{symbol}: {len(rows):,} bars, {len(signals)} signals; OOS signals={result['split']['oos']['signals']}",flush=True)
     Path(args.out).write_text(json.dumps(report,indent=2),encoding="utf-8")
