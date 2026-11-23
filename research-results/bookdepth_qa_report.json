@@ -12,7 +12,38 @@
         "archive_rows": 891560,
         "checksums_verified": 31,
         "minute_feature_rows": 44581,
-        "expected_minutes_for_days_found": 89280,
+        "expected_minutes_for_month": 44640,
+        "missing_minutes_total": 59,
+        "coverage_pct": 99.8678,
+        "first_feature_utc": "2024-05-01T00:00:00+00:00",
+        "last_feature_utc": "2024-05-31T23:59:00+00:00",
+        "missing_minute_ranges": [
+          {
+            "start_utc": "2024-05-02T01:54:00+00:00",
+            "end_utc_exclusive": "2024-05-02T02:06:00+00:00",
+            "missing_minutes": 12
+          },
+          {
+            "start_utc": "2024-05-03T03:25:00+00:00",
+            "end_utc_exclusive": "2024-05-03T03:36:00+00:00",
+            "missing_minutes": 11
+          },
+          {
+            "start_utc": "2024-05-16T02:20:00+00:00",
+            "end_utc_exclusive": "2024-05-16T02:32:00+00:00",
+            "missing_minutes": 12
+          },
+          {
+            "start_utc": "2024-05-16T05:46:00+00:00",
+            "end_utc_exclusive": "2024-05-16T05:58:00+00:00",
+            "missing_minutes": 12
+          },
+          {
+            "start_utc": "2024-05-21T06:36:00+00:00",
+            "end_utc_exclusive": "2024-05-21T06:48:00+00:00",
+            "missing_minutes": 12
+          }
+        ],
         "selected_band_rows": {
           "-0.2": 0,
           "1.0": 89156,
@@ -23,7 +54,7 @@
         },
         "timestamp_order_issues": [],
         "feature_file": "BTCUSDT-2024-05-bookdepth-1m.csv.gz",
-        "note": "Minute feature retains the last available 30s snapshot in each minute for each selected band."
+        "note": "Minute feature retains the last available 30s snapshot in each minute for each selected band. Coverage is checked against every UTC calendar minute in the month."
       },
       "2024-06": {
         "days_found": 30,
@@ -31,7 +62,23 @@
         "archive_rows": 835180,
         "checksums_verified": 30,
         "minute_feature_rows": 41759,
-        "expected_minutes_for_days_found": 86400,
+        "expected_minutes_for_month": 43200,
+        "missing_minutes_total": 1441,
+        "coverage_pct": 96.6644,
+        "first_feature_utc": "2024-06-01T00:00:00+00:00",
+        "last_feature_utc": "2024-06-30T23:59:00+00:00",
+        "missing_minute_ranges": [
+          {
+            "start_utc": "2024-06-11T00:00:00+00:00",
+            "end_utc_exclusive": "2024-06-11T00:02:00+00:00",
+            "missing_minutes": 2
+          },
+          {
+            "start_utc": "2024-06-12T00:00:00+00:00",
+            "end_utc_exclusive": "2024-06-12T23:59:00+00:00",
+            "missing_minutes": 1439
+          }
+        ],
         "selected_band_rows": {
           "-0.2": 0,
           "1.0": 83518,
@@ -42,7 +89,7 @@
         },
         "timestamp_order_issues": [],
         "feature_file": "BTCUSDT-2024-06-bookdepth-1m.csv.gz",
-        "note": "Minute feature retains the last available 30s snapshot in each minute for each selected band."
+        "note": "Minute feature retains the last available 30s snapshot in each minute for each selected band. Coverage is checked against every UTC calendar minute in the month."
       }
     },
     "ETHUSDT": {
@@ -52,7 +99,38 @@
         "archive_rows": 891560,
         "checksums_verified": 31,
         "minute_feature_rows": 44581,
-        "expected_minutes_for_days_found": 89280,
+        "expected_minutes_for_month": 44640,
+        "missing_minutes_total": 59,
+        "coverage_pct": 99.8678,
+        "first_feature_utc": "2024-05-01T00:00:00+00:00",
+        "last_feature_utc": "2024-05-31T23:59:00+00:00",
+        "missing_minute_ranges": [
+          {
+            "start_utc": "2024-05-02T01:54:00+00:00",
+            "end_utc_exclusive": "2024-05-02T02:06:00+00:00",
+            "missing_minutes": 12
+          },
+          {
+            "start_utc": "2024-05-03T03:25:00+00:00",
+            "end_utc_exclusive": "2024-05-03T03:36:00+00:00",
+            "missing_minutes": 11
+          },
+          {
+            "start_utc": "2024-05-16T02:20:00+00:00",
+            "end_utc_exclusive": "2024-05-16T02:32:00+00:00",
+            "missing_minutes": 12
+          },
+          {
+            "start_utc": "2024-05-16T05:46:00+00:00",
+            "end_utc_exclusive": "2024-05-16T05:58:00+00:00",
+            "missing_minutes": 12
+          },
+          {
+            "start_utc": "2024-05-21T06:36:00+00:00",
+            "end_utc_exclusive": "2024-05-21T06:48:00+00:00",
+            "missing_minutes": 12
+          }
+        ],
         "selected_band_rows": {
           "-0.2": 0,
           "1.0": 89156,
@@ -63,7 +141,7 @@
         },
         "timestamp_order_issues": [],
         "feature_file": "ETHUSDT-2024-05-bookdepth-1m.csv.gz",
-        "note": "Minute feature retains the last available 30s snapshot in each minute for each selected band."
+        "note": "Minute feature retains the last available 30s snapshot in each minute for each selected band. Coverage is checked against every UTC calendar minute in the month."
       },
       "2024-06": {
         "days_found": 30,
@@ -71,7 +149,23 @@
         "archive_rows": 835180,
         "checksums_verified": 30,
         "minute_feature_rows": 41759,
-        "expected_minutes_for_days_found": 86400,
+        "expected_minutes_for_month": 43200,
+        "missing_minutes_total": 1441,
+        "coverage_pct": 96.6644,
+        "first_feature_utc": "2024-06-01T00:00:00+00:00",
+        "last_feature_utc": "2024-06-30T23:59:00+00:00",
+        "missing_minute_ranges": [
+          {
+            "start_utc": "2024-06-11T00:00:00+00:00",
+            "end_utc_exclusive": "2024-06-11T00:02:00+00:00",
+            "missing_minutes": 2
+          },
+          {
+            "start_utc": "2024-06-12T00:00:00+00:00",
+            "end_utc_exclusive": "2024-06-12T23:59:00+00:00",
+            "missing_minutes": 1439
+          }
+        ],
         "selected_band_rows": {
           "-0.2": 0,
           "1.0": 83518,
@@ -82,7 +176,7 @@
         },
         "timestamp_order_issues": [],
         "feature_file": "ETHUSDT-2024-06-bookdepth-1m.csv.gz",
-        "note": "Minute feature retains the last available 30s snapshot in each minute for each selected band."
+        "note": "Minute feature retains the last available 30s snapshot in each minute for each selected band. Coverage is checked against every UTC calendar minute in the month."
       }
     },
     "SOLUSDT": {
@@ -92,7 +186,38 @@
         "archive_rows": 891570,
         "checksums_verified": 31,
         "minute_feature_rows": 44581,
-        "expected_minutes_for_days_found": 89280,
+        "expected_minutes_for_month": 44640,
+        "missing_minutes_total": 59,
+        "coverage_pct": 99.8678,
+        "first_feature_utc": "2024-05-01T00:00:00+00:00",
+        "last_feature_utc": "2024-05-31T23:59:00+00:00",
+        "missing_minute_ranges": [
+          {
+            "start_utc": "2024-05-02T01:54:00+00:00",
+            "end_utc_exclusive": "2024-05-02T02:06:00+00:00",
+            "missing_minutes": 12
+          },
+          {
+            "start_utc": "2024-05-03T03:25:00+00:00",
+            "end_utc_exclusive": "2024-05-03T03:36:00+00:00",
+            "missing_minutes": 11
+          },
+          {
+            "start_utc": "2024-05-16T02:20:00+00:00",
+            "end_utc_exclusive": "2024-05-16T02:32:00+00:00",
+            "missing_minutes": 12
+          },
+          {
+            "start_utc": "2024-05-16T05:46:00+00:00",
+            "end_utc_exclusive": "2024-05-16T05:58:00+00:00",
+            "missing_minutes": 12
+          },
+          {
+            "start_utc": "2024-05-21T06:36:00+00:00",
+            "end_utc_exclusive": "2024-05-21T06:48:00+00:00",
+            "missing_minutes": 12
+          }
+        ],
         "selected_band_rows": {
           "-0.2": 0,
           "1.0": 89157,
@@ -103,7 +228,7 @@
         },
         "timestamp_order_issues": [],
         "feature_file": "SOLUSDT-2024-05-bookdepth-1m.csv.gz",
-        "note": "Minute feature retains the last available 30s snapshot in each minute for each selected band."
+        "note": "Minute feature retains the last available 30s snapshot in each minute for each selected band. Coverage is checked against every UTC calendar minute in the month."
       },
       "2024-06": {
         "days_found": 30,
@@ -111,7 +236,23 @@
         "archive_rows": 835180,
         "checksums_verified": 30,
         "minute_feature_rows": 41759,
-        "expected_minutes_for_days_found": 86400,
+        "expected_minutes_for_month": 43200,
+        "missing_minutes_total": 1441,
+        "coverage_pct": 96.6644,
+        "first_feature_utc": "2024-06-01T00:00:00+00:00",
+        "last_feature_utc": "2024-06-30T23:59:00+00:00",
+        "missing_minute_ranges": [
+          {
+            "start_utc": "2024-06-11T00:00:00+00:00",
+            "end_utc_exclusive": "2024-06-11T00:02:00+00:00",
+            "missing_minutes": 2
+          },
+          {
+            "start_utc": "2024-06-12T00:00:00+00:00",
+            "end_utc_exclusive": "2024-06-12T23:59:00+00:00",
+            "missing_minutes": 1439
+          }
+        ],
         "selected_band_rows": {
           "-0.2": 0,
           "1.0": 83518,
@@ -122,7 +263,7 @@
         },
         "timestamp_order_issues": [],
         "feature_file": "SOLUSDT-2024-06-bookdepth-1m.csv.gz",
-        "note": "Minute feature retains the last available 30s snapshot in each minute for each selected band."
+        "note": "Minute feature retains the last available 30s snapshot in each minute for each selected band. Coverage is checked against every UTC calendar minute in the month."
       }
     }
   }
