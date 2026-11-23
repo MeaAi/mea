@@ -24,6 +24,7 @@ on:
     paths:
       - ".github/workflows/binance-research.yml"
       - "research/binance_public_pipeline.py"
+      - "research/binance_bookdepth_pipeline.py"
       - "research/orderflow_diagnostic.py"
       - "research/report_strategy_backtest.py"
 
@@ -58,6 +59,13 @@ jobs:
             --end "$END_MONTH" \
             --symbols "$SYMBOLS" \
             --out research-output
+      - name: Download and QA Binance bookDepth bands
+        run: |
+          python research/binance_bookdepth_pipeline.py \
+            --start "$START_MONTH" \
+            --end "$END_MONTH" \
+            --symbols "$SYMBOLS" \
+            --out research-output
       - name: Run exploratory order-flow diagnostics
         run: |
           python research/orderflow_diagnostic.py \
@@ -69,6 +77,7 @@ jobs:
         run: |
           mkdir -p research-results
           cp research-output/qa_report.json research-results/qa_report.json
+          cp research-output/bookdepth_qa_report.json research-results/bookdepth_qa_report.json
           cp research-output/orderflow_diagnostic.json research-results/orderflow_diagnostic.json
           cp research-output/report_strategy_backtest.json research-results/report_strategy_backtest.json
           # The runner is ephemeral; keep only small summary reports in the repository.
@@ -76,7 +85,7 @@ jobs:
           rm -rf research-output
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add research-results/qa_report.json research-results/orderflow_diagnostic.json research-results/report_strategy_backtest.json
+          git add research-results/qa_report.json research-results/bookdepth_qa_report.json research-results/orderflow_diagnostic.json research-results/report_strategy_backtest.json
           git commit -m "Publish compact Binance research reports" || echo "No report changes"
           git fetch origin research/binance-data-pipeline
           git rebase origin/research/binance-data-pipeline
