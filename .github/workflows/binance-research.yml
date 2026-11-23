@@ -64,10 +64,7 @@ jobs:
             --input "research-output/*-1m-orderflow.csv.gz" \
             --out research-output/orderflow_diagnostic.json
       - name: Backtest the technical-report liquidity-trap strategy proxy
-        run: |
-          python research/report_strategy_backtest.py \\
-            --input "research-output/*-1m-orderflow.csv.gz" \\
-            --out research-output/report_strategy_backtest.json
+        run: python research/report_strategy_backtest.py --input "research-output/*-1m-orderflow.csv.gz" --out research-output/report_strategy_backtest.json
       - name: Publish compact reports; discard all downloaded and processed market data
         run: |
           mkdir -p research-results
