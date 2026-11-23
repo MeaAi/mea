@@ -33,7 +33,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: binance-public-research-v3
+  group: binance-public-research-v4
   cancel-in-progress: false
 
 jobs:
