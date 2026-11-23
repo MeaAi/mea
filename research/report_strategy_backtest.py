@@ -161,6 +161,18 @@ def main():
     ap.add_argument("--input",required=True); ap.add_argument("--out",default="report_strategy_backtest.json")
     args=ap.parse_args(); paths=glob.glob(args.input)
     if not paths: raise SystemExit("No feature files found")
+    # Merge all monthly files per symbol into one chronological series before
+    # splitting. This prevents each month's first 70% being treated as its own
+    # train/validation window and gives one continuous 50/20/30 time split.
+    grouped={}
+    for path in paths:
+        symbol=Path(path).name.split("-")[0]
+        grouped.setdefault(symbol,[]).extend(load(path))
+    for symbol in grouped:
+        grouped[symbol].sort(key=lambda r:r["t"])
+        ts=[r["t"] for r in grouped[symbol]]
+        if len(ts)!=len(set(ts)): raise SystemExit(f"{symbol}: duplicate timestamps after monthly merge")
+        if any(b<=a for a,b in zip(ts,ts[1:])): raise SystemExit(f"{symbol}: non-monotonic timestamps")
     report={"strategy":"Failed-breakout / liquidity-trap reversal (report-aligned proxy)",
       "method":"15m 20-bar sweep/reclaim; 5m CVD divergence and aggressive-flow absorption proxy; 4h EMA regime proxy; next-1m-open entry; structural stop and conditional trailing.",
       "chronological_split":"50% train / 20% validation / 30% untouched OOS; fixed rules, no parameter fitting on OOS",
@@ -173,10 +185,8 @@ def main():
        "AggTrade absorption is a proxy; it does not prove passive limit-order absorption.",
        "No leverage above 1x or liquidation model; no live trading. Results are exploratory, not production validation."],
       "files":{}}
-    for path in paths:
-        rows=load(path)
-        if len(rows)<240*10: raise SystemExit(f"{path}: insufficient rows for 4h context")
-        symbol=Path(path).name.split("-")[0]
+    for symbol,rows in sorted(grouped.items()):
+        if len(rows)<240*10: raise SystemExit(f"{symbol}: insufficient rows for 4h context")
         signals=make_signals(rows,symbol)
         n=len(rows); a=int(n*.5); b=int(n*.7)
         sections={"train":(0,a),"validation":(a,b),"oos":(b,n)}
@@ -193,7 +203,7 @@ def main():
                         result["split"][name]["costs"][scenario_key][str(frac)] = simulate(
                             rows,ss,symbol,friction,frac,taker_fee_bp=5.0,maker_entry=maker,
                             start_idx=lo,end_idx=hi)
-        report["files"][Path(path).name]=result
+        report["files"][symbol+"-combined-chronological-series"]=result
         print(f"{symbol}: {len(rows):,} bars, {len(signals)} signals; OOS signals={result['split']['oos']['signals']}",flush=True)
     Path(args.out).write_text(json.dumps(report,indent=2),encoding="utf-8")
     print("REPORT WRITTEN:",args.out,flush=True)
