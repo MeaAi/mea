@@ -140,7 +140,8 @@ def simulate(rows, signals, symbol, friction_bp, fraction, taker_fee_bp=5.0, mak
         if equity<=0: break
     if not trades:
         return {"trades":0,"starting_equity_usdt":100,"ending_equity_usdt":100,"net_return_pct":0,
-                "max_drawdown_pct":0,"gross_mean_bp":None,"net_mean_bp":None,"profit_factor":None}
+                "max_drawdown_pct":0,"gross_mean_bp":None,"net_mean_bp":None,"profit_factor":None,
+                "total_commission_usdt":0,"total_execution_friction_usdt":0,"total_net_pnl_usdt":0}
     wins=[t["pnl_usdt"] for t in trades if t["pnl_usdt"]>0]
     losses=[-t["pnl_usdt"] for t in trades if t["pnl_usdt"]<0]
     return {"trades":len(trades),"starting_equity_usdt":100,"ending_equity_usdt":round(equity,6),
@@ -149,6 +150,9 @@ def simulate(rows, signals, symbol, friction_bp, fraction, taker_fee_bp=5.0, mak
             "net_mean_bp":round(sum(t["net_bp"] for t in trades)/len(trades),4),
             "win_rate_pct":round(100*sum(t["pnl_usdt"]>0 for t in trades)/len(trades),2),
             "profit_factor":round(sum(wins)/sum(losses),4) if losses else None,
+            "total_commission_usdt":round(sum(t["total_commission_usdt"] for t in trades),6),
+            "total_execution_friction_usdt":round(sum(t["execution_friction_usdt"] for t in trades),6),
+            "total_net_pnl_usdt":round(sum(t["pnl_usdt"] for t in trades),6),
             "exit_reasons":{"stop":sum(t["exit"]=="stop" for t in trades),
                             "time":sum(t["exit"]=="time" for t in trades)}}
 
@@ -181,10 +185,14 @@ def main():
             ss=[s for s in signals if lo<=s["i"]<hi]
             result["split"][name]={"minute_range":[lo,hi],"signals":len(ss),"costs":{}}
             for friction in (2,4,6,8):
-                scenario_key="commission_10bp_rt_plus_friction_"+str(friction)+"bp"
-                result["split"][name]["costs"][scenario_key]={}
-                for frac in (.10,.25,.50,1.0):
-                    result["split"][name]["costs"][scenario_key][str(frac)] = simulate(rows,ss,symbol,friction,frac,taker_fee_bp=5.0,start_idx=lo,end_idx=hi)
+                for maker in (False,True):
+                    fee_mode="maker_entry_taker_exit" if maker else "taker_entry_taker_exit"
+                    scenario_key=fee_mode+"_plus_friction_"+str(friction)+"bp"
+                    result["split"][name]["costs"][scenario_key]={}
+                    for frac in (.10,.25,.50,1.0):
+                        result["split"][name]["costs"][scenario_key][str(frac)] = simulate(
+                            rows,ss,symbol,friction,frac,taker_fee_bp=5.0,maker_entry=maker,
+                            start_idx=lo,end_idx=hi)
         report["files"][Path(path).name]=result
         print(f"{symbol}: {len(rows):,} bars, {len(signals)} signals; OOS signals={result['split']['oos']['signals']}",flush=True)
     Path(args.out).write_text(json.dumps(report,indent=2),encoding="utf-8")
