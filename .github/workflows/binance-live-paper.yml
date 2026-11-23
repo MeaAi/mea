@@ -10,7 +10,7 @@ on:
       minutes:
         description: "Observation duration (minutes)"
         required: true
-        default: "20"
+        default: "60"
         type: string
       symbols:
         description: "USD-M symbols"
@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
-      DURATION: ${{ github.event.inputs.minutes || '20' }}
+      DURATION: ${{ github.event.inputs.minutes || '60' }}
       SYMBOLS: ${{ github.event.inputs.symbols || 'BTCUSDT,ETHUSDT,SOLUSDT' }}
     steps:
       - uses: actions/checkout@v6
