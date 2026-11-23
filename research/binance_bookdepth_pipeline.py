@@ -125,15 +125,49 @@ def main():
                         x=vals.get(p); row += [x[1],x[2]] if x else ["",""]
                     w.writerow(row)
             m=month_meta[month]
-            expected=m["days"]*2880
+            y, mo = map(int, month.split("-"))
+            month_start = datetime(y, mo, 1, tzinfo=timezone.utc)
+            if mo == 12:
+                month_end = datetime(y + 1, 1, 1, tzinfo=timezone.utc)
+            else:
+                month_end = datetime(y, mo + 1, 1, tzinfo=timezone.utc)
+            start_minute = int(month_start.timestamp() * 1000) // 60000
+            end_minute = int(month_end.timestamp() * 1000) // 60000
+            expected_minutes = end_minute - start_minute
+            actual_minutes = {x for x in mins if start_minute <= x < end_minute}
+            missing_minute_ranges = []
+            run_start = None
+            prev = None
+            for minute in range(start_minute, end_minute):
+                if minute not in actual_minutes:
+                    if run_start is None: run_start = minute
+                elif run_start is not None:
+                    missing_minute_ranges.append({
+                        "start_utc": datetime.fromtimestamp(run_start * 60, timezone.utc).isoformat(),
+                        "end_utc_exclusive": datetime.fromtimestamp(minute * 60, timezone.utc).isoformat(),
+                        "missing_minutes": minute - run_start
+                    })
+                    run_start = None
+            if run_start is not None:
+                missing_minute_ranges.append({
+                    "start_utc": datetime.fromtimestamp(run_start * 60, timezone.utc).isoformat(),
+                    "end_utc_exclusive": month_end.isoformat(),
+                    "missing_minutes": end_minute - run_start
+                })
             report["symbols"][symbol][month]={
                 "days_found":m["days"],"days_missing":m["missing_days"],
                 "archive_rows":m["rows"],"checksums_verified":m["checksums_verified"],
-                "minute_feature_rows":len(mins),"expected_minutes_for_days_found":expected,
+                "minute_feature_rows":len(actual_minutes),
+                "expected_minutes_for_month":expected_minutes,
+                "missing_minutes_total":expected_minutes-len(actual_minutes),
+                "coverage_pct":round(100*len(actual_minutes)/expected_minutes,4) if expected_minutes else 0,
+                "first_feature_utc":datetime.fromtimestamp(min(actual_minutes)*60,timezone.utc).isoformat() if actual_minutes else None,
+                "last_feature_utc":datetime.fromtimestamp(max(actual_minutes)*60,timezone.utc).isoformat() if actual_minutes else None,
+                "missing_minute_ranges":missing_minute_ranges,
                 "selected_band_rows":dict(m["band_rows"]),
                 "timestamp_order_issues":m["bad_timestamp_days"],
                 "feature_file":path.name,
-                "note":"Minute feature retains the last available 30s snapshot in each minute for each selected band."
+                "note":"Minute feature retains the last available 30s snapshot in each minute for each selected band. Coverage is checked against every UTC calendar minute in the month."
             }
     (out/"bookdepth_qa_report.json").write_text(json.dumps(report,indent=2),encoding="utf-8")
     print(json.dumps(report,indent=2))
