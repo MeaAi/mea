@@ -1,0 +1,129 @@
+{
+  "source": "Binance Vision official USD-M Futures daily bookDepth archives",
+  "start": "2024-05",
+  "end": "2024-06",
+  "sampling_seconds": 30,
+  "interpretation": "Cumulative/aggregated percentage-band depth proxy; not full L2 price levels, order additions/cancellations, or queue position.",
+  "symbols": {
+    "BTCUSDT": {
+      "2024-05": {
+        "days_found": 31,
+        "days_missing": [],
+        "archive_rows": 891560,
+        "checksums_verified": 31,
+        "minute_feature_rows": 44581,
+        "expected_minutes_for_days_found": 89280,
+        "selected_band_rows": {
+          "-0.2": 0,
+          "1.0": 89156,
+          "2.0": 89156,
+          "0.2": 0,
+          "-1.0": 89156,
+          "-2.0": 89156
+        },
+        "timestamp_order_issues": [],
+        "feature_file": "BTCUSDT-2024-05-bookdepth-1m.csv.gz",
+        "note": "Minute feature retains the last available 30s snapshot in each minute for each selected band."
+      },
+      "2024-06": {
+        "days_found": 30,
+        "days_missing": [],
+        "archive_rows": 835180,
+        "checksums_verified": 30,
+        "minute_feature_rows": 41759,
+        "expected_minutes_for_days_found": 86400,
+        "selected_band_rows": {
+          "-0.2": 0,
+          "1.0": 83518,
+          "2.0": 83518,
+          "0.2": 0,
+          "-1.0": 83518,
+          "-2.0": 83518
+        },
+        "timestamp_order_issues": [],
+        "feature_file": "BTCUSDT-2024-06-bookdepth-1m.csv.gz",
+        "note": "Minute feature retains the last available 30s snapshot in each minute for each selected band."
+      }
+    },
+    "ETHUSDT": {
+      "2024-05": {
+        "days_found": 31,
+        "days_missing": [],
+        "archive_rows": 891560,
+        "checksums_verified": 31,
+        "minute_feature_rows": 44581,
+        "expected_minutes_for_days_found": 89280,
+        "selected_band_rows": {
+          "-0.2": 0,
+          "1.0": 89156,
+          "2.0": 89156,
+          "0.2": 0,
+          "-1.0": 89156,
+          "-2.0": 89156
+        },
+        "timestamp_order_issues": [],
+        "feature_file": "ETHUSDT-2024-05-bookdepth-1m.csv.gz",
+        "note": "Minute feature retains the last available 30s snapshot in each minute for each selected band."
+      },
+      "2024-06": {
+        "days_found": 30,
+        "days_missing": [],
+        "archive_rows": 835180,
+        "checksums_verified": 30,
+        "minute_feature_rows": 41759,
+        "expected_minutes_for_days_found": 86400,
+        "selected_band_rows": {
+          "-0.2": 0,
+          "1.0": 83518,
+          "2.0": 83518,
+          "0.2": 0,
+          "-1.0": 83518,
+          "-2.0": 83518
+        },
+        "timestamp_order_issues": [],
+        "feature_file": "ETHUSDT-2024-06-bookdepth-1m.csv.gz",
+        "note": "Minute feature retains the last available 30s snapshot in each minute for each selected band."
+      }
+    },
+    "SOLUSDT": {
+      "2024-05": {
+        "days_found": 31,
+        "days_missing": [],
+        "archive_rows": 891570,
+        "checksums_verified": 31,
+        "minute_feature_rows": 44581,
+        "expected_minutes_for_days_found": 89280,
+        "selected_band_rows": {
+          "-0.2": 0,
+          "1.0": 89157,
+          "2.0": 89157,
+          "0.2": 0,
+          "-1.0": 89157,
+          "-2.0": 89157
+        },
+        "timestamp_order_issues": [],
+        "feature_file": "SOLUSDT-2024-05-bookdepth-1m.csv.gz",
+        "note": "Minute feature retains the last available 30s snapshot in each minute for each selected band."
+      },
+      "2024-06": {
+        "days_found": 30,
+        "days_missing": [],
+        "archive_rows": 835180,
+        "checksums_verified": 30,
+        "minute_feature_rows": 41759,
+        "expected_minutes_for_days_found": 86400,
+        "selected_band_rows": {
+          "-0.2": 0,
+          "1.0": 83518,
+          "2.0": 83518,
+          "0.2": 0,
+          "-1.0": 83518,
+          "-2.0": 83518
+        },
+        "timestamp_order_issues": [],
+        "feature_file": "SOLUSDT-2024-06-bookdepth-1m.csv.gz",
+        "note": "Minute feature retains the last available 30s snapshot in each minute for each selected band."
+      }
+    }
+  }
+}
