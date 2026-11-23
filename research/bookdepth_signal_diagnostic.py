@@ -62,8 +62,8 @@ def main():
                          "buy_pressure":(buy-sell)/(sell+buy) if sell+buy else 0.0})
         for i,r in enumerate(rows):
             prev=rows[i-1] if i else None
-            r["bid_change"]=(r["bid"]/prev["bid"]-1) if prev and prev["bid"]>0 else None
-            r["ask_change"]=(r["ask"]/prev["ask"]-1) if prev and prev["ask"]>0 else None
+            r["bid_change"]=(r["bid"]/prev["bid"]-1) if prev and r["t"]-prev["t"]==60000 and prev["bid"]>0 else None
+            r["ask_change"]=(r["ask"]/prev["ask"]-1) if prev and r["t"]-prev["t"]==60000 and prev["ask"]>0 else None
         n=len(rows); a=int(n*.5); b=int(n*.7)
         train=rows[:a]
         sell_thr=quantile([x["sell_pressure"] for x in train],.8)
@@ -75,6 +75,7 @@ def main():
             for split,(lo,hi) in {"train":(0,a),"validation":(a,b),"oos":(b,n)}.items():
                 baseline=[]; sell_abs=[]; buy_abs=[]
                 for i in range(max(lo,1),min(hi,n-h-1)):
+                    if rows[i+1]["t"]-rows[i]["t"]!=60000 or rows[i+h]["t"]-rows[i]["t"]!=h*60000: continue
                     entry=rows[i+1]["open"]; exit_px=rows[i+h]["close"]
                     if entry<=0: continue
                     ret=(exit_px/entry-1)*10000
