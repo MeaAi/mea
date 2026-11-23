@@ -48,7 +48,7 @@ def main():
     books=load(args.bookdepth); flows=load(args.orderflow)
     result={"method":"Train-only q80 thresholds; signals at minute t; one-minute passive limit at close(t); fill only on strict aggressive trade-through during t+1; exit at close(t+h); non-overlapping events.",
       "assumptions":{"capital_usdt":args.capital,"equity_fraction_per_trade":1.0,
-       "maker_entry_fee_bp":2,"taker_exit_fee_bp":5,"taker_entry_fee_bp":5,"taker_exit_fee_bp":5,
+       "maker_entry_fee_bp":2,"taker_exit_fee_bp":5,"taker_entry_fee_bp":5,
        "maker_fill_rule":"Long: next-minute aggressive-sell min price < signal close. Short: next-minute aggressive-buy max price > signal close.",
        "maker_fill_caveat":"Trade-through does not prove queue fill; no L2 queue position or available quantity reconstruction. Unfilled orders are cancelled after one minute.",
        "exit_slippage_bp_scenarios":[0,2,4,6],"funding":"not modeled; horizon <=60m","liquidation":"not modeled; 1x only"},
