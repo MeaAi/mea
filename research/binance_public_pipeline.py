@@ -176,7 +176,8 @@ def main():
                             "trade_count","kline_taker_buy_base","kline_taker_buy_quote",
                             "agg_taker_buy_base","agg_taker_sell_base","agg_taker_buy_quote",
                             "agg_taker_sell_quote","agg_taker_buy_count","agg_taker_sell_count",
-                            "whale_buy_quote","whale_sell_quote","ofi_base","ofi_quote",\n                            "agg_sell_min_price","agg_buy_max_price"])
+                            "whale_buy_quote","whale_sell_quote","ofi_base","ofi_quote",
+                            "agg_sell_min_price","agg_buy_max_price"])
                 for minute in mins:
                     k = bars[minute]; f = flow.get(minute, [0.0]*10)
                     base_den = f[0] + f[1]; quote_den = f[2] + f[3]
