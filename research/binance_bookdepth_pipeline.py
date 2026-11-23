@@ -5,7 +5,7 @@ NOT per-price-level L2 or queue data.
 """
 import argparse, calendar, csv, gzip, hashlib, io, json, time, urllib.request, zipfile
 from collections import defaultdict
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 BASE = "https://data.binance.vision/data/futures/um/daily/bookDepth"
@@ -29,6 +29,23 @@ def verify(data, checksum_data, label):
         raise RuntimeError(f"SHA256 mismatch {label}: {actual} != {token}")
     return actual
 
+def parse_timestamp_ms(value):
+    """Binance bookDepth CSV timestamps are UTC datetime strings, not integer ms."""
+    value = value.strip()
+    try:
+        return int(value)
+    except ValueError:
+        pass
+    if value.endswith("Z"):
+        value = value[:-1] + "+00:00"
+    try:
+        dt = datetime.fromisoformat(value)
+    except ValueError:
+        dt = datetime.strptime(value, "%Y-%m-%d %H:%M:%S")
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return int(dt.timestamp() * 1000)
+
 def read_zip(data, label):
     with zipfile.ZipFile(io.BytesIO(data)) as z:
         names = [n for n in z.namelist() if n.lower().endswith(".csv")]
@@ -42,7 +59,7 @@ def read_zip(data, label):
                 raise RuntimeError(f"Unexpected bookDepth columns {reader.fieldnames} in {label}")
             rows = []
             for r in reader:
-                rows.append((int(r[fields["timestamp"]]), float(r[fields["percentage"]]),
+                rows.append((parse_timestamp_ms(r[fields["timestamp"]]), float(r[fields["percentage"]]),
                              float(r[fields["depth"]]), float(r[fields["notional"]])))
             return rows, reader.fieldnames
 
