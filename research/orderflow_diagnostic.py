@@ -77,6 +77,8 @@ def main():
     paths=glob.glob(args.input)
     if not paths: raise SystemExit("No feature files matched")
     report={"scope":"exploratory; first 7 days calibration, remainder strictly held-out within each monthly file; not a validated strategy",
+            "flow_feature_definition":"The input ofi_quote field is aggressive taker buy-vs-sell quote-volume imbalance from aggTrades, NOT order-book OFI. It excludes resting limit-order additions and cancellations.",
+            "new_hypothesis":"Taker-flow absorption: extreme aggressive buy imbalance with a non-positive same-minute candle return, or extreme aggressive sell imbalance with a non-negative same-minute candle return; enter next minute open and test contrarian.",
             "execution_assumption":"signal at minute close; enter next minute open; exit at horizon close; non-overlapping trades",
             "threshold_method":"p10/p90 thresholds estimated only from first 7 days; frozen for the test segment",
             "calibration_days":7, "starting_equity_usdt":args.start_equity,
@@ -96,6 +98,10 @@ def main():
         whale_share_lo, whale_share_hi = quantile(train_whale_share,.1), quantile(train_whale_share,.9)
         test_start=CALIBRATION_MINUTES
         sig_ofi=[0 if i < test_start else (1 if x>=ofi_hi else (-1 if x<=ofi_lo else 0)) for i,x in enumerate(ofi)]
+        # Absorption proxy: aggressive flow fails to move the candle in its direction.
+        # All inputs are known at minute i close; execution remains next-minute open.
+        sig_absorption=[(s if s and ((s>0 and cl[i] <= op[i]) or (s<0 and cl[i] >= op[i])) else 0)
+                        for i,s in enumerate(sig_ofi)]
         sig_whale=[0 if i < test_start else (1 if x>=whale_hi else (-1 if x<=whale_lo else 0)) for i,x in enumerate(imbalance)]
         sig_whale_share=[0 if i < test_start else (1 if x>=whale_share_hi else (-1 if x<=whale_share_lo else 0)) for i,x in enumerate(whale_share)]
         # Combined signal: trade only when OFI and whale imbalance both cross
@@ -123,7 +129,7 @@ def main():
                          "ofi_extreme_bucket_test_only":bucket_stats(valid_ofi),
                          "whale_extreme_bucket_test_only":bucket_stats(valid_whale),
                          "strategies":{}}
-            for signal_name,sig in (("ofi",sig_ofi),("whale_imbalance_legacy",sig_whale),("whale_share",sig_whale_share),("ofi_whale_agreement_legacy",sig_combined),("ofi_whale_share_agreement",sig_combined_share)):
+            for signal_name,sig in (("taker_imbalance",sig_ofi),("taker_absorption",sig_absorption),("whale_imbalance_legacy",sig_whale),("whale_share",sig_whale_share),("ofi_whale_agreement_legacy",sig_combined),("ofi_whale_share_agreement",sig_combined_share)):
                 for mode in ("continuation","contrarian"):
                     for cost in (2,4,6,8,10,14,20):
                         fwd[str(h)]["strategies"][f"{signal_name}_{mode}_{cost}bp"]=evaluate(op,cl,sig,h,mode,cost,test_start,args.start_equity)
