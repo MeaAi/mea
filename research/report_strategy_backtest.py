@@ -85,13 +85,14 @@ def make_signals(rows, symbol):
                         "score":round(score,4),"threshold":threshold})
     return signals
 
-def simulate(rows, signals, symbol, cost_bp, fraction, leverage=1.0):
+def simulate(rows, signals, symbol, cost_bp, fraction, leverage=1.0, start_idx=0, end_idx=None):
     cfg={"BTCUSDT":(1.0,2.5,2.0),"ETHUSDT":(2.0,1.5,2.0),"SOLUSDT":(1.0,3.0,1.25)}
     stop_mult,activate_r,trail_r=cfg.get(symbol,(1.0,2.0,2.0))
-    equity=100.0; peak=100.0; maxdd=0.0; trades=[]; free=0
+    if end_idx is None: end_idx=len(rows)
+    equity=100.0; peak=100.0; maxdd=0.0; trades=[]; free=start_idx
     for sig in signals:
         i=sig["i"]
-        if i<free or i+1>=len(rows): continue
+        if i<start_idx or i<free or i+1>=end_idx: continue
         entry=rows[i+1]["o"]
         if entry<=0: continue
         direction=sig["dir"]
@@ -101,7 +102,7 @@ def simulate(rows, signals, symbol, cost_bp, fraction, leverage=1.0):
         risk=abs(entry-stop); best=entry; active=False
         exit_px=None; exit_idx=None; reason="time"
         # 4h max hold; each bar: stop checked before favorable trailing updates.
-        for j in range(i+1,min(len(rows),i+1+240)):
+        for j in range(i+1,min(end_idx,i+1+240)):
             bar=rows[j]
             hit=(bar["l"]<=stop) if direction==1 else (bar["h"]>=stop)
             if hit:
@@ -170,7 +171,7 @@ def main():
             for cost in (12,14,16,18):
                 result["split"][name]["costs"][str(cost)+"bp"]={}
                 for frac in (.10,.25,.50,1.0):
-                    result["split"][name]["costs"][str(cost)+"bp"][str(frac)] = simulate(rows,ss,symbol,cost,frac)
+                    result["split"][name]["costs"][str(cost)+"bp"][str(frac)] = simulate(rows,ss,symbol,cost,frac,start_idx=lo,end_idx=hi)
         report["files"][Path(path).name]=result
         print(f"{symbol}: {len(rows):,} bars, {len(signals)} signals; OOS signals={result['split']['oos']['signals']}",flush=True)
     Path(args.out).write_text(json.dumps(report,indent=2),encoding="utf-8")
