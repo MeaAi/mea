@@ -1,10 +1,10 @@
 {
   "source": "Binance Vision official USD-M Futures monthly archives",
-  "start": "2024-03",
-  "end": "2024-03",
+  "start": "2024-01",
+  "end": "2024-02",
   "symbols": {
     "BTCUSDT": {
-      "2024-03": {
+      "2024-01": {
         "klines": {
           "rows": 44640,
           "timestamp_units": {
@@ -13,38 +13,76 @@
           "missing_minute_gaps": 0,
           "missing_minutes_total": 0,
           "archive": {
-            "file": "BTCUSDT-1m-2024-03.zip",
+            "file": "BTCUSDT-1m-2024-01.zip",
             "download": "downloaded",
             "checksum_download": "downloaded",
-            "sha256": "040b8e448e4243072b88b0d9908dfebed91bba943b75f4e831fa5337a2e1dab9",
-            "bytes": 1950611
+            "sha256": "21eeac04a76a7a35b10467e5e752fb2f8cff77cdeb57df6b50a23ce8d69bb190",
+            "bytes": 1898532
           }
         },
         "aggTrades": {
-          "rows": 66512993,
+          "rows": 40294620,
           "timestamp_units": {
-            "ms": 66512993
+            "ms": 40294620
           },
-          "first_trade_utc": "2024-03-01T00:00:00.019000+00:00",
-          "last_trade_utc": "2024-03-31T23:59:59.791000+00:00",
+          "first_trade_utc": "2024-01-01T00:00:00.038000+00:00",
+          "last_trade_utc": "2024-01-31T23:59:59.885000+00:00",
           "archive": {
-            "file": "BTCUSDT-aggTrades-2024-03.zip",
+            "file": "BTCUSDT-aggTrades-2024-01.zip",
             "download": "downloaded",
             "checksum_download": "downloaded",
-            "sha256": "8ceb6fd06fc3bff87870e7adc362ca0e2f463f57a04599d2506e40320921401d",
-            "bytes": 847406944
+            "sha256": "d752f50932091dd209803187ca2354a9eadbfe8e4b9c481c3581a1bbb1bd8282",
+            "bytes": 522743749
           }
         },
         "features": {
-          "path": "BTCUSDT-2024-03-1m-orderflow.csv.gz",
+          "path": "BTCUSDT-2024-01-1m-orderflow.csv.gz",
           "rows": 44640,
           "aggtrade_minutes_with_activity": 44640,
+          "whale_threshold_usdt": 100000.0
+        }
+      },
+      "2024-02": {
+        "klines": {
+          "rows": 41760,
+          "timestamp_units": {
+            "ms": 41760
+          },
+          "missing_minute_gaps": 0,
+          "missing_minutes_total": 0,
+          "archive": {
+            "file": "BTCUSDT-1m-2024-02.zip",
+            "download": "downloaded",
+            "checksum_download": "downloaded",
+            "sha256": "1407acbf8ad99911bdf582805699b7e85fdbc346dbe12618ce8b6369f0d8058d",
+            "bytes": 1770127
+          }
+        },
+        "aggTrades": {
+          "rows": 36317913,
+          "timestamp_units": {
+            "ms": 36317913
+          },
+          "first_trade_utc": "2024-02-01T00:00:00.028000+00:00",
+          "last_trade_utc": "2024-02-29T23:59:59.987000+00:00",
+          "archive": {
+            "file": "BTCUSDT-aggTrades-2024-02.zip",
+            "download": "downloaded",
+            "checksum_download": "downloaded",
+            "sha256": "3c2426d3f2435ace18b0e9b3acf45144b1710dad08cb184487539d5d829ccef3",
+            "bytes": 472350747
+          }
+        },
+        "features": {
+          "path": "BTCUSDT-2024-02-1m-orderflow.csv.gz",
+          "rows": 41760,
+          "aggtrade_minutes_with_activity": 41760,
           "whale_threshold_usdt": 100000.0
         }
       }
     },
     "ETHUSDT": {
-      "2024-03": {
+      "2024-01": {
         "klines": {
           "rows": 44640,
           "timestamp_units": {
@@ -53,38 +91,76 @@
           "missing_minute_gaps": 0,
           "missing_minutes_total": 0,
           "archive": {
-            "file": "ETHUSDT-1m-2024-03.zip",
+            "file": "ETHUSDT-1m-2024-01.zip",
             "download": "downloaded",
             "checksum_download": "downloaded",
-            "sha256": "dd10515a9b010920bac628f2ec600405ff8e41de7d0f81694fbf391ca54b86b2",
-            "bytes": 1977193
+            "sha256": "7fa68ec5fedc6eef175ed0af6e9f252062f6ceaca016106c265e6e4b724b5ef2",
+            "bytes": 1918758
           }
         },
         "aggTrades": {
-          "rows": 53472384,
+          "rows": 30410538,
           "timestamp_units": {
-            "ms": 53472384
+            "ms": 30410538
           },
-          "first_trade_utc": "2024-03-01T00:00:00.010000+00:00",
-          "last_trade_utc": "2024-03-31T23:59:59.641000+00:00",
+          "first_trade_utc": "2024-01-01T00:00:03.162000+00:00",
+          "last_trade_utc": "2024-01-31T23:59:58.537000+00:00",
           "archive": {
-            "file": "ETHUSDT-aggTrades-2024-03.zip",
+            "file": "ETHUSDT-aggTrades-2024-01.zip",
             "download": "downloaded",
             "checksum_download": "downloaded",
-            "sha256": "0e17b68019a5ae08b3593ab6c0963ae2312db97e788d1d2798cdb497c77d695d",
-            "bytes": 716159134
+            "sha256": "603fb4e667ac9f62861fff0def7dc84bfdbe8a9c5da6d94165b6ecae3d344155",
+            "bytes": 418894918
           }
         },
         "features": {
-          "path": "ETHUSDT-2024-03-1m-orderflow.csv.gz",
+          "path": "ETHUSDT-2024-01-1m-orderflow.csv.gz",
           "rows": 44640,
           "aggtrade_minutes_with_activity": 44640,
+          "whale_threshold_usdt": 100000.0
+        }
+      },
+      "2024-02": {
+        "klines": {
+          "rows": 41760,
+          "timestamp_units": {
+            "ms": 41760
+          },
+          "missing_minute_gaps": 0,
+          "missing_minutes_total": 0,
+          "archive": {
+            "file": "ETHUSDT-1m-2024-02.zip",
+            "download": "downloaded",
+            "checksum_download": "downloaded",
+            "sha256": "de3f91fcd929d207b4382afd7a728c0f44527d6bdbcb0a585b01b0fe001e24ab",
+            "bytes": 1796355
+          }
+        },
+        "aggTrades": {
+          "rows": 29209088,
+          "timestamp_units": {
+            "ms": 29209088
+          },
+          "first_trade_utc": "2024-02-01T00:00:00.033000+00:00",
+          "last_trade_utc": "2024-02-29T23:59:59.964000+00:00",
+          "archive": {
+            "file": "ETHUSDT-aggTrades-2024-02.zip",
+            "download": "downloaded",
+            "checksum_download": "downloaded",
+            "sha256": "f4c7aab36e02a6d4f30e068521ce09981fc2a59e42c3799b4ce5a7a09cff0ff9",
+            "bytes": 400020710
+          }
+        },
+        "features": {
+          "path": "ETHUSDT-2024-02-1m-orderflow.csv.gz",
+          "rows": 41760,
+          "aggtrade_minutes_with_activity": 41760,
           "whale_threshold_usdt": 100000.0
         }
       }
     },
     "SOLUSDT": {
-      "2024-03": {
+      "2024-01": {
         "klines": {
           "rows": 44640,
           "timestamp_units": {
@@ -93,32 +169,70 @@
           "missing_minute_gaps": 0,
           "missing_minutes_total": 0,
           "archive": {
-            "file": "SOLUSDT-1m-2024-03.zip",
+            "file": "SOLUSDT-1m-2024-01.zip",
             "download": "downloaded",
             "checksum_download": "downloaded",
-            "sha256": "78a1baab910e7cfcf53b3f2a4fe7519febbb6cc7407a353f95c83d07eaef1809",
-            "bytes": 1738207
+            "sha256": "7f24af8fea65040962f7fc73c8d61fb6128c583e9d6c555d6ccca96b4d50995a",
+            "bytes": 1698240
           }
         },
         "aggTrades": {
-          "rows": 53567556,
+          "rows": 43340071,
           "timestamp_units": {
-            "ms": 53567556
+            "ms": 43340071
           },
-          "first_trade_utc": "2024-03-01T00:00:00.018000+00:00",
-          "last_trade_utc": "2024-03-31T23:59:59.460000+00:00",
+          "first_trade_utc": "2024-01-01T00:00:00.037000+00:00",
+          "last_trade_utc": "2024-01-31T23:59:59.908000+00:00",
           "archive": {
-            "file": "SOLUSDT-aggTrades-2024-03.zip",
+            "file": "SOLUSDT-aggTrades-2024-01.zip",
             "download": "downloaded",
             "checksum_download": "downloaded",
-            "sha256": "d36276e81c0f291ce1382e4e113011f6dce86edc7c13640d3685d1408c6108ae",
-            "bytes": 657880665
+            "sha256": "37238fabb9a620074b30690ddbcfb10d0163800736f7562878992cd49e5e5a61",
+            "bytes": 528597302
           }
         },
         "features": {
-          "path": "SOLUSDT-2024-03-1m-orderflow.csv.gz",
+          "path": "SOLUSDT-2024-01-1m-orderflow.csv.gz",
           "rows": 44640,
           "aggtrade_minutes_with_activity": 44640,
+          "whale_threshold_usdt": 100000.0
+        }
+      },
+      "2024-02": {
+        "klines": {
+          "rows": 41760,
+          "timestamp_units": {
+            "ms": 41760
+          },
+          "missing_minute_gaps": 0,
+          "missing_minutes_total": 0,
+          "archive": {
+            "file": "SOLUSDT-1m-2024-02.zip",
+            "download": "downloaded",
+            "checksum_download": "downloaded",
+            "sha256": "d5a3bd5540af9a97a6fa06e23154a78f88dd7eec2092d49b0cc284ae7c39fe16",
+            "bytes": 1567850
+          }
+        },
+        "aggTrades": {
+          "rows": 24795623,
+          "timestamp_units": {
+            "ms": 24795623
+          },
+          "first_trade_utc": "2024-02-01T00:00:02.971000+00:00",
+          "last_trade_utc": "2024-02-29T23:59:59.979000+00:00",
+          "archive": {
+            "file": "SOLUSDT-aggTrades-2024-02.zip",
+            "download": "downloaded",
+            "checksum_download": "downloaded",
+            "sha256": "19c1dd5f682c9fb70dd7de795277c66d1bfdc6f4161ca667f589893456f6e00a",
+            "bytes": 313039034
+          }
+        },
+        "features": {
+          "path": "SOLUSDT-2024-02-1m-orderflow.csv.gz",
+          "rows": 41760,
+          "aggtrade_minutes_with_activity": 41760,
           "whale_threshold_usdt": 100000.0
         }
       }
