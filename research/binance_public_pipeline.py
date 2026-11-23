@@ -103,7 +103,7 @@ def load_klines(path: Path):
 
 def load_aggtrades(path: Path, whale_usdt: float):
     # Per minute: aggressive buy/sell base+quote, counts, whale notionals.
-    flow = defaultdict(lambda: [0.0, 0.0, 0.0, 0.0, 0, 0, 0.0, 0.0])
+    flow = defaultdict(lambda: [0.0, 0.0, 0.0, 0.0, 0, 0, 0.0, 0.0, 0.0, 0.0])
     units = defaultdict(int); rows = 0; first_ms = None; last_ms = None
     zf, fh = csv_stream(path)
     try:
@@ -119,9 +119,11 @@ def load_aggtrades(path: Path, whale_usdt: float):
                 if buyer_maker:  # buyer was maker => seller was taker
                     a[1] += qty; a[3] += quote; a[5] += 1
                     if quote >= whale_usdt: a[7] += quote
+                    a[8] = price if a[8] == 0.0 else min(a[8], price)  # lowest aggressive-sell trade price
                 else:             # buyer was taker
                     a[0] += qty; a[2] += quote; a[4] += 1
                     if quote >= whale_usdt: a[6] += quote
+                    a[9] = max(a[9], price)  # highest aggressive-buy trade price
                 rows += 1
                 first_ms = ms if first_ms is None else min(first_ms, ms)
                 last_ms = ms if last_ms is None else max(last_ms, ms)
@@ -174,15 +176,15 @@ def main():
                             "trade_count","kline_taker_buy_base","kline_taker_buy_quote",
                             "agg_taker_buy_base","agg_taker_sell_base","agg_taker_buy_quote",
                             "agg_taker_sell_quote","agg_taker_buy_count","agg_taker_sell_count",
-                            "whale_buy_quote","whale_sell_quote","ofi_base","ofi_quote"])
+                            "whale_buy_quote","whale_sell_quote","ofi_base","ofi_quote",\n                            "agg_sell_min_price","agg_buy_max_price"])
                 for minute in mins:
-                    k = bars[minute]; f = flow.get(minute, [0.0]*8)
+                    k = bars[minute]; f = flow.get(minute, [0.0]*10)
                     base_den = f[0] + f[1]; quote_den = f[2] + f[3]
                     ofi_base = (f[0]-f[1])/base_den if base_den else 0.0
                     ofi_quote = (f[2]-f[3])/quote_den if quote_den else 0.0
                     w.writerow([minute*60000,k["open"],k["high"],k["low"],k["close"],k["volume"],
                                 k["quote_volume"],k["trades"],k["taker_buy_base"],k["taker_buy_quote"],
-                                f[0],f[1],f[2],f[3],f[4],f[5],f[6],f[7],ofi_base,ofi_quote])
+                                f[0],f[1],f[2],f[3],f[4],f[5],f[6],f[7],ofi_base,ofi_quote,f[8],f[9]])
             report["symbols"][symbol][month] = {
                 "klines":{"rows":len(bars),"timestamp_units":kunits,"missing_minute_gaps":missing,
                           "missing_minutes_total":gaps_minutes,"archive":km},
