@@ -1,0 +1,2357 @@
+{
+  "strategy": "Failed-breakout / liquidity-trap reversal (report-aligned proxy)",
+  "method": "15m 20-bar sweep/reclaim; 5m CVD divergence and aggressive-flow absorption proxy; 4h EMA regime proxy; next-1m-open entry; structural stop and conditional trailing.",
+  "chronological_split": "50% train / 20% validation / 30% untouched OOS; fixed rules, no parameter fitting on OOS",
+  "execution": "1x leverage; non-overlapping positions; 4h max hold; stop-first on ambiguous OHLC bars; 100 USDT starting equity; fee/slippage deducted from notional each trade.",
+  "cost_scenarios_round_trip_bp": [
+    12,
+    14,
+    16,
+    18
+  ],
+  "position_fractions": [
+    0.1,
+    0.25,
+    0.5,
+    1.0
+  ],
+  "limitations": [
+    "Score weights are a transparent proxy because the source report's exact weights/normalization were not reproducibly specified.",
+    "No historical L2 book, queue position, maker fills, OI, long/short account ratio, liquidation stream, or funding history.",
+    "AggTrade absorption is a proxy; it does not prove passive limit-order absorption.",
+    "No leverage above 1x or liquidation model; no live trading. Results are exploratory, not production validation."
+  ],
+  "files": {
+    "ETHUSDT-2024-03-1m-orderflow.csv.gz": {
+      "rows": 44640,
+      "signals": 10,
+      "split": {
+        "train": {
+          "minute_range": [
+            0,
+            22320
+          ],
+          "signals": 2,
+          "costs": {
+            "12bp": {
+              "0.1": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.962624,
+                "net_return_pct": -0.0374,
+                "max_drawdown_pct": 0.0374,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -18.688,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.906561,
+                "net_return_pct": -0.0934,
+                "max_drawdown_pct": 0.0934,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -18.688,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.813123,
+                "net_return_pct": -0.1869,
+                "max_drawdown_pct": 0.1869,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -18.688,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.626253,
+                "net_return_pct": -0.3737,
+                "max_drawdown_pct": 0.3737,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -18.688,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              }
+            },
+            "14bp": {
+              "0.1": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.958625,
+                "net_return_pct": -0.0414,
+                "max_drawdown_pct": 0.0414,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -20.688,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.896566,
+                "net_return_pct": -0.1034,
+                "max_drawdown_pct": 0.1034,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -20.688,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.793143,
+                "net_return_pct": -0.2069,
+                "max_drawdown_pct": 0.2069,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -20.688,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.586332,
+                "net_return_pct": -0.4137,
+                "max_drawdown_pct": 0.4137,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -20.688,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              }
+            },
+            "16bp": {
+              "0.1": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.954626,
+                "net_return_pct": -0.0454,
+                "max_drawdown_pct": 0.0454,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -22.688,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.886571,
+                "net_return_pct": -0.1134,
+                "max_drawdown_pct": 0.1134,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -22.688,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.773165,
+                "net_return_pct": -0.2268,
+                "max_drawdown_pct": 0.2268,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -22.688,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.546419,
+                "net_return_pct": -0.4536,
+                "max_drawdown_pct": 0.4536,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -22.688,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              }
+            },
+            "18bp": {
+              "0.1": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.950627,
+                "net_return_pct": -0.0494,
+                "max_drawdown_pct": 0.0494,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -24.688,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.876577,
+                "net_return_pct": -0.1234,
+                "max_drawdown_pct": 0.1234,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -24.688,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.753188,
+                "net_return_pct": -0.2468,
+                "max_drawdown_pct": 0.2468,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -24.688,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.506514,
+                "net_return_pct": -0.4935,
+                "max_drawdown_pct": 0.4935,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -24.688,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              }
+            }
+          }
+        },
+        "validation": {
+          "minute_range": [
+            22320,
+            31247
+          ],
+          "signals": 1,
+          "costs": {
+            "12bp": {
+              "0.1": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.996247,
+                "net_return_pct": -0.0038,
+                "max_drawdown_pct": 0.0038,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -3.7525,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.990619,
+                "net_return_pct": -0.0094,
+                "max_drawdown_pct": 0.0094,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -3.7525,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.981237,
+                "net_return_pct": -0.0188,
+                "max_drawdown_pct": 0.0188,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -3.7525,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.962475,
+                "net_return_pct": -0.0375,
+                "max_drawdown_pct": 0.0375,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -3.7525,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              }
+            },
+            "14bp": {
+              "0.1": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.994247,
+                "net_return_pct": -0.0058,
+                "max_drawdown_pct": 0.0058,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -5.7525,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.985619,
+                "net_return_pct": -0.0144,
+                "max_drawdown_pct": 0.0144,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -5.7525,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.971237,
+                "net_return_pct": -0.0288,
+                "max_drawdown_pct": 0.0288,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -5.7525,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.942475,
+                "net_return_pct": -0.0575,
+                "max_drawdown_pct": 0.0575,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -5.7525,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              }
+            },
+            "16bp": {
+              "0.1": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.992247,
+                "net_return_pct": -0.0078,
+                "max_drawdown_pct": 0.0078,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -7.7525,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.980619,
+                "net_return_pct": -0.0194,
+                "max_drawdown_pct": 0.0194,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -7.7525,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.961237,
+                "net_return_pct": -0.0388,
+                "max_drawdown_pct": 0.0388,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -7.7525,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.922475,
+                "net_return_pct": -0.0775,
+                "max_drawdown_pct": 0.0775,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -7.7525,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              }
+            },
+            "18bp": {
+              "0.1": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.990247,
+                "net_return_pct": -0.0098,
+                "max_drawdown_pct": 0.0098,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -9.7525,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.975619,
+                "net_return_pct": -0.0244,
+                "max_drawdown_pct": 0.0244,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -9.7525,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.951237,
+                "net_return_pct": -0.0488,
+                "max_drawdown_pct": 0.0488,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -9.7525,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.902475,
+                "net_return_pct": -0.0975,
+                "max_drawdown_pct": 0.0975,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -9.7525,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              }
+            }
+          }
+        },
+        "oos": {
+          "minute_range": [
+            31247,
+            44640
+          ],
+          "signals": 7,
+          "costs": {
+            "12bp": {
+              "0.1": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.044205,
+                "net_return_pct": 0.0442,
+                "max_drawdown_pct": 0.1137,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 6.3399,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.2386,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.109857,
+                "net_return_pct": 0.1099,
+                "max_drawdown_pct": 0.2842,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 6.3399,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.2368,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.217535,
+                "net_return_pct": 0.2175,
+                "max_drawdown_pct": 0.5684,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 6.3399,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.2337,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.426375,
+                "net_return_pct": 0.4264,
+                "max_drawdown_pct": 1.1366,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 6.3399,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.2276,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              }
+            },
+            "14bp": {
+              "0.1": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.0302,
+                "net_return_pct": 0.0302,
+                "max_drawdown_pct": 0.1257,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 4.3399,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.1547,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.07483,
+                "net_return_pct": 0.0748,
+                "max_drawdown_pct": 0.3142,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 4.3399,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.153,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.147426,
+                "net_return_pct": 0.1474,
+                "max_drawdown_pct": 0.6281,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 4.3399,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.1503,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.285944,
+                "net_return_pct": 0.2859,
+                "max_drawdown_pct": 1.2554,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 4.3399,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.1449,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              }
+            },
+            "16bp": {
+              "0.1": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.016198,
+                "net_return_pct": 0.0162,
+                "max_drawdown_pct": 0.1377,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 2.3399,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.0789,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.039812,
+                "net_return_pct": 0.0398,
+                "max_drawdown_pct": 0.3441,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 2.3399,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.0775,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.077358,
+                "net_return_pct": 0.0774,
+                "max_drawdown_pct": 0.6878,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 2.3399,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.0751,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.145682,
+                "net_return_pct": 0.1457,
+                "max_drawdown_pct": 1.374,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 2.3399,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.0703,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              }
+            },
+            "18bp": {
+              "0.1": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.002196,
+                "net_return_pct": 0.0022,
+                "max_drawdown_pct": 0.1497,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 0.3399,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.0102,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.004806,
+                "net_return_pct": 0.0048,
+                "max_drawdown_pct": 0.374,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 0.3399,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.0089,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.007332,
+                "net_return_pct": 0.0073,
+                "max_drawdown_pct": 0.7474,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 0.3399,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.0068,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.005587,
+                "net_return_pct": 0.0056,
+                "max_drawdown_pct": 1.4926,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 0.3399,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.0026,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "BTCUSDT-2024-03-1m-orderflow.csv.gz": {
+      "rows": 44640,
+      "signals": 58,
+      "split": {
+        "train": {
+          "minute_range": [
+            0,
+            22320
+          ],
+          "signals": 10,
+          "costs": {
+            "12bp": {
+              "0.1": {
+                "trades": 10,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.792149,
+                "net_return_pct": -0.2079,
+                "max_drawdown_pct": 0.2101,
+                "gross_mean_bp": -8.8017,
+                "net_mean_bp": -20.8017,
+                "win_rate_pct": 20.0,
+                "profit_factor": 0.1587,
+                "exit_reasons": {
+                  "stop": 10,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 10,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.480992,
+                "net_return_pct": -0.519,
+                "max_drawdown_pct": 0.5246,
+                "gross_mean_bp": -8.8017,
+                "net_mean_bp": -20.8017,
+                "win_rate_pct": 20.0,
+                "profit_factor": 0.1584,
+                "exit_reasons": {
+                  "stop": 10,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 10,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 98.964051,
+                "net_return_pct": -1.0359,
+                "max_drawdown_pct": 1.0469,
+                "gross_mean_bp": -8.8017,
+                "net_mean_bp": -20.8017,
+                "win_rate_pct": 20.0,
+                "profit_factor": 0.158,
+                "exit_reasons": {
+                  "stop": 10,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 10,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 97.936344,
+                "net_return_pct": -2.0637,
+                "max_drawdown_pct": 2.0847,
+                "gross_mean_bp": -8.8017,
+                "net_mean_bp": -20.8017,
+                "win_rate_pct": 20.0,
+                "profit_factor": 0.1571,
+                "exit_reasons": {
+                  "stop": 10,
+                  "time": 0
+                }
+              }
+            },
+            "14bp": {
+              "0.1": {
+                "trades": 10,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.772188,
+                "net_return_pct": -0.2278,
+                "max_drawdown_pct": 0.2278,
+                "gross_mean_bp": -8.8017,
+                "net_mean_bp": -22.8017,
+                "win_rate_pct": 20.0,
+                "profit_factor": 0.1339,
+                "exit_reasons": {
+                  "stop": 10,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 10,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.431237,
+                "net_return_pct": -0.5688,
+                "max_drawdown_pct": 0.5688,
+                "gross_mean_bp": -8.8017,
+                "net_mean_bp": -22.8017,
+                "win_rate_pct": 20.0,
+                "profit_factor": 0.1336,
+                "exit_reasons": {
+                  "stop": 10,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 10,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 98.865028,
+                "net_return_pct": -1.135,
+                "max_drawdown_pct": 1.135,
+                "gross_mean_bp": -8.8017,
+                "net_mean_bp": -22.8017,
+                "win_rate_pct": 20.0,
+                "profit_factor": 0.1332,
+                "exit_reasons": {
+                  "stop": 10,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 10,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 97.740239,
+                "net_return_pct": -2.2598,
+                "max_drawdown_pct": 2.2598,
+                "gross_mean_bp": -8.8017,
+                "net_mean_bp": -22.8017,
+                "win_rate_pct": 20.0,
+                "profit_factor": 0.1325,
+                "exit_reasons": {
+                  "stop": 10,
+                  "time": 0
+                }
+              }
+            },
+            "16bp": {
+              "0.1": {
+                "trades": 10,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.752231,
+                "net_return_pct": -0.2478,
+                "max_drawdown_pct": 0.2478,
+                "gross_mean_bp": -8.8017,
+                "net_mean_bp": -24.8017,
+                "win_rate_pct": 10.0,
+                "profit_factor": 0.1164,
+                "exit_reasons": {
+                  "stop": 10,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 10,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.381504,
+                "net_return_pct": -0.6185,
+                "max_drawdown_pct": 0.6185,
+                "gross_mean_bp": -8.8017,
+                "net_mean_bp": -24.8017,
+                "win_rate_pct": 10.0,
+                "profit_factor": 0.1162,
+                "exit_reasons": {
+                  "stop": 10,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 10,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 98.766095,
+                "net_return_pct": -1.2339,
+                "max_drawdown_pct": 1.2339,
+                "gross_mean_bp": -8.8017,
+                "net_mean_bp": -24.8017,
+                "win_rate_pct": 10.0,
+                "profit_factor": 0.1158,
+                "exit_reasons": {
+                  "stop": 10,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 10,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 97.544487,
+                "net_return_pct": -2.4555,
+                "max_drawdown_pct": 2.4555,
+                "gross_mean_bp": -8.8017,
+                "net_mean_bp": -24.8017,
+                "win_rate_pct": 10.0,
+                "profit_factor": 0.1151,
+                "exit_reasons": {
+                  "stop": 10,
+                  "time": 0
+                }
+              }
+            },
+            "18bp": {
+              "0.1": {
+                "trades": 10,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.732277,
+                "net_return_pct": -0.2677,
+                "max_drawdown_pct": 0.2677,
+                "gross_mean_bp": -8.8017,
+                "net_mean_bp": -26.8017,
+                "win_rate_pct": 10.0,
+                "profit_factor": 0.1027,
+                "exit_reasons": {
+                  "stop": 10,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 10,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.331794,
+                "net_return_pct": -0.6682,
+                "max_drawdown_pct": 0.6682,
+                "gross_mean_bp": -8.8017,
+                "net_mean_bp": -26.8017,
+                "win_rate_pct": 10.0,
+                "profit_factor": 0.1025,
+                "exit_reasons": {
+                  "stop": 10,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 10,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 98.66725,
+                "net_return_pct": -1.3327,
+                "max_drawdown_pct": 1.3327,
+                "gross_mean_bp": -8.8017,
+                "net_mean_bp": -26.8017,
+                "win_rate_pct": 10.0,
+                "profit_factor": 0.1021,
+                "exit_reasons": {
+                  "stop": 10,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 10,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 97.349089,
+                "net_return_pct": -2.6509,
+                "max_drawdown_pct": 2.6509,
+                "gross_mean_bp": -8.8017,
+                "net_mean_bp": -26.8017,
+                "win_rate_pct": 10.0,
+                "profit_factor": 0.1015,
+                "exit_reasons": {
+                  "stop": 10,
+                  "time": 0
+                }
+              }
+            }
+          }
+        },
+        "validation": {
+          "minute_range": [
+            22320,
+            31247
+          ],
+          "signals": 23,
+          "costs": {
+            "12bp": {
+              "0.1": {
+                "trades": 23,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.789096,
+                "net_return_pct": -0.2109,
+                "max_drawdown_pct": 0.2956,
+                "gross_mean_bp": 2.8373,
+                "net_mean_bp": -9.1627,
+                "win_rate_pct": 26.09,
+                "profit_factor": 0.6643,
+                "exit_reasons": {
+                  "stop": 23,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 23,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.472141,
+                "net_return_pct": -0.5279,
+                "max_drawdown_pct": 0.7376,
+                "gross_mean_bp": 2.8373,
+                "net_mean_bp": -9.1627,
+                "win_rate_pct": 26.09,
+                "profit_factor": 0.6632,
+                "exit_reasons": {
+                  "stop": 23,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 23,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 98.942331,
+                "net_return_pct": -1.0577,
+                "max_drawdown_pct": 1.4705,
+                "gross_mean_bp": 2.8373,
+                "net_mean_bp": -9.1627,
+                "win_rate_pct": 26.09,
+                "profit_factor": 0.6615,
+                "exit_reasons": {
+                  "stop": 23,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 23,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 97.877182,
+                "net_return_pct": -2.1228,
+                "max_drawdown_pct": 2.922,
+                "gross_mean_bp": 2.8373,
+                "net_mean_bp": -9.1627,
+                "win_rate_pct": 26.09,
+                "profit_factor": 0.6581,
+                "exit_reasons": {
+                  "stop": 23,
+                  "time": 0
+                }
+              }
+            },
+            "14bp": {
+              "0.1": {
+                "trades": 23,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.743199,
+                "net_return_pct": -0.2568,
+                "max_drawdown_pct": 0.3116,
+                "gross_mean_bp": 2.8373,
+                "net_mean_bp": -11.1627,
+                "win_rate_pct": 26.09,
+                "profit_factor": 0.6121,
+                "exit_reasons": {
+                  "stop": 23,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 23,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.357785,
+                "net_return_pct": -0.6422,
+                "max_drawdown_pct": 0.7773,
+                "gross_mean_bp": 2.8373,
+                "net_mean_bp": -11.1627,
+                "win_rate_pct": 26.09,
+                "profit_factor": 0.6111,
+                "exit_reasons": {
+                  "stop": 23,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 23,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 98.714908,
+                "net_return_pct": -1.2851,
+                "max_drawdown_pct": 1.5494,
+                "gross_mean_bp": 2.8373,
+                "net_mean_bp": -11.1627,
+                "win_rate_pct": 26.09,
+                "profit_factor": 0.6095,
+                "exit_reasons": {
+                  "stop": 23,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 23,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 97.42751,
+                "net_return_pct": -2.5725,
+                "max_drawdown_pct": 3.0777,
+                "gross_mean_bp": 2.8373,
+                "net_mean_bp": -11.1627,
+                "win_rate_pct": 26.09,
+                "profit_factor": 0.6062,
+                "exit_reasons": {
+                  "stop": 23,
+                  "time": 0
+                }
+              }
+            },
+            "16bp": {
+              "0.1": {
+                "trades": 23,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.697322,
+                "net_return_pct": -0.3027,
+                "max_drawdown_pct": 0.3275,
+                "gross_mean_bp": 2.8373,
+                "net_mean_bp": -13.1627,
+                "win_rate_pct": 21.74,
+                "profit_factor": 0.5662,
+                "exit_reasons": {
+                  "stop": 23,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 23,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.243554,
+                "net_return_pct": -0.7564,
+                "max_drawdown_pct": 0.8171,
+                "gross_mean_bp": 2.8373,
+                "net_mean_bp": -13.1627,
+                "win_rate_pct": 21.74,
+                "profit_factor": 0.5653,
+                "exit_reasons": {
+                  "stop": 23,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 23,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 98.487985,
+                "net_return_pct": -1.512,
+                "max_drawdown_pct": 1.6283,
+                "gross_mean_bp": 2.8373,
+                "net_mean_bp": -13.1627,
+                "win_rate_pct": 21.74,
+                "profit_factor": 0.5637,
+                "exit_reasons": {
+                  "stop": 23,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 23,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 96.979815,
+                "net_return_pct": -3.0202,
+                "max_drawdown_pct": 3.2333,
+                "gross_mean_bp": 2.8373,
+                "net_mean_bp": -13.1627,
+                "win_rate_pct": 21.74,
+                "profit_factor": 0.5605,
+                "exit_reasons": {
+                  "stop": 23,
+                  "time": 0
+                }
+              }
+            },
+            "18bp": {
+              "0.1": {
+                "trades": 23,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.651465,
+                "net_return_pct": -0.3485,
+                "max_drawdown_pct": 0.3485,
+                "gross_mean_bp": 2.8373,
+                "net_mean_bp": -15.1627,
+                "win_rate_pct": 21.74,
+                "profit_factor": 0.5249,
+                "exit_reasons": {
+                  "stop": 23,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 23,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.129449,
+                "net_return_pct": -0.8706,
+                "max_drawdown_pct": 0.8706,
+                "gross_mean_bp": 2.8373,
+                "net_mean_bp": -15.1627,
+                "win_rate_pct": 21.74,
+                "profit_factor": 0.5239,
+                "exit_reasons": {
+                  "stop": 23,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 23,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 98.261561,
+                "net_return_pct": -1.7384,
+                "max_drawdown_pct": 1.7384,
+                "gross_mean_bp": 2.8373,
+                "net_mean_bp": -15.1627,
+                "win_rate_pct": 21.74,
+                "profit_factor": 0.5224,
+                "exit_reasons": {
+                  "stop": 23,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 23,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 96.534088,
+                "net_return_pct": -3.4659,
+                "max_drawdown_pct": 3.4659,
+                "gross_mean_bp": 2.8373,
+                "net_mean_bp": -15.1627,
+                "win_rate_pct": 21.74,
+                "profit_factor": 0.5194,
+                "exit_reasons": {
+                  "stop": 23,
+                  "time": 0
+                }
+              }
+            }
+          }
+        },
+        "oos": {
+          "minute_range": [
+            31247,
+            44640
+          ],
+          "signals": 25,
+          "costs": {
+            "12bp": {
+              "0.1": {
+                "trades": 25,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.83018,
+                "net_return_pct": -0.1698,
+                "max_drawdown_pct": 0.3017,
+                "gross_mean_bp": 5.214,
+                "net_mean_bp": -6.786,
+                "win_rate_pct": 36.0,
+                "profit_factor": 0.7079,
+                "exit_reasons": {
+                  "stop": 24,
+                  "time": 1
+                }
+              },
+              "0.25": {
+                "trades": 25,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.574821,
+                "net_return_pct": -0.4252,
+                "max_drawdown_pct": 0.753,
+                "gross_mean_bp": 5.214,
+                "net_mean_bp": -6.786,
+                "win_rate_pct": 36.0,
+                "profit_factor": 0.7071,
+                "exit_reasons": {
+                  "stop": 24,
+                  "time": 1
+                }
+              },
+              "0.5": {
+                "trades": 25,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.147575,
+                "net_return_pct": -0.8524,
+                "max_drawdown_pct": 1.5016,
+                "gross_mean_bp": 5.214,
+                "net_mean_bp": -6.786,
+                "win_rate_pct": 36.0,
+                "profit_factor": 0.7058,
+                "exit_reasons": {
+                  "stop": 24,
+                  "time": 1
+                }
+              },
+              "1.0": {
+                "trades": 25,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 98.287109,
+                "net_return_pct": -1.7129,
+                "max_drawdown_pct": 2.9855,
+                "gross_mean_bp": 5.214,
+                "net_mean_bp": -6.786,
+                "win_rate_pct": 36.0,
+                "profit_factor": 0.7032,
+                "exit_reasons": {
+                  "stop": 24,
+                  "time": 1
+                }
+              }
+            },
+            "14bp": {
+              "0.1": {
+                "trades": 25,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.780273,
+                "net_return_pct": -0.2197,
+                "max_drawdown_pct": 0.3297,
+                "gross_mean_bp": 5.214,
+                "net_mean_bp": -8.786,
+                "win_rate_pct": 28.0,
+                "profit_factor": 0.643,
+                "exit_reasons": {
+                  "stop": 24,
+                  "time": 1
+                }
+              },
+              "0.25": {
+                "trades": 25,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.450405,
+                "net_return_pct": -0.5496,
+                "max_drawdown_pct": 0.8225,
+                "gross_mean_bp": 5.214,
+                "net_mean_bp": -8.786,
+                "win_rate_pct": 28.0,
+                "profit_factor": 0.6422,
+                "exit_reasons": {
+                  "stop": 24,
+                  "time": 1
+                }
+              },
+              "0.5": {
+                "trades": 25,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 98.899918,
+                "net_return_pct": -1.1001,
+                "max_drawdown_pct": 1.6395,
+                "gross_mean_bp": 5.214,
+                "net_mean_bp": -8.786,
+                "win_rate_pct": 28.0,
+                "profit_factor": 0.641,
+                "exit_reasons": {
+                  "stop": 24,
+                  "time": 1
+                }
+              },
+              "1.0": {
+                "trades": 25,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 97.796507,
+                "net_return_pct": -2.2035,
+                "max_drawdown_pct": 3.2574,
+                "gross_mean_bp": 5.214,
+                "net_mean_bp": -8.786,
+                "win_rate_pct": 28.0,
+                "profit_factor": 0.6386,
+                "exit_reasons": {
+                  "stop": 24,
+                  "time": 1
+                }
+              }
+            },
+            "16bp": {
+              "0.1": {
+                "trades": 25,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.730391,
+                "net_return_pct": -0.2696,
+                "max_drawdown_pct": 0.3576,
+                "gross_mean_bp": 5.214,
+                "net_mean_bp": -10.786,
+                "win_rate_pct": 28.0,
+                "profit_factor": 0.586,
+                "exit_reasons": {
+                  "stop": 24,
+                  "time": 1
+                }
+              },
+              "0.25": {
+                "trades": 25,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.32614,
+                "net_return_pct": -0.6739,
+                "max_drawdown_pct": 0.8919,
+                "gross_mean_bp": 5.214,
+                "net_mean_bp": -10.786,
+                "win_rate_pct": 28.0,
+                "profit_factor": 0.5853,
+                "exit_reasons": {
+                  "stop": 24,
+                  "time": 1
+                }
+              },
+              "0.5": {
+                "trades": 25,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 98.652855,
+                "net_return_pct": -1.3471,
+                "max_drawdown_pct": 1.7773,
+                "gross_mean_bp": 5.214,
+                "net_mean_bp": -10.786,
+                "win_rate_pct": 28.0,
+                "profit_factor": 0.5842,
+                "exit_reasons": {
+                  "stop": 24,
+                  "time": 1
+                }
+              },
+              "1.0": {
+                "trades": 25,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 97.308257,
+                "net_return_pct": -2.6917,
+                "max_drawdown_pct": 3.5286,
+                "gross_mean_bp": 5.214,
+                "net_mean_bp": -10.786,
+                "win_rate_pct": 28.0,
+                "profit_factor": 0.582,
+                "exit_reasons": {
+                  "stop": 24,
+                  "time": 1
+                }
+              }
+            },
+            "18bp": {
+              "0.1": {
+                "trades": 25,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.680532,
+                "net_return_pct": -0.3195,
+                "max_drawdown_pct": 0.3855,
+                "gross_mean_bp": 5.214,
+                "net_mean_bp": -12.786,
+                "win_rate_pct": 28.0,
+                "profit_factor": 0.535,
+                "exit_reasons": {
+                  "stop": 24,
+                  "time": 1
+                }
+              },
+              "0.25": {
+                "trades": 25,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.202023,
+                "net_return_pct": -0.798,
+                "max_drawdown_pct": 0.9613,
+                "gross_mean_bp": 5.214,
+                "net_mean_bp": -12.786,
+                "win_rate_pct": 28.0,
+                "profit_factor": 0.5344,
+                "exit_reasons": {
+                  "stop": 24,
+                  "time": 1
+                }
+              },
+              "0.5": {
+                "trades": 25,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 98.406384,
+                "net_return_pct": -1.5936,
+                "max_drawdown_pct": 1.9149,
+                "gross_mean_bp": 5.214,
+                "net_mean_bp": -12.786,
+                "win_rate_pct": 28.0,
+                "profit_factor": 0.5334,
+                "exit_reasons": {
+                  "stop": 24,
+                  "time": 1
+                }
+              },
+              "1.0": {
+                "trades": 25,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 96.822347,
+                "net_return_pct": -3.1777,
+                "max_drawdown_pct": 3.799,
+                "gross_mean_bp": 5.214,
+                "net_mean_bp": -12.786,
+                "win_rate_pct": 28.0,
+                "profit_factor": 0.5314,
+                "exit_reasons": {
+                  "stop": 24,
+                  "time": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "SOLUSDT-2024-03-1m-orderflow.csv.gz": {
+      "rows": 44640,
+      "signals": 7,
+      "split": {
+        "train": {
+          "minute_range": [
+            0,
+            22320
+          ],
+          "signals": 2,
+          "costs": {
+            "12bp": {
+              "0.1": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.034436,
+                "net_return_pct": 0.0344,
+                "max_drawdown_pct": 0.037,
+                "gross_mean_bp": 29.2315,
+                "net_mean_bp": 17.2315,
+                "win_rate_pct": 50.0,
+                "profit_factor": 1.9301,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.085992,
+                "net_return_pct": 0.086,
+                "max_drawdown_pct": 0.0925,
+                "gross_mean_bp": 29.2315,
+                "net_mean_bp": 17.2315,
+                "win_rate_pct": 50.0,
+                "profit_factor": 1.928,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.171654,
+                "net_return_pct": 0.1717,
+                "max_drawdown_pct": 0.185,
+                "gross_mean_bp": 29.2315,
+                "net_mean_bp": 17.2315,
+                "win_rate_pct": 50.0,
+                "profit_factor": 1.9246,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.341985,
+                "net_return_pct": 0.342,
+                "max_drawdown_pct": 0.37,
+                "gross_mean_bp": 29.2315,
+                "net_mean_bp": 17.2315,
+                "win_rate_pct": 50.0,
+                "profit_factor": 1.9177,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              }
+            },
+            "14bp": {
+              "0.1": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.030436,
+                "net_return_pct": 0.0304,
+                "max_drawdown_pct": 0.039,
+                "gross_mean_bp": 29.2315,
+                "net_mean_bp": 15.2315,
+                "win_rate_pct": 50.0,
+                "profit_factor": 1.7799,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.075988,
+                "net_return_pct": 0.076,
+                "max_drawdown_pct": 0.0975,
+                "gross_mean_bp": 29.2315,
+                "net_mean_bp": 15.2315,
+                "win_rate_pct": 50.0,
+                "profit_factor": 1.778,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.151637,
+                "net_return_pct": 0.1516,
+                "max_drawdown_pct": 0.195,
+                "gross_mean_bp": 29.2315,
+                "net_mean_bp": 15.2315,
+                "win_rate_pct": 50.0,
+                "profit_factor": 1.7749,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.30192,
+                "net_return_pct": 0.3019,
+                "max_drawdown_pct": 0.39,
+                "gross_mean_bp": 29.2315,
+                "net_mean_bp": 15.2315,
+                "win_rate_pct": 50.0,
+                "profit_factor": 1.7688,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              }
+            },
+            "16bp": {
+              "0.1": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.026435,
+                "net_return_pct": 0.0264,
+                "max_drawdown_pct": 0.041,
+                "gross_mean_bp": 29.2315,
+                "net_mean_bp": 13.2315,
+                "win_rate_pct": 50.0,
+                "profit_factor": 1.6443,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.065984,
+                "net_return_pct": 0.066,
+                "max_drawdown_pct": 0.1025,
+                "gross_mean_bp": 29.2315,
+                "net_mean_bp": 13.2315,
+                "win_rate_pct": 50.0,
+                "profit_factor": 1.6427,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.131623,
+                "net_return_pct": 0.1316,
+                "max_drawdown_pct": 0.205,
+                "gross_mean_bp": 29.2315,
+                "net_mean_bp": 13.2315,
+                "win_rate_pct": 50.0,
+                "profit_factor": 1.6399,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.261863,
+                "net_return_pct": 0.2619,
+                "max_drawdown_pct": 0.41,
+                "gross_mean_bp": 29.2315,
+                "net_mean_bp": 13.2315,
+                "win_rate_pct": 50.0,
+                "profit_factor": 1.6344,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              }
+            },
+            "18bp": {
+              "0.1": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.022435,
+                "net_return_pct": 0.0224,
+                "max_drawdown_pct": 0.043,
+                "gross_mean_bp": 29.2315,
+                "net_mean_bp": 11.2315,
+                "win_rate_pct": 50.0,
+                "profit_factor": 1.5214,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.055981,
+                "net_return_pct": 0.056,
+                "max_drawdown_pct": 0.1075,
+                "gross_mean_bp": 29.2315,
+                "net_mean_bp": 11.2315,
+                "win_rate_pct": 50.0,
+                "profit_factor": 1.5199,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.111611,
+                "net_return_pct": 0.1116,
+                "max_drawdown_pct": 0.215,
+                "gross_mean_bp": 29.2315,
+                "net_mean_bp": 11.2315,
+                "win_rate_pct": 50.0,
+                "profit_factor": 1.5174,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.221814,
+                "net_return_pct": 0.2218,
+                "max_drawdown_pct": 0.43,
+                "gross_mean_bp": 29.2315,
+                "net_mean_bp": 11.2315,
+                "win_rate_pct": 50.0,
+                "profit_factor": 1.5125,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              }
+            }
+          }
+        },
+        "validation": {
+          "minute_range": [
+            22320,
+            31247
+          ],
+          "signals": 1,
+          "costs": {
+            "12bp": {
+              "0.1": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.963,
+                "net_return_pct": -0.037,
+                "max_drawdown_pct": 0.037,
+                "gross_mean_bp": -25.0,
+                "net_mean_bp": -37.0,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.9075,
+                "net_return_pct": -0.0925,
+                "max_drawdown_pct": 0.0925,
+                "gross_mean_bp": -25.0,
+                "net_mean_bp": -37.0,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.815,
+                "net_return_pct": -0.185,
+                "max_drawdown_pct": 0.185,
+                "gross_mean_bp": -25.0,
+                "net_mean_bp": -37.0,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.63,
+                "net_return_pct": -0.37,
+                "max_drawdown_pct": 0.37,
+                "gross_mean_bp": -25.0,
+                "net_mean_bp": -37.0,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              }
+            },
+            "14bp": {
+              "0.1": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.961,
+                "net_return_pct": -0.039,
+                "max_drawdown_pct": 0.039,
+                "gross_mean_bp": -25.0,
+                "net_mean_bp": -39.0,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.9025,
+                "net_return_pct": -0.0975,
+                "max_drawdown_pct": 0.0975,
+                "gross_mean_bp": -25.0,
+                "net_mean_bp": -39.0,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.805,
+                "net_return_pct": -0.195,
+                "max_drawdown_pct": 0.195,
+                "gross_mean_bp": -25.0,
+                "net_mean_bp": -39.0,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.61,
+                "net_return_pct": -0.39,
+                "max_drawdown_pct": 0.39,
+                "gross_mean_bp": -25.0,
+                "net_mean_bp": -39.0,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              }
+            },
+            "16bp": {
+              "0.1": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.959,
+                "net_return_pct": -0.041,
+                "max_drawdown_pct": 0.041,
+                "gross_mean_bp": -25.0,
+                "net_mean_bp": -41.0,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.8975,
+                "net_return_pct": -0.1025,
+                "max_drawdown_pct": 0.1025,
+                "gross_mean_bp": -25.0,
+                "net_mean_bp": -41.0,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.795,
+                "net_return_pct": -0.205,
+                "max_drawdown_pct": 0.205,
+                "gross_mean_bp": -25.0,
+                "net_mean_bp": -41.0,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.59,
+                "net_return_pct": -0.41,
+                "max_drawdown_pct": 0.41,
+                "gross_mean_bp": -25.0,
+                "net_mean_bp": -41.0,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              }
+            },
+            "18bp": {
+              "0.1": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.957,
+                "net_return_pct": -0.043,
+                "max_drawdown_pct": 0.043,
+                "gross_mean_bp": -25.0,
+                "net_mean_bp": -43.0,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.8925,
+                "net_return_pct": -0.1075,
+                "max_drawdown_pct": 0.1075,
+                "gross_mean_bp": -25.0,
+                "net_mean_bp": -43.0,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.785,
+                "net_return_pct": -0.215,
+                "max_drawdown_pct": 0.215,
+                "gross_mean_bp": -25.0,
+                "net_mean_bp": -43.0,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.57,
+                "net_return_pct": -0.43,
+                "max_drawdown_pct": 0.43,
+                "gross_mean_bp": -25.0,
+                "net_mean_bp": -43.0,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              }
+            }
+          }
+        },
+        "oos": {
+          "minute_range": [
+            31247,
+            44640
+          ],
+          "signals": 4,
+          "costs": {
+            "12bp": {
+              "0.1": {
+                "trades": 4,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.967865,
+                "net_return_pct": -0.0321,
+                "max_drawdown_pct": 0.111,
+                "gross_mean_bp": 3.9779,
+                "net_mean_bp": -8.0221,
+                "win_rate_pct": 25.0,
+                "profit_factor": 0.7106,
+                "exit_reasons": {
+                  "stop": 4,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 4,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.919489,
+                "net_return_pct": -0.0805,
+                "max_drawdown_pct": 0.2772,
+                "gross_mean_bp": 3.9779,
+                "net_mean_bp": -8.0221,
+                "win_rate_pct": 25.0,
+                "profit_factor": 0.7102,
+                "exit_reasons": {
+                  "stop": 4,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 4,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.838398,
+                "net_return_pct": -0.1616,
+                "max_drawdown_pct": 0.554,
+                "gross_mean_bp": 3.9779,
+                "net_mean_bp": -8.0221,
+                "win_rate_pct": 25.0,
+                "profit_factor": 0.7094,
+                "exit_reasons": {
+                  "stop": 4,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 4,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.674491,
+                "net_return_pct": -0.3255,
+                "max_drawdown_pct": 1.1059,
+                "gross_mean_bp": 3.9779,
+                "net_mean_bp": -8.0221,
+                "win_rate_pct": 25.0,
+                "profit_factor": 0.708,
+                "exit_reasons": {
+                  "stop": 4,
+                  "time": 0
+                }
+              }
+            },
+            "14bp": {
+              "0.1": {
+                "trades": 4,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.959867,
+                "net_return_pct": -0.0401,
+                "max_drawdown_pct": 0.117,
+                "gross_mean_bp": 3.9779,
+                "net_mean_bp": -10.0221,
+                "win_rate_pct": 25.0,
+                "profit_factor": 0.6571,
+                "exit_reasons": {
+                  "stop": 4,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 4,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.899502,
+                "net_return_pct": -0.1005,
+                "max_drawdown_pct": 0.2922,
+                "gross_mean_bp": 3.9779,
+                "net_mean_bp": -10.0221,
+                "win_rate_pct": 25.0,
+                "profit_factor": 0.6567,
+                "exit_reasons": {
+                  "stop": 4,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 4,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.798453,
+                "net_return_pct": -0.2015,
+                "max_drawdown_pct": 0.5839,
+                "gross_mean_bp": 3.9779,
+                "net_mean_bp": -10.0221,
+                "win_rate_pct": 25.0,
+                "profit_factor": 0.6561,
+                "exit_reasons": {
+                  "stop": 4,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 4,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.594709,
+                "net_return_pct": -0.4053,
+                "max_drawdown_pct": 1.1654,
+                "gross_mean_bp": 3.9779,
+                "net_mean_bp": -10.0221,
+                "win_rate_pct": 25.0,
+                "profit_factor": 0.6549,
+                "exit_reasons": {
+                  "stop": 4,
+                  "time": 0
+                }
+              }
+            },
+            "16bp": {
+              "0.1": {
+                "trades": 4,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.95187,
+                "net_return_pct": -0.0481,
+                "max_drawdown_pct": 0.1229,
+                "gross_mean_bp": 3.9779,
+                "net_mean_bp": -12.0221,
+                "win_rate_pct": 25.0,
+                "profit_factor": 0.6088,
+                "exit_reasons": {
+                  "stop": 4,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 4,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.879519,
+                "net_return_pct": -0.1205,
+                "max_drawdown_pct": 0.3072,
+                "gross_mean_bp": 3.9779,
+                "net_mean_bp": -12.0221,
+                "win_rate_pct": 25.0,
+                "profit_factor": 0.6085,
+                "exit_reasons": {
+                  "stop": 4,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 4,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.758519,
+                "net_return_pct": -0.2415,
+                "max_drawdown_pct": 0.6137,
+                "gross_mean_bp": 3.9779,
+                "net_mean_bp": -12.0221,
+                "win_rate_pct": 25.0,
+                "profit_factor": 0.608,
+                "exit_reasons": {
+                  "stop": 4,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 4,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.514976,
+                "net_return_pct": -0.485,
+                "max_drawdown_pct": 1.225,
+                "gross_mean_bp": 3.9779,
+                "net_mean_bp": -12.0221,
+                "win_rate_pct": 25.0,
+                "profit_factor": 0.607,
+                "exit_reasons": {
+                  "stop": 4,
+                  "time": 0
+                }
+              }
+            },
+            "18bp": {
+              "0.1": {
+                "trades": 4,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.943873,
+                "net_return_pct": -0.0561,
+                "max_drawdown_pct": 0.1289,
+                "gross_mean_bp": 3.9779,
+                "net_mean_bp": -14.0221,
+                "win_rate_pct": 25.0,
+                "profit_factor": 0.565,
+                "exit_reasons": {
+                  "stop": 4,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 4,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.859538,
+                "net_return_pct": -0.1405,
+                "max_drawdown_pct": 0.3222,
+                "gross_mean_bp": 3.9779,
+                "net_mean_bp": -14.0221,
+                "win_rate_pct": 25.0,
+                "profit_factor": 0.5648,
+                "exit_reasons": {
+                  "stop": 4,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 4,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.718597,
+                "net_return_pct": -0.2814,
+                "max_drawdown_pct": 0.6436,
+                "gross_mean_bp": 3.9779,
+                "net_mean_bp": -14.0221,
+                "win_rate_pct": 25.0,
+                "profit_factor": 0.5644,
+                "exit_reasons": {
+                  "stop": 4,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 4,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.43529,
+                "net_return_pct": -0.5647,
+                "max_drawdown_pct": 1.2845,
+                "gross_mean_bp": 3.9779,
+                "net_mean_bp": -14.0221,
+                "win_rate_pct": 25.0,
+                "profit_factor": 0.5635,
+                "exit_reasons": {
+                  "stop": 4,
+                  "time": 0
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
