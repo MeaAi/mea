@@ -30,1816 +30,7 @@
     "No leverage above 1x or liquidation model; no live trading. Results are exploratory, not production validation."
   ],
   "files": {
-    "ETHUSDT-2024-03-1m-orderflow.csv.gz": {
-      "rows": 44640,
-      "signals": 10,
-      "split": {
-        "train": {
-          "minute_range": [
-            0,
-            22320
-          ],
-          "signals": 2,
-          "costs": {
-            "taker_entry_taker_exit_plus_friction_2bp": {
-              "0.1": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.962631,
-                "net_return_pct": -0.0374,
-                "max_drawdown_pct": 0.0374,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -18.6847,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.01999,
-                "total_execution_friction_usdt": 0.003999,
-                "total_net_pnl_usdt": -0.037369,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              },
-              "0.25": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.906577,
-                "net_return_pct": -0.0934,
-                "max_drawdown_pct": 0.0934,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -18.6847,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.04996,
-                "total_execution_friction_usdt": 0.009995,
-                "total_net_pnl_usdt": -0.093423,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              },
-              "0.5": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.813157,
-                "net_return_pct": -0.1868,
-                "max_drawdown_pct": 0.1868,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -18.6847,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.099874,
-                "total_execution_friction_usdt": 0.019982,
-                "total_net_pnl_usdt": -0.186843,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              },
-              "1.0": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.626321,
-                "net_return_pct": -0.3737,
-                "max_drawdown_pct": 0.3737,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -18.6847,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.199563,
-                "total_execution_friction_usdt": 0.039926,
-                "total_net_pnl_usdt": -0.373679,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              }
-            },
-            "maker_entry_taker_exit_plus_friction_2bp": {
-              "0.1": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.96863,
-                "net_return_pct": -0.0314,
-                "max_drawdown_pct": 0.034,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -15.6847,
-                "win_rate_pct": 50.0,
-                "profit_factor": 0.077,
-                "total_commission_usdt": 0.013991,
-                "total_execution_friction_usdt": 0.003999,
-                "total_net_pnl_usdt": -0.03137,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              },
-              "0.25": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.921571,
-                "net_return_pct": -0.0784,
-                "max_drawdown_pct": 0.085,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -15.6847,
-                "win_rate_pct": 50.0,
-                "profit_factor": 0.077,
-                "total_commission_usdt": 0.034968,
-                "total_execution_friction_usdt": 0.009996,
-                "total_net_pnl_usdt": -0.078429,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              },
-              "0.5": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.843131,
-                "net_return_pct": -0.1569,
-                "max_drawdown_pct": 0.1699,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -15.6847,
-                "win_rate_pct": 50.0,
-                "profit_factor": 0.0769,
-                "total_commission_usdt": 0.069907,
-                "total_execution_friction_usdt": 0.019983,
-                "total_net_pnl_usdt": -0.156869,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              },
-              "1.0": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.686217,
-                "net_return_pct": -0.3138,
-                "max_drawdown_pct": 0.3399,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -15.6847,
-                "win_rate_pct": 50.0,
-                "profit_factor": 0.0768,
-                "total_commission_usdt": 0.139695,
-                "total_execution_friction_usdt": 0.039932,
-                "total_net_pnl_usdt": -0.313783,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              }
-            },
-            "taker_entry_taker_exit_plus_friction_4bp": {
-              "0.1": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.958632,
-                "net_return_pct": -0.0414,
-                "max_drawdown_pct": 0.0414,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -20.6847,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.019989,
-                "total_execution_friction_usdt": 0.007998,
-                "total_net_pnl_usdt": -0.041368,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              },
-              "0.25": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.896582,
-                "net_return_pct": -0.1034,
-                "max_drawdown_pct": 0.1034,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -20.6847,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.049959,
-                "total_execution_friction_usdt": 0.01999,
-                "total_net_pnl_usdt": -0.103418,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              },
-              "0.5": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.793176,
-                "net_return_pct": -0.2068,
-                "max_drawdown_pct": 0.2068,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -20.6847,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.099869,
-                "total_execution_friction_usdt": 0.039961,
-                "total_net_pnl_usdt": -0.206824,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              },
-              "1.0": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.586399,
-                "net_return_pct": -0.4136,
-                "max_drawdown_pct": 0.4136,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -20.6847,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.199543,
-                "total_execution_friction_usdt": 0.079844,
-                "total_net_pnl_usdt": -0.413601,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              }
-            },
-            "maker_entry_taker_exit_plus_friction_4bp": {
-              "0.1": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.96463,
-                "net_return_pct": -0.0354,
-                "max_drawdown_pct": 0.036,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -17.6847,
-                "win_rate_pct": 50.0,
-                "profit_factor": 0.0172,
-                "total_commission_usdt": 0.013991,
-                "total_execution_friction_usdt": 0.007999,
-                "total_net_pnl_usdt": -0.03537,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              },
-              "0.25": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.911575,
-                "net_return_pct": -0.0884,
-                "max_drawdown_pct": 0.09,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -17.6847,
-                "win_rate_pct": 50.0,
-                "profit_factor": 0.0172,
-                "total_commission_usdt": 0.034968,
-                "total_execution_friction_usdt": 0.019991,
-                "total_net_pnl_usdt": -0.088425,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              },
-              "0.5": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.823148,
-                "net_return_pct": -0.1769,
-                "max_drawdown_pct": 0.1799,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -17.6847,
-                "win_rate_pct": 50.0,
-                "profit_factor": 0.0171,
-                "total_commission_usdt": 0.069904,
-                "total_execution_friction_usdt": 0.039964,
-                "total_net_pnl_usdt": -0.176852,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              },
-              "1.0": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.646284,
-                "net_return_pct": -0.3537,
-                "max_drawdown_pct": 0.3599,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -17.6847,
-                "win_rate_pct": 50.0,
-                "profit_factor": 0.0171,
-                "total_commission_usdt": 0.139681,
-                "total_execution_friction_usdt": 0.079856,
-                "total_net_pnl_usdt": -0.353716,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              }
-            },
-            "taker_entry_taker_exit_plus_friction_6bp": {
-              "0.1": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.954632,
-                "net_return_pct": -0.0454,
-                "max_drawdown_pct": 0.0454,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -22.6847,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.019989,
-                "total_execution_friction_usdt": 0.011998,
-                "total_net_pnl_usdt": -0.045368,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              },
-              "0.25": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.886588,
-                "net_return_pct": -0.1134,
-                "max_drawdown_pct": 0.1134,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -22.6847,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.049958,
-                "total_execution_friction_usdt": 0.029985,
-                "total_net_pnl_usdt": -0.113412,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              },
-              "0.5": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.773198,
-                "net_return_pct": -0.2268,
-                "max_drawdown_pct": 0.2268,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -22.6847,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.099864,
-                "total_execution_friction_usdt": 0.059939,
-                "total_net_pnl_usdt": -0.226802,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              },
-              "1.0": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.546486,
-                "net_return_pct": -0.4535,
-                "max_drawdown_pct": 0.4535,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -22.6847,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.199523,
-                "total_execution_friction_usdt": 0.119754,
-                "total_net_pnl_usdt": -0.453514,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              }
-            },
-            "maker_entry_taker_exit_plus_friction_6bp": {
-              "0.1": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.960631,
-                "net_return_pct": -0.0394,
-                "max_drawdown_pct": 0.0394,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -19.6847,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.013991,
-                "total_execution_friction_usdt": 0.011998,
-                "total_net_pnl_usdt": -0.039369,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              },
-              "0.25": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.90158,
-                "net_return_pct": -0.0984,
-                "max_drawdown_pct": 0.0984,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -19.6847,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.034967,
-                "total_execution_friction_usdt": 0.029986,
-                "total_net_pnl_usdt": -0.09842,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              },
-              "0.5": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.803166,
-                "net_return_pct": -0.1968,
-                "max_drawdown_pct": 0.1968,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -19.6847,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.0699,
-                "total_execution_friction_usdt": 0.059943,
-                "total_net_pnl_usdt": -0.196834,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              },
-              "1.0": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.606359,
-                "net_return_pct": -0.3936,
-                "max_drawdown_pct": 0.3936,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -19.6847,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.139667,
-                "total_execution_friction_usdt": 0.119772,
-                "total_net_pnl_usdt": -0.393641,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              }
-            },
-            "taker_entry_taker_exit_plus_friction_8bp": {
-              "0.1": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.950633,
-                "net_return_pct": -0.0494,
-                "max_drawdown_pct": 0.0494,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -24.6847,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.019989,
-                "total_execution_friction_usdt": 0.015997,
-                "total_net_pnl_usdt": -0.049367,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              },
-              "0.25": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.876594,
-                "net_return_pct": -0.1234,
-                "max_drawdown_pct": 0.1234,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -24.6847,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.049956,
-                "total_execution_friction_usdt": 0.039979,
-                "total_net_pnl_usdt": -0.123406,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              },
-              "0.5": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.753222,
-                "net_return_pct": -0.2468,
-                "max_drawdown_pct": 0.2468,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -24.6847,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.099859,
-                "total_execution_friction_usdt": 0.079914,
-                "total_net_pnl_usdt": -0.246778,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              },
-              "1.0": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.506581,
-                "net_return_pct": -0.4934,
-                "max_drawdown_pct": 0.4934,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -24.6847,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.199503,
-                "total_execution_friction_usdt": 0.159656,
-                "total_net_pnl_usdt": -0.493419,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              }
-            },
-            "maker_entry_taker_exit_plus_friction_8bp": {
-              "0.1": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.956632,
-                "net_return_pct": -0.0434,
-                "max_drawdown_pct": 0.0434,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -21.6847,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.013991,
-                "total_execution_friction_usdt": 0.015997,
-                "total_net_pnl_usdt": -0.043368,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              },
-              "0.25": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.891585,
-                "net_return_pct": -0.1084,
-                "max_drawdown_pct": 0.1084,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -21.6847,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.034966,
-                "total_execution_friction_usdt": 0.03998,
-                "total_net_pnl_usdt": -0.108415,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              },
-              "0.5": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.783187,
-                "net_return_pct": -0.2168,
-                "max_drawdown_pct": 0.2168,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -21.6847,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.069897,
-                "total_execution_friction_usdt": 0.07992,
-                "total_net_pnl_usdt": -0.216813,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              },
-              "1.0": {
-                "trades": 2,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.566442,
-                "net_return_pct": -0.4336,
-                "max_drawdown_pct": 0.4336,
-                "gross_mean_bp": -6.688,
-                "net_mean_bp": -21.6847,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.139653,
-                "total_execution_friction_usdt": 0.15968,
-                "total_net_pnl_usdt": -0.433558,
-                "exit_reasons": {
-                  "stop": 2,
-                  "time": 0
-                }
-              }
-            }
-          }
-        },
-        "validation": {
-          "minute_range": [
-            22320,
-            31247
-          ],
-          "signals": 1,
-          "costs": {
-            "taker_entry_taker_exit_plus_friction_2bp": {
-              "0.1": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.996252,
-                "net_return_pct": -0.0037,
-                "max_drawdown_pct": 0.0037,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -3.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.009996,
-                "total_execution_friction_usdt": 0.002,
-                "total_net_pnl_usdt": -0.003748,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              },
-              "0.25": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.990629,
-                "net_return_pct": -0.0094,
-                "max_drawdown_pct": 0.0094,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -3.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.02499,
-                "total_execution_friction_usdt": 0.005,
-                "total_net_pnl_usdt": -0.009371,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              },
-              "0.5": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.981258,
-                "net_return_pct": -0.0187,
-                "max_drawdown_pct": 0.0187,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -3.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.049979,
-                "total_execution_friction_usdt": 0.01,
-                "total_net_pnl_usdt": -0.018742,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              },
-              "1.0": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.962516,
-                "net_return_pct": -0.0375,
-                "max_drawdown_pct": 0.0375,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -3.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.099959,
-                "total_execution_friction_usdt": 0.02,
-                "total_net_pnl_usdt": -0.037484,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              }
-            },
-            "maker_entry_taker_exit_plus_friction_2bp": {
-              "0.1": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.999252,
-                "net_return_pct": -0.0007,
-                "max_drawdown_pct": 0.0007,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -0.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.006996,
-                "total_execution_friction_usdt": 0.002,
-                "total_net_pnl_usdt": -0.000748,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              },
-              "0.25": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.998129,
-                "net_return_pct": -0.0019,
-                "max_drawdown_pct": 0.0019,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -0.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.01749,
-                "total_execution_friction_usdt": 0.005,
-                "total_net_pnl_usdt": -0.001871,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              },
-              "0.5": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.996258,
-                "net_return_pct": -0.0037,
-                "max_drawdown_pct": 0.0037,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -0.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.034979,
-                "total_execution_friction_usdt": 0.01,
-                "total_net_pnl_usdt": -0.003742,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              },
-              "1.0": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.992516,
-                "net_return_pct": -0.0075,
-                "max_drawdown_pct": 0.0075,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -0.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.069959,
-                "total_execution_friction_usdt": 0.02,
-                "total_net_pnl_usdt": -0.007484,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              }
-            },
-            "taker_entry_taker_exit_plus_friction_4bp": {
-              "0.1": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.994252,
-                "net_return_pct": -0.0057,
-                "max_drawdown_pct": 0.0057,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -5.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.009996,
-                "total_execution_friction_usdt": 0.004,
-                "total_net_pnl_usdt": -0.005748,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              },
-              "0.25": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.985629,
-                "net_return_pct": -0.0144,
-                "max_drawdown_pct": 0.0144,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -5.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.02499,
-                "total_execution_friction_usdt": 0.01,
-                "total_net_pnl_usdt": -0.014371,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              },
-              "0.5": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.971258,
-                "net_return_pct": -0.0287,
-                "max_drawdown_pct": 0.0287,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -5.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.049979,
-                "total_execution_friction_usdt": 0.02,
-                "total_net_pnl_usdt": -0.028742,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              },
-              "1.0": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.942516,
-                "net_return_pct": -0.0575,
-                "max_drawdown_pct": 0.0575,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -5.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.099959,
-                "total_execution_friction_usdt": 0.04,
-                "total_net_pnl_usdt": -0.057484,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              }
-            },
-            "maker_entry_taker_exit_plus_friction_4bp": {
-              "0.1": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.997252,
-                "net_return_pct": -0.0027,
-                "max_drawdown_pct": 0.0027,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -2.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.006996,
-                "total_execution_friction_usdt": 0.004,
-                "total_net_pnl_usdt": -0.002748,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              },
-              "0.25": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.993129,
-                "net_return_pct": -0.0069,
-                "max_drawdown_pct": 0.0069,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -2.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.01749,
-                "total_execution_friction_usdt": 0.01,
-                "total_net_pnl_usdt": -0.006871,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              },
-              "0.5": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.986258,
-                "net_return_pct": -0.0137,
-                "max_drawdown_pct": 0.0137,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -2.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.034979,
-                "total_execution_friction_usdt": 0.02,
-                "total_net_pnl_usdt": -0.013742,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              },
-              "1.0": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.972516,
-                "net_return_pct": -0.0275,
-                "max_drawdown_pct": 0.0275,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -2.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.069959,
-                "total_execution_friction_usdt": 0.04,
-                "total_net_pnl_usdt": -0.027484,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              }
-            },
-            "taker_entry_taker_exit_plus_friction_6bp": {
-              "0.1": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.992252,
-                "net_return_pct": -0.0077,
-                "max_drawdown_pct": 0.0077,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -7.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.009996,
-                "total_execution_friction_usdt": 0.006,
-                "total_net_pnl_usdt": -0.007748,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              },
-              "0.25": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.980629,
-                "net_return_pct": -0.0194,
-                "max_drawdown_pct": 0.0194,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -7.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.02499,
-                "total_execution_friction_usdt": 0.015,
-                "total_net_pnl_usdt": -0.019371,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              },
-              "0.5": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.961258,
-                "net_return_pct": -0.0387,
-                "max_drawdown_pct": 0.0387,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -7.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.049979,
-                "total_execution_friction_usdt": 0.03,
-                "total_net_pnl_usdt": -0.038742,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              },
-              "1.0": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.922516,
-                "net_return_pct": -0.0775,
-                "max_drawdown_pct": 0.0775,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -7.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.099959,
-                "total_execution_friction_usdt": 0.06,
-                "total_net_pnl_usdt": -0.077484,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              }
-            },
-            "maker_entry_taker_exit_plus_friction_6bp": {
-              "0.1": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.995252,
-                "net_return_pct": -0.0047,
-                "max_drawdown_pct": 0.0047,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -4.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.006996,
-                "total_execution_friction_usdt": 0.006,
-                "total_net_pnl_usdt": -0.004748,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              },
-              "0.25": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.988129,
-                "net_return_pct": -0.0119,
-                "max_drawdown_pct": 0.0119,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -4.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.01749,
-                "total_execution_friction_usdt": 0.015,
-                "total_net_pnl_usdt": -0.011871,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              },
-              "0.5": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.976258,
-                "net_return_pct": -0.0237,
-                "max_drawdown_pct": 0.0237,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -4.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.034979,
-                "total_execution_friction_usdt": 0.03,
-                "total_net_pnl_usdt": -0.023742,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              },
-              "1.0": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.952516,
-                "net_return_pct": -0.0475,
-                "max_drawdown_pct": 0.0475,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -4.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.069959,
-                "total_execution_friction_usdt": 0.06,
-                "total_net_pnl_usdt": -0.047484,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              }
-            },
-            "taker_entry_taker_exit_plus_friction_8bp": {
-              "0.1": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.990252,
-                "net_return_pct": -0.0097,
-                "max_drawdown_pct": 0.0097,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -9.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.009996,
-                "total_execution_friction_usdt": 0.008,
-                "total_net_pnl_usdt": -0.009748,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              },
-              "0.25": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.975629,
-                "net_return_pct": -0.0244,
-                "max_drawdown_pct": 0.0244,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -9.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.02499,
-                "total_execution_friction_usdt": 0.02,
-                "total_net_pnl_usdt": -0.024371,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              },
-              "0.5": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.951258,
-                "net_return_pct": -0.0487,
-                "max_drawdown_pct": 0.0487,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -9.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.049979,
-                "total_execution_friction_usdt": 0.04,
-                "total_net_pnl_usdt": -0.048742,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              },
-              "1.0": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.902516,
-                "net_return_pct": -0.0975,
-                "max_drawdown_pct": 0.0975,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -9.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.099959,
-                "total_execution_friction_usdt": 0.08,
-                "total_net_pnl_usdt": -0.097484,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              }
-            },
-            "maker_entry_taker_exit_plus_friction_8bp": {
-              "0.1": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.993252,
-                "net_return_pct": -0.0067,
-                "max_drawdown_pct": 0.0067,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -6.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.006996,
-                "total_execution_friction_usdt": 0.008,
-                "total_net_pnl_usdt": -0.006748,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              },
-              "0.25": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.983129,
-                "net_return_pct": -0.0169,
-                "max_drawdown_pct": 0.0169,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -6.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.01749,
-                "total_execution_friction_usdt": 0.02,
-                "total_net_pnl_usdt": -0.016871,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              },
-              "0.5": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.966258,
-                "net_return_pct": -0.0337,
-                "max_drawdown_pct": 0.0337,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -6.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.034979,
-                "total_execution_friction_usdt": 0.04,
-                "total_net_pnl_usdt": -0.033742,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              },
-              "1.0": {
-                "trades": 1,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 99.932516,
-                "net_return_pct": -0.0675,
-                "max_drawdown_pct": 0.0675,
-                "gross_mean_bp": 8.2475,
-                "net_mean_bp": -6.7484,
-                "win_rate_pct": 0.0,
-                "profit_factor": 0.0,
-                "total_commission_usdt": 0.069959,
-                "total_execution_friction_usdt": 0.08,
-                "total_net_pnl_usdt": -0.067484,
-                "exit_reasons": {
-                  "stop": 1,
-                  "time": 0
-                }
-              }
-            }
-          }
-        },
-        "oos": {
-          "minute_range": [
-            31247,
-            44640
-          ],
-          "signals": 7,
-          "costs": {
-            "taker_entry_taker_exit_plus_friction_2bp": {
-              "0.1": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.044236,
-                "net_return_pct": 0.0442,
-                "max_drawdown_pct": 0.1138,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 6.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.2388,
-                "total_commission_usdt": 0.070041,
-                "total_execution_friction_usdt": 0.014014,
-                "total_net_pnl_usdt": 0.044236,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              },
-              "0.25": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.109934,
-                "net_return_pct": 0.1099,
-                "max_drawdown_pct": 0.2844,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 6.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.2369,
-                "total_commission_usdt": 0.175372,
-                "total_execution_friction_usdt": 0.03509,
-                "total_net_pnl_usdt": 0.109934,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              },
-              "0.5": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.217688,
-                "net_return_pct": 0.2177,
-                "max_drawdown_pct": 0.5687,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 6.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.2338,
-                "total_commission_usdt": 0.351638,
-                "total_execution_friction_usdt": 0.070358,
-                "total_net_pnl_usdt": 0.217688,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              },
-              "1.0": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.426675,
-                "net_return_pct": 0.4267,
-                "max_drawdown_pct": 1.1371,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 6.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.2277,
-                "total_commission_usdt": 0.706839,
-                "total_execution_friction_usdt": 0.141428,
-                "total_net_pnl_usdt": 0.426675,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              }
-            },
-            "maker_entry_taker_exit_plus_friction_2bp": {
-              "0.1": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.065245,
-                "net_return_pct": 0.0652,
-                "max_drawdown_pct": 0.102,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 9.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.3832,
-                "total_commission_usdt": 0.049024,
-                "total_execution_friction_usdt": 0.014016,
-                "total_net_pnl_usdt": 0.065245,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              },
-              "0.25": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.162495,
-                "net_return_pct": 0.1625,
-                "max_drawdown_pct": 0.2548,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 9.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.381,
-                "total_commission_usdt": 0.122765,
-                "total_execution_friction_usdt": 0.035098,
-                "total_net_pnl_usdt": 0.162495,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              },
-              "0.5": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.322932,
-                "net_return_pct": 0.3229,
-                "max_drawdown_pct": 0.5091,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 9.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.3773,
-                "total_commission_usdt": 0.246212,
-                "total_execution_friction_usdt": 0.07039,
-                "total_net_pnl_usdt": 0.322932,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              },
-              "1.0": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.637637,
-                "net_return_pct": 0.6376,
-                "max_drawdown_pct": 1.0164,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 9.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.37,
-                "total_commission_usdt": 0.495141,
-                "total_execution_friction_usdt": 0.141555,
-                "total_net_pnl_usdt": 0.637637,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              }
-            },
-            "taker_entry_taker_exit_plus_friction_4bp": {
-              "0.1": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.030231,
-                "net_return_pct": 0.0302,
-                "max_drawdown_pct": 0.1257,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 4.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.1548,
-                "total_commission_usdt": 0.070037,
-                "total_execution_friction_usdt": 0.028027,
-                "total_net_pnl_usdt": 0.030231,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              },
-              "0.25": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.074906,
-                "net_return_pct": 0.0749,
-                "max_drawdown_pct": 0.3143,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 4.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.1532,
-                "total_commission_usdt": 0.175345,
-                "total_execution_friction_usdt": 0.070169,
-                "total_net_pnl_usdt": 0.074906,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              },
-              "0.5": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.147578,
-                "net_return_pct": 0.1476,
-                "max_drawdown_pct": 0.6284,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 4.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.1505,
-                "total_commission_usdt": 0.351533,
-                "total_execution_friction_usdt": 0.140674,
-                "total_net_pnl_usdt": 0.147578,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              },
-              "1.0": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.286243,
-                "net_return_pct": 0.2862,
-                "max_drawdown_pct": 1.2559,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 4.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.1451,
-                "total_commission_usdt": 0.706416,
-                "total_execution_friction_usdt": 0.282687,
-                "total_net_pnl_usdt": 0.286243,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              }
-            },
-            "maker_entry_taker_exit_plus_friction_4bp": {
-              "0.1": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.051238,
-                "net_return_pct": 0.0512,
-                "max_drawdown_pct": 0.1079,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 7.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.2843,
-                "total_commission_usdt": 0.049021,
-                "total_execution_friction_usdt": 0.02803,
-                "total_net_pnl_usdt": 0.051238,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              },
-              "0.25": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.127452,
-                "net_return_pct": 0.1275,
-                "max_drawdown_pct": 0.2697,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 7.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.2823,
-                "total_commission_usdt": 0.122746,
-                "total_execution_friction_usdt": 0.070185,
-                "total_net_pnl_usdt": 0.127452,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              },
-              "0.5": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.252758,
-                "net_return_pct": 0.2528,
-                "max_drawdown_pct": 0.539,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 7.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.279,
-                "total_commission_usdt": 0.246138,
-                "total_execution_friction_usdt": 0.140737,
-                "total_net_pnl_usdt": 0.252758,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              },
-              "1.0": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.496953,
-                "net_return_pct": 0.497,
-                "max_drawdown_pct": 1.0776,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 7.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.2725,
-                "total_commission_usdt": 0.494845,
-                "total_execution_friction_usdt": 0.282941,
-                "total_net_pnl_usdt": 0.496953,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              }
-            },
-            "taker_entry_taker_exit_plus_friction_6bp": {
-              "0.1": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.016228,
-                "net_return_pct": 0.0162,
-                "max_drawdown_pct": 0.1377,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 2.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.0791,
-                "total_commission_usdt": 0.070033,
-                "total_execution_friction_usdt": 0.042038,
-                "total_net_pnl_usdt": 0.016228,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              },
-              "0.25": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.039889,
-                "net_return_pct": 0.0399,
-                "max_drawdown_pct": 0.3442,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 2.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.0776,
-                "total_commission_usdt": 0.175319,
-                "total_execution_friction_usdt": 0.105238,
-                "total_net_pnl_usdt": 0.039889,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              },
-              "0.5": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.07751,
-                "net_return_pct": 0.0775,
-                "max_drawdown_pct": 0.6881,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 2.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.0752,
-                "total_commission_usdt": 0.351427,
-                "total_execution_friction_usdt": 0.210948,
-                "total_net_pnl_usdt": 0.07751,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              },
-              "1.0": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.14598,
-                "net_return_pct": 0.146,
-                "max_drawdown_pct": 1.3746,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 2.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.0704,
-                "total_commission_usdt": 0.705993,
-                "total_execution_friction_usdt": 0.423777,
-                "total_net_pnl_usdt": 0.14598,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              }
-            },
-            "maker_entry_taker_exit_plus_friction_6bp": {
-              "0.1": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.037233,
-                "net_return_pct": 0.0372,
-                "max_drawdown_pct": 0.1198,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 5.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.1957,
-                "total_commission_usdt": 0.049018,
-                "total_execution_friction_usdt": 0.042042,
-                "total_net_pnl_usdt": 0.037233,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              },
-              "0.25": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.092419,
-                "net_return_pct": 0.0924,
-                "max_drawdown_pct": 0.2993,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 5.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.194,
-                "total_commission_usdt": 0.122728,
-                "total_execution_friction_usdt": 0.105261,
-                "total_net_pnl_usdt": 0.092419,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              },
-              "0.5": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.182627,
-                "net_return_pct": 0.1826,
-                "max_drawdown_pct": 0.5985,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 5.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.1911,
-                "total_commission_usdt": 0.246064,
-                "total_execution_friction_usdt": 0.211043,
-                "total_net_pnl_usdt": 0.182627,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              },
-              "1.0": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.356438,
-                "net_return_pct": 0.3564,
-                "max_drawdown_pct": 1.1965,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 5.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.1853,
-                "total_commission_usdt": 0.494548,
-                "total_execution_friction_usdt": 0.424158,
-                "total_net_pnl_usdt": 0.356438,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              }
-            },
-            "taker_entry_taker_exit_plus_friction_8bp": {
-              "0.1": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.002227,
-                "net_return_pct": 0.0022,
-                "max_drawdown_pct": 0.1497,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 0.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.0103,
-                "total_commission_usdt": 0.070028,
-                "total_execution_friction_usdt": 0.056047,
-                "total_net_pnl_usdt": 0.002227,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              },
-              "0.25": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.004882,
-                "net_return_pct": 0.0049,
-                "max_drawdown_pct": 0.3741,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 0.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.0091,
-                "total_commission_usdt": 0.175293,
-                "total_execution_friction_usdt": 0.140296,
-                "total_net_pnl_usdt": 0.004882,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              },
-              "0.5": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.007484,
-                "net_return_pct": 0.0075,
-                "max_drawdown_pct": 0.7477,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 0.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.0069,
-                "total_commission_usdt": 0.351322,
-                "total_execution_friction_usdt": 0.28118,
-                "total_net_pnl_usdt": 0.007484,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              },
-              "1.0": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.005886,
-                "net_return_pct": 0.0059,
-                "max_drawdown_pct": 1.4931,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 0.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.0027,
-                "total_commission_usdt": 0.70557,
-                "total_execution_friction_usdt": 0.564698,
-                "total_net_pnl_usdt": 0.005886,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              }
-            },
-            "maker_entry_taker_exit_plus_friction_8bp": {
-              "0.1": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.02323,
-                "net_return_pct": 0.0232,
-                "max_drawdown_pct": 0.1317,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 3.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.116,
-                "total_commission_usdt": 0.049015,
-                "total_execution_friction_usdt": 0.056052,
-                "total_net_pnl_usdt": 0.02323,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              },
-              "0.25": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.057396,
-                "net_return_pct": 0.0574,
-                "max_drawdown_pct": 0.3293,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 3.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.1145,
-                "total_commission_usdt": 0.122709,
-                "total_execution_friction_usdt": 0.140327,
-                "total_net_pnl_usdt": 0.057396,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              },
-              "0.5": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.112538,
-                "net_return_pct": 0.1125,
-                "max_drawdown_pct": 0.6582,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 3.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.1119,
-                "total_commission_usdt": 0.24599,
-                "total_execution_friction_usdt": 0.281306,
-                "total_net_pnl_usdt": 0.112538,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              },
-              "1.0": {
-                "trades": 7,
-                "starting_equity_usdt": 100,
-                "ending_equity_usdt": 100.216091,
-                "net_return_pct": 0.2161,
-                "max_drawdown_pct": 1.3152,
-                "gross_mean_bp": 18.3399,
-                "net_mean_bp": 3.3443,
-                "win_rate_pct": 28.57,
-                "profit_factor": 1.1068,
-                "total_commission_usdt": 0.494252,
-                "total_execution_friction_usdt": 0.565206,
-                "total_net_pnl_usdt": 0.216091,
-                "exit_reasons": {
-                  "stop": 7,
-                  "time": 0
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "BTCUSDT-2024-03-1m-orderflow.csv.gz": {
+    "BTCUSDT-combined-chronological-series": {
       "rows": 44640,
       "signals": 58,
       "split": {
@@ -3648,7 +1839,1816 @@
         }
       }
     },
-    "SOLUSDT-2024-03-1m-orderflow.csv.gz": {
+    "ETHUSDT-combined-chronological-series": {
+      "rows": 44640,
+      "signals": 10,
+      "split": {
+        "train": {
+          "minute_range": [
+            0,
+            22320
+          ],
+          "signals": 2,
+          "costs": {
+            "taker_entry_taker_exit_plus_friction_2bp": {
+              "0.1": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.962631,
+                "net_return_pct": -0.0374,
+                "max_drawdown_pct": 0.0374,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -18.6847,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.01999,
+                "total_execution_friction_usdt": 0.003999,
+                "total_net_pnl_usdt": -0.037369,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.906577,
+                "net_return_pct": -0.0934,
+                "max_drawdown_pct": 0.0934,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -18.6847,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.04996,
+                "total_execution_friction_usdt": 0.009995,
+                "total_net_pnl_usdt": -0.093423,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.813157,
+                "net_return_pct": -0.1868,
+                "max_drawdown_pct": 0.1868,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -18.6847,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.099874,
+                "total_execution_friction_usdt": 0.019982,
+                "total_net_pnl_usdt": -0.186843,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.626321,
+                "net_return_pct": -0.3737,
+                "max_drawdown_pct": 0.3737,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -18.6847,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.199563,
+                "total_execution_friction_usdt": 0.039926,
+                "total_net_pnl_usdt": -0.373679,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              }
+            },
+            "maker_entry_taker_exit_plus_friction_2bp": {
+              "0.1": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.96863,
+                "net_return_pct": -0.0314,
+                "max_drawdown_pct": 0.034,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -15.6847,
+                "win_rate_pct": 50.0,
+                "profit_factor": 0.077,
+                "total_commission_usdt": 0.013991,
+                "total_execution_friction_usdt": 0.003999,
+                "total_net_pnl_usdt": -0.03137,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.921571,
+                "net_return_pct": -0.0784,
+                "max_drawdown_pct": 0.085,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -15.6847,
+                "win_rate_pct": 50.0,
+                "profit_factor": 0.077,
+                "total_commission_usdt": 0.034968,
+                "total_execution_friction_usdt": 0.009996,
+                "total_net_pnl_usdt": -0.078429,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.843131,
+                "net_return_pct": -0.1569,
+                "max_drawdown_pct": 0.1699,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -15.6847,
+                "win_rate_pct": 50.0,
+                "profit_factor": 0.0769,
+                "total_commission_usdt": 0.069907,
+                "total_execution_friction_usdt": 0.019983,
+                "total_net_pnl_usdt": -0.156869,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.686217,
+                "net_return_pct": -0.3138,
+                "max_drawdown_pct": 0.3399,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -15.6847,
+                "win_rate_pct": 50.0,
+                "profit_factor": 0.0768,
+                "total_commission_usdt": 0.139695,
+                "total_execution_friction_usdt": 0.039932,
+                "total_net_pnl_usdt": -0.313783,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              }
+            },
+            "taker_entry_taker_exit_plus_friction_4bp": {
+              "0.1": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.958632,
+                "net_return_pct": -0.0414,
+                "max_drawdown_pct": 0.0414,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -20.6847,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.019989,
+                "total_execution_friction_usdt": 0.007998,
+                "total_net_pnl_usdt": -0.041368,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.896582,
+                "net_return_pct": -0.1034,
+                "max_drawdown_pct": 0.1034,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -20.6847,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.049959,
+                "total_execution_friction_usdt": 0.01999,
+                "total_net_pnl_usdt": -0.103418,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.793176,
+                "net_return_pct": -0.2068,
+                "max_drawdown_pct": 0.2068,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -20.6847,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.099869,
+                "total_execution_friction_usdt": 0.039961,
+                "total_net_pnl_usdt": -0.206824,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.586399,
+                "net_return_pct": -0.4136,
+                "max_drawdown_pct": 0.4136,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -20.6847,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.199543,
+                "total_execution_friction_usdt": 0.079844,
+                "total_net_pnl_usdt": -0.413601,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              }
+            },
+            "maker_entry_taker_exit_plus_friction_4bp": {
+              "0.1": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.96463,
+                "net_return_pct": -0.0354,
+                "max_drawdown_pct": 0.036,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -17.6847,
+                "win_rate_pct": 50.0,
+                "profit_factor": 0.0172,
+                "total_commission_usdt": 0.013991,
+                "total_execution_friction_usdt": 0.007999,
+                "total_net_pnl_usdt": -0.03537,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.911575,
+                "net_return_pct": -0.0884,
+                "max_drawdown_pct": 0.09,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -17.6847,
+                "win_rate_pct": 50.0,
+                "profit_factor": 0.0172,
+                "total_commission_usdt": 0.034968,
+                "total_execution_friction_usdt": 0.019991,
+                "total_net_pnl_usdt": -0.088425,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.823148,
+                "net_return_pct": -0.1769,
+                "max_drawdown_pct": 0.1799,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -17.6847,
+                "win_rate_pct": 50.0,
+                "profit_factor": 0.0171,
+                "total_commission_usdt": 0.069904,
+                "total_execution_friction_usdt": 0.039964,
+                "total_net_pnl_usdt": -0.176852,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.646284,
+                "net_return_pct": -0.3537,
+                "max_drawdown_pct": 0.3599,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -17.6847,
+                "win_rate_pct": 50.0,
+                "profit_factor": 0.0171,
+                "total_commission_usdt": 0.139681,
+                "total_execution_friction_usdt": 0.079856,
+                "total_net_pnl_usdt": -0.353716,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              }
+            },
+            "taker_entry_taker_exit_plus_friction_6bp": {
+              "0.1": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.954632,
+                "net_return_pct": -0.0454,
+                "max_drawdown_pct": 0.0454,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -22.6847,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.019989,
+                "total_execution_friction_usdt": 0.011998,
+                "total_net_pnl_usdt": -0.045368,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.886588,
+                "net_return_pct": -0.1134,
+                "max_drawdown_pct": 0.1134,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -22.6847,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.049958,
+                "total_execution_friction_usdt": 0.029985,
+                "total_net_pnl_usdt": -0.113412,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.773198,
+                "net_return_pct": -0.2268,
+                "max_drawdown_pct": 0.2268,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -22.6847,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.099864,
+                "total_execution_friction_usdt": 0.059939,
+                "total_net_pnl_usdt": -0.226802,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.546486,
+                "net_return_pct": -0.4535,
+                "max_drawdown_pct": 0.4535,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -22.6847,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.199523,
+                "total_execution_friction_usdt": 0.119754,
+                "total_net_pnl_usdt": -0.453514,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              }
+            },
+            "maker_entry_taker_exit_plus_friction_6bp": {
+              "0.1": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.960631,
+                "net_return_pct": -0.0394,
+                "max_drawdown_pct": 0.0394,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -19.6847,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.013991,
+                "total_execution_friction_usdt": 0.011998,
+                "total_net_pnl_usdt": -0.039369,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.90158,
+                "net_return_pct": -0.0984,
+                "max_drawdown_pct": 0.0984,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -19.6847,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.034967,
+                "total_execution_friction_usdt": 0.029986,
+                "total_net_pnl_usdt": -0.09842,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.803166,
+                "net_return_pct": -0.1968,
+                "max_drawdown_pct": 0.1968,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -19.6847,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.0699,
+                "total_execution_friction_usdt": 0.059943,
+                "total_net_pnl_usdt": -0.196834,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.606359,
+                "net_return_pct": -0.3936,
+                "max_drawdown_pct": 0.3936,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -19.6847,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.139667,
+                "total_execution_friction_usdt": 0.119772,
+                "total_net_pnl_usdt": -0.393641,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              }
+            },
+            "taker_entry_taker_exit_plus_friction_8bp": {
+              "0.1": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.950633,
+                "net_return_pct": -0.0494,
+                "max_drawdown_pct": 0.0494,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -24.6847,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.019989,
+                "total_execution_friction_usdt": 0.015997,
+                "total_net_pnl_usdt": -0.049367,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.876594,
+                "net_return_pct": -0.1234,
+                "max_drawdown_pct": 0.1234,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -24.6847,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.049956,
+                "total_execution_friction_usdt": 0.039979,
+                "total_net_pnl_usdt": -0.123406,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.753222,
+                "net_return_pct": -0.2468,
+                "max_drawdown_pct": 0.2468,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -24.6847,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.099859,
+                "total_execution_friction_usdt": 0.079914,
+                "total_net_pnl_usdt": -0.246778,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.506581,
+                "net_return_pct": -0.4934,
+                "max_drawdown_pct": 0.4934,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -24.6847,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.199503,
+                "total_execution_friction_usdt": 0.159656,
+                "total_net_pnl_usdt": -0.493419,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              }
+            },
+            "maker_entry_taker_exit_plus_friction_8bp": {
+              "0.1": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.956632,
+                "net_return_pct": -0.0434,
+                "max_drawdown_pct": 0.0434,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -21.6847,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.013991,
+                "total_execution_friction_usdt": 0.015997,
+                "total_net_pnl_usdt": -0.043368,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.891585,
+                "net_return_pct": -0.1084,
+                "max_drawdown_pct": 0.1084,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -21.6847,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.034966,
+                "total_execution_friction_usdt": 0.03998,
+                "total_net_pnl_usdt": -0.108415,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.783187,
+                "net_return_pct": -0.2168,
+                "max_drawdown_pct": 0.2168,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -21.6847,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.069897,
+                "total_execution_friction_usdt": 0.07992,
+                "total_net_pnl_usdt": -0.216813,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 2,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.566442,
+                "net_return_pct": -0.4336,
+                "max_drawdown_pct": 0.4336,
+                "gross_mean_bp": -6.688,
+                "net_mean_bp": -21.6847,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.139653,
+                "total_execution_friction_usdt": 0.15968,
+                "total_net_pnl_usdt": -0.433558,
+                "exit_reasons": {
+                  "stop": 2,
+                  "time": 0
+                }
+              }
+            }
+          }
+        },
+        "validation": {
+          "minute_range": [
+            22320,
+            31247
+          ],
+          "signals": 1,
+          "costs": {
+            "taker_entry_taker_exit_plus_friction_2bp": {
+              "0.1": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.996252,
+                "net_return_pct": -0.0037,
+                "max_drawdown_pct": 0.0037,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -3.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.009996,
+                "total_execution_friction_usdt": 0.002,
+                "total_net_pnl_usdt": -0.003748,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.990629,
+                "net_return_pct": -0.0094,
+                "max_drawdown_pct": 0.0094,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -3.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.02499,
+                "total_execution_friction_usdt": 0.005,
+                "total_net_pnl_usdt": -0.009371,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.981258,
+                "net_return_pct": -0.0187,
+                "max_drawdown_pct": 0.0187,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -3.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.049979,
+                "total_execution_friction_usdt": 0.01,
+                "total_net_pnl_usdt": -0.018742,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.962516,
+                "net_return_pct": -0.0375,
+                "max_drawdown_pct": 0.0375,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -3.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.099959,
+                "total_execution_friction_usdt": 0.02,
+                "total_net_pnl_usdt": -0.037484,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              }
+            },
+            "maker_entry_taker_exit_plus_friction_2bp": {
+              "0.1": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.999252,
+                "net_return_pct": -0.0007,
+                "max_drawdown_pct": 0.0007,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -0.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.006996,
+                "total_execution_friction_usdt": 0.002,
+                "total_net_pnl_usdt": -0.000748,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.998129,
+                "net_return_pct": -0.0019,
+                "max_drawdown_pct": 0.0019,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -0.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.01749,
+                "total_execution_friction_usdt": 0.005,
+                "total_net_pnl_usdt": -0.001871,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.996258,
+                "net_return_pct": -0.0037,
+                "max_drawdown_pct": 0.0037,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -0.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.034979,
+                "total_execution_friction_usdt": 0.01,
+                "total_net_pnl_usdt": -0.003742,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.992516,
+                "net_return_pct": -0.0075,
+                "max_drawdown_pct": 0.0075,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -0.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.069959,
+                "total_execution_friction_usdt": 0.02,
+                "total_net_pnl_usdt": -0.007484,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              }
+            },
+            "taker_entry_taker_exit_plus_friction_4bp": {
+              "0.1": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.994252,
+                "net_return_pct": -0.0057,
+                "max_drawdown_pct": 0.0057,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -5.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.009996,
+                "total_execution_friction_usdt": 0.004,
+                "total_net_pnl_usdt": -0.005748,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.985629,
+                "net_return_pct": -0.0144,
+                "max_drawdown_pct": 0.0144,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -5.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.02499,
+                "total_execution_friction_usdt": 0.01,
+                "total_net_pnl_usdt": -0.014371,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.971258,
+                "net_return_pct": -0.0287,
+                "max_drawdown_pct": 0.0287,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -5.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.049979,
+                "total_execution_friction_usdt": 0.02,
+                "total_net_pnl_usdt": -0.028742,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.942516,
+                "net_return_pct": -0.0575,
+                "max_drawdown_pct": 0.0575,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -5.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.099959,
+                "total_execution_friction_usdt": 0.04,
+                "total_net_pnl_usdt": -0.057484,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              }
+            },
+            "maker_entry_taker_exit_plus_friction_4bp": {
+              "0.1": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.997252,
+                "net_return_pct": -0.0027,
+                "max_drawdown_pct": 0.0027,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -2.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.006996,
+                "total_execution_friction_usdt": 0.004,
+                "total_net_pnl_usdt": -0.002748,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.993129,
+                "net_return_pct": -0.0069,
+                "max_drawdown_pct": 0.0069,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -2.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.01749,
+                "total_execution_friction_usdt": 0.01,
+                "total_net_pnl_usdt": -0.006871,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.986258,
+                "net_return_pct": -0.0137,
+                "max_drawdown_pct": 0.0137,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -2.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.034979,
+                "total_execution_friction_usdt": 0.02,
+                "total_net_pnl_usdt": -0.013742,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.972516,
+                "net_return_pct": -0.0275,
+                "max_drawdown_pct": 0.0275,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -2.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.069959,
+                "total_execution_friction_usdt": 0.04,
+                "total_net_pnl_usdt": -0.027484,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              }
+            },
+            "taker_entry_taker_exit_plus_friction_6bp": {
+              "0.1": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.992252,
+                "net_return_pct": -0.0077,
+                "max_drawdown_pct": 0.0077,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -7.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.009996,
+                "total_execution_friction_usdt": 0.006,
+                "total_net_pnl_usdt": -0.007748,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.980629,
+                "net_return_pct": -0.0194,
+                "max_drawdown_pct": 0.0194,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -7.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.02499,
+                "total_execution_friction_usdt": 0.015,
+                "total_net_pnl_usdt": -0.019371,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.961258,
+                "net_return_pct": -0.0387,
+                "max_drawdown_pct": 0.0387,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -7.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.049979,
+                "total_execution_friction_usdt": 0.03,
+                "total_net_pnl_usdt": -0.038742,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.922516,
+                "net_return_pct": -0.0775,
+                "max_drawdown_pct": 0.0775,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -7.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.099959,
+                "total_execution_friction_usdt": 0.06,
+                "total_net_pnl_usdt": -0.077484,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              }
+            },
+            "maker_entry_taker_exit_plus_friction_6bp": {
+              "0.1": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.995252,
+                "net_return_pct": -0.0047,
+                "max_drawdown_pct": 0.0047,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -4.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.006996,
+                "total_execution_friction_usdt": 0.006,
+                "total_net_pnl_usdt": -0.004748,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.988129,
+                "net_return_pct": -0.0119,
+                "max_drawdown_pct": 0.0119,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -4.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.01749,
+                "total_execution_friction_usdt": 0.015,
+                "total_net_pnl_usdt": -0.011871,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.976258,
+                "net_return_pct": -0.0237,
+                "max_drawdown_pct": 0.0237,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -4.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.034979,
+                "total_execution_friction_usdt": 0.03,
+                "total_net_pnl_usdt": -0.023742,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.952516,
+                "net_return_pct": -0.0475,
+                "max_drawdown_pct": 0.0475,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -4.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.069959,
+                "total_execution_friction_usdt": 0.06,
+                "total_net_pnl_usdt": -0.047484,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              }
+            },
+            "taker_entry_taker_exit_plus_friction_8bp": {
+              "0.1": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.990252,
+                "net_return_pct": -0.0097,
+                "max_drawdown_pct": 0.0097,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -9.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.009996,
+                "total_execution_friction_usdt": 0.008,
+                "total_net_pnl_usdt": -0.009748,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.975629,
+                "net_return_pct": -0.0244,
+                "max_drawdown_pct": 0.0244,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -9.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.02499,
+                "total_execution_friction_usdt": 0.02,
+                "total_net_pnl_usdt": -0.024371,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.951258,
+                "net_return_pct": -0.0487,
+                "max_drawdown_pct": 0.0487,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -9.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.049979,
+                "total_execution_friction_usdt": 0.04,
+                "total_net_pnl_usdt": -0.048742,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.902516,
+                "net_return_pct": -0.0975,
+                "max_drawdown_pct": 0.0975,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -9.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.099959,
+                "total_execution_friction_usdt": 0.08,
+                "total_net_pnl_usdt": -0.097484,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              }
+            },
+            "maker_entry_taker_exit_plus_friction_8bp": {
+              "0.1": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.993252,
+                "net_return_pct": -0.0067,
+                "max_drawdown_pct": 0.0067,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -6.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.006996,
+                "total_execution_friction_usdt": 0.008,
+                "total_net_pnl_usdt": -0.006748,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.983129,
+                "net_return_pct": -0.0169,
+                "max_drawdown_pct": 0.0169,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -6.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.01749,
+                "total_execution_friction_usdt": 0.02,
+                "total_net_pnl_usdt": -0.016871,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.966258,
+                "net_return_pct": -0.0337,
+                "max_drawdown_pct": 0.0337,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -6.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.034979,
+                "total_execution_friction_usdt": 0.04,
+                "total_net_pnl_usdt": -0.033742,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 1,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 99.932516,
+                "net_return_pct": -0.0675,
+                "max_drawdown_pct": 0.0675,
+                "gross_mean_bp": 8.2475,
+                "net_mean_bp": -6.7484,
+                "win_rate_pct": 0.0,
+                "profit_factor": 0.0,
+                "total_commission_usdt": 0.069959,
+                "total_execution_friction_usdt": 0.08,
+                "total_net_pnl_usdt": -0.067484,
+                "exit_reasons": {
+                  "stop": 1,
+                  "time": 0
+                }
+              }
+            }
+          }
+        },
+        "oos": {
+          "minute_range": [
+            31247,
+            44640
+          ],
+          "signals": 7,
+          "costs": {
+            "taker_entry_taker_exit_plus_friction_2bp": {
+              "0.1": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.044236,
+                "net_return_pct": 0.0442,
+                "max_drawdown_pct": 0.1138,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 6.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.2388,
+                "total_commission_usdt": 0.070041,
+                "total_execution_friction_usdt": 0.014014,
+                "total_net_pnl_usdt": 0.044236,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.109934,
+                "net_return_pct": 0.1099,
+                "max_drawdown_pct": 0.2844,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 6.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.2369,
+                "total_commission_usdt": 0.175372,
+                "total_execution_friction_usdt": 0.03509,
+                "total_net_pnl_usdt": 0.109934,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.217688,
+                "net_return_pct": 0.2177,
+                "max_drawdown_pct": 0.5687,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 6.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.2338,
+                "total_commission_usdt": 0.351638,
+                "total_execution_friction_usdt": 0.070358,
+                "total_net_pnl_usdt": 0.217688,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.426675,
+                "net_return_pct": 0.4267,
+                "max_drawdown_pct": 1.1371,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 6.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.2277,
+                "total_commission_usdt": 0.706839,
+                "total_execution_friction_usdt": 0.141428,
+                "total_net_pnl_usdt": 0.426675,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              }
+            },
+            "maker_entry_taker_exit_plus_friction_2bp": {
+              "0.1": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.065245,
+                "net_return_pct": 0.0652,
+                "max_drawdown_pct": 0.102,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 9.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.3832,
+                "total_commission_usdt": 0.049024,
+                "total_execution_friction_usdt": 0.014016,
+                "total_net_pnl_usdt": 0.065245,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.162495,
+                "net_return_pct": 0.1625,
+                "max_drawdown_pct": 0.2548,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 9.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.381,
+                "total_commission_usdt": 0.122765,
+                "total_execution_friction_usdt": 0.035098,
+                "total_net_pnl_usdt": 0.162495,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.322932,
+                "net_return_pct": 0.3229,
+                "max_drawdown_pct": 0.5091,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 9.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.3773,
+                "total_commission_usdt": 0.246212,
+                "total_execution_friction_usdt": 0.07039,
+                "total_net_pnl_usdt": 0.322932,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.637637,
+                "net_return_pct": 0.6376,
+                "max_drawdown_pct": 1.0164,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 9.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.37,
+                "total_commission_usdt": 0.495141,
+                "total_execution_friction_usdt": 0.141555,
+                "total_net_pnl_usdt": 0.637637,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              }
+            },
+            "taker_entry_taker_exit_plus_friction_4bp": {
+              "0.1": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.030231,
+                "net_return_pct": 0.0302,
+                "max_drawdown_pct": 0.1257,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 4.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.1548,
+                "total_commission_usdt": 0.070037,
+                "total_execution_friction_usdt": 0.028027,
+                "total_net_pnl_usdt": 0.030231,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.074906,
+                "net_return_pct": 0.0749,
+                "max_drawdown_pct": 0.3143,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 4.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.1532,
+                "total_commission_usdt": 0.175345,
+                "total_execution_friction_usdt": 0.070169,
+                "total_net_pnl_usdt": 0.074906,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.147578,
+                "net_return_pct": 0.1476,
+                "max_drawdown_pct": 0.6284,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 4.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.1505,
+                "total_commission_usdt": 0.351533,
+                "total_execution_friction_usdt": 0.140674,
+                "total_net_pnl_usdt": 0.147578,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.286243,
+                "net_return_pct": 0.2862,
+                "max_drawdown_pct": 1.2559,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 4.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.1451,
+                "total_commission_usdt": 0.706416,
+                "total_execution_friction_usdt": 0.282687,
+                "total_net_pnl_usdt": 0.286243,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              }
+            },
+            "maker_entry_taker_exit_plus_friction_4bp": {
+              "0.1": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.051238,
+                "net_return_pct": 0.0512,
+                "max_drawdown_pct": 0.1079,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 7.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.2843,
+                "total_commission_usdt": 0.049021,
+                "total_execution_friction_usdt": 0.02803,
+                "total_net_pnl_usdt": 0.051238,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.127452,
+                "net_return_pct": 0.1275,
+                "max_drawdown_pct": 0.2697,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 7.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.2823,
+                "total_commission_usdt": 0.122746,
+                "total_execution_friction_usdt": 0.070185,
+                "total_net_pnl_usdt": 0.127452,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.252758,
+                "net_return_pct": 0.2528,
+                "max_drawdown_pct": 0.539,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 7.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.279,
+                "total_commission_usdt": 0.246138,
+                "total_execution_friction_usdt": 0.140737,
+                "total_net_pnl_usdt": 0.252758,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.496953,
+                "net_return_pct": 0.497,
+                "max_drawdown_pct": 1.0776,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 7.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.2725,
+                "total_commission_usdt": 0.494845,
+                "total_execution_friction_usdt": 0.282941,
+                "total_net_pnl_usdt": 0.496953,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              }
+            },
+            "taker_entry_taker_exit_plus_friction_6bp": {
+              "0.1": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.016228,
+                "net_return_pct": 0.0162,
+                "max_drawdown_pct": 0.1377,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 2.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.0791,
+                "total_commission_usdt": 0.070033,
+                "total_execution_friction_usdt": 0.042038,
+                "total_net_pnl_usdt": 0.016228,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.039889,
+                "net_return_pct": 0.0399,
+                "max_drawdown_pct": 0.3442,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 2.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.0776,
+                "total_commission_usdt": 0.175319,
+                "total_execution_friction_usdt": 0.105238,
+                "total_net_pnl_usdt": 0.039889,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.07751,
+                "net_return_pct": 0.0775,
+                "max_drawdown_pct": 0.6881,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 2.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.0752,
+                "total_commission_usdt": 0.351427,
+                "total_execution_friction_usdt": 0.210948,
+                "total_net_pnl_usdt": 0.07751,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.14598,
+                "net_return_pct": 0.146,
+                "max_drawdown_pct": 1.3746,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 2.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.0704,
+                "total_commission_usdt": 0.705993,
+                "total_execution_friction_usdt": 0.423777,
+                "total_net_pnl_usdt": 0.14598,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              }
+            },
+            "maker_entry_taker_exit_plus_friction_6bp": {
+              "0.1": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.037233,
+                "net_return_pct": 0.0372,
+                "max_drawdown_pct": 0.1198,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 5.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.1957,
+                "total_commission_usdt": 0.049018,
+                "total_execution_friction_usdt": 0.042042,
+                "total_net_pnl_usdt": 0.037233,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.092419,
+                "net_return_pct": 0.0924,
+                "max_drawdown_pct": 0.2993,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 5.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.194,
+                "total_commission_usdt": 0.122728,
+                "total_execution_friction_usdt": 0.105261,
+                "total_net_pnl_usdt": 0.092419,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.182627,
+                "net_return_pct": 0.1826,
+                "max_drawdown_pct": 0.5985,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 5.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.1911,
+                "total_commission_usdt": 0.246064,
+                "total_execution_friction_usdt": 0.211043,
+                "total_net_pnl_usdt": 0.182627,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.356438,
+                "net_return_pct": 0.3564,
+                "max_drawdown_pct": 1.1965,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 5.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.1853,
+                "total_commission_usdt": 0.494548,
+                "total_execution_friction_usdt": 0.424158,
+                "total_net_pnl_usdt": 0.356438,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              }
+            },
+            "taker_entry_taker_exit_plus_friction_8bp": {
+              "0.1": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.002227,
+                "net_return_pct": 0.0022,
+                "max_drawdown_pct": 0.1497,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 0.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.0103,
+                "total_commission_usdt": 0.070028,
+                "total_execution_friction_usdt": 0.056047,
+                "total_net_pnl_usdt": 0.002227,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.004882,
+                "net_return_pct": 0.0049,
+                "max_drawdown_pct": 0.3741,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 0.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.0091,
+                "total_commission_usdt": 0.175293,
+                "total_execution_friction_usdt": 0.140296,
+                "total_net_pnl_usdt": 0.004882,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.007484,
+                "net_return_pct": 0.0075,
+                "max_drawdown_pct": 0.7477,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 0.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.0069,
+                "total_commission_usdt": 0.351322,
+                "total_execution_friction_usdt": 0.28118,
+                "total_net_pnl_usdt": 0.007484,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.005886,
+                "net_return_pct": 0.0059,
+                "max_drawdown_pct": 1.4931,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 0.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.0027,
+                "total_commission_usdt": 0.70557,
+                "total_execution_friction_usdt": 0.564698,
+                "total_net_pnl_usdt": 0.005886,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              }
+            },
+            "maker_entry_taker_exit_plus_friction_8bp": {
+              "0.1": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.02323,
+                "net_return_pct": 0.0232,
+                "max_drawdown_pct": 0.1317,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 3.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.116,
+                "total_commission_usdt": 0.049015,
+                "total_execution_friction_usdt": 0.056052,
+                "total_net_pnl_usdt": 0.02323,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "0.25": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.057396,
+                "net_return_pct": 0.0574,
+                "max_drawdown_pct": 0.3293,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 3.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.1145,
+                "total_commission_usdt": 0.122709,
+                "total_execution_friction_usdt": 0.140327,
+                "total_net_pnl_usdt": 0.057396,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "0.5": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.112538,
+                "net_return_pct": 0.1125,
+                "max_drawdown_pct": 0.6582,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 3.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.1119,
+                "total_commission_usdt": 0.24599,
+                "total_execution_friction_usdt": 0.281306,
+                "total_net_pnl_usdt": 0.112538,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              },
+              "1.0": {
+                "trades": 7,
+                "starting_equity_usdt": 100,
+                "ending_equity_usdt": 100.216091,
+                "net_return_pct": 0.2161,
+                "max_drawdown_pct": 1.3152,
+                "gross_mean_bp": 18.3399,
+                "net_mean_bp": 3.3443,
+                "win_rate_pct": 28.57,
+                "profit_factor": 1.1068,
+                "total_commission_usdt": 0.494252,
+                "total_execution_friction_usdt": 0.565206,
+                "total_net_pnl_usdt": 0.216091,
+                "exit_reasons": {
+                  "stop": 7,
+                  "time": 0
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "SOLUSDT-combined-chronological-series": {
       "rows": 44640,
       "signals": 7,
       "split": {
