@@ -34,7 +34,7 @@ def load(path):
             qv.append(float(r["quote_volume"]))
     return op, cl, ofi, wb, ws, qv
 
-def evaluate(op, cl, signal, horizon, direction_mode, cost_bp, test_start):
+def evaluate(op, cl, signal, horizon, direction_mode, cost_bp, test_start, start_equity):
     # Signal at minute i close; entry next minute open; exit at close i+h.
     trades, gross = [], []
     next_free = test_start
@@ -52,12 +52,18 @@ def evaluate(op, cl, signal, horizon, direction_mode, cost_bp, test_start):
     if not gross: return {"trades":0}
     wins = sum(x > 0 for x in trades)
     pos = sum(x for x in trades if x > 0); neg = -sum(x for x in trades if x < 0)
-    eq, peak, maxdd = 1.0, 1.0, 0.0
-    for x in trades:
-        eq *= (1+x/10000)
+    eq, peak, maxdd, total_cost = start_equity, start_equity, 0.0, 0.0
+    for g, n in zip(gross, trades):
+        notional = eq  # 100% of available equity at 1x; next trade uses remaining equity
+        total_cost += notional * cost_bp / 10000
+        eq *= (1+n/10000)
         peak = max(peak, eq)
         maxdd = max(maxdd, (peak-eq)/peak)
-    return {"trades":len(trades), "gross_mean_bp":sum(gross)/len(gross),
+    return {"trades":len(trades), "starting_equity_usdt":start_equity,
+            "ending_equity_usdt":round(eq, 6), "net_pnl_usdt":round(eq-start_equity, 6),
+            "net_return_pct":round((eq/start_equity-1)*100, 4),
+            "total_modeled_cost_usdt":round(total_cost, 6),
+            "gross_mean_bp":sum(gross)/len(gross),
             "net_mean_bp":sum(trades)/len(trades), "win_rate":wins/len(trades),
             "profit_factor":pos/neg if neg else None, "max_drawdown_pct":maxdd*100,
             "cost_bp_round_trip":cost_bp}
@@ -65,13 +71,17 @@ def evaluate(op, cl, signal, horizon, direction_mode, cost_bp, test_start):
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--input", required=True); ap.add_argument("--out", default="orderflow_diagnostic.json")
+    ap.add_argument("--start-equity", type=float, default=100.0)
     args=ap.parse_args()
+    if args.start_equity <= 0: raise SystemExit("--start-equity must be positive")
     paths=glob.glob(args.input)
     if not paths: raise SystemExit("No feature files matched")
     report={"scope":"exploratory; first 7 days calibration, remainder strictly held-out within each monthly file; not a validated strategy",
             "execution_assumption":"signal at minute close; enter next minute open; exit at horizon close; non-overlapping trades",
             "threshold_method":"p10/p90 thresholds estimated only from first 7 days; frozen for the test segment",
-            "calibration_days":7, "cost_scenarios_bp_round_trip":[2,4,6,8,10,14,20], "files":{}}
+            "calibration_days":7, "starting_equity_usdt":args.start_equity,
+            "position_sizing":"100% of remaining equity per trade at 1x; equity compounded after every closed trade",
+            "cost_scenarios_bp_round_trip":[2,4,6,8,10,14,20], "files":{}}
     for path in paths:
         op,cl,ofi,wb,ws,qv=load(path)
         if len(cl) <= CALIBRATION_MINUTES + 60:
@@ -116,7 +126,7 @@ def main():
             for signal_name,sig in (("ofi",sig_ofi),("whale_imbalance_legacy",sig_whale),("whale_share",sig_whale_share),("ofi_whale_agreement_legacy",sig_combined),("ofi_whale_share_agreement",sig_combined_share)):
                 for mode in ("continuation","contrarian"):
                     for cost in (2,4,6,8,10,14,20):
-                        fwd[str(h)]["strategies"][f"{signal_name}_{mode}_{cost}bp"]=evaluate(op,cl,sig,h,mode,cost,test_start)
+                        fwd[str(h)]["strategies"][f"{signal_name}_{mode}_{cost}bp"]=evaluate(op,cl,sig,h,mode,cost,test_start,args.start_equity)
         report["files"][Path(path).name]={
             "rows":len(cl),"calibration_rows":test_start,"test_rows":len(cl)-test_start,
             "thresholds":{"ofi_p10":ofi_lo,"ofi_p90":ofi_hi,"whale_imbalance_legacy_p10":whale_lo,"whale_imbalance_legacy_p90":whale_hi,"whale_share_p10":whale_share_lo,"whale_share_p90":whale_share_hi},
