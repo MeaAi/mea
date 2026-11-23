@@ -1,0 +1,56 @@
+name: Maker trade-through validation
+
+on:
+  push:
+    branches:
+      - research/binance-data-pipeline
+    paths:
+      - "research/binance_public_pipeline.py"
+      - "research/bookdepth_maker_trade_through_backtest.py"
+      - ".github/workflows/maker-trade-through.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  maker-fill-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      START_MONTH: "2024-05"
+      END_MONTH: "2024-06"
+      SYMBOLS: "BTCUSDT,ETHUSDT,SOLUSDT"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/binance-data-pipeline
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download and aggregate free Binance futures trades
+        run: |
+          python research/binance_public_pipeline.py \
+            --start "$START_MONTH" --end "$END_MONTH" \
+            --symbols "$SYMBOLS" --out research-output
+      - name: Download free Binance BookDepth snapshots
+        run: |
+          python research/binance_bookdepth_pipeline.py \
+            --start "$START_MONTH" --end "$END_MONTH" \
+            --symbols "$SYMBOLS" --out research-output
+      - name: Run conservative maker trade-through test
+        run: |
+          python research/bookdepth_maker_trade_through_backtest.py \
+            --bookdepth "research-output/*-bookdepth-1m.csv.gz" \
+            --orderflow "research-output/*-1m-orderflow.csv.gz" \
+            --out research-output/maker_trade_through_backtest.json
+      - name: Publish report and discard downloaded data
+        run: |
+          mkdir -p research-results
+          cp research-output/maker_trade_through_backtest.json research-results/
+          rm -rf research-output
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research-results/maker_trade_through_backtest.json
+          git commit -m "Publish conservative maker trade-through results" || exit 0
+          git push
