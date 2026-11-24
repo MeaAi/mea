@@ -71,7 +71,7 @@ def load_symbol(sym,months,root):
   fn=f"{sym}-fundingRate-{mo}.zip"
   fp=root/"cache"/sym/"funding"/fn
   verified_download(f"{BASE}/fundingRate/{sym}/{fn}",fp);fund.update(readzip(fp,"fund"))
-  mn=f"{sym}-markPrice-1h-{mo}.zip"
+  mn=f"{sym}-1h-{mo}.zip"
   mp=root/"cache"/sym/"mark"/mn
   verified_download(f"{BASE}/markPriceKlines/{sym}/1h/{mn}",mp);marks.update(readzip(mp,"mark"))
  return sym,fund,marks
