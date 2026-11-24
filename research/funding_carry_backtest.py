@@ -250,3 +250,5 @@ if __name__=="__main__":
     try: main()
     except Exception as e:
         print("FATAL:",e,file=sys.stderr); raise
+
+# Research run trigger: cross-sectional funding carry candidate, distinct from prior failed signal families.
