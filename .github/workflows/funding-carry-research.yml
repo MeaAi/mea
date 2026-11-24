@@ -30,7 +30,7 @@ jobs:
       - name: Download free Binance Vision funding and hourly prices, then test
         run: |
           python research/funding_carry_backtest.py \
-            --start 2024-01 --end 2026-10 \
+            --start 2023-01 --end 2026-10 \
             --symbols BTCUSDT,ETHUSDT,BNBUSDT,XRPUSDT,ADAUSDT,DOGEUSDT,SOLUSDT,LINKUSDT,LTCUSDT,BCHUSDT,DOTUSDT,TRXUSDT,AVAXUSDT \
             --out research-output/funding_carry_backtest.json
       - name: Publish results and remove raw downloads
