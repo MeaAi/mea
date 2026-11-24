@@ -124,7 +124,7 @@ def load_symbol(symbol, months, root):
         if j>=0: events[t]=(funding[t],prices[p_times[j]])
     return symbol,events,{"funding_events":len(funding),"priced_events":len(events),"price_bars_1h":len(prices),"archives":files}
 
-def rank_and_backtest(data, symbols, start_ms, end_ms, fee_bp, capital=100.0, rebalance_days=7, lookback_days=7):
+def rank_and_backtest(data, symbols, start_ms, end_ms, fee_bp, capital=100.0, rebalance_days=7, lookback_days=7, tail_fraction=0.20):
     # Use timestamps where >=80% of symbols have a priced funding event.
     ts=sorted(t for t in set().union(*(set(data[s]) for s in symbols))
               if start_ms<=t<=end_ms and sum(t in data[s] for s in symbols)>=math.ceil(.8*len(symbols)))
@@ -152,7 +152,7 @@ def rank_and_backtest(data, symbols, start_ms, end_ms, fee_bp, capital=100.0, re
             for s in symbols:
                 vals=[r for et,(r,p) in data[s].items() if t-lookback<et<=t]
                 if len(vals)>=12: scores[s]=sum(vals)
-            k=max(1,len(scores)//5)
+            scores={s:v for s,v in scores.items() if s in px}\n            k=max(1,int(len(scores)*tail_fraction))
             ordered=sorted(scores,key=scores.get)
             if len(ordered)>=2*k:
                 longs=ordered[:k]; shorts=ordered[-k:]
@@ -188,7 +188,7 @@ def rank_and_backtest(data, symbols, start_ms, end_ms, fee_bp, capital=100.0, re
             "gross_price_pnl_usdt":round(gross_pnl,6),"funding_pnl_usdt":round(funding_pnl,6),
             "fees_usdt":round(fees,6),"turnover_usdt":round(turnover_total,4),"one_way_fee_bp":fee_bp,
             "rebalance_count":len(rebalance_log),"leg_changes":trades,"lookback_days":lookback_days,
-            "rebalance_days":rebalance_days,"selection":"lowest 20% trailing realized funding long; highest 20% short",
+            "rebalance_days":rebalance_days,"tail_fraction":tail_fraction,"selection":f"lowest {tail_fraction:.0%} trailing realized funding long; highest {tail_fraction:.0%} short",
             "gross_exposure":"100% of equity total: 50% long + 50% short; 1x gross, dollar neutral",
             "rebalance_log":rebalance_log}
 
@@ -242,6 +242,28 @@ def main():
         for fee in (2,5,8):
             report["periods"][name][f"fee_{fee}bp"]=rank_and_backtest(data,usable,a,b,fee)
         print(name, {k:v["net_return_pct"] for k,v in report["periods"][name].items()},flush=True)
+    # Parameter robustness: choose configuration on validation only, then evaluate that frozen choice on OOS.
+    grid=[]
+    for lb in (3,7,14,28):
+        for rb in (3,7,14):
+            for frac in (0.10,0.20,0.30):
+                val=rank_and_backtest(data,usable,*periods["validation"],5,lookback_days=lb,rebalance_days=rb,tail_fraction=frac)
+                grid.append({"lookback_days":lb,"rebalance_days":rb,"tail_fraction":frac,
+                             "validation_net_return_pct":val["net_return_pct"],
+                             "validation_max_drawdown_pct":val["max_drawdown_pct"],
+                             "validation_sharpe":val["event_sharpe_annualized"]})
+    eligible=[x for x in grid if x["validation_max_drawdown_pct"]>=-25]
+    chosen=max(eligible or grid,key=lambda x:(x["validation_net_return_pct"],x["validation_sharpe"]))
+    selected_oos={}
+    for fee in (2,5,8):
+        selected_oos[f"fee_{fee}bp"]=rank_and_backtest(
+            data,usable,*periods["oos"],fee,
+            lookback_days=chosen["lookback_days"],rebalance_days=chosen["rebalance_days"],
+            tail_fraction=chosen["tail_fraction"])
+    report["parameter_sweep"]={"selection_rule":"Maximize validation net return at 5bp one-way fee subject to validation max drawdown >= -25%; OOS not used for selection.",
+                               "grid_size":len(grid),"chosen_on_validation":chosen,
+                               "selected_configuration_oos":selected_oos,
+                               "validation_top_10":sorted(grid,key=lambda x:x["validation_net_return_pct"],reverse=True)[:10]}
     Path(args.out).parent.mkdir(parents=True,exist_ok=True)
     Path(args.out).write_text(json.dumps(report,indent=2,ensure_ascii=False),encoding="utf-8")
     print("REPORT",Path(args.out).resolve(),flush=True)
