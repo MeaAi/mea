@@ -38,13 +38,17 @@ def download(url,path):
 def verified_download(url,path):
  download(url,path)
  chk=Path(str(path)+".CHECKSUM")
- download(url+".CHECKSUM",chk)
- expected=chk.read_text().strip().split()[0].lower()
- h=hashlib.sha256(path.read_bytes()).hexdigest()
- if h!=expected:path.unlink(missing_ok=True);raise RuntimeError("SHA256 mismatch "+path.name)
+ try:
+  download(url+".CHECKSUM",chk)
+  expected=chk.read_text().strip().split()[0].lower()
+  h=hashlib.sha256(path.read_bytes()).hexdigest()
+  if h!=expected:path.unlink(missing_ok=True);raise RuntimeError("SHA256 mismatch "+path.name)
+ except RuntimeError as e:
+  if "SHA256 mismatch" in str(e):raise
+  print("CHECKSUM_UNAVAILABLE; ZIP integrity will be checked:",path.name,flush=True)
 
 def readzip(path,kind):
- z=zipfile.ZipFile(path); n=next(x for x in z.namelist() if x.endswith(".csv"))
+ z=zipfile.ZipFile(path)\n if z.testzip() is not None:raise RuntimeError("corrupt ZIP "+str(path))\n n=next(x for x in z.namelist() if x.endswith(".csv"))
  f=io.TextIOWrapper(z.open(n),encoding="utf-8-sig",newline="")
  out={}
  for row in csv.reader(f):
