@@ -48,7 +48,9 @@ def verified_download(url,path):
   print("CHECKSUM_UNAVAILABLE; ZIP integrity will be checked:",path.name,flush=True)
 
 def readzip(path,kind):
- z=zipfile.ZipFile(path)\n if z.testzip() is not None:raise RuntimeError("corrupt ZIP "+str(path))\n n=next(x for x in z.namelist() if x.endswith(".csv"))
+ z=zipfile.ZipFile(path)
+ if z.testzip() is not None:raise RuntimeError("corrupt ZIP "+str(path))
+ n=next(x for x in z.namelist() if x.endswith(".csv"))
  f=io.TextIOWrapper(z.open(n),encoding="utf-8-sig",newline="")
  out={}
  for row in csv.reader(f):
