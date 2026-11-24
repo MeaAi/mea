@@ -124,7 +124,7 @@ def load_symbol(symbol, months, root):
         if j>=0: events[t]=(funding[t],prices[p_times[j]])
     return symbol,events,{"funding_events":len(funding),"priced_events":len(events),"price_bars_1h":len(prices),"archives":files}
 
-def rank_and_backtest(data, symbols, start_ms, end_ms, fee_bp, capital=100.0, rebalance_days=7, lookback_days=7, tail_fraction=0.20, weighting="equal", include_price=True, include_funding=True):
+def rank_and_backtest(data, symbols, start_ms, end_ms, fee_bp, capital=100.0, rebalance_days=7, lookback_days=7, tail_fraction=0.20, weighting="equal", include_price=True, include_funding=True, leverage=1.0):
     # Use timestamps where >=80% of symbols have a priced funding event.
     ts=sorted(t for t in set().union(*(set(data[s]) for s in symbols))
               if start_ms<=t<=end_ms and sum(t in data[s] for s in symbols)>=math.ceil(.8*len(symbols)))
@@ -158,7 +158,7 @@ def rank_and_backtest(data, symbols, start_ms, end_ms, fee_bp, capital=100.0, re
             if len(ordered)>=2*k:
                 longs=ordered[:k]; shorts=ordered[-k:]
                 target={s:0.0 for s in symbols}
-                per_leg=max(0.0,equity)*0.5
+                per_leg=max(0.0,equity)*0.5*leverage
                 def side_weights(names):
                     if weighting=="equal": return {s:1.0/len(names) for s in names}
                     inv={}
@@ -201,7 +201,8 @@ def rank_and_backtest(data, symbols, start_ms, end_ms, fee_bp, capital=100.0, re
             "fees_usdt":round(fees,6),"turnover_usdt":round(turnover_total,4),"one_way_fee_bp":fee_bp,
             "rebalance_count":len(rebalance_log),"leg_changes":trades,"lookback_days":lookback_days,
             "rebalance_days":rebalance_days,"tail_fraction":tail_fraction,"weighting":weighting,"include_price":include_price,"include_funding":include_funding,"selection":f"lowest {tail_fraction:.0%} trailing realized funding long; highest {tail_fraction:.0%} short",
-            "gross_exposure":"100% of equity total: 50% long + 50% short; 1x gross, dollar neutral",
+            "gross_exposure":f"{leverage:g}x gross: {leverage*50:g}% long + {leverage*50:g}% short; dollar neutral",
+            "leverage":leverage,"liquidation_model":"not modeled; event-cadence mark-to-market only",
             "rebalance_log":rebalance_log}
 
 def main():
@@ -301,6 +302,22 @@ def main():
                                     include_price=ip,include_funding=iff)
                 attribution[label][period_name][f"fee_{fee}bp"]=v
     report["return_attribution_ablation"]=attribution
+    # Leverage scenarios: same frozen baseline signal, no OOS tuning.
+    # Funding and transaction costs scale automatically with leveraged position notional.
+    # Liquidation is intentionally not inferred: this remains an event-cadence research simulation.
+    leverage_tests={}
+    for lev in (3.0,10.0):
+        leverage_tests[f"{int(lev)}x"]={}
+        for period_name in ("train","validation","oos"):
+            a,b=periods[period_name]
+            leverage_tests[f"{int(lev)}x"][period_name]={}
+            for fee in (2,5,8):
+                leverage_tests[f"{int(lev)}x"][period_name][f"fee_{fee}bp"]=rank_and_backtest(
+                    data,usable,a,b,fee,lookback_days=7,rebalance_days=7,
+                    tail_fraction=0.20,weighting="equal",leverage=lev)
+    report["leverage_tests"]={
+        "assumptions":"Constant gross leverage applied to equity at weekly rebalance; funding and fees charged on leveraged notional; no liquidation, maintenance-margin tiers, intraperiod mark price or slippage model.",
+        "results":leverage_tests}
     Path(args.out).parent.mkdir(parents=True,exist_ok=True)
     Path(args.out).write_text(json.dumps(report,indent=2,ensure_ascii=False),encoding="utf-8")
     print("REPORT",Path(args.out).resolve(),flush=True)
