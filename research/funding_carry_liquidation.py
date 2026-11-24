@@ -3,7 +3,7 @@
 Free Binance Vision markPriceKlines + fundingRate; no credentials or orders.
 This is a portfolio-level approximation, not Binance's private liquidation engine.
 """
-import argparse,csv,hashlib,io,json,math,time,urllib.request,zipfile
+import argparse,bisect,csv,hashlib,io,json,math,time,urllib.request,zipfile
 from pathlib import Path
 from datetime import datetime,timezone
 from concurrent.futures import ThreadPoolExecutor,as_completed
@@ -20,27 +20,28 @@ def months_between(a,b):
 
 def download(url,path):
  path.parent.mkdir(parents=True,exist_ok=True)
- if not path.exists():
-  tmp=Path(str(path)+".part")
-  for i in range(4):
-   try:
-    req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0"})
-    with urllib.request.urlopen(req,timeout=90) as r,tmp.open("wb") as f:
-     while True:
-      b=r.read(1<<20)
-      if not b:break
-      f.write(b)
-    tmp.replace(path);break
-   except Exception:
-    tmp.unlink(missing_ok=True);time.sleep(2**i)
-  else: raise RuntimeError("download failed: "+url)
+ if path.exists() and path.stat().st_size:return
+ tmp=Path(str(path)+".part")
+ for i in range(4):
+  try:
+   req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0"})
+   with urllib.request.urlopen(req,timeout=90) as r,tmp.open("wb") as f:
+    while True:
+     b=r.read(1<<20)
+     if not b:break
+     f.write(b)
+   tmp.replace(path);return
+  except Exception:
+   tmp.unlink(missing_ok=True);time.sleep(2**i)
+ raise RuntimeError("download failed: "+url)
+
+def verified_download(url,path):
+ download(url,path)
  chk=Path(str(path)+".CHECKSUM")
- if not chk.exists():
-  try: download(url+".CHECKSUM",chk)
-  except Exception: raise RuntimeError("checksum unavailable: "+url)
+ download(url+".CHECKSUM",chk)
  expected=chk.read_text().strip().split()[0].lower()
  h=hashlib.sha256(path.read_bytes()).hexdigest()
- if h!=expected: path.unlink(missing_ok=True);raise RuntimeError("SHA256 mismatch "+path.name)
+ if h!=expected:path.unlink(missing_ok=True);raise RuntimeError("SHA256 mismatch "+path.name)
 
 def readzip(path,kind):
  z=zipfile.ZipFile(path); n=next(x for x in z.namelist() if x.endswith(".csv"))
@@ -63,14 +64,14 @@ def load_symbol(sym,months,root):
  for mo in months:
   fn=f"{sym}-fundingRate-{mo}.zip"
   fp=root/"cache"/sym/"funding"/fn
-  download(f"{BASE}/fundingRate/{sym}/{fn}",fp);fund.update(readzip(fp,"fund"))
+  verified_download(f"{BASE}/fundingRate/{sym}/{fn}",fp);fund.update(readzip(fp,"fund"))
   mn=f"{sym}-markPrice-1h-{mo}.zip"
   mp=root/"cache"/sym/"mark"/mn
-  download(f"{BASE}/markPriceKlines/{sym}/1h/{mn}",mp);marks.update(readzip(mp,"mark"))
+  verified_download(f"{BASE}/markPriceKlines/{sym}/1h/{mn}",mp);marks.update(readzip(mp,"mark"))
  return sym,fund,marks
 
 def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01):
- symbols=list(data); first,last=period
+ symbols=list(data); first,last=period\n mark_times={s:sorted(data[s]["marks"]) for s in symbols}
  all_events=sorted(set(t for s in symbols for t in data[s]["fund"] if first<=t<=last))
  events=[t for t in all_events if sum(t in data[s]["fund"] and t in data[s]["marks"] for s in symbols)>=math.ceil(.8*len(symbols))]
  if len(events)<100:raise RuntimeError("insufficient aligned funding events")
@@ -83,14 +84,13 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01):
   current=prev.copy()
   if ix and current:
    start=events[ix-1]
-   hourset=sorted(set(k for s in symbols for k in data[s]["marks"] if start<=k<t))
-   for ht in hourset:
-    worst=equity; notion=0.
+   for ht in range(start,t,3600000):
+    worst=equity;notion=0.
     for z in symbols:
      q=qty[z]
-     if not q or z not in current or ht not in data[z]["marks"]:continue
-     o,h,l,cl=data[z]["marks"][ht]
-     adverse=l if q>0 else h
+     bar=data[z]["marks"].get(ht)
+     if not q or z not in current or bar is None:continue
+     o,h,l,cl=bar;adverse=l if q>0 else h
      worst+=q*(adverse-current[z]);notion+=abs(q*adverse)
     hourly_checks+=1
     if worst<=notion*(mmr+liq_fee):
@@ -99,14 +99,17 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01):
      break
     step=0.
     for z in symbols:
-     q=qty[z]
-     if q and z in current and ht in data[z]["marks"]:
-      cl=data[z]["marks"][ht][3]
-      step+=q*(cl-current[z]);current[z]=cl
+     q=qty[z];bar=data[z]["marks"].get(ht)
+     if q and z in current and bar is not None:
+      cl=bar[3];step+=q*(cl-current[z]);current[z]=cl
     equity+=step;price_pnl+=step
    if liquidated:break
-  px={s:(current[s] if s in current else data[s]["marks"][max((k for k in data[s]["marks"] if k<t),default=-1)][3])
-      for s in symbols if s in current or any(k<t for k in data[s]["marks"])}
+  px={}
+  for s in symbols:
+   if s in current:px[s]=current[s]
+   else:
+    j=bisect.bisect_left(mark_times[s],t)-1
+    if j>=0:px[s]=data[s]["marks"][mark_times[s][j]][3]
   rates={s:data[s]["fund"][t] for s in symbols if t in data[s]["fund"]}
   # Funding cashflow for positions held across this settlement.
   fpnl=sum(-qty[s]*px[s]*rates[s] for s in symbols if qty[s] and s in px and s in rates)
