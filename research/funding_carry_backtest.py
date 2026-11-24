@@ -124,7 +124,7 @@ def load_symbol(symbol, months, root):
         if j>=0: events[t]=(funding[t],prices[p_times[j]])
     return symbol,events,{"funding_events":len(funding),"priced_events":len(events),"price_bars_1h":len(prices),"archives":files}
 
-def rank_and_backtest(data, symbols, start_ms, end_ms, fee_bp, capital=100.0, rebalance_days=7, lookback_days=7, tail_fraction=0.20, weighting="equal"):
+def rank_and_backtest(data, symbols, start_ms, end_ms, fee_bp, capital=100.0, rebalance_days=7, lookback_days=7, tail_fraction=0.20, weighting="equal", include_price=True, include_funding=True):
     # Use timestamps where >=80% of symbols have a priced funding event.
     ts=sorted(t for t in set().union(*(set(data[s]) for s in symbols))
               if start_ms<=t<=end_ms and sum(t in data[s] for s in symbols)>=math.ceil(.8*len(symbols)))
@@ -140,8 +140,8 @@ def rank_and_backtest(data, symbols, start_ms, end_ms, fee_bp, capital=100.0, re
         step_price=0.0; step_funding=0.0
         for s,q in qty.items():
             if q and s in px and s in prev_px:
-                step_price += q*(px[s]-prev_px[s])
-                if s in rates: step_funding += -q*px[s]*rates[s]
+                if include_price: step_price += q*(px[s]-prev_px[s])
+                if include_funding and s in rates: step_funding += -q*px[s]*rates[s]
         equity += step_price+step_funding
         gross_pnl += step_price; funding_pnl += step_funding
         # Rank on completed trailing funding events, including the just-settled event.
@@ -200,7 +200,7 @@ def rank_and_backtest(data, symbols, start_ms, end_ms, fee_bp, capital=100.0, re
             "gross_price_pnl_usdt":round(gross_pnl,6),"funding_pnl_usdt":round(funding_pnl,6),
             "fees_usdt":round(fees,6),"turnover_usdt":round(turnover_total,4),"one_way_fee_bp":fee_bp,
             "rebalance_count":len(rebalance_log),"leg_changes":trades,"lookback_days":lookback_days,
-            "rebalance_days":rebalance_days,"tail_fraction":tail_fraction,"weighting":weighting,"selection":f"lowest {tail_fraction:.0%} trailing realized funding long; highest {tail_fraction:.0%} short",
+            "rebalance_days":rebalance_days,"tail_fraction":tail_fraction,"weighting":weighting,"include_price":include_price,"include_funding":include_funding,"selection":f"lowest {tail_fraction:.0%} trailing realized funding long; highest {tail_fraction:.0%} short",
             "gross_exposure":"100% of equity total: 50% long + 50% short; 1x gross, dollar neutral",
             "rebalance_log":rebalance_log}
 
@@ -288,6 +288,19 @@ def main():
                                     tail_fraction=0.20,weighting=weighting)
                 weighting_tests[weighting][period_name][f"fee_{fee}bp"]=v
     report["risk_weighting_tests"]=weighting_tests
+    # Attribution ablation: isolate funding cashflows from futures price PnL.
+    attribution={}
+    for label,ip,iff in (("combined",True,True),("price_only",True,False),("funding_only",False,True)):
+        attribution[label]={}
+        for period_name in ("validation","oos"):
+            a,b=periods[period_name]
+            attribution[label][period_name]={}
+            for fee in (2,5,8):
+                v=rank_and_backtest(data,usable,a,b,fee,lookback_days=7,rebalance_days=7,
+                                    tail_fraction=0.20,weighting="equal",
+                                    include_price=ip,include_funding=iff)
+                attribution[label][period_name][f"fee_{fee}bp"]=v
+    report["return_attribution_ablation"]=attribution
     Path(args.out).parent.mkdir(parents=True,exist_ok=True)
     Path(args.out).write_text(json.dumps(report,indent=2,ensure_ascii=False),encoding="utf-8")
     print("REPORT",Path(args.out).resolve(),flush=True)
