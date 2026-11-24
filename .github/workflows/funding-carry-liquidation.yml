@@ -1,0 +1,46 @@
+name: Funding carry liquidation-aware risk sweep
+
+on:
+  push:
+    branches:
+      - research/binance-data-pipeline
+    paths:
+      - "research/funding_carry_liquidation.py"
+      - ".github/workflows/funding-carry-liquidation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: funding-carry-liquidation-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  liquidation-risk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/binance-data-pipeline
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download free Binance Vision funding and mark-price candles, then test
+        run: |
+          python research/funding_carry_liquidation.py \
+            --start 2023-01 --end 2026-10 \
+            --symbols BTCUSDT,ETHUSDT,BNBUSDT,XRPUSDT,ADAUSDT,DOGEUSDT,SOLUSDT,LINKUSDT,LTCUSDT,BCHUSDT,DOTUSDT,TRXUSDT,AVAXUSDT \
+            --out research-output/funding_carry_liquidation.json
+      - name: Publish compact results
+        run: |
+          mkdir -p research-results
+          cp research-output/funding_carry_liquidation.json research-results/
+          rm -rf research-output
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research-results/funding_carry_liquidation.json
+          git commit -m "Publish liquidation-aware funding carry risk results" || exit 0
+          git pull --rebase origin research/binance-data-pipeline
+          git push
