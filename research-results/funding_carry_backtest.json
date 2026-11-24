@@ -36,25 +36,13 @@
     "XRPUSDT"
   ],
   "data_qa": {
-    "LINKUSDT": {
-      "funding_events": 3105,
-      "priced_events": 3104,
-      "price_bars_1h": 24840,
-      "archives": 68
-    },
     "ADAUSDT": {
       "funding_events": 3105,
       "priced_events": 3104,
       "price_bars_1h": 24840,
       "archives": 68
     },
-    "SOLUSDT": {
-      "funding_events": 3105,
-      "priced_events": 3104,
-      "price_bars_1h": 24840,
-      "archives": 68
-    },
-    "BTCUSDT": {
+    "ETHUSDT": {
       "funding_events": 3105,
       "priced_events": 3104,
       "price_bars_1h": 24840,
@@ -66,7 +54,7 @@
       "price_bars_1h": 24840,
       "archives": 68
     },
-    "ETHUSDT": {
+    "SOLUSDT": {
       "funding_events": 3105,
       "priced_events": 3104,
       "price_bars_1h": 24840,
@@ -84,13 +72,13 @@
       "price_bars_1h": 24840,
       "archives": 68
     },
-    "LTCUSDT": {
+    "LINKUSDT": {
       "funding_events": 3105,
       "priced_events": 3104,
       "price_bars_1h": 24840,
       "archives": 68
     },
-    "DOTUSDT": {
+    "BTCUSDT": {
       "funding_events": 3105,
       "priced_events": 3104,
       "price_bars_1h": 24840,
@@ -102,13 +90,25 @@
       "price_bars_1h": 24840,
       "archives": 68
     },
+    "BCHUSDT": {
+      "funding_events": 3105,
+      "priced_events": 3104,
+      "price_bars_1h": 24840,
+      "archives": 68
+    },
     "TRXUSDT": {
       "funding_events": 3105,
       "priced_events": 3104,
       "price_bars_1h": 24840,
       "archives": 68
     },
-    "BCHUSDT": {
+    "DOTUSDT": {
+      "funding_events": 3105,
+      "priced_events": 3104,
+      "price_bars_1h": 24840,
+      "archives": 68
+    },
+    "LTCUSDT": {
       "funding_events": 3105,
       "priced_events": 3104,
       "price_bars_1h": 24840,
@@ -153,6 +153,7 @@
         "lookback_days": 7,
         "rebalance_days": 7,
         "tail_fraction": 0.2,
+        "weighting": "equal",
         "selection": "lowest 20% trailing realized funding long; highest 20% short",
         "gross_exposure": "100% of equity total: 50% long + 50% short; 1x gross, dollar neutral",
         "rebalance_log": [
@@ -1183,6 +1184,7 @@
         "lookback_days": 7,
         "rebalance_days": 7,
         "tail_fraction": 0.2,
+        "weighting": "equal",
         "selection": "lowest 20% trailing realized funding long; highest 20% short",
         "gross_exposure": "100% of equity total: 50% long + 50% short; 1x gross, dollar neutral",
         "rebalance_log": [
@@ -2213,6 +2215,7 @@
         "lookback_days": 7,
         "rebalance_days": 7,
         "tail_fraction": 0.2,
+        "weighting": "equal",
         "selection": "lowest 20% trailing realized funding long; highest 20% short",
         "gross_exposure": "100% of equity total: 50% long + 50% short; 1x gross, dollar neutral",
         "rebalance_log": [
@@ -3245,6 +3248,7 @@
         "lookback_days": 7,
         "rebalance_days": 7,
         "tail_fraction": 0.2,
+        "weighting": "equal",
         "selection": "lowest 20% trailing realized funding long; highest 20% short",
         "gross_exposure": "100% of equity total: 50% long + 50% short; 1x gross, dollar neutral",
         "rebalance_log": [
@@ -3673,6 +3677,7 @@
         "lookback_days": 7,
         "rebalance_days": 7,
         "tail_fraction": 0.2,
+        "weighting": "equal",
         "selection": "lowest 20% trailing realized funding long; highest 20% short",
         "gross_exposure": "100% of equity total: 50% long + 50% short; 1x gross, dollar neutral",
         "rebalance_log": [
@@ -4101,6 +4106,7 @@
         "lookback_days": 7,
         "rebalance_days": 7,
         "tail_fraction": 0.2,
+        "weighting": "equal",
         "selection": "lowest 20% trailing realized funding long; highest 20% short",
         "gross_exposure": "100% of equity total: 50% long + 50% short; 1x gross, dollar neutral",
         "rebalance_log": [
@@ -4531,6 +4537,7 @@
         "lookback_days": 7,
         "rebalance_days": 7,
         "tail_fraction": 0.2,
+        "weighting": "equal",
         "selection": "lowest 20% trailing realized funding long; highest 20% short",
         "gross_exposure": "100% of equity total: 50% long + 50% short; 1x gross, dollar neutral",
         "rebalance_log": [
@@ -5155,6 +5162,7 @@
         "lookback_days": 7,
         "rebalance_days": 7,
         "tail_fraction": 0.2,
+        "weighting": "equal",
         "selection": "lowest 20% trailing realized funding long; highest 20% short",
         "gross_exposure": "100% of equity total: 50% long + 50% short; 1x gross, dollar neutral",
         "rebalance_log": [
@@ -5779,6 +5787,7 @@
         "lookback_days": 7,
         "rebalance_days": 7,
         "tail_fraction": 0.2,
+        "weighting": "equal",
         "selection": "lowest 20% trailing realized funding long; highest 20% short",
         "gross_exposure": "100% of equity total: 50% long + 50% short; 1x gross, dollar neutral",
         "rebalance_log": [
@@ -6417,6 +6426,7 @@
         "lookback_days": 7,
         "rebalance_days": 7,
         "tail_fraction": 0.1,
+        "weighting": "equal",
         "selection": "lowest 10% trailing realized funding long; highest 10% short",
         "gross_exposure": "100% of equity total: 50% long + 50% short; 1x gross, dollar neutral",
         "rebalance_log": [
@@ -6955,6 +6965,7 @@
         "lookback_days": 7,
         "rebalance_days": 7,
         "tail_fraction": 0.1,
+        "weighting": "equal",
         "selection": "lowest 10% trailing realized funding long; highest 10% short",
         "gross_exposure": "100% of equity total: 50% long + 50% short; 1x gross, dollar neutral",
         "rebalance_log": [
@@ -7493,6 +7504,7 @@
         "lookback_days": 7,
         "rebalance_days": 7,
         "tail_fraction": 0.1,
+        "weighting": "equal",
         "selection": "lowest 10% trailing realized funding long; highest 10% short",
         "gross_exposure": "100% of equity total: 50% long + 50% short; 1x gross, dollar neutral",
         "rebalance_log": [
@@ -8097,5 +8109,6343 @@
         "validation_sharpe": 0.9439
       }
     ]
+  },
+  "risk_weighting_tests": {
+    "equal": {
+      "validation": {
+        "fee_2bp": {
+          "start_equity_usdt": 100.0,
+          "end_equity_usdt": 124.831162,
+          "net_return_pct": 24.8312,
+          "cagr_pct": 47.991,
+          "max_drawdown_pct": -14.2991,
+          "event_sharpe_annualized": 1.8112,
+          "gross_price_pnl_usdt": 22.946878,
+          "funding_pnl_usdt": 2.618388,
+          "fees_usdt": 0.734104,
+          "turnover_usdt": 3670.5195,
+          "one_way_fee_bp": 2,
+          "rebalance_count": 29,
+          "leg_changes": 116,
+          "lookback_days": 7,
+          "rebalance_days": 7,
+          "tail_fraction": 0.2,
+          "weighting": "equal",
+          "selection": "lowest 20% trailing realized funding long; highest 20% short",
+          "gross_exposure": "100% of equity total: 50% long + 50% short; 1x gross, dollar neutral",
+          "rebalance_log": [
+            {
+              "time": "2025-06-08T16:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.00205108,
+              "turnover_usdt": 100.0,
+              "fee_usdt": 0.02
+            },
+            {
+              "time": "2025-06-15T16:00:00+00:00",
+              "longs": [
+                "BNBUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "ETHUSDT"
+              ],
+              "funding_spread_7d": 0.00186429,
+              "turnover_usdt": 53.9584,
+              "fee_usdt": 0.010792
+            },
+            {
+              "time": "2025-06-22T16:00:00.003000+00:00",
+              "longs": [
+                "BNBUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "XRPUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00198705,
+              "turnover_usdt": 155.5768,
+              "fee_usdt": 0.031115
+            },
+            {
+              "time": "2025-06-30T00:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.00350634,
+              "turnover_usdt": 120.2943,
+              "fee_usdt": 0.024059
+            },
+            {
+              "time": "2025-07-07T00:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.0034547,
+              "turnover_usdt": 109.669,
+              "fee_usdt": 0.021934
+            },
+            {
+              "time": "2025-07-14T00:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "DOTUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00352186,
+              "turnover_usdt": 170.2941,
+              "fee_usdt": 0.034059
+            },
+            {
+              "time": "2025-07-21T00:00:00.001000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.00262709,
+              "turnover_usdt": 112.8007,
+              "fee_usdt": 0.02256
+            },
+            {
+              "time": "2025-07-28T00:00:00.005000+00:00",
+              "longs": [
+                "BNBUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.00082717,
+              "turnover_usdt": 56.29,
+              "fee_usdt": 0.011258
+            },
+            {
+              "time": "2025-08-04T08:00:00+00:00",
+              "longs": [
+                "SOLUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00170346,
+              "turnover_usdt": 153.3535,
+              "fee_usdt": 0.030671
+            },
+            {
+              "time": "2025-08-11T08:00:00+00:00",
+              "longs": [
+                "BNBUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.0015496,
+              "turnover_usdt": 109.8122,
+              "fee_usdt": 0.021962
+            },
+            {
+              "time": "2025-08-18T08:00:00.001000+00:00",
+              "longs": [
+                "BNBUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00128524,
+              "turnover_usdt": 108.0226,
+              "fee_usdt": 0.021605
+            },
+            {
+              "time": "2025-08-25T08:00:00.002000+00:00",
+              "longs": [
+                "BNBUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00078147,
+              "turnover_usdt": 106.2974,
+              "fee_usdt": 0.021259
+            },
+            {
+              "time": "2025-09-01T16:00:00.001000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "ETHUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00154196,
+              "turnover_usdt": 156.4601,
+              "fee_usdt": 0.031292
+            },
+            {
+              "time": "2025-09-09T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "ADAUSDT",
+                "AVAXUSDT"
+              ],
+              "funding_spread_7d": 0.00659173,
+              "turnover_usdt": 160.7773,
+              "fee_usdt": 0.032155
+            },
+            {
+              "time": "2025-09-16T00:00:00.001000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "DOTUSDT"
+              ],
+              "funding_spread_7d": 0.00139238,
+              "turnover_usdt": 153.9953,
+              "fee_usdt": 0.030799
+            },
+            {
+              "time": "2025-09-23T08:00:00.001000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "ETHUSDT"
+              ],
+              "shorts": [
+                "ADAUSDT",
+                "AVAXUSDT"
+              ],
+              "funding_spread_7d": 0.0027157,
+              "turnover_usdt": 143.1047,
+              "fee_usdt": 0.028621
+            },
+            {
+              "time": "2025-09-30T08:00:00.005000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOTUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00202512,
+              "turnover_usdt": 100.0801,
+              "fee_usdt": 0.020016
+            },
+            {
+              "time": "2025-10-07T16:00:00+00:00",
+              "longs": [
+                "SOLUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "DOTUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00161894,
+              "turnover_usdt": 108.5719,
+              "fee_usdt": 0.021714
+            },
+            {
+              "time": "2025-10-14T16:00:00+00:00",
+              "longs": [
+                "SOLUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.01173906,
+              "turnover_usdt": 101.3285,
+              "fee_usdt": 0.020266
+            },
+            {
+              "time": "2025-10-21T16:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00478228,
+              "turnover_usdt": 156.1912,
+              "fee_usdt": 0.031238
+            },
+            {
+              "time": "2025-10-28T16:00:00.004000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "XRPUSDT",
+                "DOGEUSDT"
+              ],
+              "funding_spread_7d": 0.00562421,
+              "turnover_usdt": 161.139,
+              "fee_usdt": 0.032228
+            },
+            {
+              "time": "2025-11-05T00:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00424236,
+              "turnover_usdt": 204.6399,
+              "fee_usdt": 0.040928
+            },
+            {
+              "time": "2025-11-12T00:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00391229,
+              "turnover_usdt": 122.5286,
+              "fee_usdt": 0.024506
+            },
+            {
+              "time": "2025-11-19T00:00:00+00:00",
+              "longs": [
+                "AVAXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00419813,
+              "turnover_usdt": 118.1389,
+              "fee_usdt": 0.023628
+            },
+            {
+              "time": "2025-11-26T00:00:00.001000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00321652,
+              "turnover_usdt": 126.1794,
+              "fee_usdt": 0.025236
+            },
+            {
+              "time": "2025-12-03T08:00:00+00:00",
+              "longs": [
+                "AVAXUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00453174,
+              "turnover_usdt": 127.6311,
+              "fee_usdt": 0.025526
+            },
+            {
+              "time": "2025-12-10T08:00:00.002000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "ETHUSDT"
+              ],
+              "funding_spread_7d": 0.00488608,
+              "turnover_usdt": 185.9937,
+              "fee_usdt": 0.037199
+            },
+            {
+              "time": "2025-12-17T16:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00411476,
+              "turnover_usdt": 123.365,
+              "fee_usdt": 0.024673
+            },
+            {
+              "time": "2025-12-24T16:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00346453,
+              "turnover_usdt": 64.0258,
+              "fee_usdt": 0.012805
+            }
+          ]
+        },
+        "fee_5bp": {
+          "start_equity_usdt": 100.0,
+          "end_equity_usdt": 123.572714,
+          "net_return_pct": 23.5727,
+          "cagr_pct": 45.3645,
+          "max_drawdown_pct": -14.6138,
+          "event_sharpe_annualized": 1.7331,
+          "gross_price_pnl_usdt": 22.795892,
+          "funding_pnl_usdt": 2.603198,
+          "fees_usdt": 1.826376,
+          "turnover_usdt": 3652.7516,
+          "one_way_fee_bp": 5,
+          "rebalance_count": 29,
+          "leg_changes": 116,
+          "lookback_days": 7,
+          "rebalance_days": 7,
+          "tail_fraction": 0.2,
+          "weighting": "equal",
+          "selection": "lowest 20% trailing realized funding long; highest 20% short",
+          "gross_exposure": "100% of equity total: 50% long + 50% short; 1x gross, dollar neutral",
+          "rebalance_log": [
+            {
+              "time": "2025-06-08T16:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.00205108,
+              "turnover_usdt": 100.0,
+              "fee_usdt": 0.05
+            },
+            {
+              "time": "2025-06-15T16:00:00+00:00",
+              "longs": [
+                "BNBUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "ETHUSDT"
+              ],
+              "funding_spread_7d": 0.00186429,
+              "turnover_usdt": 53.9434,
+              "fee_usdt": 0.026972
+            },
+            {
+              "time": "2025-06-22T16:00:00.003000+00:00",
+              "longs": [
+                "BNBUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "XRPUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00198705,
+              "turnover_usdt": 155.5158,
+              "fee_usdt": 0.077758
+            },
+            {
+              "time": "2025-06-30T00:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.00350634,
+              "turnover_usdt": 120.2417,
+              "fee_usdt": 0.060121
+            },
+            {
+              "time": "2025-07-07T00:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.0034547,
+              "turnover_usdt": 109.5558,
+              "fee_usdt": 0.054778
+            },
+            {
+              "time": "2025-07-14T00:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "DOTUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00352186,
+              "turnover_usdt": 170.0731,
+              "fee_usdt": 0.085037
+            },
+            {
+              "time": "2025-07-21T00:00:00.001000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.00262709,
+              "turnover_usdt": 112.6287,
+              "fee_usdt": 0.056314
+            },
+            {
+              "time": "2025-07-28T00:00:00.005000+00:00",
+              "longs": [
+                "BNBUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.00082717,
+              "turnover_usdt": 56.175,
+              "fee_usdt": 0.028087
+            },
+            {
+              "time": "2025-08-04T08:00:00+00:00",
+              "longs": [
+                "SOLUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00170346,
+              "turnover_usdt": 152.9738,
+              "fee_usdt": 0.076487
+            },
+            {
+              "time": "2025-08-11T08:00:00+00:00",
+              "longs": [
+                "BNBUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.0015496,
+              "turnover_usdt": 109.5344,
+              "fee_usdt": 0.054767
+            },
+            {
+              "time": "2025-08-18T08:00:00.001000+00:00",
+              "longs": [
+                "BNBUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00128524,
+              "turnover_usdt": 107.7026,
+              "fee_usdt": 0.053851
+            },
+            {
+              "time": "2025-08-25T08:00:00.002000+00:00",
+              "longs": [
+                "BNBUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00078147,
+              "turnover_usdt": 105.9492,
+              "fee_usdt": 0.052975
+            },
+            {
+              "time": "2025-09-01T16:00:00.001000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "ETHUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00154196,
+              "turnover_usdt": 155.8677,
+              "fee_usdt": 0.077934
+            },
+            {
+              "time": "2025-09-09T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "ADAUSDT",
+                "AVAXUSDT"
+              ],
+              "funding_spread_7d": 0.00659173,
+              "turnover_usdt": 160.1296,
+              "fee_usdt": 0.080065
+            },
+            {
+              "time": "2025-09-16T00:00:00.001000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "DOTUSDT"
+              ],
+              "funding_spread_7d": 0.00139238,
+              "turnover_usdt": 153.3007,
+              "fee_usdt": 0.07665
+            },
+            {
+              "time": "2025-09-23T08:00:00.001000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "ETHUSDT"
+              ],
+              "shorts": [
+                "ADAUSDT",
+                "AVAXUSDT"
+              ],
+              "funding_spread_7d": 0.0027157,
+              "turnover_usdt": 142.3649,
+              "fee_usdt": 0.071182
+            },
+            {
+              "time": "2025-09-30T08:00:00.005000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOTUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00202512,
+              "turnover_usdt": 99.5054,
+              "fee_usdt": 0.049753
+            },
+            {
+              "time": "2025-10-07T16:00:00+00:00",
+              "longs": [
+                "SOLUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "DOTUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00161894,
+              "turnover_usdt": 107.9499,
+              "fee_usdt": 0.053975
+            },
+            {
+              "time": "2025-10-14T16:00:00+00:00",
+              "longs": [
+                "SOLUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.01173906,
+              "turnover_usdt": 100.686,
+              "fee_usdt": 0.050343
+            },
+            {
+              "time": "2025-10-21T16:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00478228,
+              "turnover_usdt": 155.1724,
+              "fee_usdt": 0.077586
+            },
+            {
+              "time": "2025-10-28T16:00:00.004000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "XRPUSDT",
+                "DOGEUSDT"
+              ],
+              "funding_spread_7d": 0.00562421,
+              "turnover_usdt": 160.0494,
+              "fee_usdt": 0.080025
+            },
+            {
+              "time": "2025-11-05T00:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00424236,
+              "turnover_usdt": 203.149,
+              "fee_usdt": 0.101575
+            },
+            {
+              "time": "2025-11-12T00:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00391229,
+              "turnover_usdt": 121.5817,
+              "fee_usdt": 0.060791
+            },
+            {
+              "time": "2025-11-19T00:00:00+00:00",
+              "longs": [
+                "AVAXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00419813,
+              "turnover_usdt": 117.1763,
+              "fee_usdt": 0.058588
+            },
+            {
+              "time": "2025-11-26T00:00:00.001000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00321652,
+              "turnover_usdt": 125.098,
+              "fee_usdt": 0.062549
+            },
+            {
+              "time": "2025-12-03T08:00:00+00:00",
+              "longs": [
+                "AVAXUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00453174,
+              "turnover_usdt": 126.537,
+              "fee_usdt": 0.063269
+            },
+            {
+              "time": "2025-12-10T08:00:00.002000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "ETHUSDT"
+              ],
+              "funding_spread_7d": 0.00488608,
+              "turnover_usdt": 184.3044,
+              "fee_usdt": 0.092152
+            },
+            {
+              "time": "2025-12-17T16:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00411476,
+              "turnover_usdt": 122.1764,
+              "fee_usdt": 0.061088
+            },
+            {
+              "time": "2025-12-24T16:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00346453,
+              "turnover_usdt": 63.4091,
+              "fee_usdt": 0.031705
+            }
+          ]
+        },
+        "fee_8bp": {
+          "start_equity_usdt": 100.0,
+          "end_equity_usdt": 122.325993,
+          "net_return_pct": 22.326,
+          "cagr_pct": 42.7826,
+          "max_drawdown_pct": -14.9603,
+          "event_sharpe_annualized": 1.6548,
+          "gross_price_pnl_usdt": 22.645956,
+          "funding_pnl_usdt": 2.588108,
+          "fees_usdt": 2.908071,
+          "turnover_usdt": 3635.0885,
+          "one_way_fee_bp": 8,
+          "rebalance_count": 29,
+          "leg_changes": 116,
+          "lookback_days": 7,
+          "rebalance_days": 7,
+          "tail_fraction": 0.2,
+          "weighting": "equal",
+          "selection": "lowest 20% trailing realized funding long; highest 20% short",
+          "gross_exposure": "100% of equity total: 50% long + 50% short; 1x gross, dollar neutral",
+          "rebalance_log": [
+            {
+              "time": "2025-06-08T16:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.00205108,
+              "turnover_usdt": 100.0,
+              "fee_usdt": 0.08
+            },
+            {
+              "time": "2025-06-15T16:00:00+00:00",
+              "longs": [
+                "BNBUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "ETHUSDT"
+              ],
+              "funding_spread_7d": 0.00186429,
+              "turnover_usdt": 53.9284,
+              "fee_usdt": 0.043143
+            },
+            {
+              "time": "2025-06-22T16:00:00.003000+00:00",
+              "longs": [
+                "BNBUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "XRPUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00198705,
+              "turnover_usdt": 155.4548,
+              "fee_usdt": 0.124364
+            },
+            {
+              "time": "2025-06-30T00:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.00350634,
+              "turnover_usdt": 120.189,
+              "fee_usdt": 0.096151
+            },
+            {
+              "time": "2025-07-07T00:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.0034547,
+              "turnover_usdt": 109.4427,
+              "fee_usdt": 0.087554
+            },
+            {
+              "time": "2025-07-14T00:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "DOTUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00352186,
+              "turnover_usdt": 169.8522,
+              "fee_usdt": 0.135882
+            },
+            {
+              "time": "2025-07-21T00:00:00.001000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.00262709,
+              "turnover_usdt": 112.4568,
+              "fee_usdt": 0.089965
+            },
+            {
+              "time": "2025-07-28T00:00:00.005000+00:00",
+              "longs": [
+                "BNBUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.00082717,
+              "turnover_usdt": 56.0602,
+              "fee_usdt": 0.044848
+            },
+            {
+              "time": "2025-08-04T08:00:00+00:00",
+              "longs": [
+                "SOLUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00170346,
+              "turnover_usdt": 152.5948,
+              "fee_usdt": 0.122076
+            },
+            {
+              "time": "2025-08-11T08:00:00+00:00",
+              "longs": [
+                "BNBUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.0015496,
+              "turnover_usdt": 109.2571,
+              "fee_usdt": 0.087406
+            },
+            {
+              "time": "2025-08-18T08:00:00.001000+00:00",
+              "longs": [
+                "BNBUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00128524,
+              "turnover_usdt": 107.3833,
+              "fee_usdt": 0.085907
+            },
+            {
+              "time": "2025-08-25T08:00:00.002000+00:00",
+              "longs": [
+                "BNBUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00078147,
+              "turnover_usdt": 105.6019,
+              "fee_usdt": 0.084482
+            },
+            {
+              "time": "2025-09-01T16:00:00.001000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "ETHUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00154196,
+              "turnover_usdt": 155.2772,
+              "fee_usdt": 0.124222
+            },
+            {
+              "time": "2025-09-09T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "ADAUSDT",
+                "AVAXUSDT"
+              ],
+              "funding_spread_7d": 0.00659173,
+              "turnover_usdt": 159.484,
+              "fee_usdt": 0.127587
+            },
+            {
+              "time": "2025-09-16T00:00:00.001000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "DOTUSDT"
+              ],
+              "funding_spread_7d": 0.00139238,
+              "turnover_usdt": 152.6087,
+              "fee_usdt": 0.122087
+            },
+            {
+              "time": "2025-09-23T08:00:00.001000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "ETHUSDT"
+              ],
+              "shorts": [
+                "ADAUSDT",
+                "AVAXUSDT"
+              ],
+              "funding_spread_7d": 0.0027157,
+              "turnover_usdt": 141.6282,
+              "fee_usdt": 0.113303
+            },
+            {
+              "time": "2025-09-30T08:00:00.005000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOTUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00202512,
+              "turnover_usdt": 98.9335,
+              "fee_usdt": 0.079147
+            },
+            {
+              "time": "2025-10-07T16:00:00+00:00",
+              "longs": [
+                "SOLUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "DOTUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00161894,
+              "turnover_usdt": 107.3309,
+              "fee_usdt": 0.085865
+            },
+            {
+              "time": "2025-10-14T16:00:00+00:00",
+              "longs": [
+                "SOLUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.01173906,
+              "turnover_usdt": 100.047,
+              "fee_usdt": 0.080038
+            },
+            {
+              "time": "2025-10-21T16:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00478228,
+              "turnover_usdt": 154.1595,
+              "fee_usdt": 0.123328
+            },
+            {
+              "time": "2025-10-28T16:00:00.004000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "XRPUSDT",
+                "DOGEUSDT"
+              ],
+              "funding_spread_7d": 0.00562421,
+              "turnover_usdt": 158.9663,
+              "fee_usdt": 0.127173
+            },
+            {
+              "time": "2025-11-05T00:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00424236,
+              "turnover_usdt": 201.6679,
+              "fee_usdt": 0.161334
+            },
+            {
+              "time": "2025-11-12T00:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00391229,
+              "turnover_usdt": 120.6415,
+              "fee_usdt": 0.096513
+            },
+            {
+              "time": "2025-11-19T00:00:00+00:00",
+              "longs": [
+                "AVAXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00419813,
+              "turnover_usdt": 116.2209,
+              "fee_usdt": 0.092977
+            },
+            {
+              "time": "2025-11-26T00:00:00.001000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00321652,
+              "turnover_usdt": 124.025,
+              "fee_usdt": 0.09922
+            },
+            {
+              "time": "2025-12-03T08:00:00+00:00",
+              "longs": [
+                "AVAXUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00453174,
+              "turnover_usdt": 125.4514,
+              "fee_usdt": 0.100361
+            },
+            {
+              "time": "2025-12-10T08:00:00.002000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "ETHUSDT"
+              ],
+              "funding_spread_7d": 0.00488608,
+              "turnover_usdt": 182.6292,
+              "fee_usdt": 0.146103
+            },
+            {
+              "time": "2025-12-17T16:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00411476,
+              "turnover_usdt": 120.9983,
+              "fee_usdt": 0.096799
+            },
+            {
+              "time": "2025-12-24T16:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00346453,
+              "turnover_usdt": 62.7978,
+              "fee_usdt": 0.050238
+            }
+          ]
+        }
+      },
+      "oos": {
+        "fee_2bp": {
+          "start_equity_usdt": 100.0,
+          "end_equity_usdt": 137.20696,
+          "net_return_pct": 37.207,
+          "cagr_pct": 45.1644,
+          "max_drawdown_pct": -15.2874,
+          "event_sharpe_annualized": 1.7602,
+          "gross_price_pnl_usdt": 33.128463,
+          "funding_pnl_usdt": 5.253474,
+          "fees_usdt": 1.174976,
+          "turnover_usdt": 5874.8808,
+          "one_way_fee_bp": 2,
+          "rebalance_count": 43,
+          "leg_changes": 172,
+          "lookback_days": 7,
+          "rebalance_days": 7,
+          "tail_fraction": 0.2,
+          "weighting": "equal",
+          "selection": "lowest 20% trailing realized funding long; highest 20% short",
+          "gross_exposure": "100% of equity total: 50% long + 50% short; 1x gross, dollar neutral",
+          "rebalance_log": [
+            {
+              "time": "2026-01-01T16:00:00.001000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00193853,
+              "turnover_usdt": 100.0,
+              "fee_usdt": 0.02
+            },
+            {
+              "time": "2026-01-09T00:00:00.003000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ADAUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00183388,
+              "turnover_usdt": 159.0921,
+              "fee_usdt": 0.031818
+            },
+            {
+              "time": "2026-01-16T08:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "ETHUSDT"
+              ],
+              "funding_spread_7d": 0.00344878,
+              "turnover_usdt": 104.2925,
+              "fee_usdt": 0.020858
+            },
+            {
+              "time": "2026-01-23T08:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00285648,
+              "turnover_usdt": 103.1463,
+              "fee_usdt": 0.020629
+            },
+            {
+              "time": "2026-01-30T08:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00443028,
+              "turnover_usdt": 56.1323,
+              "fee_usdt": 0.011226
+            },
+            {
+              "time": "2026-02-06T08:00:00.001000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.01049503,
+              "turnover_usdt": 103.5054,
+              "fee_usdt": 0.020701
+            },
+            {
+              "time": "2026-02-13T08:00:00.003000+00:00",
+              "longs": [
+                "SOLUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00431866,
+              "turnover_usdt": 113.7094,
+              "fee_usdt": 0.022742
+            },
+            {
+              "time": "2026-02-20T16:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00237555,
+              "turnover_usdt": 115.2079,
+              "fee_usdt": 0.023042
+            },
+            {
+              "time": "2026-02-27T16:00:00.001000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.0028463,
+              "turnover_usdt": 113.4959,
+              "fee_usdt": 0.022699
+            },
+            {
+              "time": "2026-03-06T16:00:00.004000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "AVAXUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00254766,
+              "turnover_usdt": 175.6673,
+              "fee_usdt": 0.035133
+            },
+            {
+              "time": "2026-03-14T00:00:00.001000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "AVAXUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00502323,
+              "turnover_usdt": 63.4487,
+              "fee_usdt": 0.01269
+            },
+            {
+              "time": "2026-03-21T08:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "ADAUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00482177,
+              "turnover_usdt": 174.5912,
+              "fee_usdt": 0.034918
+            },
+            {
+              "time": "2026-03-28T08:00:00.005000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00513954,
+              "turnover_usdt": 115.4365,
+              "fee_usdt": 0.023087
+            },
+            {
+              "time": "2026-04-04T16:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00569639,
+              "turnover_usdt": 57.1,
+              "fee_usdt": 0.01142
+            },
+            {
+              "time": "2026-04-11T16:00:00.003000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00246505,
+              "turnover_usdt": 113.9787,
+              "fee_usdt": 0.022796
+            },
+            {
+              "time": "2026-04-19T00:00:00.002000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "BTCUSDT"
+              ],
+              "shorts": [
+                "AVAXUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.01642406,
+              "turnover_usdt": 112.3426,
+              "fee_usdt": 0.022469
+            },
+            {
+              "time": "2026-04-26T00:00:00.003000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "DOGEUSDT"
+              ],
+              "funding_spread_7d": 0.00282431,
+              "turnover_usdt": 112.5711,
+              "fee_usdt": 0.022514
+            },
+            {
+              "time": "2026-05-03T00:00:00.005000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "DOGEUSDT"
+              ],
+              "funding_spread_7d": 0.0024709,
+              "turnover_usdt": 59.0656,
+              "fee_usdt": 0.011813
+            },
+            {
+              "time": "2026-05-10T08:00:00+00:00",
+              "longs": [
+                "BTCUSDT",
+                "ETHUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00201483,
+              "turnover_usdt": 225.6267,
+              "fee_usdt": 0.045125
+            },
+            {
+              "time": "2026-05-17T08:00:00.010000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "TRXUSDT"
+              ],
+              "funding_spread_7d": 0.00254837,
+              "turnover_usdt": 163.7148,
+              "fee_usdt": 0.032743
+            },
+            {
+              "time": "2026-05-24T16:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "TRXUSDT"
+              ],
+              "funding_spread_7d": 0.00715463,
+              "turnover_usdt": 57.9678,
+              "fee_usdt": 0.011594
+            },
+            {
+              "time": "2026-05-31T16:00:00.004000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00758567,
+              "turnover_usdt": 107.4275,
+              "fee_usdt": 0.021486
+            },
+            {
+              "time": "2026-06-08T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.01306406,
+              "turnover_usdt": 60.0111,
+              "fee_usdt": 0.012002
+            },
+            {
+              "time": "2026-06-15T00:00:00.013000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00836318,
+              "turnover_usdt": 104.2352,
+              "fee_usdt": 0.020847
+            },
+            {
+              "time": "2026-06-22T08:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.0038762,
+              "turnover_usdt": 104.3282,
+              "fee_usdt": 0.020866
+            },
+            {
+              "time": "2026-06-29T08:00:00.013000+00:00",
+              "longs": [
+                "ADAUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00241484,
+              "turnover_usdt": 160.0551,
+              "fee_usdt": 0.032011
+            },
+            {
+              "time": "2026-07-06T16:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00524743,
+              "turnover_usdt": 181.406,
+              "fee_usdt": 0.036281
+            },
+            {
+              "time": "2026-07-13T16:00:00.004000+00:00",
+              "longs": [
+                "ADAUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "BNBUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00209835,
+              "turnover_usdt": 115.2602,
+              "fee_usdt": 0.023052
+            },
+            {
+              "time": "2026-07-20T16:00:00.004000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BNBUSDT"
+              ],
+              "funding_spread_7d": 0.00566135,
+              "turnover_usdt": 122.7742,
+              "fee_usdt": 0.024555
+            },
+            {
+              "time": "2026-07-28T00:00:00+00:00",
+              "longs": [
+                "ADAUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BNBUSDT"
+              ],
+              "funding_spread_7d": 0.00213764,
+              "turnover_usdt": 61.1685,
+              "fee_usdt": 0.012234
+            },
+            {
+              "time": "2026-08-04T00:00:00.004000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "LTCUSDT"
+              ],
+              "shorts": [
+                "BNBUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00251007,
+              "turnover_usdt": 190.3646,
+              "fee_usdt": 0.038073
+            },
+            {
+              "time": "2026-08-11T08:00:00.006000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00230534,
+              "turnover_usdt": 128.8466,
+              "fee_usdt": 0.025769
+            },
+            {
+              "time": "2026-08-18T16:00:00.003000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00392491,
+              "turnover_usdt": 190.7136,
+              "fee_usdt": 0.038143
+            },
+            {
+              "time": "2026-08-25T16:00:00.005000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "ADAUSDT"
+              ],
+              "shorts": [
+                "BNBUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00076286,
+              "turnover_usdt": 285.6554,
+              "fee_usdt": 0.057131
+            },
+            {
+              "time": "2026-09-02T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00671458,
+              "turnover_usdt": 128.7223,
+              "fee_usdt": 0.025744
+            },
+            {
+              "time": "2026-09-09T00:00:00.005000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOTUSDT",
+                "DOGEUSDT"
+              ],
+              "funding_spread_7d": 0.00601016,
+              "turnover_usdt": 132.9646,
+              "fee_usdt": 0.026593
+            },
+            {
+              "time": "2026-09-16T08:00:00.002000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.0049524,
+              "turnover_usdt": 132.4791,
+              "fee_usdt": 0.026496
+            },
+            {
+              "time": "2026-09-23T08:00:00.004000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00211829,
+              "turnover_usdt": 176.1887,
+              "fee_usdt": 0.035238
+            },
+            {
+              "time": "2026-09-30T16:00:00.002000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "ADAUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00669548,
+              "turnover_usdt": 215.9572,
+              "fee_usdt": 0.043191
+            },
+            {
+              "time": "2026-10-08T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00787516,
+              "turnover_usdt": 136.9824,
+              "fee_usdt": 0.027396
+            },
+            {
+              "time": "2026-10-15T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "SOLUSDT",
+                "DOTUSDT"
+              ],
+              "funding_spread_7d": 0.00539571,
+              "turnover_usdt": 195.308,
+              "fee_usdt": 0.039062
+            },
+            {
+              "time": "2026-10-22T00:00:00.007000+00:00",
+              "longs": [
+                "ADAUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00098166,
+              "turnover_usdt": 277.4713,
+              "fee_usdt": 0.055494
+            },
+            {
+              "time": "2026-10-29T08:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "SOLUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.0031737,
+              "turnover_usdt": 266.4683,
+              "fee_usdt": 0.053294
+            }
+          ]
+        },
+        "fee_5bp": {
+          "start_equity_usdt": 100.0,
+          "end_equity_usdt": 135.193029,
+          "net_return_pct": 35.193,
+          "cagr_pct": 42.6572,
+          "max_drawdown_pct": -15.6836,
+          "event_sharpe_annualized": 1.6821,
+          "gross_price_pnl_usdt": 32.890678,
+          "funding_pnl_usdt": 5.218082,
+          "fees_usdt": 2.915731,
+          "turnover_usdt": 5831.4626,
+          "one_way_fee_bp": 5,
+          "rebalance_count": 43,
+          "leg_changes": 172,
+          "lookback_days": 7,
+          "rebalance_days": 7,
+          "tail_fraction": 0.2,
+          "weighting": "equal",
+          "selection": "lowest 20% trailing realized funding long; highest 20% short",
+          "gross_exposure": "100% of equity total: 50% long + 50% short; 1x gross, dollar neutral",
+          "rebalance_log": [
+            {
+              "time": "2026-01-01T16:00:00.001000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00193853,
+              "turnover_usdt": 100.0,
+              "fee_usdt": 0.05
+            },
+            {
+              "time": "2026-01-09T00:00:00.003000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ADAUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00183388,
+              "turnover_usdt": 159.0771,
+              "fee_usdt": 0.079539
+            },
+            {
+              "time": "2026-01-16T08:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "ETHUSDT"
+              ],
+              "funding_spread_7d": 0.00344878,
+              "turnover_usdt": 104.2384,
+              "fee_usdt": 0.052119
+            },
+            {
+              "time": "2026-01-23T08:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00285648,
+              "turnover_usdt": 103.0366,
+              "fee_usdt": 0.051518
+            },
+            {
+              "time": "2026-01-30T08:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00443028,
+              "turnover_usdt": 56.0419,
+              "fee_usdt": 0.028021
+            },
+            {
+              "time": "2026-02-06T08:00:00.001000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.01049503,
+              "turnover_usdt": 103.3483,
+              "fee_usdt": 0.051674
+            },
+            {
+              "time": "2026-02-13T08:00:00.003000+00:00",
+              "longs": [
+                "SOLUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00431866,
+              "turnover_usdt": 113.538,
+              "fee_usdt": 0.056769
+            },
+            {
+              "time": "2026-02-20T16:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00237555,
+              "turnover_usdt": 115.0016,
+              "fee_usdt": 0.057501
+            },
+            {
+              "time": "2026-02-27T16:00:00.001000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.0028463,
+              "turnover_usdt": 113.2399,
+              "fee_usdt": 0.05662
+            },
+            {
+              "time": "2026-03-06T16:00:00.004000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "AVAXUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00254766,
+              "turnover_usdt": 175.2291,
+              "fee_usdt": 0.087615
+            },
+            {
+              "time": "2026-03-14T00:00:00.001000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "AVAXUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00502323,
+              "turnover_usdt": 63.3042,
+              "fee_usdt": 0.031652
+            },
+            {
+              "time": "2026-03-21T08:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "ADAUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00482177,
+              "turnover_usdt": 174.031,
+              "fee_usdt": 0.087015
+            },
+            {
+              "time": "2026-03-28T08:00:00.005000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00513954,
+              "turnover_usdt": 115.0014,
+              "fee_usdt": 0.057501
+            },
+            {
+              "time": "2026-04-04T16:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00569639,
+              "turnover_usdt": 56.8667,
+              "fee_usdt": 0.028433
+            },
+            {
+              "time": "2026-04-11T16:00:00.003000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00246505,
+              "turnover_usdt": 113.5116,
+              "fee_usdt": 0.056756
+            },
+            {
+              "time": "2026-04-19T00:00:00.002000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "BTCUSDT"
+              ],
+              "shorts": [
+                "AVAXUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.01642406,
+              "turnover_usdt": 111.8479,
+              "fee_usdt": 0.055924
+            },
+            {
+              "time": "2026-04-26T00:00:00.003000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "DOGEUSDT"
+              ],
+              "funding_spread_7d": 0.00282431,
+              "turnover_usdt": 112.0411,
+              "fee_usdt": 0.056021
+            },
+            {
+              "time": "2026-05-03T00:00:00.005000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "DOGEUSDT"
+              ],
+              "funding_spread_7d": 0.0024709,
+              "turnover_usdt": 58.7952,
+              "fee_usdt": 0.029398
+            },
+            {
+              "time": "2026-05-10T08:00:00+00:00",
+              "longs": [
+                "BTCUSDT",
+                "ETHUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00201483,
+              "turnover_usdt": 224.4421,
+              "fee_usdt": 0.112221
+            },
+            {
+              "time": "2026-05-17T08:00:00.010000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "TRXUSDT"
+              ],
+              "funding_spread_7d": 0.00254837,
+              "turnover_usdt": 162.8087,
+              "fee_usdt": 0.081404
+            },
+            {
+              "time": "2026-05-24T16:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "TRXUSDT"
+              ],
+              "funding_spread_7d": 0.00715463,
+              "turnover_usdt": 57.6236,
+              "fee_usdt": 0.028812
+            },
+            {
+              "time": "2026-05-31T16:00:00.004000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00758567,
+              "turnover_usdt": 106.7234,
+              "fee_usdt": 0.053362
+            },
+            {
+              "time": "2026-06-08T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.01306406,
+              "turnover_usdt": 59.5855,
+              "fee_usdt": 0.029793
+            },
+            {
+              "time": "2026-06-15T00:00:00.013000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00836318,
+              "turnover_usdt": 103.5199,
+              "fee_usdt": 0.05176
+            },
+            {
+              "time": "2026-06-22T08:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.0038762,
+              "turnover_usdt": 103.5627,
+              "fee_usdt": 0.051781
+            },
+            {
+              "time": "2026-06-29T08:00:00.013000+00:00",
+              "longs": [
+                "ADAUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00241484,
+              "turnover_usdt": 158.8499,
+              "fee_usdt": 0.079425
+            },
+            {
+              "time": "2026-07-06T16:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00524743,
+              "turnover_usdt": 179.9997,
+              "fee_usdt": 0.09
+            },
+            {
+              "time": "2026-07-13T16:00:00.004000+00:00",
+              "longs": [
+                "ADAUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "BNBUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00209835,
+              "turnover_usdt": 114.28,
+              "fee_usdt": 0.05714
+            },
+            {
+              "time": "2026-07-20T16:00:00.004000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BNBUSDT"
+              ],
+              "funding_spread_7d": 0.00566135,
+              "turnover_usdt": 121.732,
+              "fee_usdt": 0.060866
+            },
+            {
+              "time": "2026-07-28T00:00:00+00:00",
+              "longs": [
+                "ADAUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BNBUSDT"
+              ],
+              "funding_spread_7d": 0.00213764,
+              "turnover_usdt": 60.5951,
+              "fee_usdt": 0.030298
+            },
+            {
+              "time": "2026-08-04T00:00:00.004000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "LTCUSDT"
+              ],
+              "shorts": [
+                "BNBUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00251007,
+              "turnover_usdt": 188.6174,
+              "fee_usdt": 0.094309
+            },
+            {
+              "time": "2026-08-11T08:00:00.006000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00230534,
+              "turnover_usdt": 127.6294,
+              "fee_usdt": 0.063815
+            },
+            {
+              "time": "2026-08-18T16:00:00.003000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00392491,
+              "turnover_usdt": 188.8304,
+              "fee_usdt": 0.094415
+            },
+            {
+              "time": "2026-08-25T16:00:00.005000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "ADAUSDT"
+              ],
+              "shorts": [
+                "BNBUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00076286,
+              "turnover_usdt": 282.7499,
+              "fee_usdt": 0.141375
+            },
+            {
+              "time": "2026-09-02T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00671458,
+              "turnover_usdt": 127.2972,
+              "fee_usdt": 0.063649
+            },
+            {
+              "time": "2026-09-09T00:00:00.005000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOTUSDT",
+                "DOGEUSDT"
+              ],
+              "funding_spread_7d": 0.00601016,
+              "turnover_usdt": 131.4919,
+              "fee_usdt": 0.065746
+            },
+            {
+              "time": "2026-09-16T08:00:00.002000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.0049524,
+              "turnover_usdt": 130.933,
+              "fee_usdt": 0.065466
+            },
+            {
+              "time": "2026-09-23T08:00:00.004000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00211829,
+              "turnover_usdt": 174.1147,
+              "fee_usdt": 0.087057
+            },
+            {
+              "time": "2026-09-30T16:00:00.002000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "ADAUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00669548,
+              "turnover_usdt": 213.3553,
+              "fee_usdt": 0.106678
+            },
+            {
+              "time": "2026-10-08T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00787516,
+              "turnover_usdt": 135.2313,
+              "fee_usdt": 0.067616
+            },
+            {
+              "time": "2026-10-15T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "SOLUSDT",
+                "DOTUSDT"
+              ],
+              "funding_spread_7d": 0.00539571,
+              "turnover_usdt": 192.7693,
+              "fee_usdt": 0.096385
+            },
+            {
+              "time": "2026-10-22T00:00:00.007000+00:00",
+              "longs": [
+                "ADAUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00098166,
+              "turnover_usdt": 273.7829,
+              "fee_usdt": 0.136891
+            },
+            {
+              "time": "2026-10-29T08:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "SOLUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.0031737,
+              "turnover_usdt": 262.7875,
+              "fee_usdt": 0.131394
+            }
+          ]
+        },
+        "fee_8bp": {
+          "start_equity_usdt": 100.0,
+          "end_equity_usdt": 133.207264,
+          "net_return_pct": 33.2073,
+          "cagr_pct": 40.1916,
+          "max_drawdown_pct": -16.0783,
+          "event_sharpe_annualized": 1.6038,
+          "gross_price_pnl_usdt": 32.655031,
+          "funding_pnl_usdt": 5.182987,
+          "fees_usdt": 4.630754,
+          "turnover_usdt": 5788.4422,
+          "one_way_fee_bp": 8,
+          "rebalance_count": 43,
+          "leg_changes": 172,
+          "lookback_days": 7,
+          "rebalance_days": 7,
+          "tail_fraction": 0.2,
+          "weighting": "equal",
+          "selection": "lowest 20% trailing realized funding long; highest 20% short",
+          "gross_exposure": "100% of equity total: 50% long + 50% short; 1x gross, dollar neutral",
+          "rebalance_log": [
+            {
+              "time": "2026-01-01T16:00:00.001000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00193853,
+              "turnover_usdt": 100.0,
+              "fee_usdt": 0.08
+            },
+            {
+              "time": "2026-01-09T00:00:00.003000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ADAUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00183388,
+              "turnover_usdt": 159.0621,
+              "fee_usdt": 0.12725
+            },
+            {
+              "time": "2026-01-16T08:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "ETHUSDT"
+              ],
+              "funding_spread_7d": 0.00344878,
+              "turnover_usdt": 104.1844,
+              "fee_usdt": 0.083347
+            },
+            {
+              "time": "2026-01-23T08:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00285648,
+              "turnover_usdt": 102.927,
+              "fee_usdt": 0.082342
+            },
+            {
+              "time": "2026-01-30T08:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00443028,
+              "turnover_usdt": 55.9517,
+              "fee_usdt": 0.044761
+            },
+            {
+              "time": "2026-02-06T08:00:00.001000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.01049503,
+              "turnover_usdt": 103.1914,
+              "fee_usdt": 0.082553
+            },
+            {
+              "time": "2026-02-13T08:00:00.003000+00:00",
+              "longs": [
+                "SOLUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00431866,
+              "turnover_usdt": 113.3668,
+              "fee_usdt": 0.090693
+            },
+            {
+              "time": "2026-02-20T16:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00237555,
+              "turnover_usdt": 114.7955,
+              "fee_usdt": 0.091836
+            },
+            {
+              "time": "2026-02-27T16:00:00.001000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.0028463,
+              "turnover_usdt": 112.9844,
+              "fee_usdt": 0.090388
+            },
+            {
+              "time": "2026-03-06T16:00:00.004000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "AVAXUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00254766,
+              "turnover_usdt": 174.7918,
+              "fee_usdt": 0.139833
+            },
+            {
+              "time": "2026-03-14T00:00:00.001000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "AVAXUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00502323,
+              "turnover_usdt": 63.1599,
+              "fee_usdt": 0.050528
+            },
+            {
+              "time": "2026-03-21T08:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "ADAUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00482177,
+              "turnover_usdt": 173.4722,
+              "fee_usdt": 0.138778
+            },
+            {
+              "time": "2026-03-28T08:00:00.005000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00513954,
+              "turnover_usdt": 114.5675,
+              "fee_usdt": 0.091654
+            },
+            {
+              "time": "2026-04-04T16:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00569639,
+              "turnover_usdt": 56.6341,
+              "fee_usdt": 0.045307
+            },
+            {
+              "time": "2026-04-11T16:00:00.003000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00246505,
+              "turnover_usdt": 113.0461,
+              "fee_usdt": 0.090437
+            },
+            {
+              "time": "2026-04-19T00:00:00.002000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "BTCUSDT"
+              ],
+              "shorts": [
+                "AVAXUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.01642406,
+              "turnover_usdt": 111.355,
+              "fee_usdt": 0.089084
+            },
+            {
+              "time": "2026-04-26T00:00:00.003000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "DOGEUSDT"
+              ],
+              "funding_spread_7d": 0.00282431,
+              "turnover_usdt": 111.5133,
+              "fee_usdt": 0.089211
+            },
+            {
+              "time": "2026-05-03T00:00:00.005000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "DOGEUSDT"
+              ],
+              "funding_spread_7d": 0.0024709,
+              "turnover_usdt": 58.5259,
+              "fee_usdt": 0.046821
+            },
+            {
+              "time": "2026-05-10T08:00:00+00:00",
+              "longs": [
+                "BTCUSDT",
+                "ETHUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00201483,
+              "turnover_usdt": 223.263,
+              "fee_usdt": 0.17861
+            },
+            {
+              "time": "2026-05-17T08:00:00.010000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "TRXUSDT"
+              ],
+              "funding_spread_7d": 0.00254837,
+              "turnover_usdt": 161.9069,
+              "fee_usdt": 0.129526
+            },
+            {
+              "time": "2026-05-24T16:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "TRXUSDT"
+              ],
+              "funding_spread_7d": 0.00715463,
+              "turnover_usdt": 57.2813,
+              "fee_usdt": 0.045825
+            },
+            {
+              "time": "2026-05-31T16:00:00.004000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00758567,
+              "turnover_usdt": 106.0234,
+              "fee_usdt": 0.084819
+            },
+            {
+              "time": "2026-06-08T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.01306406,
+              "turnover_usdt": 59.1626,
+              "fee_usdt": 0.04733
+            },
+            {
+              "time": "2026-06-15T00:00:00.013000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00836318,
+              "turnover_usdt": 102.8089,
+              "fee_usdt": 0.082247
+            },
+            {
+              "time": "2026-06-22T08:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.0038762,
+              "turnover_usdt": 102.8023,
+              "fee_usdt": 0.082242
+            },
+            {
+              "time": "2026-06-29T08:00:00.013000+00:00",
+              "longs": [
+                "ADAUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00241484,
+              "turnover_usdt": 157.6529,
+              "fee_usdt": 0.126122
+            },
+            {
+              "time": "2026-07-06T16:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00524743,
+              "turnover_usdt": 178.6033,
+              "fee_usdt": 0.142883
+            },
+            {
+              "time": "2026-07-13T16:00:00.004000+00:00",
+              "longs": [
+                "ADAUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "BNBUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00209835,
+              "turnover_usdt": 113.3075,
+              "fee_usdt": 0.090646
+            },
+            {
+              "time": "2026-07-20T16:00:00.004000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BNBUSDT"
+              ],
+              "funding_spread_7d": 0.00566135,
+              "turnover_usdt": 120.698,
+              "fee_usdt": 0.096558
+            },
+            {
+              "time": "2026-07-28T00:00:00+00:00",
+              "longs": [
+                "ADAUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BNBUSDT"
+              ],
+              "funding_spread_7d": 0.00213764,
+              "turnover_usdt": 60.0267,
+              "fee_usdt": 0.048021
+            },
+            {
+              "time": "2026-08-04T00:00:00.004000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "LTCUSDT"
+              ],
+              "shorts": [
+                "BNBUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00251007,
+              "turnover_usdt": 186.8851,
+              "fee_usdt": 0.149508
+            },
+            {
+              "time": "2026-08-11T08:00:00.006000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00230534,
+              "turnover_usdt": 126.423,
+              "fee_usdt": 0.101138
+            },
+            {
+              "time": "2026-08-18T16:00:00.003000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00392491,
+              "turnover_usdt": 186.9646,
+              "fee_usdt": 0.149572
+            },
+            {
+              "time": "2026-08-25T16:00:00.005000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "ADAUSDT"
+              ],
+              "shorts": [
+                "BNBUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00076286,
+              "turnover_usdt": 279.8721,
+              "fee_usdt": 0.223898
+            },
+            {
+              "time": "2026-09-02T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00671458,
+              "turnover_usdt": 125.8869,
+              "fee_usdt": 0.10071
+            },
+            {
+              "time": "2026-09-09T00:00:00.005000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOTUSDT",
+                "DOGEUSDT"
+              ],
+              "funding_spread_7d": 0.00601016,
+              "turnover_usdt": 130.0345,
+              "fee_usdt": 0.104028
+            },
+            {
+              "time": "2026-09-16T08:00:00.002000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.0049524,
+              "turnover_usdt": 129.4039,
+              "fee_usdt": 0.103523
+            },
+            {
+              "time": "2026-09-23T08:00:00.004000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00211829,
+              "turnover_usdt": 172.0639,
+              "fee_usdt": 0.137651
+            },
+            {
+              "time": "2026-09-30T16:00:00.002000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "ADAUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00669548,
+              "turnover_usdt": 210.783,
+              "fee_usdt": 0.168626
+            },
+            {
+              "time": "2026-10-08T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00787516,
+              "turnover_usdt": 133.5014,
+              "fee_usdt": 0.106801
+            },
+            {
+              "time": "2026-10-15T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "SOLUSDT",
+                "DOTUSDT"
+              ],
+              "funding_spread_7d": 0.00539571,
+              "turnover_usdt": 190.2619,
+              "fee_usdt": 0.152209
+            },
+            {
+              "time": "2026-10-22T00:00:00.007000+00:00",
+              "longs": [
+                "ADAUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00098166,
+              "turnover_usdt": 270.141,
+              "fee_usdt": 0.216113
+            },
+            {
+              "time": "2026-10-29T08:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "SOLUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.0031737,
+              "turnover_usdt": 259.1551,
+              "fee_usdt": 0.207324
+            }
+          ]
+        }
+      }
+    },
+    "inverse_vol_30d": {
+      "validation": {
+        "fee_2bp": {
+          "start_equity_usdt": 100.0,
+          "end_equity_usdt": 124.825719,
+          "net_return_pct": 24.8257,
+          "cagr_pct": 47.9796,
+          "max_drawdown_pct": -13.8787,
+          "event_sharpe_annualized": 1.7611,
+          "gross_price_pnl_usdt": 22.84072,
+          "funding_pnl_usdt": 2.71813,
+          "fees_usdt": 0.733131,
+          "turnover_usdt": 3665.6543,
+          "one_way_fee_bp": 2,
+          "rebalance_count": 29,
+          "leg_changes": 116,
+          "lookback_days": 7,
+          "rebalance_days": 7,
+          "tail_fraction": 0.2,
+          "weighting": "inverse_vol_30d",
+          "selection": "lowest 20% trailing realized funding long; highest 20% short",
+          "gross_exposure": "100% of equity total: 50% long + 50% short; 1x gross, dollar neutral",
+          "rebalance_log": [
+            {
+              "time": "2025-06-08T16:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.00205108,
+              "turnover_usdt": 100.0,
+              "fee_usdt": 0.02
+            },
+            {
+              "time": "2025-06-15T16:00:00+00:00",
+              "longs": [
+                "BNBUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "ETHUSDT"
+              ],
+              "funding_spread_7d": 0.00186429,
+              "turnover_usdt": 56.1866,
+              "fee_usdt": 0.011237
+            },
+            {
+              "time": "2025-06-22T16:00:00.003000+00:00",
+              "longs": [
+                "BNBUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "XRPUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00198705,
+              "turnover_usdt": 136.8927,
+              "fee_usdt": 0.027379
+            },
+            {
+              "time": "2025-06-30T00:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.00350634,
+              "turnover_usdt": 94.3949,
+              "fee_usdt": 0.018879
+            },
+            {
+              "time": "2025-07-07T00:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.0034547,
+              "turnover_usdt": 128.2446,
+              "fee_usdt": 0.025649
+            },
+            {
+              "time": "2025-07-14T00:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "DOTUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00352186,
+              "turnover_usdt": 184.415,
+              "fee_usdt": 0.036883
+            },
+            {
+              "time": "2025-07-21T00:00:00.001000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.00262709,
+              "turnover_usdt": 111.1185,
+              "fee_usdt": 0.022224
+            },
+            {
+              "time": "2025-07-28T00:00:00.005000+00:00",
+              "longs": [
+                "BNBUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.00082717,
+              "turnover_usdt": 79.494,
+              "fee_usdt": 0.015899
+            },
+            {
+              "time": "2025-08-04T08:00:00+00:00",
+              "longs": [
+                "SOLUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00170346,
+              "turnover_usdt": 137.8076,
+              "fee_usdt": 0.027562
+            },
+            {
+              "time": "2025-08-11T08:00:00+00:00",
+              "longs": [
+                "BNBUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.0015496,
+              "turnover_usdt": 106.8672,
+              "fee_usdt": 0.021373
+            },
+            {
+              "time": "2025-08-18T08:00:00.001000+00:00",
+              "longs": [
+                "BNBUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00128524,
+              "turnover_usdt": 102.4227,
+              "fee_usdt": 0.020485
+            },
+            {
+              "time": "2025-08-25T08:00:00.002000+00:00",
+              "longs": [
+                "BNBUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00078147,
+              "turnover_usdt": 91.2197,
+              "fee_usdt": 0.018244
+            },
+            {
+              "time": "2025-09-01T16:00:00.001000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "ETHUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00154196,
+              "turnover_usdt": 151.0013,
+              "fee_usdt": 0.0302
+            },
+            {
+              "time": "2025-09-09T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "ADAUSDT",
+                "AVAXUSDT"
+              ],
+              "funding_spread_7d": 0.00659173,
+              "turnover_usdt": 155.2953,
+              "fee_usdt": 0.031059
+            },
+            {
+              "time": "2025-09-16T00:00:00.001000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "DOTUSDT"
+              ],
+              "funding_spread_7d": 0.00139238,
+              "turnover_usdt": 146.1522,
+              "fee_usdt": 0.02923
+            },
+            {
+              "time": "2025-09-23T08:00:00.001000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "ETHUSDT"
+              ],
+              "shorts": [
+                "ADAUSDT",
+                "AVAXUSDT"
+              ],
+              "funding_spread_7d": 0.0027157,
+              "turnover_usdt": 132.0574,
+              "fee_usdt": 0.026411
+            },
+            {
+              "time": "2025-09-30T08:00:00.005000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOTUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00202512,
+              "turnover_usdt": 86.5382,
+              "fee_usdt": 0.017308
+            },
+            {
+              "time": "2025-10-07T16:00:00+00:00",
+              "longs": [
+                "SOLUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "DOTUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00161894,
+              "turnover_usdt": 122.4164,
+              "fee_usdt": 0.024483
+            },
+            {
+              "time": "2025-10-14T16:00:00+00:00",
+              "longs": [
+                "SOLUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.01173906,
+              "turnover_usdt": 92.9267,
+              "fee_usdt": 0.018585
+            },
+            {
+              "time": "2025-10-21T16:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00478228,
+              "turnover_usdt": 165.5523,
+              "fee_usdt": 0.03311
+            },
+            {
+              "time": "2025-10-28T16:00:00.004000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "XRPUSDT",
+                "DOGEUSDT"
+              ],
+              "funding_spread_7d": 0.00562421,
+              "turnover_usdt": 181.764,
+              "fee_usdt": 0.036353
+            },
+            {
+              "time": "2025-11-05T00:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00424236,
+              "turnover_usdt": 204.4842,
+              "fee_usdt": 0.040897
+            },
+            {
+              "time": "2025-11-12T00:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00391229,
+              "turnover_usdt": 142.5394,
+              "fee_usdt": 0.028508
+            },
+            {
+              "time": "2025-11-19T00:00:00+00:00",
+              "longs": [
+                "AVAXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00419813,
+              "turnover_usdt": 119.8331,
+              "fee_usdt": 0.023967
+            },
+            {
+              "time": "2025-11-26T00:00:00.001000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00321652,
+              "turnover_usdt": 142.8404,
+              "fee_usdt": 0.028568
+            },
+            {
+              "time": "2025-12-03T08:00:00+00:00",
+              "longs": [
+                "AVAXUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00453174,
+              "turnover_usdt": 127.837,
+              "fee_usdt": 0.025567
+            },
+            {
+              "time": "2025-12-10T08:00:00.002000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "ETHUSDT"
+              ],
+              "funding_spread_7d": 0.00488608,
+              "turnover_usdt": 191.5373,
+              "fee_usdt": 0.038307
+            },
+            {
+              "time": "2025-12-17T16:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00411476,
+              "turnover_usdt": 123.4738,
+              "fee_usdt": 0.024695
+            },
+            {
+              "time": "2025-12-24T16:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00346453,
+              "turnover_usdt": 50.3417,
+              "fee_usdt": 0.010068
+            }
+          ]
+        },
+        "fee_5bp": {
+          "start_equity_usdt": 100.0,
+          "end_equity_usdt": 123.555443,
+          "net_return_pct": 23.5554,
+          "cagr_pct": 45.3286,
+          "max_drawdown_pct": -14.2413,
+          "event_sharpe_annualized": 1.6849,
+          "gross_price_pnl_usdt": 22.676789,
+          "funding_pnl_usdt": 2.702479,
+          "fees_usdt": 1.823824,
+          "turnover_usdt": 3647.6489,
+          "one_way_fee_bp": 5,
+          "rebalance_count": 29,
+          "leg_changes": 116,
+          "lookback_days": 7,
+          "rebalance_days": 7,
+          "tail_fraction": 0.2,
+          "weighting": "inverse_vol_30d",
+          "selection": "lowest 20% trailing realized funding long; highest 20% short",
+          "gross_exposure": "100% of equity total: 50% long + 50% short; 1x gross, dollar neutral",
+          "rebalance_log": [
+            {
+              "time": "2025-06-08T16:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.00205108,
+              "turnover_usdt": 100.0,
+              "fee_usdt": 0.05
+            },
+            {
+              "time": "2025-06-15T16:00:00+00:00",
+              "longs": [
+                "BNBUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "ETHUSDT"
+              ],
+              "funding_spread_7d": 0.00186429,
+              "turnover_usdt": 56.1664,
+              "fee_usdt": 0.028083
+            },
+            {
+              "time": "2025-06-22T16:00:00.003000+00:00",
+              "longs": [
+                "BNBUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "XRPUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00198705,
+              "turnover_usdt": 136.8362,
+              "fee_usdt": 0.068418
+            },
+            {
+              "time": "2025-06-30T00:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.00350634,
+              "turnover_usdt": 94.3618,
+              "fee_usdt": 0.047181
+            },
+            {
+              "time": "2025-07-07T00:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.0034547,
+              "turnover_usdt": 128.1228,
+              "fee_usdt": 0.064061
+            },
+            {
+              "time": "2025-07-14T00:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "DOTUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00352186,
+              "turnover_usdt": 184.1861,
+              "fee_usdt": 0.092093
+            },
+            {
+              "time": "2025-07-21T00:00:00.001000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.00262709,
+              "turnover_usdt": 110.9534,
+              "fee_usdt": 0.055477
+            },
+            {
+              "time": "2025-07-28T00:00:00.005000+00:00",
+              "longs": [
+                "BNBUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.00082717,
+              "turnover_usdt": 79.3183,
+              "fee_usdt": 0.039659
+            },
+            {
+              "time": "2025-08-04T08:00:00+00:00",
+              "longs": [
+                "SOLUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00170346,
+              "turnover_usdt": 137.4559,
+              "fee_usdt": 0.068728
+            },
+            {
+              "time": "2025-08-11T08:00:00+00:00",
+              "longs": [
+                "BNBUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.0015496,
+              "turnover_usdt": 106.5876,
+              "fee_usdt": 0.053294
+            },
+            {
+              "time": "2025-08-18T08:00:00.001000+00:00",
+              "longs": [
+                "BNBUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00128524,
+              "turnover_usdt": 102.0948,
+              "fee_usdt": 0.051047
+            },
+            {
+              "time": "2025-08-25T08:00:00.002000+00:00",
+              "longs": [
+                "BNBUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00078147,
+              "turnover_usdt": 90.92,
+              "fee_usdt": 0.04546
+            },
+            {
+              "time": "2025-09-01T16:00:00.001000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "ETHUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00154196,
+              "turnover_usdt": 150.4268,
+              "fee_usdt": 0.075213
+            },
+            {
+              "time": "2025-09-09T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "ADAUSDT",
+                "AVAXUSDT"
+              ],
+              "funding_spread_7d": 0.00659173,
+              "turnover_usdt": 154.6706,
+              "fee_usdt": 0.077335
+            },
+            {
+              "time": "2025-09-16T00:00:00.001000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "DOTUSDT"
+              ],
+              "funding_spread_7d": 0.00139238,
+              "turnover_usdt": 145.4704,
+              "fee_usdt": 0.072735
+            },
+            {
+              "time": "2025-09-23T08:00:00.001000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "ETHUSDT"
+              ],
+              "shorts": [
+                "ADAUSDT",
+                "AVAXUSDT"
+              ],
+              "funding_spread_7d": 0.0027157,
+              "turnover_usdt": 131.4012,
+              "fee_usdt": 0.065701
+            },
+            {
+              "time": "2025-09-30T08:00:00.005000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOTUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00202512,
+              "turnover_usdt": 86.0615,
+              "fee_usdt": 0.043031
+            },
+            {
+              "time": "2025-10-07T16:00:00+00:00",
+              "longs": [
+                "SOLUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "DOTUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00161894,
+              "turnover_usdt": 121.7081,
+              "fee_usdt": 0.060854
+            },
+            {
+              "time": "2025-10-14T16:00:00+00:00",
+              "longs": [
+                "SOLUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.01173906,
+              "turnover_usdt": 92.3534,
+              "fee_usdt": 0.046177
+            },
+            {
+              "time": "2025-10-21T16:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00478228,
+              "turnover_usdt": 164.4948,
+              "fee_usdt": 0.082247
+            },
+            {
+              "time": "2025-10-28T16:00:00.004000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "XRPUSDT",
+                "DOGEUSDT"
+              ],
+              "funding_spread_7d": 0.00562421,
+              "turnover_usdt": 180.5382,
+              "fee_usdt": 0.090269
+            },
+            {
+              "time": "2025-11-05T00:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00424236,
+              "turnover_usdt": 202.9954,
+              "fee_usdt": 0.101498
+            },
+            {
+              "time": "2025-11-12T00:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00391229,
+              "turnover_usdt": 141.4365,
+              "fee_usdt": 0.070718
+            },
+            {
+              "time": "2025-11-19T00:00:00+00:00",
+              "longs": [
+                "AVAXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00419813,
+              "turnover_usdt": 118.8697,
+              "fee_usdt": 0.059435
+            },
+            {
+              "time": "2025-11-26T00:00:00.001000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00321652,
+              "turnover_usdt": 141.6102,
+              "fee_usdt": 0.070805
+            },
+            {
+              "time": "2025-12-03T08:00:00+00:00",
+              "longs": [
+                "AVAXUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00453174,
+              "turnover_usdt": 126.7085,
+              "fee_usdt": 0.063354
+            },
+            {
+              "time": "2025-12-10T08:00:00.002000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "ETHUSDT"
+              ],
+              "funding_spread_7d": 0.00488608,
+              "turnover_usdt": 189.7768,
+              "fee_usdt": 0.094888
+            },
+            {
+              "time": "2025-12-17T16:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00411476,
+              "turnover_usdt": 122.2684,
+              "fee_usdt": 0.061134
+            },
+            {
+              "time": "2025-12-24T16:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00346453,
+              "turnover_usdt": 49.8553,
+              "fee_usdt": 0.024928
+            }
+          ]
+        },
+        "fee_8bp": {
+          "start_equity_usdt": 100.0,
+          "end_equity_usdt": 122.297116,
+          "net_return_pct": 22.2971,
+          "cagr_pct": 42.723,
+          "max_drawdown_pct": -14.6027,
+          "event_sharpe_annualized": 1.6085,
+          "gross_price_pnl_usdt": 22.513988,
+          "funding_pnl_usdt": 2.68693,
+          "fees_usdt": 2.903801,
+          "turnover_usdt": 3629.7511,
+          "one_way_fee_bp": 8,
+          "rebalance_count": 29,
+          "leg_changes": 116,
+          "lookback_days": 7,
+          "rebalance_days": 7,
+          "tail_fraction": 0.2,
+          "weighting": "inverse_vol_30d",
+          "selection": "lowest 20% trailing realized funding long; highest 20% short",
+          "gross_exposure": "100% of equity total: 50% long + 50% short; 1x gross, dollar neutral",
+          "rebalance_log": [
+            {
+              "time": "2025-06-08T16:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.00205108,
+              "turnover_usdt": 100.0,
+              "fee_usdt": 0.08
+            },
+            {
+              "time": "2025-06-15T16:00:00+00:00",
+              "longs": [
+                "BNBUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "ETHUSDT"
+              ],
+              "funding_spread_7d": 0.00186429,
+              "turnover_usdt": 56.1463,
+              "fee_usdt": 0.044917
+            },
+            {
+              "time": "2025-06-22T16:00:00.003000+00:00",
+              "longs": [
+                "BNBUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "XRPUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00198705,
+              "turnover_usdt": 136.7796,
+              "fee_usdt": 0.109424
+            },
+            {
+              "time": "2025-06-30T00:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.00350634,
+              "turnover_usdt": 94.3287,
+              "fee_usdt": 0.075463
+            },
+            {
+              "time": "2025-07-07T00:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.0034547,
+              "turnover_usdt": 128.001,
+              "fee_usdt": 0.102401
+            },
+            {
+              "time": "2025-07-14T00:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "DOTUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00352186,
+              "turnover_usdt": 183.9573,
+              "fee_usdt": 0.147166
+            },
+            {
+              "time": "2025-07-21T00:00:00.001000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.00262709,
+              "turnover_usdt": 110.7885,
+              "fee_usdt": 0.088631
+            },
+            {
+              "time": "2025-07-28T00:00:00.005000+00:00",
+              "longs": [
+                "BNBUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.00082717,
+              "turnover_usdt": 79.143,
+              "fee_usdt": 0.063314
+            },
+            {
+              "time": "2025-08-04T08:00:00+00:00",
+              "longs": [
+                "SOLUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00170346,
+              "turnover_usdt": 137.1049,
+              "fee_usdt": 0.109684
+            },
+            {
+              "time": "2025-08-11T08:00:00+00:00",
+              "longs": [
+                "BNBUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.0015496,
+              "turnover_usdt": 106.3086,
+              "fee_usdt": 0.085047
+            },
+            {
+              "time": "2025-08-18T08:00:00.001000+00:00",
+              "longs": [
+                "BNBUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00128524,
+              "turnover_usdt": 101.7677,
+              "fee_usdt": 0.081414
+            },
+            {
+              "time": "2025-08-25T08:00:00.002000+00:00",
+              "longs": [
+                "BNBUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00078147,
+              "turnover_usdt": 90.6212,
+              "fee_usdt": 0.072497
+            },
+            {
+              "time": "2025-09-01T16:00:00.001000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "ETHUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00154196,
+              "turnover_usdt": 149.8541,
+              "fee_usdt": 0.119883
+            },
+            {
+              "time": "2025-09-09T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "ADAUSDT",
+                "AVAXUSDT"
+              ],
+              "funding_spread_7d": 0.00659173,
+              "turnover_usdt": 154.0478,
+              "fee_usdt": 0.123238
+            },
+            {
+              "time": "2025-09-16T00:00:00.001000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "DOTUSDT"
+              ],
+              "funding_spread_7d": 0.00139238,
+              "turnover_usdt": 144.7913,
+              "fee_usdt": 0.115833
+            },
+            {
+              "time": "2025-09-23T08:00:00.001000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "ETHUSDT"
+              ],
+              "shorts": [
+                "ADAUSDT",
+                "AVAXUSDT"
+              ],
+              "funding_spread_7d": 0.0027157,
+              "turnover_usdt": 130.7478,
+              "fee_usdt": 0.104598
+            },
+            {
+              "time": "2025-09-30T08:00:00.005000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOTUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00202512,
+              "turnover_usdt": 85.587,
+              "fee_usdt": 0.06847
+            },
+            {
+              "time": "2025-10-07T16:00:00+00:00",
+              "longs": [
+                "SOLUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "DOTUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00161894,
+              "turnover_usdt": 121.0032,
+              "fee_usdt": 0.096803
+            },
+            {
+              "time": "2025-10-14T16:00:00+00:00",
+              "longs": [
+                "SOLUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.01173906,
+              "turnover_usdt": 91.7831,
+              "fee_usdt": 0.073426
+            },
+            {
+              "time": "2025-10-21T16:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00478228,
+              "turnover_usdt": 163.4432,
+              "fee_usdt": 0.130755
+            },
+            {
+              "time": "2025-10-28T16:00:00.004000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "XRPUSDT",
+                "DOGEUSDT"
+              ],
+              "funding_spread_7d": 0.00562421,
+              "turnover_usdt": 179.3197,
+              "fee_usdt": 0.143456
+            },
+            {
+              "time": "2025-11-05T00:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00424236,
+              "turnover_usdt": 201.5162,
+              "fee_usdt": 0.161213
+            },
+            {
+              "time": "2025-11-12T00:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00391229,
+              "turnover_usdt": 140.3413,
+              "fee_usdt": 0.112273
+            },
+            {
+              "time": "2025-11-19T00:00:00+00:00",
+              "longs": [
+                "AVAXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00419813,
+              "turnover_usdt": 117.9132,
+              "fee_usdt": 0.094331
+            },
+            {
+              "time": "2025-11-26T00:00:00.001000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00321652,
+              "turnover_usdt": 140.3896,
+              "fee_usdt": 0.112312
+            },
+            {
+              "time": "2025-12-03T08:00:00+00:00",
+              "longs": [
+                "AVAXUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00453174,
+              "turnover_usdt": 125.5891,
+              "fee_usdt": 0.100471
+            },
+            {
+              "time": "2025-12-10T08:00:00.002000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "ETHUSDT"
+              ],
+              "funding_spread_7d": 0.00488608,
+              "turnover_usdt": 188.0311,
+              "fee_usdt": 0.150425
+            },
+            {
+              "time": "2025-12-17T16:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00411476,
+              "turnover_usdt": 121.0738,
+              "fee_usdt": 0.096859
+            },
+            {
+              "time": "2025-12-24T16:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00346453,
+              "turnover_usdt": 49.3731,
+              "fee_usdt": 0.039498
+            }
+          ]
+        }
+      },
+      "oos": {
+        "fee_2bp": {
+          "start_equity_usdt": 100.0,
+          "end_equity_usdt": 128.832997,
+          "net_return_pct": 28.833,
+          "cagr_pct": 34.7835,
+          "max_drawdown_pct": -15.2134,
+          "event_sharpe_annualized": 1.3922,
+          "gross_price_pnl_usdt": 24.056543,
+          "funding_pnl_usdt": 5.945027,
+          "fees_usdt": 1.168573,
+          "turnover_usdt": 5842.8661,
+          "one_way_fee_bp": 2,
+          "rebalance_count": 43,
+          "leg_changes": 172,
+          "lookback_days": 7,
+          "rebalance_days": 7,
+          "tail_fraction": 0.2,
+          "weighting": "inverse_vol_30d",
+          "selection": "lowest 20% trailing realized funding long; highest 20% short",
+          "gross_exposure": "100% of equity total: 50% long + 50% short; 1x gross, dollar neutral",
+          "rebalance_log": [
+            {
+              "time": "2026-01-01T16:00:00.001000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00193853,
+              "turnover_usdt": 100.0,
+              "fee_usdt": 0.02
+            },
+            {
+              "time": "2026-01-09T00:00:00.003000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ADAUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00183388,
+              "turnover_usdt": 165.2873,
+              "fee_usdt": 0.033057
+            },
+            {
+              "time": "2026-01-16T08:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "ETHUSDT"
+              ],
+              "funding_spread_7d": 0.00344878,
+              "turnover_usdt": 109.2282,
+              "fee_usdt": 0.021846
+            },
+            {
+              "time": "2026-01-23T08:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00285648,
+              "turnover_usdt": 105.9006,
+              "fee_usdt": 0.02118
+            },
+            {
+              "time": "2026-01-30T08:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00443028,
+              "turnover_usdt": 72.7191,
+              "fee_usdt": 0.014544
+            },
+            {
+              "time": "2026-02-06T08:00:00.001000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.01049503,
+              "turnover_usdt": 79.9383,
+              "fee_usdt": 0.015988
+            },
+            {
+              "time": "2026-02-13T08:00:00.003000+00:00",
+              "longs": [
+                "SOLUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00431866,
+              "turnover_usdt": 140.8589,
+              "fee_usdt": 0.028172
+            },
+            {
+              "time": "2026-02-20T16:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00237555,
+              "turnover_usdt": 121.1939,
+              "fee_usdt": 0.024239
+            },
+            {
+              "time": "2026-02-27T16:00:00.001000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.0028463,
+              "turnover_usdt": 123.2435,
+              "fee_usdt": 0.024649
+            },
+            {
+              "time": "2026-03-06T16:00:00.004000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "AVAXUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00254766,
+              "turnover_usdt": 187.2049,
+              "fee_usdt": 0.037441
+            },
+            {
+              "time": "2026-03-14T00:00:00.001000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "AVAXUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00502323,
+              "turnover_usdt": 29.7247,
+              "fee_usdt": 0.005945
+            },
+            {
+              "time": "2026-03-21T08:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "ADAUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00482177,
+              "turnover_usdt": 216.592,
+              "fee_usdt": 0.043318
+            },
+            {
+              "time": "2026-03-28T08:00:00.005000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00513954,
+              "turnover_usdt": 150.3544,
+              "fee_usdt": 0.030071
+            },
+            {
+              "time": "2026-04-04T16:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00569639,
+              "turnover_usdt": 68.0795,
+              "fee_usdt": 0.013616
+            },
+            {
+              "time": "2026-04-11T16:00:00.003000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00246505,
+              "turnover_usdt": 138.2267,
+              "fee_usdt": 0.027645
+            },
+            {
+              "time": "2026-04-19T00:00:00.002000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "BTCUSDT"
+              ],
+              "shorts": [
+                "AVAXUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.01642406,
+              "turnover_usdt": 136.3958,
+              "fee_usdt": 0.027279
+            },
+            {
+              "time": "2026-04-26T00:00:00.003000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "DOGEUSDT"
+              ],
+              "funding_spread_7d": 0.00282431,
+              "turnover_usdt": 147.9895,
+              "fee_usdt": 0.029598
+            },
+            {
+              "time": "2026-05-03T00:00:00.005000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "DOGEUSDT"
+              ],
+              "funding_spread_7d": 0.0024709,
+              "turnover_usdt": 72.1998,
+              "fee_usdt": 0.01444
+            },
+            {
+              "time": "2026-05-10T08:00:00+00:00",
+              "longs": [
+                "BTCUSDT",
+                "ETHUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00201483,
+              "turnover_usdt": 229.5003,
+              "fee_usdt": 0.0459
+            },
+            {
+              "time": "2026-05-17T08:00:00.010000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "TRXUSDT"
+              ],
+              "funding_spread_7d": 0.00254837,
+              "turnover_usdt": 141.671,
+              "fee_usdt": 0.028334
+            },
+            {
+              "time": "2026-05-24T16:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "TRXUSDT"
+              ],
+              "funding_spread_7d": 0.00715463,
+              "turnover_usdt": 38.9827,
+              "fee_usdt": 0.007797
+            },
+            {
+              "time": "2026-05-31T16:00:00.004000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00758567,
+              "turnover_usdt": 143.698,
+              "fee_usdt": 0.02874
+            },
+            {
+              "time": "2026-06-08T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.01306406,
+              "turnover_usdt": 53.4495,
+              "fee_usdt": 0.01069
+            },
+            {
+              "time": "2026-06-15T00:00:00.013000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00836318,
+              "turnover_usdt": 96.3446,
+              "fee_usdt": 0.019269
+            },
+            {
+              "time": "2026-06-22T08:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.0038762,
+              "turnover_usdt": 88.0895,
+              "fee_usdt": 0.017618
+            },
+            {
+              "time": "2026-06-29T08:00:00.013000+00:00",
+              "longs": [
+                "ADAUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00241484,
+              "turnover_usdt": 164.808,
+              "fee_usdt": 0.032962
+            },
+            {
+              "time": "2026-07-06T16:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00524743,
+              "turnover_usdt": 175.1768,
+              "fee_usdt": 0.035035
+            },
+            {
+              "time": "2026-07-13T16:00:00.004000+00:00",
+              "longs": [
+                "ADAUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "BNBUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00209835,
+              "turnover_usdt": 80.0361,
+              "fee_usdt": 0.016007
+            },
+            {
+              "time": "2026-07-20T16:00:00.004000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BNBUSDT"
+              ],
+              "funding_spread_7d": 0.00566135,
+              "turnover_usdt": 86.9613,
+              "fee_usdt": 0.017392
+            },
+            {
+              "time": "2026-07-28T00:00:00+00:00",
+              "longs": [
+                "ADAUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BNBUSDT"
+              ],
+              "funding_spread_7d": 0.00213764,
+              "turnover_usdt": 95.4763,
+              "fee_usdt": 0.019095
+            },
+            {
+              "time": "2026-08-04T00:00:00.004000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "LTCUSDT"
+              ],
+              "shorts": [
+                "BNBUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00251007,
+              "turnover_usdt": 173.5085,
+              "fee_usdt": 0.034702
+            },
+            {
+              "time": "2026-08-11T08:00:00.006000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00230534,
+              "turnover_usdt": 125.9073,
+              "fee_usdt": 0.025181
+            },
+            {
+              "time": "2026-08-18T16:00:00.003000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00392491,
+              "turnover_usdt": 219.4737,
+              "fee_usdt": 0.043895
+            },
+            {
+              "time": "2026-08-25T16:00:00.005000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "ADAUSDT"
+              ],
+              "shorts": [
+                "BNBUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00076286,
+              "turnover_usdt": 281.5442,
+              "fee_usdt": 0.056309
+            },
+            {
+              "time": "2026-09-02T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00671458,
+              "turnover_usdt": 117.4169,
+              "fee_usdt": 0.023483
+            },
+            {
+              "time": "2026-09-09T00:00:00.005000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOTUSDT",
+                "DOGEUSDT"
+              ],
+              "funding_spread_7d": 0.00601016,
+              "turnover_usdt": 131.0964,
+              "fee_usdt": 0.026219
+            },
+            {
+              "time": "2026-09-16T08:00:00.002000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.0049524,
+              "turnover_usdt": 107.7465,
+              "fee_usdt": 0.021549
+            },
+            {
+              "time": "2026-09-23T08:00:00.004000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00211829,
+              "turnover_usdt": 158.1583,
+              "fee_usdt": 0.031632
+            },
+            {
+              "time": "2026-09-30T16:00:00.002000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "ADAUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00669548,
+              "turnover_usdt": 180.9037,
+              "fee_usdt": 0.036181
+            },
+            {
+              "time": "2026-10-08T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00787516,
+              "turnover_usdt": 119.3331,
+              "fee_usdt": 0.023867
+            },
+            {
+              "time": "2026-10-15T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "SOLUSDT",
+                "DOTUSDT"
+              ],
+              "funding_spread_7d": 0.00539571,
+              "turnover_usdt": 156.4998,
+              "fee_usdt": 0.0313
+            },
+            {
+              "time": "2026-10-22T00:00:00.007000+00:00",
+              "longs": [
+                "ADAUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00098166,
+              "turnover_usdt": 259.6978,
+              "fee_usdt": 0.05194
+            },
+            {
+              "time": "2026-10-29T08:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "SOLUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.0031737,
+              "turnover_usdt": 252.2487,
+              "fee_usdt": 0.05045
+            }
+          ]
+        },
+        "fee_5bp": {
+          "start_equity_usdt": 100.0,
+          "end_equity_usdt": 126.9269,
+          "net_return_pct": 26.9269,
+          "cagr_pct": 32.4371,
+          "max_drawdown_pct": -15.6375,
+          "event_sharpe_annualized": 1.3162,
+          "gross_price_pnl_usdt": 23.92714,
+          "funding_pnl_usdt": 5.899718,
+          "fees_usdt": 2.899958,
+          "turnover_usdt": 5799.9153,
+          "one_way_fee_bp": 5,
+          "rebalance_count": 43,
+          "leg_changes": 172,
+          "lookback_days": 7,
+          "rebalance_days": 7,
+          "tail_fraction": 0.2,
+          "weighting": "inverse_vol_30d",
+          "selection": "lowest 20% trailing realized funding long; highest 20% short",
+          "gross_exposure": "100% of equity total: 50% long + 50% short; 1x gross, dollar neutral",
+          "rebalance_log": [
+            {
+              "time": "2026-01-01T16:00:00.001000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00193853,
+              "turnover_usdt": 100.0,
+              "fee_usdt": 0.05
+            },
+            {
+              "time": "2026-01-09T00:00:00.003000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ADAUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00183388,
+              "turnover_usdt": 165.2573,
+              "fee_usdt": 0.082629
+            },
+            {
+              "time": "2026-01-16T08:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "ETHUSDT"
+              ],
+              "funding_spread_7d": 0.00344878,
+              "turnover_usdt": 109.1937,
+              "fee_usdt": 0.054597
+            },
+            {
+              "time": "2026-01-23T08:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00285648,
+              "turnover_usdt": 105.7993,
+              "fee_usdt": 0.0529
+            },
+            {
+              "time": "2026-01-30T08:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00443028,
+              "turnover_usdt": 72.6175,
+              "fee_usdt": 0.036309
+            },
+            {
+              "time": "2026-02-06T08:00:00.001000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.01049503,
+              "turnover_usdt": 79.8051,
+              "fee_usdt": 0.039903
+            },
+            {
+              "time": "2026-02-13T08:00:00.003000+00:00",
+              "longs": [
+                "SOLUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00431866,
+              "turnover_usdt": 140.611,
+              "fee_usdt": 0.070305
+            },
+            {
+              "time": "2026-02-20T16:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00237555,
+              "turnover_usdt": 120.9735,
+              "fee_usdt": 0.060487
+            },
+            {
+              "time": "2026-02-27T16:00:00.001000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.0028463,
+              "turnover_usdt": 122.9544,
+              "fee_usdt": 0.061477
+            },
+            {
+              "time": "2026-03-06T16:00:00.004000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "AVAXUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00254766,
+              "turnover_usdt": 186.7017,
+              "fee_usdt": 0.093351
+            },
+            {
+              "time": "2026-03-14T00:00:00.001000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "AVAXUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00502323,
+              "turnover_usdt": 29.6413,
+              "fee_usdt": 0.014821
+            },
+            {
+              "time": "2026-03-21T08:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "ADAUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00482177,
+              "turnover_usdt": 215.8706,
+              "fee_usdt": 0.107935
+            },
+            {
+              "time": "2026-03-28T08:00:00.005000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00513954,
+              "turnover_usdt": 149.7837,
+              "fee_usdt": 0.074892
+            },
+            {
+              "time": "2026-04-04T16:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00569639,
+              "turnover_usdt": 67.7667,
+              "fee_usdt": 0.033883
+            },
+            {
+              "time": "2026-04-11T16:00:00.003000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00246505,
+              "turnover_usdt": 137.6232,
+              "fee_usdt": 0.068812
+            },
+            {
+              "time": "2026-04-19T00:00:00.002000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "BTCUSDT"
+              ],
+              "shorts": [
+                "AVAXUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.01642406,
+              "turnover_usdt": 135.7383,
+              "fee_usdt": 0.067869
+            },
+            {
+              "time": "2026-04-26T00:00:00.003000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "DOGEUSDT"
+              ],
+              "funding_spread_7d": 0.00282431,
+              "turnover_usdt": 147.2547,
+              "fee_usdt": 0.073627
+            },
+            {
+              "time": "2026-05-03T00:00:00.005000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "DOGEUSDT"
+              ],
+              "funding_spread_7d": 0.0024709,
+              "turnover_usdt": 71.8047,
+              "fee_usdt": 0.035902
+            },
+            {
+              "time": "2026-05-10T08:00:00+00:00",
+              "longs": [
+                "BTCUSDT",
+                "ETHUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00201483,
+              "turnover_usdt": 228.1845,
+              "fee_usdt": 0.114092
+            },
+            {
+              "time": "2026-05-17T08:00:00.010000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "TRXUSDT"
+              ],
+              "funding_spread_7d": 0.00254837,
+              "turnover_usdt": 140.7768,
+              "fee_usdt": 0.070388
+            },
+            {
+              "time": "2026-05-24T16:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "TRXUSDT"
+              ],
+              "funding_spread_7d": 0.00715463,
+              "turnover_usdt": 38.7385,
+              "fee_usdt": 0.019369
+            },
+            {
+              "time": "2026-05-31T16:00:00.004000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00758567,
+              "turnover_usdt": 142.7073,
+              "fee_usdt": 0.071354
+            },
+            {
+              "time": "2026-06-08T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.01306406,
+              "turnover_usdt": 53.0352,
+              "fee_usdt": 0.026518
+            },
+            {
+              "time": "2026-06-15T00:00:00.013000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00836318,
+              "turnover_usdt": 95.6316,
+              "fee_usdt": 0.047816
+            },
+            {
+              "time": "2026-06-22T08:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.0038762,
+              "turnover_usdt": 87.3997,
+              "fee_usdt": 0.0437
+            },
+            {
+              "time": "2026-06-29T08:00:00.013000+00:00",
+              "longs": [
+                "ADAUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00241484,
+              "turnover_usdt": 163.5123,
+              "fee_usdt": 0.081756
+            },
+            {
+              "time": "2026-07-06T16:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00524743,
+              "turnover_usdt": 173.7252,
+              "fee_usdt": 0.086863
+            },
+            {
+              "time": "2026-07-13T16:00:00.004000+00:00",
+              "longs": [
+                "ADAUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "BNBUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00209835,
+              "turnover_usdt": 79.3347,
+              "fee_usdt": 0.039667
+            },
+            {
+              "time": "2026-07-20T16:00:00.004000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BNBUSDT"
+              ],
+              "funding_spread_7d": 0.00566135,
+              "turnover_usdt": 86.1853,
+              "fee_usdt": 0.043093
+            },
+            {
+              "time": "2026-07-28T00:00:00+00:00",
+              "longs": [
+                "ADAUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BNBUSDT"
+              ],
+              "funding_spread_7d": 0.00213764,
+              "turnover_usdt": 94.5952,
+              "fee_usdt": 0.047298
+            },
+            {
+              "time": "2026-08-04T00:00:00.004000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "LTCUSDT"
+              ],
+              "shorts": [
+                "BNBUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00251007,
+              "turnover_usdt": 171.8706,
+              "fee_usdt": 0.085935
+            },
+            {
+              "time": "2026-08-11T08:00:00.006000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00230534,
+              "turnover_usdt": 124.6591,
+              "fee_usdt": 0.06233
+            },
+            {
+              "time": "2026-08-18T16:00:00.003000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00392491,
+              "turnover_usdt": 217.2594,
+              "fee_usdt": 0.10863
+            },
+            {
+              "time": "2026-08-25T16:00:00.005000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "ADAUSDT"
+              ],
+              "shorts": [
+                "BNBUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00076286,
+              "turnover_usdt": 278.6027,
+              "fee_usdt": 0.139301
+            },
+            {
+              "time": "2026-09-02T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00671458,
+              "turnover_usdt": 116.1369,
+              "fee_usdt": 0.058068
+            },
+            {
+              "time": "2026-09-09T00:00:00.005000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOTUSDT",
+                "DOGEUSDT"
+              ],
+              "funding_spread_7d": 0.00601016,
+              "turnover_usdt": 129.5941,
+              "fee_usdt": 0.064797
+            },
+            {
+              "time": "2026-09-16T08:00:00.002000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.0049524,
+              "turnover_usdt": 106.4648,
+              "fee_usdt": 0.053232
+            },
+            {
+              "time": "2026-09-23T08:00:00.004000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00211829,
+              "turnover_usdt": 156.2683,
+              "fee_usdt": 0.078134
+            },
+            {
+              "time": "2026-09-30T16:00:00.002000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "ADAUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00669548,
+              "turnover_usdt": 178.6826,
+              "fee_usdt": 0.089341
+            },
+            {
+              "time": "2026-10-08T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00787516,
+              "turnover_usdt": 117.7803,
+              "fee_usdt": 0.05889
+            },
+            {
+              "time": "2026-10-15T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "SOLUSDT",
+                "DOTUSDT"
+              ],
+              "funding_spread_7d": 0.00539571,
+              "turnover_usdt": 154.4314,
+              "fee_usdt": 0.077216
+            },
+            {
+              "time": "2026-10-22T00:00:00.007000+00:00",
+              "longs": [
+                "ADAUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00098166,
+              "turnover_usdt": 256.2071,
+              "fee_usdt": 0.128104
+            },
+            {
+              "time": "2026-10-29T08:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "SOLUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.0031737,
+              "turnover_usdt": 248.7353,
+              "fee_usdt": 0.124368
+            }
+          ]
+        },
+        "fee_8bp": {
+          "start_equity_usdt": 100.0,
+          "end_equity_usdt": 125.047734,
+          "net_return_pct": 25.0477,
+          "cagr_pct": 30.1299,
+          "max_drawdown_pct": -16.0604,
+          "event_sharpe_annualized": 1.2401,
+          "gross_price_pnl_usdt": 23.798797,
+          "funding_pnl_usdt": 5.854823,
+          "fees_usdt": 4.605887,
+          "turnover_usdt": 5757.3587,
+          "one_way_fee_bp": 8,
+          "rebalance_count": 43,
+          "leg_changes": 172,
+          "lookback_days": 7,
+          "rebalance_days": 7,
+          "tail_fraction": 0.2,
+          "weighting": "inverse_vol_30d",
+          "selection": "lowest 20% trailing realized funding long; highest 20% short",
+          "gross_exposure": "100% of equity total: 50% long + 50% short; 1x gross, dollar neutral",
+          "rebalance_log": [
+            {
+              "time": "2026-01-01T16:00:00.001000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00193853,
+              "turnover_usdt": 100.0,
+              "fee_usdt": 0.08
+            },
+            {
+              "time": "2026-01-09T00:00:00.003000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ADAUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00183388,
+              "turnover_usdt": 165.2273,
+              "fee_usdt": 0.132182
+            },
+            {
+              "time": "2026-01-16T08:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "ETHUSDT"
+              ],
+              "funding_spread_7d": 0.00344878,
+              "turnover_usdt": 109.1591,
+              "fee_usdt": 0.087327
+            },
+            {
+              "time": "2026-01-23T08:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00285648,
+              "turnover_usdt": 105.6981,
+              "fee_usdt": 0.084559
+            },
+            {
+              "time": "2026-01-30T08:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "AVAXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00443028,
+              "turnover_usdt": 72.5159,
+              "fee_usdt": 0.058013
+            },
+            {
+              "time": "2026-02-06T08:00:00.001000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.01049503,
+              "turnover_usdt": 79.6719,
+              "fee_usdt": 0.063738
+            },
+            {
+              "time": "2026-02-13T08:00:00.003000+00:00",
+              "longs": [
+                "SOLUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00431866,
+              "turnover_usdt": 140.3634,
+              "fee_usdt": 0.112291
+            },
+            {
+              "time": "2026-02-20T16:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00237555,
+              "turnover_usdt": 120.7534,
+              "fee_usdt": 0.096603
+            },
+            {
+              "time": "2026-02-27T16:00:00.001000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.0028463,
+              "turnover_usdt": 122.6658,
+              "fee_usdt": 0.098133
+            },
+            {
+              "time": "2026-03-06T16:00:00.004000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "AVAXUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00254766,
+              "turnover_usdt": 186.1996,
+              "fee_usdt": 0.14896
+            },
+            {
+              "time": "2026-03-14T00:00:00.001000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "AVAXUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00502323,
+              "turnover_usdt": 29.5581,
+              "fee_usdt": 0.023647
+            },
+            {
+              "time": "2026-03-21T08:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "ADAUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00482177,
+              "turnover_usdt": 215.1511,
+              "fee_usdt": 0.172121
+            },
+            {
+              "time": "2026-03-28T08:00:00.005000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00513954,
+              "turnover_usdt": 149.2149,
+              "fee_usdt": 0.119372
+            },
+            {
+              "time": "2026-04-04T16:00:00+00:00",
+              "longs": [
+                "DOTUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00569639,
+              "turnover_usdt": 67.4551,
+              "fee_usdt": 0.053964
+            },
+            {
+              "time": "2026-04-11T16:00:00.003000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00246505,
+              "turnover_usdt": 137.022,
+              "fee_usdt": 0.109618
+            },
+            {
+              "time": "2026-04-19T00:00:00.002000+00:00",
+              "longs": [
+                "DOTUSDT",
+                "BTCUSDT"
+              ],
+              "shorts": [
+                "AVAXUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.01642406,
+              "turnover_usdt": 135.0836,
+              "fee_usdt": 0.108067
+            },
+            {
+              "time": "2026-04-26T00:00:00.003000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "DOGEUSDT"
+              ],
+              "funding_spread_7d": 0.00282431,
+              "turnover_usdt": 146.523,
+              "fee_usdt": 0.117218
+            },
+            {
+              "time": "2026-05-03T00:00:00.005000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "DOGEUSDT"
+              ],
+              "funding_spread_7d": 0.0024709,
+              "turnover_usdt": 71.4115,
+              "fee_usdt": 0.057129
+            },
+            {
+              "time": "2026-05-10T08:00:00+00:00",
+              "longs": [
+                "BTCUSDT",
+                "ETHUSDT"
+              ],
+              "shorts": [
+                "TRXUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00201483,
+              "turnover_usdt": 226.8753,
+              "fee_usdt": 0.1815
+            },
+            {
+              "time": "2026-05-17T08:00:00.010000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "TRXUSDT"
+              ],
+              "funding_spread_7d": 0.00254837,
+              "turnover_usdt": 139.8876,
+              "fee_usdt": 0.11191
+            },
+            {
+              "time": "2026-05-24T16:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "TRXUSDT"
+              ],
+              "funding_spread_7d": 0.00715463,
+              "turnover_usdt": 38.4956,
+              "fee_usdt": 0.030796
+            },
+            {
+              "time": "2026-05-31T16:00:00.004000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00758567,
+              "turnover_usdt": 141.7228,
+              "fee_usdt": 0.113378
+            },
+            {
+              "time": "2026-06-08T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.01306406,
+              "turnover_usdt": 52.624,
+              "fee_usdt": 0.042099
+            },
+            {
+              "time": "2026-06-15T00:00:00.013000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00836318,
+              "turnover_usdt": 94.9233,
+              "fee_usdt": 0.075939
+            },
+            {
+              "time": "2026-06-22T08:00:00+00:00",
+              "longs": [
+                "BCHUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.0038762,
+              "turnover_usdt": 86.715,
+              "fee_usdt": 0.069372
+            },
+            {
+              "time": "2026-06-29T08:00:00.013000+00:00",
+              "longs": [
+                "ADAUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00241484,
+              "turnover_usdt": 162.2261,
+              "fee_usdt": 0.129781
+            },
+            {
+              "time": "2026-07-06T16:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00524743,
+              "turnover_usdt": 172.2847,
+              "fee_usdt": 0.137828
+            },
+            {
+              "time": "2026-07-13T16:00:00.004000+00:00",
+              "longs": [
+                "ADAUSDT",
+                "TRXUSDT"
+              ],
+              "shorts": [
+                "BNBUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00209835,
+              "turnover_usdt": 78.639,
+              "fee_usdt": 0.062911
+            },
+            {
+              "time": "2026-07-20T16:00:00.004000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BNBUSDT"
+              ],
+              "funding_spread_7d": 0.00566135,
+              "turnover_usdt": 85.4158,
+              "fee_usdt": 0.068333
+            },
+            {
+              "time": "2026-07-28T00:00:00+00:00",
+              "longs": [
+                "ADAUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "BNBUSDT"
+              ],
+              "funding_spread_7d": 0.00213764,
+              "turnover_usdt": 93.7218,
+              "fee_usdt": 0.074977
+            },
+            {
+              "time": "2026-08-04T00:00:00.004000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "LTCUSDT"
+              ],
+              "shorts": [
+                "BNBUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00251007,
+              "turnover_usdt": 170.2471,
+              "fee_usdt": 0.136198
+            },
+            {
+              "time": "2026-08-11T08:00:00.006000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "ADAUSDT"
+              ],
+              "funding_spread_7d": 0.00230534,
+              "turnover_usdt": 123.4224,
+              "fee_usdt": 0.098738
+            },
+            {
+              "time": "2026-08-18T16:00:00.003000+00:00",
+              "longs": [
+                "BCHUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "BTCUSDT",
+                "LINKUSDT"
+              ],
+              "funding_spread_7d": 0.00392491,
+              "turnover_usdt": 215.0661,
+              "fee_usdt": 0.172053
+            },
+            {
+              "time": "2026-08-25T16:00:00.005000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "ADAUSDT"
+              ],
+              "shorts": [
+                "BNBUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00076286,
+              "turnover_usdt": 275.6903,
+              "fee_usdt": 0.220552
+            },
+            {
+              "time": "2026-09-02T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "BCHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00671458,
+              "turnover_usdt": 114.8701,
+              "fee_usdt": 0.091896
+            },
+            {
+              "time": "2026-09-09T00:00:00.005000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "DOTUSDT",
+                "DOGEUSDT"
+              ],
+              "funding_spread_7d": 0.00601016,
+              "turnover_usdt": 128.1081,
+              "fee_usdt": 0.102486
+            },
+            {
+              "time": "2026-09-16T08:00:00.002000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "DOGEUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.0049524,
+              "turnover_usdt": 105.1975,
+              "fee_usdt": 0.084158
+            },
+            {
+              "time": "2026-09-23T08:00:00.004000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BCHUSDT"
+              ],
+              "shorts": [
+                "LINKUSDT",
+                "LTCUSDT"
+              ],
+              "funding_spread_7d": 0.00211829,
+              "turnover_usdt": 154.3996,
+              "fee_usdt": 0.12352
+            },
+            {
+              "time": "2026-09-30T16:00:00.002000+00:00",
+              "longs": [
+                "TRXUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "ADAUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00669548,
+              "turnover_usdt": 176.4874,
+              "fee_usdt": 0.14119
+            },
+            {
+              "time": "2026-10-08T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "SOLUSDT"
+              ],
+              "shorts": [
+                "LTCUSDT",
+                "BCHUSDT"
+              ],
+              "funding_spread_7d": 0.00787516,
+              "turnover_usdt": 116.2467,
+              "fee_usdt": 0.092997
+            },
+            {
+              "time": "2026-10-15T00:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "XRPUSDT"
+              ],
+              "shorts": [
+                "SOLUSDT",
+                "DOTUSDT"
+              ],
+              "funding_spread_7d": 0.00539571,
+              "turnover_usdt": 152.389,
+              "fee_usdt": 0.121911
+            },
+            {
+              "time": "2026-10-22T00:00:00.007000+00:00",
+              "longs": [
+                "ADAUSDT",
+                "BNBUSDT"
+              ],
+              "shorts": [
+                "ETHUSDT",
+                "BTCUSDT"
+              ],
+              "funding_spread_7d": 0.00098166,
+              "turnover_usdt": 252.761,
+              "fee_usdt": 0.202209
+            },
+            {
+              "time": "2026-10-29T08:00:00+00:00",
+              "longs": [
+                "TRXUSDT",
+                "DOTUSDT"
+              ],
+              "shorts": [
+                "SOLUSDT",
+                "XRPUSDT"
+              ],
+              "funding_spread_7d": 0.0031737,
+              "turnover_usdt": 245.2686,
+              "fee_usdt": 0.196215
+            }
+          ]
+        }
+      }
+    }
   }
 }
