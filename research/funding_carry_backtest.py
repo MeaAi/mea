@@ -318,6 +318,10 @@ def main():
     report["leverage_tests"]={
         "assumptions":"Constant gross leverage applied to equity at weekly rebalance; funding and fees charged on leveraged notional; no liquidation, maintenance-margin tiers, intraperiod mark price or slippage model.",
         "results":leverage_tests}
+    for lev_name, periods_result in leverage_tests.items():
+        for period_name, fees_result in periods_result.items():
+            compact = {fee: {k: v for k, v in result.items() if k != "rebalance_log"} for fee, result in fees_result.items()}
+            print("LEVERAGE_SUMMARY", lev_name, period_name, json.dumps(compact, separators=(",", ":")), flush=True)
     Path(args.out).parent.mkdir(parents=True,exist_ok=True)
     Path(args.out).write_text(json.dumps(report,indent=2,ensure_ascii=False),encoding="utf-8")
     print("REPORT",Path(args.out).resolve(),flush=True)
