@@ -36,7 +36,7 @@
     "XRPUSDT"
   ],
   "data_qa": {
-    "ETHUSDT": {
+    "BTCUSDT": {
       "funding_events": 3105,
       "priced_events": 3104,
       "price_bars_1h": 24840,
@@ -48,25 +48,13 @@
       "price_bars_1h": 24840,
       "archives": 68
     },
-    "SOLUSDT": {
-      "funding_events": 3105,
-      "priced_events": 3104,
-      "price_bars_1h": 24840,
-      "archives": 68
-    },
     "ADAUSDT": {
       "funding_events": 3105,
       "priced_events": 3104,
       "price_bars_1h": 24840,
       "archives": 68
     },
-    "BTCUSDT": {
-      "funding_events": 3105,
-      "priced_events": 3104,
-      "price_bars_1h": 24840,
-      "archives": 68
-    },
-    "LINKUSDT": {
+    "SOLUSDT": {
       "funding_events": 3105,
       "priced_events": 3104,
       "price_bars_1h": 24840,
@@ -78,7 +66,25 @@
       "price_bars_1h": 24840,
       "archives": 68
     },
+    "ETHUSDT": {
+      "funding_events": 3105,
+      "priced_events": 3104,
+      "price_bars_1h": 24840,
+      "archives": 68
+    },
     "DOGEUSDT": {
+      "funding_events": 3105,
+      "priced_events": 3104,
+      "price_bars_1h": 24840,
+      "archives": 68
+    },
+    "LINKUSDT": {
+      "funding_events": 3105,
+      "priced_events": 3104,
+      "price_bars_1h": 24840,
+      "archives": 68
+    },
+    "LTCUSDT": {
       "funding_events": 3105,
       "priced_events": 3104,
       "price_bars_1h": 24840,
@@ -90,19 +96,13 @@
       "price_bars_1h": 24840,
       "archives": 68
     },
-    "BCHUSDT": {
-      "funding_events": 3105,
-      "priced_events": 3104,
-      "price_bars_1h": 24840,
-      "archives": 68
-    },
     "AVAXUSDT": {
       "funding_events": 3105,
       "priced_events": 3104,
       "price_bars_1h": 24840,
       "archives": 68
     },
-    "LTCUSDT": {
+    "BCHUSDT": {
       "funding_events": 3105,
       "priced_events": 3104,
       "price_bars_1h": 24840,
