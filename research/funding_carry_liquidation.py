@@ -68,7 +68,7 @@ def load_symbol(sym,months,root):
   verified_download(f"{BASE}/markPriceKlines/{sym}/1h/{mn}",mp);marks.update(readzip(mp,"mark"))
  return sym,fund,marks
 
-def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01):
+def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20):
  symbols=list(data); first,last=period
  mark_times={s:sorted(data[s]["marks"]) for s in symbols}
  all_events=sorted(set(t for s in symbols for t in data[s]["fund"] if first<=t<=last))
@@ -77,7 +77,7 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01):
  equity=100.; peak=100.; maxdd=0.; qty={s:0. for s in symbols}; prev={}; last_rebal=None
  fee_total=slip_total=price_pnl=funding_pnl=0.; liquidated=False; liq_time=None; liq_equity=None
  rebalances=0; hourly_checks=0
- lookback=7*DAY; interval=7*DAY
+ lookback=lookback_days*DAY; interval=rebalance_days*DAY
  for ix,t in enumerate(events):
   # Walk the union of hourly mark candles once; update portfolio equity close-to-close.
   current=prev.copy()
@@ -123,7 +123,7 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01):
    for s in symbols:
     vals=[r for et,r in data[s]["fund"].items() if t-lookback<et<=t]
     if len(vals)>=12 and s in px:scores[s]=sum(vals)
-   ordered=sorted(scores,key=scores.get);k=max(1,int(len(ordered)*.2))
+   ordered=sorted(scores,key=scores.get);k=max(1,int(len(ordered)*tail_fraction))
    if len(ordered)>=2*k:
     longs=ordered[:k];shorts=ordered[-k:];target={s:0. for s in symbols}
     leg=max(0.,equity)*lev*.5
@@ -144,7 +144,7 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01):
   "liquidated":liquidated,"liquidation_time_utc":liq_time,"equity_at_liquidation_usdt":liq_equity,
   "price_pnl_usdt":round(price_pnl,6),"funding_pnl_usdt":round(funding_pnl,6),
   "trading_fees_usdt":round(fee_total,6),"slippage_usdt":round(slip_total,6),
-  "rebalance_count":rebalances,"hourly_adverse_checks":hourly_checks,
+  "rebalance_count":rebalances,"hourly_adverse_checks":hourly_checks,"lookback_days":lookback_days,"rebalance_days":rebalance_days,"tail_fraction":tail_fraction,
   "model_note":"Cross-portfolio conservative hourly OHLC stress approximation; not exact Binance liquidation engine. Uses simultaneous adverse extremes and static 0.5% MMR assumption."}
 
 def main():
@@ -175,6 +175,27 @@ def main():
     v=run(data,period,lev,fee,slip_bp=2)
     results[name][f"{lev:g}x"][f"fee_{fee}bp"]=v
     print("RESULT",name,lev,fee,json.dumps(v,separators=(",",":")),flush=True)
+ # Select parameters on validation only, then freeze before OOS evaluation.
+ grid=[]
+ val_period=cuts["validation"]
+ for lb in (3,7,14,28):
+  for rb in (3,7,14):
+   for frac in (.10,.20,.30):
+    v=run(data,val_period,1.0,5,slip_bp=2,lookback_days=lb,rebalance_days=rb,tail_fraction=frac)
+    grid.append({"lookback_days":lb,"rebalance_days":rb,"tail_fraction":frac,
+                 "validation_net_return_pct":v["net_return_pct"],
+                 "validation_max_drawdown_pct":v["max_drawdown_pct"],
+                 "validation_liquidated":v["liquidated"]})
+ eligible=[x for x in grid if x["validation_max_drawdown_pct"]>=-25 and not x["validation_liquidated"]]
+ chosen=max(eligible or grid,key=lambda x:x["validation_net_return_pct"])
+ selected_oos={}
+ for lev in LEVERS:
+  selected_oos[f"{lev:g}x"]={}
+  for fee in (2,5,8):
+   selected_oos[f"{lev:g}x"][f"fee_{fee}bp"]=run(
+    data,cuts["oos"],lev,fee,slip_bp=2,
+    lookback_days=chosen["lookback_days"],rebalance_days=chosen["rebalance_days"],
+    tail_fraction=chosen["tail_fraction"])
  report={"strategy":"7d trailing funding rank, weekly rebalance, lowest 20% long/highest 20% short",
   "source":"Free official Binance Vision monthly fundingRate + 1h markPriceKlines",
   "period_utc":{"first":datetime.fromtimestamp(first/1000,timezone.utc).isoformat(),"last":datetime.fromtimestamp(last/1000,timezone.utc).isoformat()},
@@ -186,7 +207,7 @@ def main():
    "intrabar":"1h mark-price OHLC; simultaneous adverse low for longs and high for shorts, conservative but not tick-accurate",
    "margin_mode":"cross-portfolio approximation; funding cashflow at settlement; positions resized weekly",
    "limitations":["not exact Binance liquidation engine","static MMR instead of historical symbol-specific tier brackets","hourly OHLC cannot reconstruct tick order or exact liquidation price","spread and market impact beyond fixed slippage are not modeled","static universe survivorship bias"]},
-  "results":results}
+  "results":results,"parameter_sweep":{"selection_rule":"Choose highest validation net return at 1x, 5bp fee + 2bp slippage, subject to max drawdown >= -25%; freeze parameters before OOS. If none eligible, choose highest validation return from full grid.","grid_size":len(grid),"chosen_on_validation":chosen,"validation_top_10":sorted(grid,key=lambda x:x["validation_net_return_pct"],reverse=True)[:10],"selected_configuration_oos":selected_oos}}
  Path(a.out).parent.mkdir(parents=True,exist_ok=True);Path(a.out).write_text(json.dumps(report,indent=2),encoding="utf-8")
  print("REPORT",a.out,flush=True)
 if __name__=="__main__":main()
