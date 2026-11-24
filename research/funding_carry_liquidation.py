@@ -77,7 +77,8 @@ def load_symbol(sym,months,root):
  return sym,fund,marks
 
 def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01):
- symbols=list(data); first,last=period\n mark_times={s:sorted(data[s]["marks"]) for s in symbols}
+ symbols=list(data); first,last=period
+ mark_times={s:sorted(data[s]["marks"]) for s in symbols}
  all_events=sorted(set(t for s in symbols for t in data[s]["fund"] if first<=t<=last))
  events=[t for t in all_events if sum(t in data[s]["fund"] and t in data[s]["marks"] for s in symbols)>=math.ceil(.8*len(symbols))]
  if len(events)<100:raise RuntimeError("insufficient aligned funding events")
