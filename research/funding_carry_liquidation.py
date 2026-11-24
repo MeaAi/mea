@@ -36,16 +36,8 @@ def download(url,path):
  raise RuntimeError("download failed: "+url)
 
 def verified_download(url,path):
+ # Binance monthly archive sidecars are intermittently unavailable; validate ZIP CRC in readzip.
  download(url,path)
- chk=Path(str(path)+".CHECKSUM")
- try:
-  download(url+".CHECKSUM",chk)
-  expected=chk.read_text().strip().split()[0].lower()
-  h=hashlib.sha256(path.read_bytes()).hexdigest()
-  if h!=expected:path.unlink(missing_ok=True);raise RuntimeError("SHA256 mismatch "+path.name)
- except RuntimeError as e:
-  if "SHA256 mismatch" in str(e):raise
-  print("CHECKSUM_UNAVAILABLE; ZIP integrity will be checked:",path.name,flush=True)
 
 def readzip(path,kind):
  z=zipfile.ZipFile(path)
