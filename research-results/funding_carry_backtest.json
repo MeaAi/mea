@@ -36,19 +36,7 @@
     "XRPUSDT"
   ],
   "data_qa": {
-    "DOGEUSDT": {
-      "funding_events": 4200,
-      "priced_events": 4199,
-      "price_bars_1h": 33600,
-      "archives": 92
-    },
     "SOLUSDT": {
-      "funding_events": 4200,
-      "priced_events": 4199,
-      "price_bars_1h": 33600,
-      "archives": 92
-    },
-    "XRPUSDT": {
       "funding_events": 4200,
       "priced_events": 4199,
       "price_bars_1h": 33600,
@@ -60,19 +48,25 @@
       "price_bars_1h": 33600,
       "archives": 92
     },
-    "BTCUSDT": {
-      "funding_events": 4200,
-      "priced_events": 4199,
-      "price_bars_1h": 33600,
-      "archives": 92
-    },
     "BNBUSDT": {
       "funding_events": 4200,
       "priced_events": 4199,
       "price_bars_1h": 33600,
       "archives": 92
     },
-    "ETHUSDT": {
+    "BTCUSDT": {
+      "funding_events": 4200,
+      "priced_events": 4199,
+      "price_bars_1h": 33600,
+      "archives": 92
+    },
+    "XRPUSDT": {
+      "funding_events": 4200,
+      "priced_events": 4199,
+      "price_bars_1h": 33600,
+      "archives": 92
+    },
+    "DOGEUSDT": {
       "funding_events": 4200,
       "priced_events": 4199,
       "price_bars_1h": 33600,
@@ -84,13 +78,7 @@
       "price_bars_1h": 33600,
       "archives": 92
     },
-    "TRXUSDT": {
-      "funding_events": 4200,
-      "priced_events": 4199,
-      "price_bars_1h": 33600,
-      "archives": 92
-    },
-    "BCHUSDT": {
+    "ETHUSDT": {
       "funding_events": 4200,
       "priced_events": 4199,
       "price_bars_1h": 33600,
@@ -103,6 +91,18 @@
       "archives": 92
     },
     "DOTUSDT": {
+      "funding_events": 4200,
+      "priced_events": 4199,
+      "price_bars_1h": 33600,
+      "archives": 92
+    },
+    "TRXUSDT": {
+      "funding_events": 4200,
+      "priced_events": 4199,
+      "price_bars_1h": 33600,
+      "archives": 92
+    },
+    "BCHUSDT": {
       "funding_events": 4200,
       "priced_events": 4199,
       "price_bars_1h": 33600,
