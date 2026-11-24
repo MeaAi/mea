@@ -44,3 +44,5 @@ jobs:
           git commit -m "Publish liquidation-aware funding carry risk results" || exit 0
           git pull --rebase origin research/binance-data-pipeline
           git push
+
+# Retry after research script fixes.
