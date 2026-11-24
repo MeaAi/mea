@@ -152,7 +152,8 @@ def rank_and_backtest(data, symbols, start_ms, end_ms, fee_bp, capital=100.0, re
             for s in symbols:
                 vals=[r for et,(r,p) in data[s].items() if t-lookback<et<=t]
                 if len(vals)>=12: scores[s]=sum(vals)
-            scores={s:v for s,v in scores.items() if s in px}\n            k=max(1,int(len(scores)*tail_fraction))
+            scores={s:v for s,v in scores.items() if s in px}
+            k=max(1,int(len(scores)*tail_fraction))
             ordered=sorted(scores,key=scores.get)
             if len(ordered)>=2*k:
                 longs=ordered[:k]; shorts=ordered[-k:]
