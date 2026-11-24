@@ -44,3 +44,5 @@ jobs:
           git commit -m "Publish cross-sectional funding carry results" || exit 0
           git pull --rebase origin research/binance-data-pipeline
           git push
+
+# Trigger validated parameter sweep rerun.
