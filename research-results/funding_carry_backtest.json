@@ -36,7 +36,7 @@
     "XRPUSDT"
   ],
   "data_qa": {
-    "BNBUSDT": {
+    "LINKUSDT": {
       "funding_events": 3105,
       "priced_events": 3104,
       "price_bars_1h": 24840,
@@ -48,13 +48,7 @@
       "price_bars_1h": 24840,
       "archives": 68
     },
-    "LINKUSDT": {
-      "funding_events": 3105,
-      "priced_events": 3104,
-      "price_bars_1h": 24840,
-      "archives": 68
-    },
-    "DOGEUSDT": {
+    "SOLUSDT": {
       "funding_events": 3105,
       "priced_events": 3104,
       "price_bars_1h": 24840,
@@ -66,31 +60,31 @@
       "price_bars_1h": 24840,
       "archives": 68
     },
-    "ETHUSDT": {
-      "funding_events": 3105,
-      "priced_events": 3104,
-      "price_bars_1h": 24840,
-      "archives": 68
-    },
     "XRPUSDT": {
       "funding_events": 3105,
       "priced_events": 3104,
       "price_bars_1h": 24840,
       "archives": 68
     },
-    "SOLUSDT": {
+    "ETHUSDT": {
       "funding_events": 3105,
       "priced_events": 3104,
       "price_bars_1h": 24840,
       "archives": 68
     },
-    "BCHUSDT": {
+    "BNBUSDT": {
       "funding_events": 3105,
       "priced_events": 3104,
       "price_bars_1h": 24840,
       "archives": 68
     },
-    "TRXUSDT": {
+    "DOGEUSDT": {
+      "funding_events": 3105,
+      "priced_events": 3104,
+      "price_bars_1h": 24840,
+      "archives": 68
+    },
+    "LTCUSDT": {
       "funding_events": 3105,
       "priced_events": 3104,
       "price_bars_1h": 24840,
@@ -108,7 +102,13 @@
       "price_bars_1h": 24840,
       "archives": 68
     },
-    "LTCUSDT": {
+    "TRXUSDT": {
+      "funding_events": 3105,
+      "priced_events": 3104,
+      "price_bars_1h": 24840,
+      "archives": 68
+    },
+    "BCHUSDT": {
       "funding_events": 3105,
       "priced_events": 3104,
       "price_bars_1h": 24840,
