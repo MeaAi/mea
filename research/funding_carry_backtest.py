@@ -306,7 +306,7 @@ def main():
     # Funding and transaction costs scale automatically with leveraged position notional.
     # Liquidation is intentionally not inferred: this remains an event-cadence research simulation.
     leverage_tests={}
-    for lev in (3.0,10.0):
+    for lev in (3.0,10.0,20.0):
         leverage_tests[f"{int(lev)}x"]={}
         for period_name in ("train","validation","oos"):
             a,b=periods[period_name]
