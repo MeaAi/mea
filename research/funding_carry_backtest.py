@@ -124,7 +124,7 @@ def load_symbol(symbol, months, root):
         if j>=0: events[t]=(funding[t],prices[p_times[j]])
     return symbol,events,{"funding_events":len(funding),"priced_events":len(events),"price_bars_1h":len(prices),"archives":files}
 
-def rank_and_backtest(data, symbols, start_ms, end_ms, fee_bp, capital=100.0, rebalance_days=7, lookback_days=7, tail_fraction=0.20):
+def rank_and_backtest(data, symbols, start_ms, end_ms, fee_bp, capital=100.0, rebalance_days=7, lookback_days=7, tail_fraction=0.20, weighting="equal"):
     # Use timestamps where >=80% of symbols have a priced funding event.
     ts=sorted(t for t in set().union(*(set(data[s]) for s in symbols))
               if start_ms<=t<=end_ms and sum(t in data[s] for s in symbols)>=math.ceil(.8*len(symbols)))
@@ -159,8 +159,19 @@ def rank_and_backtest(data, symbols, start_ms, end_ms, fee_bp, capital=100.0, re
                 longs=ordered[:k]; shorts=ordered[-k:]
                 target={s:0.0 for s in symbols}
                 per_leg=max(0.0,equity)*0.5
-                for s in longs: target[s]=per_leg/k/px[s]
-                for s in shorts: target[s]=-per_leg/k/px[s]
+                def side_weights(names):
+                    if weighting=="equal": return {s:1.0/len(names) for s in names}
+                    inv={}
+                    for s in names:
+                        hist=sorted((et,p) for et,(r,p) in data[s].items() if t-30*DAY<et<=t)
+                        rr=[math.log(hist[i][1]/hist[i-1][1]) for i in range(1,len(hist)) if hist[i-1][1]>0]
+                        vol=(sum((x-sum(rr)/len(rr))**2 for x in rr)/max(1,len(rr)-1))**0.5 if len(rr)>=10 else 1.0
+                        inv[s]=1.0/max(vol,1e-6)
+                    total=sum(inv.values())
+                    return {s:v/total for s,v in inv.items()}
+                lw=side_weights(longs); sw=side_weights(shorts)
+                for s in longs: target[s]=per_leg*lw[s]/px[s]
+                for s in shorts: target[s]=-per_leg*sw[s]/px[s]
                 turnover=sum(abs((target[s]-qty[s])*px[s]) for s in symbols if s in px)
                 cost=turnover*fee_bp/10000.0
                 equity-=cost; fees+=cost; turnover_total+=turnover
@@ -189,7 +200,7 @@ def rank_and_backtest(data, symbols, start_ms, end_ms, fee_bp, capital=100.0, re
             "gross_price_pnl_usdt":round(gross_pnl,6),"funding_pnl_usdt":round(funding_pnl,6),
             "fees_usdt":round(fees,6),"turnover_usdt":round(turnover_total,4),"one_way_fee_bp":fee_bp,
             "rebalance_count":len(rebalance_log),"leg_changes":trades,"lookback_days":lookback_days,
-            "rebalance_days":rebalance_days,"tail_fraction":tail_fraction,"selection":f"lowest {tail_fraction:.0%} trailing realized funding long; highest {tail_fraction:.0%} short",
+            "rebalance_days":rebalance_days,"tail_fraction":tail_fraction,"weighting":weighting,"selection":f"lowest {tail_fraction:.0%} trailing realized funding long; highest {tail_fraction:.0%} short",
             "gross_exposure":"100% of equity total: 50% long + 50% short; 1x gross, dollar neutral",
             "rebalance_log":rebalance_log}
 
@@ -265,6 +276,18 @@ def main():
                                "grid_size":len(grid),"chosen_on_validation":chosen,
                                "selected_configuration_oos":selected_oos,
                                "validation_top_10":sorted(grid,key=lambda x:x["validation_net_return_pct"],reverse=True)[:10]}
+    # Risk-weighting robustness, fixed baseline selection parameters; no OOS parameter selection.
+    weighting_tests={}
+    for weighting in ("equal","inverse_vol_30d"):
+        weighting_tests[weighting]={}
+        for period_name in ("validation","oos"):
+            a,b=periods[period_name]
+            weighting_tests[weighting][period_name]={}
+            for fee in (2,5,8):
+                v=rank_and_backtest(data,usable,a,b,fee,lookback_days=7,rebalance_days=7,
+                                    tail_fraction=0.20,weighting=weighting)
+                weighting_tests[weighting][period_name][f"fee_{fee}bp"]=v
+    report["risk_weighting_tests"]=weighting_tests
     Path(args.out).parent.mkdir(parents=True,exist_ok=True)
     Path(args.out).write_text(json.dumps(report,indent=2,ensure_ascii=False),encoding="utf-8")
     print("REPORT",Path(args.out).resolve(),flush=True)
