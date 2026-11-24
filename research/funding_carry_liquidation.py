@@ -79,45 +79,34 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01):
  rebalances=0; hourly_checks=0
  lookback=7*DAY; interval=7*DAY
  for ix,t in enumerate(events):
-  # Mark existing holdings through all hourly candles since prior settlement.
-  if ix and prev:
+  # Walk the union of hourly mark candles once; update portfolio equity close-to-close.
+  current=prev.copy()
+  if ix and current:
    start=events[ix-1]
-   for s in symbols:
-    if not qty[s]:continue
-    bars=data[s]["marks"]
-    for ht in sorted(k for k in bars if start<=k<t):
-     o,h,l,c=bars[ht]
-     # Conservative adverse portfolio mark: longs at low, shorts at high.
-     worst=equity
-     notion=0.
-     for z in symbols:
-      q=qty[z]
-      if not q:continue
-      base=prev.get(z,c)
-      adverse=(l if q>0 else h)
-      worst+=q*(adverse-base)
-      notion+=abs(q*adverse)
-     hourly_checks+=1
-     if worst<=notion*(mmr+liq_fee):
-      equity=max(0.,worst-notion*liq_fee);liquidated=True
-      liq_time=datetime.fromtimestamp(ht/1000,timezone.utc).isoformat();liq_equity=equity
-      break
-     # Hourly close mark-to-market; update equity and reference prices.
-     if s in bars:
-      pass
-    if liquidated:break
+   hourset=sorted(set(k for s in symbols for k in data[s]["marks"] if start<=k<t))
+   for ht in hourset:
+    worst=equity; notion=0.
+    for z in symbols:
+     q=qty[z]
+     if not q or z not in current or ht not in data[z]["marks"]:continue
+     o,h,l,cl=data[z]["marks"][ht]
+     adverse=l if q>0 else h
+     worst+=q*(adverse-current[z]);notion+=abs(q*adverse)
+    hourly_checks+=1
+    if worst<=notion*(mmr+liq_fee):
+     equity=max(0.,worst-notion*liq_fee);liquidated=True
+     liq_time=datetime.fromtimestamp(ht/1000,timezone.utc).isoformat();liq_equity=equity
+     break
+    step=0.
+    for z in symbols:
+     q=qty[z]
+     if q and z in current and ht in data[z]["marks"]:
+      cl=data[z]["marks"][ht][3]
+      step+=q*(cl-current[z]);current[z]=cl
+    equity+=step;price_pnl+=step
    if liquidated:break
-   # Apply close-to-close price PnL for the event interval.
-   for s in symbols:
-    q=qty[s]
-    if not q:continue
-    candidates=[k for k in data[s]["marks"] if start<=k<t]
-    if candidates:
-     p0=prev.get(s,data[s]["marks"][candidates[0]][0])
-     p1=data[s]["marks"][max(candidates)][3]
-     price_pnl+=q*(p1-p0);equity+=q*(p1-p0)
-  px={s:data[s]["marks"][max((k for k in data[s]["marks"] if k<t),default=-1)][3]
-      for s in symbols if any(k<t for k in data[s]["marks"])}
+  px={s:(current[s] if s in current else data[s]["marks"][max((k for k in data[s]["marks"] if k<t),default=-1)][3])
+      for s in symbols if s in current or any(k<t for k in data[s]["marks"])}
   rates={s:data[s]["fund"][t] for s in symbols if t in data[s]["fund"]}
   # Funding cashflow for positions held across this settlement.
   fpnl=sum(-qty[s]*px[s]*rates[s] for s in symbols if qty[s] and s in px and s in rates)
