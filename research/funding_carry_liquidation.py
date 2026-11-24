@@ -99,8 +99,12 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01):
     step=0.
     for z in symbols:
      q=qty[z];bar=data[z]["marks"].get(ht)
-     if q and z in current and bar is not None:
-      cl=bar[3];step+=q*(cl-current[z]);current[z]=cl
+     if z in current and bar is not None:
+      cl=bar[3]
+      if q: step+=q*(cl-current[z])
+      # Keep every symbol's mark current, including currently unheld assets;
+      # otherwise a newly selected asset can be entered using a stale price.
+      current[z]=cl
     equity+=step;price_pnl+=step
    if liquidated:break
   px={}
