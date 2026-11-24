@@ -50,3 +50,5 @@ jobs:
 # Retry after final newline correction.
 
 # Re-run with corrected archive name.
+
+# Run with ZIP CRC validation fallback.
