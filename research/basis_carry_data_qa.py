@@ -20,6 +20,7 @@ def archive_url(kind,symbol,month):
     if kind=="spot":return f"{BASE}/spot/monthly/klines/{symbol}/1m/{symbol}-1m-{month}.zip"
     if kind=="perp":return f"{BASE}/futures/um/monthly/klines/{symbol}/1m/{symbol}-1m-{month}.zip"
     if kind=="premium":return f"{BASE}/futures/um/monthly/premiumIndexKlines/{symbol}/1m/{symbol}-1m-{month}.zip"
+    if kind=="mark":return f"{BASE}/futures/um/monthly/markPriceKlines/{symbol}/1m/{symbol}-1m-{month}.zip"
     if kind=="funding":return f"{BASE}/futures/um/monthly/fundingRate/{symbol}/{symbol}-fundingRate-{month}.zip"
     raise ValueError(kind)
 def verify(blob,checksum,label):
@@ -64,11 +65,11 @@ def main():
     out=Path(a.out);out.mkdir(parents=True,exist_ok=True)
     report={"source":"Binance Vision public archives","period":[a.start,a.end],"symbols":{},
       "checks":"Every archive and .CHECKSUM are downloaded; SHA256 must match.",
-      "limitations":["This is data QA, not a profitability backtest.","Spot, USD-M perpetual and premium-index timestamps are checked independently; exact common-minute alignment is required downstream.","Funding archives are event observations; funding cashflows must be applied only at actual funding timestamps."]}
+      "limitations":["This is data QA, not a profitability backtest.","Spot, USD-M perpetual, premium-index and mark-price timestamps are checked independently; exact common-minute alignment is required downstream.","Funding archives are event observations; funding cashflows must be applied only at actual funding timestamps."]}
     for sym in syms:
       report["symbols"][sym]={}
       for month in ms:
-       for kind in ("spot","perp","premium","funding"):
+       for kind in ("spot","perp","premium","mark","funding"):
         url=archive_url(kind,sym,month);label=f"{sym}:{kind}:{month}"
         blob=get(url);chk=get(url+".CHECKSUM");digest=verify(blob,chk,label)
         meta=inspect_csv(blob,kind)
