@@ -415,3 +415,5 @@ def main():
  Path(a.out).parent.mkdir(parents=True,exist_ok=True);Path(a.out).write_text(json.dumps(report,indent=2),encoding="utf-8")
  print("REPORT",a.out,flush=True)
 if __name__=="__main__":main()
+
+# Isolated experiment run trigger.
