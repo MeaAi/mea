@@ -141,15 +141,15 @@ def main():
       "timestamp_policy":"2024 historical metrics create_time labels treated as end-of-period; as-of join only, signal uses metrics timestamp <= decision minute; entry next minute open.",
       "splits":"Chronological 50% train / 20% validation / 30% untouched OOS by matched minute rows. Thresholds fit on train only.",
       "costs":"Entry and exit fee each 2/5/8 bp; entry and exit slippage each 2 bp. 1x, 100% equity per trade, non-overlapping.",
-      "limitations":["Metrics are 5-minute aggregates/snapshots; no tick-level position changes.","No funding cashflow or exchange liquidation simulation in this diagnostic.",\n      "Trades with any missing/non-consecutive 1m bar are rejected; signal-to-entry and all holding intervals must be exactly 60000ms.",\n      "Equity compounds trade by trade; entry and exit costs are charged on their respective notionals; adverse mark includes estimated exit costs.","Historical metrics definitions and timestamp semantics require effective-date caution; this sample is 2024.","Adverse drawdown uses 1m high/low path during each held trade, not exchange liquidation engine."],"symbols":{}}
+      "limitations":["Metrics are 5-minute aggregates/snapshots; no tick-level position changes.","No funding cashflow or exchange liquidation simulation in this diagnostic.",\n      "Trades with any missing/non-consecutive 1m bar are rejected; signal-to-entry and all holding intervals must be exactly 60000ms.",\n      "Metric joins are strict as-of (metric timestamp must be earlier than decision minute); stale metrics older than 5 minutes are excluded; 15m price return requires exact 15-minute timestamp continuity.",\n      "Equity compounds trade by trade; entry and exit costs are charged on their respective notionals; adverse mark includes estimated exit costs.","Historical metrics definitions and timestamp semantics require effective-date caution; this sample is 2024.","Adverse drawdown uses 1m high/low path during each held trade, not exchange liquidation engine."],"symbols":{}}
     for sym,bmap in bars.items():
         m=metrics_for(sym,a.start_day,a.end_day); mt=[x[0] for x in m]; mv=[x[1] for x in m]
         ts=sorted(bmap); rows=[]
         for i,t in enumerate(ts):
-            j=bisect_right(mt,t)-1
-            if j<12 or i<60:rows.append(None);continue
+            j=bisect_right(mt,t-1)-1  # strict as-of: never consume a metric stamped at the decision minute
+            if j<12 or i<60 or t-mt[j]>5*60000:rows.append(None);continue
             v=mv[j];v0=mv[j-3];v12=mv[j-12]
-            p=bmap[t]["close"];p15=bmap[ts[i-15]]["close"] if i>=15 else p
+            p=bmap[t]["close"];p15=bmap[ts[i-15]]["close"] if i>=15 and t-ts[i-15]==15*60000 else p
             oi15=v["sum_open_interest"]/v0["sum_open_interest"]-1
             ret15=p/p15-1 if p15 else 0
             rows.append({"t":t,**bmap[t],"oi15":oi15,"ret15":ret15,
