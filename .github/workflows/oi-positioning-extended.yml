@@ -1,0 +1,51 @@
+name: OI positioning extended OOS research
+on:
+  workflow_dispatch:
+    inputs:
+      start_day:
+        description: "UTC start day (YYYY-MM-DD)"
+        required: true
+        default: "2024-01-01"
+      end_day:
+        description: "UTC end day (YYYY-MM-DD)"
+        required: true
+        default: "2026-10-31"
+permissions:
+  contents: write
+concurrency:
+  group: oi-positioning-extended-v1
+  cancel-in-progress: false
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    env:
+      START_DAY: ${{ github.event.inputs.start_day }}
+      END_DAY: ${{ github.event.inputs.end_day }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: research/oi-positioning-extended-v1
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Download free checksum-verified monthly klines only
+        run: |
+          START_MONTH="${START_DAY:0:7}"
+          END_MONTH="${END_DAY:0:7}"
+          python research/binance_oi_klines_only.py --start "$START_MONTH" --end "$END_MONTH" --symbols BTCUSDT,ETHUSDT,SOLUSDT --out research-output
+      - name: Test frozen OI and positioning rules
+        run: |
+          python research/oi_positioning_shock.py --input "research-output/*-1m-orderflow.csv.gz" --start-day "$START_DAY" --end-day "$END_DAY" --out research-output/oi_positioning_oos.json --capital 100
+      - name: Publish compact report only
+        run: |
+          mkdir -p research-results
+          cp research-output/oi_positioning_oos.json research-results/oi_positioning_oos_extended.json
+          rm -rf research-output
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research-results/oi_positioning_oos_extended.json
+          git commit -m "Publish extended OI positioning OOS report" || echo "No report changes"
+          git fetch origin research/oi-positioning-extended-v1
+          git rebase origin/research/oi-positioning-extended-v1
+          git push origin HEAD:research/oi-positioning-extended-v1
