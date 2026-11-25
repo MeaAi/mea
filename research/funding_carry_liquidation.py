@@ -187,12 +187,10 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
      target=qty.copy()
     if active_mode!='flat' and not (rg=='sideways' and sideways_action=='hold'):
      leg=max(0.,equity)*lev*risk_scale*(.5 if active_mode=='both' else 1.0)
-     long_budget=leg*(.5 if active_mode=='both' else 1.0)
-     short_budget=leg*(.5 if active_mode=='both' else 1.0)
-     if active_mode in ('both','long_only') and longs:
-      for s in longs:target[s]=long_budget/len(longs)/px[s]
-     if active_mode in ('both','short_only') and shorts:
-      for s in shorts:target[s]=-short_budget/len(shorts)/px[s]
+     if active_mode in ('both','long_only'):
+      for s in longs:target[s]=leg/k/px[s]
+     if active_mode in ('both','short_only'):
+      for s in shorts:target[s]=-leg/k/px[s]
     turnover=sum(abs((target[s]-qty[s])*px[s]) for s in symbols if s in px)
     fee=turnover*fee_bp/10000;slip=turnover*slip_bp/10000
     for z in symbols:
