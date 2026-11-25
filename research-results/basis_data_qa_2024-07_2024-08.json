@@ -1,0 +1,591 @@
+{
+  "source": "Binance Vision public archives",
+  "period": [
+    "2024-07",
+    "2024-08"
+  ],
+  "symbols": {
+    "BTCUSDT": {
+      "2024-07": {
+        "spot": {
+          "csv_name": "BTCUSDT-1m-2024-07.csv",
+          "header": null,
+          "data_rows": 44640,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1719792000000,
+          "last_timestamp_ms": 1722470340000,
+          "sha256": "9cfd749fd2027a0c6f261bed607b49dd1256369fb41b784934544a3676f8162e",
+          "archive_bytes": 2141506
+        },
+        "perp": {
+          "csv_name": "BTCUSDT-1m-2024-07.csv",
+          "header": [
+            "open_time",
+            "open",
+            "high",
+            "low",
+            "close",
+            "volume",
+            "close_time",
+            "quote_volume",
+            "count",
+            "taker_buy_volume",
+            "taker_buy_quote_volume",
+            "ignore"
+          ],
+          "data_rows": 44640,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1719792000000,
+          "last_timestamp_ms": 1722470340000,
+          "sha256": "97f9cd5104a33828c5c2d8d03a2796d600102ab88737d1c6da515b9609540c3c",
+          "archive_bytes": 1912408
+        },
+        "premium": {
+          "csv_name": "BTCUSDT-1m-2024-07.csv",
+          "header": [
+            "open_time",
+            "open",
+            "high",
+            "low",
+            "close",
+            "volume",
+            "close_time",
+            "quote_volume",
+            "count",
+            "taker_buy_volume",
+            "taker_buy_quote_volume",
+            "ignore"
+          ],
+          "data_rows": 44640,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1719792000000,
+          "last_timestamp_ms": 1722470340000,
+          "sha256": "811f77c2fdf506797836540e0dc59cc2e9cbffc7a390cbd5d856ba599680ee77",
+          "archive_bytes": 875791
+        },
+        "mark": {
+          "csv_name": "BTCUSDT-1m-2024-07.csv",
+          "header": [
+            "open_time",
+            "open",
+            "high",
+            "low",
+            "close",
+            "volume",
+            "close_time",
+            "quote_volume",
+            "count",
+            "taker_buy_volume",
+            "taker_buy_quote_volume",
+            "ignore"
+          ],
+          "data_rows": 44640,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1719792000000,
+          "last_timestamp_ms": 1722470340000,
+          "sha256": "2a5655b1b543306ead51639d3310e036c70c2655cbe36a7fa87299f8e39094ae",
+          "archive_bytes": 1073723
+        },
+        "funding": {
+          "csv_name": "BTCUSDT-fundingRate-2024-07.csv",
+          "header": [
+            "calc_time",
+            "funding_interval_hours",
+            "last_funding_rate"
+          ],
+          "data_rows": 93,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1719792000000,
+          "last_timestamp_ms": 1722441600000,
+          "sha256": "acab0593c1452660ce74a6c239fb215c1192b0a9c6e8c1689e6495de40a0174b",
+          "archive_bytes": 847
+        }
+      },
+      "2024-08": {
+        "spot": {
+          "csv_name": "BTCUSDT-1m-2024-08.csv",
+          "header": null,
+          "data_rows": 44640,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1722470400000,
+          "last_timestamp_ms": 1725148740000,
+          "sha256": "6a1cac2a5482132dc5a030534aa028e2becc560877f2b93b7add90194f576c42",
+          "archive_bytes": 2164472
+        },
+        "perp": {
+          "csv_name": "BTCUSDT-1m-2024-08.csv",
+          "header": [
+            "open_time",
+            "open",
+            "high",
+            "low",
+            "close",
+            "volume",
+            "close_time",
+            "quote_volume",
+            "count",
+            "taker_buy_volume",
+            "taker_buy_quote_volume",
+            "ignore"
+          ],
+          "data_rows": 44640,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1722470400000,
+          "last_timestamp_ms": 1725148740000,
+          "sha256": "f69dbcebfd7108dc97825bd6c35d8d9a51745082f66617cb69de888e867e8e89",
+          "archive_bytes": 1919190
+        },
+        "premium": {
+          "csv_name": "BTCUSDT-1m-2024-08.csv",
+          "header": [
+            "open_time",
+            "open",
+            "high",
+            "low",
+            "close",
+            "volume",
+            "close_time",
+            "quote_volume",
+            "count",
+            "taker_buy_volume",
+            "taker_buy_quote_volume",
+            "ignore"
+          ],
+          "data_rows": 44638,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1722470400000,
+          "last_timestamp_ms": 1725148740000,
+          "sha256": "9fd62a4ab44373c8e9744e22504bddf4b7242241b8fdd915b6aed002cac77ff3",
+          "archive_bytes": 880231
+        },
+        "mark": {
+          "csv_name": "BTCUSDT-1m-2024-08.csv",
+          "header": [
+            "open_time",
+            "open",
+            "high",
+            "low",
+            "close",
+            "volume",
+            "close_time",
+            "quote_volume",
+            "count",
+            "taker_buy_volume",
+            "taker_buy_quote_volume",
+            "ignore"
+          ],
+          "data_rows": 44638,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1722470400000,
+          "last_timestamp_ms": 1725148740000,
+          "sha256": "e5be12f99523a72726e7235ad024465cc283b1ebbe1904e16674e130f373c362",
+          "archive_bytes": 1068484
+        },
+        "funding": {
+          "csv_name": "BTCUSDT-fundingRate-2024-08.csv",
+          "header": [
+            "calc_time",
+            "funding_interval_hours",
+            "last_funding_rate"
+          ],
+          "data_rows": 93,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1722470400000,
+          "last_timestamp_ms": 1725120000000,
+          "sha256": "7003d29a43dd5f9357f838da8766834954939e22c1d80af682d9f33984f67b71",
+          "archive_bytes": 904
+        }
+      }
+    },
+    "ETHUSDT": {
+      "2024-07": {
+        "spot": {
+          "csv_name": "ETHUSDT-1m-2024-07.csv",
+          "header": null,
+          "data_rows": 44640,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1719792000000,
+          "last_timestamp_ms": 1722470340000,
+          "sha256": "bda530d17235096c0e619edff1bef56154923b980d7a73406ea66114966ba0d2",
+          "archive_bytes": 2050486
+        },
+        "perp": {
+          "csv_name": "ETHUSDT-1m-2024-07.csv",
+          "header": [
+            "open_time",
+            "open",
+            "high",
+            "low",
+            "close",
+            "volume",
+            "close_time",
+            "quote_volume",
+            "count",
+            "taker_buy_volume",
+            "taker_buy_quote_volume",
+            "ignore"
+          ],
+          "data_rows": 44640,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1719792000000,
+          "last_timestamp_ms": 1722470340000,
+          "sha256": "34a3729eb2f6dd1563715e085eb936a4034357d95cba2605b96cf1cb5c533b65",
+          "archive_bytes": 1934815
+        },
+        "premium": {
+          "csv_name": "ETHUSDT-1m-2024-07.csv",
+          "header": [
+            "open_time",
+            "open",
+            "high",
+            "low",
+            "close",
+            "volume",
+            "close_time",
+            "quote_volume",
+            "count",
+            "taker_buy_volume",
+            "taker_buy_quote_volume",
+            "ignore"
+          ],
+          "data_rows": 44640,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1719792000000,
+          "last_timestamp_ms": 1722470340000,
+          "sha256": "5c5f60894d8f4fef5b77765b125974bb4038ddcbfbe8a28f128e93406c4f9ac4",
+          "archive_bytes": 880054
+        },
+        "mark": {
+          "csv_name": "ETHUSDT-1m-2024-07.csv",
+          "header": [
+            "open_time",
+            "open",
+            "high",
+            "low",
+            "close",
+            "volume",
+            "close_time",
+            "quote_volume",
+            "count",
+            "taker_buy_volume",
+            "taker_buy_quote_volume",
+            "ignore"
+          ],
+          "data_rows": 44640,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1719792000000,
+          "last_timestamp_ms": 1722470340000,
+          "sha256": "38235e045bb474f8fb9e552e9879a0c7db4e064763b28cc60801ea1201f2bec8",
+          "archive_bytes": 990728
+        },
+        "funding": {
+          "csv_name": "ETHUSDT-fundingRate-2024-07.csv",
+          "header": [
+            "calc_time",
+            "funding_interval_hours",
+            "last_funding_rate"
+          ],
+          "data_rows": 93,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1719792000000,
+          "last_timestamp_ms": 1722441600000,
+          "sha256": "9d236281ab6430250ad2b472cbbf03812a40aed42e73c8339fc6be55a2417a82",
+          "archive_bytes": 831
+        }
+      },
+      "2024-08": {
+        "spot": {
+          "csv_name": "ETHUSDT-1m-2024-08.csv",
+          "header": null,
+          "data_rows": 44640,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1722470400000,
+          "last_timestamp_ms": 1725148740000,
+          "sha256": "de64ff8c0e9bd0ff9ca7fc4015948fac94087c7293915a2a7f7bb47780e98e60",
+          "archive_bytes": 2065075
+        },
+        "perp": {
+          "csv_name": "ETHUSDT-1m-2024-08.csv",
+          "header": [
+            "open_time",
+            "open",
+            "high",
+            "low",
+            "close",
+            "volume",
+            "close_time",
+            "quote_volume",
+            "count",
+            "taker_buy_volume",
+            "taker_buy_quote_volume",
+            "ignore"
+          ],
+          "data_rows": 44640,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1722470400000,
+          "last_timestamp_ms": 1725148740000,
+          "sha256": "2ccc1d0c491c63a6bfbabda39e8bd41e555a87052d77120199133e9e81bbf36c",
+          "archive_bytes": 1941203
+        },
+        "premium": {
+          "csv_name": "ETHUSDT-1m-2024-08.csv",
+          "header": [
+            "open_time",
+            "open",
+            "high",
+            "low",
+            "close",
+            "volume",
+            "close_time",
+            "quote_volume",
+            "count",
+            "taker_buy_volume",
+            "taker_buy_quote_volume",
+            "ignore"
+          ],
+          "data_rows": 44638,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1722470400000,
+          "last_timestamp_ms": 1725148740000,
+          "sha256": "1bf1a73a0ab8ff2e9aa1a54e4c457c4caa67bc3bfb1215c2c33bce7406079d19",
+          "archive_bytes": 886671
+        },
+        "mark": {
+          "csv_name": "ETHUSDT-1m-2024-08.csv",
+          "header": [
+            "open_time",
+            "open",
+            "high",
+            "low",
+            "close",
+            "volume",
+            "close_time",
+            "quote_volume",
+            "count",
+            "taker_buy_volume",
+            "taker_buy_quote_volume",
+            "ignore"
+          ],
+          "data_rows": 44638,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1722470400000,
+          "last_timestamp_ms": 1725148740000,
+          "sha256": "ae8244cc4ad2033b815ef3f488aa060eab3ebec917e74f9500a01715f0e9a647",
+          "archive_bytes": 994804
+        },
+        "funding": {
+          "csv_name": "ETHUSDT-fundingRate-2024-08.csv",
+          "header": [
+            "calc_time",
+            "funding_interval_hours",
+            "last_funding_rate"
+          ],
+          "data_rows": 93,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1722470400000,
+          "last_timestamp_ms": 1725120000000,
+          "sha256": "e17684bc761924eb5e1912c52cfa997eddeb99da303e68e28f6f37369f672b9d",
+          "archive_bytes": 944
+        }
+      }
+    },
+    "SOLUSDT": {
+      "2024-07": {
+        "spot": {
+          "csv_name": "SOLUSDT-1m-2024-07.csv",
+          "header": null,
+          "data_rows": 44640,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1719792000000,
+          "last_timestamp_ms": 1722470340000,
+          "sha256": "c7b3651243e94833644c533ba80c10815281043aeaa7a76b8444f90db4746bad",
+          "archive_bytes": 1911457
+        },
+        "perp": {
+          "csv_name": "SOLUSDT-1m-2024-07.csv",
+          "header": [
+            "open_time",
+            "open",
+            "high",
+            "low",
+            "close",
+            "volume",
+            "close_time",
+            "quote_volume",
+            "count",
+            "taker_buy_volume",
+            "taker_buy_quote_volume",
+            "ignore"
+          ],
+          "data_rows": 44640,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1719792000000,
+          "last_timestamp_ms": 1722470340000,
+          "sha256": "56f7b44a70d3a1eedeb43cde4e81a3deea6e1ff2406d332a9a8205082455758e",
+          "archive_bytes": 1682413
+        },
+        "premium": {
+          "csv_name": "SOLUSDT-1m-2024-07.csv",
+          "header": [
+            "open_time",
+            "open",
+            "high",
+            "low",
+            "close",
+            "volume",
+            "close_time",
+            "quote_volume",
+            "count",
+            "taker_buy_volume",
+            "taker_buy_quote_volume",
+            "ignore"
+          ],
+          "data_rows": 44640,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1719792000000,
+          "last_timestamp_ms": 1722470340000,
+          "sha256": "82dd36a84127653d2cf880058717841ae2e420722e506ca23472ad28f89ca78e",
+          "archive_bytes": 886179
+        },
+        "mark": {
+          "csv_name": "SOLUSDT-1m-2024-07.csv",
+          "header": [
+            "open_time",
+            "open",
+            "high",
+            "low",
+            "close",
+            "volume",
+            "close_time",
+            "quote_volume",
+            "count",
+            "taker_buy_volume",
+            "taker_buy_quote_volume",
+            "ignore"
+          ],
+          "data_rows": 44640,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1719792000000,
+          "last_timestamp_ms": 1722470340000,
+          "sha256": "ecb5cc5bc8b1bc43ce9689c31e44169488a035a06f5a21d5bb6111c11e3f2be4",
+          "archive_bytes": 998248
+        },
+        "funding": {
+          "csv_name": "SOLUSDT-fundingRate-2024-07.csv",
+          "header": [
+            "calc_time",
+            "funding_interval_hours",
+            "last_funding_rate"
+          ],
+          "data_rows": 93,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1719792000000,
+          "last_timestamp_ms": 1722441600000,
+          "sha256": "2585a0db933c70b62c87cac509de42ac09b98d370238c0d8c68249a20bd2b9a3",
+          "archive_bytes": 850
+        }
+      },
+      "2024-08": {
+        "spot": {
+          "csv_name": "SOLUSDT-1m-2024-08.csv",
+          "header": null,
+          "data_rows": 44640,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1722470400000,
+          "last_timestamp_ms": 1725148740000,
+          "sha256": "52d6a02057c08d24eae41a53dede0d8af12b8ef8bf2306ae205593937f53264f",
+          "archive_bytes": 1923404
+        },
+        "perp": {
+          "csv_name": "SOLUSDT-1m-2024-08.csv",
+          "header": [
+            "open_time",
+            "open",
+            "high",
+            "low",
+            "close",
+            "volume",
+            "close_time",
+            "quote_volume",
+            "count",
+            "taker_buy_volume",
+            "taker_buy_quote_volume",
+            "ignore"
+          ],
+          "data_rows": 44640,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1722470400000,
+          "last_timestamp_ms": 1725148740000,
+          "sha256": "4ec6ef5fbd00a1e596324ea24909347abd6a623889089e9ef6e2f71625947eda",
+          "archive_bytes": 1694056
+        },
+        "premium": {
+          "csv_name": "SOLUSDT-1m-2024-08.csv",
+          "header": [
+            "open_time",
+            "open",
+            "high",
+            "low",
+            "close",
+            "volume",
+            "close_time",
+            "quote_volume",
+            "count",
+            "taker_buy_volume",
+            "taker_buy_quote_volume",
+            "ignore"
+          ],
+          "data_rows": 44638,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1722470400000,
+          "last_timestamp_ms": 1725148740000,
+          "sha256": "65f60ecc937f5869a1f922b319e9e322431a26f4c87beadc9ce076a985b68830",
+          "archive_bytes": 888738
+        },
+        "mark": {
+          "csv_name": "SOLUSDT-1m-2024-08.csv",
+          "header": [
+            "open_time",
+            "open",
+            "high",
+            "low",
+            "close",
+            "volume",
+            "close_time",
+            "quote_volume",
+            "count",
+            "taker_buy_volume",
+            "taker_buy_quote_volume",
+            "ignore"
+          ],
+          "data_rows": 44638,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1722470400000,
+          "last_timestamp_ms": 1725148740000,
+          "sha256": "8d50fbc2a0a996563e27c97bc2ae4249647604645e51e94fa9e0aa8b125aa64d",
+          "archive_bytes": 997459
+        },
+        "funding": {
+          "csv_name": "SOLUSDT-fundingRate-2024-08.csv",
+          "header": [
+            "calc_time",
+            "funding_interval_hours",
+            "last_funding_rate"
+          ],
+          "data_rows": 93,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1722470400000,
+          "last_timestamp_ms": 1725120000000,
+          "sha256": "ef076200aab768d33f71449957f6cd9c96c0da696708a5f561b97e7a0995e8d2",
+          "archive_bytes": 940
+        }
+      }
+    }
+  },
+  "checks": "Every archive and .CHECKSUM are downloaded; SHA256 must match.",
+  "limitations": [
+    "This is data QA, not a profitability backtest.",
+    "Spot, USD-M perpetual, premium-index and mark-price timestamps are checked independently; exact common-minute alignment is required downstream.",
+    "Funding archives are event observations; funding cashflows must be applied only at actual funding timestamps."
+  ]
+}
