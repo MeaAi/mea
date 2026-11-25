@@ -104,6 +104,10 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
      o,h,l,cl=bar;adverse=l if q>0 else h
      worst+=q*(adverse-current[z]);notion+=abs(q*adverse)
     hourly_checks+=1
+    # Track adverse intrabar portfolio equity, not only funding-event closes.
+    # Use simultaneous adverse extremes across held symbols as a conservative stress mark.
+    peak=max(peak,equity)
+    maxdd=min(maxdd,(worst/peak-1)*100 if peak else -100)
     if worst<=notion*(mmr+liq_fee):
      equity=max(0.,worst-notion*liq_fee);liquidated=True
      liq_time=datetime.fromtimestamp(ht/1000,timezone.utc).isoformat();liq_equity=equity
@@ -358,6 +362,7 @@ def main():
    "maintenance_margin":"static conservative 0.5% of stressed gross notional; historical symbol-specific Binance brackets unavailable in this public dataset",
    "liquidation_fee":"1% of stressed gross notional proxy",
    "intrabar":"1h mark-price OHLC; simultaneous adverse low for longs and high for shorts, conservative but not tick-accurate",
+   "drawdown":"Maximum drawdown now updates at every hourly adverse mark using simultaneous adverse OHLC extremes, as well as funding-event equity; conservative stress estimate.",
    "margin_mode":"cross-portfolio approximation; funding cashflow at settlement; positions resized weekly",
    "limitations":["not exact Binance liquidation engine","static MMR instead of historical symbol-specific tier brackets","hourly OHLC cannot reconstruct tick order or exact liquidation price","spread and market impact beyond fixed slippage are not modeled","static universe survivorship bias"]},
   "regime_tests_oos_1x_5bp_fee_2bp_slippage":regime_tests,
