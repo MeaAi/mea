@@ -1,5 +1,11 @@
 name: OI positioning extended OOS research
 on:
+  push:
+    branches: [research/oi-positioning-extended-v1]
+    paths:
+      - ".github/workflows/oi-positioning-extended.yml"
+      - "research/binance_oi_klines_only.py"
+      - "research/oi_positioning_shock.py"
   workflow_dispatch:
     inputs:
       start_day:
