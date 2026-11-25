@@ -137,11 +137,15 @@ def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--input",required=True);ap.add_argument("--start-day",required=True);ap.add_argument("--end-day",required=True)
     ap.add_argument("--out",default="oi_positioning_oos.json");ap.add_argument("--capital",type=float,default=100)
-    a=ap.parse_args();bars=load_bars(a.input);result={"source":"Binance Vision USD-M metrics daily archives + 1m futures klines",\n      "validation_version":"v2_contiguous_minute_compounded_equity",
+    a=ap.parse_args();bars=load_bars(a.input);result={"source":"Binance Vision USD-M metrics daily archives + 1m futures klines",
+      "validation_version":"v2_contiguous_minute_compounded_equity",
       "timestamp_policy":"2024 historical metrics create_time labels treated as end-of-period; as-of join only, signal uses metrics timestamp strictly earlier than decision minute; entry next minute open.",
       "splits":"Chronological 50% train / 20% validation / 30% untouched OOS by matched minute rows. Thresholds fit on train only.",
       "costs":"Entry and exit fee each 2/5/8 bp; entry and exit slippage each 2 bp. 1x, 100% equity per trade, non-overlapping.",
-      "limitations":["Metrics are 5-minute aggregates/snapshots; no tick-level position changes.","No funding cashflow or exchange liquidation simulation in this diagnostic.",\n      "Trades with any missing/non-consecutive 1m bar are rejected; signal-to-entry and all holding intervals must be exactly 60000ms.",\n      "Metric joins are strict as-of (metric timestamp must be earlier than decision minute); stale metrics older than 5 minutes are excluded; 15m price return requires exact 15-minute timestamp continuity.",\n      "Equity compounds trade by trade; entry and exit costs are charged on their respective notionals; adverse mark includes estimated exit costs.","Historical metrics definitions and timestamp semantics require effective-date caution; this sample is 2024.","Adverse drawdown uses 1m high/low path during each held trade, not exchange liquidation engine."],"symbols":{}}
+      "limitations":["Metrics are 5-minute aggregates/snapshots; no tick-level position changes.","No funding cashflow or exchange liquidation simulation in this diagnostic.",
+      "Trades with any missing/non-consecutive 1m bar are rejected; signal-to-entry and all holding intervals must be exactly 60000ms.",
+      "Metric joins are strict as-of (metric timestamp must be earlier than decision minute); stale metrics older than 5 minutes are excluded; 15m price return requires exact 15-minute timestamp continuity.",
+      "Equity compounds trade by trade; entry and exit costs are charged on their respective notionals; adverse mark includes estimated exit costs.","Historical metrics definitions and timestamp semantics require effective-date caution; this sample is 2024.","Adverse drawdown uses 1m high/low path during each held trade, not exchange liquidation engine."],"symbols":{}}
     for sym,bmap in bars.items():
         m=metrics_for(sym,a.start_day,a.end_day); mt=[x[0] for x in m]; mv=[x[1] for x in m]
         ts=sorted(bmap); rows=[]
