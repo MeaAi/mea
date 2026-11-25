@@ -68,7 +68,7 @@ def load_symbol(sym,months,root):
   verified_download(f"{BASE}/markPriceKlines/{sym}/1h/{mn}",mp);marks.update(readzip(mp,"mark"))
  return sym,fund,marks
 
-def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20,side_mode='both',regime_filter=None,regime_policy=None,regime_threshold_pct=5.0,trade_universe=None,sideways_action='flat'):
+def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20,side_mode='both',regime_filter=None,regime_policy=None,regime_threshold_pct=5.0,trade_universe=None,sideways_action='flat',sideways_reduce_fraction=0.5):
  symbols=list(data); trade_symbols=list(trade_universe) if trade_universe is not None else symbols; first,last=period
  if not set(trade_symbols).issubset(set(symbols)) or 'BTCUSDT' not in data: raise ValueError('invalid trade universe or missing BTC regime benchmark')
  mark_times={s:sorted(data[s]["marks"]) for s in symbols}
@@ -88,7 +88,7 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
   ret=btc_marks[btc_times[j]][3]/btc_marks[btc_times[k]][3]-1
   threshold=regime_threshold_pct/100.0
   return 'bull' if ret>threshold else ('bear' if ret<-threshold else 'sideways')
- rebalances=0; hourly_checks=0; hourly_sideways_exits=0
+ rebalances=0; hourly_checks=0; hourly_sideways_exits=0; sideways_reduced=False
  lookback=lookback_days*DAY; interval=rebalance_days*DAY
  for ix,t in enumerate(events):
   # Walk the union of hourly mark candles once; update portfolio equity close-to-close.
@@ -167,10 +167,20 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
      active_mode=regime_policy.get(rg,'flat')
     elif regime_filter is not None and rg!=regime_filter:
      active_mode='flat'
+    if rg!='sideways':
+     sideways_reduced=False
     if rg=='sideways' and sideways_action=='hold':
      # Freeze the existing portfolio: no new entries or additions while sideways.
      target=qty.copy()
-    if active_mode!='flat' and not (rg=='sideways' and sideways_action=='hold'):
+    elif rg=='sideways' and sideways_action=='reduce':
+     # Cut existing exposure once on entry to sideways, then hold the reduced book.
+     # Do not compound the cut at each weekly rebalance.
+     if not sideways_reduced:
+      target={s:qty[s]*sideways_reduce_fraction for s in symbols}
+      sideways_reduced=True
+     else:
+      target=qty.copy()
+    if active_mode!='flat' and not (rg=='sideways' and sideways_action in ('hold','reduce')):
      leg=max(0.,equity)*lev*(.5 if active_mode=='both' else 1.0)
      if active_mode in ('both','long_only'):
       for s in longs:target[s]=leg/k/px[s]
@@ -351,6 +361,39 @@ def main():
   lookback_days=7,rebalance_days=7,tail_fraction=.20,
   regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold)
  original_52_reference={k:original_52_reference[k] for k in ('net_return_pct','end_equity_usdt','max_drawdown_pct','rebalance_count','hourly_adverse_checks','hourly_sideways_exits','price_pnl_usdt','funding_pnl_usdt','trading_fees_usdt','slippage_usdt','liquidated','market_regime_attribution','symbol_attribution')}
+ # Single-variable OOS candidate: freeze existing holdings during sideways regime.
+ sideways_hold_candidate=run(data,cuts['oos'],1.0,5,slip_bp=2,
+  lookback_days=7,rebalance_days=7,tail_fraction=.20,
+  regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold,sideways_action="hold")
+ sideways_hold_candidate={k:sideways_hold_candidate[k] for k in ('net_return_pct','end_equity_usdt','max_drawdown_pct','rebalance_count','hourly_adverse_checks','hourly_sideways_exits','price_pnl_usdt','funding_pnl_usdt','trading_fees_usdt','slippage_usdt','liquidated')}
+ # Matched fee sensitivity: identical OOS dates, 1x, 7d/7d/20%, frozen regime policy and 2bp slippage.
+ # This records both baseline and sideways-hold candidate for each one-way fee.
+ sideways_hold_fee_sensitivity={}
+ for fee in (2,5,8):
+  baseline_fee=run(data,cuts['oos'],1.0,fee,slip_bp=2,
+   lookback_days=7,rebalance_days=7,tail_fraction=.20,
+   regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold)
+  hold_fee=run(data,cuts['oos'],1.0,fee,slip_bp=2,
+   lookback_days=7,rebalance_days=7,tail_fraction=.20,
+   regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold,sideways_action="hold")
+  fields=('net_return_pct','end_equity_usdt','max_drawdown_pct','rebalance_count',
+          'price_pnl_usdt','funding_pnl_usdt','trading_fees_usdt','slippage_usdt','liquidated',
+          'market_regime_attribution','entry_regime_attribution')
+  sideways_hold_fee_sensitivity[f"fee_{fee}bp"]={
+   "baseline":{k:baseline_fee[k] for k in fields},
+   "sideways_hold":{k:hold_fee[k] for k in fields}}
+ # Matched OOS sideways exposure-reduction sweep. The retained fraction is the only changed variable.
+ sideways_reduce_sweep={}
+ for retained in (0.25,0.50,0.75):
+  for fee in (2,5,8):
+   v=run(data,cuts['oos'],1.0,fee,slip_bp=2,
+    lookback_days=7,rebalance_days=7,tail_fraction=.20,
+    regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold,
+    sideways_action="reduce",sideways_reduce_fraction=retained)
+   sideways_reduce_sweep[f"retain_{int(retained*100)}pct_fee_{fee}bp"]={
+    k:v[k] for k in ('net_return_pct','end_equity_usdt','max_drawdown_pct','rebalance_count',
+     'price_pnl_usdt','funding_pnl_usdt','trading_fees_usdt','slippage_usdt','liquidated',
+     'market_regime_attribution','entry_regime_attribution')}
  # Matched OOS comparison of sideways handling. Parameters, policy, dates and costs are frozen.
  sideways_management={}
  for action in ('flat','hold','immediate_flat'):
@@ -401,7 +444,7 @@ def main():
    "margin_mode":"cross-portfolio approximation; funding cashflow at settlement; positions resized weekly",
    "limitations":["not exact Binance liquidation engine","static MMR instead of historical symbol-specific tier brackets","hourly OHLC cannot reconstruct tick order or exact liquidation price","spread and market impact beyond fixed slippage are not modeled","static universe survivorship bias"]},
   "regime_tests_oos_1x_5bp_fee_2bp_slippage":regime_tests,
-  "matched_regime_comparison_oos_1x_5bp_fee_2bp_slippage":regime_side_by_side,"sideways_management_oos_1x_5bp_fee_2bp_slippage":sideways_management,"original_52_reference_corrected_drawdown_oos_1x_5bp_fee_2bp_slippage":original_52_reference,
+  "matched_regime_comparison_oos_1x_5bp_fee_2bp_slippage":regime_side_by_side,"sideways_management_oos_1x_5bp_fee_2bp_slippage":sideways_management,"original_52_reference_corrected_drawdown_oos_1x_5bp_fee_2bp_slippage":original_52_reference,"matched_sideways_hold_experiment_oos_1x_5bp_fee_2bp_slippage":sideways_hold_candidate,"sideways_hold_fee_sensitivity_oos_1x_2bp_slippage":sideways_hold_fee_sensitivity,"sideways_reduce_sweep_oos_1x_2bp_slippage":sideways_reduce_sweep,
   "symbol_universe_selection":{"selection_protocol":"Rank by net symbol contribution on first half of validation; compare top-5/7/9/11/13 portfolios on second half; freeze selected symbols before OOS.","discovery_period_utc":[datetime.fromtimestamp(val_start/1000,timezone.utc).isoformat(),datetime.fromtimestamp(val_mid/1000,timezone.utc).isoformat()],"selection_period_utc":[datetime.fromtimestamp(val_mid/1000,timezone.utc).isoformat(),datetime.fromtimestamp(val_end/1000,timezone.utc).isoformat()],"discovery_ranking":ranked_symbols,"candidate_results":universe_candidates,"chosen_count":chosen_universe_n,"chosen_symbols":frozen_symbols,"chosen_validation":universe_candidates[str(chosen_universe_n)],"frozen_oos_1x":universe_oos},
   "regime_policy_sweep":{"selection_period":"validation only","selection_rule":"Highest validation net return among policies with max drawdown >= -25% and no liquidation; frozen before OOS.","validation_results":{k:{"net_return_pct":v["net_return_pct"],"max_drawdown_pct":v["max_drawdown_pct"],"liquidated":v["liquidated"]} for k,v in policy_validation.items()},"chosen_policy":chosen_policy_name,"chosen_policy_mapping":regime_policies[chosen_policy_name],"chosen_policy_validation":chosen_policy_result,"chosen_policy_oos":adaptive_policy_oos,
    "threshold_sensitivity":{"candidates_pct":[3,5,7,10],"selection_period":"validation only","validation_results":threshold_validation,"chosen_threshold_pct":chosen_threshold,"chosen_threshold_validation":chosen_threshold_validation,"frozen_threshold_oos_1x":threshold_oos}},
@@ -409,3 +452,7 @@ def main():
  Path(a.out).parent.mkdir(parents=True,exist_ok=True);Path(a.out).write_text(json.dumps(report,indent=2),encoding="utf-8")
  print("REPORT",a.out,flush=True)
 if __name__=="__main__":main()
+
+# Trigger isolated sideways-hold OOS run.
+
+# Trigger matched 2/5/8 bp fee sensitivity rerun with the latest report fields.
