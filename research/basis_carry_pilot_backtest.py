@@ -51,7 +51,6 @@ def load():
         data[sym]={"spot":spot,"perp":perp,"funding":sorted(funding),"common":common}
     return data
 def main():
-    global START, END
     parser=argparse.ArgumentParser()
     parser.add_argument("--fee-bp",type=float,default=FEE_BP)
     parser.add_argument("--out",default="research-results/basis_pilot_backtest.json")
@@ -130,7 +129,7 @@ def main():
           "funding_usdt":round(funding_total,6),"cost_usdt":round(cost_total,6),
           "fee_bp_per_side":fee_bp,"slippage_bp_per_side":SLIP_BP,"leverage":1,
           "portfolio":"50% long highest score + 50% short lowest score; daily 1440m holding"})
-    report={"period":[START,END],"symbols":list(SYMS),"method":"UTC daily cross-sectional top-vs-bottom basis; 5-day change uses 7200 contiguous minute index observations; next-minute open entry; 1440 contiguous 1m bars; 5bp fee + 2bp slippage each side; funding only at actual timestamps; adverse minute high/low DD.",
+    report={"period":[START,END],"symbols":list(SYMS),"method":f"UTC daily cross-sectional top-vs-bottom basis; 5-day change uses 7200 contiguous minute index observations; next-minute open entry; 1440 contiguous 1m bars; {fee_bp:g}bp fee + {SLIP_BP:g}bp slippage each side; funding only at actual timestamps; adverse minute high/low DD.",
       "data_qa":"archives checksum-verified; exact spot/perp common timestamps only; no gap interpolation",
       "limitations":["Two-month pilot only; not OOS proof.","Only three-symbol cross-section; 50/50 long-short gross 1x.","No queue/fill model because this is a taker execution baseline.","Funding timestamp/rate interpretation must be checked against exchange semantics before full-period expansion."],
       "results":variants}
