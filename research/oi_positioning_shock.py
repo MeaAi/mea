@@ -137,7 +137,7 @@ def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--input",required=True);ap.add_argument("--start-day",required=True);ap.add_argument("--end-day",required=True)
     ap.add_argument("--out",default="oi_positioning_oos.json");ap.add_argument("--capital",type=float,default=100)
-    a=ap.parse_args();bars=load_bars(a.input);result={"source":"Binance Vision USD-M metrics daily archives + 1m futures klines",
+    a=ap.parse_args();bars=load_bars(a.input);result={"source":"Binance Vision USD-M metrics daily archives + 1m futures klines",\n      "validation_version":"v2_contiguous_minute_compounded_equity",
       "timestamp_policy":"2024 historical metrics create_time labels treated as end-of-period; as-of join only, signal uses metrics timestamp <= decision minute; entry next minute open.",
       "splits":"Chronological 50% train / 20% validation / 30% untouched OOS by matched minute rows. Thresholds fit on train only.",
       "costs":"Entry and exit fee each 2/5/8 bp; entry and exit slippage each 2 bp. 1x, 100% equity per trade, non-overlapping.",
