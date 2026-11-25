@@ -168,7 +168,7 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
      rets=[math.log(closes[q]/closes[q-1]) for q in range(1,len(closes)) if closes[q]>0 and closes[q-1]>0]
      if len(rets)<600: continue
      vol=math.sqrt(sum((x-sum(rets)/len(rets))**2 for x in rets)/len(rets))
-     fvals=[r for et,r in data[z]["fund"].items() if t-30*DAY<et<=t]
+     fvals=[r for et,r in data[z]["fund"].items() if t-30*DAY<et<t]
      if len(fvals)<12: continue
      fmean=sum(fvals)/len(fvals)
      fvol=math.sqrt(sum((x-fmean)**2 for x in fvals)/len(fvals))
@@ -396,27 +396,44 @@ def main():
   lookback_days=7,rebalance_days=7,tail_fraction=.20,
   regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold)
  original_52_reference={k:original_52_reference[k] for k in ('net_return_pct','end_equity_usdt','max_drawdown_pct','rebalance_count','hourly_adverse_checks','hourly_sideways_exits','price_pnl_usdt','funding_pnl_usdt','trading_fees_usdt','slippage_usdt','liquidated','market_regime_attribution','symbol_attribution')}
- # Dynamic per-symbol risk filter. Screen uses trailing 30d hourly mark returns,
- # realized volatility and funding-rate dispersion; quantiles and trend-alignment
- # are selected on the first half of validation and frozen before OOS.
+ # Dynamic per-symbol risk filter with a genuine two-stage validation protocol.
+ # Stage 1: rank the 18 configurations on the first validation half only.
+ # Stage 2: test the single frozen winner against baseline on the second half.
+ # OOS is run only if the frozen candidate beats baseline on BOTH return and drawdown
+ # in the untouched second validation half. No parameter tuning is allowed there.
  val_start,val_end=cuts["validation"]; val_mid=(val_start+val_end)//2
  dyn_discovery=(val_start,val_mid); dyn_selection=(val_mid,val_end)
- dyn_baseline=run(data,dyn_selection,1.0,5,slip_bp=2,lookback_days=7,rebalance_days=7,tail_fraction=.20,regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold)
+ dyn_discovery_baseline=run(data,dyn_discovery,1.0,5,slip_bp=2,lookback_days=7,rebalance_days=7,tail_fraction=.20,regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold)
  dyn_grid=[]
  for vq in (.70,.85,1.0):
   for fq in (.70,.85,1.0):
    for align in (False,True):
     cfg={"vol_quantile":vq,"funding_vol_quantile":fq,"require_trend_alignment":align}
-    dv=run(data,dyn_selection,1.0,5,slip_bp=2,lookback_days=7,rebalance_days=7,tail_fraction=.20,regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold,dynamic_filter=cfg)
+    dv=run(data,dyn_discovery,1.0,5,slip_bp=2,lookback_days=7,rebalance_days=7,tail_fraction=.20,regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold,dynamic_filter=cfg)
     dyn_grid.append({"config":cfg,"net_return_pct":dv["net_return_pct"],"max_drawdown_pct":dv["max_drawdown_pct"],"liquidated":dv["liquidated"]})
- dyn_eligible=[x for x in dyn_grid if x["net_return_pct"]>dyn_baseline["net_return_pct"] and x["max_drawdown_pct"]>dyn_baseline["max_drawdown_pct"] and not x["liquidated"]]
+ dyn_eligible=[x for x in dyn_grid if x["net_return_pct"]>dyn_discovery_baseline["net_return_pct"] and x["max_drawdown_pct"]>dyn_discovery_baseline["max_drawdown_pct"] and not x["liquidated"]]
  dyn_chosen=max(dyn_eligible,key=lambda x:x["net_return_pct"]) if dyn_eligible else None
+ dyn_selection_baseline=run(data,dyn_selection,1.0,5,slip_bp=2,lookback_days=7,rebalance_days=7,tail_fraction=.20,regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold)
+ dyn_selection_candidate=None
  dynamic_filter_oos={}
  if dyn_chosen:
-  for fee in (2,5,8):
-   dv=run(data,cuts["oos"],1.0,fee,slip_bp=2,lookback_days=7,rebalance_days=7,tail_fraction=.20,regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold,dynamic_filter=dyn_chosen["config"])
-   dynamic_filter_oos[f"fee_{fee}bp"]={k:dv[k] for k in ("net_return_pct","end_equity_usdt","max_drawdown_pct","rebalance_count","hourly_adverse_checks","price_pnl_usdt","funding_pnl_usdt","trading_fees_usdt","slippage_usdt","liquidated","symbol_attribution")}
- dynamic_filter_experiment={"method":"Trailing 30d hourly mark-price realized volatility + funding-rate standard deviation; cross-sectional quantile caps; optional trend alignment with current BTC 30d regime. All inputs lagged to decision timestamp.","validation_baseline":{"net_return_pct":dyn_baseline["net_return_pct"],"max_drawdown_pct":dyn_baseline["max_drawdown_pct"],"liquidated":dyn_baseline["liquidated"]},"grid":dyn_grid,"eligible_count":len(dyn_eligible),"chosen":dyn_chosen,"frozen_oos":dynamic_filter_oos}
+  cfg=dyn_chosen["config"]
+  sv=run(data,dyn_selection,1.0,5,slip_bp=2,lookback_days=7,rebalance_days=7,tail_fraction=.20,regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold,dynamic_filter=cfg)
+  dyn_selection_candidate={"net_return_pct":sv["net_return_pct"],"max_drawdown_pct":sv["max_drawdown_pct"],"liquidated":sv["liquidated"]}
+  dyn_passes_selection=(not sv["liquidated"] and sv["net_return_pct"]>dyn_selection_baseline["net_return_pct"] and sv["max_drawdown_pct"]>dyn_selection_baseline["max_drawdown_pct"])
+  if dyn_passes_selection:
+   for fee in (2,5,8):
+    dv=run(data,cuts["oos"],1.0,fee,slip_bp=2,lookback_days=7,rebalance_days=7,tail_fraction=.20,regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold,dynamic_filter=cfg)
+    dynamic_filter_oos[f"fee_{fee}bp"]={k:dv[k] for k in ("net_return_pct","end_equity_usdt","max_drawdown_pct","rebalance_count","hourly_adverse_checks","price_pnl_usdt","funding_pnl_usdt","trading_fees_usdt","slippage_usdt","liquidated","symbol_attribution")}
+ else:
+  dyn_passes_selection=False
+ dynamic_filter_experiment={"method":"Trailing 30d hourly mark-price realized volatility + funding-rate standard deviation; cross-sectional quantile caps; optional trend alignment with current BTC 30d regime. Strictly pre-decision inputs only.",
+  "discovery_period_utc":{"start":datetime.fromtimestamp(dyn_discovery[0]/1000,timezone.utc).isoformat(),"end":datetime.fromtimestamp(dyn_discovery[1]/1000,timezone.utc).isoformat()},
+  "selection_period_utc":{"start":datetime.fromtimestamp(dyn_selection[0]/1000,timezone.utc).isoformat(),"end":datetime.fromtimestamp(dyn_selection[1]/1000,timezone.utc).isoformat()},
+  "discovery_baseline":{"net_return_pct":dyn_discovery_baseline["net_return_pct"],"max_drawdown_pct":dyn_discovery_baseline["max_drawdown_pct"],"liquidated":dyn_discovery_baseline["liquidated"]},
+  "discovery_grid":dyn_grid,"discovery_eligible_count":len(dyn_eligible),"frozen_candidate":dyn_chosen,
+  "selection_baseline":{"net_return_pct":dyn_selection_baseline["net_return_pct"],"max_drawdown_pct":dyn_selection_baseline["max_drawdown_pct"],"liquidated":dyn_selection_baseline["liquidated"]},
+  "selection_candidate":dyn_selection_candidate,"passed_untouched_selection":dyn_passes_selection,"frozen_oos":dynamic_filter_oos}
  # Selective sideways exit experiment.
  # Discovery ranks symbol losses only in the first half of validation.
  # Candidate counts are then compared on the untouched second half of validation.
