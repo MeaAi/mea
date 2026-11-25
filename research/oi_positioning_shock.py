@@ -32,10 +32,10 @@ def metrics_for(symbol,start,end):
                     # 2024 archives use end-of-period timestamps; preserve original labels.
                     t=int(datetime.strptime(r["create_time"],"%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc).timestamp()*1000)
                     vals={}
-                    for k in ("sum_open_interest_value","count_toptrader_long_short_ratio","sum_toptrader_long_short_ratio","count_long_short_ratio","sum_taker_long_short_vol_ratio"):
+                    for k in ("sum_open_interest","sum_open_interest_value","count_toptrader_long_short_ratio","sum_toptrader_long_short_ratio","count_long_short_ratio","sum_taker_long_short_vol_ratio"):
                         try: vals[k]=float(r[k])
                         except (ValueError,TypeError): vals[k]=float("nan")
-                    if math.isfinite(vals["sum_open_interest_value"]) and vals["sum_open_interest_value"]>0:out[t]=vals
+                    if math.isfinite(vals["sum_open_interest"]) and vals["sum_open_interest"]>0:out[t]=vals
     return sorted(out.items())
 def load_bars(pattern):
     out=defaultdict(dict)
@@ -79,18 +79,18 @@ def simulate(rows,signals,lo,hi,h,fee,slip,initial):
         segment=rows[i+1:i+h+1]
         trades.append((entry,exitp,side,fee,fee,slip,slip,[x["low"] for x in segment],[x["high"] for x in segment]))
     end,dd=calc_dd(trades,initial)
-    eq=initial; gp=fees=slips=0; wins=0; netbps=[]
+    eq=initial; gp=fees=slips=0; wins=0; netbps=[]; pos=neg=0.0
     for tr in trades:
         en,ex,side,fe,fx,se,sx,*_=tr
         raw=(ex/en-1)*10000*side
         gross=eq*raw/10000; f=eq*(fe+fx)/10000; sl=eq*(se+sx)/10000
-        pnl=gross-f-sl; gp+=gross;fees+=f;slips+=sl;wins+=pnl>0
+        pnl=gross-f-sl; gp+=gross;fees+=f;slips+=sl;wins+=pnl>0; pos+=max(0,pnl); neg+=max(0,-pnl)
         netbps.append(raw-fe-fx-se-sx);eq+=pnl
     n=len(trades)
     return {"trades":n,"end_equity_usdt":round(end,6),"net_return_pct":round((end/initial-1)*100,4),
       "gross_pnl_usdt":round(gp,6),"fees_usdt":round(fees,6),"slippage_usdt":round(slips,6),
       "net_mean_bp":round(sum(netbps)/n,4) if n else None,"win_rate_pct":round(100*wins/n,2) if n else None,
-      "max_adverse_mark_dd_pct":round(dd,4),"profit_factor":None}
+      "max_adverse_mark_dd_pct":round(dd,4),"profit_factor":round(pos/neg,4) if neg else (None if not pos else "inf")}
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--input",required=True);ap.add_argument("--start-day",required=True);ap.add_argument("--end-day",required=True)
@@ -108,7 +108,7 @@ def main():
             if j<12 or i<60:rows.append(None);continue
             v=mv[j];v0=mv[j-3];v12=mv[j-12]
             p=bmap[t]["close"];p15=bmap[ts[i-15]]["close"] if i>=15 else p
-            oi15=v["sum_open_interest_value"]/v0["sum_open_interest_value"]-1
+            oi15=v["sum_open_interest"]/v0["sum_open_interest"]-1
             ret15=p/p15-1 if p15 else 0
             rows.append({"t":t,**bmap[t],"oi15":oi15,"ret15":ret15,
               "top_pos":v["sum_toptrader_long_short_ratio"],"top_acc":v["count_toptrader_long_short_ratio"],
