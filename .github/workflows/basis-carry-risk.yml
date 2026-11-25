@@ -37,8 +37,11 @@ jobs:
           python-version: "3.12"
       - name: Download and verify free Binance archives
         run: python research/basis_carry_data_qa.py --start "$START_MONTH" --end "$END_MONTH" --symbols BTCUSDT,ETHUSDT,SOLUSDT --out research-output
-      - name: Run cross-sectional basis pilot backtest
-        run: python research/basis_carry_pilot_backtest.py
+      - name: Run cross-sectional basis pilot cost sensitivity
+        run: |
+          for fee in 2 5 8; do
+            python research/basis_carry_pilot_backtest.py --fee-bp "$fee" --out "research-results/basis_pilot_fee${fee}.json"
+          done
       - name: Publish compact QA and backtest reports
         run: |
           mkdir -p research-results
@@ -46,7 +49,7 @@ jobs:
           rm -rf research-output
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add research-results/basis_data_qa.json research-results/basis_pilot_backtest.json
+          git add research-results/basis_data_qa.json research-results/basis_pilot_fee2.json research-results/basis_pilot_fee5.json research-results/basis_pilot_fee8.json
           git commit -m "Publish basis carry pilot results" || echo "No report changes"
           git fetch origin research/basis-carry-risk-v1
           git rebase origin/research/basis-carry-risk-v1
