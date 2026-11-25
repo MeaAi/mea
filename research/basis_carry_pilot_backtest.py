@@ -68,7 +68,7 @@ def main():
     for t in times:
         dt=datetime.fromtimestamp(t/1000,timezone.utc)
         if dt.hour==23 and dt.minute==59:
-            j=idx[t]; prior=times[j-7200] if j>=7200 else None
+            j=idx[t]; prior=times[j-7200] if j>=7200 and t-times[j-7200]==7200*60000 else None
             if prior is None:continue
             if len(bytime[t])==3 and len(bytime[prior])==3:
                 snapshots.append((t,{s:bytime[t][s] for s in SYMS},{s:bytime[t][s]-bytime[prior][s] for s in SYMS}))
