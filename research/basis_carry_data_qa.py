@@ -3,8 +3,8 @@
 Pilot is intentionally capped at two months; no strategy result is claimed here.
 """
 import argparse,csv,hashlib,io,json,urllib.request,zipfile
-from pathlib import Path
 from datetime import datetime,timezone
+from pathlib import Path
 
 BASE="https://data.binance.vision/data"
 def get(url):
@@ -17,60 +17,60 @@ def months(a,b):
         m+=1
         if m==13:y,m=y+1,1
 def archive_url(kind,symbol,month):
-    if kind=="spot":
-        return f"{BASE}/spot/monthly/klines/{symbol}/1m/{symbol}-1m-{month}.zip"
-    if kind=="perp":
-        return f"{BASE}/futures/um/monthly/klines/{symbol}/1m/{symbol}-1m-{month}.zip"
-    if kind=="premium":
-        return f"{BASE}/futures/um/monthly/premiumIndexKlines/{symbol}/1m/{symbol}-1m-{month}.zip"
-    if kind=="funding":
-        return f"{BASE}/futures/um/monthly/fundingRate/{symbol}/{symbol}-fundingRate-{month}.zip"
+    if kind=="spot":return f"{BASE}/spot/monthly/klines/{symbol}/1m/{symbol}-1m-{month}.zip"
+    if kind=="perp":return f"{BASE}/futures/um/monthly/klines/{symbol}/1m/{symbol}-1m-{month}.zip"
+    if kind=="premium":return f"{BASE}/futures/um/monthly/premiumIndexKlines/{symbol}/1m/{symbol}-1m-{month}.zip"
+    if kind=="funding":return f"{BASE}/futures/um/monthly/fundingRate/{symbol}/{symbol}-fundingRate-{month}.zip"
     raise ValueError(kind)
 def verify(blob,checksum,label):
     expected=checksum.decode().strip().split()[0].lower()
     actual=hashlib.sha256(blob).hexdigest()
     if expected!=actual:raise RuntimeError(f"SHA256 mismatch: {label}")
     return actual
+def parse_ts(value):
+    s=value.strip()
+    try:t=int(float(s))
+    except ValueError:
+        dt=datetime.strptime(s,"%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
+        return int(dt.timestamp()*1000)
+    if t>10**17:return t//10**6
+    if t>10**14:return t//10**3
+    return t
 def inspect_csv(blob,kind):
     with zipfile.ZipFile(io.BytesIO(blob)) as z:
         names=[n for n in z.namelist() if n.lower().endswith(".csv")]
         if not names:raise RuntimeError("CSV not found in archive")
-        raw=z.read(names[0]).decode("utf-8-sig").splitlines()
-    if not raw:raise RuntimeError("empty CSV")
-    first=next(csv.reader([raw[0]]))
-    has_header=not first[0].strip().replace(".","",1).isdigit()
-    rows=raw[1:] if has_header else raw
-    if not rows:raise RuntimeError("no data rows")
-    # Klines have 12 fields; funding rows have 3-4 fields. Preserve schema/count only.
-    parsed=0; first_ts=None; last_ts=None
-    for line in rows:
-        cols=next(csv.reader([line]))
+        rows=list(csv.reader(io.TextIOWrapper(z.open(names[0]),encoding="utf-8-sig",newline="")))
+    if not rows:raise RuntimeError("empty CSV")
+    first=rows[0]
+    try:parse_ts(first[0]);has_header=False
+    except (ValueError,IndexError):has_header=True
+    data=rows[1:] if has_header else rows
+    parsed=[]; bad=0
+    for cols in data:
         if not cols:continue
-        try:t=int(float(cols[0]))
-        except ValueError:continue
-        if t>10**17:t//=10**6
-        elif t>10**14:t//=10**3
-        first_ts=t if first_ts is None else min(first_ts,t)
-        last_ts=t if last_ts is None else max(last_ts,t)
-        parsed+=1
+        try:parsed.append(parse_ts(cols[0]))
+        except (ValueError,IndexError):bad+=1
+    if not parsed:raise RuntimeError(f"No parseable timestamps in {kind} CSV")
     return {"csv_name":names[0],"header":first if has_header else None,
-            "data_rows":parsed,"first_timestamp_ms":first_ts,"last_timestamp_ms":last_ts}
+            "data_rows":len(parsed),"bad_timestamp_rows":bad,
+            "first_timestamp_ms":min(parsed),"last_timestamp_ms":max(parsed)}
 def main():
     p=argparse.ArgumentParser()
     p.add_argument("--start",default="2024-05");p.add_argument("--end",default="2024-06")
     p.add_argument("--symbols",default="BTCUSDT,ETHUSDT,SOLUSDT");p.add_argument("--out",default="basis-output")
-    a=p.parse_args(); ms=list(months(a.start,a.end)); syms=[s.strip().upper() for s in a.symbols.split(",") if s.strip()]
+    a=p.parse_args();ms=list(months(a.start,a.end));syms=[s.strip().upper() for s in a.symbols.split(",") if s.strip()]
     if len(ms)>2:raise SystemExit("Pilot cap: max two months per run")
     out=Path(a.out);out.mkdir(parents=True,exist_ok=True)
-    report={"source":"Binance Vision public archives","period":[a.start,a.end],"symbols":{},"datasets":{},
-      "checks":"Every archive and its .CHECKSUM are downloaded; SHA256 must match.",
-      "limitations":["This is data QA, not a profitability backtest.","Spot, USD-M perpetual and premium-index kline timestamps are checked independently; exact common-minute alignment is required downstream.","Funding archives are event observations; funding cashflows must be applied only at actual funding timestamps."]}
+    report={"source":"Binance Vision public archives","period":[a.start,a.end],"symbols":{},
+      "checks":"Every archive and .CHECKSUM are downloaded; SHA256 must match.",
+      "limitations":["This is data QA, not a profitability backtest.","Spot, USD-M perpetual and premium-index timestamps are checked independently; exact common-minute alignment is required downstream.","Funding archives are event observations; funding cashflows must be applied only at actual funding timestamps."]}
     for sym in syms:
       report["symbols"][sym]={}
       for month in ms:
        for kind in ("spot","perp","premium","funding"):
-        url=archive_url(kind,sym,month); label=f"{sym}:{kind}:{month}"
-        blob=get(url); chk=get(url+".CHECKSUM"); digest=verify(blob,chk,label)
+        url=archive_url(kind,sym,month);label=f"{sym}:{kind}:{month}"
+        blob=get(url);chk=get(url+".CHECKSUM");digest=verify(blob,chk,label)
         meta=inspect_csv(blob,kind)
         report["symbols"][sym].setdefault(month,{})[kind]={**meta,"sha256":digest,"archive_bytes":len(blob)}
         print(f"QA OK {label}: {meta['data_rows']:,} rows",flush=True)
