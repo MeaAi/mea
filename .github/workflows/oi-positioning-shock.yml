@@ -1,7 +1,7 @@
 name: OI positioning shock OOS research
 on:
   push:
-    branches: [research/oi-positioning-shock-v1]
+    branches: [research/oi-positioning-validation-v2]
     paths:
       - ".github/workflows/oi-positioning-shock.yml"
       - "research/oi_positioning_shock.py"
@@ -30,7 +30,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
-          ref: research/oi-positioning-shock-v1
+          ref: research/oi-positioning-validation-v2
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
