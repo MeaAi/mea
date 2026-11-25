@@ -51,6 +51,12 @@ def load():
         data[sym]={"spot":spot,"perp":perp,"funding":sorted(funding),"common":common}
     return data
 def main():
+    global START, END
+    parser=argparse.ArgumentParser()
+    parser.add_argument("--fee-bp",type=float,default=FEE_BP)
+    parser.add_argument("--out",default="research-results/basis_pilot_backtest.json")
+    args=parser.parse_args()
+    fee_bp=args.fee_bp
     d=load()
     # Only exact common minutes; no interpolation. Daily signal formed at UTC day-end,
     # then traded from the next minute for 1440 minutes.
@@ -92,7 +98,7 @@ def main():
             valid=True
             for sym,side in ((long_sym,1),(short_sym,-1)):
                 bars=d[sym]["perp"]
-                if entry_t not in bars or exit_t not in bars:valid=False;break
+                if any(t not in bars for t in window):valid=False;break
                 entry=bars[entry_t]["open"]; exitp=bars[exit_t]["close"]
                 ret=side*(exitp/entry-1)
                 day_price+=notion*ret
@@ -128,7 +134,6 @@ def main():
       "data_qa":"archives checksum-verified; exact spot/perp common timestamps only; no gap interpolation",
       "limitations":["Two-month pilot only; not OOS proof.","Only three-symbol cross-section; 50/50 long-short gross 1x.","No queue/fill model because this is a taker execution baseline.","Funding timestamp/rate interpretation must be checked against exchange semantics before full-period expansion."],
       "results":variants}
-    Path("research-results").mkdir(exist_ok=True)
     Path(args.out).parent.mkdir(parents=True,exist_ok=True)
     Path(args.out).write_text(json.dumps(report,indent=2))
     print(json.dumps(report,indent=2))
