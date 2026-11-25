@@ -1,0 +1,43 @@
+name: Absorption maker OOS replay
+
+on:
+  push:
+    branches: [research/absorption-maker-oos-v1]
+    paths:
+      - ".github/workflows/absorption-maker-oos.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Checkout isolated research branch
+        uses: actions/checkout@v4
+        with:
+          ref: research/absorption-maker-oos-v1
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Acquire free Binance public pilot data
+        run: |
+          python research/binance_public_pipeline.py --start 2024-05 --end 2024-06 --symbols BTCUSDT,ETHUSDT,SOLUSDT --out research-output
+          python research/binance_bookdepth_pipeline.py --start 2024-05 --end 2024-06 --symbols BTCUSDT,ETHUSDT,SOLUSDT --out research-output
+      - name: Run absorption maker and taker trade-through test
+        run: |
+          python research/bookdepth_maker_trade_through_backtest.py --bookdepth "research-output/*-bookdepth-1m.csv.gz" --orderflow "research-output/*-1m-orderflow.csv.gz" --out research-output/absorption_maker_oos.json --capital 100
+      - name: Publish compact report only
+        run: |
+          mkdir -p research-results
+          cp research-output/absorption_maker_oos.json research-results/absorption_maker_oos.json
+          cp research-output/*qa*.json research-results/ 2>/dev/null || true
+          rm -rf research-output
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research-results
+          git commit -m "Publish absorption maker OOS replay report" || echo "No report changes"
+          git push
