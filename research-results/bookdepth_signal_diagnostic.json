@@ -1,17 +1,22 @@
 {
-  "method": "BookDepth snapshot features joined on exact UTC minute; signals formed only from minute t; entry at minute t+1 open; forward exit at t+h close. Train-derived 80th percentile thresholds are frozen for validation/OOS.",
+  "method": "Exact UTC-minute join; signals at minute t; entry at t+1 open; exit at t+h close. All thresholds estimated on first 50% only; validation 20%, untouched OOS 30%.",
+  "obi_definition": "OBI=(bid_notional_1pct+bid_notional_2pct - ask_notional_1pct-ask_notional_2pct)/(bid+ask). Binance Vision bookDepth aggregated percentage bands; not full L2.",
+  "ofi_definition": "AggTrade taker quote imbalance=(aggressive_buy_quote-aggressive_sell_quote)/(sum); excludes passive order additions/cancellations.",
   "limitations": [
     "BookDepth is aggregated percentage-band depth, not full L2 or queue data.",
-    "A snapshot depth increase does not prove new limit orders; decreases do not prove cancellations.",
-    "No maker fill, spread, slippage, funding, or liquidation simulation in this predictive diagnostic.",
-    "Only exact timestamp intersections are used; missing BookDepth minutes are excluded, not interpolated."
+    "Depth changes do not identify additions versus cancellations.",
+    "No fees, spread, slippage, maker fills, funding, or liquidation in this predictive diagnostic.",
+    "Only exact timestamp intersections are used; missing minutes are excluded, never interpolated.",
+    "OBI and OFI signals are exploratory; no strategy profitability claim."
   ],
   "symbols": {
     "BTCUSDT": {
       "matched_minutes": 86340,
-      "train_thresholds": {
-        "sell_pressure_q80": 0.3648083798423725,
-        "buy_pressure_q80": 0.34089815169646237
+      "thresholds_train_only": {
+        "obi_q20": -0.15488875599471844,
+        "obi_q80": 0.09511279784173192,
+        "ofi_q20": -0.36483041305039066,
+        "ofi_q80": 0.34089815169646237
       },
       "split": {
         "train": [
@@ -30,263 +35,397 @@
       "horizons": {
         "1": {
           "train": {
-            "baseline_long_return": {
-              "n": 43164,
-              "mean_bp": 0.0295,
+            "always_long_market_return": {
+              "n": 43165,
+              "mean_bp": 0.0296,
               "median_bp": 0.0,
               "win_rate_pct": 49.69
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 5562,
-              "mean_bp": 0.245,
-              "median_bp": 0.1712,
-              "win_rate_pct": 51.53
+            "obi_directional_return": {
+              "n": 17266,
+              "mean_bp": -0.0808,
+              "median_bp": -0.1603,
+              "win_rate_pct": 48.25
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 5342,
-              "mean_bp": 0.1337,
-              "median_bp": 0.1518,
-              "win_rate_pct": 51.68
+            "ofi_directional_return": {
+              "n": 17266,
+              "mean_bp": -0.1396,
+              "median_bp": -0.1564,
+              "win_rate_pct": 47.46
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 2897,
+              "mean_bp": -0.2741,
+              "median_bp": -0.4676,
+              "win_rate_pct": 45.7
+            },
+            "signal_counts": {
+              "obi": 17266,
+              "ofi": 17266,
+              "obi_ofi_agree": 2897
             }
           },
           "validation": {
-            "baseline_long_return": {
+            "always_long_market_return": {
               "n": 17265,
               "mean_bp": -0.0098,
               "median_bp": 0.0,
               "win_rate_pct": 48.24
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 2526,
-              "mean_bp": 0.0244,
-              "median_bp": 0.0,
-              "win_rate_pct": 48.69
+            "obi_directional_return": {
+              "n": 7483,
+              "mean_bp": -0.0648,
+              "median_bp": -0.0141,
+              "win_rate_pct": 47.48
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 2459,
-              "mean_bp": 0.1463,
-              "median_bp": -0.0,
-              "win_rate_pct": 48.19
+            "ofi_directional_return": {
+              "n": 8635,
+              "mean_bp": -0.0377,
+              "median_bp": 0.0,
+              "win_rate_pct": 48.89
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 1569,
+              "mean_bp": -0.4243,
+              "median_bp": -0.0439,
+              "win_rate_pct": 44.49
+            },
+            "signal_counts": {
+              "obi": 7483,
+              "ofi": 8635,
+              "obi_ofi_agree": 1569
             }
           },
           "oos": {
-            "baseline_long_return": {
+            "always_long_market_return": {
               "n": 25901,
               "mean_bp": -0.0295,
               "median_bp": 0.0,
               "win_rate_pct": 48.44
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 3355,
-              "mean_bp": -0.1719,
-              "median_bp": -0.0155,
-              "win_rate_pct": 46.68
+            "obi_directional_return": {
+              "n": 11681,
+              "mean_bp": -0.032,
+              "median_bp": -0.0164,
+              "win_rate_pct": 48.52
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 3412,
-              "mean_bp": -0.0195,
+            "ofi_directional_return": {
+              "n": 11913,
+              "mean_bp": 0.0724,
               "median_bp": -0.0,
-              "win_rate_pct": 48.39
+              "win_rate_pct": 49.11
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 2176,
+              "mean_bp": 0.1903,
+              "median_bp": -0.015,
+              "win_rate_pct": 48.67
+            },
+            "signal_counts": {
+              "obi": 11681,
+              "ofi": 11913,
+              "obi_ofi_agree": 2176
             }
           },
-          "thresholds_source": "train only; q80 fixed across all splits"
+          "thresholds_source": "first 50% chronological training segment only"
         },
         "5": {
           "train": {
-            "baseline_long_return": {
-              "n": 43144,
+            "always_long_market_return": {
+              "n": 43145,
               "mean_bp": 0.1526,
               "median_bp": 0.1753,
               "win_rate_pct": 50.7
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 5558,
-              "mean_bp": 0.21,
-              "median_bp": 0.6939,
-              "win_rate_pct": 53.13
+            "obi_directional_return": {
+              "n": 17255,
+              "mean_bp": -0.2632,
+              "median_bp": -0.8529,
+              "win_rate_pct": 47.04
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 5341,
-              "mean_bp": -0.3234,
-              "median_bp": 0.1795,
-              "win_rate_pct": 50.85
+            "ofi_directional_return": {
+              "n": 17261,
+              "mean_bp": -0.033,
+              "median_bp": -0.422,
+              "win_rate_pct": 48.07
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 2897,
+              "mean_bp": -0.6406,
+              "median_bp": -1.4907,
+              "win_rate_pct": 44.63
+            },
+            "signal_counts": {
+              "obi": 17255,
+              "ofi": 17261,
+              "obi_ofi_agree": 2897
             }
           },
           "validation": {
-            "baseline_long_return": {
+            "always_long_market_return": {
               "n": 17257,
               "mean_bp": -0.0476,
               "median_bp": 0.0,
               "win_rate_pct": 49.93
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 2525,
-              "mean_bp": 0.2316,
-              "median_bp": 0.2806,
-              "win_rate_pct": 52.12
+            "obi_directional_return": {
+              "n": 7480,
+              "mean_bp": -0.233,
+              "median_bp": -0.2883,
+              "win_rate_pct": 48.1
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 2458,
-              "mean_bp": 0.4017,
-              "median_bp": 0.2394,
-              "win_rate_pct": 51.79
+            "ofi_directional_return": {
+              "n": 8630,
+              "mean_bp": -0.2055,
+              "median_bp": -0.1979,
+              "win_rate_pct": 48.19
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 1568,
+              "mean_bp": -0.532,
+              "median_bp": -0.6197,
+              "win_rate_pct": 45.73
+            },
+            "signal_counts": {
+              "obi": 7480,
+              "ofi": 8630,
+              "obi_ofi_agree": 1568
             }
           },
           "oos": {
-            "baseline_long_return": {
+            "always_long_market_return": {
               "n": 25897,
               "mean_bp": -0.1482,
               "median_bp": -0.0151,
               "win_rate_pct": 49.69
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 3354,
-              "mean_bp": -0.5101,
-              "median_bp": -0.1709,
-              "win_rate_pct": 48.6
+            "obi_directional_return": {
+              "n": 11677,
+              "mean_bp": -0.1756,
+              "median_bp": -0.4615,
+              "win_rate_pct": 47.79
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 3411,
-              "mean_bp": 0.2748,
-              "median_bp": -0.0,
-              "win_rate_pct": 49.81
+            "ofi_directional_return": {
+              "n": 11911,
+              "mean_bp": 0.0287,
+              "median_bp": 0.0,
+              "win_rate_pct": 49.92
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 2175,
+              "mean_bp": 0.1578,
+              "median_bp": -0.2214,
+              "win_rate_pct": 48.87
+            },
+            "signal_counts": {
+              "obi": 11677,
+              "ofi": 11911,
+              "obi_ofi_agree": 2175
             }
           },
-          "thresholds_source": "train only; q80 fixed across all splits"
+          "thresholds_source": "first 50% chronological training segment only"
         },
         "15": {
           "train": {
-            "baseline_long_return": {
-              "n": 43094,
+            "always_long_market_return": {
+              "n": 43095,
               "mean_bp": 0.4513,
-              "median_bp": 0.3341,
+              "median_bp": 0.334,
               "win_rate_pct": 50.8
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 5555,
-              "mean_bp": 0.3283,
-              "median_bp": 0.7573,
-              "win_rate_pct": 51.88
+            "obi_directional_return": {
+              "n": 17227,
+              "mean_bp": -1.1566,
+              "median_bp": -2.6083,
+              "win_rate_pct": 44.7
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 5329,
-              "mean_bp": -0.7174,
-              "median_bp": -0.3168,
-              "win_rate_pct": 49.18
+            "ofi_directional_return": {
+              "n": 17242,
+              "mean_bp": 0.1111,
+              "median_bp": -0.2508,
+              "win_rate_pct": 49.34
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 2893,
+              "mean_bp": -1.2656,
+              "median_bp": -2.8683,
+              "win_rate_pct": 43.86
+            },
+            "signal_counts": {
+              "obi": 17227,
+              "ofi": 17242,
+              "obi_ofi_agree": 2893
             }
           },
           "validation": {
-            "baseline_long_return": {
+            "always_long_market_return": {
               "n": 17237,
               "mean_bp": -0.1201,
               "median_bp": -0.0591,
               "win_rate_pct": 49.7
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 2522,
-              "mean_bp": 0.2435,
-              "median_bp": 0.3891,
-              "win_rate_pct": 51.67
+            "obi_directional_return": {
+              "n": 7470,
+              "mean_bp": -0.5466,
+              "median_bp": -0.879,
+              "win_rate_pct": 46.75
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 2455,
-              "mean_bp": 0.3432,
-              "median_bp": 0.3539,
-              "win_rate_pct": 51.49
+            "ofi_directional_return": {
+              "n": 8620,
+              "mean_bp": -0.3526,
+              "median_bp": -0.3887,
+              "win_rate_pct": 48.33
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 1564,
+              "mean_bp": -1.0776,
+              "median_bp": -1.2481,
+              "win_rate_pct": 45.2
+            },
+            "signal_counts": {
+              "obi": 7470,
+              "ofi": 8620,
+              "obi_ofi_agree": 1564
             }
           },
           "oos": {
-            "baseline_long_return": {
+            "always_long_market_return": {
               "n": 25887,
               "mean_bp": -0.4522,
               "median_bp": -0.2459,
               "win_rate_pct": 49.19
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 3353,
-              "mean_bp": -0.046,
-              "median_bp": 0.0325,
-              "win_rate_pct": 50.01
+            "obi_directional_return": {
+              "n": 11667,
+              "mean_bp": -0.6713,
+              "median_bp": -1.4258,
+              "win_rate_pct": 46.14
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 3410,
-              "mean_bp": 1.0444,
-              "median_bp": 0.9784,
-              "win_rate_pct": 53.4
+            "ofi_directional_return": {
+              "n": 11905,
+              "mean_bp": -0.4654,
+              "median_bp": -0.4445,
+              "win_rate_pct": 48.35
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 2174,
+              "mean_bp": -1.2184,
+              "median_bp": -1.8678,
+              "win_rate_pct": 43.65
+            },
+            "signal_counts": {
+              "obi": 11667,
+              "ofi": 11905,
+              "obi_ofi_agree": 2174
             }
           },
-          "thresholds_source": "train only; q80 fixed across all splits"
+          "thresholds_source": "first 50% chronological training segment only"
         },
         "60": {
           "train": {
-            "baseline_long_return": {
-              "n": 42869,
-              "mean_bp": 1.9235,
+            "always_long_market_return": {
+              "n": 42870,
+              "mean_bp": 1.9217,
               "median_bp": 0.6867,
               "win_rate_pct": 50.83
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 5523,
-              "mean_bp": 2.8749,
-              "median_bp": 1.5602,
-              "win_rate_pct": 52.09
+            "obi_directional_return": {
+              "n": 17113,
+              "mean_bp": -4.1015,
+              "median_bp": -7.1873,
+              "win_rate_pct": 41.85
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 5297,
-              "mean_bp": -2.7597,
-              "median_bp": -0.8737,
-              "win_rate_pct": 48.76
+            "ofi_directional_return": {
+              "n": 17159,
+              "mean_bp": 0.0313,
+              "median_bp": -0.1662,
+              "win_rate_pct": 49.81
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 2865,
+              "mean_bp": -4.5015,
+              "median_bp": -7.4716,
+              "win_rate_pct": 40.87
+            },
+            "signal_counts": {
+              "obi": 17113,
+              "ofi": 17159,
+              "obi_ofi_agree": 2865
             }
           },
           "validation": {
-            "baseline_long_return": {
+            "always_long_market_return": {
               "n": 17147,
               "mean_bp": -0.4754,
               "median_bp": 0.837,
               "win_rate_pct": 51.82
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 2507,
-              "mean_bp": 1.1662,
-              "median_bp": 1.698,
-              "win_rate_pct": 54.05
+            "obi_directional_return": {
+              "n": 7394,
+              "mean_bp": -0.9998,
+              "median_bp": -1.8034,
+              "win_rate_pct": 46.79
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 2441,
-              "mean_bp": 0.8377,
-              "median_bp": -0.3034,
-              "win_rate_pct": 49.04
+            "ofi_directional_return": {
+              "n": 8576,
+              "mean_bp": -0.9522,
+              "median_bp": -0.6618,
+              "win_rate_pct": 48.39
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 1547,
+              "mean_bp": -1.8304,
+              "median_bp": -1.9889,
+              "win_rate_pct": 45.96
+            },
+            "signal_counts": {
+              "obi": 7394,
+              "ofi": 8576,
+              "obi_ofi_agree": 1547
             }
           },
           "oos": {
-            "baseline_long_return": {
+            "always_long_market_return": {
               "n": 25842,
               "mean_bp": -1.824,
               "median_bp": -0.7401,
               "win_rate_pct": 48.52
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 3348,
-              "mean_bp": -0.5046,
-              "median_bp": 0.9258,
-              "win_rate_pct": 52.21
+            "obi_directional_return": {
+              "n": 11622,
+              "mean_bp": -2.6044,
+              "median_bp": -4.1877,
+              "win_rate_pct": 43.67
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 3405,
-              "mean_bp": 1.4822,
-              "median_bp": 1.0823,
-              "win_rate_pct": 51.89
+            "ofi_directional_return": {
+              "n": 11888,
+              "mean_bp": -0.3593,
+              "median_bp": -0.5603,
+              "win_rate_pct": 48.76
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 2167,
+              "mean_bp": -3.5739,
+              "median_bp": -4.6099,
+              "win_rate_pct": 42.46
+            },
+            "signal_counts": {
+              "obi": 11622,
+              "ofi": 11888,
+              "obi_ofi_agree": 2167
             }
           },
-          "thresholds_source": "train only; q80 fixed across all splits"
+          "thresholds_source": "first 50% chronological training segment only"
         }
       }
     },
     "ETHUSDT": {
       "matched_minutes": 86340,
-      "train_thresholds": {
-        "sell_pressure_q80": 0.3345506632672219,
-        "buy_pressure_q80": 0.3244107899557594
+      "thresholds_train_only": {
+        "obi_q20": -0.13283513444855752,
+        "obi_q80": 0.05495662761948107,
+        "ofi_q20": -0.3345519142053044,
+        "ofi_q80": 0.3244107899557594
       },
       "split": {
         "train": [
@@ -305,263 +444,397 @@
       "horizons": {
         "1": {
           "train": {
-            "baseline_long_return": {
-              "n": 43164,
+            "always_long_market_return": {
+              "n": 43165,
               "mean_bp": 0.0549,
               "median_bp": 0.0,
               "win_rate_pct": 49.64
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 5558,
-              "mean_bp": 0.6325,
-              "median_bp": 0.5199,
-              "win_rate_pct": 53.85
+            "obi_directional_return": {
+              "n": 17267,
+              "mean_bp": -0.0983,
+              "median_bp": -0.2413,
+              "win_rate_pct": 47.83
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 5328,
-              "mean_bp": 0.2813,
-              "median_bp": 0.3811,
-              "win_rate_pct": 52.82
+            "ofi_directional_return": {
+              "n": 17267,
+              "mean_bp": -0.3873,
+              "median_bp": -0.3996,
+              "win_rate_pct": 46.46
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 3367,
+              "mean_bp": -0.6441,
+              "median_bp": -0.9058,
+              "win_rate_pct": 42.62
+            },
+            "signal_counts": {
+              "obi": 17267,
+              "ofi": 17267,
+              "obi_ofi_agree": 3367
             }
           },
           "validation": {
-            "baseline_long_return": {
+            "always_long_market_return": {
               "n": 17265,
               "mean_bp": -0.0397,
               "median_bp": 0.0,
               "win_rate_pct": 49.16
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 2250,
-              "mean_bp": 0.1788,
-              "median_bp": 0.1299,
-              "win_rate_pct": 51.6
+            "obi_directional_return": {
+              "n": 9169,
+              "mean_bp": 0.0433,
+              "median_bp": -0.0,
+              "win_rate_pct": 49.31
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 2422,
-              "mean_bp": 0.1265,
-              "median_bp": 0.053,
-              "win_rate_pct": 50.95
+            "ofi_directional_return": {
+              "n": 8101,
+              "mean_bp": -0.1177,
+              "median_bp": -0.0263,
+              "win_rate_pct": 48.19
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 1805,
+              "mean_bp": -0.4258,
+              "median_bp": -0.2121,
+              "win_rate_pct": 46.48
+            },
+            "signal_counts": {
+              "obi": 9169,
+              "ofi": 8101,
+              "obi_ofi_agree": 1805
             }
           },
           "oos": {
-            "baseline_long_return": {
+            "always_long_market_return": {
               "n": 25901,
               "mean_bp": -0.011,
               "median_bp": 0.0,
               "win_rate_pct": 49.36
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 3356,
-              "mean_bp": -0.0592,
-              "median_bp": 0.0298,
-              "win_rate_pct": 50.6
+            "obi_directional_return": {
+              "n": 11555,
+              "mean_bp": -0.1037,
+              "median_bp": -0.2049,
+              "win_rate_pct": 47.74
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 3508,
-              "mean_bp": 0.077,
-              "median_bp": 0.029,
-              "win_rate_pct": 50.4
+            "ofi_directional_return": {
+              "n": 11606,
+              "mean_bp": 0.024,
+              "median_bp": -0.028,
+              "win_rate_pct": 48.78
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 2286,
+              "mean_bp": 0.0636,
+              "median_bp": -0.2356,
+              "win_rate_pct": 47.38
+            },
+            "signal_counts": {
+              "obi": 11555,
+              "ofi": 11606,
+              "obi_ofi_agree": 2286
             }
           },
-          "thresholds_source": "train only; q80 fixed across all splits"
+          "thresholds_source": "first 50% chronological training segment only"
         },
         "5": {
           "train": {
-            "baseline_long_return": {
-              "n": 43144,
-              "mean_bp": 0.2755,
-              "median_bp": 0.0686,
+            "always_long_market_return": {
+              "n": 43145,
+              "mean_bp": 0.2754,
+              "median_bp": 0.0685,
               "win_rate_pct": 50.23
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 5555,
-              "mean_bp": 0.7918,
-              "median_bp": 0.9933,
-              "win_rate_pct": 53.32
+            "obi_directional_return": {
+              "n": 17261,
+              "mean_bp": -0.3289,
+              "median_bp": -1.0637,
+              "win_rate_pct": 46.27
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 5328,
-              "mean_bp": -0.0112,
-              "median_bp": 0.4495,
-              "win_rate_pct": 51.84
+            "ofi_directional_return": {
+              "n": 17262,
+              "mean_bp": -0.2392,
+              "median_bp": -0.5808,
+              "win_rate_pct": 47.65
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 3367,
+              "mean_bp": -0.3445,
+              "median_bp": -1.4056,
+              "win_rate_pct": 44.52
+            },
+            "signal_counts": {
+              "obi": 17261,
+              "ofi": 17262,
+              "obi_ofi_agree": 3367
             }
           },
           "validation": {
-            "baseline_long_return": {
+            "always_long_market_return": {
               "n": 17257,
               "mean_bp": -0.202,
               "median_bp": -0.0776,
               "win_rate_pct": 49.52
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 2249,
-              "mean_bp": 0.1565,
-              "median_bp": 0.1631,
-              "win_rate_pct": 50.78
+            "obi_directional_return": {
+              "n": 9165,
+              "mean_bp": 0.3002,
+              "median_bp": -0.2099,
+              "win_rate_pct": 48.88
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 2422,
-              "mean_bp": 0.2707,
-              "median_bp": 0.2161,
-              "win_rate_pct": 50.7
+            "ofi_directional_return": {
+              "n": 8097,
+              "mean_bp": -0.1872,
+              "median_bp": -0.1038,
+              "win_rate_pct": 49.28
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 1804,
+              "mean_bp": -0.2385,
+              "median_bp": -0.4741,
+              "win_rate_pct": 47.56
+            },
+            "signal_counts": {
+              "obi": 9165,
+              "ofi": 8097,
+              "obi_ofi_agree": 1804
             }
           },
           "oos": {
-            "baseline_long_return": {
+            "always_long_market_return": {
               "n": 25897,
               "mean_bp": -0.051,
               "median_bp": 0.0571,
               "win_rate_pct": 50.21
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 3355,
-              "mean_bp": -0.0884,
-              "median_bp": 0.2658,
-              "win_rate_pct": 51.24
+            "obi_directional_return": {
+              "n": 11555,
+              "mean_bp": -0.0981,
+              "median_bp": -0.6025,
+              "win_rate_pct": 47.89
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 3508,
-              "mean_bp": 0.187,
-              "median_bp": 0.2589,
-              "win_rate_pct": 50.97
+            "ofi_directional_return": {
+              "n": 11604,
+              "mean_bp": -0.1971,
+              "median_bp": -0.2269,
+              "win_rate_pct": 48.91
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 2286,
+              "mean_bp": 0.069,
+              "median_bp": -1.0044,
+              "win_rate_pct": 46.5
+            },
+            "signal_counts": {
+              "obi": 11555,
+              "ofi": 11604,
+              "obi_ofi_agree": 2286
             }
           },
-          "thresholds_source": "train only; q80 fixed across all splits"
+          "thresholds_source": "first 50% chronological training segment only"
         },
         "15": {
           "train": {
-            "baseline_long_return": {
-              "n": 43094,
-              "mean_bp": 0.8227,
+            "always_long_market_return": {
+              "n": 43095,
+              "mean_bp": 0.8228,
               "median_bp": 0.0253,
               "win_rate_pct": 50.0
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 5554,
-              "mean_bp": 1.0873,
-              "median_bp": 0.7788,
-              "win_rate_pct": 51.69
+            "obi_directional_return": {
+              "n": 17243,
+              "mean_bp": -1.01,
+              "median_bp": -2.6135,
+              "win_rate_pct": 44.73
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 5325,
-              "mean_bp": -0.5754,
-              "median_bp": 0.6915,
-              "win_rate_pct": 51.68
+            "ofi_directional_return": {
+              "n": 17252,
+              "mean_bp": -0.0242,
+              "median_bp": -0.5434,
+              "win_rate_pct": 48.81
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 3364,
+              "mean_bp": -0.0473,
+              "median_bp": -2.5382,
+              "win_rate_pct": 44.23
+            },
+            "signal_counts": {
+              "obi": 17243,
+              "ofi": 17252,
+              "obi_ofi_agree": 3364
             }
           },
           "validation": {
-            "baseline_long_return": {
+            "always_long_market_return": {
               "n": 17237,
               "mean_bp": -0.5937,
               "median_bp": -0.0524,
               "win_rate_pct": 49.78
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 2247,
-              "mean_bp": 0.1391,
-              "median_bp": 0.5249,
-              "win_rate_pct": 51.54
+            "obi_directional_return": {
+              "n": 9153,
+              "mean_bp": 0.4122,
+              "median_bp": -0.7887,
+              "win_rate_pct": 47.85
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 2418,
-              "mean_bp": 0.5542,
-              "median_bp": 0.5521,
-              "win_rate_pct": 51.86
+            "ofi_directional_return": {
+              "n": 8085,
+              "mean_bp": -0.1334,
+              "median_bp": -0.4065,
+              "win_rate_pct": 48.46
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 1797,
+              "mean_bp": 0.0489,
+              "median_bp": -1.4626,
+              "win_rate_pct": 46.52
+            },
+            "signal_counts": {
+              "obi": 9153,
+              "ofi": 8085,
+              "obi_ofi_agree": 1797
             }
           },
           "oos": {
-            "baseline_long_return": {
+            "always_long_market_return": {
               "n": 25887,
               "mean_bp": -0.1583,
               "median_bp": -0.3498,
               "win_rate_pct": 49.06
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 3354,
-              "mean_bp": 0.6661,
-              "median_bp": 0.5471,
-              "win_rate_pct": 51.52
+            "obi_directional_return": {
+              "n": 11555,
+              "mean_bp": -0.3272,
+              "median_bp": -1.7668,
+              "win_rate_pct": 46.26
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 3507,
-              "mean_bp": 0.7753,
-              "median_bp": 1.4168,
-              "win_rate_pct": 53.44
+            "ofi_directional_return": {
+              "n": 11600,
+              "mean_bp": -0.8256,
+              "median_bp": -1.0574,
+              "win_rate_pct": 47.15
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 2286,
+              "mean_bp": -0.9955,
+              "median_bp": -2.7128,
+              "win_rate_pct": 43.88
+            },
+            "signal_counts": {
+              "obi": 11555,
+              "ofi": 11600,
+              "obi_ofi_agree": 2286
             }
           },
-          "thresholds_source": "train only; q80 fixed across all splits"
+          "thresholds_source": "first 50% chronological training segment only"
         },
         "60": {
           "train": {
-            "baseline_long_return": {
-              "n": 42869,
-              "mean_bp": 3.439,
+            "always_long_market_return": {
+              "n": 42870,
+              "mean_bp": 3.438,
               "median_bp": 1.2506,
               "win_rate_pct": 51.36
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 5527,
-              "mean_bp": 3.2671,
-              "median_bp": 2.5062,
-              "win_rate_pct": 52.6
+            "obi_directional_return": {
+              "n": 17150,
+              "mean_bp": 0.2579,
+              "median_bp": -5.5004,
+              "win_rate_pct": 44.73
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 5302,
-              "mean_bp": -2.6294,
-              "median_bp": -0.3509,
-              "win_rate_pct": 49.7
+            "ofi_directional_return": {
+              "n": 17171,
+              "mean_bp": -0.1514,
+              "median_bp": -0.6171,
+              "win_rate_pct": 49.21
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 3361,
+              "mean_bp": 0.348,
+              "median_bp": -5.8087,
+              "win_rate_pct": 44.36
+            },
+            "signal_counts": {
+              "obi": 17150,
+              "ofi": 17171,
+              "obi_ofi_agree": 3361
             }
           },
           "validation": {
-            "baseline_long_return": {
+            "always_long_market_return": {
               "n": 17147,
               "mean_bp": -2.3518,
               "median_bp": 0.0,
               "win_rate_pct": 49.97
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 2231,
-              "mean_bp": -2.1081,
-              "median_bp": 0.2623,
-              "win_rate_pct": 50.47
+            "obi_directional_return": {
+              "n": 9108,
+              "mean_bp": 0.345,
+              "median_bp": -2.4889,
+              "win_rate_pct": 46.12
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 2406,
-              "mean_bp": 1.9935,
-              "median_bp": -0.3399,
-              "win_rate_pct": 49.46
+            "ofi_directional_return": {
+              "n": 8040,
+              "mean_bp": 0.1176,
+              "median_bp": -0.1293,
+              "win_rate_pct": 49.76
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 1787,
+              "mean_bp": -1.0615,
+              "median_bp": -3.6879,
+              "win_rate_pct": 44.32
+            },
+            "signal_counts": {
+              "obi": 9108,
+              "ofi": 8040,
+              "obi_ofi_agree": 1787
             }
           },
           "oos": {
-            "baseline_long_return": {
+            "always_long_market_return": {
               "n": 25842,
               "mean_bp": -0.628,
               "median_bp": -1.3859,
               "win_rate_pct": 48.19
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 3345,
-              "mean_bp": 0.4549,
-              "median_bp": -1.0275,
-              "win_rate_pct": 48.76
+            "obi_directional_return": {
+              "n": 11537,
+              "mean_bp": -1.2296,
+              "median_bp": -3.796,
+              "win_rate_pct": 46.05
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 3503,
-              "mean_bp": 1.512,
-              "median_bp": 1.3972,
-              "win_rate_pct": 51.96
+            "ofi_directional_return": {
+              "n": 11578,
+              "mean_bp": -1.2407,
+              "median_bp": -0.4727,
+              "win_rate_pct": 49.33
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 2283,
+              "mean_bp": -2.3722,
+              "median_bp": -4.6939,
+              "win_rate_pct": 44.5
+            },
+            "signal_counts": {
+              "obi": 11537,
+              "ofi": 11578,
+              "obi_ofi_agree": 2283
             }
           },
-          "thresholds_source": "train only; q80 fixed across all splits"
+          "thresholds_source": "first 50% chronological training segment only"
         }
       }
     },
     "SOLUSDT": {
       "matched_minutes": 86340,
-      "train_thresholds": {
-        "sell_pressure_q80": 0.30026274762913246,
-        "buy_pressure_q80": 0.29022013490580584
+      "thresholds_train_only": {
+        "obi_q20": -0.1605733354105866,
+        "obi_q80": 0.018489601516813343,
+        "ofi_q20": -0.30028356044512544,
+        "ofi_q80": 0.29022013490580584
       },
       "split": {
         "train": [
@@ -580,255 +853,387 @@
       "horizons": {
         "1": {
           "train": {
-            "baseline_long_return": {
-              "n": 43164,
-              "mean_bp": 0.0675,
+            "always_long_market_return": {
+              "n": 43165,
+              "mean_bp": 0.0674,
               "median_bp": 0.0,
               "win_rate_pct": 49.75
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 5155,
-              "mean_bp": 0.4536,
-              "median_bp": 0.5483,
-              "win_rate_pct": 52.03
+            "obi_directional_return": {
+              "n": 17267,
+              "mean_bp": -0.1807,
+              "median_bp": -0.3537,
+              "win_rate_pct": 48.26
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 5139,
-              "mean_bp": 0.1598,
-              "median_bp": 0.3463,
-              "win_rate_pct": 51.53
+            "ofi_directional_return": {
+              "n": 17266,
+              "mean_bp": -0.2017,
+              "median_bp": -0.2896,
+              "win_rate_pct": 48.33
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 3401,
+              "mean_bp": -0.5798,
+              "median_bp": -1.0121,
+              "win_rate_pct": 45.55
+            },
+            "signal_counts": {
+              "obi": 17267,
+              "ofi": 17266,
+              "obi_ofi_agree": 3401
             }
           },
           "validation": {
-            "baseline_long_return": {
+            "always_long_market_return": {
               "n": 17265,
               "mean_bp": -0.0634,
               "median_bp": 0.0,
               "win_rate_pct": 49.75
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 2197,
-              "mean_bp": 0.5825,
-              "median_bp": 0.6355,
-              "win_rate_pct": 54.12
+            "obi_directional_return": {
+              "n": 6225,
+              "mean_bp": -0.1721,
+              "median_bp": -0.1804,
+              "win_rate_pct": 48.39
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 2041,
-              "mean_bp": 0.1174,
-              "median_bp": -0.0,
-              "win_rate_pct": 49.78
+            "ofi_directional_return": {
+              "n": 8358,
+              "mean_bp": -0.324,
+              "median_bp": -0.2408,
+              "win_rate_pct": 47.98
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 1358,
+              "mean_bp": -0.4135,
+              "median_bp": -0.501,
+              "win_rate_pct": 46.69
+            },
+            "signal_counts": {
+              "obi": 6225,
+              "ofi": 8358,
+              "obi_ofi_agree": 1358
             }
           },
           "oos": {
-            "baseline_long_return": {
+            "always_long_market_return": {
               "n": 25901,
               "mean_bp": -0.0149,
               "median_bp": -0.0707,
               "win_rate_pct": 49.35
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 3016,
-              "mean_bp": -0.5456,
-              "median_bp": -0.2896,
-              "win_rate_pct": 47.38
+            "obi_directional_return": {
+              "n": 9691,
+              "mean_bp": -0.0993,
+              "median_bp": -0.4256,
+              "win_rate_pct": 47.47
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 2975,
-              "mean_bp": -0.0435,
-              "median_bp": 0.282,
-              "win_rate_pct": 51.53
+            "ofi_directional_return": {
+              "n": 10498,
+              "mean_bp": 0.2722,
+              "median_bp": 0.0698,
+              "win_rate_pct": 50.14
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 1984,
+              "mean_bp": 0.6049,
+              "median_bp": -0.1456,
+              "win_rate_pct": 48.89
+            },
+            "signal_counts": {
+              "obi": 9691,
+              "ofi": 10498,
+              "obi_ofi_agree": 1984
             }
           },
-          "thresholds_source": "train only; q80 fixed across all splits"
+          "thresholds_source": "first 50% chronological training segment only"
         },
         "5": {
           "train": {
-            "baseline_long_return": {
-              "n": 43144,
-              "mean_bp": 0.3505,
+            "always_long_market_return": {
+              "n": 43145,
+              "mean_bp": 0.3506,
               "median_bp": 0.2659,
               "win_rate_pct": 50.48
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 5151,
-              "mean_bp": 0.6629,
-              "median_bp": 1.144,
-              "win_rate_pct": 52.34
+            "obi_directional_return": {
+              "n": 17259,
+              "mean_bp": -0.3902,
+              "median_bp": -1.1298,
+              "win_rate_pct": 47.51
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 5139,
-              "mean_bp": -0.2184,
-              "median_bp": 0.3258,
-              "win_rate_pct": 50.54
+            "ofi_directional_return": {
+              "n": 17261,
+              "mean_bp": -0.1653,
+              "median_bp": -0.6485,
+              "win_rate_pct": 48.57
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 3400,
+              "mean_bp": -0.9989,
+              "median_bp": -2.1735,
+              "win_rate_pct": 45.12
+            },
+            "signal_counts": {
+              "obi": 17259,
+              "ofi": 17261,
+              "obi_ofi_agree": 3400
             }
           },
           "validation": {
-            "baseline_long_return": {
+            "always_long_market_return": {
               "n": 17257,
               "mean_bp": -0.3144,
               "median_bp": -0.0628,
               "win_rate_pct": 49.55
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 2196,
-              "mean_bp": 0.4374,
-              "median_bp": 0.2993,
-              "win_rate_pct": 50.77
+            "obi_directional_return": {
+              "n": 6220,
+              "mean_bp": -0.4851,
+              "median_bp": -0.8152,
+              "win_rate_pct": 47.35
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 2041,
-              "mean_bp": 0.1181,
-              "median_bp": 0.3587,
-              "win_rate_pct": 50.81
+            "ofi_directional_return": {
+              "n": 8353,
+              "mean_bp": -0.2673,
+              "median_bp": -0.3587,
+              "win_rate_pct": 48.61
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 1357,
+              "mean_bp": -0.4888,
+              "median_bp": -1.3132,
+              "win_rate_pct": 45.69
+            },
+            "signal_counts": {
+              "obi": 6220,
+              "ofi": 8353,
+              "obi_ofi_agree": 1357
             }
           },
           "oos": {
-            "baseline_long_return": {
+            "always_long_market_return": {
               "n": 25897,
               "mean_bp": -0.0634,
               "median_bp": -0.2077,
               "win_rate_pct": 49.49
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 3014,
-              "mean_bp": 0.0935,
-              "median_bp": 0.4083,
-              "win_rate_pct": 50.8
+            "obi_directional_return": {
+              "n": 9689,
+              "mean_bp": -0.6073,
+              "median_bp": -1.5551,
+              "win_rate_pct": 46.66
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 2975,
-              "mean_bp": -0.4594,
-              "median_bp": -0.2167,
-              "win_rate_pct": 49.45
+            "ofi_directional_return": {
+              "n": 10495,
+              "mean_bp": 0.0226,
+              "median_bp": 0.0,
+              "win_rate_pct": 49.8
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 1984,
+              "mean_bp": 0.3778,
+              "median_bp": -0.6888,
+              "win_rate_pct": 48.59
+            },
+            "signal_counts": {
+              "obi": 9689,
+              "ofi": 10495,
+              "obi_ofi_agree": 1984
             }
           },
-          "thresholds_source": "train only; q80 fixed across all splits"
+          "thresholds_source": "first 50% chronological training segment only"
         },
         "15": {
           "train": {
-            "baseline_long_return": {
-              "n": 43094,
-              "mean_bp": 1.0426,
+            "always_long_market_return": {
+              "n": 43095,
+              "mean_bp": 1.043,
               "median_bp": 0.4107,
               "win_rate_pct": 50.42
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 5148,
-              "mean_bp": 1.0368,
-              "median_bp": 1.3073,
-              "win_rate_pct": 51.24
+            "obi_directional_return": {
+              "n": 17239,
+              "mean_bp": -1.4404,
+              "median_bp": -2.993,
+              "win_rate_pct": 46.51
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 5133,
-              "mean_bp": -0.9525,
-              "median_bp": 0.4178,
-              "win_rate_pct": 50.36
+            "ofi_directional_return": {
+              "n": 17246,
+              "mean_bp": -0.0758,
+              "median_bp": -0.6793,
+              "win_rate_pct": 49.18
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 3396,
+              "mean_bp": -1.7309,
+              "median_bp": -3.634,
+              "win_rate_pct": 45.23
+            },
+            "signal_counts": {
+              "obi": 17239,
+              "ofi": 17246,
+              "obi_ofi_agree": 3396
             }
           },
           "validation": {
-            "baseline_long_return": {
+            "always_long_market_return": {
               "n": 17237,
               "mean_bp": -0.9077,
               "median_bp": -0.1727,
               "win_rate_pct": 49.58
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 2196,
-              "mean_bp": 0.0576,
-              "median_bp": 0.4942,
-              "win_rate_pct": 50.82
+            "obi_directional_return": {
+              "n": 6211,
+              "mean_bp": -0.3643,
+              "median_bp": -1.729,
+              "win_rate_pct": 46.77
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 2038,
-              "mean_bp": 0.88,
-              "median_bp": 0.6641,
-              "win_rate_pct": 51.08
+            "ofi_directional_return": {
+              "n": 8341,
+              "mean_bp": -0.2316,
+              "median_bp": -0.421,
+              "win_rate_pct": 49.12
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 1357,
+              "mean_bp": 0.9678,
+              "median_bp": -2.0346,
+              "win_rate_pct": 46.72
+            },
+            "signal_counts": {
+              "obi": 6211,
+              "ofi": 8341,
+              "obi_ofi_agree": 1357
             }
           },
           "oos": {
-            "baseline_long_return": {
+            "always_long_market_return": {
               "n": 25887,
               "mean_bp": -0.208,
               "median_bp": -0.5743,
               "win_rate_pct": 49.22
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 3013,
-              "mean_bp": 0.8928,
-              "median_bp": 0.286,
-              "win_rate_pct": 50.18
+            "obi_directional_return": {
+              "n": 9688,
+              "mean_bp": -1.445,
+              "median_bp": -3.5134,
+              "win_rate_pct": 45.58
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 2972,
-              "mean_bp": -0.1991,
-              "median_bp": 0.7618,
-              "win_rate_pct": 50.94
+            "ofi_directional_return": {
+              "n": 10489,
+              "mean_bp": -0.6626,
+              "median_bp": -0.8192,
+              "win_rate_pct": 48.88
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 1983,
+              "mean_bp": -1.5802,
+              "median_bp": -2.9817,
+              "win_rate_pct": 46.24
+            },
+            "signal_counts": {
+              "obi": 9688,
+              "ofi": 10489,
+              "obi_ofi_agree": 1983
             }
           },
-          "thresholds_source": "train only; q80 fixed across all splits"
+          "thresholds_source": "first 50% chronological training segment only"
         },
         "60": {
           "train": {
-            "baseline_long_return": {
-              "n": 42869,
-              "mean_bp": 4.4018,
+            "always_long_market_return": {
+              "n": 42870,
+              "mean_bp": 4.3988,
               "median_bp": 0.6267,
-              "win_rate_pct": 50.37
+              "win_rate_pct": 50.36
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 5125,
-              "mean_bp": 4.4577,
-              "median_bp": 2.7002,
-              "win_rate_pct": 51.75
+            "obi_directional_return": {
+              "n": 17199,
+              "mean_bp": -2.4059,
+              "median_bp": -5.7021,
+              "win_rate_pct": 46.39
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 5106,
-              "mean_bp": -2.8049,
-              "median_bp": 0.3426,
-              "win_rate_pct": 50.29
+            "ofi_directional_return": {
+              "n": 17170,
+              "mean_bp": -0.9558,
+              "median_bp": -1.6212,
+              "win_rate_pct": 48.97
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 3388,
+              "mean_bp": -3.9786,
+              "median_bp": -7.3943,
+              "win_rate_pct": 45.22
+            },
+            "signal_counts": {
+              "obi": 17199,
+              "ofi": 17170,
+              "obi_ofi_agree": 3388
             }
           },
           "validation": {
-            "baseline_long_return": {
+            "always_long_market_return": {
               "n": 17147,
               "mean_bp": -3.6651,
               "median_bp": -1.1496,
               "win_rate_pct": 48.78
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 2186,
-              "mean_bp": -1.6616,
-              "median_bp": 0.0599,
-              "win_rate_pct": 50.0
+            "obi_directional_return": {
+              "n": 6162,
+              "mean_bp": -0.1328,
+              "median_bp": -4.4079,
+              "win_rate_pct": 45.13
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 2024,
-              "mean_bp": 5.3695,
-              "median_bp": 1.6745,
-              "win_rate_pct": 51.88
+            "ofi_directional_return": {
+              "n": 8289,
+              "mean_bp": -1.0887,
+              "median_bp": -0.4846,
+              "win_rate_pct": 49.55
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 1343,
+              "mean_bp": -0.0422,
+              "median_bp": -4.6099,
+              "win_rate_pct": 44.9
+            },
+            "signal_counts": {
+              "obi": 6162,
+              "ofi": 8289,
+              "obi_ofi_agree": 1343
             }
           },
           "oos": {
-            "baseline_long_return": {
+            "always_long_market_return": {
               "n": 25842,
               "mean_bp": -0.8603,
               "median_bp": -2.7522,
               "win_rate_pct": 47.9
             },
-            "sell_pressure_plus_bid_growth_long": {
-              "n": 3007,
-              "mean_bp": 0.764,
-              "median_bp": -1.2399,
-              "win_rate_pct": 48.89
+            "obi_directional_return": {
+              "n": 9668,
+              "mean_bp": -3.0697,
+              "median_bp": -3.623,
+              "win_rate_pct": 47.09
             },
-            "buy_pressure_plus_ask_growth_short": {
-              "n": 2970,
-              "mean_bp": -1.4379,
-              "median_bp": 2.6026,
-              "win_rate_pct": 52.19
+            "ofi_directional_return": {
+              "n": 10471,
+              "mean_bp": -0.7459,
+              "median_bp": -1.2631,
+              "win_rate_pct": 48.95
+            },
+            "obi_plus_ofi_agreement_return": {
+              "n": 1982,
+              "mean_bp": -3.464,
+              "median_bp": -4.248,
+              "win_rate_pct": 46.17
+            },
+            "signal_counts": {
+              "obi": 9668,
+              "ofi": 10471,
+              "obi_ofi_agree": 1982
             }
           },
-          "thresholds_source": "train only; q80 fixed across all splits"
+          "thresholds_source": "first 50% chronological training segment only"
         }
       }
     }
