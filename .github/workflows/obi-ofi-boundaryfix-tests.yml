@@ -1,0 +1,28 @@
+name: OBI OFI boundary regression tests
+
+on:
+  push:
+    branches:
+      - research/obi-ofi-boundaryfix-v1
+    paths:
+      - "research/bookdepth_signal_diagnostic_boundaryfix.py"
+      - "tests/test_bookdepth_signal_boundaryfix.py"
+      - ".github/workflows/obi-ofi-boundaryfix-tests.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  boundary-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout isolated correction branch
+        uses: actions/checkout@v4
+        with:
+          ref: research/obi-ofi-boundaryfix-v1
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run split-boundary regression tests
+        run: python -m unittest discover -s tests -p "test_bookdepth_signal_boundaryfix.py" -v
