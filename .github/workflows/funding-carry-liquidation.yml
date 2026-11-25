@@ -1,9 +1,9 @@
-name: Funding carry liquidation-aware risk sweep
+name: Funding carry selective sideways exit experiment
 
 on:
   push:
     branches:
-      - research/binance-data-pipeline
+      - research/experiment-sideways-selective-v1
     paths:
       - "research/funding_carry_liquidation.py"
       - ".github/workflows/funding-carry-liquidation.yml"
