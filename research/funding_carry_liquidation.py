@@ -68,7 +68,7 @@ def load_symbol(sym,months,root):
   verified_download(f"{BASE}/markPriceKlines/{sym}/1h/{mn}",mp);marks.update(readzip(mp,"mark"))
  return sym,fund,marks
 
-def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20,side_mode='both',regime_filter=None,regime_policy=None):
+def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20,side_mode='both',regime_filter=None,regime_policy=None,regime_threshold_pct=5.0):
  symbols=list(data); first,last=period
  mark_times={s:sorted(data[s]["marks"]) for s in symbols}
  all_events=sorted(set(t for s in symbols for t in data[s]["fund"] if first<=t<=last))
@@ -83,7 +83,8 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
   j=bisect.bisect_right(btc_times,ts)-1; k=bisect.bisect_right(btc_times,ts-30*DAY)-1
   if j<0 or k<0:return 'unknown'
   ret=btc_marks[btc_times[j]][3]/btc_marks[btc_times[k]][3]-1
-  return 'bull' if ret>0.05 else ('bear' if ret<-.05 else 'sideways')
+  threshold=regime_threshold_pct/100.0
+  return 'bull' if ret>threshold else ('bear' if ret<-threshold else 'sideways')
  rebalances=0; hourly_checks=0
  lookback=lookback_days*DAY; interval=rebalance_days*DAY
  for ix,t in enumerate(events):
@@ -238,6 +239,17 @@ def main():
   policy_validation[policy_name]=run(data,cuts["validation"],1.0,5,slip_bp=2,regime_policy=policy)
  eligible_policies=[(n,v) for n,v in policy_validation.items() if v["max_drawdown_pct"]>=-25 and not v["liquidated"]]
  chosen_policy_name,chosen_policy_result=max(eligible_policies or list(policy_validation.items()),key=lambda x:x[1]["net_return_pct"])
+ # Threshold sensitivity: choose threshold on validation only, then freeze before OOS.
+ chosen_mapping=regime_policies[chosen_policy_name]
+ threshold_validation={}
+ for threshold in (3.0,5.0,7.0,10.0):
+  v=run(data,cuts["validation"],1.0,5,slip_bp=2,regime_policy=chosen_mapping,regime_threshold_pct=threshold)
+  threshold_validation[f"{threshold:g}%"]={"net_return_pct":v["net_return_pct"],"max_drawdown_pct":v["max_drawdown_pct"],"liquidated":v["liquidated"]}
+ eligible_thresholds=[(float(k.rstrip("%")),v) for k,v in threshold_validation.items() if v["max_drawdown_pct"]>=-25 and not v["liquidated"]]
+ chosen_threshold,chosen_threshold_validation=max(eligible_thresholds or [(float(k.rstrip("%")),v) for k,v in threshold_validation.items()],key=lambda x:x[1]["net_return_pct"])
+ threshold_oos={}
+ for fee in (2,5,8):
+  threshold_oos[f"fee_{fee}bp"]=run(data,cuts["oos"],1.0,fee,slip_bp=2,regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold)
  adaptive_policy_oos={}
  for lev in (1.0,1.25,1.5):
   adaptive_policy_oos[f"{lev:g}x"]={}
@@ -277,7 +289,8 @@ def main():
    "margin_mode":"cross-portfolio approximation; funding cashflow at settlement; positions resized weekly",
    "limitations":["not exact Binance liquidation engine","static MMR instead of historical symbol-specific tier brackets","hourly OHLC cannot reconstruct tick order or exact liquidation price","spread and market impact beyond fixed slippage are not modeled","static universe survivorship bias"]},
   "regime_tests_oos_1x_5bp_fee_2bp_slippage":regime_tests,
-  "regime_policy_sweep":{"selection_period":"validation only","selection_rule":"Highest validation net return among policies with max drawdown >= -25% and no liquidation; frozen before OOS.","validation_results":{k:{"net_return_pct":v["net_return_pct"],"max_drawdown_pct":v["max_drawdown_pct"],"liquidated":v["liquidated"]} for k,v in policy_validation.items()},"chosen_policy":chosen_policy_name,"chosen_policy_mapping":regime_policies[chosen_policy_name],"chosen_policy_validation":chosen_policy_result,"chosen_policy_oos":adaptive_policy_oos},
+  "regime_policy_sweep":{"selection_period":"validation only","selection_rule":"Highest validation net return among policies with max drawdown >= -25% and no liquidation; frozen before OOS.","validation_results":{k:{"net_return_pct":v["net_return_pct"],"max_drawdown_pct":v["max_drawdown_pct"],"liquidated":v["liquidated"]} for k,v in policy_validation.items()},"chosen_policy":chosen_policy_name,"chosen_policy_mapping":regime_policies[chosen_policy_name],"chosen_policy_validation":chosen_policy_result,"chosen_policy_oos":adaptive_policy_oos,
+   "threshold_sensitivity":{"candidates_pct":[3,5,7,10],"selection_period":"validation only","validation_results":threshold_validation,"chosen_threshold_pct":chosen_threshold,"chosen_threshold_validation":chosen_threshold_validation,"frozen_threshold_oos_1x":threshold_oos}},
   "robustness_tests":{"oos_side_decomposition_1x_5bp_fee_2bp_slippage":oos_sides,"leave_one_symbol_out_1x_5bp_fee_2bp_slippage":leave_one_out,"note":"Each reduced-universe test recalculates cross-sectional ranks using only remaining symbols; fixed original OOS dates; not re-tuned."},"results":results,"parameter_sweep":{"selection_rule":"Choose highest validation net return at 1x, 5bp fee + 2bp slippage, subject to max drawdown >= -25%; freeze parameters before OOS. If none eligible, choose highest validation return from full grid.","grid_size":len(grid),"chosen_on_validation":chosen,"validation_top_10":sorted(grid,key=lambda x:x["validation_net_return_pct"],reverse=True)[:10],"selected_configuration_oos":selected_oos}}
  Path(a.out).parent.mkdir(parents=True,exist_ok=True);Path(a.out).write_text(json.dumps(report,indent=2),encoding="utf-8")
  print("REPORT",a.out,flush=True)
