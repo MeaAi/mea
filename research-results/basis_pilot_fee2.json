@@ -8,7 +8,7 @@
     "ETHUSDT",
     "SOLUSDT"
   ],
-  "method": "UTC daily cross-sectional top-vs-bottom basis; 5-day change uses 7200 contiguous minute index observations; next-minute open entry; 1440 contiguous 1m bars; 5bp fee + 2bp slippage each side; funding only at actual timestamps; adverse minute high/low DD.",
+  "method": "UTC daily cross-sectional top-vs-bottom basis; 5-day change uses 7200 contiguous minute index observations; next-minute open entry; 1440 contiguous 1m bars; 2bp fee + 2bp slippage each side; funding only at actual timestamps; adverse minute high/low DD.",
   "data_qa": "archives checksum-verified; exact spot/perp common timestamps only; no gap interpolation",
   "limitations": [
     "Two-month pilot only; not OOS proof.",
