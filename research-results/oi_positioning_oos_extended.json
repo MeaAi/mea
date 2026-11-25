@@ -1,0 +1,3729 @@
+{
+  "source": "Binance Vision USD-M metrics daily archives + 1m futures klines",
+  "validation_version": "v2_contiguous_minute_compounded_equity",
+  "timestamp_policy": "2024 historical metrics create_time labels treated as end-of-period; as-of join only, signal uses metrics timestamp strictly earlier than decision minute; entry next minute open.",
+  "splits": "Chronological 50% train / 20% validation / 30% untouched OOS by matched minute rows. Thresholds fit on train only.",
+  "costs": "Entry and exit fee each 2/5/8 bp; entry and exit slippage each 2 bp. 1x, 100% equity per trade, non-overlapping.",
+  "limitations": [
+    "Metrics are 5-minute aggregates/snapshots; no tick-level position changes.",
+    "No funding cashflow or exchange liquidation simulation in this diagnostic.",
+    "Trades with any missing/non-consecutive 1m bar are rejected; signal-to-entry and all holding intervals must be exactly 60000ms.",
+    "Metric joins are strict as-of (metric timestamp must be earlier than decision minute); stale metrics older than 5 minutes are excluded; 15m price return requires exact 15-minute timestamp continuity.",
+    "Equity compounds trade by trade; entry and exit costs are charged on their respective notionals; adverse mark includes estimated exit costs.",
+    "Historical metrics definitions and timestamp semantics require effective-date caution; this sample is 2024.",
+    "Adverse drawdown uses 1m high/low path during each held trade, not exchange liquidation engine."
+  ],
+  "symbols": {
+    "BTCUSDT": {
+      "matched_minutes": 1490400,
+      "metrics_rows": 297612,
+      "train_thresholds": {
+        "oi_hi": 0.001344472055233581,
+        "oi_lo": -0.0012101370373068798,
+        "ret_hi": 0.0015920554854980118,
+        "ret_lo": -0.0015333836082057628,
+        "top_pos_hi": 1.794495,
+        "top_pos_lo": 1.253598,
+        "global_hi": 1.96058993,
+        "global_lo": 0.8751459
+      },
+      "families": {
+        "oi_expansion_momentum": {
+          "signal_count": 240561,
+          "horizons": {
+            "15": {
+              "train": {
+                "fee2_slip2_each_way": {
+                  "trades": 13465,
+                  "end_equity_usdt": 0.001835,
+                  "net_return_pct": -99.9982,
+                  "gross_pnl_usdt": -2.946243,
+                  "fees_usdt": 48.525961,
+                  "slippage_usdt": 48.525961,
+                  "net_mean_bp": -8.0411,
+                  "win_rate_pct": 33.85,
+                  "max_adverse_mark_dd_pct": 99.9982,
+                  "profit_factor": 0.493,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 13465,
+                  "end_equity_usdt": 1e-06,
+                  "net_return_pct": -100.0,
+                  "gross_pnl_usdt": -1.128596,
+                  "fees_usdt": 70.622431,
+                  "slippage_usdt": 28.248972,
+                  "net_mean_bp": -14.0412,
+                  "win_rate_pct": 25.27,
+                  "max_adverse_mark_dd_pct": 100.0,
+                  "profit_factor": 0.3126,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 13465,
+                  "end_equity_usdt": 0.0,
+                  "net_return_pct": -100.0,
+                  "gross_pnl_usdt": 0.286012,
+                  "fees_usdt": 80.22881,
+                  "slippage_usdt": 20.057202,
+                  "net_mean_bp": -20.0413,
+                  "win_rate_pct": 18.88,
+                  "max_adverse_mark_dd_pct": 100.0,
+                  "profit_factor": 0.2126,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "validation": {
+                "fee2_slip2_each_way": {
+                  "trades": 3310,
+                  "end_equity_usdt": 9.113677,
+                  "net_return_pct": -90.8863,
+                  "gross_pnl_usdt": 7.241179,
+                  "fees_usdt": 49.063751,
+                  "slippage_usdt": 49.063751,
+                  "net_mean_bp": -7.1988,
+                  "win_rate_pct": 32.48,
+                  "max_adverse_mark_dd_pct": 90.9213,
+                  "profit_factor": 0.4169,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 3310,
+                  "end_equity_usdt": 1.248228,
+                  "net_return_pct": -98.7518,
+                  "gross_pnl_usdt": 3.58334,
+                  "fees_usdt": 73.096508,
+                  "slippage_usdt": 29.238603,
+                  "net_mean_bp": -13.1989,
+                  "win_rate_pct": 23.2,
+                  "max_adverse_mark_dd_pct": 98.7566,
+                  "profit_factor": 0.2037,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 3310,
+                  "end_equity_usdt": 0.170756,
+                  "net_return_pct": -99.8292,
+                  "gross_pnl_usdt": 2.107002,
+                  "fees_usdt": 81.548997,
+                  "slippage_usdt": 20.387249,
+                  "net_mean_bp": -19.1989,
+                  "win_rate_pct": 16.5,
+                  "max_adverse_mark_dd_pct": 99.8299,
+                  "profit_factor": 0.1082,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "oos": {
+                "fee2_slip2_each_way": {
+                  "trades": 5003,
+                  "end_equity_usdt": 2.5174,
+                  "net_return_pct": -97.4826,
+                  "gross_pnl_usdt": 10.661237,
+                  "fees_usdt": 54.071919,
+                  "slippage_usdt": 54.071919,
+                  "net_mean_bp": -7.3069,
+                  "win_rate_pct": 33.78,
+                  "max_adverse_mark_dd_pct": 97.5265,
+                  "profit_factor": 0.5406,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 5003,
+                  "end_equity_usdt": 0.124707,
+                  "net_return_pct": -99.8753,
+                  "gross_pnl_usdt": 5.811032,
+                  "fees_usdt": 75.490232,
+                  "slippage_usdt": 30.196093,
+                  "net_mean_bp": -13.3071,
+                  "win_rate_pct": 24.51,
+                  "max_adverse_mark_dd_pct": 99.8758,
+                  "profit_factor": 0.3418,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 5003,
+                  "end_equity_usdt": 0.006167,
+                  "net_return_pct": -99.9938,
+                  "gross_pnl_usdt": 3.763729,
+                  "fees_usdt": 83.00605,
+                  "slippage_usdt": 20.751512,
+                  "net_mean_bp": -19.3072,
+                  "win_rate_pct": 17.69,
+                  "max_adverse_mark_dd_pct": 99.9938,
+                  "profit_factor": 0.2188,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              }
+            },
+            "60": {
+              "train": {
+                "fee2_slip2_each_way": {
+                  "trades": 6497,
+                  "end_equity_usdt": 0.617099,
+                  "net_return_pct": -99.3829,
+                  "gross_pnl_usdt": 16.182264,
+                  "fees_usdt": 57.782583,
+                  "slippage_usdt": 57.782583,
+                  "net_mean_bp": -7.6373,
+                  "win_rate_pct": 40.56,
+                  "max_adverse_mark_dd_pct": 99.4318,
+                  "profit_factor": 0.7161,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 6497,
+                  "end_equity_usdt": 0.012458,
+                  "net_return_pct": -99.9875,
+                  "gross_pnl_usdt": 13.243708,
+                  "fees_usdt": 80.879464,
+                  "slippage_usdt": 32.351786,
+                  "net_mean_bp": -13.6375,
+                  "win_rate_pct": 34.51,
+                  "max_adverse_mark_dd_pct": 99.9882,
+                  "profit_factor": 0.5526,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 6497,
+                  "end_equity_usdt": 0.000251,
+                  "net_return_pct": -99.9997,
+                  "gross_pnl_usdt": 11.789888,
+                  "fees_usdt": 89.431709,
+                  "slippage_usdt": 22.357927,
+                  "net_mean_bp": -19.6378,
+                  "win_rate_pct": 28.71,
+                  "max_adverse_mark_dd_pct": 99.9998,
+                  "profit_factor": 0.4289,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "validation": {
+                "fee2_slip2_each_way": {
+                  "trades": 1785,
+                  "end_equity_usdt": 27.538493,
+                  "net_return_pct": -72.4615,
+                  "gross_pnl_usdt": 10.134634,
+                  "fees_usdt": 41.298071,
+                  "slippage_usdt": 41.298071,
+                  "net_mean_bp": -7.0993,
+                  "win_rate_pct": 37.2,
+                  "max_adverse_mark_dd_pct": 72.5682,
+                  "profit_factor": 0.6432,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 1785,
+                  "end_equity_usdt": 9.426497,
+                  "net_return_pct": -90.5735,
+                  "gross_pnl_usdt": 7.764676,
+                  "fees_usdt": 70.241556,
+                  "slippage_usdt": 28.096623,
+                  "net_mean_bp": -13.0991,
+                  "win_rate_pct": 31.2,
+                  "max_adverse_mark_dd_pct": 90.6029,
+                  "profit_factor": 0.4395,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 1785,
+                  "end_equity_usdt": 3.224636,
+                  "net_return_pct": -96.7754,
+                  "gross_pnl_usdt": 6.128099,
+                  "fees_usdt": 82.32277,
+                  "slippage_usdt": 20.580693,
+                  "net_mean_bp": -19.0988,
+                  "win_rate_pct": 26.44,
+                  "max_adverse_mark_dd_pct": 96.7835,
+                  "profit_factor": 0.3016,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "oos": {
+                "fee2_slip2_each_way": {
+                  "trades": 2725,
+                  "end_equity_usdt": 20.528439,
+                  "net_return_pct": -79.4716,
+                  "gross_pnl_usdt": 45.824699,
+                  "fees_usdt": 62.64813,
+                  "slippage_usdt": 62.64813,
+                  "net_mean_bp": -5.6509,
+                  "win_rate_pct": 40.84,
+                  "max_adverse_mark_dd_pct": 80.747,
+                  "profit_factor": 0.7749,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 2725,
+                  "end_equity_usdt": 3.996008,
+                  "net_return_pct": -96.004,
+                  "gross_pnl_usdt": 30.6309,
+                  "fees_usdt": 90.453494,
+                  "slippage_usdt": 36.181398,
+                  "net_mean_bp": -11.6511,
+                  "win_rate_pct": 34.17,
+                  "max_adverse_mark_dd_pct": 96.1411,
+                  "profit_factor": 0.6049,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 2725,
+                  "end_equity_usdt": 0.777087,
+                  "net_return_pct": -99.2229,
+                  "gross_pnl_usdt": 21.412688,
+                  "fees_usdt": 96.508481,
+                  "slippage_usdt": 24.12712,
+                  "net_mean_bp": -17.6512,
+                  "win_rate_pct": 29.25,
+                  "max_adverse_mark_dd_pct": 99.2336,
+                  "profit_factor": 0.4753,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              }
+            },
+            "240": {
+              "train": {
+                "fee2_slip2_each_way": {
+                  "trades": 2407,
+                  "end_equity_usdt": 14.639549,
+                  "net_return_pct": -85.3605,
+                  "gross_pnl_usdt": 4.921598,
+                  "fees_usdt": 45.141025,
+                  "slippage_usdt": 45.141025,
+                  "net_mean_bp": -7.3212,
+                  "win_rate_pct": 43.62,
+                  "max_adverse_mark_dd_pct": 85.6694,
+                  "profit_factor": 0.8244,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 2407,
+                  "end_equity_usdt": 3.447222,
+                  "net_return_pct": -96.5528,
+                  "gross_pnl_usdt": 2.749469,
+                  "fees_usdt": 70.930176,
+                  "slippage_usdt": 28.372071,
+                  "net_mean_bp": -13.3224,
+                  "win_rate_pct": 41.01,
+                  "max_adverse_mark_dd_pct": 96.6113,
+                  "profit_factor": 0.7113,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 2407,
+                  "end_equity_usdt": 0.811023,
+                  "net_return_pct": -99.189,
+                  "gross_pnl_usdt": 0.599893,
+                  "fees_usdt": 79.831096,
+                  "slippage_usdt": 19.957774,
+                  "net_mean_bp": -19.3236,
+                  "win_rate_pct": 38.18,
+                  "max_adverse_mark_dd_pct": 99.1994,
+                  "profit_factor": 0.6129,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "validation": {
+                "fee2_slip2_each_way": {
+                  "trades": 799,
+                  "end_equity_usdt": 72.973186,
+                  "net_return_pct": -27.0268,
+                  "gross_pnl_usdt": 29.879213,
+                  "fees_usdt": 28.453014,
+                  "slippage_usdt": 28.453014,
+                  "net_mean_bp": -3.5064,
+                  "win_rate_pct": 44.06,
+                  "max_adverse_mark_dd_pct": 36.8739,
+                  "profit_factor": 0.8852,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 799,
+                  "end_equity_usdt": 45.167363,
+                  "net_return_pct": -54.8326,
+                  "gross_pnl_usdt": 25.382088,
+                  "fees_usdt": 57.296232,
+                  "slippage_usdt": 22.918493,
+                  "net_mean_bp": -9.5059,
+                  "win_rate_pct": 39.55,
+                  "max_adverse_mark_dd_pct": 57.5449,
+                  "profit_factor": 0.7328,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 799,
+                  "end_equity_usdt": 27.948661,
+                  "net_return_pct": -72.0513,
+                  "gross_pnl_usdt": 21.929915,
+                  "fees_usdt": 75.185003,
+                  "slippage_usdt": 18.796251,
+                  "net_mean_bp": -15.5054,
+                  "win_rate_pct": 36.42,
+                  "max_adverse_mark_dd_pct": 72.6366,
+                  "profit_factor": 0.6054,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "oos": {
+                "fee2_slip2_each_way": {
+                  "trades": 1198,
+                  "end_equity_usdt": 60.708233,
+                  "net_return_pct": -39.2918,
+                  "gross_pnl_usdt": 41.184457,
+                  "fees_usdt": 40.238112,
+                  "slippage_usdt": 40.238112,
+                  "net_mean_bp": -3.6709,
+                  "win_rate_pct": 45.08,
+                  "max_adverse_mark_dd_pct": 44.0377,
+                  "profit_factor": 0.8934,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 1198,
+                  "end_equity_usdt": 29.567529,
+                  "net_return_pct": -70.4325,
+                  "gross_pnl_usdt": 32.243597,
+                  "fees_usdt": 73.340049,
+                  "slippage_usdt": 29.336019,
+                  "net_mean_bp": -9.6714,
+                  "win_rate_pct": 41.07,
+                  "max_adverse_mark_dd_pct": 71.9181,
+                  "profit_factor": 0.7654,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 1198,
+                  "end_equity_usdt": 14.394439,
+                  "net_return_pct": -85.6056,
+                  "gross_pnl_usdt": 25.503594,
+                  "fees_usdt": 88.887324,
+                  "slippage_usdt": 22.221831,
+                  "net_mean_bp": -15.6719,
+                  "win_rate_pct": 37.31,
+                  "max_adverse_mark_dd_pct": 86.2471,
+                  "profit_factor": 0.6605,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              }
+            }
+          }
+        },
+        "oi_contraction_reversal": {
+          "signal_count": 141973,
+          "horizons": {
+            "15": {
+              "train": {
+                "fee2_slip2_each_way": {
+                  "trades": 11156,
+                  "end_equity_usdt": 0.015611,
+                  "net_return_pct": -99.9844,
+                  "gross_pnl_usdt": 14.765696,
+                  "fees_usdt": 57.375042,
+                  "slippage_usdt": 57.375042,
+                  "net_mean_bp": -7.7831,
+                  "win_rate_pct": 38.91,
+                  "max_adverse_mark_dd_pct": 99.9845,
+                  "profit_factor": 0.5654,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 11156,
+                  "end_equity_usdt": 1.9e-05,
+                  "net_return_pct": -100.0,
+                  "gross_pnl_usdt": 7.977002,
+                  "fees_usdt": 77.126416,
+                  "slippage_usdt": 30.850567,
+                  "net_mean_bp": -13.7831,
+                  "win_rate_pct": 29.68,
+                  "max_adverse_mark_dd_pct": 100.0,
+                  "profit_factor": 0.3421,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 11156,
+                  "end_equity_usdt": 0.0,
+                  "net_return_pct": -100.0,
+                  "gross_pnl_usdt": 5.267968,
+                  "fees_usdt": 84.214375,
+                  "slippage_usdt": 21.053594,
+                  "net_mean_bp": -19.783,
+                  "win_rate_pct": 21.9,
+                  "max_adverse_mark_dd_pct": 100.0,
+                  "profit_factor": 0.2086,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "validation": {
+                "fee2_slip2_each_way": {
+                  "trades": 2925,
+                  "end_equity_usdt": 6.845028,
+                  "net_return_pct": -93.155,
+                  "gross_pnl_usdt": -7.659222,
+                  "fees_usdt": 42.747875,
+                  "slippage_usdt": 42.747875,
+                  "net_mean_bp": -9.1081,
+                  "win_rate_pct": 34.02,
+                  "max_adverse_mark_dd_pct": 93.215,
+                  "profit_factor": 0.368,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 2925,
+                  "end_equity_usdt": 1.181089,
+                  "net_return_pct": -98.8189,
+                  "gross_pnl_usdt": -4.299419,
+                  "fees_usdt": 67.513923,
+                  "slippage_usdt": 27.005569,
+                  "net_mean_bp": -15.1079,
+                  "win_rate_pct": 23.97,
+                  "max_adverse_mark_dd_pct": 98.8265,
+                  "profit_factor": 0.1691,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 2925,
+                  "end_equity_usdt": 0.203578,
+                  "net_return_pct": -99.7964,
+                  "gross_pnl_usdt": -3.064786,
+                  "fees_usdt": 77.385308,
+                  "slippage_usdt": 19.346327,
+                  "net_mean_bp": -21.1077,
+                  "win_rate_pct": 16.89,
+                  "max_adverse_mark_dd_pct": 99.7972,
+                  "profit_factor": 0.0744,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "oos": {
+                "fee2_slip2_each_way": {
+                  "trades": 4471,
+                  "end_equity_usdt": 1.68746,
+                  "net_return_pct": -98.3125,
+                  "gross_pnl_usdt": -13.729423,
+                  "fees_usdt": 42.291559,
+                  "slippage_usdt": 42.291559,
+                  "net_mean_bp": -9.0696,
+                  "win_rate_pct": 35.52,
+                  "max_adverse_mark_dd_pct": 98.3346,
+                  "profit_factor": 0.4788,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 4471,
+                  "end_equity_usdt": 0.115017,
+                  "net_return_pct": -99.885,
+                  "gross_pnl_usdt": -8.608374,
+                  "fees_usdt": 65.197578,
+                  "slippage_usdt": 26.079031,
+                  "net_mean_bp": -15.0697,
+                  "win_rate_pct": 26.06,
+                  "max_adverse_mark_dd_pct": 99.8851,
+                  "profit_factor": 0.3073,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 4471,
+                  "end_equity_usdt": 0.007827,
+                  "net_return_pct": -99.9922,
+                  "gross_pnl_usdt": -6.064704,
+                  "fees_usdt": 75.141975,
+                  "slippage_usdt": 18.785494,
+                  "net_mean_bp": -21.0698,
+                  "win_rate_pct": 19.19,
+                  "max_adverse_mark_dd_pct": 99.9922,
+                  "profit_factor": 0.196,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              }
+            },
+            "60": {
+              "train": {
+                "fee2_slip2_each_way": {
+                  "trades": 5909,
+                  "end_equity_usdt": 1.074665,
+                  "net_return_pct": -98.9253,
+                  "gross_pnl_usdt": -0.574365,
+                  "fees_usdt": 49.175485,
+                  "slippage_usdt": 49.175485,
+                  "net_mean_bp": -7.4544,
+                  "win_rate_pct": 44.29,
+                  "max_adverse_mark_dd_pct": 98.9281,
+                  "profit_factor": 0.6885,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 5909,
+                  "end_equity_usdt": 0.030889,
+                  "net_return_pct": -99.9691,
+                  "gross_pnl_usdt": -6.899628,
+                  "fees_usdt": 66.478203,
+                  "slippage_usdt": 26.591281,
+                  "net_mean_bp": -13.4546,
+                  "win_rate_pct": 38.52,
+                  "max_adverse_mark_dd_pct": 99.9692,
+                  "profit_factor": 0.4939,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 5909,
+                  "end_equity_usdt": 0.000886,
+                  "net_return_pct": -99.9991,
+                  "gross_pnl_usdt": -7.959124,
+                  "fees_usdt": 73.631992,
+                  "slippage_usdt": 18.407998,
+                  "net_mean_bp": -19.4548,
+                  "win_rate_pct": 32.32,
+                  "max_adverse_mark_dd_pct": 99.9991,
+                  "profit_factor": 0.3556,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "validation": {
+                "fee2_slip2_each_way": {
+                  "trades": 1727,
+                  "end_equity_usdt": 23.312794,
+                  "net_return_pct": -76.6872,
+                  "gross_pnl_usdt": 2.955379,
+                  "fees_usdt": 39.821292,
+                  "slippage_usdt": 39.821292,
+                  "net_mean_bp": -8.3074,
+                  "win_rate_pct": 43.66,
+                  "max_adverse_mark_dd_pct": 77.0058,
+                  "profit_factor": 0.6135,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 1727,
+                  "end_equity_usdt": 8.261748,
+                  "net_return_pct": -91.7383,
+                  "gross_pnl_usdt": 5.161282,
+                  "fees_usdt": 69.213953,
+                  "slippage_usdt": 27.685581,
+                  "net_mean_bp": -14.3072,
+                  "win_rate_pct": 36.48,
+                  "max_adverse_mark_dd_pct": 91.786,
+                  "profit_factor": 0.4158,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 1727,
+                  "end_equity_usdt": 2.92603,
+                  "net_return_pct": -97.074,
+                  "gross_pnl_usdt": 5.730914,
+                  "fees_usdt": 82.243907,
+                  "slippage_usdt": 20.560977,
+                  "net_mean_bp": -20.3071,
+                  "win_rate_pct": 30.86,
+                  "max_adverse_mark_dd_pct": 97.0874,
+                  "profit_factor": 0.2771,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "oos": {
+                "fee2_slip2_each_way": {
+                  "trades": 2610,
+                  "end_equity_usdt": 8.230656,
+                  "net_return_pct": -91.7693,
+                  "gross_pnl_usdt": -23.015666,
+                  "fees_usdt": 34.376839,
+                  "slippage_usdt": 34.376839,
+                  "net_mean_bp": -9.4108,
+                  "win_rate_pct": 43.14,
+                  "max_adverse_mark_dd_pct": 91.8976,
+                  "profit_factor": 0.5927,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 2610,
+                  "end_equity_usdt": 1.715842,
+                  "net_return_pct": -98.2842,
+                  "gross_pnl_usdt": -19.01817,
+                  "fees_usdt": 56.618563,
+                  "slippage_usdt": 22.647425,
+                  "net_mean_bp": -15.4107,
+                  "win_rate_pct": 36.86,
+                  "max_adverse_mark_dd_pct": 98.2916,
+                  "profit_factor": 0.4412,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 2610,
+                  "end_equity_usdt": 0.357364,
+                  "net_return_pct": -99.6426,
+                  "gross_pnl_usdt": -16.08913,
+                  "fees_usdt": 66.842805,
+                  "slippage_usdt": 16.710701,
+                  "net_mean_bp": -21.4106,
+                  "win_rate_pct": 30.19,
+                  "max_adverse_mark_dd_pct": 99.6436,
+                  "profit_factor": 0.333,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              }
+            },
+            "240": {
+              "train": {
+                "fee2_slip2_each_way": {
+                  "trades": 2313,
+                  "end_equity_usdt": 44.339188,
+                  "net_return_pct": -55.6608,
+                  "gross_pnl_usdt": 31.232903,
+                  "fees_usdt": 43.446858,
+                  "slippage_usdt": 43.446858,
+                  "net_mean_bp": -2.81,
+                  "win_rate_pct": 48.21,
+                  "max_adverse_mark_dd_pct": 69.716,
+                  "profit_factor": 0.8798,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 2313,
+                  "end_equity_usdt": 11.05406,
+                  "net_return_pct": -88.9459,
+                  "gross_pnl_usdt": -1.305645,
+                  "fees_usdt": 62.600211,
+                  "slippage_usdt": 25.040084,
+                  "net_mean_bp": -8.8112,
+                  "win_rate_pct": 44.79,
+                  "max_adverse_mark_dd_pct": 89.5976,
+                  "profit_factor": 0.7031,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 2313,
+                  "end_equity_usdt": 2.753552,
+                  "net_return_pct": -97.2464,
+                  "gross_pnl_usdt": -12.406167,
+                  "fees_usdt": 67.872224,
+                  "slippage_usdt": 16.968056,
+                  "net_mean_bp": -14.8124,
+                  "win_rate_pct": 41.76,
+                  "max_adverse_mark_dd_pct": 97.376,
+                  "profit_factor": 0.5675,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "validation": {
+                "fee2_slip2_each_way": {
+                  "trades": 793,
+                  "end_equity_usdt": 100.993011,
+                  "net_return_pct": 0.993,
+                  "gross_pnl_usdt": 66.136085,
+                  "fees_usdt": 32.571537,
+                  "slippage_usdt": 32.571537,
+                  "net_mean_bp": 0.5718,
+                  "win_rate_pct": 49.94,
+                  "max_adverse_mark_dd_pct": 24.7642,
+                  "profit_factor": 1.0038,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 793,
+                  "end_equity_usdt": 62.749692,
+                  "net_return_pct": -37.2503,
+                  "gross_pnl_usdt": 53.303772,
+                  "fees_usdt": 64.681485,
+                  "slippage_usdt": 25.872594,
+                  "net_mean_bp": -5.4275,
+                  "win_rate_pct": 46.03,
+                  "max_adverse_mark_dd_pct": 42.9382,
+                  "profit_factor": 0.8329,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 793,
+                  "end_equity_usdt": 38.976942,
+                  "net_return_pct": -61.0231,
+                  "gross_pnl_usdt": 43.640538,
+                  "fees_usdt": 83.730877,
+                  "slippage_usdt": 20.932719,
+                  "net_mean_bp": -11.4268,
+                  "win_rate_pct": 40.98,
+                  "max_adverse_mark_dd_pct": 63.7183,
+                  "profit_factor": 0.6852,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "oos": {
+                "fee2_slip2_each_way": {
+                  "trades": 1163,
+                  "end_equity_usdt": 50.45809,
+                  "net_return_pct": -49.5419,
+                  "gross_pnl_usdt": 9.181599,
+                  "fees_usdt": 29.361754,
+                  "slippage_usdt": 29.361754,
+                  "net_mean_bp": -5.3887,
+                  "win_rate_pct": 48.58,
+                  "max_adverse_mark_dd_pct": 51.6156,
+                  "profit_factor": 0.8202,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 1163,
+                  "end_equity_usdt": 25.094583,
+                  "net_return_pct": -74.9054,
+                  "gross_pnl_usdt": 0.850573,
+                  "fees_usdt": 54.111421,
+                  "slippage_usdt": 21.644569,
+                  "net_mean_bp": -11.3891,
+                  "win_rate_pct": 44.88,
+                  "max_adverse_mark_dd_pct": 75.8362,
+                  "profit_factor": 0.6737,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 1163,
+                  "end_equity_usdt": 12.475181,
+                  "net_return_pct": -87.5248,
+                  "gross_pnl_usdt": -4.531367,
+                  "fees_usdt": 66.394762,
+                  "slippage_usdt": 16.59869,
+                  "net_mean_bp": -17.3894,
+                  "win_rate_pct": 41.19,
+                  "max_adverse_mark_dd_pct": 87.9373,
+                  "profit_factor": 0.5566,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              }
+            }
+          }
+        },
+        "crowding_reversal": {
+          "signal_count": 195565,
+          "horizons": {
+            "15": {
+              "train": {
+                "fee2_slip2_each_way": {
+                  "trades": 3511,
+                  "end_equity_usdt": 5.867043,
+                  "net_return_pct": -94.133,
+                  "gross_pnl_usdt": 8.446924,
+                  "fees_usdt": 51.28994,
+                  "slippage_usdt": 51.28994,
+                  "net_mean_bp": -8.013,
+                  "win_rate_pct": 33.18,
+                  "max_adverse_mark_dd_pct": 94.3311,
+                  "profit_factor": 0.489,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 3511,
+                  "end_equity_usdt": 0.712014,
+                  "net_return_pct": -99.288,
+                  "gross_pnl_usdt": 8.134965,
+                  "fees_usdt": 76.730679,
+                  "slippage_usdt": 30.692272,
+                  "net_mean_bp": -14.0132,
+                  "win_rate_pct": 24.21,
+                  "max_adverse_mark_dd_pct": 99.2968,
+                  "profit_factor": 0.2883,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 3511,
+                  "end_equity_usdt": 0.086299,
+                  "net_return_pct": -99.9137,
+                  "gross_pnl_usdt": 7.076218,
+                  "fees_usdt": 85.591935,
+                  "slippage_usdt": 21.397984,
+                  "net_mean_bp": -20.0133,
+                  "win_rate_pct": 17.17,
+                  "max_adverse_mark_dd_pct": 99.9141,
+                  "profit_factor": 0.1753,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "validation": {
+                "fee2_slip2_each_way": {
+                  "trades": 3572,
+                  "end_equity_usdt": 5.644558,
+                  "net_return_pct": -94.3554,
+                  "gross_pnl_usdt": -0.017568,
+                  "fees_usdt": 47.168937,
+                  "slippage_usdt": 47.168937,
+                  "net_mean_bp": -8.0101,
+                  "win_rate_pct": 32.67,
+                  "max_adverse_mark_dd_pct": 94.3603,
+                  "profit_factor": 0.4077,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 3572,
+                  "end_equity_usdt": 0.660411,
+                  "net_return_pct": -99.3396,
+                  "gross_pnl_usdt": -0.928697,
+                  "fees_usdt": 70.293495,
+                  "slippage_usdt": 28.117398,
+                  "net_mean_bp": -14.0101,
+                  "win_rate_pct": 23.54,
+                  "max_adverse_mark_dd_pct": 99.3402,
+                  "profit_factor": 0.1949,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 3572,
+                  "end_equity_usdt": 0.077168,
+                  "net_return_pct": -99.9228,
+                  "gross_pnl_usdt": -1.426459,
+                  "fees_usdt": 78.797099,
+                  "slippage_usdt": 19.699275,
+                  "net_mean_bp": -20.0101,
+                  "win_rate_pct": 16.69,
+                  "max_adverse_mark_dd_pct": 99.9229,
+                  "profit_factor": 0.093,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "oos": {
+                "fee2_slip2_each_way": {
+                  "trades": 5269,
+                  "end_equity_usdt": 1.495225,
+                  "net_return_pct": -98.5048,
+                  "gross_pnl_usdt": -2.87915,
+                  "fees_usdt": 47.812812,
+                  "slippage_usdt": 47.812812,
+                  "net_mean_bp": -7.9498,
+                  "win_rate_pct": 26.12,
+                  "max_adverse_mark_dd_pct": 98.5463,
+                  "profit_factor": 0.2824,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 5269,
+                  "end_equity_usdt": 0.06313,
+                  "net_return_pct": -99.9369,
+                  "gross_pnl_usdt": -3.450856,
+                  "fees_usdt": 68.918581,
+                  "slippage_usdt": 27.567433,
+                  "net_mean_bp": -13.9497,
+                  "win_rate_pct": 16.17,
+                  "max_adverse_mark_dd_pct": 99.9378,
+                  "profit_factor": 0.1004,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 5269,
+                  "end_equity_usdt": 0.00266,
+                  "net_return_pct": -99.9973,
+                  "gross_pnl_usdt": -3.260158,
+                  "fees_usdt": 77.389745,
+                  "slippage_usdt": 19.347436,
+                  "net_mean_bp": -19.9496,
+                  "win_rate_pct": 10.74,
+                  "max_adverse_mark_dd_pct": 99.9974,
+                  "profit_factor": 0.0385,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              }
+            },
+            "60": {
+              "train": {
+                "fee2_slip2_each_way": {
+                  "trades": 966,
+                  "end_equity_usdt": 46.366811,
+                  "net_return_pct": -53.6332,
+                  "gross_pnl_usdt": 4.646532,
+                  "fees_usdt": 29.13986,
+                  "slippage_usdt": 29.13986,
+                  "net_mean_bp": -7.7212,
+                  "win_rate_pct": 38.82,
+                  "max_adverse_mark_dd_pct": 58.7837,
+                  "profit_factor": 0.7084,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 966,
+                  "end_equity_usdt": 25.952985,
+                  "net_return_pct": -74.047,
+                  "gross_pnl_usdt": 6.288153,
+                  "fees_usdt": 57.382263,
+                  "slippage_usdt": 22.952905,
+                  "net_mean_bp": -13.7216,
+                  "win_rate_pct": 33.85,
+                  "max_adverse_mark_dd_pct": 75.2695,
+                  "profit_factor": 0.5462,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 966,
+                  "end_equity_usdt": 14.521648,
+                  "net_return_pct": -85.4784,
+                  "gross_pnl_usdt": 7.168217,
+                  "fees_usdt": 74.117255,
+                  "slippage_usdt": 18.529314,
+                  "net_mean_bp": -19.722,
+                  "win_rate_pct": 28.26,
+                  "max_adverse_mark_dd_pct": 86.0457,
+                  "profit_factor": 0.4233,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "validation": {
+                "fee2_slip2_each_way": {
+                  "trades": 952,
+                  "end_equity_usdt": 46.800992,
+                  "net_return_pct": -53.199,
+                  "gross_pnl_usdt": 2.840459,
+                  "fees_usdt": 28.019733,
+                  "slippage_usdt": 28.019733,
+                  "net_mean_bp": -7.8198,
+                  "win_rate_pct": 40.55,
+                  "max_adverse_mark_dd_pct": 53.5083,
+                  "profit_factor": 0.6737,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 952,
+                  "end_equity_usdt": 26.418503,
+                  "net_return_pct": -73.5815,
+                  "gross_pnl_usdt": 3.361532,
+                  "fees_usdt": 54.959306,
+                  "slippage_usdt": 21.983722,
+                  "net_mean_bp": -13.8198,
+                  "win_rate_pct": 34.77,
+                  "max_adverse_mark_dd_pct": 73.686,
+                  "profit_factor": 0.5004,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 952,
+                  "end_equity_usdt": 14.907749,
+                  "net_return_pct": -85.0923,
+                  "gross_pnl_usdt": 3.291803,
+                  "fees_usdt": 70.707243,
+                  "slippage_usdt": 17.676811,
+                  "net_mean_bp": -19.8197,
+                  "win_rate_pct": 29.62,
+                  "max_adverse_mark_dd_pct": 85.1335,
+                  "profit_factor": 0.3712,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "oos": {
+                "fee2_slip2_each_way": {
+                  "trades": 1403,
+                  "end_equity_usdt": 35.422984,
+                  "net_return_pct": -64.577,
+                  "gross_pnl_usdt": 4.481591,
+                  "fees_usdt": 34.529303,
+                  "slippage_usdt": 34.529303,
+                  "net_mean_bp": -7.3058,
+                  "win_rate_pct": 36.14,
+                  "max_adverse_mark_dd_pct": 65.5924,
+                  "profit_factor": 0.5777,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 1403,
+                  "end_equity_usdt": 15.252103,
+                  "net_return_pct": -84.7479,
+                  "gross_pnl_usdt": 1.916498,
+                  "fees_usdt": 61.903139,
+                  "slippage_usdt": 24.761256,
+                  "net_mean_bp": -13.3055,
+                  "win_rate_pct": 28.23,
+                  "max_adverse_mark_dd_pct": 85.1321,
+                  "profit_factor": 0.3694,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 1403,
+                  "end_equity_usdt": 6.563786,
+                  "net_return_pct": -93.4362,
+                  "gross_pnl_usdt": 0.013697,
+                  "fees_usdt": 74.759929,
+                  "slippage_usdt": 18.689982,
+                  "net_mean_bp": -19.3052,
+                  "win_rate_pct": 22.24,
+                  "max_adverse_mark_dd_pct": 93.5786,
+                  "profit_factor": 0.236,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              }
+            },
+            "240": {
+              "train": {
+                "fee2_slip2_each_way": {
+                  "trades": 272,
+                  "end_equity_usdt": 85.691111,
+                  "net_return_pct": -14.3089,
+                  "gross_pnl_usdt": 8.573398,
+                  "fees_usdt": 11.441143,
+                  "slippage_usdt": 11.441143,
+                  "net_mean_bp": -4.5802,
+                  "win_rate_pct": 41.54,
+                  "max_adverse_mark_dd_pct": 36.8445,
+                  "profit_factor": 0.9007,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 272,
+                  "end_equity_usdt": 72.77338,
+                  "net_return_pct": -27.2266,
+                  "gross_pnl_usdt": 9.844233,
+                  "fees_usdt": 26.479181,
+                  "slippage_usdt": 10.591672,
+                  "net_mean_bp": -10.5811,
+                  "win_rate_pct": 36.4,
+                  "max_adverse_mark_dd_pct": 44.3444,
+                  "profit_factor": 0.808,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 272,
+                  "end_equity_usdt": 61.796893,
+                  "net_return_pct": -38.2031,
+                  "gross_pnl_usdt": 10.924356,
+                  "fees_usdt": 39.301971,
+                  "slippage_usdt": 9.825493,
+                  "net_mean_bp": -16.582,
+                  "win_rate_pct": 34.93,
+                  "max_adverse_mark_dd_pct": 50.9573,
+                  "profit_factor": 0.7272,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "validation": {
+                "fee2_slip2_each_way": {
+                  "trades": 252,
+                  "end_equity_usdt": 86.983903,
+                  "net_return_pct": -13.0161,
+                  "gross_pnl_usdt": 6.997895,
+                  "fees_usdt": 10.006996,
+                  "slippage_usdt": 10.006996,
+                  "net_mean_bp": -4.9776,
+                  "win_rate_pct": 47.62,
+                  "max_adverse_mark_dd_pct": 23.2667,
+                  "profit_factor": 0.8695,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 252,
+                  "end_equity_usdt": 74.768754,
+                  "net_return_pct": -25.2312,
+                  "gross_pnl_usdt": 7.324445,
+                  "fees_usdt": 23.254065,
+                  "slippage_usdt": 9.301626,
+                  "net_mean_bp": -10.9767,
+                  "win_rate_pct": 42.46,
+                  "max_adverse_mark_dd_pct": 28.4311,
+                  "profit_factor": 0.7479,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 252,
+                  "end_equity_usdt": 64.263134,
+                  "net_return_pct": -35.7369,
+                  "gross_pnl_usdt": 7.570747,
+                  "fees_usdt": 34.646091,
+                  "slippage_usdt": 8.661523,
+                  "net_mean_bp": -16.9758,
+                  "win_rate_pct": 38.89,
+                  "max_adverse_mark_dd_pct": 36.734,
+                  "profit_factor": 0.6444,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "oos": {
+                "fee2_slip2_each_way": {
+                  "trades": 367,
+                  "end_equity_usdt": 82.322967,
+                  "net_return_pct": -17.677,
+                  "gross_pnl_usdt": 9.05735,
+                  "fees_usdt": 13.367191,
+                  "slippage_usdt": 13.367191,
+                  "net_mean_bp": -4.954,
+                  "win_rate_pct": 42.51,
+                  "max_adverse_mark_dd_pct": 20.6326,
+                  "profit_factor": 0.8281,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 367,
+                  "end_equity_usdt": 66.042279,
+                  "net_return_pct": -33.9577,
+                  "gross_pnl_usdt": 8.070615,
+                  "fees_usdt": 30.020239,
+                  "slippage_usdt": 12.008096,
+                  "net_mean_bp": -10.953,
+                  "win_rate_pct": 36.51,
+                  "max_adverse_mark_dd_pct": 36.1935,
+                  "profit_factor": 0.671,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 367,
+                  "end_equity_usdt": 52.974345,
+                  "net_return_pct": -47.0257,
+                  "gross_pnl_usdt": 7.123623,
+                  "fees_usdt": 43.319423,
+                  "slippage_usdt": 10.829856,
+                  "net_mean_bp": -16.952,
+                  "win_rate_pct": 33.79,
+                  "max_adverse_mark_dd_pct": 48.7591,
+                  "profit_factor": 0.546,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ETHUSDT": {
+      "matched_minutes": 1490400,
+      "metrics_rows": 297868,
+      "train_thresholds": {
+        "oi_hi": 0.0014043843672122414,
+        "oi_lo": -0.0012893676907509422,
+        "ret_hi": 0.002070920068845128,
+        "ret_lo": -0.002016507936507983,
+        "top_pos_hi": 3.055934,
+        "top_pos_lo": 1.813514,
+        "global_hi": 3.72128018,
+        "global_lo": 2.1014245
+      },
+      "families": {
+        "oi_expansion_momentum": {
+          "signal_count": 255791,
+          "horizons": {
+            "15": {
+              "train": {
+                "fee2_slip2_each_way": {
+                  "trades": 13754,
+                  "end_equity_usdt": 0.007088,
+                  "net_return_pct": -99.9929,
+                  "gross_pnl_usdt": 6.286629,
+                  "fees_usdt": 53.13977,
+                  "slippage_usdt": 53.13977,
+                  "net_mean_bp": -6.8445,
+                  "win_rate_pct": 37.29,
+                  "max_adverse_mark_dd_pct": 99.993,
+                  "profit_factor": 0.5542,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 13754,
+                  "end_equity_usdt": 2e-06,
+                  "net_return_pct": -100.0,
+                  "gross_pnl_usdt": -2.201432,
+                  "fees_usdt": 69.856119,
+                  "slippage_usdt": 27.942448,
+                  "net_mean_bp": -12.8446,
+                  "win_rate_pct": 29.9,
+                  "max_adverse_mark_dd_pct": 100.0,
+                  "profit_factor": 0.3202,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 13754,
+                  "end_equity_usdt": 0.0,
+                  "net_return_pct": -100.0,
+                  "gross_pnl_usdt": -3.608827,
+                  "fees_usdt": 77.112938,
+                  "slippage_usdt": 19.278235,
+                  "net_mean_bp": -18.8448,
+                  "win_rate_pct": 23.35,
+                  "max_adverse_mark_dd_pct": 100.0,
+                  "profit_factor": 0.1971,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "validation": {
+                "fee2_slip2_each_way": {
+                  "trades": 4622,
+                  "end_equity_usdt": 2.480758,
+                  "net_return_pct": -97.5192,
+                  "gross_pnl_usdt": -4.274008,
+                  "fees_usdt": 46.622617,
+                  "slippage_usdt": 46.622617,
+                  "net_mean_bp": -7.9056,
+                  "win_rate_pct": 37.08,
+                  "max_adverse_mark_dd_pct": 97.5324,
+                  "profit_factor": 0.544,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 4622,
+                  "end_equity_usdt": 0.15443,
+                  "net_return_pct": -99.8456,
+                  "gross_pnl_usdt": -3.395329,
+                  "fees_usdt": 68.893029,
+                  "slippage_usdt": 27.557212,
+                  "net_mean_bp": -13.9062,
+                  "win_rate_pct": 30.2,
+                  "max_adverse_mark_dd_pct": 99.8461,
+                  "profit_factor": 0.3449,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 4622,
+                  "end_equity_usdt": 0.009597,
+                  "net_return_pct": -99.9904,
+                  "gross_pnl_usdt": -2.323015,
+                  "fees_usdt": 78.13391,
+                  "slippage_usdt": 19.533478,
+                  "net_mean_bp": -19.9069,
+                  "win_rate_pct": 24.19,
+                  "max_adverse_mark_dd_pct": 99.9904,
+                  "profit_factor": 0.2215,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "oos": {
+                "fee2_slip2_each_way": {
+                  "trades": 5236,
+                  "end_equity_usdt": 2.273944,
+                  "net_return_pct": -97.7261,
+                  "gross_pnl_usdt": 12.624381,
+                  "fees_usdt": 55.175219,
+                  "slippage_usdt": 55.175219,
+                  "net_mean_bp": -7.1419,
+                  "win_rate_pct": 34.89,
+                  "max_adverse_mark_dd_pct": 97.7372,
+                  "profit_factor": 0.6266,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 5236,
+                  "end_equity_usdt": 0.097937,
+                  "net_return_pct": -99.9021,
+                  "gross_pnl_usdt": 6.155087,
+                  "fees_usdt": 75.755107,
+                  "slippage_usdt": 30.302043,
+                  "net_mean_bp": -13.1421,
+                  "win_rate_pct": 26.85,
+                  "max_adverse_mark_dd_pct": 99.9023,
+                  "profit_factor": 0.4425,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 5236,
+                  "end_equity_usdt": 0.00421,
+                  "net_return_pct": -99.9958,
+                  "gross_pnl_usdt": 3.823655,
+                  "fees_usdt": 83.055556,
+                  "slippage_usdt": 20.763889,
+                  "net_mean_bp": -19.1423,
+                  "win_rate_pct": 20.78,
+                  "max_adverse_mark_dd_pct": 99.9958,
+                  "profit_factor": 0.3128,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              }
+            },
+            "60": {
+              "train": {
+                "fee2_slip2_each_way": {
+                  "trades": 6772,
+                  "end_equity_usdt": 0.729757,
+                  "net_return_pct": -99.2702,
+                  "gross_pnl_usdt": 19.143923,
+                  "fees_usdt": 59.207083,
+                  "slippage_usdt": 59.207083,
+                  "net_mean_bp": -6.8951,
+                  "win_rate_pct": 42.75,
+                  "max_adverse_mark_dd_pct": 99.3021,
+                  "profit_factor": 0.7539,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 6772,
+                  "end_equity_usdt": 0.012492,
+                  "net_return_pct": -99.9875,
+                  "gross_pnl_usdt": 9.735489,
+                  "fees_usdt": 78.37357,
+                  "slippage_usdt": 31.349428,
+                  "net_mean_bp": -12.8952,
+                  "win_rate_pct": 38.36,
+                  "max_adverse_mark_dd_pct": 99.9877,
+                  "profit_factor": 0.5771,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 6772,
+                  "end_equity_usdt": 0.000213,
+                  "net_return_pct": -99.9998,
+                  "gross_pnl_usdt": 5.695575,
+                  "fees_usdt": 84.55629,
+                  "slippage_usdt": 21.139072,
+                  "net_mean_bp": -18.8954,
+                  "win_rate_pct": 33.87,
+                  "max_adverse_mark_dd_pct": 99.9998,
+                  "profit_factor": 0.4387,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "validation": {
+                "fee2_slip2_each_way": {
+                  "trades": 2337,
+                  "end_equity_usdt": 17.994505,
+                  "net_return_pct": -82.0055,
+                  "gross_pnl_usdt": 18.93937,
+                  "fees_usdt": 50.472433,
+                  "slippage_usdt": 50.472433,
+                  "net_mean_bp": -7.0346,
+                  "win_rate_pct": 43.77,
+                  "max_adverse_mark_dd_pct": 82.8192,
+                  "profit_factor": 0.7763,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 2337,
+                  "end_equity_usdt": 4.420019,
+                  "net_return_pct": -95.58,
+                  "gross_pnl_usdt": 14.233045,
+                  "fees_usdt": 78.437876,
+                  "slippage_usdt": 31.37515,
+                  "net_mean_bp": -13.0356,
+                  "win_rate_pct": 38.51,
+                  "max_adverse_mark_dd_pct": 95.7039,
+                  "profit_factor": 0.6172,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 2337,
+                  "end_equity_usdt": 1.084781,
+                  "net_return_pct": -98.9152,
+                  "gross_pnl_usdt": 10.142055,
+                  "fees_usdt": 87.24582,
+                  "slippage_usdt": 21.811455,
+                  "net_mean_bp": -19.0366,
+                  "win_rate_pct": 34.62,
+                  "max_adverse_mark_dd_pct": 98.9322,
+                  "profit_factor": 0.4851,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "oos": {
+                "fee2_slip2_each_way": {
+                  "trades": 2824,
+                  "end_equity_usdt": 13.318951,
+                  "net_return_pct": -86.681,
+                  "gross_pnl_usdt": 25.314578,
+                  "fees_usdt": 55.997814,
+                  "slippage_usdt": 55.997814,
+                  "net_mean_bp": -6.8762,
+                  "win_rate_pct": 40.86,
+                  "max_adverse_mark_dd_pct": 88.2436,
+                  "profit_factor": 0.7835,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 2824,
+                  "end_equity_usdt": 2.442398,
+                  "net_return_pct": -97.5576,
+                  "gross_pnl_usdt": 19.521173,
+                  "fees_usdt": 83.627697,
+                  "slippage_usdt": 33.451079,
+                  "net_mean_bp": -12.8764,
+                  "win_rate_pct": 35.76,
+                  "max_adverse_mark_dd_pct": 97.6578,
+                  "profit_factor": 0.6487,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 2824,
+                  "end_equity_usdt": 0.447425,
+                  "net_return_pct": -99.5526,
+                  "gross_pnl_usdt": 16.142667,
+                  "fees_usdt": 92.556194,
+                  "slippage_usdt": 23.139048,
+                  "net_mean_bp": -18.8765,
+                  "win_rate_pct": 30.56,
+                  "max_adverse_mark_dd_pct": 99.5638,
+                  "profit_factor": 0.5419,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              }
+            },
+            "240": {
+              "train": {
+                "fee2_slip2_each_way": {
+                  "trades": 2473,
+                  "end_equity_usdt": 54.072427,
+                  "net_return_pct": -45.9276,
+                  "gross_pnl_usdt": 100.479936,
+                  "fees_usdt": 73.203754,
+                  "slippage_usdt": 73.203754,
+                  "net_mean_bp": -1.3212,
+                  "win_rate_pct": 47.35,
+                  "max_adverse_mark_dd_pct": 60.2737,
+                  "profit_factor": 0.9514,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 2473,
+                  "end_equity_usdt": 12.249081,
+                  "net_return_pct": -87.7509,
+                  "gross_pnl_usdt": 52.595082,
+                  "fees_usdt": 100.247144,
+                  "slippage_usdt": 40.098857,
+                  "net_mean_bp": -7.3216,
+                  "win_rate_pct": 44.44,
+                  "max_adverse_mark_dd_pct": 88.3867,
+                  "profit_factor": 0.8349,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 2473,
+                  "end_equity_usdt": 2.772322,
+                  "net_return_pct": -97.2277,
+                  "gross_pnl_usdt": 30.185525,
+                  "fees_usdt": 101.930562,
+                  "slippage_usdt": 25.482641,
+                  "net_mean_bp": -13.322,
+                  "win_rate_pct": 41.85,
+                  "max_adverse_mark_dd_pct": 97.3431,
+                  "profit_factor": 0.7241,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "validation": {
+                "fee2_slip2_each_way": {
+                  "trades": 909,
+                  "end_equity_usdt": 27.171316,
+                  "net_return_pct": -72.8287,
+                  "gross_pnl_usdt": -17.034038,
+                  "fees_usdt": 27.897323,
+                  "slippage_usdt": 27.897323,
+                  "net_mean_bp": -13.1916,
+                  "win_rate_pct": 42.79,
+                  "max_adverse_mark_dd_pct": 79.6151,
+                  "profit_factor": 0.8133,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 909,
+                  "end_equity_usdt": 15.729367,
+                  "net_return_pct": -84.2706,
+                  "gross_pnl_usdt": -5.158645,
+                  "fees_usdt": 56.508563,
+                  "slippage_usdt": 22.603425,
+                  "net_mean_bp": -19.194,
+                  "win_rate_pct": 40.15,
+                  "max_adverse_mark_dd_pct": 85.4662,
+                  "profit_factor": 0.7437,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 909,
+                  "end_equity_usdt": 9.102673,
+                  "net_return_pct": -90.8973,
+                  "gross_pnl_usdt": 2.345945,
+                  "fees_usdt": 74.594618,
+                  "slippage_usdt": 18.648654,
+                  "net_mean_bp": -25.1964,
+                  "win_rate_pct": 37.29,
+                  "max_adverse_mark_dd_pct": 91.3203,
+                  "profit_factor": 0.6787,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "oos": {
+                "fee2_slip2_each_way": {
+                  "trades": 1217,
+                  "end_equity_usdt": 48.183043,
+                  "net_return_pct": -51.817,
+                  "gross_pnl_usdt": 33.215322,
+                  "fees_usdt": 42.51614,
+                  "slippage_usdt": 42.51614,
+                  "net_mean_bp": -5.0717,
+                  "win_rate_pct": 45.28,
+                  "max_adverse_mark_dd_pct": 61.0248,
+                  "profit_factor": 0.8989,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 1217,
+                  "end_equity_usdt": 23.19714,
+                  "net_return_pct": -76.8029,
+                  "gross_pnl_usdt": 31.848667,
+                  "fees_usdt": 77.608234,
+                  "slippage_usdt": 31.043293,
+                  "net_mean_bp": -11.0721,
+                  "win_rate_pct": 41.33,
+                  "max_adverse_mark_dd_pct": 77.7016,
+                  "profit_factor": 0.8111,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 1217,
+                  "end_equity_usdt": 11.163075,
+                  "net_return_pct": -88.8369,
+                  "gross_pnl_usdt": 28.697217,
+                  "fees_usdt": 94.027314,
+                  "slippage_usdt": 23.506828,
+                  "net_mean_bp": -17.0725,
+                  "win_rate_pct": 38.7,
+                  "max_adverse_mark_dd_pct": 89.2115,
+                  "profit_factor": 0.7335,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              }
+            }
+          }
+        },
+        "oi_contraction_reversal": {
+          "signal_count": 152845,
+          "horizons": {
+            "15": {
+              "train": {
+                "fee2_slip2_each_way": {
+                  "trades": 11150,
+                  "end_equity_usdt": 0.007516,
+                  "net_return_pct": -99.9925,
+                  "gross_pnl_usdt": 3.511252,
+                  "fees_usdt": 51.751868,
+                  "slippage_usdt": 51.751868,
+                  "net_mean_bp": -8.3969,
+                  "win_rate_pct": 41.54,
+                  "max_adverse_mark_dd_pct": 99.9926,
+                  "profit_factor": 0.5663,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 11150,
+                  "end_equity_usdt": 9e-06,
+                  "net_return_pct": -100.0,
+                  "gross_pnl_usdt": 0.780959,
+                  "fees_usdt": 71.986393,
+                  "slippage_usdt": 28.794557,
+                  "net_mean_bp": -14.397,
+                  "win_rate_pct": 34.04,
+                  "max_adverse_mark_dd_pct": 100.0,
+                  "profit_factor": 0.3436,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 11150,
+                  "end_equity_usdt": 0.0,
+                  "net_return_pct": -100.0,
+                  "gross_pnl_usdt": -0.561505,
+                  "fees_usdt": 79.550796,
+                  "slippage_usdt": 19.887699,
+                  "net_mean_bp": -20.3971,
+                  "win_rate_pct": 27.13,
+                  "max_adverse_mark_dd_pct": 100.0,
+                  "profit_factor": 0.2049,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "validation": {
+                "fee2_slip2_each_way": {
+                  "trades": 4143,
+                  "end_equity_usdt": 1.193679,
+                  "net_return_pct": -98.8063,
+                  "gross_pnl_usdt": -25.166046,
+                  "fees_usdt": 36.820138,
+                  "slippage_usdt": 36.820138,
+                  "net_mean_bp": -10.569,
+                  "win_rate_pct": 40.53,
+                  "max_adverse_mark_dd_pct": 98.8214,
+                  "profit_factor": 0.4769,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 4143,
+                  "end_equity_usdt": 0.099078,
+                  "net_return_pct": -99.9009,
+                  "gross_pnl_usdt": -19.125377,
+                  "fees_usdt": 57.696818,
+                  "slippage_usdt": 23.078727,
+                  "net_mean_bp": -16.5682,
+                  "win_rate_pct": 32.97,
+                  "max_adverse_mark_dd_pct": 99.9015,
+                  "profit_factor": 0.2975,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 4143,
+                  "end_equity_usdt": 0.008211,
+                  "net_return_pct": -99.9918,
+                  "gross_pnl_usdt": -16.094599,
+                  "fees_usdt": 67.117751,
+                  "slippage_usdt": 16.779438,
+                  "net_mean_bp": -22.5674,
+                  "win_rate_pct": 26.41,
+                  "max_adverse_mark_dd_pct": 99.9918,
+                  "profit_factor": 0.186,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "oos": {
+                "fee2_slip2_each_way": {
+                  "trades": 4461,
+                  "end_equity_usdt": 0.736035,
+                  "net_return_pct": -99.264,
+                  "gross_pnl_usdt": -31.913064,
+                  "fees_usdt": 33.675451,
+                  "slippage_usdt": 33.675451,
+                  "net_mean_bp": -10.8973,
+                  "win_rate_pct": 39.34,
+                  "max_adverse_mark_dd_pct": 99.2654,
+                  "profit_factor": 0.4959,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 4461,
+                  "end_equity_usdt": 0.050451,
+                  "net_return_pct": -99.9495,
+                  "gross_pnl_usdt": -21.911035,
+                  "fees_usdt": 55.741796,
+                  "slippage_usdt": 22.296718,
+                  "net_mean_bp": -16.8971,
+                  "win_rate_pct": 31.05,
+                  "max_adverse_mark_dd_pct": 99.9496,
+                  "profit_factor": 0.3456,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 4461,
+                  "end_equity_usdt": 0.003453,
+                  "net_return_pct": -99.9965,
+                  "gross_pnl_usdt": -16.378728,
+                  "fees_usdt": 66.894255,
+                  "slippage_usdt": 16.723564,
+                  "net_mean_bp": -22.8969,
+                  "win_rate_pct": 23.76,
+                  "max_adverse_mark_dd_pct": 99.9966,
+                  "profit_factor": 0.2378,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              }
+            },
+            "60": {
+              "train": {
+                "fee2_slip2_each_way": {
+                  "trades": 6019,
+                  "end_equity_usdt": 0.82198,
+                  "net_return_pct": -99.178,
+                  "gross_pnl_usdt": 20.524375,
+                  "fees_usdt": 59.851197,
+                  "slippage_usdt": 59.851197,
+                  "net_mean_bp": -7.614,
+                  "win_rate_pct": 46.44,
+                  "max_adverse_mark_dd_pct": 99.2065,
+                  "profit_factor": 0.7692,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 6019,
+                  "end_equity_usdt": 0.022112,
+                  "net_return_pct": -99.9779,
+                  "gross_pnl_usdt": 14.084593,
+                  "fees_usdt": 81.4732,
+                  "slippage_usdt": 32.58928,
+                  "net_mean_bp": -13.6142,
+                  "win_rate_pct": 41.62,
+                  "max_adverse_mark_dd_pct": 99.9783,
+                  "profit_factor": 0.6104,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 6019,
+                  "end_equity_usdt": 0.000594,
+                  "net_return_pct": -99.9994,
+                  "gross_pnl_usdt": 9.936436,
+                  "fees_usdt": 87.948674,
+                  "slippage_usdt": 21.987169,
+                  "net_mean_bp": -19.6144,
+                  "win_rate_pct": 36.93,
+                  "max_adverse_mark_dd_pct": 99.9994,
+                  "profit_factor": 0.4775,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "validation": {
+                "fee2_slip2_each_way": {
+                  "trades": 2259,
+                  "end_equity_usdt": 7.153222,
+                  "net_return_pct": -92.8468,
+                  "gross_pnl_usdt": -24.875442,
+                  "fees_usdt": 33.985668,
+                  "slippage_usdt": 33.985668,
+                  "net_mean_bp": -11.3265,
+                  "win_rate_pct": 44.98,
+                  "max_adverse_mark_dd_pct": 93.1392,
+                  "profit_factor": 0.6603,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 2259,
+                  "end_equity_usdt": 1.841072,
+                  "net_return_pct": -98.1589,
+                  "gross_pnl_usdt": -15.89657,
+                  "fees_usdt": 58.758827,
+                  "slippage_usdt": 23.503531,
+                  "net_mean_bp": -17.3256,
+                  "win_rate_pct": 40.24,
+                  "max_adverse_mark_dd_pct": 98.2183,
+                  "profit_factor": 0.5246,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 2259,
+                  "end_equity_usdt": 0.473462,
+                  "net_return_pct": -99.5265,
+                  "gross_pnl_usdt": -11.477567,
+                  "fees_usdt": 70.439177,
+                  "slippage_usdt": 17.609794,
+                  "net_mean_bp": -23.3247,
+                  "win_rate_pct": 35.64,
+                  "max_adverse_mark_dd_pct": 99.5377,
+                  "profit_factor": 0.4146,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "oos": {
+                "fee2_slip2_each_way": {
+                  "trades": 2653,
+                  "end_equity_usdt": 3.915933,
+                  "net_return_pct": -96.0841,
+                  "gross_pnl_usdt": -44.856934,
+                  "fees_usdt": 25.613566,
+                  "slippage_usdt": 25.613566,
+                  "net_mean_bp": -11.8902,
+                  "win_rate_pct": 44.4,
+                  "max_adverse_mark_dd_pct": 96.1256,
+                  "profit_factor": 0.5838,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 2653,
+                  "end_equity_usdt": 0.795256,
+                  "net_return_pct": -99.2047,
+                  "gross_pnl_usdt": -36.5555,
+                  "fees_usdt": 44.749459,
+                  "slippage_usdt": 17.899784,
+                  "net_mean_bp": -17.8897,
+                  "win_rate_pct": 39.35,
+                  "max_adverse_mark_dd_pct": 99.2104,
+                  "profit_factor": 0.4595,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 2653,
+                  "end_equity_usdt": 0.161348,
+                  "net_return_pct": -99.8387,
+                  "gross_pnl_usdt": -30.752347,
+                  "fees_usdt": 55.269044,
+                  "slippage_usdt": 13.817261,
+                  "net_mean_bp": -23.8892,
+                  "win_rate_pct": 34.38,
+                  "max_adverse_mark_dd_pct": 99.8396,
+                  "profit_factor": 0.3651,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              }
+            },
+            "240": {
+              "train": {
+                "fee2_slip2_each_way": {
+                  "trades": 2376,
+                  "end_equity_usdt": 12.275256,
+                  "net_return_pct": -87.7247,
+                  "gross_pnl_usdt": -1.458648,
+                  "fees_usdt": 43.133048,
+                  "slippage_usdt": 43.133048,
+                  "net_mean_bp": -7.6455,
+                  "win_rate_pct": 48.7,
+                  "max_adverse_mark_dd_pct": 88.9085,
+                  "profit_factor": 0.8463,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 2376,
+                  "end_equity_usdt": 2.944864,
+                  "net_return_pct": -97.0551,
+                  "gross_pnl_usdt": 1.395479,
+                  "fees_usdt": 70.321868,
+                  "slippage_usdt": 28.128747,
+                  "net_mean_bp": -13.6459,
+                  "win_rate_pct": 46.34,
+                  "max_adverse_mark_dd_pct": 97.1618,
+                  "profit_factor": 0.7473,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 2376,
+                  "end_equity_usdt": 0.705874,
+                  "net_return_pct": -99.2941,
+                  "gross_pnl_usdt": 2.463933,
+                  "fees_usdt": 81.406447,
+                  "slippage_usdt": 20.351612,
+                  "net_mean_bp": -19.6463,
+                  "win_rate_pct": 43.64,
+                  "max_adverse_mark_dd_pct": 99.3095,
+                  "profit_factor": 0.6565,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "validation": {
+                "fee2_slip2_each_way": {
+                  "trades": 910,
+                  "end_equity_usdt": 64.163809,
+                  "net_return_pct": -35.8362,
+                  "gross_pnl_usdt": 15.558787,
+                  "fees_usdt": 25.697489,
+                  "slippage_usdt": 25.697489,
+                  "net_mean_bp": -3.6847,
+                  "win_rate_pct": 49.67,
+                  "max_adverse_mark_dd_pct": 48.8588,
+                  "profit_factor": 0.8984,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 910,
+                  "end_equity_usdt": 37.152137,
+                  "net_return_pct": -62.8479,
+                  "gross_pnl_usdt": 7.264499,
+                  "fees_usdt": 50.080259,
+                  "slippage_usdt": 20.032103,
+                  "net_mean_bp": -9.6841,
+                  "win_rate_pct": 47.03,
+                  "max_adverse_mark_dd_pct": 67.9464,
+                  "profit_factor": 0.7838,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 910,
+                  "end_equity_usdt": 21.504772,
+                  "net_return_pct": -78.4952,
+                  "gross_pnl_usdt": 1.527609,
+                  "fees_usdt": 64.018269,
+                  "slippage_usdt": 16.004567,
+                  "net_mean_bp": -15.6834,
+                  "win_rate_pct": 45.49,
+                  "max_adverse_mark_dd_pct": 80.3587,
+                  "profit_factor": 0.6807,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "oos": {
+                "fee2_slip2_each_way": {
+                  "trades": 1188,
+                  "end_equity_usdt": 14.071349,
+                  "net_return_pct": -85.9287,
+                  "gross_pnl_usdt": -45.397261,
+                  "fees_usdt": 20.265695,
+                  "slippage_usdt": 20.265695,
+                  "net_mean_bp": -15.581,
+                  "win_rate_pct": 45.71,
+                  "max_adverse_mark_dd_pct": 86.9179,
+                  "profit_factor": 0.7026,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 1188,
+                  "end_equity_usdt": 6.888523,
+                  "net_return_pct": -93.1115,
+                  "gross_pnl_usdt": -37.196427,
+                  "fees_usdt": 39.939322,
+                  "slippage_usdt": 15.975729,
+                  "net_mean_bp": -21.5813,
+                  "win_rate_pct": 42.68,
+                  "max_adverse_mark_dd_pct": 93.4204,
+                  "profit_factor": 0.6216,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 1188,
+                  "end_equity_usdt": 3.370776,
+                  "net_return_pct": -96.6292,
+                  "gross_pnl_usdt": -31.515166,
+                  "fees_usdt": 52.091247,
+                  "slippage_usdt": 13.022812,
+                  "net_mean_bp": -27.5816,
+                  "win_rate_pct": 39.56,
+                  "max_adverse_mark_dd_pct": 96.7134,
+                  "profit_factor": 0.5514,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              }
+            }
+          }
+        },
+        "crowding_reversal": {
+          "signal_count": 270930,
+          "horizons": {
+            "15": {
+              "train": {
+                "fee2_slip2_each_way": {
+                  "trades": 8204,
+                  "end_equity_usdt": 0.257758,
+                  "net_return_pct": -99.7422,
+                  "gross_pnl_usdt": 14.988418,
+                  "fees_usdt": 57.36533,
+                  "slippage_usdt": 57.36533,
+                  "net_mean_bp": -7.1831,
+                  "win_rate_pct": 37.32,
+                  "max_adverse_mark_dd_pct": 99.7615,
+                  "profit_factor": 0.5321,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 8204,
+                  "end_equity_usdt": 0.001867,
+                  "net_return_pct": -99.9981,
+                  "gross_pnl_usdt": 7.487864,
+                  "fees_usdt": 76.775712,
+                  "slippage_usdt": 30.710285,
+                  "net_mean_bp": -13.1832,
+                  "win_rate_pct": 29.45,
+                  "max_adverse_mark_dd_pct": 99.9982,
+                  "profit_factor": 0.314,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 8204,
+                  "end_equity_usdt": 1.3e-05,
+                  "net_return_pct": -100.0,
+                  "gross_pnl_usdt": 4.352086,
+                  "fees_usdt": 83.481658,
+                  "slippage_usdt": 20.870414,
+                  "net_mean_bp": -19.1833,
+                  "win_rate_pct": 22.56,
+                  "max_adverse_mark_dd_pct": 100.0,
+                  "profit_factor": 0.1979,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "validation": {
+                "fee2_slip2_each_way": {
+                  "trades": 39,
+                  "end_equity_usdt": 94.356239,
+                  "net_return_pct": -5.6438,
+                  "gross_pnl_usdt": -2.586337,
+                  "fees_usdt": 1.528712,
+                  "slippage_usdt": 1.528712,
+                  "net_mean_bp": -14.7407,
+                  "win_rate_pct": 35.9,
+                  "max_adverse_mark_dd_pct": 7.4491,
+                  "profit_factor": 0.5,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 39,
+                  "end_equity_usdt": 92.169281,
+                  "net_return_pct": -7.8307,
+                  "gross_pnl_usdt": -2.540032,
+                  "fees_usdt": 3.779062,
+                  "slippage_usdt": 1.511625,
+                  "net_mean_bp": -20.7427,
+                  "win_rate_pct": 30.77,
+                  "max_adverse_mark_dd_pct": 9.0068,
+                  "profit_factor": 0.3816,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 39,
+                  "end_equity_usdt": 90.031741,
+                  "net_return_pct": -9.9683,
+                  "gross_pnl_usdt": -2.494324,
+                  "fees_usdt": 5.979148,
+                  "slippage_usdt": 1.494787,
+                  "net_mean_bp": -26.7448,
+                  "win_rate_pct": 25.64,
+                  "max_adverse_mark_dd_pct": 10.8314,
+                  "profit_factor": 0.2941,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "oos": {
+                "fee2_slip2_each_way": {
+                  "trades": 8866,
+                  "end_equity_usdt": 0.092555,
+                  "net_return_pct": -99.9074,
+                  "gross_pnl_usdt": 2.115634,
+                  "fees_usdt": 51.011539,
+                  "slippage_usdt": 51.011539,
+                  "net_mean_bp": -7.8337,
+                  "win_rate_pct": 32.55,
+                  "max_adverse_mark_dd_pct": 99.9088,
+                  "profit_factor": 0.5294,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 8866,
+                  "end_equity_usdt": 0.00045,
+                  "net_return_pct": -99.9995,
+                  "gross_pnl_usdt": 1.404667,
+                  "fees_usdt": 72.431583,
+                  "slippage_usdt": 28.972633,
+                  "net_mean_bp": -13.8337,
+                  "win_rate_pct": 22.36,
+                  "max_adverse_mark_dd_pct": 99.9996,
+                  "profit_factor": 0.3552,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 8866,
+                  "end_equity_usdt": 2e-06,
+                  "net_return_pct": -100.0,
+                  "gross_pnl_usdt": 1.363378,
+                  "fees_usdt": 81.090701,
+                  "slippage_usdt": 20.272675,
+                  "net_mean_bp": -19.8338,
+                  "win_rate_pct": 15.51,
+                  "max_adverse_mark_dd_pct": 100.0,
+                  "profit_factor": 0.2452,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              }
+            },
+            "60": {
+              "train": {
+                "fee2_slip2_each_way": {
+                  "trades": 2215,
+                  "end_equity_usdt": 32.134758,
+                  "net_return_pct": -67.8652,
+                  "gross_pnl_usdt": 44.909922,
+                  "fees_usdt": 56.387582,
+                  "slippage_usdt": 56.387582,
+                  "net_mean_bp": -4.7978,
+                  "win_rate_pct": 44.29,
+                  "max_adverse_mark_dd_pct": 71.9536,
+                  "profit_factor": 0.8239,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 2215,
+                  "end_equity_usdt": 8.497053,
+                  "net_return_pct": -91.5029,
+                  "gross_pnl_usdt": 31.375406,
+                  "fees_usdt": 87.770252,
+                  "slippage_usdt": 35.108101,
+                  "net_mean_bp": -10.7981,
+                  "win_rate_pct": 39.59,
+                  "max_adverse_mark_dd_pct": 92.4631,
+                  "profit_factor": 0.6468,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 2215,
+                  "end_equity_usdt": 2.24499,
+                  "net_return_pct": -97.755,
+                  "gross_pnl_usdt": 23.431705,
+                  "fees_usdt": 96.949372,
+                  "slippage_usdt": 24.237343,
+                  "net_mean_bp": -16.7985,
+                  "win_rate_pct": 35.4,
+                  "max_adverse_mark_dd_pct": 97.9762,
+                  "profit_factor": 0.5019,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "validation": {
+                "fee2_slip2_each_way": {
+                  "trades": 12,
+                  "end_equity_usdt": 92.430771,
+                  "net_return_pct": -7.5692,
+                  "gross_pnl_usdt": -6.643264,
+                  "fees_usdt": 0.462982,
+                  "slippage_usdt": 0.462982,
+                  "net_mean_bp": -64.9839,
+                  "win_rate_pct": 25.0,
+                  "max_adverse_mark_dd_pct": 8.4133,
+                  "profit_factor": 0.0965,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 12,
+                  "end_equity_usdt": 91.761163,
+                  "net_return_pct": -8.2388,
+                  "gross_pnl_usdt": -6.623697,
+                  "fees_usdt": 1.153671,
+                  "slippage_usdt": 0.461468,
+                  "net_mean_bp": -71.001,
+                  "win_rate_pct": 25.0,
+                  "max_adverse_mark_dd_pct": 9.023,
+                  "profit_factor": 0.0715,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 12,
+                  "end_equity_usdt": 91.096004,
+                  "net_return_pct": -8.904,
+                  "gross_pnl_usdt": -6.604194,
+                  "fees_usdt": 1.839842,
+                  "slippage_usdt": 0.45996,
+                  "net_mean_bp": -77.0181,
+                  "win_rate_pct": 25.0,
+                  "max_adverse_mark_dd_pct": 9.629,
+                  "profit_factor": 0.0493,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "oos": {
+                "fee2_slip2_each_way": {
+                  "trades": 2358,
+                  "end_equity_usdt": 17.442036,
+                  "net_return_pct": -82.558,
+                  "gross_pnl_usdt": 8.61316,
+                  "fees_usdt": 45.585562,
+                  "slippage_usdt": 45.585562,
+                  "net_mean_bp": -7.2124,
+                  "win_rate_pct": 39.02,
+                  "max_adverse_mark_dd_pct": 84.0913,
+                  "profit_factor": 0.7185,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 2358,
+                  "end_equity_usdt": 4.231489,
+                  "net_return_pct": -95.7685,
+                  "gross_pnl_usdt": 6.637986,
+                  "fees_usdt": 73.147498,
+                  "slippage_usdt": 29.258999,
+                  "net_mean_bp": -13.2126,
+                  "win_rate_pct": 32.91,
+                  "max_adverse_mark_dd_pct": 96.0741,
+                  "profit_factor": 0.5772,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 2358,
+                  "end_equity_usdt": 1.025698,
+                  "net_return_pct": -98.9743,
+                  "gross_pnl_usdt": 5.605878,
+                  "fees_usdt": 83.664144,
+                  "slippage_usdt": 20.916036,
+                  "net_mean_bp": -19.2128,
+                  "win_rate_pct": 27.82,
+                  "max_adverse_mark_dd_pct": 99.0444,
+                  "profit_factor": 0.4779,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              }
+            },
+            "240": {
+              "train": {
+                "fee2_slip2_each_way": {
+                  "trades": 600,
+                  "end_equity_usdt": 111.610426,
+                  "net_return_pct": 11.6104,
+                  "gross_pnl_usdt": 63.789738,
+                  "fees_usdt": 26.089656,
+                  "slippage_usdt": 26.089656,
+                  "net_mean_bp": 3.2369,
+                  "win_rate_pct": 46.67,
+                  "max_adverse_mark_dd_pct": 38.5854,
+                  "profit_factor": 1.0329,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 600,
+                  "end_equity_usdt": 77.852433,
+                  "net_return_pct": -22.1476,
+                  "gross_pnl_usdt": 54.600701,
+                  "fees_usdt": 54.820191,
+                  "slippage_usdt": 21.928077,
+                  "net_mean_bp": -2.7644,
+                  "win_rate_pct": 43.0,
+                  "max_adverse_mark_dd_pct": 47.5748,
+                  "profit_factor": 0.9284,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 600,
+                  "end_equity_usdt": 54.293219,
+                  "net_return_pct": -45.7068,
+                  "gross_pnl_usdt": 47.361824,
+                  "fees_usdt": 74.454884,
+                  "slippage_usdt": 18.613721,
+                  "net_mean_bp": -8.7657,
+                  "win_rate_pct": 40.5,
+                  "max_adverse_mark_dd_pct": 57.0376,
+                  "profit_factor": 0.8331,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "validation": {
+                "fee2_slip2_each_way": {
+                  "trades": 4,
+                  "end_equity_usdt": 93.468965,
+                  "net_return_pct": -6.531,
+                  "gross_pnl_usdt": -6.214324,
+                  "fees_usdt": 0.158355,
+                  "slippage_usdt": 0.158355,
+                  "net_mean_bp": -166.806,
+                  "win_rate_pct": 25.0,
+                  "max_adverse_mark_dd_pct": 6.6976,
+                  "profit_factor": 0.0204,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 4,
+                  "end_equity_usdt": 93.239192,
+                  "net_return_pct": -6.7608,
+                  "gross_pnl_usdt": -6.207066,
+                  "fees_usdt": 0.39553,
+                  "slippage_usdt": 0.158212,
+                  "net_mean_bp": -172.8537,
+                  "win_rate_pct": 25.0,
+                  "max_adverse_mark_dd_pct": 6.8713,
+                  "profit_factor": 0.0112,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 4,
+                  "end_equity_usdt": 93.009843,
+                  "net_return_pct": -6.9902,
+                  "gross_pnl_usdt": -6.199814,
+                  "fees_usdt": 0.632275,
+                  "slippage_usdt": 0.158069,
+                  "net_mean_bp": -178.9013,
+                  "win_rate_pct": 25.0,
+                  "max_adverse_mark_dd_pct": 7.0447,
+                  "profit_factor": 0.0023,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "oos": {
+                "fee2_slip2_each_way": {
+                  "trades": 619,
+                  "end_equity_usdt": 79.995415,
+                  "net_return_pct": -20.0046,
+                  "gross_pnl_usdt": 26.656369,
+                  "fees_usdt": 23.330477,
+                  "slippage_usdt": 23.330477,
+                  "net_mean_bp": -2.8185,
+                  "win_rate_pct": 45.56,
+                  "max_adverse_mark_dd_pct": 30.44,
+                  "profit_factor": 0.9214,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 619,
+                  "end_equity_usdt": 55.159422,
+                  "net_return_pct": -44.8406,
+                  "gross_pnl_usdt": 23.898625,
+                  "fees_usdt": 49.099431,
+                  "slippage_usdt": 19.639772,
+                  "net_mean_bp": -8.82,
+                  "win_rate_pct": 41.52,
+                  "max_adverse_mark_dd_pct": 50.363,
+                  "profit_factor": 0.8093,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 619,
+                  "end_equity_usdt": 38.025707,
+                  "net_return_pct": -61.9743,
+                  "gross_pnl_usdt": 21.604884,
+                  "fees_usdt": 66.863342,
+                  "slippage_usdt": 16.715836,
+                  "net_mean_bp": -14.8216,
+                  "win_rate_pct": 38.13,
+                  "max_adverse_mark_dd_pct": 65.6795,
+                  "profit_factor": 0.7171,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "SOLUSDT": {
+      "matched_minutes": 1490400,
+      "metrics_rows": 297884,
+      "train_thresholds": {
+        "oi_hi": 0.0016319534609499087,
+        "oi_lo": -0.0015947182373652335,
+        "ret_hi": 0.003060443764345999,
+        "ret_lo": -0.003076283516940337,
+        "top_pos_hi": 2.744253,
+        "top_pos_lo": 1.651744,
+        "global_hi": 3.79589303,
+        "global_lo": 1.81859949
+      },
+      "families": {
+        "oi_expansion_momentum": {
+          "signal_count": 257943,
+          "horizons": {
+            "15": {
+              "train": {
+                "fee2_slip2_each_way": {
+                  "trades": 13573,
+                  "end_equity_usdt": 0.000838,
+                  "net_return_pct": -99.9992,
+                  "gross_pnl_usdt": -13.570387,
+                  "fees_usdt": 43.214387,
+                  "slippage_usdt": 43.214387,
+                  "net_mean_bp": -8.4302,
+                  "win_rate_pct": 40.75,
+                  "max_adverse_mark_dd_pct": 99.9992,
+                  "profit_factor": 0.6607,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 13573,
+                  "end_equity_usdt": 0.0,
+                  "net_return_pct": -100.0,
+                  "gross_pnl_usdt": -9.7442,
+                  "fees_usdt": 64.468428,
+                  "slippage_usdt": 25.787371,
+                  "net_mean_bp": -14.4302,
+                  "win_rate_pct": 35.07,
+                  "max_adverse_mark_dd_pct": 100.0,
+                  "profit_factor": 0.5156,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 13573,
+                  "end_equity_usdt": 0.0,
+                  "net_return_pct": -100.0,
+                  "gross_pnl_usdt": -7.389581,
+                  "fees_usdt": 74.088335,
+                  "slippage_usdt": 18.522084,
+                  "net_mean_bp": -20.4303,
+                  "win_rate_pct": 29.93,
+                  "max_adverse_mark_dd_pct": 100.0,
+                  "profit_factor": 0.4125,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "validation": {
+                "fee2_slip2_each_way": {
+                  "trades": 4510,
+                  "end_equity_usdt": 3.624754,
+                  "net_return_pct": -96.3752,
+                  "gross_pnl_usdt": 11.452038,
+                  "fees_usdt": 53.913642,
+                  "slippage_usdt": 53.913642,
+                  "net_mean_bp": -7.2259,
+                  "win_rate_pct": 38.87,
+                  "max_adverse_mark_dd_pct": 96.3868,
+                  "profit_factor": 0.6399,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 4510,
+                  "end_equity_usdt": 0.241454,
+                  "net_return_pct": -99.7585,
+                  "gross_pnl_usdt": 4.131929,
+                  "fees_usdt": 74.207482,
+                  "slippage_usdt": 29.682993,
+                  "net_mean_bp": -13.2259,
+                  "win_rate_pct": 32.68,
+                  "max_adverse_mark_dd_pct": 99.759,
+                  "profit_factor": 0.4254,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 4510,
+                  "end_equity_usdt": 0.016058,
+                  "net_return_pct": -99.9839,
+                  "gross_pnl_usdt": 1.052076,
+                  "fees_usdt": 80.828814,
+                  "slippage_usdt": 20.207204,
+                  "net_mean_bp": -19.226,
+                  "win_rate_pct": 27.16,
+                  "max_adverse_mark_dd_pct": 99.984,
+                  "profit_factor": 0.2843,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "oos": {
+                "fee2_slip2_each_way": {
+                  "trades": 5711,
+                  "end_equity_usdt": 0.960663,
+                  "net_return_pct": -99.0393,
+                  "gross_pnl_usdt": -6.909875,
+                  "fees_usdt": 46.064731,
+                  "slippage_usdt": 46.064731,
+                  "net_mean_bp": -8.0281,
+                  "win_rate_pct": 36.72,
+                  "max_adverse_mark_dd_pct": 99.0667,
+                  "profit_factor": 0.5923,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 5711,
+                  "end_equity_usdt": 0.031089,
+                  "net_return_pct": -99.9689,
+                  "gross_pnl_usdt": -3.448665,
+                  "fees_usdt": 68.943033,
+                  "slippage_usdt": 27.577213,
+                  "net_mean_bp": -14.0286,
+                  "win_rate_pct": 29.5,
+                  "max_adverse_mark_dd_pct": 99.9691,
+                  "profit_factor": 0.4173,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 5711,
+                  "end_equity_usdt": 0.001004,
+                  "net_return_pct": -99.999,
+                  "gross_pnl_usdt": -1.85751,
+                  "fees_usdt": 78.513188,
+                  "slippage_usdt": 19.628297,
+                  "net_mean_bp": -20.0291,
+                  "win_rate_pct": 23.04,
+                  "max_adverse_mark_dd_pct": 99.999,
+                  "profit_factor": 0.2878,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              }
+            },
+            "60": {
+              "train": {
+                "fee2_slip2_each_way": {
+                  "trades": 6649,
+                  "end_equity_usdt": 0.624284,
+                  "net_return_pct": -99.3757,
+                  "gross_pnl_usdt": 18.513424,
+                  "fees_usdt": 58.94457,
+                  "slippage_usdt": 58.94457,
+                  "net_mean_bp": -7.0411,
+                  "win_rate_pct": 44.58,
+                  "max_adverse_mark_dd_pct": 99.443,
+                  "profit_factor": 0.8377,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 6649,
+                  "end_equity_usdt": 0.011503,
+                  "net_return_pct": -99.9885,
+                  "gross_pnl_usdt": 16.706419,
+                  "fees_usdt": 83.353511,
+                  "slippage_usdt": 33.341404,
+                  "net_mean_bp": -13.0413,
+                  "win_rate_pct": 41.63,
+                  "max_adverse_mark_dd_pct": 99.9893,
+                  "profit_factor": 0.7358,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 6649,
+                  "end_equity_usdt": 0.000211,
+                  "net_return_pct": -99.9998,
+                  "gross_pnl_usdt": 15.469544,
+                  "fees_usdt": 92.375466,
+                  "slippage_usdt": 23.093867,
+                  "net_mean_bp": -19.0414,
+                  "win_rate_pct": 38.4,
+                  "max_adverse_mark_dd_pct": 99.9998,
+                  "profit_factor": 0.6461,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "validation": {
+                "fee2_slip2_each_way": {
+                  "trades": 2399,
+                  "end_equity_usdt": 12.936317,
+                  "net_return_pct": -87.0637,
+                  "gross_pnl_usdt": -1.960145,
+                  "fees_usdt": 42.551769,
+                  "slippage_usdt": 42.551769,
+                  "net_mean_bp": -8.1369,
+                  "win_rate_pct": 44.6,
+                  "max_adverse_mark_dd_pct": 87.92,
+                  "profit_factor": 0.7643,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 2399,
+                  "end_equity_usdt": 3.061753,
+                  "net_return_pct": -96.9382,
+                  "gross_pnl_usdt": 2.551397,
+                  "fees_usdt": 71.064031,
+                  "slippage_usdt": 28.425613,
+                  "net_mean_bp": -14.1367,
+                  "win_rate_pct": 41.48,
+                  "max_adverse_mark_dd_pct": 97.0037,
+                  "profit_factor": 0.634,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 2399,
+                  "end_equity_usdt": 0.724025,
+                  "net_return_pct": -99.276,
+                  "gross_pnl_usdt": 5.363038,
+                  "fees_usdt": 83.71121,
+                  "slippage_usdt": 20.927803,
+                  "net_mean_bp": -20.1365,
+                  "win_rate_pct": 37.68,
+                  "max_adverse_mark_dd_pct": 99.279,
+                  "profit_factor": 0.5251,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "oos": {
+                "fee2_slip2_each_way": {
+                  "trades": 3148,
+                  "end_equity_usdt": 9.044058,
+                  "net_return_pct": -90.9559,
+                  "gross_pnl_usdt": 18.473302,
+                  "fees_usdt": 54.714622,
+                  "slippage_usdt": 54.714622,
+                  "net_mean_bp": -7.3314,
+                  "win_rate_pct": 42.03,
+                  "max_adverse_mark_dd_pct": 91.2071,
+                  "profit_factor": 0.7878,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 3148,
+                  "end_equity_usdt": 1.364794,
+                  "net_return_pct": -98.6352,
+                  "gross_pnl_usdt": 15.315669,
+                  "fees_usdt": 81.393482,
+                  "slippage_usdt": 32.557393,
+                  "net_mean_bp": -13.3321,
+                  "win_rate_pct": 37.36,
+                  "max_adverse_mark_dd_pct": 98.6603,
+                  "profit_factor": 0.6612,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 3148,
+                  "end_equity_usdt": 0.20572,
+                  "net_return_pct": -99.7943,
+                  "gross_pnl_usdt": 12.496738,
+                  "fees_usdt": 89.832814,
+                  "slippage_usdt": 22.458204,
+                  "net_mean_bp": -19.3329,
+                  "win_rate_pct": 33.04,
+                  "max_adverse_mark_dd_pct": 99.7969,
+                  "profit_factor": 0.5539,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              }
+            },
+            "240": {
+              "train": {
+                "fee2_slip2_each_way": {
+                  "trades": 2481,
+                  "end_equity_usdt": 1.23255,
+                  "net_return_pct": -98.7674,
+                  "gross_pnl_usdt": -15.664837,
+                  "fees_usdt": 41.551306,
+                  "slippage_usdt": 41.551306,
+                  "net_mean_bp": -15.5747,
+                  "win_rate_pct": 47.56,
+                  "max_adverse_mark_dd_pct": 99.1238,
+                  "profit_factor": 0.8775,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 2481,
+                  "end_equity_usdt": 0.277175,
+                  "net_return_pct": -99.7228,
+                  "gross_pnl_usdt": 4.675339,
+                  "fees_usdt": 74.570117,
+                  "slippage_usdt": 29.828047,
+                  "net_mean_bp": -21.5755,
+                  "win_rate_pct": 45.95,
+                  "max_adverse_mark_dd_pct": 99.7908,
+                  "profit_factor": 0.8348,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 2481,
+                  "end_equity_usdt": 0.062275,
+                  "net_return_pct": -99.9377,
+                  "gross_pnl_usdt": 13.421722,
+                  "fees_usdt": 90.687557,
+                  "slippage_usdt": 22.671889,
+                  "net_mean_bp": -27.5762,
+                  "win_rate_pct": 44.42,
+                  "max_adverse_mark_dd_pct": 99.9502,
+                  "profit_factor": 0.7909,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "validation": {
+                "fee2_slip2_each_way": {
+                  "trades": 956,
+                  "end_equity_usdt": 29.610817,
+                  "net_return_pct": -70.3892,
+                  "gross_pnl_usdt": -21.237992,
+                  "fees_usdt": 24.575596,
+                  "slippage_usdt": 24.575596,
+                  "net_mean_bp": -11.1611,
+                  "win_rate_pct": 46.23,
+                  "max_adverse_mark_dd_pct": 71.2441,
+                  "profit_factor": 0.8312,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 956,
+                  "end_equity_usdt": 16.668999,
+                  "net_return_pct": -83.331,
+                  "gross_pnl_usdt": -14.889122,
+                  "fees_usdt": 48.887057,
+                  "slippage_usdt": 19.554823,
+                  "net_mean_bp": -17.1611,
+                  "win_rate_pct": 44.87,
+                  "max_adverse_mark_dd_pct": 83.579,
+                  "profit_factor": 0.7579,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 956,
+                  "end_equity_usdt": 9.380338,
+                  "net_return_pct": -90.6197,
+                  "gross_pnl_usdt": -10.981257,
+                  "fees_usdt": 63.710724,
+                  "slippage_usdt": 15.927681,
+                  "net_mean_bp": -23.1611,
+                  "win_rate_pct": 43.1,
+                  "max_adverse_mark_dd_pct": 90.6994,
+                  "profit_factor": 0.6892,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "oos": {
+                "fee2_slip2_each_way": {
+                  "trades": 1327,
+                  "end_equity_usdt": 27.056772,
+                  "net_return_pct": -72.9432,
+                  "gross_pnl_usdt": -10.790964,
+                  "fees_usdt": 31.076132,
+                  "slippage_usdt": 31.076132,
+                  "net_mean_bp": -8.8678,
+                  "win_rate_pct": 44.39,
+                  "max_adverse_mark_dd_pct": 74.5239,
+                  "profit_factor": 0.8281,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 1327,
+                  "end_equity_usdt": 12.189073,
+                  "net_return_pct": -87.8109,
+                  "gross_pnl_usdt": -6.591684,
+                  "fees_usdt": 58.013745,
+                  "slippage_usdt": 23.205498,
+                  "net_mean_bp": -14.8684,
+                  "win_rate_pct": 41.07,
+                  "max_adverse_mark_dd_pct": 88.4327,
+                  "profit_factor": 0.7424,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 1327,
+                  "end_equity_usdt": 5.488543,
+                  "net_return_pct": -94.5115,
+                  "gross_pnl_usdt": -4.315714,
+                  "fees_usdt": 72.156594,
+                  "slippage_usdt": 18.039148,
+                  "net_mean_bp": -20.8691,
+                  "win_rate_pct": 39.26,
+                  "max_adverse_mark_dd_pct": 94.7508,
+                  "profit_factor": 0.6673,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              }
+            }
+          }
+        },
+        "oi_contraction_reversal": {
+          "signal_count": 134829,
+          "horizons": {
+            "15": {
+              "train": {
+                "fee2_slip2_each_way": {
+                  "trades": 10956,
+                  "end_equity_usdt": 0.034379,
+                  "net_return_pct": -99.9656,
+                  "gross_pnl_usdt": 34.695482,
+                  "fees_usdt": 67.330552,
+                  "slippage_usdt": 67.330552,
+                  "net_mean_bp": -7.0783,
+                  "win_rate_pct": 44.07,
+                  "max_adverse_mark_dd_pct": 99.9688,
+                  "profit_factor": 0.7667,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 10956,
+                  "end_equity_usdt": 4.8e-05,
+                  "net_return_pct": -100.0,
+                  "gross_pnl_usdt": 28.698679,
+                  "fees_usdt": 91.927594,
+                  "slippage_usdt": 36.771038,
+                  "net_mean_bp": -13.0785,
+                  "win_rate_pct": 38.5,
+                  "max_adverse_mark_dd_pct": 100.0,
+                  "profit_factor": 0.624,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 10956,
+                  "end_equity_usdt": 0.0,
+                  "net_return_pct": -100.0,
+                  "gross_pnl_usdt": 24.612839,
+                  "fees_usdt": 99.690271,
+                  "slippage_usdt": 24.922568,
+                  "net_mean_bp": -19.0786,
+                  "win_rate_pct": 33.23,
+                  "max_adverse_mark_dd_pct": 100.0,
+                  "profit_factor": 0.5105,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "validation": {
+                "fee2_slip2_each_way": {
+                  "trades": 3630,
+                  "end_equity_usdt": 3.483817,
+                  "net_return_pct": -96.5162,
+                  "gross_pnl_usdt": -17.419946,
+                  "fees_usdt": 39.548119,
+                  "slippage_usdt": 39.548119,
+                  "net_mean_bp": -9.11,
+                  "win_rate_pct": 41.57,
+                  "max_adverse_mark_dd_pct": 96.5401,
+                  "profit_factor": 0.5604,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 3630,
+                  "end_equity_usdt": 0.393572,
+                  "net_return_pct": -99.6064,
+                  "gross_pnl_usdt": -13.855351,
+                  "fees_usdt": 61.250769,
+                  "slippage_usdt": 24.500308,
+                  "net_mean_bp": -15.1098,
+                  "win_rate_pct": 35.18,
+                  "max_adverse_mark_dd_pct": 99.6073,
+                  "profit_factor": 0.3692,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 3630,
+                  "end_equity_usdt": 0.044404,
+                  "net_return_pct": -99.9556,
+                  "gross_pnl_usdt": -11.89382,
+                  "fees_usdt": 70.449421,
+                  "slippage_usdt": 17.612355,
+                  "net_mean_bp": -21.1096,
+                  "win_rate_pct": 28.65,
+                  "max_adverse_mark_dd_pct": 99.9557,
+                  "profit_factor": 0.2415,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "oos": {
+                "fee2_slip2_each_way": {
+                  "trades": 4017,
+                  "end_equity_usdt": 2.921201,
+                  "net_return_pct": -97.0788,
+                  "gross_pnl_usdt": 3.416129,
+                  "fees_usdt": 50.247464,
+                  "slippage_usdt": 50.247464,
+                  "net_mean_bp": -8.667,
+                  "win_rate_pct": 41.87,
+                  "max_adverse_mark_dd_pct": 97.1768,
+                  "profit_factor": 0.656,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 4017,
+                  "end_equity_usdt": 0.261611,
+                  "net_return_pct": -99.7384,
+                  "gross_pnl_usdt": 3.311086,
+                  "fees_usdt": 73.606768,
+                  "slippage_usdt": 29.442707,
+                  "net_mean_bp": -14.6666,
+                  "win_rate_pct": 34.5,
+                  "max_adverse_mark_dd_pct": 99.7426,
+                  "profit_factor": 0.4904,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 4017,
+                  "end_equity_usdt": 0.023395,
+                  "net_return_pct": -99.9766,
+                  "gross_pnl_usdt": 0.82974,
+                  "fees_usdt": 80.645076,
+                  "slippage_usdt": 20.161269,
+                  "net_mean_bp": -20.6661,
+                  "win_rate_pct": 28.18,
+                  "max_adverse_mark_dd_pct": 99.9767,
+                  "profit_factor": 0.3576,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              }
+            },
+            "60": {
+              "train": {
+                "fee2_slip2_each_way": {
+                  "trades": 5882,
+                  "end_equity_usdt": 1.672457,
+                  "net_return_pct": -98.3275,
+                  "gross_pnl_usdt": -10.892792,
+                  "fees_usdt": 43.717376,
+                  "slippage_usdt": 43.717376,
+                  "net_mean_bp": -6.3107,
+                  "win_rate_pct": 47.52,
+                  "max_adverse_mark_dd_pct": 98.3353,
+                  "profit_factor": 0.7977,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 5882,
+                  "end_equity_usdt": 0.048863,
+                  "net_return_pct": -99.9511,
+                  "gross_pnl_usdt": -16.607525,
+                  "fees_usdt": 59.531152,
+                  "slippage_usdt": 23.812461,
+                  "net_mean_bp": -12.3108,
+                  "win_rate_pct": 44.17,
+                  "max_adverse_mark_dd_pct": 99.9514,
+                  "profit_factor": 0.6656,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 5882,
+                  "end_equity_usdt": 0.001425,
+                  "net_return_pct": -99.9986,
+                  "gross_pnl_usdt": -17.779386,
+                  "fees_usdt": 65.775352,
+                  "slippage_usdt": 16.443838,
+                  "net_mean_bp": -18.311,
+                  "win_rate_pct": 40.6,
+                  "max_adverse_mark_dd_pct": 99.9986,
+                  "profit_factor": 0.5622,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "validation": {
+                "fee2_slip2_each_way": {
+                  "trades": 2091,
+                  "end_equity_usdt": 7.872159,
+                  "net_return_pct": -92.1278,
+                  "gross_pnl_usdt": -33.209554,
+                  "fees_usdt": 29.459143,
+                  "slippage_usdt": 29.459143,
+                  "net_mean_bp": -11.6836,
+                  "win_rate_pct": 43.38,
+                  "max_adverse_mark_dd_pct": 92.5499,
+                  "profit_factor": 0.6707,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 2091,
+                  "end_equity_usdt": 2.240906,
+                  "net_return_pct": -97.7591,
+                  "gross_pnl_usdt": -25.558294,
+                  "fees_usdt": 51.572,
+                  "slippage_usdt": 20.6288,
+                  "net_mean_bp": -17.6831,
+                  "win_rate_pct": 40.22,
+                  "max_adverse_mark_dd_pct": 97.8553,
+                  "profit_factor": 0.54,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 2091,
+                  "end_equity_usdt": 0.63742,
+                  "net_return_pct": -99.3626,
+                  "gross_pnl_usdt": -21.204539,
+                  "fees_usdt": 62.526433,
+                  "slippage_usdt": 15.631608,
+                  "net_mean_bp": -23.6826,
+                  "win_rate_pct": 36.97,
+                  "max_adverse_mark_dd_pct": 99.3841,
+                  "profit_factor": 0.4328,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "oos": {
+                "fee2_slip2_each_way": {
+                  "trades": 2494,
+                  "end_equity_usdt": 12.842186,
+                  "net_return_pct": -87.1578,
+                  "gross_pnl_usdt": -2.583077,
+                  "fees_usdt": 42.287368,
+                  "slippage_usdt": 42.287368,
+                  "net_mean_bp": -7.8543,
+                  "win_rate_pct": 45.55,
+                  "max_adverse_mark_dd_pct": 88.8361,
+                  "profit_factor": 0.7631,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 2494,
+                  "end_equity_usdt": 2.871029,
+                  "net_return_pct": -97.129,
+                  "gross_pnl_usdt": -3.318278,
+                  "fees_usdt": 67.007638,
+                  "slippage_usdt": 26.803055,
+                  "net_mean_bp": -13.854,
+                  "win_rate_pct": 41.26,
+                  "max_adverse_mark_dd_pct": 97.3181,
+                  "profit_factor": 0.6307,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 2494,
+                  "end_equity_usdt": 0.641276,
+                  "net_return_pct": -99.3587,
+                  "gross_pnl_usdt": -4.658729,
+                  "fees_usdt": 75.759996,
+                  "slippage_usdt": 18.939999,
+                  "net_mean_bp": -19.8537,
+                  "win_rate_pct": 36.97,
+                  "max_adverse_mark_dd_pct": 99.3763,
+                  "profit_factor": 0.5204,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              }
+            },
+            "240": {
+              "train": {
+                "fee2_slip2_each_way": {
+                  "trades": 2338,
+                  "end_equity_usdt": 37.220932,
+                  "net_return_pct": -62.7791,
+                  "gross_pnl_usdt": 30.683984,
+                  "fees_usdt": 46.731526,
+                  "slippage_usdt": 46.731526,
+                  "net_mean_bp": -2.2037,
+                  "win_rate_pct": 48.08,
+                  "max_adverse_mark_dd_pct": 79.8562,
+                  "profit_factor": 0.9281,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 2338,
+                  "end_equity_usdt": 9.139609,
+                  "net_return_pct": -90.8604,
+                  "gross_pnl_usdt": 1.919888,
+                  "fees_usdt": 66.271627,
+                  "slippage_usdt": 26.508651,
+                  "net_mean_bp": -8.2045,
+                  "win_rate_pct": 46.75,
+                  "max_adverse_mark_dd_pct": 91.3139,
+                  "profit_factor": 0.8308,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 2338,
+                  "end_equity_usdt": 2.242339,
+                  "net_return_pct": -97.7577,
+                  "gross_pnl_usdt": -9.930613,
+                  "fees_usdt": 70.261638,
+                  "slippage_usdt": 17.565409,
+                  "net_mean_bp": -14.2053,
+                  "win_rate_pct": 45.21,
+                  "max_adverse_mark_dd_pct": 97.8471,
+                  "profit_factor": 0.7454,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "validation": {
+                "fee2_slip2_each_way": {
+                  "trades": 890,
+                  "end_equity_usdt": 17.083596,
+                  "net_return_pct": -82.9164,
+                  "gross_pnl_usdt": -45.789006,
+                  "fees_usdt": 18.563699,
+                  "slippage_usdt": 18.563699,
+                  "net_mean_bp": -18.2788,
+                  "win_rate_pct": 45.96,
+                  "max_adverse_mark_dd_pct": 85.5237,
+                  "profit_factor": 0.7419,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 890,
+                  "end_equity_usdt": 10.002475,
+                  "net_return_pct": -89.9975,
+                  "gross_pnl_usdt": -35.902356,
+                  "fees_usdt": 38.639406,
+                  "slippage_usdt": 15.455763,
+                  "net_mean_bp": -24.2788,
+                  "win_rate_pct": 44.38,
+                  "max_adverse_mark_dd_pct": 91.2351,
+                  "profit_factor": 0.6751,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 890,
+                  "end_equity_usdt": 5.85458,
+                  "net_return_pct": -94.1454,
+                  "gross_pnl_usdt": -28.60633,
+                  "fees_usdt": 52.431272,
+                  "slippage_usdt": 13.107818,
+                  "net_mean_bp": -30.2788,
+                  "win_rate_pct": 42.36,
+                  "max_adverse_mark_dd_pct": 94.6948,
+                  "profit_factor": 0.6135,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "oos": {
+                "fee2_slip2_each_way": {
+                  "trades": 1140,
+                  "end_equity_usdt": 34.482791,
+                  "net_return_pct": -65.5172,
+                  "gross_pnl_usdt": -23.610237,
+                  "fees_usdt": 20.953486,
+                  "slippage_usdt": 20.953486,
+                  "net_mean_bp": -8.2356,
+                  "win_rate_pct": 47.89,
+                  "max_adverse_mark_dd_pct": 74.411,
+                  "profit_factor": 0.7899,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 1140,
+                  "end_equity_usdt": 17.385176,
+                  "net_return_pct": -82.6148,
+                  "gross_pnl_usdt": -26.046584,
+                  "fees_usdt": 40.405886,
+                  "slippage_usdt": 16.162354,
+                  "net_mean_bp": -14.2349,
+                  "win_rate_pct": 45.88,
+                  "max_adverse_mark_dd_pct": 86.5236,
+                  "profit_factor": 0.6834,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 1140,
+                  "end_equity_usdt": 8.761469,
+                  "net_return_pct": -91.2385,
+                  "gross_pnl_usdt": -26.625282,
+                  "fees_usdt": 51.690599,
+                  "slippage_usdt": 12.92265,
+                  "net_mean_bp": -20.2341,
+                  "win_rate_pct": 43.16,
+                  "max_adverse_mark_dd_pct": 92.9054,
+                  "profit_factor": 0.594,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              }
+            }
+          }
+        },
+        "crowding_reversal": {
+          "signal_count": 109655,
+          "horizons": {
+            "15": {
+              "train": {
+                "fee2_slip2_each_way": {
+                  "trades": 5773,
+                  "end_equity_usdt": 1.220697,
+                  "net_return_pct": -98.7793,
+                  "gross_pnl_usdt": -2.822743,
+                  "fees_usdt": 47.97828,
+                  "slippage_usdt": 47.97828,
+                  "net_mean_bp": -7.5151,
+                  "win_rate_pct": 41.21,
+                  "max_adverse_mark_dd_pct": 98.8168,
+                  "profit_factor": 0.6251,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 5773,
+                  "end_equity_usdt": 0.038074,
+                  "net_return_pct": -99.9619,
+                  "gross_pnl_usdt": -5.911434,
+                  "fees_usdt": 67.178923,
+                  "slippage_usdt": 26.871569,
+                  "net_mean_bp": -13.5153,
+                  "win_rate_pct": 34.7,
+                  "max_adverse_mark_dd_pct": 99.9627,
+                  "profit_factor": 0.4506,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 5773,
+                  "end_equity_usdt": 0.001185,
+                  "net_return_pct": -99.9988,
+                  "gross_pnl_usdt": -6.92395,
+                  "fees_usdt": 74.459892,
+                  "slippage_usdt": 18.614973,
+                  "net_mean_bp": -19.5155,
+                  "win_rate_pct": 28.63,
+                  "max_adverse_mark_dd_pct": 99.9988,
+                  "profit_factor": 0.3366,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "validation": {
+                "fee2_slip2_each_way": {
+                  "trades": 0,
+                  "end_equity_usdt": 100.0,
+                  "net_return_pct": 0.0,
+                  "gross_pnl_usdt": 0.0,
+                  "fees_usdt": 0.0,
+                  "slippage_usdt": 0.0,
+                  "net_mean_bp": null,
+                  "win_rate_pct": null,
+                  "max_adverse_mark_dd_pct": 0.0,
+                  "profit_factor": null,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 0,
+                  "end_equity_usdt": 100.0,
+                  "net_return_pct": 0.0,
+                  "gross_pnl_usdt": 0.0,
+                  "fees_usdt": 0.0,
+                  "slippage_usdt": 0.0,
+                  "net_mean_bp": null,
+                  "win_rate_pct": null,
+                  "max_adverse_mark_dd_pct": 0.0,
+                  "profit_factor": null,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 0,
+                  "end_equity_usdt": 100.0,
+                  "net_return_pct": 0.0,
+                  "gross_pnl_usdt": 0.0,
+                  "fees_usdt": 0.0,
+                  "slippage_usdt": 0.0,
+                  "net_mean_bp": null,
+                  "win_rate_pct": null,
+                  "max_adverse_mark_dd_pct": 0.0,
+                  "profit_factor": null,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "oos": {
+                "fee2_slip2_each_way": {
+                  "trades": 1157,
+                  "end_equity_usdt": 35.121097,
+                  "net_return_pct": -64.8789,
+                  "gross_pnl_usdt": -7.689623,
+                  "fees_usdt": 28.59464,
+                  "slippage_usdt": 28.59464,
+                  "net_mean_bp": -8.98,
+                  "win_rate_pct": 36.99,
+                  "max_adverse_mark_dd_pct": 64.9718,
+                  "profit_factor": 0.4996,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 1157,
+                  "end_equity_usdt": 17.527994,
+                  "net_return_pct": -82.472,
+                  "gross_pnl_usdt": -5.95138,
+                  "fees_usdt": 54.65759,
+                  "slippage_usdt": 21.863036,
+                  "net_mean_bp": -14.9797,
+                  "win_rate_pct": 29.56,
+                  "max_adverse_mark_dd_pct": 82.4831,
+                  "profit_factor": 0.3287,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 1157,
+                  "end_equity_usdt": 8.744096,
+                  "net_return_pct": -91.2559,
+                  "gross_pnl_usdt": -4.703594,
+                  "fees_usdt": 69.241848,
+                  "slippage_usdt": 17.310462,
+                  "net_mean_bp": -20.9795,
+                  "win_rate_pct": 22.04,
+                  "max_adverse_mark_dd_pct": 91.2614,
+                  "profit_factor": 0.2239,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              }
+            },
+            "60": {
+              "train": {
+                "fee2_slip2_each_way": {
+                  "trades": 1553,
+                  "end_equity_usdt": 32.917122,
+                  "net_return_pct": -67.0829,
+                  "gross_pnl_usdt": 6.291806,
+                  "fees_usdt": 36.687342,
+                  "slippage_usdt": 36.687342,
+                  "net_mean_bp": -6.735,
+                  "win_rate_pct": 46.23,
+                  "max_adverse_mark_dd_pct": 69.2218,
+                  "profit_factor": 0.7973,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 1553,
+                  "end_equity_usdt": 12.949752,
+                  "net_return_pct": -87.0502,
+                  "gross_pnl_usdt": 2.285849,
+                  "fees_usdt": 63.811498,
+                  "slippage_usdt": 25.524599,
+                  "net_mean_bp": -12.7357,
+                  "win_rate_pct": 42.69,
+                  "max_adverse_mark_dd_pct": 87.7075,
+                  "profit_factor": 0.659,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 1553,
+                  "end_equity_usdt": 5.091638,
+                  "net_return_pct": -94.9084,
+                  "gross_pnl_usdt": -0.560558,
+                  "fees_usdt": 75.478244,
+                  "slippage_usdt": 18.869561,
+                  "net_mean_bp": -18.7365,
+                  "win_rate_pct": 38.89,
+                  "max_adverse_mark_dd_pct": 95.1407,
+                  "profit_factor": 0.5456,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "validation": {
+                "fee2_slip2_each_way": {
+                  "trades": 0,
+                  "end_equity_usdt": 100.0,
+                  "net_return_pct": 0.0,
+                  "gross_pnl_usdt": 0.0,
+                  "fees_usdt": 0.0,
+                  "slippage_usdt": 0.0,
+                  "net_mean_bp": null,
+                  "win_rate_pct": null,
+                  "max_adverse_mark_dd_pct": 0.0,
+                  "profit_factor": null,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 0,
+                  "end_equity_usdt": 100.0,
+                  "net_return_pct": 0.0,
+                  "gross_pnl_usdt": 0.0,
+                  "fees_usdt": 0.0,
+                  "slippage_usdt": 0.0,
+                  "net_mean_bp": null,
+                  "win_rate_pct": null,
+                  "max_adverse_mark_dd_pct": 0.0,
+                  "profit_factor": null,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 0,
+                  "end_equity_usdt": 100.0,
+                  "net_return_pct": 0.0,
+                  "gross_pnl_usdt": 0.0,
+                  "fees_usdt": 0.0,
+                  "slippage_usdt": 0.0,
+                  "net_mean_bp": null,
+                  "win_rate_pct": null,
+                  "max_adverse_mark_dd_pct": 0.0,
+                  "profit_factor": null,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "oos": {
+                "fee2_slip2_each_way": {
+                  "trades": 312,
+                  "end_equity_usdt": 66.151783,
+                  "net_return_pct": -33.8482,
+                  "gross_pnl_usdt": -13.759392,
+                  "fees_usdt": 10.044413,
+                  "slippage_usdt": 10.044413,
+                  "net_mean_bp": -13.0255,
+                  "win_rate_pct": 41.99,
+                  "max_adverse_mark_dd_pct": 34.008,
+                  "profit_factor": 0.5762,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 312,
+                  "end_equity_usdt": 54.844097,
+                  "net_return_pct": -45.1559,
+                  "gross_pnl_usdt": -12.892286,
+                  "fees_usdt": 23.045441,
+                  "slippage_usdt": 9.218176,
+                  "net_mean_bp": -19.024,
+                  "win_rate_pct": 37.82,
+                  "max_adverse_mark_dd_pct": 45.1768,
+                  "profit_factor": 0.4493,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 312,
+                  "end_equity_usdt": 45.464172,
+                  "net_return_pct": -54.5358,
+                  "gross_pnl_usdt": -12.114397,
+                  "fees_usdt": 33.937145,
+                  "slippage_usdt": 8.484286,
+                  "net_mean_bp": -25.0225,
+                  "win_rate_pct": 33.01,
+                  "max_adverse_mark_dd_pct": 54.5532,
+                  "profit_factor": 0.3509,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              }
+            },
+            "240": {
+              "train": {
+                "fee2_slip2_each_way": {
+                  "trades": 418,
+                  "end_equity_usdt": 85.690913,
+                  "net_return_pct": -14.3091,
+                  "gross_pnl_usdt": 16.427906,
+                  "fees_usdt": 15.368497,
+                  "slippage_usdt": 15.368497,
+                  "net_mean_bp": -2.2135,
+                  "win_rate_pct": 47.13,
+                  "max_adverse_mark_dd_pct": 30.0585,
+                  "profit_factor": 0.9434,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 418,
+                  "end_equity_usdt": 66.659583,
+                  "net_return_pct": -33.3404,
+                  "gross_pnl_usdt": 14.336669,
+                  "fees_usdt": 34.055061,
+                  "slippage_usdt": 13.622025,
+                  "net_mean_bp": -8.2166,
+                  "win_rate_pct": 46.17,
+                  "max_adverse_mark_dd_pct": 41.0409,
+                  "profit_factor": 0.8582,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 418,
+                  "end_equity_usdt": 51.847141,
+                  "net_return_pct": -48.1529,
+                  "gross_pnl_usdt": 12.522613,
+                  "fees_usdt": 48.540378,
+                  "slippage_usdt": 12.135094,
+                  "net_mean_bp": -14.2197,
+                  "win_rate_pct": 44.26,
+                  "max_adverse_mark_dd_pct": 53.5619,
+                  "profit_factor": 0.7807,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "validation": {
+                "fee2_slip2_each_way": {
+                  "trades": 0,
+                  "end_equity_usdt": 100.0,
+                  "net_return_pct": 0.0,
+                  "gross_pnl_usdt": 0.0,
+                  "fees_usdt": 0.0,
+                  "slippage_usdt": 0.0,
+                  "net_mean_bp": null,
+                  "win_rate_pct": null,
+                  "max_adverse_mark_dd_pct": 0.0,
+                  "profit_factor": null,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 0,
+                  "end_equity_usdt": 100.0,
+                  "net_return_pct": 0.0,
+                  "gross_pnl_usdt": 0.0,
+                  "fees_usdt": 0.0,
+                  "slippage_usdt": 0.0,
+                  "net_mean_bp": null,
+                  "win_rate_pct": null,
+                  "max_adverse_mark_dd_pct": 0.0,
+                  "profit_factor": null,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 0,
+                  "end_equity_usdt": 100.0,
+                  "net_return_pct": 0.0,
+                  "gross_pnl_usdt": 0.0,
+                  "fees_usdt": 0.0,
+                  "slippage_usdt": 0.0,
+                  "net_mean_bp": null,
+                  "win_rate_pct": null,
+                  "max_adverse_mark_dd_pct": 0.0,
+                  "profit_factor": null,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              },
+              "oos": {
+                "fee2_slip2_each_way": {
+                  "trades": 84,
+                  "end_equity_usdt": 77.387525,
+                  "net_return_pct": -22.6125,
+                  "gross_pnl_usdt": -16.787286,
+                  "fees_usdt": 2.912595,
+                  "slippage_usdt": 2.912595,
+                  "net_mean_bp": -29.547,
+                  "win_rate_pct": 35.71,
+                  "max_adverse_mark_dd_pct": 23.4713,
+                  "profit_factor": 0.5474,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee5_slip2_each_way": {
+                  "trades": 84,
+                  "end_equity_usdt": 73.575407,
+                  "net_return_pct": -26.4246,
+                  "gross_pnl_usdt": -16.470083,
+                  "fees_usdt": 7.110364,
+                  "slippage_usdt": 2.844146,
+                  "net_mean_bp": -35.5405,
+                  "win_rate_pct": 35.71,
+                  "max_adverse_mark_dd_pct": 27.0664,
+                  "profit_factor": 0.4878,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                },
+                "fee8_slip2_each_way": {
+                  "trades": 84,
+                  "end_equity_usdt": 69.948949,
+                  "net_return_pct": -30.0511,
+                  "gross_pnl_usdt": -16.161726,
+                  "fees_usdt": 11.11146,
+                  "slippage_usdt": 2.777865,
+                  "net_mean_bp": -41.5341,
+                  "win_rate_pct": 33.33,
+                  "max_adverse_mark_dd_pct": 30.4946,
+                  "profit_factor": 0.4349,
+                  "equity_method": "compounded; entry/exit fees and slippage charged on their respective notionals",
+                  "continuity_check": "every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
