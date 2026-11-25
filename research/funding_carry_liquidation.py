@@ -351,6 +351,11 @@ def main():
   lookback_days=7,rebalance_days=7,tail_fraction=.20,
   regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold)
  original_52_reference={k:original_52_reference[k] for k in ('net_return_pct','end_equity_usdt','max_drawdown_pct','rebalance_count','hourly_adverse_checks','hourly_sideways_exits','price_pnl_usdt','funding_pnl_usdt','trading_fees_usdt','slippage_usdt','liquidated','market_regime_attribution','symbol_attribution')}
+ # Single-variable OOS candidate: freeze existing holdings during sideways regime.
+ sideways_hold_candidate=run(data,cuts['oos'],1.0,5,slip_bp=2,
+  lookback_days=7,rebalance_days=7,tail_fraction=.20,
+  regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold,sideways_action="hold")
+ sideways_hold_candidate={k:sideways_hold_candidate[k] for k in ('net_return_pct','end_equity_usdt','max_drawdown_pct','rebalance_count','hourly_adverse_checks','hourly_sideways_exits','price_pnl_usdt','funding_pnl_usdt','trading_fees_usdt','slippage_usdt','liquidated')}
  # Matched OOS comparison of sideways handling. Parameters, policy, dates and costs are frozen.
  sideways_management={}
  for action in ('flat','hold','immediate_flat'):
@@ -401,7 +406,7 @@ def main():
    "margin_mode":"cross-portfolio approximation; funding cashflow at settlement; positions resized weekly",
    "limitations":["not exact Binance liquidation engine","static MMR instead of historical symbol-specific tier brackets","hourly OHLC cannot reconstruct tick order or exact liquidation price","spread and market impact beyond fixed slippage are not modeled","static universe survivorship bias"]},
   "regime_tests_oos_1x_5bp_fee_2bp_slippage":regime_tests,
-  "matched_regime_comparison_oos_1x_5bp_fee_2bp_slippage":regime_side_by_side,"sideways_management_oos_1x_5bp_fee_2bp_slippage":sideways_management,"original_52_reference_corrected_drawdown_oos_1x_5bp_fee_2bp_slippage":original_52_reference,
+  "matched_regime_comparison_oos_1x_5bp_fee_2bp_slippage":regime_side_by_side,"sideways_management_oos_1x_5bp_fee_2bp_slippage":sideways_management,"original_52_reference_corrected_drawdown_oos_1x_5bp_fee_2bp_slippage":original_52_reference,"matched_sideways_hold_experiment_oos_1x_5bp_fee_2bp_slippage":sideways_hold_candidate,
   "symbol_universe_selection":{"selection_protocol":"Rank by net symbol contribution on first half of validation; compare top-5/7/9/11/13 portfolios on second half; freeze selected symbols before OOS.","discovery_period_utc":[datetime.fromtimestamp(val_start/1000,timezone.utc).isoformat(),datetime.fromtimestamp(val_mid/1000,timezone.utc).isoformat()],"selection_period_utc":[datetime.fromtimestamp(val_mid/1000,timezone.utc).isoformat(),datetime.fromtimestamp(val_end/1000,timezone.utc).isoformat()],"discovery_ranking":ranked_symbols,"candidate_results":universe_candidates,"chosen_count":chosen_universe_n,"chosen_symbols":frozen_symbols,"chosen_validation":universe_candidates[str(chosen_universe_n)],"frozen_oos_1x":universe_oos},
   "regime_policy_sweep":{"selection_period":"validation only","selection_rule":"Highest validation net return among policies with max drawdown >= -25% and no liquidation; frozen before OOS.","validation_results":{k:{"net_return_pct":v["net_return_pct"],"max_drawdown_pct":v["max_drawdown_pct"],"liquidated":v["liquidated"]} for k,v in policy_validation.items()},"chosen_policy":chosen_policy_name,"chosen_policy_mapping":regime_policies[chosen_policy_name],"chosen_policy_validation":chosen_policy_result,"chosen_policy_oos":adaptive_policy_oos,
    "threshold_sensitivity":{"candidates_pct":[3,5,7,10],"selection_period":"validation only","validation_results":threshold_validation,"chosen_threshold_pct":chosen_threshold,"chosen_threshold_validation":chosen_threshold_validation,"frozen_threshold_oos_1x":threshold_oos}},
