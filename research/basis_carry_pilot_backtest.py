@@ -110,11 +110,15 @@ def main():
                     if entry_t<=ft<=exit_t:
                         funding_events_seen+=1
                         # Positive funding: longs pay, shorts receive.
-                        if ft not in d[sym]["mark"]:
+                        # Funding timestamps may be milliseconds after the minute boundary,
+                        # whereas Vision mark-price kline keys are minute-open timestamps.
+                        mark_bar_t=(ft//60000)*60000
+                        mark_bar=d[sym]["mark"].get(mark_bar_t)
+                        if mark_bar is None or ft-mark_bar_t>=60000:
                             valid=False;skips["missing_mark_funding_time"]+=1
-                            if len(missing_mark_samples)<12:missing_mark_samples.append({"symbol":sym,"funding_time_ms":ft,"entry_time_ms":entry_t,"exit_time_ms":exit_t})
+                            if len(missing_mark_samples)<12:missing_mark_samples.append({"symbol":sym,"funding_time_ms":ft,"mark_minute_ms":mark_bar_t,"entry_time_ms":entry_t,"exit_time_ms":exit_t})
                             break
-                        mark_at_funding=d[sym]["mark"][ft]["open"]
+                        mark_at_funding=mark_bar["open"]
                         quantity=notion/entry
                         day_funding += -side*quantity*mark_at_funding*rate
                 legs.append((sym,side,notion,entry))
@@ -133,7 +137,11 @@ def main():
                 for ft,rate in d[sym]["funding"]:
                     if entry_t<=ft<=exit_t:
                         funding_events.setdefault(ft,0.0)
-                        funding_events[ft] += -side*qty*d[sym]["mark"][ft]["open"]*rate
+                        mark_bar_t=(ft//60000)*60000
+                        mark_bar=d[sym]["mark"].get(mark_bar_t)
+                        if mark_bar is None or ft-mark_bar_t>=60000:
+                            raise RuntimeError("missing mark minute for funding event "+sym+" "+str(ft))
+                        funding_events[ft] += -side*qty*mark_bar["open"]*rate
             for k,t in enumerate(window):
                 funding_accrued += funding_events.get(t,0.0)
                 mark=0.0
