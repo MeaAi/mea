@@ -68,8 +68,9 @@ def load_symbol(sym,months,root):
   verified_download(f"{BASE}/markPriceKlines/{sym}/1h/{mn}",mp);marks.update(readzip(mp,"mark"))
  return sym,fund,marks
 
-def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20,side_mode='both',regime_filter=None,regime_policy=None,regime_threshold_pct=5.0):
- symbols=list(data); first,last=period
+def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20,side_mode='both',regime_filter=None,regime_policy=None,regime_threshold_pct=5.0,trade_universe=None):
+ symbols=list(data); trade_symbols=list(trade_universe) if trade_universe is not None else symbols; first,last=period
+ if not set(trade_symbols).issubset(set(symbols)) or 'BTCUSDT' not in data: raise ValueError('invalid trade universe or missing BTC regime benchmark')
  mark_times={s:sorted(data[s]["marks"]) for s in symbols}
  all_events=sorted(set(t for s in symbols for t in data[s]["fund"] if first<=t<=last))
  events=[t for t in all_events if sum(t in data[s]["fund"] and t in data[s]["marks"] for s in symbols)>=math.ceil(.8*len(symbols))]
@@ -134,7 +135,7 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
   if equity<=0:liquidated=True;liq_time=datetime.fromtimestamp(t/1000,timezone.utc).isoformat();liq_equity=0.;equity=0.;break
   if last_rebal is None and t>=first+lookback or last_rebal is not None and (t-last_rebal>=interval or ((regime_filter is not None or regime_policy is not None) and rg!=last_regime)):
    scores={}
-   for s in symbols:
+   for s in trade_symbols:
     vals=[r for et,r in data[s]["fund"].items() if t-lookback<et<=t]
     if len(vals)>=12 and s in px:scores[s]=sum(vals)
    ordered=sorted(scores,key=scores.get);k=max(1,int(len(ordered)*tail_fraction))
@@ -250,6 +251,22 @@ def main():
  threshold_oos={}
  for fee in (2,5,8):
   threshold_oos[f"fee_{fee}bp"]=run(data,cuts["oos"],1.0,fee,slip_bp=2,regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold)
+ # Symbol selection uses two non-overlapping validation slices: rank symbols on
+ # the first half, compare candidate portfolio sizes on the second half, then freeze for OOS.
+ val_start,val_end=cuts["validation"]; val_mid=(val_start+val_end)//2
+ discovery=run(data,(val_start,val_mid),1.0,5,slip_bp=2,regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold)
+ ranked_symbols=sorted(discovery["symbol_attribution"],key=lambda z:discovery["symbol_attribution"][z]["net_contribution_usdt"],reverse=True)
+ universe_candidates={}
+ for n in (5,7,9,11,13):
+  selected_symbols=ranked_symbols[:n]
+  v=run(data,(val_mid,val_end),1.0,5,slip_bp=2,regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold,trade_universe=selected_symbols)
+  universe_candidates[str(n)]={"symbols":selected_symbols,"validation_net_return_pct":v["net_return_pct"],"validation_max_drawdown_pct":v["max_drawdown_pct"],"validation_liquidated":v["liquidated"]}
+ eligible_universes=[(int(n),v) for n,v in universe_candidates.items() if v["validation_max_drawdown_pct"]>=-25 and not v["validation_liquidated"]]
+ chosen_universe_n,chosen_universe_result=max(eligible_universes or [(int(n),v) for n,v in universe_candidates.items()],key=lambda x:x[1]["validation_net_return_pct"])
+ frozen_symbols=universe_candidates[str(chosen_universe_n)]["symbols"]
+ universe_oos={}
+ for fee in (2,5,8):
+  universe_oos[f"fee_{fee}bp"]=run(data,cuts["oos"],1.0,fee,slip_bp=2,regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold,trade_universe=frozen_symbols)
  adaptive_policy_oos={}
  for lev in (1.0,1.25,1.5):
   adaptive_policy_oos[f"{lev:g}x"]={}
@@ -289,6 +306,7 @@ def main():
    "margin_mode":"cross-portfolio approximation; funding cashflow at settlement; positions resized weekly",
    "limitations":["not exact Binance liquidation engine","static MMR instead of historical symbol-specific tier brackets","hourly OHLC cannot reconstruct tick order or exact liquidation price","spread and market impact beyond fixed slippage are not modeled","static universe survivorship bias"]},
   "regime_tests_oos_1x_5bp_fee_2bp_slippage":regime_tests,
+  "symbol_universe_selection":{"selection_protocol":"Rank by net symbol contribution on first half of validation; compare top-5/7/9/11/13 portfolios on second half; freeze selected symbols before OOS.","discovery_period_utc":[datetime.fromtimestamp(val_start/1000,timezone.utc).isoformat(),datetime.fromtimestamp(val_mid/1000,timezone.utc).isoformat()],"selection_period_utc":[datetime.fromtimestamp(val_mid/1000,timezone.utc).isoformat(),datetime.fromtimestamp(val_end/1000,timezone.utc).isoformat()],"discovery_ranking":ranked_symbols,"candidate_results":universe_candidates,"chosen_count":chosen_universe_n,"chosen_symbols":frozen_symbols,"chosen_validation":universe_candidates[str(chosen_universe_n)],"frozen_oos_1x":universe_oos},
   "regime_policy_sweep":{"selection_period":"validation only","selection_rule":"Highest validation net return among policies with max drawdown >= -25% and no liquidation; frozen before OOS.","validation_results":{k:{"net_return_pct":v["net_return_pct"],"max_drawdown_pct":v["max_drawdown_pct"],"liquidated":v["liquidated"]} for k,v in policy_validation.items()},"chosen_policy":chosen_policy_name,"chosen_policy_mapping":regime_policies[chosen_policy_name],"chosen_policy_validation":chosen_policy_result,"chosen_policy_oos":adaptive_policy_oos,
    "threshold_sensitivity":{"candidates_pct":[3,5,7,10],"selection_period":"validation only","validation_results":threshold_validation,"chosen_threshold_pct":chosen_threshold,"chosen_threshold_validation":chosen_threshold_validation,"frozen_threshold_oos_1x":threshold_oos}},
   "robustness_tests":{"oos_side_decomposition_1x_5bp_fee_2bp_slippage":oos_sides,"leave_one_symbol_out_1x_5bp_fee_2bp_slippage":leave_one_out,"note":"Each reduced-universe test recalculates cross-sectional ranks using only remaining symbols; fixed original OOS dates; not re-tuned."},"results":results,"parameter_sweep":{"selection_rule":"Choose highest validation net return at 1x, 5bp fee + 2bp slippage, subject to max drawdown >= -25%; freeze parameters before OOS. If none eligible, choose highest validation return from full grid.","grid_size":len(grid),"chosen_on_validation":chosen,"validation_top_10":sorted(grid,key=lambda x:x["validation_net_return_pct"],reverse=True)[:10],"selected_configuration_oos":selected_oos}}
