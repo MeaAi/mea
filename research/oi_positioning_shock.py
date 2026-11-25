@@ -67,30 +67,72 @@ def calc_dd(trades,initial):
         peak=max(peak,eq); dd=max(dd,(peak-eq)/peak if peak else 0)
     return eq,dd*100
 def simulate(rows,signals,lo,hi,h,fee,slip,initial):
+    # A trade is eligible only if the signal, next-minute entry, every holding
+    # minute, and exit are inside the same split and timestamps are contiguous.
     chosen=[]; nxt=lo
     for i,side in signals:
-        if i<lo or i+h>=hi or i+1>=len(rows):continue
-        if i>=nxt and all(rows[j] is not None for j in range(i+1,i+h+1)):
-            chosen.append((i,side));nxt=i+h+1
-    trades=[]
+        exit_i=i+h
+        if i<lo or exit_i>=hi or i+1>=len(rows):continue
+        segment=rows[i+1:exit_i+1]
+        if len(segment)!=h or any(x is None for x in segment):continue
+        if any(segment[k]["t"]-segment[k-1]["t"]!=60000 for k in range(1,len(segment))):continue
+        if rows[i] is None or segment[0]["t"]-rows[i]["t"]!=60000:continue
+        if i<nxt:continue
+        chosen.append((i,side));nxt=exit_i+1
+
+    equity=float(initial);peak=equity;maxdd=0.0
+    gross_total=fees_total=slip_total=0.0
+    wins=0;positive=negative=0.0;netbps=[]
+    entry_rate=(fee+slip)/10000.0
+    exit_rate=(fee+slip)/10000.0
     for i,side in chosen:
-        entry=rows[i+1]["open"]; exitp=rows[i+h]["close"]
-        if entry<=0:continue
+        entry=rows[i+1]["open"];exitp=rows[i+h]["close"]
+        if not (entry>0 and exitp>0):continue
+        start_eq=equity
+        entry_fee=start_eq*fee/10000.0
+        entry_slip=start_eq*slip/10000.0
+        after_entry=start_eq-entry_fee-entry_slip
+        peak=max(peak,after_entry)
+        maxdd=max(maxdd,(peak-after_entry)/peak if peak else 0.0)
+
         segment=rows[i+1:i+h+1]
-        trades.append((entry,exitp,side,fee,fee,slip,slip,[x["low"] for x in segment],[x["high"] for x in segment]))
-    end,dd=calc_dd(trades,initial)
-    eq=initial; gp=fees=slips=0; wins=0; netbps=[]; pos=neg=0.0
-    for tr in trades:
-        en,ex,side,fe,fx,se,sx,*_=tr
-        raw=(ex/en-1)*10000*side
-        gross=eq*raw/10000; f=eq*(fe+fx)/10000; sl=eq*(se+sx)/10000
-        pnl=gross-f-sl; gp+=gross;fees+=f;slips+=sl;wins+=pnl>0; pos+=max(0,pnl); neg+=max(0,-pnl)
-        netbps.append(raw-fe-fx-se-sx);eq+=pnl
-    n=len(trades)
-    return {"trades":n,"end_equity_usdt":round(end,6),"net_return_pct":round((end/initial-1)*100,4),
-      "gross_pnl_usdt":round(gp,6),"fees_usdt":round(fees,6),"slippage_usdt":round(slips,6),
-      "net_mean_bp":round(sum(netbps)/n,4) if n else None,"win_rate_pct":round(100*wins/n,2) if n else None,
-      "max_adverse_mark_dd_pct":round(dd,4),"profit_factor":round(pos/neg,4) if neg else (None if not pos else "inf")}
+        for bar in segment:
+            mark=bar["low"] if side==1 else bar["high"]
+            adverse=((mark/entry)-1.0)*side
+            # Include the estimated cost to liquidate at each adverse mark.
+            mark_notional=start_eq*(mark/entry)
+            mark_equity=start_eq + start_eq*adverse - entry_fee-entry_slip - mark_notional*exit_rate
+            maxdd=max(maxdd,(peak-mark_equity)/peak if peak else 0.0)
+
+        raw=(exitp/entry-1.0)*side
+        gross=start_eq*raw
+        exit_notional=start_eq*(exitp/entry)
+        exit_fee=exit_notional*fee/10000.0
+        exit_slip=exit_notional*slip/10000.0
+        pnl=gross-entry_fee-entry_slip-exit_fee-exit_slip
+        equity=start_eq+pnl
+        fees_total+=entry_fee+exit_fee
+        slip_total+=entry_slip+exit_slip
+        gross_total+=gross
+        trade_bp=(pnl/start_eq)*10000.0 if start_eq else 0.0
+        netbps.append(trade_bp)
+        if pnl>0:wins+=1;positive+=pnl
+        else:negative+=abs(pnl)
+        peak=max(peak,equity)
+        maxdd=max(maxdd,(peak-equity)/peak if peak else 0.0)
+
+    n=len(netbps)
+    return {"trades":n,"end_equity_usdt":round(equity,6),
+      "net_return_pct":round((equity/initial-1)*100,4),
+      "gross_pnl_usdt":round(gross_total,6),"fees_usdt":round(fees_total,6),
+      "slippage_usdt":round(slip_total,6),
+      "net_mean_bp":round(sum(netbps)/n,4) if n else None,
+      "win_rate_pct":round(100*wins/n,2) if n else None,
+      "max_adverse_mark_dd_pct":round(maxdd*100,4),
+      "profit_factor":round(positive/negative,4) if negative else (None if not positive else "inf"),
+      "equity_method":"compounded; entry/exit fees and slippage charged on their respective notionals",
+      "continuity_check":"every held 1m bar and signal-to-entry timestamp must be exactly 60000ms"}
+
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--input",required=True);ap.add_argument("--start-day",required=True);ap.add_argument("--end-day",required=True)
@@ -99,7 +141,7 @@ def main():
       "timestamp_policy":"2024 historical metrics create_time labels treated as end-of-period; as-of join only, signal uses metrics timestamp <= decision minute; entry next minute open.",
       "splits":"Chronological 50% train / 20% validation / 30% untouched OOS by matched minute rows. Thresholds fit on train only.",
       "costs":"Entry and exit fee each 2/5/8 bp; entry and exit slippage each 2 bp. 1x, 100% equity per trade, non-overlapping.",
-      "limitations":["Metrics are 5-minute aggregates/snapshots; no tick-level position changes.","No funding cashflow or liquidation simulation in this diagnostic.","Historical metrics definitions and timestamp semantics require effective-date caution; this sample is 2024.","Adverse drawdown uses 1m high/low path during each held trade, not exchange liquidation engine."],"symbols":{}}
+      "limitations":["Metrics are 5-minute aggregates/snapshots; no tick-level position changes.","No funding cashflow or exchange liquidation simulation in this diagnostic.",\n      "Trades with any missing/non-consecutive 1m bar are rejected; signal-to-entry and all holding intervals must be exactly 60000ms.",\n      "Equity compounds trade by trade; entry and exit costs are charged on their respective notionals; adverse mark includes estimated exit costs.","Historical metrics definitions and timestamp semantics require effective-date caution; this sample is 2024.","Adverse drawdown uses 1m high/low path during each held trade, not exchange liquidation engine."],"symbols":{}}
     for sym,bmap in bars.items():
         m=metrics_for(sym,a.start_day,a.end_day); mt=[x[0] for x in m]; mv=[x[1] for x in m]
         ts=sorted(bmap); rows=[]
