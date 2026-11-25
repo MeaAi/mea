@@ -14,8 +14,8 @@
       "matched_minutes": 87840,
       "metrics_rows": 17568,
       "train_thresholds": {
-        "oi_hi": 0.003771528831376214,
-        "oi_lo": -0.0033860730483845636,
+        "oi_hi": 0.0017192104269172503,
+        "oi_lo": -0.0015676237502717516,
         "ret_hi": 0.0030596450811706255,
         "ret_lo": -0.0029266978521221843,
         "top_pos_hi": 2.395421,
@@ -25,706 +25,706 @@
       },
       "families": {
         "oi_expansion_momentum": {
-          "signal_count": 15675,
+          "signal_count": 17531,
           "horizons": {
             "15": {
               "train": {
                 "fee2_slip2_each_way": {
-                  "trades": 881,
-                  "end_equity_usdt": 52.015455,
-                  "net_return_pct": -47.9845,
-                  "gross_pnl_usdt": 2.959279,
-                  "fees_usdt": 25.474719,
-                  "slippage_usdt": 25.474719,
-                  "net_mean_bp": -7.3049,
-                  "win_rate_pct": 39.84,
-                  "max_adverse_mark_dd_pct": 49.1713,
-                  "profit_factor": null
+                  "trades": 793,
+                  "end_equity_usdt": 49.03552,
+                  "net_return_pct": -50.9645,
+                  "gross_pnl_usdt": -6.806136,
+                  "fees_usdt": 22.083994,
+                  "slippage_usdt": 22.083994,
+                  "net_mean_bp": -8.8719,
+                  "win_rate_pct": 40.86,
+                  "max_adverse_mark_dd_pct": 52.0241,
+                  "profit_factor": 0.5919
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 881,
-                  "end_equity_usdt": 30.650531,
-                  "net_return_pct": -69.3495,
-                  "gross_pnl_usdt": 1.84911,
-                  "fees_usdt": 50.86432,
-                  "slippage_usdt": 20.345728,
-                  "net_mean_bp": -13.3049,
-                  "win_rate_pct": 34.85,
-                  "max_adverse_mark_dd_pct": 69.5755,
-                  "profit_factor": null
+                  "trades": 793,
+                  "end_equity_usdt": 30.462094,
+                  "net_return_pct": -69.5379,
+                  "gross_pnl_usdt": -6.427386,
+                  "fees_usdt": 45.090062,
+                  "slippage_usdt": 18.036025,
+                  "net_mean_bp": -14.8719,
+                  "win_rate_pct": 36.07,
+                  "max_adverse_mark_dd_pct": 69.8452,
+                  "profit_factor": 0.4183
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 881,
-                  "end_equity_usdt": 18.058208,
-                  "net_return_pct": -81.9418,
-                  "gross_pnl_usdt": 1.096799,
-                  "fees_usdt": 66.442423,
-                  "slippage_usdt": 16.610606,
-                  "net_mean_bp": -19.3049,
-                  "win_rate_pct": 30.65,
-                  "max_adverse_mark_dd_pct": 82.0588,
-                  "profit_factor": null
+                  "trades": 793,
+                  "end_equity_usdt": 18.921112,
+                  "net_return_pct": -81.0789,
+                  "gross_pnl_usdt": -6.090242,
+                  "fees_usdt": 60.005579,
+                  "slippage_usdt": 15.001395,
+                  "net_mean_bp": -20.8719,
+                  "win_rate_pct": 29.51,
+                  "max_adverse_mark_dd_pct": 81.1582,
+                  "profit_factor": 0.2978
                 }
               },
               "validation": {
                 "fee2_slip2_each_way": {
-                  "trades": 192,
-                  "end_equity_usdt": 90.049657,
-                  "net_return_pct": -9.9503,
-                  "gross_pnl_usdt": 4.457421,
-                  "fees_usdt": 7.20354,
-                  "slippage_usdt": 7.20354,
-                  "net_mean_bp": -5.4092,
-                  "win_rate_pct": 35.94,
-                  "max_adverse_mark_dd_pct": 11.3952,
-                  "profit_factor": null
+                  "trades": 197,
+                  "end_equity_usdt": 85.880783,
+                  "net_return_pct": -14.1192,
+                  "gross_pnl_usdt": 0.325251,
+                  "fees_usdt": 7.223458,
+                  "slippage_usdt": 7.223458,
+                  "net_mean_bp": -7.6416,
+                  "win_rate_pct": 36.55,
+                  "max_adverse_mark_dd_pct": 17.2328,
+                  "profit_factor": 0.5434
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 192,
-                  "end_equity_usdt": 80.246076,
-                  "net_return_pct": -19.7539,
-                  "gross_pnl_usdt": 4.09293,
-                  "fees_usdt": 17.035018,
-                  "slippage_usdt": 6.814007,
-                  "net_mean_bp": -11.4092,
-                  "win_rate_pct": 29.69,
-                  "max_adverse_mark_dd_pct": 19.9192,
-                  "profit_factor": null
+                  "trades": 197,
+                  "end_equity_usdt": 76.301687,
+                  "net_return_pct": -23.6983,
+                  "gross_pnl_usdt": 0.192096,
+                  "fees_usdt": 17.069556,
+                  "slippage_usdt": 6.827822,
+                  "net_mean_bp": -13.6416,
+                  "win_rate_pct": 28.43,
+                  "max_adverse_mark_dd_pct": 25.4319,
+                  "profit_factor": 0.3455
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 192,
-                  "end_equity_usdt": 71.507323,
-                  "net_return_pct": -28.4927,
-                  "gross_pnl_usdt": 3.762912,
-                  "fees_usdt": 25.809985,
-                  "slippage_usdt": 6.452496,
-                  "net_mean_bp": -17.4092,
-                  "win_rate_pct": 23.44,
-                  "max_adverse_mark_dd_pct": 28.6068,
-                  "profit_factor": null
+                  "trades": 197,
+                  "end_equity_usdt": 67.788631,
+                  "net_return_pct": -32.2114,
+                  "gross_pnl_usdt": 0.081678,
+                  "fees_usdt": 25.844729,
+                  "slippage_usdt": 6.461182,
+                  "net_mean_bp": -19.6416,
+                  "win_rate_pct": 21.32,
+                  "max_adverse_mark_dd_pct": 33.3726,
+                  "profit_factor": 0.2251
                 }
               },
               "oos": {
                 "fee2_slip2_each_way": {
-                  "trades": 572,
-                  "end_equity_usdt": 61.092974,
-                  "net_return_pct": -38.907,
-                  "gross_pnl_usdt": -3.978765,
-                  "fees_usdt": 17.467938,
-                  "slippage_usdt": 17.467938,
-                  "net_mean_bp": -8.5043,
-                  "win_rate_pct": 41.43,
-                  "max_adverse_mark_dd_pct": 39.273,
-                  "profit_factor": null
+                  "trades": 684,
+                  "end_equity_usdt": 51.739016,
+                  "net_return_pct": -48.261,
+                  "gross_pnl_usdt": -9.775235,
+                  "fees_usdt": 19.248163,
+                  "slippage_usdt": 19.248163,
+                  "net_mean_bp": -9.5316,
+                  "win_rate_pct": 38.16,
+                  "max_adverse_mark_dd_pct": 48.4027,
+                  "profit_factor": 0.5236
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 572,
-                  "end_equity_usdt": 43.337053,
-                  "net_return_pct": -56.6629,
-                  "gross_pnl_usdt": -4.174765,
-                  "fees_usdt": 37.502037,
-                  "slippage_usdt": 15.000815,
-                  "net_mean_bp": -14.5043,
-                  "win_rate_pct": 33.39,
-                  "max_adverse_mark_dd_pct": 56.832,
-                  "profit_factor": null
+                  "trades": 684,
+                  "end_equity_usdt": 34.315128,
+                  "net_return_pct": -65.6849,
+                  "gross_pnl_usdt": -9.15507,
+                  "fees_usdt": 40.390727,
+                  "slippage_usdt": 16.156291,
+                  "net_mean_bp": -15.5316,
+                  "win_rate_pct": 32.16,
+                  "max_adverse_mark_dd_pct": 65.7275,
+                  "profit_factor": 0.3534
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 572,
-                  "end_equity_usdt": 30.738503,
-                  "net_return_pct": -69.2615,
-                  "gross_pnl_usdt": -4.250861,
-                  "fees_usdt": 52.024633,
-                  "slippage_usdt": 13.006158,
-                  "net_mean_bp": -20.5043,
-                  "win_rate_pct": 27.8,
-                  "max_adverse_mark_dd_pct": 69.317,
-                  "profit_factor": null
+                  "trades": 684,
+                  "end_equity_usdt": 22.756189,
+                  "net_return_pct": -77.2438,
+                  "gross_pnl_usdt": -8.554129,
+                  "fees_usdt": 54.96854,
+                  "slippage_usdt": 13.742135,
+                  "net_mean_bp": -21.5316,
+                  "win_rate_pct": 25.15,
+                  "max_adverse_mark_dd_pct": 77.2492,
+                  "profit_factor": 0.2408
                 }
               }
             },
             "60": {
               "train": {
                 "fee2_slip2_each_way": {
-                  "trades": 450,
-                  "end_equity_usdt": 80.612053,
-                  "net_return_pct": -19.3879,
-                  "gross_pnl_usdt": 13.809155,
-                  "fees_usdt": 16.597445,
-                  "slippage_usdt": 16.597445,
-                  "net_mean_bp": -4.3366,
-                  "win_rate_pct": 45.56,
-                  "max_adverse_mark_dd_pct": 26.2062,
-                  "profit_factor": null
+                  "trades": 385,
+                  "end_equity_usdt": 76.686588,
+                  "net_return_pct": -23.3134,
+                  "gross_pnl_usdt": 5.216418,
+                  "fees_usdt": 14.266443,
+                  "slippage_usdt": 14.266443,
+                  "net_mean_bp": -6.492,
+                  "win_rate_pct": 45.19,
+                  "max_adverse_mark_dd_pct": 30.6452,
+                  "profit_factor": 0.8197
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 450,
-                  "end_equity_usdt": 61.528446,
-                  "net_return_pct": -38.4716,
-                  "gross_pnl_usdt": 12.717472,
-                  "fees_usdt": 36.565639,
-                  "slippage_usdt": 14.626256,
-                  "net_mean_bp": -10.3366,
-                  "win_rate_pct": 42.44,
-                  "max_adverse_mark_dd_pct": 41.4519,
-                  "profit_factor": null
+                  "trades": 385,
+                  "end_equity_usdt": 60.861434,
+                  "net_return_pct": -39.1386,
+                  "gross_pnl_usdt": 5.721525,
+                  "fees_usdt": 32.049476,
+                  "slippage_usdt": 12.81979,
+                  "net_mean_bp": -12.492,
+                  "win_rate_pct": 42.08,
+                  "max_adverse_mark_dd_pct": 42.6742,
+                  "profit_factor": 0.6908
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 450,
-                  "end_equity_usdt": 46.958766,
-                  "net_return_pct": -53.0412,
-                  "gross_pnl_usdt": 11.77745,
-                  "fees_usdt": 51.862533,
-                  "slippage_usdt": 12.965633,
-                  "net_mean_bp": -16.3366,
-                  "win_rate_pct": 37.56,
-                  "max_adverse_mark_dd_pct": 54.1653,
-                  "profit_factor": null
+                  "trades": 385,
+                  "end_equity_usdt": 48.298629,
+                  "net_return_pct": -51.7014,
+                  "gross_pnl_usdt": 6.127696,
+                  "fees_usdt": 46.27605,
+                  "slippage_usdt": 11.569013,
+                  "net_mean_bp": -18.492,
+                  "win_rate_pct": 39.22,
+                  "max_adverse_mark_dd_pct": 53.1008,
+                  "profit_factor": 0.5833
                 }
               },
               "validation": {
                 "fee2_slip2_each_way": {
-                  "trades": 127,
-                  "end_equity_usdt": 91.557778,
-                  "net_return_pct": -8.4422,
-                  "gross_pnl_usdt": 1.089729,
-                  "fees_usdt": 4.766516,
-                  "slippage_usdt": 4.766516,
-                  "net_mean_bp": -6.7264,
-                  "win_rate_pct": 43.31,
-                  "max_adverse_mark_dd_pct": 12.3982,
-                  "profit_factor": null
+                  "trades": 118,
+                  "end_equity_usdt": 92.513407,
+                  "net_return_pct": -7.4866,
+                  "gross_pnl_usdt": 1.693935,
+                  "fees_usdt": 4.590662,
+                  "slippage_usdt": 4.590662,
+                  "net_mean_bp": -6.2702,
+                  "win_rate_pct": 41.53,
+                  "max_adverse_mark_dd_pct": 15.6196,
+                  "profit_factor": 0.7766
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 127,
-                  "end_equity_usdt": 84.836705,
-                  "net_return_pct": -15.1633,
-                  "gross_pnl_usdt": 0.906885,
-                  "fees_usdt": 11.481571,
-                  "slippage_usdt": 4.592628,
-                  "net_mean_bp": -12.7264,
-                  "win_rate_pct": 38.58,
-                  "max_adverse_mark_dd_pct": 18.1683,
-                  "profit_factor": null
+                  "trades": 118,
+                  "end_equity_usdt": 86.186592,
+                  "net_return_pct": -13.8134,
+                  "gross_pnl_usdt": 1.71393,
+                  "fees_usdt": 11.093412,
+                  "slippage_usdt": 4.437365,
+                  "net_mean_bp": -12.2702,
+                  "win_rate_pct": 38.14,
+                  "max_adverse_mark_dd_pct": 20.0136,
+                  "profit_factor": 0.6198
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 127,
-                  "end_equity_usdt": 78.607213,
-                  "net_return_pct": -21.3928,
-                  "gross_pnl_usdt": 0.734555,
-                  "fees_usdt": 17.708533,
-                  "slippage_usdt": 4.427133,
-                  "net_mean_bp": -18.7264,
-                  "win_rate_pct": 34.65,
-                  "max_adverse_mark_dd_pct": 23.56,
-                  "profit_factor": null
+                  "trades": 118,
+                  "end_equity_usdt": 80.290747,
+                  "net_return_pct": -19.7093,
+                  "gross_pnl_usdt": 1.737728,
+                  "fees_usdt": 17.163526,
+                  "slippage_usdt": 4.290882,
+                  "net_mean_bp": -18.2702,
+                  "win_rate_pct": 31.36,
+                  "max_adverse_mark_dd_pct": 24.2445,
+                  "profit_factor": 0.4971
                 }
               },
               "oos": {
                 "fee2_slip2_each_way": {
-                  "trades": 287,
-                  "end_equity_usdt": 69.341006,
-                  "net_return_pct": -30.659,
-                  "gross_pnl_usdt": -13.568525,
-                  "fees_usdt": 8.550977,
-                  "slippage_usdt": 8.550977,
-                  "net_mean_bp": -12.3057,
-                  "win_rate_pct": 39.72,
-                  "max_adverse_mark_dd_pct": 34.1505,
-                  "profit_factor": null
+                  "trades": 304,
+                  "end_equity_usdt": 67.994144,
+                  "net_return_pct": -32.0059,
+                  "gross_pnl_usdt": -12.772147,
+                  "fees_usdt": 9.622673,
+                  "slippage_usdt": 9.622673,
+                  "net_mean_bp": -12.3457,
+                  "win_rate_pct": 39.47,
+                  "max_adverse_mark_dd_pct": 35.6881,
+                  "profit_factor": 0.624
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 287,
-                  "end_equity_usdt": 58.366476,
-                  "net_return_pct": -41.6335,
-                  "gross_pnl_usdt": -14.036769,
-                  "fees_usdt": 19.726574,
-                  "slippage_usdt": 7.89063,
-                  "net_mean_bp": -18.3057,
-                  "win_rate_pct": 36.93,
-                  "max_adverse_mark_dd_pct": 43.29,
-                  "profit_factor": null
+                  "trades": 304,
+                  "end_equity_usdt": 56.651656,
+                  "net_return_pct": -43.3483,
+                  "gross_pnl_usdt": -12.392191,
+                  "fees_usdt": 22.126252,
+                  "slippage_usdt": 8.850501,
+                  "net_mean_bp": -18.3457,
+                  "win_rate_pct": 36.51,
+                  "max_adverse_mark_dd_pct": 44.4851,
+                  "profit_factor": 0.5009
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 287,
-                  "end_equity_usdt": 49.126332,
-                  "net_return_pct": -50.8737,
-                  "gross_pnl_usdt": -14.404851,
-                  "fees_usdt": 29.198124,
-                  "slippage_usdt": 7.299531,
-                  "net_mean_bp": -24.3057,
-                  "win_rate_pct": 33.8,
-                  "max_adverse_mark_dd_pct": 51.9371,
-                  "profit_factor": null
+                  "trades": 304,
+                  "end_equity_usdt": 47.198685,
+                  "net_return_pct": -52.8013,
+                  "gross_pnl_usdt": -12.018218,
+                  "fees_usdt": 32.649551,
+                  "slippage_usdt": 8.162388,
+                  "net_mean_bp": -24.3457,
+                  "win_rate_pct": 34.21,
+                  "max_adverse_mark_dd_pct": 53.5396,
+                  "profit_factor": 0.402
                 }
               }
             },
             "240": {
               "train": {
                 "fee2_slip2_each_way": {
-                  "trades": 158,
-                  "end_equity_usdt": 123.350394,
-                  "net_return_pct": 23.3504,
-                  "gross_pnl_usdt": 37.454852,
-                  "fees_usdt": 7.038236,
-                  "slippage_usdt": 7.038236,
-                  "net_mean_bp": 14.6427,
-                  "win_rate_pct": 51.9,
-                  "max_adverse_mark_dd_pct": 17.8623,
-                  "profit_factor": null
+                  "trades": 143,
+                  "end_equity_usdt": 72.269484,
+                  "net_return_pct": -27.7305,
+                  "gross_pnl_usdt": -17.357151,
+                  "fees_usdt": 5.194091,
+                  "slippage_usdt": 5.194091,
+                  "net_mean_bp": -21.5072,
+                  "win_rate_pct": 41.96,
+                  "max_adverse_mark_dd_pct": 34.4427,
+                  "profit_factor": 0.6982
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 158,
-                  "end_equity_usdt": 112.188093,
-                  "net_return_pct": 12.1881,
-                  "gross_pnl_usdt": 35.701005,
-                  "fees_usdt": 16.765764,
-                  "slippage_usdt": 6.706305,
-                  "net_mean_bp": 8.6427,
-                  "win_rate_pct": 51.27,
-                  "max_adverse_mark_dd_pct": 19.4547,
-                  "profit_factor": null
+                  "trades": 143,
+                  "end_equity_usdt": 66.324194,
+                  "net_return_pct": -33.6758,
+                  "gross_pnl_usdt": -16.238465,
+                  "fees_usdt": 12.473674,
+                  "slippage_usdt": 4.98947,
+                  "net_mean_bp": -27.5072,
+                  "win_rate_pct": 40.56,
+                  "max_adverse_mark_dd_pct": 39.528,
+                  "profit_factor": 0.6362
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 158,
-                  "end_equity_usdt": 102.032993,
-                  "net_return_pct": 2.033,
-                  "gross_pnl_usdt": 34.054735,
-                  "fees_usdt": 25.578794,
-                  "slippage_usdt": 6.394699,
-                  "net_mean_bp": 2.6427,
-                  "win_rate_pct": 50.63,
-                  "max_adverse_mark_dd_pct": 21.0589,
-                  "profit_factor": null
+                  "trades": 143,
+                  "end_equity_usdt": 60.866428,
+                  "net_return_pct": -39.1336,
+                  "gross_pnl_usdt": -15.191464,
+                  "fees_usdt": 19.182856,
+                  "slippage_usdt": 4.795714,
+                  "net_mean_bp": -33.5072,
+                  "win_rate_pct": 40.56,
+                  "max_adverse_mark_dd_pct": 44.2202,
+                  "profit_factor": 0.5798
                 }
               },
               "validation": {
                 "fee2_slip2_each_way": {
-                  "trades": 52,
-                  "end_equity_usdt": 96.618446,
-                  "net_return_pct": -3.3816,
-                  "gross_pnl_usdt": 0.73185,
-                  "fees_usdt": 2.057002,
-                  "slippage_usdt": 2.057002,
-                  "net_mean_bp": -5.7371,
-                  "win_rate_pct": 50.0,
-                  "max_adverse_mark_dd_pct": 13.9475,
-                  "profit_factor": null
+                  "trades": 49,
+                  "end_equity_usdt": 87.510628,
+                  "net_return_pct": -12.4894,
+                  "gross_pnl_usdt": -8.690178,
+                  "fees_usdt": 1.903359,
+                  "slippage_usdt": 1.903359,
+                  "net_mean_bp": -26.5383,
+                  "win_rate_pct": 36.73,
+                  "max_adverse_mark_dd_pct": 14.6265,
+                  "profit_factor": 0.5324
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 52,
-                  "end_equity_usdt": 93.648883,
-                  "net_return_pct": -6.3511,
-                  "gross_pnl_usdt": 0.738015,
-                  "fees_usdt": 5.065124,
-                  "slippage_usdt": 2.02605,
-                  "net_mean_bp": -11.7371,
-                  "win_rate_pct": 48.08,
-                  "max_adverse_mark_dd_pct": 15.3795,
-                  "profit_factor": null
+                  "trades": 49,
+                  "end_equity_usdt": 84.973893,
+                  "net_return_pct": -15.0261,
+                  "gross_pnl_usdt": -8.471607,
+                  "fees_usdt": 4.69155,
+                  "slippage_usdt": 1.87662,
+                  "net_mean_bp": -32.5383,
+                  "win_rate_pct": 34.69,
+                  "max_adverse_mark_dd_pct": 17.0266,
+                  "profit_factor": 0.4646
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 52,
-                  "end_equity_usdt": 90.769739,
-                  "net_return_pct": -9.2303,
-                  "gross_pnl_usdt": 0.744012,
-                  "fees_usdt": 7.982818,
-                  "slippage_usdt": 1.995704,
-                  "net_mean_bp": -17.7371,
-                  "win_rate_pct": 48.08,
-                  "max_adverse_mark_dd_pct": 16.9153,
-                  "profit_factor": null
+                  "trades": 49,
+                  "end_equity_usdt": 82.509963,
+                  "net_return_pct": -17.49,
+                  "gross_pnl_usdt": -8.258353,
+                  "fees_usdt": 7.401497,
+                  "slippage_usdt": 1.850374,
+                  "net_mean_bp": -38.5383,
+                  "win_rate_pct": 30.61,
+                  "max_adverse_mark_dd_pct": 19.3651,
+                  "profit_factor": 0.4057
                 }
               },
               "oos": {
                 "fee2_slip2_each_way": {
-                  "trades": 95,
-                  "end_equity_usdt": 88.5194,
-                  "net_return_pct": -11.4806,
-                  "gross_pnl_usdt": -4.988077,
-                  "fees_usdt": 3.248963,
-                  "slippage_usdt": 3.248963,
-                  "net_mean_bp": -11.6441,
-                  "win_rate_pct": 49.47,
-                  "max_adverse_mark_dd_pct": 23.5714,
-                  "profit_factor": null
+                  "trades": 98,
+                  "end_equity_usdt": 97.706474,
+                  "net_return_pct": -2.2935,
+                  "gross_pnl_usdt": 5.080315,
+                  "fees_usdt": 3.685992,
+                  "slippage_usdt": 3.685992,
+                  "net_mean_bp": -1.143,
+                  "win_rate_pct": 50.0,
+                  "max_adverse_mark_dd_pct": 19.7259,
+                  "profit_factor": 0.9573
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 95,
-                  "end_equity_usdt": 83.612277,
-                  "net_return_pct": -16.3877,
-                  "gross_pnl_usdt": -5.337557,
-                  "fees_usdt": 7.900551,
-                  "slippage_usdt": 3.160221,
-                  "net_mean_bp": -17.6441,
-                  "win_rate_pct": 48.42,
-                  "max_adverse_mark_dd_pct": 25.9879,
-                  "profit_factor": null
+                  "trades": 98,
+                  "end_equity_usdt": 92.123997,
+                  "net_return_pct": -7.876,
+                  "gross_pnl_usdt": 4.661141,
+                  "fees_usdt": 8.954269,
+                  "slippage_usdt": 3.581708,
+                  "net_mean_bp": -7.143,
+                  "win_rate_pct": 45.92,
+                  "max_adverse_mark_dd_pct": 22.4496,
+                  "profit_factor": 0.8571
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 95,
-                  "end_equity_usdt": 78.975832,
-                  "net_return_pct": -21.0242,
-                  "gross_pnl_usdt": -5.667137,
-                  "fees_usdt": 12.298886,
-                  "slippage_usdt": 3.074721,
-                  "net_mean_bp": -23.6441,
-                  "win_rate_pct": 47.37,
-                  "max_adverse_mark_dd_pct": 28.6286,
-                  "profit_factor": null
+                  "trades": 98,
+                  "end_equity_usdt": 86.858942,
+                  "net_return_pct": -13.1411,
+                  "gross_pnl_usdt": 4.264643,
+                  "fees_usdt": 13.925351,
+                  "slippage_usdt": 3.481338,
+                  "net_mean_bp": -13.143,
+                  "win_rate_pct": 45.92,
+                  "max_adverse_mark_dd_pct": 25.0817,
+                  "profit_factor": 0.7675
                 }
               }
             }
           }
         },
         "oi_contraction_reversal": {
-          "signal_count": 9494,
+          "signal_count": 8745,
           "horizons": {
             "15": {
               "train": {
                 "fee2_slip2_each_way": {
-                  "trades": 713,
-                  "end_equity_usdt": 67.593248,
-                  "net_return_pct": -32.4068,
-                  "gross_pnl_usdt": 16.007277,
-                  "fees_usdt": 24.206275,
-                  "slippage_usdt": 24.206275,
-                  "net_mean_bp": -5.3665,
-                  "win_rate_pct": 44.18,
-                  "max_adverse_mark_dd_pct": 39.4265,
-                  "profit_factor": null
+                  "trades": 649,
+                  "end_equity_usdt": 67.204866,
+                  "net_return_pct": -32.7951,
+                  "gross_pnl_usdt": 8.406855,
+                  "fees_usdt": 20.60146,
+                  "slippage_usdt": 20.60146,
+                  "net_mean_bp": -5.9782,
+                  "win_rate_pct": 45.92,
+                  "max_adverse_mark_dd_pct": 33.8095,
+                  "profit_factor": 0.7205
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 713,
-                  "end_equity_usdt": 44.05649,
-                  "net_return_pct": -55.9435,
-                  "gross_pnl_usdt": 14.260073,
-                  "fees_usdt": 50.14893,
-                  "slippage_usdt": 20.059572,
-                  "net_mean_bp": -11.3665,
-                  "win_rate_pct": 38.43,
-                  "max_adverse_mark_dd_pct": 58.8368,
-                  "profit_factor": null
+                  "trades": 649,
+                  "end_equity_usdt": 45.51907,
+                  "net_return_pct": -54.4809,
+                  "gross_pnl_usdt": 5.918539,
+                  "fees_usdt": 43.147703,
+                  "slippage_usdt": 17.259081,
+                  "net_mean_bp": -11.9782,
+                  "win_rate_pct": 41.6,
+                  "max_adverse_mark_dd_pct": 54.7851,
+                  "profit_factor": 0.5236
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 713,
-                  "end_equity_usdt": 28.711815,
-                  "net_return_pct": -71.2882,
-                  "gross_pnl_usdt": 13.041794,
-                  "fees_usdt": 67.47257,
-                  "slippage_usdt": 16.868142,
-                  "net_mean_bp": -17.3665,
-                  "win_rate_pct": 33.66,
-                  "max_adverse_mark_dd_pct": 72.2435,
-                  "profit_factor": null
+                  "trades": 649,
+                  "end_equity_usdt": 30.827282,
+                  "net_return_pct": -69.1727,
+                  "gross_pnl_usdt": 4.017445,
+                  "fees_usdt": 58.562605,
+                  "slippage_usdt": 14.640651,
+                  "net_mean_bp": -17.9782,
+                  "win_rate_pct": 34.98,
+                  "max_adverse_mark_dd_pct": 69.3143,
+                  "profit_factor": 0.3824
                 }
               },
               "validation": {
                 "fee2_slip2_each_way": {
-                  "trades": 174,
-                  "end_equity_usdt": 87.690071,
-                  "net_return_pct": -12.3099,
-                  "gross_pnl_usdt": 0.520901,
-                  "fees_usdt": 6.416436,
-                  "slippage_usdt": 6.416436,
-                  "net_mean_bp": -7.4254,
-                  "win_rate_pct": 47.13,
-                  "max_adverse_mark_dd_pct": 15.5205,
-                  "profit_factor": null
+                  "trades": 148,
+                  "end_equity_usdt": 91.619881,
+                  "net_return_pct": -8.3801,
+                  "gross_pnl_usdt": 2.80788,
+                  "fees_usdt": 5.594028,
+                  "slippage_usdt": 5.594028,
+                  "net_mean_bp": -5.7737,
+                  "win_rate_pct": 44.59,
+                  "max_adverse_mark_dd_pct": 12.0603,
+                  "profit_factor": 0.669
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 174,
-                  "end_equity_usdt": 78.992367,
-                  "net_return_pct": -21.0076,
-                  "gross_pnl_usdt": 0.34758,
-                  "fees_usdt": 15.258089,
-                  "slippage_usdt": 6.103236,
-                  "net_mean_bp": -13.4254,
-                  "win_rate_pct": 39.08,
-                  "max_adverse_mark_dd_pct": 23.5875,
-                  "profit_factor": null
+                  "trades": 148,
+                  "end_equity_usdt": 83.830711,
+                  "net_return_pct": -16.1693,
+                  "gross_pnl_usdt": 2.584041,
+                  "fees_usdt": 13.397164,
+                  "slippage_usdt": 5.358866,
+                  "net_mean_bp": -11.7737,
+                  "win_rate_pct": 36.49,
+                  "max_adverse_mark_dd_pct": 18.3712,
+                  "profit_factor": 0.4428
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 174,
-                  "end_equity_usdt": 71.155129,
-                  "net_return_pct": -28.8449,
-                  "gross_pnl_usdt": 0.195663,
-                  "fees_usdt": 23.241699,
-                  "slippage_usdt": 5.810425,
-                  "net_mean_bp": -19.4254,
-                  "win_rate_pct": 27.01,
-                  "max_adverse_mark_dd_pct": 30.8996,
-                  "profit_factor": null
+                  "trades": 148,
+                  "end_equity_usdt": 76.701701,
+                  "net_return_pct": -23.2983,
+                  "gross_pnl_usdt": 2.378984,
+                  "fees_usdt": 20.547382,
+                  "slippage_usdt": 5.136845,
+                  "net_mean_bp": -17.7737,
+                  "win_rate_pct": 28.38,
+                  "max_adverse_mark_dd_pct": 24.8856,
+                  "profit_factor": 0.2931
                 }
               },
               "oos": {
                 "fee2_slip2_each_way": {
-                  "trades": 437,
-                  "end_equity_usdt": 76.896043,
-                  "net_return_pct": -23.104,
-                  "gross_pnl_usdt": 6.504021,
-                  "fees_usdt": 14.804168,
-                  "slippage_usdt": 14.804168,
-                  "net_mean_bp": -5.8876,
-                  "win_rate_pct": 46.68,
-                  "max_adverse_mark_dd_pct": 25.1467,
-                  "profit_factor": null
+                  "trades": 484,
+                  "end_equity_usdt": 83.428365,
+                  "net_return_pct": -16.5716,
+                  "gross_pnl_usdt": 19.313612,
+                  "fees_usdt": 17.939148,
+                  "slippage_usdt": 17.939148,
+                  "net_mean_bp": -3.6333,
+                  "win_rate_pct": 45.04,
+                  "max_adverse_mark_dd_pct": 19.0574,
+                  "profit_factor": 0.8038
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 437,
-                  "end_equity_usdt": 59.151984,
-                  "net_return_pct": -40.848,
-                  "gross_pnl_usdt": 4.980643,
-                  "fees_usdt": 32.738985,
-                  "slippage_usdt": 13.095594,
-                  "net_mean_bp": -11.8876,
-                  "win_rate_pct": 37.76,
-                  "max_adverse_mark_dd_pct": 42.144,
-                  "profit_factor": null
+                  "trades": 484,
+                  "end_equity_usdt": 62.391469,
+                  "net_return_pct": -37.6085,
+                  "gross_pnl_usdt": 17.143186,
+                  "fees_usdt": 39.106404,
+                  "slippage_usdt": 15.642562,
+                  "net_mean_bp": -9.6333,
+                  "win_rate_pct": 38.02,
+                  "max_adverse_mark_dd_pct": 39.3584,
+                  "profit_factor": 0.5698
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 437,
-                  "end_equity_usdt": 45.498851,
-                  "net_return_pct": -54.5011,
-                  "gross_pnl_usdt": 3.737977,
-                  "fees_usdt": 46.601288,
-                  "slippage_usdt": 11.650322,
-                  "net_mean_bp": -17.8876,
-                  "win_rate_pct": 30.21,
-                  "max_adverse_mark_dd_pct": 55.4312,
-                  "profit_factor": null
+                  "trades": 484,
+                  "end_equity_usdt": 46.655065,
+                  "net_return_pct": -53.3449,
+                  "gross_pnl_usdt": 15.322182,
+                  "fees_usdt": 54.936772,
+                  "slippage_usdt": 13.734193,
+                  "net_mean_bp": -15.6333,
+                  "win_rate_pct": 32.85,
+                  "max_adverse_mark_dd_pct": 54.5717,
+                  "profit_factor": 0.4077
                 }
               }
             },
             "60": {
               "train": {
                 "fee2_slip2_each_way": {
-                  "trades": 391,
-                  "end_equity_usdt": 80.177255,
-                  "net_return_pct": -19.8227,
-                  "gross_pnl_usdt": 10.457641,
-                  "fees_usdt": 15.140254,
-                  "slippage_usdt": 15.140254,
-                  "net_mean_bp": -5.2488,
-                  "win_rate_pct": 48.34,
-                  "max_adverse_mark_dd_pct": 32.151,
-                  "profit_factor": null
+                  "trades": 352,
+                  "end_equity_usdt": 83.371923,
+                  "net_return_pct": -16.6281,
+                  "gross_pnl_usdt": 9.643967,
+                  "fees_usdt": 13.135545,
+                  "slippage_usdt": 13.135545,
+                  "net_mean_bp": -4.736,
+                  "win_rate_pct": 50.28,
+                  "max_adverse_mark_dd_pct": 19.3136,
+                  "profit_factor": 0.8591
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 391,
-                  "end_equity_usdt": 63.402974,
-                  "net_return_pct": -36.597,
-                  "gross_pnl_usdt": 10.977969,
-                  "fees_usdt": 33.985984,
-                  "slippage_usdt": 13.594394,
-                  "net_mean_bp": -11.2488,
-                  "win_rate_pct": 45.52,
-                  "max_adverse_mark_dd_pct": 44.2102,
-                  "profit_factor": null
+                  "trades": 352,
+                  "end_equity_usdt": 67.491075,
+                  "net_return_pct": -32.5089,
+                  "gross_pnl_usdt": 9.033649,
+                  "fees_usdt": 29.675869,
+                  "slippage_usdt": 11.870347,
+                  "net_mean_bp": -10.736,
+                  "win_rate_pct": 45.17,
+                  "max_adverse_mark_dd_pct": 33.6459,
+                  "profit_factor": 0.7214
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 391,
-                  "end_equity_usdt": 50.13459,
-                  "net_return_pct": -49.8654,
-                  "gross_pnl_usdt": 11.422929,
-                  "fees_usdt": 49.040253,
-                  "slippage_usdt": 12.260063,
-                  "net_mean_bp": -17.2488,
-                  "win_rate_pct": 42.46,
-                  "max_adverse_mark_dd_pct": 54.9349,
-                  "profit_factor": null
+                  "trades": 352,
+                  "end_equity_usdt": 54.631776,
+                  "net_return_pct": -45.3682,
+                  "gross_pnl_usdt": 8.451412,
+                  "fees_usdt": 43.063705,
+                  "slippage_usdt": 10.765926,
+                  "net_mean_bp": -16.736,
+                  "win_rate_pct": 42.05,
+                  "max_adverse_mark_dd_pct": 46.0053,
+                  "profit_factor": 0.6075
                 }
               },
               "validation": {
                 "fee2_slip2_each_way": {
-                  "trades": 113,
-                  "end_equity_usdt": 97.528867,
-                  "net_return_pct": -2.4711,
-                  "gross_pnl_usdt": 6.354713,
-                  "fees_usdt": 4.411387,
-                  "slippage_usdt": 4.411387,
-                  "net_mean_bp": -1.9071,
-                  "win_rate_pct": 52.21,
-                  "max_adverse_mark_dd_pct": 10.2011,
-                  "profit_factor": null
+                  "trades": 91,
+                  "end_equity_usdt": 104.581727,
+                  "net_return_pct": 4.5817,
+                  "gross_pnl_usdt": 12.097865,
+                  "fees_usdt": 3.753981,
+                  "slippage_usdt": 3.753981,
+                  "net_mean_bp": 5.1194,
+                  "win_rate_pct": 57.14,
+                  "max_adverse_mark_dd_pct": 6.481,
+                  "profit_factor": 1.2425
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 113,
-                  "end_equity_usdt": 91.132191,
-                  "net_return_pct": -8.8678,
-                  "gross_pnl_usdt": 6.073414,
-                  "fees_usdt": 10.670259,
-                  "slippage_usdt": 4.268104,
-                  "net_mean_bp": -7.9071,
-                  "win_rate_pct": 48.67,
-                  "max_adverse_mark_dd_pct": 14.7159,
-                  "profit_factor": null
+                  "trades": 91,
+                  "end_equity_usdt": 99.021678,
+                  "net_return_pct": -0.9783,
+                  "gross_pnl_usdt": 11.820157,
+                  "fees_usdt": 9.133442,
+                  "slippage_usdt": 3.653377,
+                  "net_mean_bp": -0.8806,
+                  "win_rate_pct": 50.55,
+                  "max_adverse_mark_dd_pct": 6.5516,
+                  "profit_factor": 0.9539
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 113,
-                  "end_equity_usdt": 85.153322,
-                  "net_return_pct": -14.8467,
-                  "gross_pnl_usdt": 5.809104,
-                  "fees_usdt": 16.523883,
-                  "slippage_usdt": 4.130971,
-                  "net_mean_bp": -13.9071,
-                  "win_rate_pct": 44.25,
-                  "max_adverse_mark_dd_pct": 19.5734,
-                  "profit_factor": null
+                  "trades": 91,
+                  "end_equity_usdt": 93.755689,
+                  "net_return_pct": -6.2443,
+                  "gross_pnl_usdt": 11.550351,
+                  "fees_usdt": 14.225156,
+                  "slippage_usdt": 3.556289,
+                  "net_mean_bp": -6.8806,
+                  "win_rate_pct": 46.15,
+                  "max_adverse_mark_dd_pct": 9.1349,
+                  "profit_factor": 0.7303
                 }
               },
               "oos": {
                 "fee2_slip2_each_way": {
-                  "trades": 247,
-                  "end_equity_usdt": 72.02825,
-                  "net_return_pct": -27.9718,
-                  "gross_pnl_usdt": -11.420273,
-                  "fees_usdt": 8.281228,
-                  "slippage_usdt": 8.281228,
-                  "net_mean_bp": -12.8564,
-                  "win_rate_pct": 41.7,
-                  "max_adverse_mark_dd_pct": 29.4371,
-                  "profit_factor": null
+                  "trades": 245,
+                  "end_equity_usdt": 87.96322,
+                  "net_return_pct": -12.0368,
+                  "gross_pnl_usdt": 7.146046,
+                  "fees_usdt": 9.591138,
+                  "slippage_usdt": 9.591138,
+                  "net_mean_bp": -4.7814,
+                  "win_rate_pct": 43.27,
+                  "max_adverse_mark_dd_pct": 19.5709,
+                  "profit_factor": 0.8552
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 247,
-                  "end_equity_usdt": 62.101916,
-                  "net_return_pct": -37.8981,
-                  "gross_pnl_usdt": -10.861867,
-                  "fees_usdt": 19.325725,
-                  "slippage_usdt": 7.73029,
-                  "net_mean_bp": -18.8564,
-                  "win_rate_pct": 36.03,
-                  "max_adverse_mark_dd_pct": 39.0639,
-                  "profit_factor": null
+                  "trades": 245,
+                  "end_equity_usdt": 75.931975,
+                  "net_return_pct": -24.068,
+                  "gross_pnl_usdt": 7.206275,
+                  "fees_usdt": 22.340987,
+                  "slippage_usdt": 8.936395,
+                  "net_mean_bp": -10.7814,
+                  "win_rate_pct": 38.78,
+                  "max_adverse_mark_dd_pct": 27.1408,
+                  "profit_factor": 0.7165
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 247,
-                  "end_equity_usdt": 53.541163,
-                  "net_return_pct": -46.4588,
-                  "gross_pnl_usdt": -10.342465,
-                  "fees_usdt": 28.915794,
-                  "slippage_usdt": 7.228949,
-                  "net_mean_bp": -24.8564,
-                  "win_rate_pct": 32.79,
-                  "max_adverse_mark_dd_pct": 47.4166,
-                  "profit_factor": null
+                  "trades": 245,
+                  "end_equity_usdt": 65.543419,
+                  "net_return_pct": -34.4566,
+                  "gross_pnl_usdt": 7.238059,
+                  "fees_usdt": 33.362616,
+                  "slippage_usdt": 8.340654,
+                  "net_mean_bp": -16.7814,
+                  "win_rate_pct": 35.1,
+                  "max_adverse_mark_dd_pct": 37.0145,
+                  "profit_factor": 0.6026
                 }
               }
             },
             "240": {
               "train": {
                 "fee2_slip2_each_way": {
-                  "trades": 152,
-                  "end_equity_usdt": 102.135501,
-                  "net_return_pct": 2.1355,
-                  "gross_pnl_usdt": 15.954496,
-                  "fees_usdt": 6.905884,
-                  "slippage_usdt": 6.905884,
-                  "net_mean_bp": 2.9864,
-                  "win_rate_pct": 48.03,
-                  "max_adverse_mark_dd_pct": 22.1093,
-                  "profit_factor": null
+                  "trades": 137,
+                  "end_equity_usdt": 121.697698,
+                  "net_return_pct": 21.6977,
+                  "gross_pnl_usdt": 34.705844,
+                  "fees_usdt": 6.491636,
+                  "slippage_usdt": 6.491636,
+                  "net_mean_bp": 16.0584,
+                  "win_rate_pct": 50.36,
+                  "max_adverse_mark_dd_pct": 16.8467,
+                  "profit_factor": 1.2186
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 152,
-                  "end_equity_usdt": 93.228193,
-                  "net_return_pct": -6.7718,
-                  "gross_pnl_usdt": 16.368898,
-                  "fees_usdt": 16.522953,
-                  "slippage_usdt": 6.609181,
-                  "net_mean_bp": -3.0136,
-                  "win_rate_pct": 44.74,
-                  "max_adverse_mark_dd_pct": 27.6621,
-                  "profit_factor": null
+                  "trades": 137,
+                  "end_equity_usdt": 112.089185,
+                  "net_return_pct": 12.0892,
+                  "gross_pnl_usdt": 33.932251,
+                  "fees_usdt": 15.575842,
+                  "slippage_usdt": 6.230337,
+                  "net_mean_bp": 10.0584,
+                  "win_rate_pct": 48.91,
+                  "max_adverse_mark_dd_pct": 20.1489,
+                  "profit_factor": 1.1212
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 152,
-                  "end_equity_usdt": 85.095367,
-                  "net_return_pct": -14.9046,
-                  "gross_pnl_usdt": 16.749786,
-                  "fees_usdt": 25.317701,
-                  "slippage_usdt": 6.329425,
-                  "net_mean_bp": -9.0136,
-                  "win_rate_pct": 42.76,
-                  "max_adverse_mark_dd_pct": 32.8328,
-                  "profit_factor": null
+                  "trades": 137,
+                  "end_equity_usdt": 103.236753,
+                  "net_return_pct": 3.2368,
+                  "gross_pnl_usdt": 33.195163,
+                  "fees_usdt": 23.931281,
+                  "slippage_usdt": 5.98282,
+                  "net_mean_bp": 4.0584,
+                  "win_rate_pct": 48.91,
+                  "max_adverse_mark_dd_pct": 23.3209,
+                  "profit_factor": 1.0326
                 }
               },
               "validation": {
                 "fee2_slip2_each_way": {
-                  "trades": 48,
-                  "end_equity_usdt": 94.649193,
-                  "net_return_pct": -5.3508,
-                  "gross_pnl_usdt": -1.622025,
-                  "fees_usdt": 1.865535,
-                  "slippage_usdt": 1.865535,
-                  "net_mean_bp": -10.6258,
-                  "win_rate_pct": 52.08,
-                  "max_adverse_mark_dd_pct": 12.6648,
-                  "profit_factor": null
+                  "trades": 44,
+                  "end_equity_usdt": 82.242344,
+                  "net_return_pct": -17.7577,
+                  "gross_pnl_usdt": -14.263229,
+                  "fees_usdt": 1.752939,
+                  "slippage_usdt": 1.752939,
+                  "net_mean_bp": -43.3499,
+                  "win_rate_pct": 31.82,
+                  "max_adverse_mark_dd_pct": 23.2649,
+                  "profit_factor": 0.4228
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 48,
-                  "end_equity_usdt": 91.960718,
-                  "net_return_pct": -8.0393,
-                  "gross_pnl_usdt": -1.604795,
-                  "fees_usdt": 4.599507,
-                  "slippage_usdt": 1.839803,
-                  "net_mean_bp": -16.6258,
-                  "win_rate_pct": 47.92,
-                  "max_adverse_mark_dd_pct": 13.2565,
-                  "profit_factor": null
+                  "trades": 44,
+                  "end_equity_usdt": 80.098392,
+                  "net_return_pct": -19.9016,
+                  "gross_pnl_usdt": -13.862979,
+                  "fees_usdt": 4.327784,
+                  "slippage_usdt": 1.731114,
+                  "net_mean_bp": -49.3499,
+                  "win_rate_pct": 31.82,
+                  "max_adverse_mark_dd_pct": 24.484,
+                  "profit_factor": 0.3776
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 48,
-                  "end_equity_usdt": 89.347834,
-                  "net_return_pct": -10.6522,
-                  "gross_pnl_usdt": -1.587479,
-                  "fees_usdt": 7.258138,
-                  "slippage_usdt": 1.814535,
-                  "net_mean_bp": -22.6258,
-                  "win_rate_pct": 37.5,
-                  "max_adverse_mark_dd_pct": 15.0827,
-                  "profit_factor": null
+                  "trades": 44,
+                  "end_equity_usdt": 78.009711,
+                  "net_return_pct": -21.9903,
+                  "gross_pnl_usdt": -13.471312,
+                  "fees_usdt": 6.83858,
+                  "slippage_usdt": 1.709645,
+                  "net_mean_bp": -55.3499,
+                  "win_rate_pct": 31.82,
+                  "max_adverse_mark_dd_pct": 26.2098,
+                  "profit_factor": 0.3365
                 }
               },
               "oos": {
                 "fee2_slip2_each_way": {
-                  "trades": 91,
-                  "end_equity_usdt": 86.683789,
-                  "net_return_pct": -13.3162,
-                  "gross_pnl_usdt": -6.745768,
-                  "fees_usdt": 3.288711,
-                  "slippage_usdt": 3.288711,
-                  "net_mean_bp": -14.349,
-                  "win_rate_pct": 46.15,
-                  "max_adverse_mark_dd_pct": 25.0432,
-                  "profit_factor": null
+                  "trades": 88,
+                  "end_equity_usdt": 84.460101,
+                  "net_return_pct": -15.5399,
+                  "gross_pnl_usdt": -8.69656,
+                  "fees_usdt": 3.425987,
+                  "slippage_usdt": 3.425987,
+                  "net_mean_bp": -17.8904,
+                  "win_rate_pct": 47.73,
+                  "max_adverse_mark_dd_pct": 28.8774,
+                  "profit_factor": 0.7291
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 91,
-                  "end_equity_usdt": 82.075277,
-                  "net_return_pct": -17.9247,
-                  "gross_pnl_usdt": -6.723711,
-                  "fees_usdt": 8.01011,
-                  "slippage_usdt": 3.204044,
-                  "net_mean_bp": -20.349,
-                  "win_rate_pct": 42.86,
-                  "max_adverse_mark_dd_pct": 27.6299,
-                  "profit_factor": null
+                  "trades": 88,
+                  "end_equity_usdt": 80.113966,
+                  "net_return_pct": -19.886,
+                  "gross_pnl_usdt": -8.205363,
+                  "fees_usdt": 8.354641,
+                  "slippage_usdt": 3.341856,
+                  "net_mean_bp": -23.8904,
+                  "win_rate_pct": 45.45,
+                  "max_adverse_mark_dd_pct": 31.0841,
+                  "profit_factor": 0.6599
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 91,
-                  "end_equity_usdt": 77.710501,
-                  "net_return_pct": -22.2895,
-                  "gross_pnl_usdt": -6.697892,
-                  "fees_usdt": 12.489216,
-                  "slippage_usdt": 3.122304,
-                  "net_mean_bp": -26.349,
-                  "win_rate_pct": 41.76,
-                  "max_adverse_mark_dd_pct": 30.1281,
-                  "profit_factor": null
+                  "trades": 88,
+                  "end_equity_usdt": 75.990267,
+                  "net_return_pct": -24.0097,
+                  "gross_pnl_usdt": -7.730777,
+                  "fees_usdt": 13.041938,
+                  "slippage_usdt": 3.260484,
+                  "net_mean_bp": -29.8904,
+                  "win_rate_pct": 39.77,
+                  "max_adverse_mark_dd_pct": 33.2229,
+                  "profit_factor": 0.5983
                 }
               }
             }
@@ -745,7 +745,7 @@
                   "net_mean_bp": -8.3021,
                   "win_rate_pct": 39.08,
                   "max_adverse_mark_dd_pct": 32.0824,
-                  "profit_factor": null
+                  "profit_factor": 0.5552
                 },
                 "fee5_slip2_each_way": {
                   "trades": 435,
@@ -757,7 +757,7 @@
                   "net_mean_bp": -14.3021,
                   "win_rate_pct": 33.33,
                   "max_adverse_mark_dd_pct": 47.2979,
-                  "profit_factor": null
+                  "profit_factor": 0.3648
                 },
                 "fee8_slip2_each_way": {
                   "trades": 435,
@@ -769,7 +769,7 @@
                   "net_mean_bp": -20.3021,
                   "win_rate_pct": 27.59,
                   "max_adverse_mark_dd_pct": 59.1078,
-                  "profit_factor": null
+                  "profit_factor": 0.2394
                 }
               },
               "validation": {
@@ -861,7 +861,7 @@
                   "net_mean_bp": -11.634,
                   "win_rate_pct": 44.26,
                   "max_adverse_mark_dd_pct": 15.7188,
-                  "profit_factor": null
+                  "profit_factor": 0.6195
                 },
                 "fee5_slip2_each_way": {
                   "trades": 122,
@@ -873,7 +873,7 @@
                   "net_mean_bp": -17.634,
                   "win_rate_pct": 40.98,
                   "max_adverse_mark_dd_pct": 21.4119,
-                  "profit_factor": null
+                  "profit_factor": 0.484
                 },
                 "fee8_slip2_each_way": {
                   "trades": 122,
@@ -885,7 +885,7 @@
                   "net_mean_bp": -23.634,
                   "win_rate_pct": 36.89,
                   "max_adverse_mark_dd_pct": 26.722,
-                  "profit_factor": null
+                  "profit_factor": 0.3774
                 }
               },
               "validation": {
@@ -977,7 +977,7 @@
                   "net_mean_bp": -26.3408,
                   "win_rate_pct": 54.05,
                   "max_adverse_mark_dd_pct": 14.5925,
-                  "profit_factor": null
+                  "profit_factor": 0.6072
                 },
                 "fee5_slip2_each_way": {
                   "trades": 37,
@@ -989,7 +989,7 @@
                   "net_mean_bp": -32.3408,
                   "win_rate_pct": 45.95,
                   "max_adverse_mark_dd_pct": 16.2427,
-                  "profit_factor": null
+                  "profit_factor": 0.5417
                 },
                 "fee8_slip2_each_way": {
                   "trades": 37,
@@ -1001,7 +1001,7 @@
                   "net_mean_bp": -38.3408,
                   "win_rate_pct": 40.54,
                   "max_adverse_mark_dd_pct": 17.8615,
-                  "profit_factor": null
+                  "profit_factor": 0.4837
                 }
               },
               "validation": {
@@ -1089,8 +1089,8 @@
       "matched_minutes": 87840,
       "metrics_rows": 17568,
       "train_thresholds": {
-        "oi_hi": 0.0022034904396828203,
-        "oi_lo": -0.0018011003417406357,
+        "oi_hi": 0.001389728265650314,
+        "oi_lo": -0.0012695716512903799,
         "ret_hi": 0.001525583809777853,
         "ret_lo": -0.001400278292453705,
         "top_pos_hi": 1.524793,
@@ -1100,706 +1100,706 @@
       },
       "families": {
         "oi_expansion_momentum": {
-          "signal_count": 16135,
+          "signal_count": 17440,
           "horizons": {
             "15": {
               "train": {
                 "fee2_slip2_each_way": {
-                  "trades": 845,
-                  "end_equity_usdt": 46.234994,
-                  "net_return_pct": -53.765,
-                  "gross_pnl_usdt": -5.088607,
-                  "fees_usdt": 24.343143,
-                  "slippage_usdt": 24.343143,
-                  "net_mean_bp": -9.0941,
-                  "win_rate_pct": 30.3,
-                  "max_adverse_mark_dd_pct": 54.222,
-                  "profit_factor": null
+                  "trades": 798,
+                  "end_equity_usdt": 50.997125,
+                  "net_return_pct": -49.0029,
+                  "gross_pnl_usdt": -0.616478,
+                  "fees_usdt": 24.197225,
+                  "slippage_usdt": 24.197225,
+                  "net_mean_bp": -8.402,
+                  "win_rate_pct": 30.7,
+                  "max_adverse_mark_dd_pct": 50.501,
+                  "profit_factor": 0.4361
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 845,
-                  "end_equity_usdt": 27.839558,
-                  "net_return_pct": -72.1604,
-                  "gross_pnl_usdt": -3.142078,
-                  "fees_usdt": 49.30981,
-                  "slippage_usdt": 19.723924,
-                  "net_mean_bp": -15.0941,
-                  "win_rate_pct": 23.79,
-                  "max_adverse_mark_dd_pct": 72.2957,
-                  "profit_factor": null
+                  "trades": 798,
+                  "end_equity_usdt": 31.585741,
+                  "net_return_pct": -68.4143,
+                  "gross_pnl_usdt": 0.710956,
+                  "fees_usdt": 49.385177,
+                  "slippage_usdt": 19.754071,
+                  "net_mean_bp": -14.402,
+                  "win_rate_pct": 21.3,
+                  "max_adverse_mark_dd_pct": 69.1298,
+                  "profit_factor": 0.2626
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 845,
-                  "end_equity_usdt": 16.760528,
-                  "net_return_pct": -83.2395,
-                  "gross_pnl_usdt": -1.782644,
-                  "fees_usdt": 65.179444,
-                  "slippage_usdt": 16.294861,
-                  "net_mean_bp": -21.0941,
-                  "win_rate_pct": 16.45,
-                  "max_adverse_mark_dd_pct": 83.2507,
-                  "profit_factor": null
+                  "trades": 798,
+                  "end_equity_usdt": 19.56023,
+                  "net_return_pct": -80.4398,
+                  "gross_pnl_usdt": 1.613678,
+                  "fees_usdt": 65.656445,
+                  "slippage_usdt": 16.414111,
+                  "net_mean_bp": -20.402,
+                  "win_rate_pct": 15.04,
+                  "max_adverse_mark_dd_pct": 80.7504,
+                  "profit_factor": 0.169
                 }
               },
               "validation": {
                 "fee2_slip2_each_way": {
-                  "trades": 241,
-                  "end_equity_usdt": 85.102759,
-                  "net_return_pct": -14.8972,
-                  "gross_pnl_usdt": 2.774727,
-                  "fees_usdt": 8.836579,
-                  "slippage_usdt": 8.836579,
-                  "net_mean_bp": -6.6587,
-                  "win_rate_pct": 28.22,
-                  "max_adverse_mark_dd_pct": 16.7578,
-                  "profit_factor": null
+                  "trades": 247,
+                  "end_equity_usdt": 82.808324,
+                  "net_return_pct": -17.1917,
+                  "gross_pnl_usdt": 0.5464,
+                  "fees_usdt": 8.870408,
+                  "slippage_usdt": 8.870408,
+                  "net_mean_bp": -7.5984,
+                  "win_rate_pct": 25.91,
+                  "max_adverse_mark_dd_pct": 19.1304,
+                  "profit_factor": 0.4212
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 241,
-                  "end_equity_usdt": 73.639376,
-                  "net_return_pct": -26.3606,
-                  "gross_pnl_usdt": 2.491855,
-                  "fees_usdt": 20.612868,
-                  "slippage_usdt": 8.245147,
-                  "net_mean_bp": -12.6587,
-                  "win_rate_pct": 21.58,
-                  "max_adverse_mark_dd_pct": 27.5837,
-                  "profit_factor": null
+                  "trades": 247,
+                  "end_equity_usdt": 71.39637,
+                  "net_return_pct": -28.6036,
+                  "gross_pnl_usdt": 0.325401,
+                  "fees_usdt": 20.669196,
+                  "slippage_usdt": 8.267679,
+                  "net_mean_bp": -13.5984,
+                  "win_rate_pct": 17.81,
+                  "max_adverse_mark_dd_pct": 29.6543,
+                  "profit_factor": 0.2369
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 241,
-                  "end_equity_usdt": 63.717348,
-                  "net_return_pct": -36.2827,
-                  "gross_pnl_usdt": 2.237527,
-                  "fees_usdt": 30.825313,
-                  "slippage_usdt": 7.706328,
-                  "net_mean_bp": -18.6587,
-                  "win_rate_pct": 17.01,
-                  "max_adverse_mark_dd_pct": 37.0581,
-                  "profit_factor": null
+                  "trades": 247,
+                  "end_equity_usdt": 61.554377,
+                  "net_return_pct": -38.4456,
+                  "gross_pnl_usdt": 0.138849,
+                  "fees_usdt": 30.878966,
+                  "slippage_usdt": 7.719742,
+                  "net_mean_bp": -19.5984,
+                  "win_rate_pct": 13.77,
+                  "max_adverse_mark_dd_pct": 38.9311,
+                  "profit_factor": 0.143
                 }
               },
               "oos": {
                 "fee2_slip2_each_way": {
-                  "trades": 515,
-                  "end_equity_usdt": 60.604458,
-                  "net_return_pct": -39.3955,
-                  "gross_pnl_usdt": -7.695722,
-                  "fees_usdt": 15.854596,
-                  "slippage_usdt": 15.854596,
-                  "net_mean_bp": -9.6944,
-                  "win_rate_pct": 25.44,
-                  "max_adverse_mark_dd_pct": 39.4053,
-                  "profit_factor": null
+                  "trades": 582,
+                  "end_equity_usdt": 62.76929,
+                  "net_return_pct": -37.2307,
+                  "gross_pnl_usdt": -0.808452,
+                  "fees_usdt": 18.214091,
+                  "slippage_usdt": 18.214091,
+                  "net_mean_bp": -7.9749,
+                  "win_rate_pct": 26.46,
+                  "max_adverse_mark_dd_pct": 37.7722,
+                  "profit_factor": 0.3629
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 515,
-                  "end_equity_usdt": 44.487062,
-                  "net_return_pct": -55.5129,
-                  "gross_pnl_usdt": -7.174604,
-                  "fees_usdt": 34.539427,
-                  "slippage_usdt": 13.815771,
-                  "net_mean_bp": -15.6944,
-                  "win_rate_pct": 17.28,
-                  "max_adverse_mark_dd_pct": 55.5129,
-                  "profit_factor": null
+                  "trades": 582,
+                  "end_equity_usdt": 44.259665,
+                  "net_return_pct": -55.7403,
+                  "gross_pnl_usdt": -1.189822,
+                  "fees_usdt": 38.973745,
+                  "slippage_usdt": 15.589498,
+                  "net_mean_bp": -13.9749,
+                  "win_rate_pct": 17.53,
+                  "max_adverse_mark_dd_pct": 55.9373,
+                  "profit_factor": 0.191
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 515,
-                  "end_equity_usdt": 32.652961,
-                  "net_return_pct": -67.347,
-                  "gross_pnl_usdt": -6.706913,
-                  "fees_usdt": 48.530295,
-                  "slippage_usdt": 12.132574,
-                  "net_mean_bp": -21.6944,
-                  "win_rate_pct": 12.43,
-                  "max_adverse_mark_dd_pct": 67.347,
-                  "profit_factor": null
+                  "trades": 582,
+                  "end_equity_usdt": 31.204949,
+                  "net_return_pct": -68.7951,
+                  "gross_pnl_usdt": -1.44092,
+                  "fees_usdt": 53.897933,
+                  "slippage_usdt": 13.474483,
+                  "net_mean_bp": -19.9749,
+                  "win_rate_pct": 14.26,
+                  "max_adverse_mark_dd_pct": 68.8499,
+                  "profit_factor": 0.1063
                 }
               }
             },
             "60": {
               "train": {
                 "fee2_slip2_each_way": {
-                  "trades": 424,
-                  "end_equity_usdt": 77.348697,
-                  "net_return_pct": -22.6513,
-                  "gross_pnl_usdt": 6.378037,
-                  "fees_usdt": 14.514903,
-                  "slippage_usdt": 14.514903,
-                  "net_mean_bp": -5.9348,
-                  "win_rate_pct": 40.33,
-                  "max_adverse_mark_dd_pct": 24.222,
-                  "profit_factor": null
+                  "trades": 389,
+                  "end_equity_usdt": 76.348796,
+                  "net_return_pct": -23.6512,
+                  "gross_pnl_usdt": 3.641641,
+                  "fees_usdt": 13.64768,
+                  "slippage_usdt": 13.64768,
+                  "net_mean_bp": -6.8133,
+                  "win_rate_pct": 39.07,
+                  "max_adverse_mark_dd_pct": 25.7592,
+                  "profit_factor": 0.6702
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 424,
-                  "end_equity_usdt": 59.96636,
-                  "net_return_pct": -40.0336,
-                  "gross_pnl_usdt": 5.112229,
-                  "fees_usdt": 32.251321,
-                  "slippage_usdt": 12.900528,
-                  "net_mean_bp": -11.9348,
-                  "win_rate_pct": 34.43,
-                  "max_adverse_mark_dd_pct": 40.2171,
-                  "profit_factor": null
+                  "trades": 389,
+                  "end_equity_usdt": 60.44802,
+                  "net_return_pct": -39.552,
+                  "gross_pnl_usdt": 3.215496,
+                  "fees_usdt": 30.55422,
+                  "slippage_usdt": 12.221688,
+                  "net_mean_bp": -12.8133,
+                  "win_rate_pct": 32.65,
+                  "max_adverse_mark_dd_pct": 41.0266,
+                  "profit_factor": 0.4858
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 424,
-                  "end_equity_usdt": 46.486749,
-                  "net_return_pct": -53.5133,
-                  "gross_pnl_usdt": 4.110202,
-                  "fees_usdt": 46.108802,
-                  "slippage_usdt": 11.527201,
-                  "net_mean_bp": -17.9348,
-                  "win_rate_pct": 29.25,
-                  "max_adverse_mark_dd_pct": 53.6237,
-                  "profit_factor": null
+                  "trades": 389,
+                  "end_equity_usdt": 47.855462,
+                  "net_return_pct": -52.1445,
+                  "gross_pnl_usdt": 2.811194,
+                  "fees_usdt": 43.976694,
+                  "slippage_usdt": 10.994173,
+                  "net_mean_bp": -18.8133,
+                  "win_rate_pct": 24.16,
+                  "max_adverse_mark_dd_pct": 53.1575,
+                  "profit_factor": 0.3634
                 }
               },
               "validation": {
                 "fee2_slip2_each_way": {
-                  "trades": 126,
-                  "end_equity_usdt": 89.309157,
-                  "net_return_pct": -10.6908,
-                  "gross_pnl_usdt": -1.253873,
-                  "fees_usdt": 4.719868,
-                  "slippage_usdt": 4.719868,
-                  "net_mean_bp": -8.8743,
-                  "win_rate_pct": 36.51,
-                  "max_adverse_mark_dd_pct": 14.2865,
-                  "profit_factor": null
+                  "trades": 130,
+                  "end_equity_usdt": 90.029703,
+                  "net_return_pct": -9.9703,
+                  "gross_pnl_usdt": -0.066748,
+                  "fees_usdt": 4.952793,
+                  "slippage_usdt": 4.952793,
+                  "net_mean_bp": -7.9799,
+                  "win_rate_pct": 34.62,
+                  "max_adverse_mark_dd_pct": 12.7,
+                  "profit_factor": 0.5885
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 126,
-                  "end_equity_usdt": 82.802845,
-                  "net_return_pct": -17.1972,
-                  "gross_pnl_usdt": -1.276383,
-                  "fees_usdt": 11.376754,
-                  "slippage_usdt": 4.550701,
-                  "net_mean_bp": -14.8743,
-                  "win_rate_pct": 29.37,
-                  "max_adverse_mark_dd_pct": 19.9323,
-                  "profit_factor": null
+                  "trades": 130,
+                  "end_equity_usdt": 83.270698,
+                  "net_return_pct": -16.7293,
+                  "gross_pnl_usdt": -0.039465,
+                  "fees_usdt": 11.925296,
+                  "slippage_usdt": 4.770118,
+                  "net_mean_bp": -13.9799,
+                  "win_rate_pct": 25.38,
+                  "max_adverse_mark_dd_pct": 18.8301,
+                  "profit_factor": 0.4085
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 126,
-                  "end_equity_usdt": 76.768785,
-                  "net_return_pct": -23.2312,
-                  "gross_pnl_usdt": -1.295109,
-                  "fees_usdt": 17.558297,
-                  "slippage_usdt": 4.389574,
-                  "net_mean_bp": -20.8743,
-                  "win_rate_pct": 25.4,
-                  "max_adverse_mark_dd_pct": 25.2077,
-                  "profit_factor": null
+                  "trades": 130,
+                  "end_equity_usdt": 77.017323,
+                  "net_return_pct": -22.9827,
+                  "gross_pnl_usdt": -0.011026,
+                  "fees_usdt": 18.385628,
+                  "slippage_usdt": 4.596407,
+                  "net_mean_bp": -19.9799,
+                  "win_rate_pct": 20.77,
+                  "max_adverse_mark_dd_pct": 24.5415,
+                  "profit_factor": 0.2933
                 }
               },
               "oos": {
                 "fee2_slip2_each_way": {
-                  "trades": 258,
-                  "end_equity_usdt": 74.689856,
-                  "net_return_pct": -25.3101,
-                  "gross_pnl_usdt": -7.618746,
-                  "fees_usdt": 8.84986,
-                  "slippage_usdt": 8.84986,
-                  "net_mean_bp": -11.2245,
-                  "win_rate_pct": 32.56,
-                  "max_adverse_mark_dd_pct": 27.7482,
-                  "profit_factor": null
+                  "trades": 275,
+                  "end_equity_usdt": 75.629091,
+                  "net_return_pct": -24.3709,
+                  "gross_pnl_usdt": -5.42513,
+                  "fees_usdt": 9.476418,
+                  "slippage_usdt": 9.476418,
+                  "net_mean_bp": -10.0732,
+                  "win_rate_pct": 34.91,
+                  "max_adverse_mark_dd_pct": 25.3335,
+                  "profit_factor": 0.4729
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 258,
-                  "end_equity_usdt": 63.972871,
-                  "net_return_pct": -36.0271,
-                  "gross_pnl_usdt": -7.214601,
-                  "fees_usdt": 20.591772,
-                  "slippage_usdt": 8.236709,
-                  "net_mean_bp": -17.2245,
-                  "win_rate_pct": 24.03,
-                  "max_adverse_mark_dd_pct": 37.7439,
-                  "profit_factor": null
+                  "trades": 275,
+                  "end_equity_usdt": 64.119608,
+                  "net_return_pct": -35.8804,
+                  "gross_pnl_usdt": -5.204211,
+                  "fees_usdt": 21.92169,
+                  "slippage_usdt": 8.768676,
+                  "net_mean_bp": -16.0732,
+                  "win_rate_pct": 26.18,
+                  "max_adverse_mark_dd_pct": 36.5953,
+                  "profit_factor": 0.3086
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 258,
-                  "end_equity_usdt": 54.79108,
-                  "net_return_pct": -45.2089,
-                  "gross_pnl_usdt": -6.827562,
-                  "fees_usdt": 30.724108,
-                  "slippage_usdt": 7.681027,
-                  "net_mean_bp": -23.2245,
-                  "win_rate_pct": 19.77,
-                  "max_adverse_mark_dd_pct": 46.535,
-                  "profit_factor": null
+                  "trades": 275,
+                  "end_equity_usdt": 54.358981,
+                  "net_return_pct": -45.641,
+                  "gross_pnl_usdt": -5.003604,
+                  "fees_usdt": 32.527277,
+                  "slippage_usdt": 8.131819,
+                  "net_mean_bp": -22.0732,
+                  "win_rate_pct": 18.55,
+                  "max_adverse_mark_dd_pct": 46.1907,
+                  "profit_factor": 0.2098
                 }
               }
             },
             "240": {
               "train": {
                 "fee2_slip2_each_way": {
-                  "trades": 150,
-                  "end_equity_usdt": 101.260096,
-                  "net_return_pct": 1.2601,
-                  "gross_pnl_usdt": 12.902978,
-                  "fees_usdt": 5.817568,
-                  "slippage_usdt": 5.817568,
-                  "net_mean_bp": 1.3062,
-                  "win_rate_pct": 47.33,
-                  "max_adverse_mark_dd_pct": 9.862,
-                  "profit_factor": null
+                  "trades": 152,
+                  "end_equity_usdt": 96.48249,
+                  "net_return_pct": -3.5175,
+                  "gross_pnl_usdt": 9.025045,
+                  "fees_usdt": 6.269413,
+                  "slippage_usdt": 6.269413,
+                  "net_mean_bp": -1.8806,
+                  "win_rate_pct": 42.76,
+                  "max_adverse_mark_dd_pct": 16.1283,
+                  "profit_factor": 0.9338
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 150,
-                  "end_equity_usdt": 92.540176,
-                  "net_return_pct": -7.4598,
-                  "gross_pnl_usdt": 12.016398,
-                  "fees_usdt": 13.90482,
-                  "slippage_usdt": 5.561928,
-                  "net_mean_bp": -4.6938,
-                  "win_rate_pct": 42.67,
-                  "max_adverse_mark_dd_pct": 13.5987,
-                  "profit_factor": null
+                  "trades": 152,
+                  "end_equity_usdt": 88.068186,
+                  "net_return_pct": -11.9318,
+                  "gross_pnl_usdt": 9.066729,
+                  "fees_usdt": 14.996714,
+                  "slippage_usdt": 5.998686,
+                  "net_mean_bp": -7.8806,
+                  "win_rate_pct": 39.47,
+                  "max_adverse_mark_dd_pct": 22.4948,
+                  "profit_factor": 0.7875
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 150,
-                  "end_equity_usdt": 84.568877,
-                  "net_return_pct": -15.4311,
-                  "gross_pnl_usdt": 11.182713,
-                  "fees_usdt": 21.284219,
-                  "slippage_usdt": 5.321055,
-                  "net_mean_bp": -10.6938,
-                  "win_rate_pct": 41.33,
-                  "max_adverse_mark_dd_pct": 18.3653,
-                  "profit_factor": null
+                  "trades": 152,
+                  "end_equity_usdt": 80.385496,
+                  "net_return_pct": -19.6145,
+                  "gross_pnl_usdt": 9.103426,
+                  "fees_usdt": 22.974002,
+                  "slippage_usdt": 5.7435,
+                  "net_mean_bp": -13.8806,
+                  "win_rate_pct": 35.53,
+                  "max_adverse_mark_dd_pct": 28.3942,
+                  "profit_factor": 0.6682
                 }
               },
               "validation": {
                 "fee2_slip2_each_way": {
-                  "trades": 52,
-                  "end_equity_usdt": 99.55219,
-                  "net_return_pct": -0.4478,
-                  "gross_pnl_usdt": 3.629841,
-                  "fees_usdt": 2.037839,
-                  "slippage_usdt": 2.037839,
-                  "net_mean_bp": -0.4851,
-                  "win_rate_pct": 51.92,
-                  "max_adverse_mark_dd_pct": 5.3038,
-                  "profit_factor": null
+                  "trades": 51,
+                  "end_equity_usdt": 106.266728,
+                  "net_return_pct": 6.2667,
+                  "gross_pnl_usdt": 10.492841,
+                  "fees_usdt": 2.109263,
+                  "slippage_usdt": 2.109263,
+                  "net_mean_bp": 12.3569,
+                  "win_rate_pct": 49.02,
+                  "max_adverse_mark_dd_pct": 7.9913,
+                  "profit_factor": 1.4728
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 52,
-                  "end_equity_usdt": 96.492459,
-                  "net_return_pct": -3.5075,
-                  "gross_pnl_usdt": 3.519555,
-                  "fees_usdt": 5.017716,
-                  "slippage_usdt": 2.007086,
-                  "net_mean_bp": -6.4851,
-                  "win_rate_pct": 50.0,
-                  "max_adverse_mark_dd_pct": 7.5776,
-                  "profit_factor": null
+                  "trades": 51,
+                  "end_equity_usdt": 103.062479,
+                  "net_return_pct": 3.0625,
+                  "gross_pnl_usdt": 10.347553,
+                  "fees_usdt": 5.195211,
+                  "slippage_usdt": 2.078084,
+                  "net_mean_bp": 6.3569,
+                  "win_rate_pct": 49.02,
+                  "max_adverse_mark_dd_pct": 9.1167,
+                  "profit_factor": 1.2098
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 52,
-                  "end_equity_usdt": 93.525892,
-                  "net_return_pct": -6.4741,
-                  "gross_pnl_usdt": 3.412305,
-                  "fees_usdt": 7.907758,
-                  "slippage_usdt": 1.97694,
-                  "net_mean_bp": -12.4851,
-                  "win_rate_pct": 42.31,
-                  "max_adverse_mark_dd_pct": 10.1767,
-                  "profit_factor": null
+                  "trades": 51,
+                  "end_equity_usdt": 99.953929,
+                  "net_return_pct": -0.0461,
+                  "gross_pnl_usdt": 10.206258,
+                  "fees_usdt": 8.190026,
+                  "slippage_usdt": 2.047506,
+                  "net_mean_bp": 0.3569,
+                  "win_rate_pct": 43.14,
+                  "max_adverse_mark_dd_pct": 10.2286,
+                  "profit_factor": 0.9981
                 }
               },
               "oos": {
                 "fee2_slip2_each_way": {
-                  "trades": 90,
-                  "end_equity_usdt": 98.714983,
-                  "net_return_pct": -1.285,
-                  "gross_pnl_usdt": 5.754929,
-                  "fees_usdt": 3.518436,
-                  "slippage_usdt": 3.518436,
-                  "net_mean_bp": -1.1914,
-                  "win_rate_pct": 48.89,
-                  "max_adverse_mark_dd_pct": 6.1857,
-                  "profit_factor": null
+                  "trades": 94,
+                  "end_equity_usdt": 99.788163,
+                  "net_return_pct": -0.2118,
+                  "gross_pnl_usdt": 7.18504,
+                  "fees_usdt": 3.696376,
+                  "slippage_usdt": 3.696376,
+                  "net_mean_bp": 0.0607,
+                  "win_rate_pct": 47.87,
+                  "max_adverse_mark_dd_pct": 9.9877,
+                  "profit_factor": 0.9917
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 90,
-                  "end_equity_usdt": 93.522965,
-                  "net_return_pct": -6.477,
-                  "gross_pnl_usdt": 5.517051,
-                  "fees_usdt": 8.564826,
-                  "slippage_usdt": 3.425931,
-                  "net_mean_bp": -7.1914,
-                  "win_rate_pct": 45.56,
-                  "max_adverse_mark_dd_pct": 7.8325,
-                  "profit_factor": null
+                  "trades": 94,
+                  "end_equity_usdt": 94.312953,
+                  "net_return_pct": -5.687,
+                  "gross_pnl_usdt": 6.903557,
+                  "fees_usdt": 8.989746,
+                  "slippage_usdt": 3.595898,
+                  "net_mean_bp": -5.9393,
+                  "win_rate_pct": 43.62,
+                  "max_adverse_mark_dd_pct": 12.7787,
+                  "profit_factor": 0.7915
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 90,
-                  "end_equity_usdt": 88.602589,
-                  "net_return_pct": -11.3974,
-                  "gross_pnl_usdt": 5.287803,
-                  "fees_usdt": 13.346482,
-                  "slippage_usdt": 3.336621,
-                  "net_mean_bp": -13.1914,
-                  "win_rate_pct": 38.89,
-                  "max_adverse_mark_dd_pct": 12.0026,
-                  "profit_factor": null
+                  "trades": 94,
+                  "end_equity_usdt": 89.136647,
+                  "net_return_pct": -10.8634,
+                  "gross_pnl_usdt": 6.635995,
+                  "fees_usdt": 13.996132,
+                  "slippage_usdt": 3.499033,
+                  "net_mean_bp": -11.9393,
+                  "win_rate_pct": 37.23,
+                  "max_adverse_mark_dd_pct": 15.5185,
+                  "profit_factor": 0.6344
                 }
               }
             }
           }
         },
         "oi_contraction_reversal": {
-          "signal_count": 9531,
+          "signal_count": 8931,
           "horizons": {
             "15": {
               "train": {
                 "fee2_slip2_each_way": {
-                  "trades": 700,
-                  "end_equity_usdt": 57.95457,
-                  "net_return_pct": -42.0454,
-                  "gross_pnl_usdt": 0.492531,
-                  "fees_usdt": 21.271976,
-                  "slippage_usdt": 21.271976,
-                  "net_mean_bp": -7.7384,
-                  "win_rate_pct": 37.71,
-                  "max_adverse_mark_dd_pct": 42.4129,
-                  "profit_factor": null
+                  "trades": 659,
+                  "end_equity_usdt": 64.777974,
+                  "net_return_pct": -35.222,
+                  "gross_pnl_usdt": 6.403106,
+                  "fees_usdt": 20.813657,
+                  "slippage_usdt": 20.813657,
+                  "net_mean_bp": -6.5359,
+                  "win_rate_pct": 38.54,
+                  "max_adverse_mark_dd_pct": 35.9943,
+                  "profit_factor": 0.5412
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 700,
-                  "end_equity_usdt": 38.070065,
-                  "net_return_pct": -61.9299,
-                  "gross_pnl_usdt": -0.084074,
-                  "fees_usdt": 44.184539,
-                  "slippage_usdt": 17.673815,
-                  "net_mean_bp": -13.7384,
-                  "win_rate_pct": 28.14,
-                  "max_adverse_mark_dd_pct": 62.0628,
-                  "profit_factor": null
+                  "trades": 659,
+                  "end_equity_usdt": 43.612685,
+                  "net_return_pct": -56.3873,
+                  "gross_pnl_usdt": 4.600625,
+                  "fees_usdt": 43.568969,
+                  "slippage_usdt": 17.427587,
+                  "net_mean_bp": -12.5359,
+                  "win_rate_pct": 29.89,
+                  "max_adverse_mark_dd_pct": 56.6176,
+                  "profit_factor": 0.3168
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 700,
-                  "end_equity_usdt": 25.004879,
-                  "net_return_pct": -74.9951,
-                  "gross_pnl_usdt": -0.560428,
-                  "fees_usdt": 59.561344,
-                  "slippage_usdt": 14.890336,
-                  "net_mean_bp": -19.7384,
-                  "win_rate_pct": 21.71,
-                  "max_adverse_mark_dd_pct": 75.0599,
-                  "profit_factor": null
+                  "trades": 659,
+                  "end_equity_usdt": 29.359368,
+                  "net_return_pct": -70.6406,
+                  "gross_pnl_usdt": 3.242375,
+                  "fees_usdt": 59.117689,
+                  "slippage_usdt": 14.779422,
+                  "net_mean_bp": -18.5359,
+                  "win_rate_pct": 23.07,
+                  "max_adverse_mark_dd_pct": 70.7474,
+                  "profit_factor": 0.1901
                 }
               },
               "validation": {
                 "fee2_slip2_each_way": {
-                  "trades": 196,
-                  "end_equity_usdt": 87.461822,
-                  "net_return_pct": -12.5382,
-                  "gross_pnl_usdt": 2.133939,
-                  "fees_usdt": 7.336644,
-                  "slippage_usdt": 7.336644,
-                  "net_mean_bp": -6.8133,
-                  "win_rate_pct": 34.69,
-                  "max_adverse_mark_dd_pct": 12.7021,
-                  "profit_factor": null
+                  "trades": 181,
+                  "end_equity_usdt": 84.416424,
+                  "net_return_pct": -15.5836,
+                  "gross_pnl_usdt": -2.351289,
+                  "fees_usdt": 6.618211,
+                  "slippage_usdt": 6.618211,
+                  "net_mean_bp": -9.336,
+                  "win_rate_pct": 32.6,
+                  "max_adverse_mark_dd_pct": 15.9502,
+                  "profit_factor": 0.2938
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 196,
-                  "end_equity_usdt": 77.753041,
-                  "net_return_pct": -22.247,
-                  "gross_pnl_usdt": 2.012881,
-                  "fees_usdt": 17.332049,
-                  "slippage_usdt": 6.93282,
-                  "net_mean_bp": -12.8133,
-                  "win_rate_pct": 23.47,
-                  "max_adverse_mark_dd_pct": 22.3694,
-                  "profit_factor": null
+                  "trades": 181,
+                  "end_equity_usdt": 75.724535,
+                  "net_return_pct": -24.2755,
+                  "gross_pnl_usdt": -2.294321,
+                  "fees_usdt": 15.707514,
+                  "slippage_usdt": 6.283006,
+                  "net_mean_bp": -15.336,
+                  "win_rate_pct": 22.65,
+                  "max_adverse_mark_dd_pct": 24.5364,
+                  "profit_factor": 0.1297
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 196,
-                  "end_equity_usdt": 69.11955,
-                  "net_return_pct": -30.8804,
-                  "gross_pnl_usdt": 1.901843,
-                  "fees_usdt": 26.234203,
-                  "slippage_usdt": 6.558551,
-                  "net_mean_bp": -18.8133,
-                  "win_rate_pct": 14.8,
-                  "max_adverse_mark_dd_pct": 30.9686,
-                  "profit_factor": null
+                  "trades": 181,
+                  "end_equity_usdt": 67.925385,
+                  "net_return_pct": -32.0746,
+                  "gross_pnl_usdt": -2.237993,
+                  "fees_usdt": 23.881871,
+                  "slippage_usdt": 5.970468,
+                  "net_mean_bp": -21.336,
+                  "win_rate_pct": 12.71,
+                  "max_adverse_mark_dd_pct": 32.2477,
+                  "profit_factor": 0.059
                 }
               },
               "oos": {
                 "fee2_slip2_each_way": {
-                  "trades": 381,
-                  "end_equity_usdt": 71.42,
-                  "net_return_pct": -28.58,
-                  "gross_pnl_usdt": -2.413968,
-                  "fees_usdt": 13.086143,
-                  "slippage_usdt": 13.086143,
-                  "net_mean_bp": -8.7951,
-                  "win_rate_pct": 34.91,
-                  "max_adverse_mark_dd_pct": 28.8622,
-                  "profit_factor": null
+                  "trades": 355,
+                  "end_equity_usdt": 78.175428,
+                  "net_return_pct": -21.8246,
+                  "gross_pnl_usdt": 3.894303,
+                  "fees_usdt": 12.86052,
+                  "slippage_usdt": 12.86052,
+                  "net_mean_bp": -6.8942,
+                  "win_rate_pct": 39.44,
+                  "max_adverse_mark_dd_pct": 22.0476,
+                  "profit_factor": 0.5074
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 381,
-                  "end_equity_usdt": 56.817941,
-                  "net_return_pct": -43.1821,
-                  "gross_pnl_usdt": -1.973936,
-                  "fees_usdt": 29.443847,
-                  "slippage_usdt": 11.777539,
-                  "net_mean_bp": -14.7951,
-                  "win_rate_pct": 22.31,
-                  "max_adverse_mark_dd_pct": 43.3279,
-                  "profit_factor": null
+                  "trades": 355,
+                  "end_equity_usdt": 63.170547,
+                  "net_return_pct": -36.8295,
+                  "gross_pnl_usdt": 3.88259,
+                  "fees_usdt": 29.085586,
+                  "slippage_usdt": 11.634234,
+                  "net_mean_bp": -12.8942,
+                  "win_rate_pct": 28.45,
+                  "max_adverse_mark_dd_pct": 36.9151,
+                  "profit_factor": 0.2832
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 381,
-                  "end_equity_usdt": 45.198218,
-                  "net_return_pct": -54.8018,
-                  "gross_pnl_usdt": -1.600885,
-                  "fees_usdt": 42.576922,
-                  "slippage_usdt": 10.64423,
-                  "net_mean_bp": -20.7951,
-                  "win_rate_pct": 15.75,
-                  "max_adverse_mark_dd_pct": 54.8636,
-                  "profit_factor": null
+                  "trades": 355,
+                  "end_equity_usdt": 51.042415,
+                  "net_return_pct": -48.9576,
+                  "gross_pnl_usdt": 3.843519,
+                  "fees_usdt": 42.252426,
+                  "slippage_usdt": 10.563107,
+                  "net_mean_bp": -18.8942,
+                  "win_rate_pct": 19.72,
+                  "max_adverse_mark_dd_pct": 48.9819,
+                  "profit_factor": 0.162
                 }
               }
             },
             "60": {
               "train": {
                 "fee2_slip2_each_way": {
-                  "trades": 381,
-                  "end_equity_usdt": 79.498135,
-                  "net_return_pct": -20.5019,
-                  "gross_pnl_usdt": 6.965874,
-                  "fees_usdt": 13.734093,
-                  "slippage_usdt": 13.734093,
-                  "net_mean_bp": -5.8564,
-                  "win_rate_pct": 40.94,
-                  "max_adverse_mark_dd_pct": 22.4598,
-                  "profit_factor": null
+                  "trades": 348,
+                  "end_equity_usdt": 73.472403,
+                  "net_return_pct": -26.5276,
+                  "gross_pnl_usdt": -3.776669,
+                  "fees_usdt": 11.378568,
+                  "slippage_usdt": 11.378568,
+                  "net_mean_bp": -8.6814,
+                  "win_rate_pct": 41.38,
+                  "max_adverse_mark_dd_pct": 26.5422,
+                  "profit_factor": 0.6171
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 381,
-                  "end_equity_usdt": 63.244474,
-                  "net_return_pct": -36.7555,
-                  "gross_pnl_usdt": 6.396376,
-                  "fees_usdt": 30.826851,
-                  "slippage_usdt": 12.330741,
-                  "net_mean_bp": -11.8564,
-                  "win_rate_pct": 35.7,
-                  "max_adverse_mark_dd_pct": 37.1125,
-                  "profit_factor": null
+                  "trades": 348,
+                  "end_equity_usdt": 59.620231,
+                  "net_return_pct": -40.3798,
+                  "gross_pnl_usdt": -4.319322,
+                  "fees_usdt": 25.766879,
+                  "slippage_usdt": 10.306751,
+                  "net_mean_bp": -14.6814,
+                  "win_rate_pct": 35.34,
+                  "max_adverse_mark_dd_pct": 40.3798,
+                  "profit_factor": 0.448
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 381,
-                  "end_equity_usdt": 50.310474,
-                  "net_return_pct": -49.6895,
-                  "gross_pnl_usdt": 5.887018,
-                  "fees_usdt": 44.47102,
-                  "slippage_usdt": 11.117755,
-                  "net_mean_bp": -17.8564,
-                  "win_rate_pct": 30.45,
-                  "max_adverse_mark_dd_pct": 49.9284,
-                  "profit_factor": null
+                  "trades": 348,
+                  "end_equity_usdt": 48.376654,
+                  "net_return_pct": -51.6233,
+                  "gross_pnl_usdt": -4.796387,
+                  "fees_usdt": 37.477847,
+                  "slippage_usdt": 9.369462,
+                  "net_mean_bp": -20.6814,
+                  "win_rate_pct": 30.17,
+                  "max_adverse_mark_dd_pct": 51.6233,
+                  "profit_factor": 0.3274
                 }
               },
               "validation": {
                 "fee2_slip2_each_way": {
-                  "trades": 107,
-                  "end_equity_usdt": 93.952992,
-                  "net_return_pct": -6.047,
-                  "gross_pnl_usdt": 2.194058,
-                  "fees_usdt": 4.120504,
-                  "slippage_usdt": 4.120504,
-                  "net_mean_bp": -5.7285,
-                  "win_rate_pct": 42.99,
-                  "max_adverse_mark_dd_pct": 6.9296,
-                  "profit_factor": null
+                  "trades": 103,
+                  "end_equity_usdt": 93.683667,
+                  "net_return_pct": -6.3163,
+                  "gross_pnl_usdt": 1.680496,
+                  "fees_usdt": 3.998576,
+                  "slippage_usdt": 3.998576,
+                  "net_mean_bp": -6.2487,
+                  "win_rate_pct": 43.69,
+                  "max_adverse_mark_dd_pct": 7.3855,
+                  "profit_factor": 0.6466
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 107,
-                  "end_equity_usdt": 88.107639,
-                  "net_return_pct": -11.8924,
-                  "gross_pnl_usdt": 2.081835,
-                  "fees_usdt": 9.982916,
-                  "slippage_usdt": 3.993166,
-                  "net_mean_bp": -11.7285,
-                  "win_rate_pct": 32.71,
-                  "max_adverse_mark_dd_pct": 12.1027,
-                  "profit_factor": null
+                  "trades": 103,
+                  "end_equity_usdt": 88.066293,
+                  "net_return_pct": -11.9337,
+                  "gross_pnl_usdt": 1.641803,
+                  "fees_usdt": 9.698535,
+                  "slippage_usdt": 3.879414,
+                  "net_mean_bp": -12.2487,
+                  "win_rate_pct": 33.01,
+                  "max_adverse_mark_dd_pct": 12.8104,
+                  "profit_factor": 0.4283
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 107,
-                  "end_equity_usdt": 82.624366,
-                  "net_return_pct": -17.3756,
-                  "gross_pnl_usdt": 1.974281,
-                  "fees_usdt": 15.484081,
-                  "slippage_usdt": 3.87102,
-                  "net_mean_bp": -17.7285,
-                  "win_rate_pct": 30.84,
-                  "max_adverse_mark_dd_pct": 17.5041,
-                  "profit_factor": null
+                  "trades": 103,
+                  "end_equity_usdt": 82.784205,
+                  "net_return_pct": -17.2158,
+                  "gross_pnl_usdt": 1.603024,
+                  "fees_usdt": 15.059727,
+                  "slippage_usdt": 3.764932,
+                  "net_mean_bp": -18.2487,
+                  "win_rate_pct": 28.16,
+                  "max_adverse_mark_dd_pct": 17.966,
+                  "profit_factor": 0.2884
                 }
               },
               "oos": {
                 "fee2_slip2_each_way": {
-                  "trades": 205,
-                  "end_equity_usdt": 79.508184,
-                  "net_return_pct": -20.4918,
-                  "gross_pnl_usdt": -5.95853,
-                  "fees_usdt": 7.270089,
-                  "slippage_usdt": 7.270089,
-                  "net_mean_bp": -11.0875,
-                  "win_rate_pct": 40.98,
-                  "max_adverse_mark_dd_pct": 20.6042,
-                  "profit_factor": null
+                  "trades": 191,
+                  "end_equity_usdt": 96.63303,
+                  "net_return_pct": -3.367,
+                  "gross_pnl_usdt": 11.785456,
+                  "fees_usdt": 7.573196,
+                  "slippage_usdt": 7.573196,
+                  "net_mean_bp": -1.6661,
+                  "win_rate_pct": 47.12,
+                  "max_adverse_mark_dd_pct": 8.9702,
+                  "profit_factor": 0.8981
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 205,
-                  "end_equity_usdt": 70.30144,
-                  "net_return_pct": -29.6986,
-                  "gross_pnl_usdt": -5.710634,
-                  "fees_usdt": 17.144019,
-                  "slippage_usdt": 6.857608,
-                  "net_mean_bp": -17.0875,
-                  "win_rate_pct": 34.15,
-                  "max_adverse_mark_dd_pct": 29.7059,
-                  "profit_factor": null
+                  "trades": 191,
+                  "end_equity_usdt": 86.164438,
+                  "net_return_pct": -13.8356,
+                  "gross_pnl_usdt": 11.238724,
+                  "fees_usdt": 17.905946,
+                  "slippage_usdt": 7.162379,
+                  "net_mean_bp": -7.6661,
+                  "win_rate_pct": 41.36,
+                  "max_adverse_mark_dd_pct": 16.5958,
+                  "profit_factor": 0.6264
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 205,
-                  "end_equity_usdt": 62.158504,
-                  "net_return_pct": -37.8415,
-                  "gross_pnl_usdt": -5.4804,
-                  "fees_usdt": 25.905792,
-                  "slippage_usdt": 6.476448,
-                  "net_mean_bp": -23.0875,
-                  "win_rate_pct": 24.39,
-                  "max_adverse_mark_dd_pct": 37.8415,
-                  "profit_factor": null
+                  "trades": 191,
+                  "end_equity_usdt": 76.8273,
+                  "net_return_pct": -23.1727,
+                  "gross_pnl_usdt": 10.735691,
+                  "fees_usdt": 27.124164,
+                  "slippage_usdt": 6.781041,
+                  "net_mean_bp": -13.6661,
+                  "win_rate_pct": 31.41,
+                  "max_adverse_mark_dd_pct": 24.5758,
+                  "profit_factor": 0.4428
                 }
               }
             },
             "240": {
               "train": {
                 "fee2_slip2_each_way": {
-                  "trades": 141,
-                  "end_equity_usdt": 101.337049,
-                  "net_return_pct": 1.337,
-                  "gross_pnl_usdt": 12.388362,
-                  "fees_usdt": 5.522038,
-                  "slippage_usdt": 5.522038,
-                  "net_mean_bp": 1.56,
-                  "win_rate_pct": 51.06,
-                  "max_adverse_mark_dd_pct": 9.8785,
-                  "profit_factor": null
+                  "trades": 140,
+                  "end_equity_usdt": 89.711845,
+                  "net_return_pct": -10.2882,
+                  "gross_pnl_usdt": -0.109121,
+                  "fees_usdt": 5.090718,
+                  "slippage_usdt": 5.090718,
+                  "net_mean_bp": -7.1163,
+                  "win_rate_pct": 47.14,
+                  "max_adverse_mark_dd_pct": 15.8672,
+                  "profit_factor": 0.8089
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 141,
-                  "end_equity_usdt": 93.112229,
-                  "net_return_pct": -6.8878,
-                  "gross_pnl_usdt": 11.656566,
-                  "fees_usdt": 13.23961,
-                  "slippage_usdt": 5.295844,
-                  "net_mean_bp": -4.44,
-                  "win_rate_pct": 45.39,
-                  "max_adverse_mark_dd_pct": 13.9644,
-                  "profit_factor": null
+                  "trades": 140,
+                  "end_equity_usdt": 82.480061,
+                  "net_return_pct": -17.5199,
+                  "gross_pnl_usdt": -0.423721,
+                  "fees_usdt": 12.216081,
+                  "slippage_usdt": 4.886432,
+                  "net_mean_bp": -13.1163,
+                  "win_rate_pct": 42.14,
+                  "max_adverse_mark_dd_pct": 20.0254,
+                  "profit_factor": 0.6881
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 141,
-                  "end_equity_usdt": 85.552785,
-                  "net_return_pct": -14.4472,
-                  "gross_pnl_usdt": 10.969991,
-                  "fees_usdt": 20.327332,
-                  "slippage_usdt": 5.081833,
-                  "net_mean_bp": -10.44,
-                  "win_rate_pct": 41.84,
-                  "max_adverse_mark_dd_pct": 18.9976,
-                  "profit_factor": null
+                  "trades": 140,
+                  "end_equity_usdt": 75.829327,
+                  "net_return_pct": -24.1707,
+                  "gross_pnl_usdt": -0.716993,
+                  "fees_usdt": 18.772116,
+                  "slippage_usdt": 4.693029,
+                  "net_mean_bp": -19.1163,
+                  "win_rate_pct": 37.86,
+                  "max_adverse_mark_dd_pct": 26.2309,
+                  "profit_factor": 0.5871
                 }
               },
               "validation": {
                 "fee2_slip2_each_way": {
-                  "trades": 47,
-                  "end_equity_usdt": 99.7037,
-                  "net_return_pct": -0.2963,
-                  "gross_pnl_usdt": 3.442963,
-                  "fees_usdt": 1.86869,
-                  "slippage_usdt": 1.86869,
-                  "net_mean_bp": -0.2766,
-                  "win_rate_pct": 48.94,
-                  "max_adverse_mark_dd_pct": 7.0078,
-                  "profit_factor": null
+                  "trades": 43,
+                  "end_equity_usdt": 90.139352,
+                  "net_return_pct": -9.8606,
+                  "gross_pnl_usdt": -6.449671,
+                  "fees_usdt": 1.708356,
+                  "slippage_usdt": 1.708356,
+                  "net_mean_bp": -23.7983,
+                  "win_rate_pct": 34.88,
+                  "max_adverse_mark_dd_pct": 13.0411,
+                  "profit_factor": 0.4239
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 47,
-                  "end_equity_usdt": 96.929826,
-                  "net_return_pct": -3.0702,
-                  "gross_pnl_usdt": 3.3832,
-                  "fees_usdt": 4.607948,
-                  "slippage_usdt": 1.843179,
-                  "net_mean_bp": -6.2766,
-                  "win_rate_pct": 40.43,
-                  "max_adverse_mark_dd_pct": 7.8138,
-                  "profit_factor": null
+                  "trades": 43,
+                  "end_equity_usdt": 87.842253,
+                  "net_return_pct": -12.1577,
+                  "gross_pnl_usdt": -6.262531,
+                  "fees_usdt": 4.218427,
+                  "slippage_usdt": 1.687371,
+                  "net_mean_bp": -29.7983,
+                  "win_rate_pct": 30.23,
+                  "max_adverse_mark_dd_pct": 15.0231,
+                  "profit_factor": 0.3441
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 47,
-                  "end_equity_usdt": 94.232325,
-                  "net_return_pct": -5.7677,
-                  "gross_pnl_usdt": 3.324721,
-                  "fees_usdt": 7.272485,
-                  "slippage_usdt": 1.818121,
-                  "net_mean_bp": -12.2766,
-                  "win_rate_pct": 38.3,
-                  "max_adverse_mark_dd_pct": 9.3105,
-                  "profit_factor": null
+                  "trades": 43,
+                  "end_equity_usdt": 85.60303,
+                  "net_return_pct": -14.397,
+                  "gross_pnl_usdt": -6.079203,
+                  "fees_usdt": 6.666891,
+                  "slippage_usdt": 1.666723,
+                  "net_mean_bp": -35.7983,
+                  "win_rate_pct": 27.91,
+                  "max_adverse_mark_dd_pct": 17.04,
+                  "profit_factor": 0.2813
                 }
               },
               "oos": {
                 "fee2_slip2_each_way": {
-                  "trades": 80,
-                  "end_equity_usdt": 93.087739,
-                  "net_return_pct": -6.9123,
-                  "gross_pnl_usdt": -0.775176,
-                  "fees_usdt": 3.069521,
-                  "slippage_usdt": 3.069521,
-                  "net_mean_bp": -8.6222,
-                  "win_rate_pct": 46.25,
-                  "max_adverse_mark_dd_pct": 11.1102,
-                  "profit_factor": null
+                  "trades": 78,
+                  "end_equity_usdt": 95.804077,
+                  "net_return_pct": -4.1959,
+                  "gross_pnl_usdt": 2.110895,
+                  "fees_usdt": 3.153344,
+                  "slippage_usdt": 3.153344,
+                  "net_mean_bp": -5.205,
+                  "win_rate_pct": 46.15,
+                  "max_adverse_mark_dd_pct": 12.9458,
+                  "profit_factor": 0.8193
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 80,
-                  "end_equity_usdt": 88.722726,
-                  "net_return_pct": -11.2773,
-                  "gross_pnl_usdt": -0.78644,
-                  "fees_usdt": 7.496852,
-                  "slippage_usdt": 2.998741,
-                  "net_mean_bp": -14.6222,
-                  "win_rate_pct": 41.25,
-                  "max_adverse_mark_dd_pct": 13.9198,
-                  "profit_factor": null
+                  "trades": 78,
+                  "end_equity_usdt": 91.421391,
+                  "net_return_pct": -8.5786,
+                  "gross_pnl_usdt": 2.210892,
+                  "fees_usdt": 7.707703,
+                  "slippage_usdt": 3.083081,
+                  "net_mean_bp": -11.205,
+                  "win_rate_pct": 42.31,
+                  "max_adverse_mark_dd_pct": 15.596,
+                  "profit_factor": 0.6602
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 80,
-                  "end_equity_usdt": 84.561175,
-                  "net_return_pct": -15.4388,
-                  "gross_pnl_usdt": -0.796744,
-                  "fees_usdt": 11.720478,
-                  "slippage_usdt": 2.93012,
-                  "net_mean_bp": -20.6222,
-                  "win_rate_pct": 35.0,
-                  "max_adverse_mark_dd_pct": 17.4716,
-                  "profit_factor": null
+                  "trades": 78,
+                  "end_equity_usdt": 87.23797,
+                  "net_return_pct": -12.762,
+                  "gross_pnl_usdt": 2.308617,
+                  "fees_usdt": 12.059554,
+                  "slippage_usdt": 3.014889,
+                  "net_mean_bp": -17.205,
+                  "win_rate_pct": 38.46,
+                  "max_adverse_mark_dd_pct": 18.1664,
+                  "profit_factor": 0.5328
                 }
               }
             }
@@ -1820,7 +1820,7 @@
                   "net_mean_bp": -6.6784,
                   "win_rate_pct": 29.63,
                   "max_adverse_mark_dd_pct": 28.7707,
-                  "profit_factor": null
+                  "profit_factor": 0.4222
                 },
                 "fee5_slip2_each_way": {
                   "trades": 486,
@@ -1832,7 +1832,7 @@
                   "net_mean_bp": -12.6784,
                   "win_rate_pct": 19.55,
                   "max_adverse_mark_dd_pct": 46.1925,
-                  "profit_factor": null
+                  "profit_factor": 0.2131
                 },
                 "fee8_slip2_each_way": {
                   "trades": 486,
@@ -1844,7 +1844,7 @@
                   "net_mean_bp": -18.6784,
                   "win_rate_pct": 12.96,
                   "max_adverse_mark_dd_pct": 59.8001,
-                  "profit_factor": null
+                  "profit_factor": 0.1169
                 }
               },
               "validation": {
@@ -1858,7 +1858,7 @@
                   "net_mean_bp": -8.324,
                   "win_rate_pct": 19.9,
                   "max_adverse_mark_dd_pct": 15.266,
-                  "profit_factor": null
+                  "profit_factor": 0.1737
                 },
                 "fee5_slip2_each_way": {
                   "trades": 191,
@@ -1870,7 +1870,7 @@
                   "net_mean_bp": -14.324,
                   "win_rate_pct": 6.81,
                   "max_adverse_mark_dd_pct": 24.1957,
-                  "profit_factor": null
+                  "profit_factor": 0.0619
                 },
                 "fee8_slip2_each_way": {
                   "trades": 191,
@@ -1882,7 +1882,7 @@
                   "net_mean_bp": -20.324,
                   "win_rate_pct": 3.66,
                   "max_adverse_mark_dd_pct": 32.2234,
-                  "profit_factor": null
+                  "profit_factor": 0.0323
                 }
               },
               "oos": {
@@ -1896,7 +1896,7 @@
                   "net_mean_bp": -8.3524,
                   "win_rate_pct": 27.08,
                   "max_adverse_mark_dd_pct": 45.0756,
-                  "profit_factor": null
+                  "profit_factor": 0.3322
                 },
                 "fee5_slip2_each_way": {
                   "trades": 709,
@@ -1908,7 +1908,7 @@
                   "net_mean_bp": -14.3524,
                   "win_rate_pct": 17.49,
                   "max_adverse_mark_dd_pct": 64.0254,
-                  "profit_factor": null
+                  "profit_factor": 0.1682
                 },
                 "fee8_slip2_each_way": {
                   "trades": 709,
@@ -1920,7 +1920,7 @@
                   "net_mean_bp": -20.3524,
                   "win_rate_pct": 11.28,
                   "max_adverse_mark_dd_pct": 76.4497,
-                  "profit_factor": null
+                  "profit_factor": 0.0927
                 }
               }
             },
@@ -1936,7 +1936,7 @@
                   "net_mean_bp": -4.1656,
                   "win_rate_pct": 41.67,
                   "max_adverse_mark_dd_pct": 9.0714,
-                  "profit_factor": null
+                  "profit_factor": 0.7717
                 },
                 "fee5_slip2_each_way": {
                   "trades": 132,
@@ -1948,7 +1948,7 @@
                   "net_mean_bp": -10.1656,
                   "win_rate_pct": 33.33,
                   "max_adverse_mark_dd_pct": 14.3168,
-                  "profit_factor": null
+                  "profit_factor": 0.5411
                 },
                 "fee8_slip2_each_way": {
                   "trades": 132,
@@ -1960,7 +1960,7 @@
                   "net_mean_bp": -16.1656,
                   "win_rate_pct": 28.03,
                   "max_adverse_mark_dd_pct": 20.2804,
-                  "profit_factor": null
+                  "profit_factor": 0.3859
                 }
               },
               "validation": {
@@ -1974,7 +1974,7 @@
                   "net_mean_bp": -9.7982,
                   "win_rate_pct": 19.61,
                   "max_adverse_mark_dd_pct": 5.6503,
-                  "profit_factor": null
+                  "profit_factor": 0.2334
                 },
                 "fee5_slip2_each_way": {
                   "trades": 51,
@@ -1986,7 +1986,7 @@
                   "net_mean_bp": -15.7982,
                   "win_rate_pct": 15.69,
                   "max_adverse_mark_dd_pct": 8.3027,
-                  "profit_factor": null
+                  "profit_factor": 0.1102
                 },
                 "fee8_slip2_each_way": {
                   "trades": 51,
@@ -1998,7 +1998,7 @@
                   "net_mean_bp": -21.7982,
                   "win_rate_pct": 11.76,
                   "max_adverse_mark_dd_pct": 10.9026,
-                  "profit_factor": null
+                  "profit_factor": 0.049
                 }
               },
               "oos": {
@@ -2012,7 +2012,7 @@
                   "net_mean_bp": -9.2254,
                   "win_rate_pct": 31.5,
                   "max_adverse_mark_dd_pct": 18.169,
-                  "profit_factor": null
+                  "profit_factor": 0.5261
                 },
                 "fee5_slip2_each_way": {
                   "trades": 200,
@@ -2024,7 +2024,7 @@
                   "net_mean_bp": -15.2254,
                   "win_rate_pct": 25.0,
                   "max_adverse_mark_dd_pct": 27.3182,
-                  "profit_factor": null
+                  "profit_factor": 0.3656
                 },
                 "fee8_slip2_each_way": {
                   "trades": 200,
@@ -2036,7 +2036,7 @@
                   "net_mean_bp": -21.2254,
                   "win_rate_pct": 20.0,
                   "max_adverse_mark_dd_pct": 35.4468,
-                  "profit_factor": null
+                  "profit_factor": 0.2624
                 }
               }
             },
@@ -2052,7 +2052,7 @@
                   "net_mean_bp": 3.7368,
                   "win_rate_pct": 45.95,
                   "max_adverse_mark_dd_pct": 4.0198,
-                  "profit_factor": null
+                  "profit_factor": 1.1249
                 },
                 "fee5_slip2_each_way": {
                   "trades": 37,
@@ -2064,7 +2064,7 @@
                   "net_mean_bp": -2.2632,
                   "win_rate_pct": 43.24,
                   "max_adverse_mark_dd_pct": 4.9658,
-                  "profit_factor": null
+                  "profit_factor": 0.9151
                 },
                 "fee8_slip2_each_way": {
                   "trades": 37,
@@ -2076,7 +2076,7 @@
                   "net_mean_bp": -8.2632,
                   "win_rate_pct": 40.54,
                   "max_adverse_mark_dd_pct": 6.0234,
-                  "profit_factor": null
+                  "profit_factor": 0.7473
                 }
               },
               "validation": {
@@ -2090,7 +2090,7 @@
                   "net_mean_bp": -28.414,
                   "win_rate_pct": 21.43,
                   "max_adverse_mark_dd_pct": 4.1779,
-                  "profit_factor": null
+                  "profit_factor": 0.0798
                 },
                 "fee5_slip2_each_way": {
                   "trades": 14,
@@ -2102,7 +2102,7 @@
                   "net_mean_bp": -34.414,
                   "win_rate_pct": 7.14,
                   "max_adverse_mark_dd_pct": 4.9246,
-                  "profit_factor": null
+                  "profit_factor": 0.0491
                 },
                 "fee8_slip2_each_way": {
                   "trades": 14,
@@ -2114,7 +2114,7 @@
                   "net_mean_bp": -40.414,
                   "win_rate_pct": 7.14,
                   "max_adverse_mark_dd_pct": 5.6922,
-                  "profit_factor": null
+                  "profit_factor": 0.0322
                 }
               },
               "oos": {
@@ -2128,7 +2128,7 @@
                   "net_mean_bp": -10.542,
                   "win_rate_pct": 41.82,
                   "max_adverse_mark_dd_pct": 8.0577,
-                  "profit_factor": null
+                  "profit_factor": 0.668
                 },
                 "fee5_slip2_each_way": {
                   "trades": 55,
@@ -2140,7 +2140,7 @@
                   "net_mean_bp": -16.542,
                   "win_rate_pct": 36.36,
                   "max_adverse_mark_dd_pct": 9.8342,
-                  "profit_factor": null
+                  "profit_factor": 0.5363
                 },
                 "fee8_slip2_each_way": {
                   "trades": 55,
@@ -2152,7 +2152,7 @@
                   "net_mean_bp": -22.542,
                   "win_rate_pct": 32.73,
                   "max_adverse_mark_dd_pct": 11.9001,
-                  "profit_factor": null
+                  "profit_factor": 0.4337
                 }
               }
             }
@@ -2164,8 +2164,8 @@
       "matched_minutes": 87840,
       "metrics_rows": 17568,
       "train_thresholds": {
-        "oi_hi": 0.0026471385130943936,
-        "oi_lo": -0.0022588419908687873,
+        "oi_hi": 0.0014721630334992852,
+        "oi_lo": -0.0012208286944870306,
         "ret_hi": 0.0018500986719289791,
         "ret_lo": -0.001706955522899456,
         "top_pos_hi": 2.408022,
@@ -2175,706 +2175,706 @@
       },
       "families": {
         "oi_expansion_momentum": {
-          "signal_count": 16069,
+          "signal_count": 16716,
           "horizons": {
             "15": {
               "train": {
                 "fee2_slip2_each_way": {
-                  "trades": 839,
-                  "end_equity_usdt": 53.856959,
-                  "net_return_pct": -46.143,
-                  "gross_pnl_usdt": 4.118056,
-                  "fees_usdt": 25.133174,
-                  "slippage_usdt": 25.133174,
-                  "net_mean_bp": -7.2969,
-                  "win_rate_pct": 33.25,
-                  "max_adverse_mark_dd_pct": 47.6382,
-                  "profit_factor": null
+                  "trades": 809,
+                  "end_equity_usdt": 58.954777,
+                  "net_return_pct": -41.0452,
+                  "gross_pnl_usdt": 12.017364,
+                  "fees_usdt": 26.532444,
+                  "slippage_usdt": 26.532444,
+                  "net_mean_bp": -6.457,
+                  "win_rate_pct": 36.59,
+                  "max_adverse_mark_dd_pct": 44.8105,
+                  "profit_factor": 0.6112
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 839,
-                  "end_equity_usdt": 32.546004,
-                  "net_return_pct": -67.454,
-                  "gross_pnl_usdt": 3.486252,
-                  "fees_usdt": 50.679675,
-                  "slippage_usdt": 20.27187,
-                  "net_mean_bp": -13.2969,
-                  "win_rate_pct": 25.63,
-                  "max_adverse_mark_dd_pct": 67.9125,
-                  "profit_factor": null
+                  "trades": 809,
+                  "end_equity_usdt": 36.274083,
+                  "net_return_pct": -63.7259,
+                  "gross_pnl_usdt": 11.587566,
+                  "fees_usdt": 53.801523,
+                  "slippage_usdt": 21.520609,
+                  "net_mean_bp": -12.457,
+                  "win_rate_pct": 28.06,
+                  "max_adverse_mark_dd_pct": 65.4774,
+                  "profit_factor": 0.3953
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 839,
-                  "end_equity_usdt": 19.664723,
-                  "net_return_pct": -80.3353,
-                  "gross_pnl_usdt": 3.072665,
-                  "fees_usdt": 66.738123,
-                  "slippage_usdt": 16.684531,
-                  "net_mean_bp": -19.2969,
-                  "win_rate_pct": 20.38,
-                  "max_adverse_mark_dd_pct": 80.4662,
-                  "profit_factor": null
+                  "trades": 809,
+                  "end_equity_usdt": 22.315703,
+                  "net_return_pct": -77.6843,
+                  "gross_pnl_usdt": 11.211112,
+                  "fees_usdt": 71.126752,
+                  "slippage_usdt": 17.781688,
+                  "net_mean_bp": -18.457,
+                  "win_rate_pct": 21.76,
+                  "max_adverse_mark_dd_pct": 78.4082,
+                  "profit_factor": 0.2613
                 }
               },
               "validation": {
                 "fee2_slip2_each_way": {
-                  "trades": 201,
-                  "end_equity_usdt": 82.232182,
-                  "net_return_pct": -17.7678,
-                  "gross_pnl_usdt": -3.179415,
-                  "fees_usdt": 7.296692,
-                  "slippage_usdt": 7.296692,
-                  "net_mean_bp": -9.6981,
-                  "win_rate_pct": 28.36,
-                  "max_adverse_mark_dd_pct": 19.4366,
-                  "profit_factor": null
+                  "trades": 177,
+                  "end_equity_usdt": 83.007818,
+                  "net_return_pct": -16.9922,
+                  "gross_pnl_usdt": -4.063571,
+                  "fees_usdt": 6.466982,
+                  "slippage_usdt": 6.466982,
+                  "net_mean_bp": -10.4894,
+                  "win_rate_pct": 27.68,
+                  "max_adverse_mark_dd_pct": 17.5011,
+                  "profit_factor": 0.327
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 201,
-                  "end_equity_usdt": 72.884819,
-                  "net_return_pct": -27.1152,
-                  "gross_pnl_usdt": -3.014598,
-                  "fees_usdt": 17.222424,
-                  "slippage_usdt": 6.888969,
-                  "net_mean_bp": -15.6981,
-                  "win_rate_pct": 21.89,
-                  "max_adverse_mark_dd_pct": 28.1859,
-                  "profit_factor": null
+                  "trades": 177,
+                  "end_equity_usdt": 74.639985,
+                  "net_return_pct": -25.36,
+                  "gross_pnl_usdt": -3.857043,
+                  "fees_usdt": 15.36727,
+                  "slippage_usdt": 6.146908,
+                  "net_mean_bp": -16.4894,
+                  "win_rate_pct": 22.03,
+                  "max_adverse_mark_dd_pct": 25.6345,
+                  "profit_factor": 0.1784
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 201,
-                  "end_equity_usdt": 64.597633,
-                  "net_return_pct": -35.4024,
-                  "gross_pnl_usdt": -2.861671,
-                  "fees_usdt": 26.046634,
-                  "slippage_usdt": 6.511658,
-                  "net_mean_bp": -21.6981,
-                  "win_rate_pct": 13.93,
-                  "max_adverse_mark_dd_pct": 35.9872,
-                  "profit_factor": null
+                  "trades": 177,
+                  "end_equity_usdt": 67.113553,
+                  "net_return_pct": -32.8864,
+                  "gross_pnl_usdt": -3.664418,
+                  "fees_usdt": 23.392002,
+                  "slippage_usdt": 5.848001,
+                  "net_mean_bp": -22.4894,
+                  "win_rate_pct": 15.25,
+                  "max_adverse_mark_dd_pct": 33.0126,
+                  "profit_factor": 0.1003
                 }
               },
               "oos": {
                 "fee2_slip2_each_way": {
-                  "trades": 589,
-                  "end_equity_usdt": 62.580192,
-                  "net_return_pct": -37.4198,
-                  "gross_pnl_usdt": 0.441324,
-                  "fees_usdt": 18.933508,
-                  "slippage_usdt": 18.933508,
-                  "net_mean_bp": -7.9188,
-                  "win_rate_pct": 32.09,
-                  "max_adverse_mark_dd_pct": 38.2248,
-                  "profit_factor": null
+                  "trades": 660,
+                  "end_equity_usdt": 57.663862,
+                  "net_return_pct": -42.3361,
+                  "gross_pnl_usdt": -1.865037,
+                  "fees_usdt": 20.239172,
+                  "slippage_usdt": 20.239172,
+                  "net_mean_bp": -8.3027,
+                  "win_rate_pct": 30.76,
+                  "max_adverse_mark_dd_pct": 43.4089,
+                  "profit_factor": 0.4273
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 589,
-                  "end_equity_usdt": 43.941286,
-                  "net_return_pct": -56.0587,
-                  "gross_pnl_usdt": 0.545068,
-                  "fees_usdt": 40.440327,
-                  "slippage_usdt": 16.176131,
-                  "net_mean_bp": -13.9188,
-                  "win_rate_pct": 22.75,
-                  "max_adverse_mark_dd_pct": 56.4282,
-                  "profit_factor": null
+                  "trades": 660,
+                  "end_equity_usdt": 38.799709,
+                  "net_return_pct": -61.2003,
+                  "gross_pnl_usdt": -1.563487,
+                  "fees_usdt": 42.607657,
+                  "slippage_usdt": 17.043063,
+                  "net_mean_bp": -14.3027,
+                  "win_rate_pct": 22.58,
+                  "max_adverse_mark_dd_pct": 61.7043,
+                  "profit_factor": 0.2472
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 589,
-                  "end_equity_usdt": 30.850522,
-                  "net_return_pct": -69.1495,
-                  "gross_pnl_usdt": 0.632549,
-                  "fees_usdt": 55.840165,
-                  "slippage_usdt": 13.960041,
-                  "net_mean_bp": -19.9188,
-                  "win_rate_pct": 15.11,
-                  "max_adverse_mark_dd_pct": 69.2708,
-                  "profit_factor": null
+                  "trades": 660,
+                  "end_equity_usdt": 26.103669,
+                  "net_return_pct": -73.8963,
+                  "gross_pnl_usdt": -1.256012,
+                  "fees_usdt": 58.127102,
+                  "slippage_usdt": 14.531776,
+                  "net_mean_bp": -20.3027,
+                  "win_rate_pct": 15.45,
+                  "max_adverse_mark_dd_pct": 74.088,
+                  "profit_factor": 0.1516
                 }
               }
             },
             "60": {
               "train": {
                 "fee2_slip2_each_way": {
-                  "trades": 428,
-                  "end_equity_usdt": 85.527169,
-                  "net_return_pct": -14.4728,
-                  "gross_pnl_usdt": 16.527076,
-                  "fees_usdt": 15.496875,
-                  "slippage_usdt": 15.496875,
-                  "net_mean_bp": -3.4014,
-                  "win_rate_pct": 41.36,
-                  "max_adverse_mark_dd_pct": 24.695,
-                  "profit_factor": null
+                  "trades": 402,
+                  "end_equity_usdt": 93.473823,
+                  "net_return_pct": -6.5262,
+                  "gross_pnl_usdt": 24.158253,
+                  "fees_usdt": 15.33607,
+                  "slippage_usdt": 15.33607,
+                  "net_mean_bp": -1.4387,
+                  "win_rate_pct": 44.28,
+                  "max_adverse_mark_dd_pct": 11.9332,
+                  "profit_factor": 0.9303
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 428,
-                  "end_equity_usdt": 66.147876,
-                  "net_return_pct": -33.8521,
-                  "gross_pnl_usdt": 14.108652,
-                  "fees_usdt": 34.255994,
-                  "slippage_usdt": 13.702398,
-                  "net_mean_bp": -9.4014,
-                  "win_rate_pct": 36.68,
-                  "max_adverse_mark_dd_pct": 36.5057,
-                  "profit_factor": null
+                  "trades": 402,
+                  "end_equity_usdt": 73.431184,
+                  "net_return_pct": -26.5688,
+                  "gross_pnl_usdt": 21.121467,
+                  "fees_usdt": 34.056847,
+                  "slippage_usdt": 13.622739,
+                  "net_mean_bp": -7.4387,
+                  "win_rate_pct": 39.05,
+                  "max_adverse_mark_dd_pct": 27.5067,
+                  "profit_factor": 0.7192
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 428,
-                  "end_equity_usdt": 51.15572,
-                  "net_return_pct": -48.8443,
-                  "gross_pnl_usdt": 12.069551,
-                  "fees_usdt": 48.734222,
-                  "slippage_usdt": 12.183556,
-                  "net_mean_bp": -15.4014,
-                  "win_rate_pct": 32.24,
-                  "max_adverse_mark_dd_pct": 50.5421,
-                  "profit_factor": null
+                  "trades": 402,
+                  "end_equity_usdt": 57.681904,
+                  "net_return_pct": -42.3181,
+                  "gross_pnl_usdt": 18.481265,
+                  "fees_usdt": 48.635456,
+                  "slippage_usdt": 12.158864,
+                  "net_mean_bp": -13.4387,
+                  "win_rate_pct": 33.83,
+                  "max_adverse_mark_dd_pct": 42.8251,
+                  "profit_factor": 0.5585
                 }
               },
               "validation": {
                 "fee2_slip2_each_way": {
-                  "trades": 119,
-                  "end_equity_usdt": 81.969976,
-                  "net_return_pct": -18.03,
-                  "gross_pnl_usdt": -9.133936,
-                  "fees_usdt": 4.452273,
-                  "slippage_usdt": 4.452273,
-                  "net_mean_bp": -16.5805,
-                  "win_rate_pct": 35.29,
-                  "max_adverse_mark_dd_pct": 18.6466,
-                  "profit_factor": null
+                  "trades": 99,
+                  "end_equity_usdt": 87.596545,
+                  "net_return_pct": -12.4035,
+                  "gross_pnl_usdt": -4.898451,
+                  "fees_usdt": 3.755107,
+                  "slippage_usdt": 3.755107,
+                  "net_mean_bp": -13.2474,
+                  "win_rate_pct": 37.37,
+                  "max_adverse_mark_dd_pct": 13.5143,
+                  "profit_factor": 0.4529
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 119,
-                  "end_equity_usdt": 76.318376,
-                  "net_return_pct": -23.6816,
-                  "gross_pnl_usdt": -8.636313,
-                  "fees_usdt": 10.757865,
-                  "slippage_usdt": 4.303146,
-                  "net_mean_bp": -22.5805,
-                  "win_rate_pct": 33.61,
-                  "max_adverse_mark_dd_pct": 23.9274,
-                  "profit_factor": null
+                  "trades": 99,
+                  "end_equity_usdt": 82.542133,
+                  "net_return_pct": -17.4579,
+                  "gross_pnl_usdt": -4.696082,
+                  "fees_usdt": 9.122928,
+                  "slippage_usdt": 3.649171,
+                  "net_mean_bp": -19.2474,
+                  "win_rate_pct": 33.33,
+                  "max_adverse_mark_dd_pct": 17.9893,
+                  "profit_factor": 0.3158
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 119,
-                  "end_equity_usdt": 71.054913,
-                  "net_return_pct": -28.9451,
-                  "gross_pnl_usdt": -8.165158,
-                  "fees_usdt": 16.64269,
-                  "slippage_usdt": 4.160673,
-                  "net_mean_bp": -28.5805,
-                  "win_rate_pct": 23.53,
-                  "max_adverse_mark_dd_pct": 29.0675,
-                  "profit_factor": null
+                  "trades": 99,
+                  "end_equity_usdt": 77.777978,
+                  "net_return_pct": -22.222,
+                  "gross_pnl_usdt": -4.502194,
+                  "fees_usdt": 14.188828,
+                  "slippage_usdt": 3.547207,
+                  "net_mean_bp": -25.2474,
+                  "win_rate_pct": 24.24,
+                  "max_adverse_mark_dd_pct": 22.5062,
+                  "profit_factor": 0.2204
                 }
               },
               "oos": {
                 "fee2_slip2_each_way": {
-                  "trades": 282,
-                  "end_equity_usdt": 68.871602,
-                  "net_return_pct": -31.1284,
-                  "gross_pnl_usdt": -12.417193,
-                  "fees_usdt": 9.361309,
-                  "slippage_usdt": 9.361309,
-                  "net_mean_bp": -13.1058,
-                  "win_rate_pct": 35.46,
-                  "max_adverse_mark_dd_pct": 31.7295,
-                  "profit_factor": null
+                  "trades": 288,
+                  "end_equity_usdt": 72.72876,
+                  "net_return_pct": -27.2712,
+                  "gross_pnl_usdt": -7.176199,
+                  "fees_usdt": 10.05185,
+                  "slippage_usdt": 10.05185,
+                  "net_mean_bp": -10.946,
+                  "win_rate_pct": 36.81,
+                  "max_adverse_mark_dd_pct": 29.1226,
+                  "profit_factor": 0.5186
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 282,
-                  "end_equity_usdt": 58.145636,
-                  "net_return_pct": -41.8544,
-                  "gross_pnl_usdt": -11.563353,
-                  "fees_usdt": 21.65095,
-                  "slippage_usdt": 8.66038,
-                  "net_mean_bp": -19.1058,
-                  "win_rate_pct": 29.43,
-                  "max_adverse_mark_dd_pct": 42.2753,
-                  "profit_factor": null
+                  "trades": 288,
+                  "end_equity_usdt": 61.181314,
+                  "net_return_pct": -38.8187,
+                  "gross_pnl_usdt": -6.335927,
+                  "fees_usdt": 23.213728,
+                  "slippage_usdt": 9.285491,
+                  "net_mean_bp": -16.946,
+                  "win_rate_pct": 30.21,
+                  "max_adverse_mark_dd_pct": 39.7543,
+                  "profit_factor": 0.3672
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 282,
-                  "end_equity_usdt": 49.087621,
-                  "net_return_pct": -50.9124,
-                  "gross_pnl_usdt": -10.788589,
-                  "fees_usdt": 32.121973,
-                  "slippage_usdt": 8.030493,
-                  "net_mean_bp": -25.1058,
-                  "win_rate_pct": 25.89,
-                  "max_adverse_mark_dd_pct": 51.2133,
-                  "profit_factor": null
+                  "trades": 288,
+                  "end_equity_usdt": 51.464632,
+                  "net_return_pct": -48.5354,
+                  "gross_pnl_usdt": -5.56929,
+                  "fees_usdt": 34.392259,
+                  "slippage_usdt": 8.598065,
+                  "net_mean_bp": -22.946,
+                  "win_rate_pct": 24.65,
+                  "max_adverse_mark_dd_pct": 49.2462,
+                  "profit_factor": 0.2652
                 }
               }
             },
             "240": {
               "train": {
                 "fee2_slip2_each_way": {
-                  "trades": 153,
-                  "end_equity_usdt": 117.49626,
-                  "net_return_pct": 17.4963,
-                  "gross_pnl_usdt": 30.656189,
-                  "fees_usdt": 6.568899,
-                  "slippage_usdt": 6.568899,
-                  "net_mean_bp": 11.7696,
-                  "win_rate_pct": 50.33,
-                  "max_adverse_mark_dd_pct": 13.0064,
-                  "profit_factor": null
+                  "trades": 149,
+                  "end_equity_usdt": 107.089895,
+                  "net_return_pct": 7.0899,
+                  "gross_pnl_usdt": 19.472094,
+                  "fees_usdt": 6.184997,
+                  "slippage_usdt": 6.184997,
+                  "net_mean_bp": 5.673,
+                  "win_rate_pct": 51.01,
+                  "max_adverse_mark_dd_pct": 12.3261,
+                  "profit_factor": 1.1067
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 153,
-                  "end_equity_usdt": 107.184964,
-                  "net_return_pct": 7.185,
-                  "gross_pnl_usdt": 29.149309,
-                  "fees_usdt": 15.66603,
-                  "slippage_usdt": 6.266412,
-                  "net_mean_bp": 5.7696,
-                  "win_rate_pct": 47.71,
-                  "max_adverse_mark_dd_pct": 15.4783,
-                  "profit_factor": null
+                  "trades": 149,
+                  "end_equity_usdt": 97.926718,
+                  "net_return_pct": -2.0733,
+                  "gross_pnl_usdt": 18.623086,
+                  "fees_usdt": 14.771353,
+                  "slippage_usdt": 5.908541,
+                  "net_mean_bp": -0.327,
+                  "win_rate_pct": 47.65,
+                  "max_adverse_mark_dd_pct": 14.2133,
+                  "profit_factor": 0.9697
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 153,
-                  "end_equity_usdt": 97.775876,
-                  "net_return_pct": -2.2241,
-                  "gross_pnl_usdt": 27.723117,
-                  "fees_usdt": 23.928111,
-                  "slippage_usdt": 5.982028,
-                  "net_mean_bp": -0.2304,
-                  "win_rate_pct": 45.1,
-                  "max_adverse_mark_dd_pct": 18.1911,
-                  "profit_factor": null
+                  "trades": 149,
+                  "end_equity_usdt": 89.545186,
+                  "net_return_pct": -10.4548,
+                  "gross_pnl_usdt": 17.803048,
+                  "fees_usdt": 22.592273,
+                  "slippage_usdt": 5.648068,
+                  "net_mean_bp": -6.327,
+                  "win_rate_pct": 44.97,
+                  "max_adverse_mark_dd_pct": 16.0984,
+                  "profit_factor": 0.8497
                 }
               },
               "validation": {
                 "fee2_slip2_each_way": {
-                  "trades": 53,
-                  "end_equity_usdt": 93.337184,
-                  "net_return_pct": -6.6628,
-                  "gross_pnl_usdt": -2.477447,
-                  "fees_usdt": 2.094162,
-                  "slippage_usdt": 2.094162,
-                  "net_mean_bp": -12.5562,
-                  "win_rate_pct": 45.28,
-                  "max_adverse_mark_dd_pct": 14.1835,
-                  "profit_factor": null
+                  "trades": 47,
+                  "end_equity_usdt": 93.844324,
+                  "net_return_pct": -6.1557,
+                  "gross_pnl_usdt": -2.467146,
+                  "fees_usdt": 1.845681,
+                  "slippage_usdt": 1.845681,
+                  "net_mean_bp": -13.0137,
+                  "win_rate_pct": 40.43,
+                  "max_adverse_mark_dd_pct": 7.8184,
+                  "profit_factor": 0.6562
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 53,
-                  "end_equity_usdt": 90.414176,
-                  "net_return_pct": -9.5858,
-                  "gross_pnl_usdt": -2.373152,
-                  "fees_usdt": 5.15621,
-                  "slippage_usdt": 2.062484,
-                  "net_mean_bp": -18.5562,
-                  "win_rate_pct": 43.4,
-                  "max_adverse_mark_dd_pct": 16.2515,
-                  "profit_factor": null
+                  "trades": 47,
+                  "end_equity_usdt": 91.233464,
+                  "net_return_pct": -8.7665,
+                  "gross_pnl_usdt": -2.400247,
+                  "fees_usdt": 4.551437,
+                  "slippage_usdt": 1.820575,
+                  "net_mean_bp": -19.0137,
+                  "win_rate_pct": 31.91,
+                  "max_adverse_mark_dd_pct": 10.3022,
+                  "profit_factor": 0.5482
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 53,
-                  "end_equity_usdt": 87.581871,
-                  "net_return_pct": -12.4181,
-                  "gross_pnl_usdt": -2.270686,
-                  "fees_usdt": 8.125742,
-                  "slippage_usdt": 2.031435,
-                  "net_mean_bp": -24.5562,
-                  "win_rate_pct": 37.74,
-                  "max_adverse_mark_dd_pct": 18.5578,
-                  "profit_factor": null
+                  "trades": 47,
+                  "end_equity_usdt": 88.69449,
+                  "net_return_pct": -11.3055,
+                  "gross_pnl_usdt": -2.335139,
+                  "fees_usdt": 7.183661,
+                  "slippage_usdt": 1.795915,
+                  "net_mean_bp": -25.0137,
+                  "win_rate_pct": 27.66,
+                  "max_adverse_mark_dd_pct": 12.7199,
+                  "profit_factor": 0.4615
                 }
               },
               "oos": {
                 "fee2_slip2_each_way": {
-                  "trades": 93,
-                  "end_equity_usdt": 84.304735,
-                  "net_return_pct": -15.6953,
-                  "gross_pnl_usdt": -9.092002,
-                  "fees_usdt": 3.305629,
-                  "slippage_usdt": 3.305629,
-                  "net_mean_bp": -17.9781,
-                  "win_rate_pct": 45.16,
-                  "max_adverse_mark_dd_pct": 18.7404,
-                  "profit_factor": null
+                  "trades": 92,
+                  "end_equity_usdt": 101.950706,
+                  "net_return_pct": 1.9507,
+                  "gross_pnl_usdt": 9.358222,
+                  "fees_usdt": 3.700847,
+                  "slippage_usdt": 3.700847,
+                  "net_mean_bp": 2.4512,
+                  "win_rate_pct": 43.48,
+                  "max_adverse_mark_dd_pct": 5.9772,
+                  "profit_factor": 1.0701
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 93,
-                  "end_equity_usdt": 79.726923,
-                  "net_return_pct": -20.2731,
-                  "gross_pnl_usdt": -9.023457,
-                  "fees_usdt": 8.046014,
-                  "slippage_usdt": 3.218406,
-                  "net_mean_bp": -23.9781,
-                  "win_rate_pct": 41.94,
-                  "max_adverse_mark_dd_pct": 21.7798,
-                  "profit_factor": null
+                  "trades": 92,
+                  "end_equity_usdt": 96.472601,
+                  "net_return_pct": -3.5274,
+                  "gross_pnl_usdt": 9.0848,
+                  "fees_usdt": 9.003155,
+                  "slippage_usdt": 3.601262,
+                  "net_mean_bp": -3.5488,
+                  "win_rate_pct": 42.39,
+                  "max_adverse_mark_dd_pct": 7.8012,
+                  "profit_factor": 0.8838
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 93,
-                  "end_equity_usdt": 75.396425,
-                  "net_return_pct": -24.6036,
-                  "gross_pnl_usdt": -8.954401,
-                  "fees_usdt": 12.537029,
-                  "slippage_usdt": 3.134257,
-                  "net_mean_bp": -29.9781,
-                  "win_rate_pct": 34.41,
-                  "max_adverse_mark_dd_pct": 25.3608,
-                  "profit_factor": null
+                  "trades": 92,
+                  "end_equity_usdt": 91.287337,
+                  "net_return_pct": -8.7127,
+                  "gross_pnl_usdt": 8.82128,
+                  "fees_usdt": 14.020754,
+                  "slippage_usdt": 3.505189,
+                  "net_mean_bp": -9.5488,
+                  "win_rate_pct": 39.13,
+                  "max_adverse_mark_dd_pct": 10.6089,
+                  "profit_factor": 0.7338
                 }
               }
             }
           }
         },
         "oi_contraction_reversal": {
-          "signal_count": 9475,
+          "signal_count": 8490,
           "horizons": {
             "15": {
               "train": {
                 "fee2_slip2_each_way": {
-                  "trades": 695,
-                  "end_equity_usdt": 61.203944,
-                  "net_return_pct": -38.7961,
-                  "gross_pnl_usdt": 4.635514,
-                  "fees_usdt": 21.717741,
-                  "slippage_usdt": 21.717741,
-                  "net_mean_bp": -6.9768,
-                  "win_rate_pct": 40.86,
-                  "max_adverse_mark_dd_pct": 39.0957,
-                  "profit_factor": null
+                  "trades": 647,
+                  "end_equity_usdt": 64.70179,
+                  "net_return_pct": -35.2982,
+                  "gross_pnl_usdt": 5.339005,
+                  "fees_usdt": 20.319955,
+                  "slippage_usdt": 20.319955,
+                  "net_mean_bp": -6.6512,
+                  "win_rate_pct": 41.58,
+                  "max_adverse_mark_dd_pct": 35.6978,
+                  "profit_factor": 0.5878
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 695,
-                  "end_equity_usdt": 40.325424,
-                  "net_return_pct": -59.6746,
-                  "gross_pnl_usdt": 3.48031,
-                  "fees_usdt": 45.118065,
-                  "slippage_usdt": 18.047226,
-                  "net_mean_bp": -12.9768,
-                  "win_rate_pct": 31.65,
-                  "max_adverse_mark_dd_pct": 59.8358,
-                  "profit_factor": null
+                  "trades": 647,
+                  "end_equity_usdt": 43.876341,
+                  "net_return_pct": -56.1237,
+                  "gross_pnl_usdt": 3.552267,
+                  "fees_usdt": 42.632211,
+                  "slippage_usdt": 17.052884,
+                  "net_mean_bp": -12.6512,
+                  "win_rate_pct": 32.61,
+                  "max_adverse_mark_dd_pct": 56.3161,
+                  "profit_factor": 0.3679
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 695,
-                  "end_equity_usdt": 26.565872,
-                  "net_return_pct": -73.4341,
-                  "gross_pnl_usdt": 2.594772,
-                  "fees_usdt": 60.835396,
-                  "slippage_usdt": 15.208849,
-                  "net_mean_bp": -18.9768,
-                  "win_rate_pct": 25.47,
-                  "max_adverse_mark_dd_pct": 73.5165,
-                  "profit_factor": null
+                  "trades": 647,
+                  "end_equity_usdt": 29.750472,
+                  "net_return_pct": -70.2495,
+                  "gross_pnl_usdt": 2.175507,
+                  "fees_usdt": 57.951764,
+                  "slippage_usdt": 14.487941,
+                  "net_mean_bp": -18.6512,
+                  "win_rate_pct": 26.12,
+                  "max_adverse_mark_dd_pct": 70.3374,
+                  "profit_factor": 0.232
                 }
               },
               "validation": {
                 "fee2_slip2_each_way": {
-                  "trades": 198,
-                  "end_equity_usdt": 84.045053,
-                  "net_return_pct": -15.9549,
-                  "gross_pnl_usdt": -1.40052,
-                  "fees_usdt": 7.279093,
-                  "slippage_usdt": 7.279093,
-                  "net_mean_bp": -8.7341,
-                  "win_rate_pct": 37.37,
-                  "max_adverse_mark_dd_pct": 16.5962,
-                  "profit_factor": null
+                  "trades": 169,
+                  "end_equity_usdt": 84.103211,
+                  "net_return_pct": -15.8968,
+                  "gross_pnl_usdt": -3.407868,
+                  "fees_usdt": 6.246911,
+                  "slippage_usdt": 6.246911,
+                  "net_mean_bp": -10.1786,
+                  "win_rate_pct": 42.6,
+                  "max_adverse_mark_dd_pct": 16.3763,
+                  "profit_factor": 0.333
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 198,
-                  "end_equity_usdt": 74.625899,
-                  "net_return_pct": -25.3741,
-                  "gross_pnl_usdt": -1.317503,
-                  "fees_usdt": 17.189676,
-                  "slippage_usdt": 6.875871,
-                  "net_mean_bp": -14.7341,
-                  "win_rate_pct": 25.76,
-                  "max_adverse_mark_dd_pct": 25.9212,
-                  "profit_factor": null
+                  "trades": 169,
+                  "end_equity_usdt": 75.989027,
+                  "net_return_pct": -24.011,
+                  "gross_pnl_usdt": -3.198231,
+                  "fees_usdt": 14.873712,
+                  "slippage_usdt": 5.949485,
+                  "net_mean_bp": -16.1786,
+                  "win_rate_pct": 29.59,
+                  "max_adverse_mark_dd_pct": 24.4216,
+                  "profit_factor": 0.1545
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 198,
-                  "end_equity_usdt": 66.26001,
-                  "net_return_pct": -33.74,
-                  "gross_pnl_usdt": -1.243459,
-                  "fees_usdt": 26.009465,
-                  "slippage_usdt": 6.502366,
-                  "net_mean_bp": -20.7341,
-                  "win_rate_pct": 16.16,
-                  "max_adverse_mark_dd_pct": 34.206,
-                  "profit_factor": null
+                  "trades": 169,
+                  "end_equity_usdt": 68.655599,
+                  "net_return_pct": -31.3444,
+                  "gross_pnl_usdt": -3.006927,
+                  "fees_usdt": 22.68357,
+                  "slippage_usdt": 5.670893,
+                  "net_mean_bp": -22.1786,
+                  "win_rate_pct": 16.57,
+                  "max_adverse_mark_dd_pct": 31.6949,
+                  "profit_factor": 0.0713
                 }
               },
               "oos": {
                 "fee2_slip2_each_way": {
-                  "trades": 446,
-                  "end_equity_usdt": 70.327342,
-                  "net_return_pct": -29.6727,
-                  "gross_pnl_usdt": 0.427028,
-                  "fees_usdt": 15.05228,
-                  "slippage_usdt": 15.05228,
-                  "net_mean_bp": -7.841,
-                  "win_rate_pct": 37.0,
-                  "max_adverse_mark_dd_pct": 30.7474,
-                  "profit_factor": null
+                  "trades": 448,
+                  "end_equity_usdt": 74.413974,
+                  "net_return_pct": -25.586,
+                  "gross_pnl_usdt": 5.354393,
+                  "fees_usdt": 15.471067,
+                  "slippage_usdt": 15.471067,
+                  "net_mean_bp": -6.5472,
+                  "win_rate_pct": 40.18,
+                  "max_adverse_mark_dd_pct": 26.8362,
+                  "profit_factor": 0.5407
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 446,
-                  "end_equity_usdt": 53.807529,
-                  "net_return_pct": -46.1925,
-                  "gross_pnl_usdt": 0.404527,
-                  "fees_usdt": 33.291839,
-                  "slippage_usdt": 13.316735,
-                  "net_mean_bp": -13.841,
-                  "win_rate_pct": 28.92,
-                  "max_adverse_mark_dd_pct": 46.8714,
-                  "profit_factor": null
+                  "trades": 448,
+                  "end_equity_usdt": 56.865898,
+                  "net_return_pct": -43.1341,
+                  "gross_pnl_usdt": 4.682498,
+                  "fees_usdt": 34.160181,
+                  "slippage_usdt": 13.664072,
+                  "net_mean_bp": -12.5472,
+                  "win_rate_pct": 30.36,
+                  "max_adverse_mark_dd_pct": 43.9382,
+                  "profit_factor": 0.3131
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 446,
-                  "end_equity_usdt": 41.164891,
-                  "net_return_pct": -58.8351,
-                  "gross_pnl_usdt": 0.393382,
-                  "fees_usdt": 47.397333,
-                  "slippage_usdt": 11.849333,
-                  "net_mean_bp": -19.841,
-                  "win_rate_pct": 21.52,
-                  "max_adverse_mark_dd_pct": 59.2743,
-                  "profit_factor": null
+                  "trades": 448,
+                  "end_equity_usdt": 43.452446,
+                  "net_return_pct": -56.5476,
+                  "gross_pnl_usdt": 4.133491,
+                  "fees_usdt": 48.556203,
+                  "slippage_usdt": 12.139051,
+                  "net_mean_bp": -18.5472,
+                  "win_rate_pct": 23.21,
+                  "max_adverse_mark_dd_pct": 57.0461,
+                  "profit_factor": 0.1857
                 }
               }
             },
             "60": {
               "train": {
                 "fee2_slip2_each_way": {
-                  "trades": 387,
-                  "end_equity_usdt": 74.196751,
-                  "net_return_pct": -25.8032,
-                  "gross_pnl_usdt": 0.429894,
-                  "fees_usdt": 13.118783,
-                  "slippage_usdt": 13.118783,
-                  "net_mean_bp": -7.4974,
-                  "win_rate_pct": 44.44,
-                  "max_adverse_mark_dd_pct": 26.2766,
-                  "profit_factor": null
+                  "trades": 356,
+                  "end_equity_usdt": 82.269471,
+                  "net_return_pct": -17.7305,
+                  "gross_pnl_usdt": 7.199349,
+                  "fees_usdt": 12.464615,
+                  "slippage_usdt": 12.464615,
+                  "net_mean_bp": -5.2377,
+                  "win_rate_pct": 45.79,
+                  "max_adverse_mark_dd_pct": 22.5822,
+                  "profit_factor": 0.7724
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 387,
-                  "end_equity_usdt": 58.814744,
-                  "net_return_pct": -41.1853,
-                  "gross_pnl_usdt": -0.000149,
-                  "fees_usdt": 29.425737,
-                  "slippage_usdt": 11.770295,
-                  "net_mean_bp": -13.4974,
-                  "win_rate_pct": 40.05,
-                  "max_adverse_mark_dd_pct": 41.3126,
-                  "profit_factor": null
+                  "trades": 356,
+                  "end_equity_usdt": 66.438888,
+                  "net_return_pct": -33.5611,
+                  "gross_pnl_usdt": 5.840715,
+                  "fees_usdt": 28.147062,
+                  "slippage_usdt": 11.258825,
+                  "net_mean_bp": -11.2377,
+                  "win_rate_pct": 40.45,
+                  "max_adverse_mark_dd_pct": 34.2932,
+                  "profit_factor": 0.5834
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 387,
-                  "end_equity_usdt": 46.618387,
-                  "net_return_pct": -53.3816,
-                  "gross_pnl_usdt": -0.361709,
-                  "fees_usdt": 42.430163,
-                  "slippage_usdt": 10.607541,
-                  "net_mean_bp": -19.4974,
-                  "win_rate_pct": 36.69,
-                  "max_adverse_mark_dd_pct": 53.4686,
-                  "profit_factor": null
+                  "trades": 356,
+                  "end_equity_usdt": 53.651039,
+                  "net_return_pct": -46.349,
+                  "gross_pnl_usdt": 4.681017,
+                  "fees_usdt": 40.832323,
+                  "slippage_usdt": 10.208081,
+                  "net_mean_bp": -17.2377,
+                  "win_rate_pct": 38.2,
+                  "max_adverse_mark_dd_pct": 46.384,
+                  "profit_factor": 0.4408
                 }
               },
               "validation": {
                 "fee2_slip2_each_way": {
-                  "trades": 116,
-                  "end_equity_usdt": 93.817798,
-                  "net_return_pct": -6.1822,
-                  "gross_pnl_usdt": 2.59637,
-                  "fees_usdt": 4.38912,
-                  "slippage_usdt": 4.38912,
-                  "net_mean_bp": -5.3817,
-                  "win_rate_pct": 43.97,
-                  "max_adverse_mark_dd_pct": 11.9195,
-                  "profit_factor": null
+                  "trades": 101,
+                  "end_equity_usdt": 96.720347,
+                  "net_return_pct": -3.2797,
+                  "gross_pnl_usdt": 4.387228,
+                  "fees_usdt": 3.832439,
+                  "slippage_usdt": 3.832439,
+                  "net_mean_bp": -3.1623,
+                  "win_rate_pct": 38.61,
+                  "max_adverse_mark_dd_pct": 10.3015,
+                  "profit_factor": 0.8182
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 116,
-                  "end_equity_usdt": 87.50678,
-                  "net_return_pct": -12.4932,
-                  "gross_pnl_usdt": 2.355408,
-                  "fees_usdt": 10.607299,
-                  "slippage_usdt": 4.242919,
-                  "net_mean_bp": -11.3817,
-                  "win_rate_pct": 38.79,
-                  "max_adverse_mark_dd_pct": 17.1475,
-                  "profit_factor": null
+                  "trades": 101,
+                  "end_equity_usdt": 91.03012,
+                  "net_return_pct": -8.9699,
+                  "gross_pnl_usdt": 4.053601,
+                  "fees_usdt": 9.301508,
+                  "slippage_usdt": 3.720603,
+                  "net_mean_bp": -9.1623,
+                  "win_rate_pct": 32.67,
+                  "max_adverse_mark_dd_pct": 13.4191,
+                  "profit_factor": 0.5763
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 116,
-                  "end_equity_usdt": 81.618591,
-                  "net_return_pct": -18.3814,
-                  "gross_pnl_usdt": 2.129468,
-                  "fees_usdt": 16.412675,
-                  "slippage_usdt": 4.103169,
-                  "net_mean_bp": -17.3817,
-                  "win_rate_pct": 31.9,
-                  "max_adverse_mark_dd_pct": 22.0935,
-                  "profit_factor": null
+                  "trades": 101,
+                  "end_equity_usdt": 85.6731,
+                  "net_return_pct": -14.3269,
+                  "gross_pnl_usdt": 3.737772,
+                  "fees_usdt": 14.452345,
+                  "slippage_usdt": 3.613086,
+                  "net_mean_bp": -15.1623,
+                  "win_rate_pct": 26.73,
+                  "max_adverse_mark_dd_pct": 17.3998,
+                  "profit_factor": 0.4139
                 }
               },
               "oos": {
                 "fee2_slip2_each_way": {
-                  "trades": 243,
-                  "end_equity_usdt": 82.356266,
-                  "net_return_pct": -17.6437,
-                  "gross_pnl_usdt": -0.509454,
-                  "fees_usdt": 8.568842,
-                  "slippage_usdt": 8.568842,
-                  "net_mean_bp": -7.849,
-                  "win_rate_pct": 39.09,
-                  "max_adverse_mark_dd_pct": 20.9489,
-                  "profit_factor": null
+                  "trades": 229,
+                  "end_equity_usdt": 99.669654,
+                  "net_return_pct": -0.3303,
+                  "gross_pnl_usdt": 17.666067,
+                  "fees_usdt": 8.992989,
+                  "slippage_usdt": 8.992989,
+                  "net_mean_bp": 0.0051,
+                  "win_rate_pct": 46.29,
+                  "max_adverse_mark_dd_pct": 6.1382,
+                  "profit_factor": 0.9923
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 243,
-                  "end_equity_usdt": 71.177325,
-                  "net_return_pct": -28.8227,
-                  "gross_pnl_usdt": -0.858135,
-                  "fees_usdt": 19.980949,
-                  "slippage_usdt": 7.992379,
-                  "net_mean_bp": -13.849,
-                  "win_rate_pct": 33.33,
-                  "max_adverse_mark_dd_pct": 28.8227,
-                  "profit_factor": null
+                  "trades": 229,
+                  "end_equity_usdt": 86.867645,
+                  "net_return_pct": -13.1324,
+                  "gross_pnl_usdt": 16.289292,
+                  "fees_usdt": 21.007075,
+                  "slippage_usdt": 8.40283,
+                  "net_mean_bp": -5.9949,
+                  "win_rate_pct": 37.99,
+                  "max_adverse_mark_dd_pct": 14.1295,
+                  "profit_factor": 0.7172
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 243,
-                  "end_equity_usdt": 61.513107,
-                  "net_return_pct": -38.4869,
-                  "gross_pnl_usdt": -1.163961,
-                  "fees_usdt": 29.870625,
-                  "slippage_usdt": 7.467656,
-                  "net_mean_bp": -19.849,
-                  "win_rate_pct": 27.98,
-                  "max_adverse_mark_dd_pct": 38.4869,
-                  "profit_factor": null
+                  "trades": 229,
+                  "end_equity_usdt": 75.706858,
+                  "net_return_pct": -24.2931,
+                  "gross_pnl_usdt": 15.033529,
+                  "fees_usdt": 31.453805,
+                  "slippage_usdt": 7.863451,
+                  "net_mean_bp": -11.9949,
+                  "win_rate_pct": 33.62,
+                  "max_adverse_mark_dd_pct": 24.4714,
+                  "profit_factor": 0.5264
                 }
               }
             },
             "240": {
               "train": {
                 "fee2_slip2_each_way": {
-                  "trades": 145,
-                  "end_equity_usdt": 89.380939,
-                  "net_return_pct": -10.6191,
-                  "gross_pnl_usdt": 0.098602,
-                  "fees_usdt": 5.360124,
-                  "slippage_usdt": 5.360124,
-                  "net_mean_bp": -6.9866,
-                  "win_rate_pct": 49.66,
-                  "max_adverse_mark_dd_pct": 15.6996,
-                  "profit_factor": null
+                  "trades": 139,
+                  "end_equity_usdt": 82.725851,
+                  "net_return_pct": -17.2741,
+                  "gross_pnl_usdt": -7.347434,
+                  "fees_usdt": 4.967425,
+                  "slippage_usdt": 4.967425,
+                  "net_mean_bp": -12.4885,
+                  "win_rate_pct": 53.96,
+                  "max_adverse_mark_dd_pct": 25.0537,
+                  "profit_factor": 0.7252
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 145,
-                  "end_equity_usdt": 81.929536,
-                  "net_return_pct": -18.0705,
-                  "gross_pnl_usdt": -0.096417,
-                  "fees_usdt": 12.843352,
-                  "slippage_usdt": 5.137341,
-                  "net_mean_bp": -12.9866,
-                  "win_rate_pct": 45.52,
-                  "max_adverse_mark_dd_pct": 20.9681,
-                  "profit_factor": null
+                  "trades": 139,
+                  "end_equity_usdt": 76.102891,
+                  "net_return_pct": -23.8971,
+                  "gross_pnl_usdt": -7.200337,
+                  "fees_usdt": 11.937216,
+                  "slippage_usdt": 4.774886,
+                  "net_mean_bp": -18.4885,
+                  "win_rate_pct": 51.08,
+                  "max_adverse_mark_dd_pct": 29.5264,
+                  "profit_factor": 0.6259
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 145,
-                  "end_equity_usdt": 75.097371,
-                  "net_return_pct": -24.9026,
-                  "gross_pnl_usdt": -0.280424,
-                  "fees_usdt": 19.707349,
-                  "slippage_usdt": 4.926837,
-                  "net_mean_bp": -18.9866,
-                  "win_rate_pct": 42.76,
-                  "max_adverse_mark_dd_pct": 26.0795,
-                  "profit_factor": null
+                  "trades": 139,
+                  "end_equity_usdt": 70.008404,
+                  "net_return_pct": -29.9916,
+                  "gross_pnl_usdt": -7.05295,
+                  "fees_usdt": 18.369383,
+                  "slippage_usdt": 4.592346,
+                  "net_mean_bp": -24.4885,
+                  "win_rate_pct": 48.2,
+                  "max_adverse_mark_dd_pct": 33.7335,
+                  "profit_factor": 0.5387
                 }
               },
               "validation": {
                 "fee2_slip2_each_way": {
-                  "trades": 51,
-                  "end_equity_usdt": 96.523926,
-                  "net_return_pct": -3.4761,
-                  "gross_pnl_usdt": 0.576991,
-                  "fees_usdt": 2.026792,
-                  "slippage_usdt": 2.026792,
-                  "net_mean_bp": -6.5557,
-                  "win_rate_pct": 47.06,
-                  "max_adverse_mark_dd_pct": 10.4662,
-                  "profit_factor": null
+                  "trades": 46,
+                  "end_equity_usdt": 95.658369,
+                  "net_return_pct": -4.3416,
+                  "gross_pnl_usdt": -0.672336,
+                  "fees_usdt": 1.835372,
+                  "slippage_usdt": 1.835372,
+                  "net_mean_bp": -9.1853,
+                  "win_rate_pct": 52.17,
+                  "max_adverse_mark_dd_pct": 7.1304,
+                  "profit_factor": 0.753
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 51,
-                  "end_equity_usdt": 93.61345,
-                  "net_return_pct": -6.3865,
-                  "gross_pnl_usdt": 0.601263,
-                  "fees_usdt": 4.992642,
-                  "slippage_usdt": 1.997057,
-                  "net_mean_bp": -12.5557,
-                  "win_rate_pct": 39.22,
-                  "max_adverse_mark_dd_pct": 12.6082,
-                  "profit_factor": null
+                  "trades": 46,
+                  "end_equity_usdt": 93.052886,
+                  "net_return_pct": -6.9471,
+                  "gross_pnl_usdt": -0.612197,
+                  "fees_usdt": 4.527347,
+                  "slippage_usdt": 1.810939,
+                  "net_mean_bp": -15.1853,
+                  "win_rate_pct": 50.0,
+                  "max_adverse_mark_dd_pct": 9.5785,
+                  "profit_factor": 0.6275
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 51,
-                  "end_equity_usdt": 90.7899,
-                  "net_return_pct": -9.2101,
-                  "gross_pnl_usdt": 0.625357,
-                  "fees_usdt": 7.871571,
-                  "slippage_usdt": 1.967893,
-                  "net_mean_bp": -18.5557,
-                  "win_rate_pct": 29.41,
-                  "max_adverse_mark_dd_pct": 14.9461,
-                  "profit_factor": null
+                  "trades": 46,
+                  "end_equity_usdt": 90.517619,
+                  "net_return_pct": -9.4824,
+                  "gross_pnl_usdt": -0.553668,
+                  "fees_usdt": 7.147718,
+                  "slippage_usdt": 1.78693,
+                  "net_mean_bp": -21.1853,
+                  "win_rate_pct": 45.65,
+                  "max_adverse_mark_dd_pct": 11.9628,
+                  "profit_factor": 0.5204
                 }
               },
               "oos": {
                 "fee2_slip2_each_way": {
-                  "trades": 89,
-                  "end_equity_usdt": 83.476885,
-                  "net_return_pct": -16.5231,
-                  "gross_pnl_usdt": -10.172099,
-                  "fees_usdt": 3.179876,
-                  "slippage_usdt": 3.179876,
-                  "net_mean_bp": -19.8975,
-                  "win_rate_pct": 38.2,
-                  "max_adverse_mark_dd_pct": 18.2625,
-                  "profit_factor": null
+                  "trades": 88,
+                  "end_equity_usdt": 85.900283,
+                  "net_return_pct": -14.0997,
+                  "gross_pnl_usdt": -7.914064,
+                  "fees_usdt": 3.096348,
+                  "slippage_usdt": 3.096348,
+                  "net_mean_bp": -16.9006,
+                  "win_rate_pct": 44.32,
+                  "max_adverse_mark_dd_pct": 18.5322,
+                  "profit_factor": 0.5606
                 },
                 "fee5_slip2_each_way": {
-                  "trades": 89,
-                  "end_equity_usdt": 79.133823,
-                  "net_return_pct": -20.8662,
-                  "gross_pnl_usdt": -10.033454,
-                  "fees_usdt": 7.749074,
-                  "slippage_usdt": 3.09963,
-                  "net_mean_bp": -25.8975,
-                  "win_rate_pct": 34.83,
-                  "max_adverse_mark_dd_pct": 21.2726,
-                  "profit_factor": null
+                  "trades": 88,
+                  "end_equity_usdt": 81.480039,
+                  "net_return_pct": -18.52,
+                  "gross_pnl_usdt": -7.966326,
+                  "fees_usdt": 7.547745,
+                  "slippage_usdt": 3.019098,
+                  "net_mean_bp": -22.9006,
+                  "win_rate_pct": 37.5,
+                  "max_adverse_mark_dd_pct": 21.5135,
+                  "profit_factor": 0.4594
                 },
                 "fee8_slip2_each_way": {
-                  "trades": 89,
-                  "end_equity_usdt": 75.015514,
-                  "net_return_pct": -24.9845,
-                  "gross_pnl_usdt": -9.897707,
-                  "fees_usdt": 12.088351,
-                  "slippage_usdt": 3.022088,
-                  "net_mean_bp": -31.8975,
-                  "win_rate_pct": 29.21,
-                  "max_adverse_mark_dd_pct": 25.2075,
-                  "profit_factor": null
+                  "trades": 88,
+                  "end_equity_usdt": 77.286025,
+                  "net_return_pct": -22.714,
+                  "gross_pnl_usdt": -8.01176,
+                  "fees_usdt": 11.777733,
+                  "slippage_usdt": 2.944433,
+                  "net_mean_bp": -28.9006,
+                  "win_rate_pct": 35.23,
+                  "max_adverse_mark_dd_pct": 24.6766,
+                  "profit_factor": 0.377
                 }
               }
             }
@@ -2895,7 +2895,7 @@
                   "net_mean_bp": 96.9223,
                   "win_rate_pct": 71.43,
                   "max_adverse_mark_dd_pct": 0.5909,
-                  "profit_factor": null
+                  "profit_factor": 68.628
                 },
                 "fee5_slip2_each_way": {
                   "trades": 7,
@@ -2907,7 +2907,7 @@
                   "net_mean_bp": 90.9223,
                   "win_rate_pct": 71.43,
                   "max_adverse_mark_dd_pct": 0.6208,
-                  "profit_factor": null
+                  "profit_factor": 29.7431
                 },
                 "fee8_slip2_each_way": {
                   "trades": 7,
@@ -2919,7 +2919,7 @@
                   "net_mean_bp": 84.9223,
                   "win_rate_pct": 71.43,
                   "max_adverse_mark_dd_pct": 0.6506,
-                  "profit_factor": null
+                  "profit_factor": 18.3462
                 }
               },
               "validation": {
@@ -3011,7 +3011,7 @@
                   "net_mean_bp": 158.9955,
                   "win_rate_pct": 66.67,
                   "max_adverse_mark_dd_pct": 0.5751,
-                  "profit_factor": null
+                  "profit_factor": 23.5266
                 },
                 "fee5_slip2_each_way": {
                   "trades": 3,
@@ -3023,7 +3023,7 @@
                   "net_mean_bp": 152.9955,
                   "win_rate_pct": 66.67,
                   "max_adverse_mark_dd_pct": 0.6049,
-                  "profit_factor": null
+                  "profit_factor": 17.7519
                 },
                 "fee8_slip2_each_way": {
                   "trades": 3,
@@ -3035,7 +3035,7 @@
                   "net_mean_bp": 146.9955,
                   "win_rate_pct": 66.67,
                   "max_adverse_mark_dd_pct": 0.6348,
-                  "profit_factor": null
+                  "profit_factor": 14.1169
                 }
               },
               "validation": {
@@ -3127,7 +3127,7 @@
                   "net_mean_bp": 728.9939,
                   "win_rate_pct": 100.0,
                   "max_adverse_mark_dd_pct": 0.4127,
-                  "profit_factor": null
+                  "profit_factor": "inf"
                 },
                 "fee5_slip2_each_way": {
                   "trades": 1,
@@ -3139,7 +3139,7 @@
                   "net_mean_bp": 722.9939,
                   "win_rate_pct": 100.0,
                   "max_adverse_mark_dd_pct": 0.4426,
-                  "profit_factor": null
+                  "profit_factor": "inf"
                 },
                 "fee8_slip2_each_way": {
                   "trades": 1,
@@ -3151,7 +3151,7 @@
                   "net_mean_bp": 716.9939,
                   "win_rate_pct": 100.0,
                   "max_adverse_mark_dd_pct": 0.4725,
-                  "profit_factor": null
+                  "profit_factor": "inf"
                 }
               },
               "validation": {
