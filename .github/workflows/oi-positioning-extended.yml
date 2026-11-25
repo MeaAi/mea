@@ -26,8 +26,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 360
     env:
-      START_DAY: ${{ github.event.inputs.start_day }}
-      END_DAY: ${{ github.event.inputs.end_day }}
+      START_DAY: ${{ github.event.inputs.start_day || '2024-01-01' }}
+      END_DAY: ${{ github.event.inputs.end_day || '2026-10-31' }}
     steps:
       - uses: actions/checkout@v6
         with:
