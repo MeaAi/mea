@@ -1,0 +1,54 @@
+name: OBI OFI boundary-corrected Binance replay
+
+on:
+  push:
+    branches:
+      - research/obi-ofi-boundaryfix-v1
+    paths:
+      - ".github/workflows/obi-ofi-corrected-replay.yml"
+      - "research/bookdepth_signal_diagnostic_boundaryfix.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: obi-ofi-corrected-replay
+  cancel-in-progress: false
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Checkout isolated correction branch
+        uses: actions/checkout@v4
+        with:
+          ref: research/obi-ofi-boundaryfix-v1
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Acquire identical free Binance pilot data
+        run: |
+          python research/binance_public_pipeline.py --start 2024-05 --end 2024-06 --symbols BTCUSDT,ETHUSDT,SOLUSDT --out research-output
+          python research/binance_bookdepth_pipeline.py --start 2024-05 --end 2024-06 --symbols BTCUSDT,ETHUSDT,SOLUSDT --out research-output
+      - name: Run boundary-corrected OBI OFI diagnostic
+        run: |
+          python research/bookdepth_signal_diagnostic_boundaryfix.py \
+            --bookdepth "research-output/*-bookdepth-1m.csv.gz" \
+            --orderflow "research-output/*-1m-orderflow.csv.gz" \
+            --out research-output/bookdepth_signal_diagnostic_boundaryfix.json
+      - name: Publish compact corrected report only
+        run: |
+          mkdir -p research-results
+          cp research-output/bookdepth_signal_diagnostic_boundaryfix.json research-results/
+          cp research-output/bookdepth_qa_report.json research-results/bookdepth_qa_report_boundaryfix.json
+          rm -rf research-output
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research-results/bookdepth_signal_diagnostic_boundaryfix.json research-results/bookdepth_qa_report_boundaryfix.json
+          git commit -m "Publish boundary-corrected OBI OFI replay results" || echo "No report changes"
+          git fetch origin research/obi-ofi-boundaryfix-v1
+          git rebase origin/research/obi-ofi-boundaryfix-v1
+          git push origin HEAD:research/obi-ofi-boundaryfix-v1
