@@ -68,7 +68,7 @@ def load_symbol(sym,months,root):
   verified_download(f"{BASE}/markPriceKlines/{sym}/1h/{mn}",mp);marks.update(readzip(mp,"mark"))
  return sym,fund,marks
 
-def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20,side_mode='both',regime_filter=None,regime_policy=None,regime_threshold_pct=5.0,trade_universe=None,sideways_action='flat',risk_scale=1.0):
+def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20,side_mode='both',regime_filter=None,regime_policy=None,regime_threshold_pct=5.0,trade_universe=None,sideways_action='flat',risk_scale=1.0,trend_filter_days=0):
  symbols=list(data); trade_symbols=list(trade_universe) if trade_universe is not None else symbols; first,last=period
  if not set(trade_symbols).issubset(set(symbols)) or 'BTCUSDT' not in data: raise ValueError('invalid trade universe or missing BTC regime benchmark')
  mark_times={s:sorted(data[s]["marks"]) for s in symbols}
@@ -162,6 +162,21 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
    ordered=sorted(scores,key=scores.get);k=max(1,int(len(ordered)*tail_fraction))
    if len(ordered)>=2*k:
     longs=ordered[:k];shorts=ordered[-k:];target={s:0. for s in symbols}
+    if trend_filter_days:
+     cutoff=t-trend_filter_days*DAY
+     for side,items in (("long",longs),("short",shorts)):
+      kept=[]
+      for sym in items:
+       j=bisect.bisect_right(mark_times[sym],t)-1
+       p=bisect.bisect_right(mark_times[sym],cutoff)-1
+       if j>=0 and p>=0:
+        now=data[sym]["marks"][mark_times[sym][j]][3]
+        then=data[sym]["marks"][mark_times[sym][p]][3]
+        momentum=now/then-1
+        if (side=="long" and momentum>0) or (side=="short" and momentum<0):
+         kept.append(sym)
+      if side=="long":longs=kept
+      else:shorts=kept
     active_mode=side_mode
     if regime_policy is not None:
      active_mode=regime_policy.get(rg,'flat')
@@ -172,10 +187,12 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
      target=qty.copy()
     if active_mode!='flat' and not (rg=='sideways' and sideways_action=='hold'):
      leg=max(0.,equity)*lev*risk_scale*(.5 if active_mode=='both' else 1.0)
-     if active_mode in ('both','long_only'):
-      for s in longs:target[s]=leg/k/px[s]
-     if active_mode in ('both','short_only'):
-      for s in shorts:target[s]=-leg/k/px[s]
+     long_budget=leg*(.5 if active_mode=='both' else 1.0)
+     short_budget=leg*(.5 if active_mode=='both' else 1.0)
+     if active_mode in ('both','long_only') and longs:
+      for s in longs:target[s]=long_budget/len(longs)/px[s]
+     if active_mode in ('both','short_only') and shorts:
+      for s in shorts:target[s]=-short_budget/len(shorts)/px[s]
     turnover=sum(abs((target[s]-qty[s])*px[s]) for s in symbols if s in px)
     fee=turnover*fee_bp/10000;slip=turnover*slip_bp/10000
     for z in symbols:
@@ -345,6 +362,29 @@ def main():
  }.items():
   v=run(data,cuts['oos'],1.0,5,slip_bp=2,**kwargs)
   regime_side_by_side[label]={k:v[k] for k in ('net_return_pct','max_drawdown_pct','end_equity_usdt','rebalance_count','market_regime_attribution','entry_regime_attribution')}
+ # Per-asset trend alignment: fixed 7d/7d/20% funding carry and validation-frozen
+ # BTC regime policy. A long candidate must have positive trailing price momentum;
+ # a short candidate must have negative momentum. Selection uses validation only.
+ trend_filter_validation={}
+ for days in (0,3,7,14):
+  v=run(data,cuts["validation"],1.0,5,slip_bp=2,lookback_days=7,
+   rebalance_days=7,tail_fraction=.20,regime_policy=chosen_mapping,
+   regime_threshold_pct=chosen_threshold,trend_filter_days=days)
+  trend_filter_validation[str(days)]={"net_return_pct":v["net_return_pct"],
+   "max_drawdown_pct":v["max_drawdown_pct"],"liquidated":v["liquidated"]}
+ base_trend=trend_filter_validation["0"]
+ trend_eligible=[(int(k),v) for k,v in trend_filter_validation.items()
+  if int(k)>0 and v["net_return_pct"]>base_trend["net_return_pct"]
+  and v["max_drawdown_pct"]>base_trend["max_drawdown_pct"] and not v["liquidated"]]
+ chosen_trend_days,chosen_trend_validation=max(trend_eligible or [(0,base_trend)],key=lambda x:x[1]["net_return_pct"])
+ trend_filter_oos={}
+ for days in sorted(set((0,chosen_trend_days))):
+  v=run(data,cuts["oos"],1.0,5,slip_bp=2,lookback_days=7,
+   rebalance_days=7,tail_fraction=.20,regime_policy=chosen_mapping,
+   regime_threshold_pct=chosen_threshold,trend_filter_days=days)
+  trend_filter_oos[str(days)]={k:v[k] for k in ("net_return_pct","end_equity_usdt",
+   "max_drawdown_pct","liquidated","rebalance_count","price_pnl_usdt",
+   "funding_pnl_usdt","trading_fees_usdt","slippage_usdt")}
  # Risk scaling is selected on validation only, using the original +52%-era strategy.
  # Target: improve on the historical -15% reported drawdown; require corrected validation DD >= -15%.
  risk_scale_validation={}
@@ -416,6 +456,10 @@ def main():
    "drawdown":"Maximum drawdown now updates at every hourly adverse mark using simultaneous adverse OHLC extremes, as well as funding-event equity; conservative stress estimate.",
    "margin_mode":"cross-portfolio approximation; funding cashflow at settlement; positions resized weekly",
    "limitations":["not exact Binance liquidation engine","static MMR instead of historical symbol-specific tier brackets","hourly OHLC cannot reconstruct tick order or exact liquidation price","spread and market impact beyond fixed slippage are not modeled","static universe survivorship bias"]},
+  "trend_alignment_validation_original_7d_7d_20pct":trend_filter_validation,
+  "trend_alignment_chosen_days":chosen_trend_days,
+  "trend_alignment_chosen_validation":chosen_trend_validation,
+  "trend_alignment_oos_original_7d_7d_20pct":trend_filter_oos,
   "regime_tests_oos_1x_5bp_fee_2bp_slippage":regime_tests,
   "matched_regime_comparison_oos_1x_5bp_fee_2bp_slippage":regime_side_by_side,"risk_scale_validation_original_7d_7d_20pct":{"selection_rule":"Validation only: highest net return among scales with corrected max drawdown >= -15% and no liquidation; fallback to highest validation return if none qualify.","candidates":risk_scale_validation,"chosen_scale":chosen_risk_scale,"chosen_validation":chosen_risk_scale_validation,"oos_1x_5bp_fee_2bp_slippage":risk_scale_oos},"sideways_management_oos_1x_5bp_fee_2bp_slippage":sideways_management,"original_52_reference_corrected_drawdown_oos_1x_5bp_fee_2bp_slippage":original_52_reference,
   "symbol_universe_selection":{"selection_protocol":"Rank by net symbol contribution on first half of validation; compare top-5/7/9/11/13 portfolios on second half; freeze selected symbols before OOS.","discovery_period_utc":[datetime.fromtimestamp(val_start/1000,timezone.utc).isoformat(),datetime.fromtimestamp(val_mid/1000,timezone.utc).isoformat()],"selection_period_utc":[datetime.fromtimestamp(val_mid/1000,timezone.utc).isoformat(),datetime.fromtimestamp(val_end/1000,timezone.utc).isoformat()],"discovery_ranking":ranked_symbols,"candidate_results":universe_candidates,"chosen_count":chosen_universe_n,"chosen_symbols":frozen_symbols,"chosen_validation":universe_candidates[str(chosen_universe_n)],"frozen_oos_1x":universe_oos},
