@@ -8,8 +8,6 @@ BASE="https://data.binance.vision/data"
 SYMS=("BTCUSDT","ETHUSDT","SOLUSDT")
 FEE_BP=5.0
 SLIP_BP=2.0
-START="2024-05"
-END="2024-06"
 
 def fetch(url):
     req=urllib.request.Request(url,headers={"User-Agent":"research-only"})
@@ -33,11 +31,17 @@ def ts(v):
     if n>10**17:return n//10**6
     if n>10**14:return n//10**3
     return n
-def load():
+def months(start,end):
+    y,m=map(int,start.split("-"));ey,em=map(int,end.split("-"))
+    while (y,m)<=(ey,em):
+        yield f"{y:04d}-{m:02d}"
+        m+=1
+        if m==13:y,m=y+1,1
+def load(start_month,end_month):
     data={}
     for sym in SYMS:
         spot={}; perp={}; mark={}; funding=[]
-        for month in (START,END):
+        for month in months(start_month,end_month):
             for kind,target in (("spot",spot),("perp",perp),("mark",mark)):
                 for r in archive(kind,sym,month):
                     if not r:continue
@@ -54,10 +58,15 @@ def load():
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument("--fee-bp",type=float,default=FEE_BP)
+    parser.add_argument("--start-month",default="2024-05")
+    parser.add_argument("--end-month",default="2024-06")
     parser.add_argument("--out",default="research-results/basis_pilot_backtest.json")
     args=parser.parse_args()
+    selected_months=list(months(args.start_month,args.end_month))
+    if not selected_months or len(selected_months)>2:
+        raise SystemExit("Backtest cap: provide one or two consecutive months")
     fee_bp=args.fee_bp
-    d=load()
+    d=load(args.start_month,args.end_month)
     # Only exact common minutes; no interpolation. Daily signal formed at UTC day-end,
     # then traded from the next minute for 1440 minutes.
     rows=[]
@@ -161,9 +170,9 @@ def main():
           "fee_bp_per_side":fee_bp,"slippage_bp_per_side":SLIP_BP,"leverage":1,
           "portfolio":"50% long highest score + 50% short lowest score; daily 1440m holding",
           "candidate_signals":candidates,"skip_counts":skips,"funding_events_in_holding_windows":funding_events_seen,"missing_mark_samples":missing_mark_samples})
-    report={"period":[START,END],"symbols":list(SYMS),"method":f"UTC daily cross-sectional top-vs-bottom basis; 5-day change uses 7200 contiguous minute index observations; next-minute open entry; 1440 contiguous 1m bars; {fee_bp:g}bp fee + {SLIP_BP:g}bp slippage each side; funding uses event-time mark-price open; entry/exit costs booked at their timestamps; adverse minute high/low DD.",
+    report={"period":[args.start_month,args.end_month],"symbols":list(SYMS),"method":f"UTC daily cross-sectional top-vs-bottom basis; 5-day change uses 7200 contiguous minute index observations; next-minute open entry; 1440 contiguous 1m bars; {fee_bp:g}bp fee + {SLIP_BP:g}bp slippage each side; funding uses event-time mark-price open; entry/exit costs booked at their timestamps; adverse minute high/low DD.",
       "data_qa":"archives checksum-verified; exact spot/perp common timestamps only; no gap interpolation",
-      "limitations":["Two-month pilot only; not OOS proof.","Only three-symbol cross-section; 50/50 long-short gross 1x.","No queue/fill model because this is a taker execution baseline.","Funding uses event-time mark-price candles; verify archive alignment before full-period expansion."],
+      "limitations":["One- or two-month window only; results are not OOS proof unless this period was predesignated untouched.","Only three-symbol cross-section; 50/50 long-short gross 1x.","No queue/fill model because this is a taker execution baseline.","Funding uses event-time mark-price candles; verify archive alignment before full-period expansion."],
       "results":variants}
     Path(args.out).parent.mkdir(parents=True,exist_ok=True)
     Path(args.out).write_text(json.dumps(report,indent=2))
