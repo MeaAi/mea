@@ -68,7 +68,7 @@ def load_symbol(sym,months,root):
   verified_download(f"{BASE}/markPriceKlines/{sym}/1h/{mn}",mp);marks.update(readzip(mp,"mark"))
  return sym,fund,marks
 
-def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20,side_mode='both',regime_filter=None,regime_policy=None,regime_threshold_pct=5.0,trade_universe=None,sideways_action='flat'):
+def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20,side_mode='both',regime_filter=None,regime_policy=None,regime_threshold_pct=5.0,trade_universe=None,sideways_action='flat',risk_scale=1.0):
  symbols=list(data); trade_symbols=list(trade_universe) if trade_universe is not None else symbols; first,last=period
  if not set(trade_symbols).issubset(set(symbols)) or 'BTCUSDT' not in data: raise ValueError('invalid trade universe or missing BTC regime benchmark')
  mark_times={s:sorted(data[s]["marks"]) for s in symbols}
@@ -171,7 +171,7 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
      # Freeze the existing portfolio: no new entries or additions while sideways.
      target=qty.copy()
     if active_mode!='flat' and not (rg=='sideways' and sideways_action=='hold'):
-     leg=max(0.,equity)*lev*(.5 if active_mode=='both' else 1.0)
+     leg=max(0.,equity)*lev*risk_scale*(.5 if active_mode=='both' else 1.0)
      if active_mode in ('both','long_only'):
       for s in longs:target[s]=leg/k/px[s]
      if active_mode in ('both','short_only'):
@@ -345,6 +345,22 @@ def main():
  }.items():
   v=run(data,cuts['oos'],1.0,5,slip_bp=2,**kwargs)
   regime_side_by_side[label]={k:v[k] for k in ('net_return_pct','max_drawdown_pct','end_equity_usdt','rebalance_count','market_regime_attribution','entry_regime_attribution')}
+ # Risk scaling is selected on validation only, using the original +52%-era strategy.
+ # Target: improve on the historical -15% reported drawdown; require corrected validation DD >= -15%.
+ risk_scale_validation={}
+ for scale in (.40,.50,.60,.70,.80,.90,1.00):
+  v=run(data,cuts["validation"],1.0,5,slip_bp=2,
+   lookback_days=7,rebalance_days=7,tail_fraction=.20,
+   regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold,risk_scale=scale)
+  risk_scale_validation[f"{scale:.2f}"]={"net_return_pct":v["net_return_pct"],"max_drawdown_pct":v["max_drawdown_pct"],"liquidated":v["liquidated"]}
+ risk_scale_eligible=[(float(k),v) for k,v in risk_scale_validation.items() if v["max_drawdown_pct"]>=-15 and not v["liquidated"]]
+ chosen_risk_scale,chosen_risk_scale_validation=max(risk_scale_eligible or [(float(k),v) for k,v in risk_scale_validation.items()],key=lambda x:x[1]["net_return_pct"])
+ risk_scale_oos={}
+ for scale in (1.00,chosen_risk_scale):
+  v=run(data,cuts["oos"],1.0,5,slip_bp=2,
+   lookback_days=7,rebalance_days=7,tail_fraction=.20,
+   regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold,risk_scale=scale)
+  risk_scale_oos[f"{scale:.2f}"]={k:v[k] for k in ("net_return_pct","end_equity_usdt","max_drawdown_pct","rebalance_count","price_pnl_usdt","funding_pnl_usdt","trading_fees_usdt","slippage_usdt","liquidated")}
  # Re-run the original +52%-era configuration under the corrected hourly adverse drawdown method.
  # Original parameters: 7d funding lookback, 7d rebalance, 20% tails, validation-frozen BTC regime policy.
  original_52_reference=run(data,cuts['oos'],1.0,5,slip_bp=2,
@@ -401,7 +417,7 @@ def main():
    "margin_mode":"cross-portfolio approximation; funding cashflow at settlement; positions resized weekly",
    "limitations":["not exact Binance liquidation engine","static MMR instead of historical symbol-specific tier brackets","hourly OHLC cannot reconstruct tick order or exact liquidation price","spread and market impact beyond fixed slippage are not modeled","static universe survivorship bias"]},
   "regime_tests_oos_1x_5bp_fee_2bp_slippage":regime_tests,
-  "matched_regime_comparison_oos_1x_5bp_fee_2bp_slippage":regime_side_by_side,"sideways_management_oos_1x_5bp_fee_2bp_slippage":sideways_management,"original_52_reference_corrected_drawdown_oos_1x_5bp_fee_2bp_slippage":original_52_reference,
+  "matched_regime_comparison_oos_1x_5bp_fee_2bp_slippage":regime_side_by_side,"risk_scale_validation_original_7d_7d_20pct":{"selection_rule":"Validation only: highest net return among scales with corrected max drawdown >= -15% and no liquidation; fallback to highest validation return if none qualify.","candidates":risk_scale_validation,"chosen_scale":chosen_risk_scale,"chosen_validation":chosen_risk_scale_validation,"oos_1x_5bp_fee_2bp_slippage":risk_scale_oos},"sideways_management_oos_1x_5bp_fee_2bp_slippage":sideways_management,"original_52_reference_corrected_drawdown_oos_1x_5bp_fee_2bp_slippage":original_52_reference,
   "symbol_universe_selection":{"selection_protocol":"Rank by net symbol contribution on first half of validation; compare top-5/7/9/11/13 portfolios on second half; freeze selected symbols before OOS.","discovery_period_utc":[datetime.fromtimestamp(val_start/1000,timezone.utc).isoformat(),datetime.fromtimestamp(val_mid/1000,timezone.utc).isoformat()],"selection_period_utc":[datetime.fromtimestamp(val_mid/1000,timezone.utc).isoformat(),datetime.fromtimestamp(val_end/1000,timezone.utc).isoformat()],"discovery_ranking":ranked_symbols,"candidate_results":universe_candidates,"chosen_count":chosen_universe_n,"chosen_symbols":frozen_symbols,"chosen_validation":universe_candidates[str(chosen_universe_n)],"frozen_oos_1x":universe_oos},
   "regime_policy_sweep":{"selection_period":"validation only","selection_rule":"Highest validation net return among policies with max drawdown >= -25% and no liquidation; frozen before OOS.","validation_results":{k:{"net_return_pct":v["net_return_pct"],"max_drawdown_pct":v["max_drawdown_pct"],"liquidated":v["liquidated"]} for k,v in policy_validation.items()},"chosen_policy":chosen_policy_name,"chosen_policy_mapping":regime_policies[chosen_policy_name],"chosen_policy_validation":chosen_policy_result,"chosen_policy_oos":adaptive_policy_oos,
    "threshold_sensitivity":{"candidates_pct":[3,5,7,10],"selection_period":"validation only","validation_results":threshold_validation,"chosen_threshold_pct":chosen_threshold,"chosen_threshold_validation":chosen_threshold_validation,"frozen_threshold_oos_1x":threshold_oos}},
