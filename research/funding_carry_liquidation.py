@@ -139,11 +139,16 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
    ordered=sorted(scores,key=scores.get);k=max(1,int(len(ordered)*tail_fraction))
    if len(ordered)>=2*k:
     longs=ordered[:k];shorts=ordered[-k:];target={s:0. for s in symbols}
-    if regime_filter is None or rg==regime_filter:
-     leg=max(0.,equity)*lev*(.5 if side_mode=='both' else 1.0)
-     if side_mode in ('both','long_only'):
+    active_mode=side_mode
+    if regime_policy is not None:
+     active_mode=regime_policy.get(rg,'flat')
+    elif regime_filter is not None and rg!=regime_filter:
+     active_mode='flat'
+    if active_mode!='flat':
+     leg=max(0.,equity)*lev*(.5 if active_mode=='both' else 1.0)
+     if active_mode in ('both','long_only'):
       for s in longs:target[s]=leg/k/px[s]
-     if side_mode in ('both','short_only'):
+     if active_mode in ('both','short_only'):
       for s in shorts:target[s]=-leg/k/px[s]
     turnover=sum(abs((target[s]-qty[s])*px[s]) for s in symbols if s in px)
     fee=turnover*fee_bp/10000;slip=turnover*slip_bp/10000
