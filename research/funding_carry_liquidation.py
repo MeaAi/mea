@@ -68,7 +68,7 @@ def load_symbol(sym,months,root):
   verified_download(f"{BASE}/markPriceKlines/{sym}/1h/{mn}",mp);marks.update(readzip(mp,"mark"))
  return sym,fund,marks
 
-def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20,side_mode='both',regime_filter=None,regime_policy=None,regime_threshold_pct=5.0,trade_universe=None,sideways_action='flat',sideways_reduce_fraction=0.5,sideways_excluded_symbols=None):
+def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20,side_mode='both',regime_filter=None,regime_policy=None,regime_threshold_pct=5.0,trade_universe=None,sideways_action='flat',sideways_reduce_fraction=0.5,sideways_excluded_symbols=None,dynamic_filter=None):
  symbols=list(data); trade_symbols=list(trade_universe) if trade_universe is not None else symbols; first,last=period
  if not set(trade_symbols).issubset(set(symbols)) or 'BTCUSDT' not in data: raise ValueError('invalid trade universe or missing BTC regime benchmark')
  mark_times={s:sorted(data[s]["marks"]) for s in symbols}
@@ -157,8 +157,35 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
   equity+=fpnl;funding_pnl+=fpnl
   if equity<=0:liquidated=True;liq_time=datetime.fromtimestamp(t/1000,timezone.utc).isoformat();liq_equity=0.;equity=0.;break
   if last_rebal is None and t>=first+lookback or last_rebal is not None and (t-last_rebal>=interval or ((regime_filter is not None or regime_policy is not None) and rg!=last_regime)):
+   eligible_symbols=list(trade_symbols)
+   if dynamic_filter:
+    # Causal per-symbol risk screen: only observations strictly before decision time.
+    metrics={}
+    for z in trade_symbols:
+     mt=mark_times[z]; j=bisect.bisect_right(mt,t)-1
+     if j<720: continue
+     closes=[data[z]["marks"][mt[q]][3] for q in range(j-720,j+1)]
+     rets=[math.log(closes[q]/closes[q-1]) for q in range(1,len(closes)) if closes[q]>0 and closes[q-1]>0]
+     if len(rets)<600: continue
+     vol=math.sqrt(sum((x-sum(rets)/len(rets))**2 for x in rets)/len(rets))
+     fvals=[r for et,r in data[z]["fund"].items() if t-30*DAY<et<=t]
+     if len(fvals)<12: continue
+     fmean=sum(fvals)/len(fvals)
+     fvol=math.sqrt(sum((x-fmean)**2 for x in fvals)/len(fvals))
+     trend=closes[-1]/closes[0]-1
+     metrics[z]=(vol,fvol,trend)
+    if metrics:
+     vols=sorted(v[0] for v in metrics.values()); fvols=sorted(v[1] for v in metrics.values())
+     vi=min(len(vols)-1,max(0,math.ceil(float(dynamic_filter.get("vol_quantile",1.0))*len(vols))-1))
+     fi=min(len(fvols)-1,max(0,math.ceil(float(dynamic_filter.get("funding_vol_quantile",1.0))*len(fvols))-1))
+     vmax,fmax=vols[vi],fvols[fi]
+     eligible_symbols=[]
+     for z,(zvol,zfvol,ztrend) in metrics.items():
+      aligned=(rg=="bull" and ztrend>=0) or (rg=="bear" and ztrend<=0) or rg in ("sideways","unknown")
+      if zvol<=vmax and zfvol<=fmax and (not dynamic_filter.get("require_trend_alignment",False) or aligned):
+       eligible_symbols.append(z)
    scores={}
-   for s in trade_symbols:
+   for s in eligible_symbols:
     vals=[r for et,r in data[s]["fund"].items() if t-lookback<et<=t]
     if len(vals)>=12 and s in px:scores[s]=sum(vals)
    ordered=sorted(scores,key=scores.get);k=max(1,int(len(ordered)*tail_fraction))
@@ -369,6 +396,27 @@ def main():
   lookback_days=7,rebalance_days=7,tail_fraction=.20,
   regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold)
  original_52_reference={k:original_52_reference[k] for k in ('net_return_pct','end_equity_usdt','max_drawdown_pct','rebalance_count','hourly_adverse_checks','hourly_sideways_exits','price_pnl_usdt','funding_pnl_usdt','trading_fees_usdt','slippage_usdt','liquidated','market_regime_attribution','symbol_attribution')}
+ # Dynamic per-symbol risk filter. Screen uses trailing 30d hourly mark returns,
+ # realized volatility and funding-rate dispersion; quantiles and trend-alignment
+ # are selected on the first half of validation and frozen before OOS.
+ val_start,val_end=cuts["validation"]; val_mid=(val_start+val_end)//2
+ dyn_discovery=(val_start,val_mid); dyn_selection=(val_mid,val_end)
+ dyn_baseline=run(data,dyn_selection,1.0,5,slip_bp=2,lookback_days=7,rebalance_days=7,tail_fraction=.20,regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold)
+ dyn_grid=[]
+ for vq in (.70,.85,1.0):
+  for fq in (.70,.85,1.0):
+   for align in (False,True):
+    cfg={"vol_quantile":vq,"funding_vol_quantile":fq,"require_trend_alignment":align}
+    dv=run(data,dyn_selection,1.0,5,slip_bp=2,lookback_days=7,rebalance_days=7,tail_fraction=.20,regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold,dynamic_filter=cfg)
+    dyn_grid.append({"config":cfg,"net_return_pct":dv["net_return_pct"],"max_drawdown_pct":dv["max_drawdown_pct"],"liquidated":dv["liquidated"]})
+ dyn_eligible=[x for x in dyn_grid if x["net_return_pct"]>dyn_baseline["net_return_pct"] and x["max_drawdown_pct"]>dyn_baseline["max_drawdown_pct"] and not x["liquidated"]]
+ dyn_chosen=max(dyn_eligible,key=lambda x:x["net_return_pct"]) if dyn_eligible else None
+ dynamic_filter_oos={}
+ if dyn_chosen:
+  for fee in (2,5,8):
+   dv=run(data,cuts["oos"],1.0,fee,slip_bp=2,lookback_days=7,rebalance_days=7,tail_fraction=.20,regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold,dynamic_filter=dyn_chosen["config"])
+   dynamic_filter_oos[f"fee_{fee}bp"]={k:dv[k] for k in ("net_return_pct","end_equity_usdt","max_drawdown_pct","rebalance_count","hourly_adverse_checks","price_pnl_usdt","funding_pnl_usdt","trading_fees_usdt","slippage_usdt","liquidated","symbol_attribution")}
+ dynamic_filter_experiment={"method":"Trailing 30d hourly mark-price realized volatility + funding-rate standard deviation; cross-sectional quantile caps; optional trend alignment with current BTC 30d regime. All inputs lagged to decision timestamp.","validation_baseline":{"net_return_pct":dyn_baseline["net_return_pct"],"max_drawdown_pct":dyn_baseline["max_drawdown_pct"],"liquidated":dyn_baseline["liquidated"]},"grid":dyn_grid,"eligible_count":len(dyn_eligible),"chosen":dyn_chosen,"frozen_oos":dynamic_filter_oos}
  # Selective sideways exit experiment.
  # Discovery ranks symbol losses only in the first half of validation.
  # Candidate counts are then compared on the untouched second half of validation.
@@ -485,7 +533,7 @@ def main():
    "margin_mode":"cross-portfolio approximation; funding cashflow at settlement; positions resized weekly",
    "limitations":["not exact Binance liquidation engine","static MMR instead of historical symbol-specific tier brackets","hourly OHLC cannot reconstruct tick order or exact liquidation price","spread and market impact beyond fixed slippage are not modeled","static universe survivorship bias"]},
   "regime_tests_oos_1x_5bp_fee_2bp_slippage":regime_tests,
-  "matched_regime_comparison_oos_1x_5bp_fee_2bp_slippage":regime_side_by_side,"sideways_management_oos_1x_5bp_fee_2bp_slippage":sideways_management,"original_52_reference_corrected_drawdown_oos_1x_5bp_fee_2bp_slippage":original_52_reference,"matched_sideways_hold_experiment_oos_1x_5bp_fee_2bp_slippage":sideways_hold_candidate,"sideways_hold_fee_sensitivity_oos_1x_2bp_slippage":sideways_hold_fee_sensitivity,"sideways_reduce_sweep_oos_1x_2bp_slippage":sideways_reduce_sweep,"sideways_selective_exit_validation": {"discovery_period_utc":{"start":datetime.fromtimestamp(val_start/1000,timezone.utc).isoformat(),"end":datetime.fromtimestamp(val_mid/1000,timezone.utc).isoformat()},"selection_period_utc":{"start":datetime.fromtimestamp(val_mid/1000,timezone.utc).isoformat(),"end":datetime.fromtimestamp(val_end/1000,timezone.utc).isoformat()},"discovery_sideways_symbol_ranking":sideways_rank,"ranked_worst_first":ranked_sideways_losers,"validation_baseline":{"net_return_pct":validation_base["net_return_pct"],"max_drawdown_pct":validation_base["max_drawdown_pct"],"liquidated":validation_base["liquidated"]},"candidate_results":validation_selective,"chosen_exclusion_count":chosen_selective_n,"oos_results":selective_oos},
+  "matched_regime_comparison_oos_1x_5bp_fee_2bp_slippage":regime_side_by_side,"sideways_management_oos_1x_5bp_fee_2bp_slippage":sideways_management,"original_52_reference_corrected_drawdown_oos_1x_5bp_fee_2bp_slippage":original_52_reference,"matched_sideways_hold_experiment_oos_1x_5bp_fee_2bp_slippage":sideways_hold_candidate,"sideways_hold_fee_sensitivity_oos_1x_2bp_slippage":sideways_hold_fee_sensitivity,"sideways_reduce_sweep_oos_1x_2bp_slippage":sideways_reduce_sweep,"dynamic_symbol_risk_filter":dynamic_filter_experiment,"sideways_selective_exit_validation": {"discovery_period_utc":{"start":datetime.fromtimestamp(val_start/1000,timezone.utc).isoformat(),"end":datetime.fromtimestamp(val_mid/1000,timezone.utc).isoformat()},"selection_period_utc":{"start":datetime.fromtimestamp(val_mid/1000,timezone.utc).isoformat(),"end":datetime.fromtimestamp(val_end/1000,timezone.utc).isoformat()},"discovery_sideways_symbol_ranking":sideways_rank,"ranked_worst_first":ranked_sideways_losers,"validation_baseline":{"net_return_pct":validation_base["net_return_pct"],"max_drawdown_pct":validation_base["max_drawdown_pct"],"liquidated":validation_base["liquidated"]},"candidate_results":validation_selective,"chosen_exclusion_count":chosen_selective_n,"oos_results":selective_oos},
   "symbol_universe_selection":{"selection_protocol":"Rank by net symbol contribution on first half of validation; compare top-5/7/9/11/13 portfolios on second half; freeze selected symbols before OOS.","discovery_period_utc":[datetime.fromtimestamp(val_start/1000,timezone.utc).isoformat(),datetime.fromtimestamp(val_mid/1000,timezone.utc).isoformat()],"selection_period_utc":[datetime.fromtimestamp(val_mid/1000,timezone.utc).isoformat(),datetime.fromtimestamp(val_end/1000,timezone.utc).isoformat()],"discovery_ranking":ranked_symbols,"candidate_results":universe_candidates,"chosen_count":chosen_universe_n,"chosen_symbols":frozen_symbols,"chosen_validation":universe_candidates[str(chosen_universe_n)],"frozen_oos_1x":universe_oos},
   "regime_policy_sweep":{"selection_period":"validation only","selection_rule":"Highest validation net return among policies with max drawdown >= -25% and no liquidation; frozen before OOS.","validation_results":{k:{"net_return_pct":v["net_return_pct"],"max_drawdown_pct":v["max_drawdown_pct"],"liquidated":v["liquidated"]} for k,v in policy_validation.items()},"chosen_policy":chosen_policy_name,"chosen_policy_mapping":regime_policies[chosen_policy_name],"chosen_policy_validation":chosen_policy_result,"chosen_policy_oos":adaptive_policy_oos,
    "threshold_sensitivity":{"candidates_pct":[3,5,7,10],"selection_period":"validation only","validation_results":threshold_validation,"chosen_threshold_pct":chosen_threshold,"chosen_threshold_validation":chosen_threshold_validation,"frozen_threshold_oos_1x":threshold_oos}},
