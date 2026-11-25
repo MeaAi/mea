@@ -18,6 +18,7 @@ def archive(kind,sym,month):
     if kind=="spot": p=f"spot/monthly/klines/{sym}/1m/{sym}-1m-{month}.zip"
     elif kind=="perp": p=f"futures/um/monthly/klines/{sym}/1m/{sym}-1m-{month}.zip"
     elif kind=="funding": p=f"futures/um/monthly/fundingRate/{sym}/{sym}-fundingRate-{month}.zip"
+    elif kind=="mark": p=f"futures/um/monthly/markPriceKlines/{sym}/1m/{sym}-1m-{month}.zip"
     else: raise ValueError(kind)
     url=f"{BASE}/{p}"; blob=fetch(url); check=fetch(url+".CHECKSUM").decode().strip().split()[0].lower()
     if hashlib.sha256(blob).hexdigest()!=check: raise RuntimeError("checksum mismatch "+p)
@@ -35,9 +36,9 @@ def ts(v):
 def load():
     data={}
     for sym in SYMS:
-        spot={}; perp={}; funding=[]
+        spot={}; perp={}; mark={}; funding=[]
         for month in (START,END):
-            for kind,target in (("spot",spot),("perp",perp)):
+            for kind,target in (("spot",spot),("perp",perp),("mark",mark)):
                 for r in archive(kind,sym,month):
                     if not r:continue
                     try:t=ts(r[0])
@@ -48,7 +49,7 @@ def load():
                 try:funding.append((ts(r[0]),float(r[2])))
                 except (ValueError,IndexError):continue
         common=sorted(set(spot)&set(perp))
-        data[sym]={"spot":spot,"perp":perp,"funding":sorted(funding),"common":common}
+        data[sym]={"spot":spot,"perp":perp,"mark":mark,"funding":sorted(funding),"common":common}
     return data
 def main():
     parser=argparse.ArgumentParser()
@@ -106,19 +107,36 @@ def main():
                 for ft,rate in d[sym]["funding"]:
                     if entry_t<=ft<=exit_t:
                         # Positive funding: longs pay, shorts receive.
-                        day_funding += -side*notion*rate
+                        if ft not in d[sym]["mark"]:
+                            valid=False;break
+                        mark_at_funding=d[sym]["mark"][ft]["open"]
+                        quantity=notion/entry
+                        day_funding += -side*quantity*mark_at_funding*rate
                 legs.append((sym,side,notion,entry))
             if not valid:continue
+            # Entry/exit costs are booked at their actual cashflow points, not all at entry.
+            entry_cost=notion*(fee_bp+SLIP_BP)/10000*2
+            exit_cost=entry_cost
+            day_cost=entry_cost+exit_cost
             net=day_price+day_funding-day_cost
             # Hourly adverse mark approximated using every minute's high/low; conservative
             # adverse side for each leg, portfolio equity path from current start equity.
+            funding_accrued=0.0
+            funding_events={}
+            for sym,side,n,entry in legs:
+                qty=n/entry
+                for ft,rate in d[sym]["funding"]:
+                    if entry_t<=ft<=exit_t:
+                        funding_events.setdefault(ft,0.0)
+                        funding_events[ft] += -side*qty*d[sym]["mark"][ft]["open"]*rate
             for k,t in enumerate(window):
+                funding_accrued += funding_events.get(t,0.0)
                 mark=0.0
                 for sym,side,n,entry in legs:
                     b=d[sym]["perp"][t]
                     adverse=(b["low"]/entry-1) if side==1 else (b["high"]/entry-1)
                     mark+=n*side*adverse
-                mark_eq=eq+mark-day_cost
+                mark_eq=eq+mark+funding_accrued-entry_cost-(exit_cost if t==exit_t else 0.0)
                 peak=max(peak,mark_eq)
                 if peak>0:maxdd=min(maxdd,mark_eq/peak-1)
             eq+=net; peak=max(peak,eq); maxdd=min(maxdd,eq/peak-1)
@@ -129,9 +147,9 @@ def main():
           "funding_usdt":round(funding_total,6),"cost_usdt":round(cost_total,6),
           "fee_bp_per_side":fee_bp,"slippage_bp_per_side":SLIP_BP,"leverage":1,
           "portfolio":"50% long highest score + 50% short lowest score; daily 1440m holding"})
-    report={"period":[START,END],"symbols":list(SYMS),"method":f"UTC daily cross-sectional top-vs-bottom basis; 5-day change uses 7200 contiguous minute index observations; next-minute open entry; 1440 contiguous 1m bars; {fee_bp:g}bp fee + {SLIP_BP:g}bp slippage each side; funding only at actual timestamps; adverse minute high/low DD.",
+    report={"period":[START,END],"symbols":list(SYMS),"method":f"UTC daily cross-sectional top-vs-bottom basis; 5-day change uses 7200 contiguous minute index observations; next-minute open entry; 1440 contiguous 1m bars; {fee_bp:g}bp fee + {SLIP_BP:g}bp slippage each side; funding uses event-time mark-price open; entry/exit costs booked at their timestamps; adverse minute high/low DD.",
       "data_qa":"archives checksum-verified; exact spot/perp common timestamps only; no gap interpolation",
-      "limitations":["Two-month pilot only; not OOS proof.","Only three-symbol cross-section; 50/50 long-short gross 1x.","No queue/fill model because this is a taker execution baseline.","Funding timestamp/rate interpretation must be checked against exchange semantics before full-period expansion."],
+      "limitations":["Two-month pilot only; not OOS proof.","Only three-symbol cross-section; 50/50 long-short gross 1x.","No queue/fill model because this is a taker execution baseline.","Funding uses event-time mark-price candles; verify archive alignment before full-period expansion."],
       "results":variants}
     Path(args.out).parent.mkdir(parents=True,exist_ok=True)
     Path(args.out).write_text(json.dumps(report,indent=2))
