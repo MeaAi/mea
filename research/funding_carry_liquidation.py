@@ -68,14 +68,14 @@ def load_symbol(sym,months,root):
   verified_download(f"{BASE}/markPriceKlines/{sym}/1h/{mn}",mp);marks.update(readzip(mp,"mark"))
  return sym,fund,marks
 
-def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20,side_mode='both'):
+def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20,side_mode='both',regime_filter=None):
  symbols=list(data); first,last=period
  mark_times={s:sorted(data[s]["marks"]) for s in symbols}
  all_events=sorted(set(t for s in symbols for t in data[s]["fund"] if first<=t<=last))
  events=[t for t in all_events if sum(t in data[s]["fund"] and t in data[s]["marks"] for s in symbols)>=math.ceil(.8*len(symbols))]
  if len(events)<100:raise RuntimeError("insufficient aligned funding events")
  equity=100.; peak=100.; maxdd=0.; qty={s:0. for s in symbols}; prev={}; last_rebal=None
- fee_total=slip_total=price_pnl=funding_pnl=0.; liquidated=False; liq_time=None; liq_equity=None
+ fee_total=slip_total=price_pnl=funding_pnl=0.; liquidated=False; liq_time=None; liq_equity=None; last_regime=None
  price_by_symbol={z:0. for z in symbols}; funding_by_symbol={z:0. for z in symbols}; fees_by_symbol={z:0. for z in symbols}; slippage_by_symbol={z:0. for z in symbols}
  regime_pnl={k:{'price_pnl_usdt':0.,'funding_pnl_usdt':0.,'fees_usdt':0.,'slippage_usdt':0.} for k in ('bull','bear','sideways','unknown')}
  btc_times=mark_times.get('BTCUSDT',[]); btc_marks=data.get('BTCUSDT',{}).get('marks',{})
@@ -131,7 +131,7 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
     v=-qty[z]*px[z]*rates[z];fpnl+=v;funding_by_symbol[z]+=v;regime_pnl[rg]['funding_pnl_usdt']+=v
   equity+=fpnl;funding_pnl+=fpnl
   if equity<=0:liquidated=True;liq_time=datetime.fromtimestamp(t/1000,timezone.utc).isoformat();liq_equity=0.;equity=0.;break
-  if last_rebal is None and t>=first+lookback or last_rebal is not None and t-last_rebal>=interval:
+  if last_rebal is None and t>=first+lookback or last_rebal is not None and (t-last_rebal>=interval or (regime_filter is not None and rg!=last_regime)):
    scores={}
    for s in symbols:
     vals=[r for et,r in data[s]["fund"].items() if t-lookback<et<=t]
@@ -139,18 +139,19 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
    ordered=sorted(scores,key=scores.get);k=max(1,int(len(ordered)*tail_fraction))
    if len(ordered)>=2*k:
     longs=ordered[:k];shorts=ordered[-k:];target={s:0. for s in symbols}
-    leg=max(0.,equity)*lev*(.5 if side_mode=='both' else 1.0)
-    if side_mode in ('both','long_only'):
-     for s in longs:target[s]=leg/k/px[s]
-    if side_mode in ('both','short_only'):
-     for s in shorts:target[s]=-leg/k/px[s]
+    if regime_filter is None or rg==regime_filter:
+     leg=max(0.,equity)*lev*(.5 if side_mode=='both' else 1.0)
+     if side_mode in ('both','long_only'):
+      for s in longs:target[s]=leg/k/px[s]
+     if side_mode in ('both','short_only'):
+      for s in shorts:target[s]=-leg/k/px[s]
     turnover=sum(abs((target[s]-qty[s])*px[s]) for s in symbols if s in px)
     fee=turnover*fee_bp/10000;slip=turnover*slip_bp/10000
     for z in symbols:
      tr=abs((target[z]-qty[z])*px[z]) if z in px else 0.
      fees_by_symbol[z]+=tr*fee_bp/10000;slippage_by_symbol[z]+=tr*slip_bp/10000
      regime_pnl[rg]['fees_usdt']+=tr*fee_bp/10000;regime_pnl[rg]['slippage_usdt']+=tr*slip_bp/10000
-    equity-=fee+slip;fee_total+=fee;slip_total+=slip;qty=target;last_rebal=t;rebalances+=1
+    equity-=fee+slip;fee_total+=fee;slip_total+=slip;qty=target;last_rebal=t;last_regime=rg;rebalances+=1
   # Save latest event mark as anchor for next interval.
   prev=px.copy()
   peak=max(peak,equity);maxdd=min(maxdd,(equity/peak-1)*100 if peak else -100)
@@ -163,7 +164,7 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
   "liquidated":liquidated,"liquidation_time_utc":liq_time,"equity_at_liquidation_usdt":liq_equity,
   "price_pnl_usdt":round(price_pnl,6),"funding_pnl_usdt":round(funding_pnl,6),
   "trading_fees_usdt":round(fee_total,6),"slippage_usdt":round(slip_total,6),
-  "rebalance_count":rebalances,"hourly_adverse_checks":hourly_checks,"lookback_days":lookback_days,"rebalance_days":rebalance_days,"tail_fraction":tail_fraction,"side_mode":side_mode,
+  "rebalance_count":rebalances,"hourly_adverse_checks":hourly_checks,"lookback_days":lookback_days,"rebalance_days":rebalance_days,"tail_fraction":tail_fraction,"side_mode":side_mode,"regime_filter":regime_filter,
   "symbol_attribution":{z:{"price_pnl_usdt":round(price_by_symbol[z],6),"funding_pnl_usdt":round(funding_by_symbol[z],6),"fees_usdt":round(fees_by_symbol[z],6),"slippage_usdt":round(slippage_by_symbol[z],6),"net_contribution_usdt":round(price_by_symbol[z]+funding_by_symbol[z]-fees_by_symbol[z]-slippage_by_symbol[z],6)} for z in symbols},
   "market_regime_attribution":{k:{q:round(v,6) for q,v in vals.items()}|{"net_contribution_usdt":round(vals['price_pnl_usdt']+vals['funding_pnl_usdt']-vals['fees_usdt']-vals['slippage_usdt'],6)} for k,vals in regime_pnl.items()},
   "model_note":"Cross-portfolio conservative hourly OHLC stress approximation; not exact Binance liquidation engine. Uses simultaneous adverse extremes and static 0.5% MMR assumption."}
@@ -215,7 +216,7 @@ def main():
  }.items():
   reduced={s:v for s,v in data.items() if s not in excluded_set}
   leave_one_out[label]=run(reduced,cuts["oos"],1.0,5,slip_bp=2)
- # Select parameters on validation only, then freeze before OOS evaluation.
+ # Independent OOS regime tests: hold the strategy only during one regime, flatten at regime transitions.\n regime_tests={}\n for regime_name in ("bull","bear","sideways"):\n  regime_tests[regime_name]=run(data,cuts["oos"],1.0,5,slip_bp=2,regime_filter=regime_name)\n # Select parameters on validation only, then freeze before OOS evaluation.
  grid=[]
  val_period=cuts["validation"]
  for lb in (3,7,14,28):
@@ -248,7 +249,7 @@ def main():
    "intrabar":"1h mark-price OHLC; simultaneous adverse low for longs and high for shorts, conservative but not tick-accurate",
    "margin_mode":"cross-portfolio approximation; funding cashflow at settlement; positions resized weekly",
    "limitations":["not exact Binance liquidation engine","static MMR instead of historical symbol-specific tier brackets","hourly OHLC cannot reconstruct tick order or exact liquidation price","spread and market impact beyond fixed slippage are not modeled","static universe survivorship bias"]},
-  "robustness_tests":{"oos_side_decomposition_1x_5bp_fee_2bp_slippage":oos_sides,"leave_one_symbol_out_1x_5bp_fee_2bp_slippage":leave_one_out,"note":"Each reduced-universe test recalculates cross-sectional ranks using only remaining symbols; fixed original OOS dates; not re-tuned."},"results":results,"parameter_sweep":{"selection_rule":"Choose highest validation net return at 1x, 5bp fee + 2bp slippage, subject to max drawdown >= -25%; freeze parameters before OOS. If none eligible, choose highest validation return from full grid.","grid_size":len(grid),"chosen_on_validation":chosen,"validation_top_10":sorted(grid,key=lambda x:x["validation_net_return_pct"],reverse=True)[:10],"selected_configuration_oos":selected_oos}}
+  "regime_tests_oos_1x_5bp_fee_2bp_slippage":regime_tests,\n  "robustness_tests":{"oos_side_decomposition_1x_5bp_fee_2bp_slippage":oos_sides,"leave_one_symbol_out_1x_5bp_fee_2bp_slippage":leave_one_out,"note":"Each reduced-universe test recalculates cross-sectional ranks using only remaining symbols; fixed original OOS dates; not re-tuned."},"results":results,"parameter_sweep":{"selection_rule":"Choose highest validation net return at 1x, 5bp fee + 2bp slippage, subject to max drawdown >= -25%; freeze parameters before OOS. If none eligible, choose highest validation return from full grid.","grid_size":len(grid),"chosen_on_validation":chosen,"validation_top_10":sorted(grid,key=lambda x:x["validation_net_return_pct"],reverse=True)[:10],"selected_configuration_oos":selected_oos}}
  Path(a.out).parent.mkdir(parents=True,exist_ok=True);Path(a.out).write_text(json.dumps(report,indent=2),encoding="utf-8")
  print("REPORT",a.out,flush=True)
 if __name__=="__main__":main()
