@@ -63,6 +63,29 @@
           "sha256": "84fddc0afc998d1e8fb35d3cdb5c1faec532cfb6dd9b6bc4b6c8d690f970bfcf",
           "archive_bytes": 873295
         },
+        "mark": {
+          "csv_name": "BTCUSDT-1m-2024-05.csv",
+          "header": [
+            "open_time",
+            "open",
+            "high",
+            "low",
+            "close",
+            "volume",
+            "close_time",
+            "quote_volume",
+            "count",
+            "taker_buy_volume",
+            "taker_buy_quote_volume",
+            "ignore"
+          ],
+          "data_rows": 44640,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1714521600000,
+          "last_timestamp_ms": 1717199940000,
+          "sha256": "479435c79e0e56e3ded959ee47e3fb559720991732735211dd31c192c29924b3",
+          "archive_bytes": 1052574
+        },
         "funding": {
           "csv_name": "BTCUSDT-fundingRate-2024-05.csv",
           "header": [
@@ -134,6 +157,29 @@
           "last_timestamp_ms": 1719791940000,
           "sha256": "fb20a5e0e3abd390f97485b6998cb484d6f61c46b8b0318df6e09cb045e779ce",
           "archive_bytes": 831891
+        },
+        "mark": {
+          "csv_name": "BTCUSDT-1m-2024-06.csv",
+          "header": [
+            "open_time",
+            "open",
+            "high",
+            "low",
+            "close",
+            "volume",
+            "close_time",
+            "quote_volume",
+            "count",
+            "taker_buy_volume",
+            "taker_buy_quote_volume",
+            "ignore"
+          ],
+          "data_rows": 43200,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1717200000000,
+          "last_timestamp_ms": 1719791940000,
+          "sha256": "98fdafee41a7a051c2a5a7fd750e4957adaa3efc24e64bde87e006bc72afcf68",
+          "archive_bytes": 1009828
         },
         "funding": {
           "csv_name": "BTCUSDT-fundingRate-2024-06.csv",
@@ -209,6 +255,29 @@
           "sha256": "dbcc53f9f40854b064b26eb3430e346fc0a452c6dd1816fe8beab4db96e1a67e",
           "archive_bytes": 883360
         },
+        "mark": {
+          "csv_name": "ETHUSDT-1m-2024-05.csv",
+          "header": [
+            "open_time",
+            "open",
+            "high",
+            "low",
+            "close",
+            "volume",
+            "close_time",
+            "quote_volume",
+            "count",
+            "taker_buy_volume",
+            "taker_buy_quote_volume",
+            "ignore"
+          ],
+          "data_rows": 44640,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1714521600000,
+          "last_timestamp_ms": 1717199940000,
+          "sha256": "8f9675703ba750e869bf452ae69a1195e95debcca0838c8168e1fce7ba542bff",
+          "archive_bytes": 984286
+        },
         "funding": {
           "csv_name": "ETHUSDT-fundingRate-2024-05.csv",
           "header": [
@@ -280,6 +349,29 @@
           "last_timestamp_ms": 1719791940000,
           "sha256": "1d366b5655c7c215c5d9a3d708ea05c86a5181e33642bc9175e4276be9f88062",
           "archive_bytes": 844946
+        },
+        "mark": {
+          "csv_name": "ETHUSDT-1m-2024-06.csv",
+          "header": [
+            "open_time",
+            "open",
+            "high",
+            "low",
+            "close",
+            "volume",
+            "close_time",
+            "quote_volume",
+            "count",
+            "taker_buy_volume",
+            "taker_buy_quote_volume",
+            "ignore"
+          ],
+          "data_rows": 43200,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1717200000000,
+          "last_timestamp_ms": 1719791940000,
+          "sha256": "383080041e974276e4f862ed8ef3d2383aeed77c07f4b35b9b7cc035faddc1d1",
+          "archive_bytes": 943567
         },
         "funding": {
           "csv_name": "ETHUSDT-fundingRate-2024-06.csv",
@@ -355,6 +447,29 @@
           "sha256": "0e8aa2125b811d6279407bd87dc279f649841e3c260028530b03e21a6f5bcf40",
           "archive_bytes": 889293
         },
+        "mark": {
+          "csv_name": "SOLUSDT-1m-2024-05.csv",
+          "header": [
+            "open_time",
+            "open",
+            "high",
+            "low",
+            "close",
+            "volume",
+            "close_time",
+            "quote_volume",
+            "count",
+            "taker_buy_volume",
+            "taker_buy_quote_volume",
+            "ignore"
+          ],
+          "data_rows": 44640,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1714521600000,
+          "last_timestamp_ms": 1717199940000,
+          "sha256": "a80bf623e03507f940e14381d574748e01c9eea34508e97f2c0f260fecdf291b",
+          "archive_bytes": 1016416
+        },
         "funding": {
           "csv_name": "SOLUSDT-fundingRate-2024-05.csv",
           "header": [
@@ -427,6 +542,29 @@
           "sha256": "2312c8c973dd37ab946ee8cf3f0d1288755af62ac401af499d2983d0da960d08",
           "archive_bytes": 854857
         },
+        "mark": {
+          "csv_name": "SOLUSDT-1m-2024-06.csv",
+          "header": [
+            "open_time",
+            "open",
+            "high",
+            "low",
+            "close",
+            "volume",
+            "close_time",
+            "quote_volume",
+            "count",
+            "taker_buy_volume",
+            "taker_buy_quote_volume",
+            "ignore"
+          ],
+          "data_rows": 43200,
+          "bad_timestamp_rows": 0,
+          "first_timestamp_ms": 1717200000000,
+          "last_timestamp_ms": 1719791940000,
+          "sha256": "c9e53e56e4d742f0ed2c55870ede4d5c46347af30078736a61e8f9989f5b3801",
+          "archive_bytes": 962255
+        },
         "funding": {
           "csv_name": "SOLUSDT-fundingRate-2024-06.csv",
           "header": [
@@ -447,7 +585,7 @@
   "checks": "Every archive and .CHECKSUM are downloaded; SHA256 must match.",
   "limitations": [
     "This is data QA, not a profitability backtest.",
-    "Spot, USD-M perpetual and premium-index timestamps are checked independently; exact common-minute alignment is required downstream.",
+    "Spot, USD-M perpetual, premium-index and mark-price timestamps are checked independently; exact common-minute alignment is required downstream.",
     "Funding archives are event observations; funding cashflows must be applied only at actual funding timestamps."
   ]
 }
