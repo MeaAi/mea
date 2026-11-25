@@ -1,0 +1,121 @@
+{
+  "period": [
+    "2024-09",
+    "2024-10"
+  ],
+  "symbols": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "SOLUSDT"
+  ],
+  "method": "UTC daily cross-sectional top-vs-bottom basis; 5-day change uses 7200 contiguous minute index observations; next-minute open entry; 1440 contiguous 1m bars; 5bp fee + 2bp slippage each side; funding uses event-time mark-price open; entry/exit costs booked at their timestamps; adverse minute high/low DD.",
+  "data_qa": "archives checksum-verified; exact spot/perp common timestamps only; no gap interpolation",
+  "limitations": [
+    "One- or two-month window only; results are not OOS proof unless this period was predesignated untouched.",
+    "Only three-symbol cross-section; 50/50 long-short gross 1x.",
+    "No queue/fill model because this is a taker execution baseline.",
+    "Funding uses event-time mark-price candles; verify archive alignment before full-period expansion."
+  ],
+  "results": [
+    {
+      "factor": "basis_level",
+      "sign": 1,
+      "trades": 55,
+      "start_equity": 100.0,
+      "end_equity": 91.059683,
+      "net_return_pct": -8.9403,
+      "max_adverse_minute_dd_pct": -13.3812,
+      "price_pnl_usdt": -1.67679,
+      "funding_usdt": -0.089626,
+      "cost_usdt": 7.173901,
+      "fee_bp_per_side": 5.0,
+      "slippage_bp_per_side": 2.0,
+      "leverage": 1,
+      "portfolio": "50% long highest score + 50% short lowest score; daily 1440m holding",
+      "candidate_signals": 56,
+      "skip_counts": {
+        "short_window": 1,
+        "minute_gap": 0,
+        "missing_perp_minute": 0,
+        "missing_mark_funding_time": 0
+      },
+      "funding_events_in_holding_windows": 330,
+      "missing_mark_samples": []
+    },
+    {
+      "factor": "basis_level",
+      "sign": -1,
+      "trades": 55,
+      "start_equity": 100.0,
+      "end_equity": 93.55,
+      "net_return_pct": -6.45,
+      "max_adverse_minute_dd_pct": -11.4366,
+      "price_pnl_usdt": 1.104122,
+      "funding_usdt": 0.097484,
+      "cost_usdt": 7.651606,
+      "fee_bp_per_side": 5.0,
+      "slippage_bp_per_side": 2.0,
+      "leverage": 1,
+      "portfolio": "50% long highest score + 50% short lowest score; daily 1440m holding",
+      "candidate_signals": 56,
+      "skip_counts": {
+        "short_window": 1,
+        "minute_gap": 0,
+        "missing_perp_minute": 0,
+        "missing_mark_funding_time": 0
+      },
+      "funding_events_in_holding_windows": 330,
+      "missing_mark_samples": []
+    },
+    {
+      "factor": "basis_5d_change",
+      "sign": 1,
+      "trades": 55,
+      "start_equity": 100.0,
+      "end_equity": 97.723381,
+      "net_return_pct": -2.2766,
+      "max_adverse_minute_dd_pct": -10.4939,
+      "price_pnl_usdt": 5.172643,
+      "funding_usdt": -0.067204,
+      "cost_usdt": 7.382057,
+      "fee_bp_per_side": 5.0,
+      "slippage_bp_per_side": 2.0,
+      "leverage": 1,
+      "portfolio": "50% long highest score + 50% short lowest score; daily 1440m holding",
+      "candidate_signals": 56,
+      "skip_counts": {
+        "short_window": 1,
+        "minute_gap": 0,
+        "missing_perp_minute": 0,
+        "missing_mark_funding_time": 0
+      },
+      "funding_events_in_holding_windows": 330,
+      "missing_mark_samples": []
+    },
+    {
+      "factor": "basis_5d_change",
+      "sign": -1,
+      "trades": 55,
+      "start_equity": 100.0,
+      "end_equity": 87.254291,
+      "net_return_pct": -12.7457,
+      "max_adverse_minute_dd_pct": -16.1921,
+      "price_pnl_usdt": -5.375343,
+      "funding_usdt": 0.06851,
+      "cost_usdt": 7.438876,
+      "fee_bp_per_side": 5.0,
+      "slippage_bp_per_side": 2.0,
+      "leverage": 1,
+      "portfolio": "50% long highest score + 50% short lowest score; daily 1440m holding",
+      "candidate_signals": 56,
+      "skip_counts": {
+        "short_window": 1,
+        "minute_gap": 0,
+        "missing_perp_minute": 0,
+        "missing_mark_funding_time": 0
+      },
+      "funding_events_in_holding_windows": 330,
+      "missing_mark_samples": []
+    }
+  ]
+}
