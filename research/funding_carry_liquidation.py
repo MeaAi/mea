@@ -274,14 +274,14 @@ def main():
  for lev in (1.0,1.25,1.5):
   adaptive_policy_oos[f"{lev:g}x"]={}
   for fee in (2,5,8):
-   adaptive_policy_oos[f"{lev:g}x"][f"fee_{fee}bp"]=run(data,cuts["oos"],lev,fee,slip_bp=2,regime_policy=regime_policies[chosen_policy_name])
+   adaptive_policy_oos[f"{lev:g}x"][f"fee_{fee}bp"]=run(data,cuts["oos"],lev,fee,slip_bp=2,regime_policy=regime_policies[chosen_policy_name],regime_threshold_pct=chosen_threshold)
  # Select parameters on validation only, then freeze before OOS evaluation.
  grid=[]
  val_period=cuts["validation"]
  for lb in (3,7,14,28):
   for rb in (3,7,14):
    for frac in (.10,.20,.30):
-    v=run(data,val_period,1.0,5,slip_bp=2,lookback_days=lb,rebalance_days=rb,tail_fraction=frac)
+    v=run(data,val_period,1.0,5,slip_bp=2,lookback_days=lb,rebalance_days=rb,tail_fraction=frac,regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold)
     grid.append({"lookback_days":lb,"rebalance_days":rb,"tail_fraction":frac,
                  "validation_net_return_pct":v["net_return_pct"],
                  "validation_max_drawdown_pct":v["max_drawdown_pct"],
@@ -295,7 +295,8 @@ def main():
    selected_oos[f"{lev:g}x"][f"fee_{fee}bp"]=run(
     data,cuts["oos"],lev,fee,slip_bp=2,
     lookback_days=chosen["lookback_days"],rebalance_days=chosen["rebalance_days"],
-    tail_fraction=chosen["tail_fraction"])
+    tail_fraction=chosen["tail_fraction"],regime_policy=chosen_mapping,
+    regime_threshold_pct=chosen_threshold)
  report={"strategy":"7d trailing funding rank, weekly rebalance, lowest 20% long/highest 20% short",
   "source":"Free official Binance Vision monthly fundingRate + 1h markPriceKlines",
   "period_utc":{"first":datetime.fromtimestamp(first/1000,timezone.utc).isoformat(),"last":datetime.fromtimestamp(last/1000,timezone.utc).isoformat()},
@@ -312,7 +313,7 @@ def main():
   "symbol_universe_selection":{"selection_protocol":"Rank by net symbol contribution on first half of validation; compare top-5/7/9/11/13 portfolios on second half; freeze selected symbols before OOS.","discovery_period_utc":[datetime.fromtimestamp(val_start/1000,timezone.utc).isoformat(),datetime.fromtimestamp(val_mid/1000,timezone.utc).isoformat()],"selection_period_utc":[datetime.fromtimestamp(val_mid/1000,timezone.utc).isoformat(),datetime.fromtimestamp(val_end/1000,timezone.utc).isoformat()],"discovery_ranking":ranked_symbols,"candidate_results":universe_candidates,"chosen_count":chosen_universe_n,"chosen_symbols":frozen_symbols,"chosen_validation":universe_candidates[str(chosen_universe_n)],"frozen_oos_1x":universe_oos},
   "regime_policy_sweep":{"selection_period":"validation only","selection_rule":"Highest validation net return among policies with max drawdown >= -25% and no liquidation; frozen before OOS.","validation_results":{k:{"net_return_pct":v["net_return_pct"],"max_drawdown_pct":v["max_drawdown_pct"],"liquidated":v["liquidated"]} for k,v in policy_validation.items()},"chosen_policy":chosen_policy_name,"chosen_policy_mapping":regime_policies[chosen_policy_name],"chosen_policy_validation":chosen_policy_result,"chosen_policy_oos":adaptive_policy_oos,
    "threshold_sensitivity":{"candidates_pct":[3,5,7,10],"selection_period":"validation only","validation_results":threshold_validation,"chosen_threshold_pct":chosen_threshold,"chosen_threshold_validation":chosen_threshold_validation,"frozen_threshold_oos_1x":threshold_oos}},
-  "robustness_tests":{"oos_side_decomposition_1x_5bp_fee_2bp_slippage":oos_sides,"leave_one_symbol_out_1x_5bp_fee_2bp_slippage":leave_one_out,"note":"Each reduced tradable-universe test recalculates cross-sectional ranks using only remaining tradable symbols; BTC mark-price data is retained solely as the ex-ante regime benchmark even when BTCUSDT is excluded from trading; fixed original OOS dates; not re-tuned."},"results":results,"parameter_sweep":{"selection_rule":"Choose highest validation net return at 1x, 5bp fee + 2bp slippage, subject to max drawdown >= -25%; freeze parameters before OOS. If none eligible, choose highest validation return from full grid.","grid_size":len(grid),"chosen_on_validation":chosen,"validation_top_10":sorted(grid,key=lambda x:x["validation_net_return_pct"],reverse=True)[:10],"selected_configuration_oos":selected_oos}}
+  "robustness_tests":{"oos_side_decomposition_1x_5bp_fee_2bp_slippage":oos_sides,"leave_one_symbol_out_1x_5bp_fee_2bp_slippage":leave_one_out,"note":"Each reduced tradable-universe test recalculates cross-sectional ranks using only remaining tradable symbols; BTC mark-price data is retained solely as the ex-ante regime benchmark even when BTCUSDT is excluded from trading; fixed original OOS dates; not re-tuned."},"results":results,"parameter_sweep":{"selection_rule":"Choose highest validation net return at 1x, 5bp fee + 2bp slippage, subject to max drawdown >= -25%; regime policy and threshold frozen from validation; freeze parameters before OOS. If none eligible, choose highest validation return from full grid.","frozen_regime_policy":regime_policies[chosen_policy_name],"frozen_regime_threshold_pct":chosen_threshold,"grid_size":len(grid),"chosen_on_validation":chosen,"validation_top_10":sorted(grid,key=lambda x:x["validation_net_return_pct"],reverse=True)[:10],"selected_configuration_oos":selected_oos}}
  Path(a.out).parent.mkdir(parents=True,exist_ok=True);Path(a.out).write_text(json.dumps(report,indent=2),encoding="utf-8")
  print("REPORT",a.out,flush=True)
 if __name__=="__main__":main()
