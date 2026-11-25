@@ -68,7 +68,7 @@ def load_symbol(sym,months,root):
   verified_download(f"{BASE}/markPriceKlines/{sym}/1h/{mn}",mp);marks.update(readzip(mp,"mark"))
  return sym,fund,marks
 
-def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20,side_mode='both',regime_filter=None,regime_policy=None,regime_threshold_pct=5.0,trade_universe=None):
+def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20,side_mode='both',regime_filter=None,regime_policy=None,regime_threshold_pct=5.0,trade_universe=None,sideways_action='flat'):
  symbols=list(data); trade_symbols=list(trade_universe) if trade_universe is not None else symbols; first,last=period
  if not set(trade_symbols).issubset(set(symbols)) or 'BTCUSDT' not in data: raise ValueError('invalid trade universe or missing BTC regime benchmark')
  mark_times={s:sorted(data[s]["marks"]) for s in symbols}
@@ -88,7 +88,7 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
   ret=btc_marks[btc_times[j]][3]/btc_marks[btc_times[k]][3]-1
   threshold=regime_threshold_pct/100.0
   return 'bull' if ret>threshold else ('bear' if ret<-threshold else 'sideways')
- rebalances=0; hourly_checks=0
+ rebalances=0; hourly_checks=0; hourly_sideways_exits=0
  lookback=lookback_days*DAY; interval=rebalance_days*DAY
  for ix,t in enumerate(events):
   # Walk the union of hourly mark candles once; update portfolio equity close-to-close.
@@ -124,6 +124,19 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
       # otherwise a newly selected asset can be entered using a stale price.
       current[z]=cl
     equity+=step;price_pnl+=step
+    # Optional causal hourly exit on the first observed sideways-regime candle.
+    if sideways_action=='immediate_flat' and regime_at(ht)=='sideways' and any(qty[z] for z in symbols):
+     exit_turnover=sum(abs(qty[z]*current[z]) for z in symbols if qty[z] and z in current)
+     exit_fee=exit_turnover*fee_bp/10000;exit_slip=exit_turnover*slip_bp/10000
+     equity-=exit_fee+exit_slip;fee_total+=exit_fee;slip_total+=exit_slip
+     rg_exit=regime_at(ht)
+     regime_pnl[rg_exit]['fees_usdt']+=exit_fee;regime_pnl[rg_exit]['slippage_usdt']+=exit_slip
+     for z in symbols:
+      tr=abs(qty[z]*current[z]) if qty[z] and z in current else 0.
+      fees_by_symbol[z]+=tr*fee_bp/10000;slippage_by_symbol[z]+=tr*slip_bp/10000
+      qty[z]=0.
+      for cohort in cohort_qty[z]: cohort_qty[z][cohort]=0.
+     hourly_sideways_exits+=1
    if liquidated:break
   px={}
   for s in symbols:
@@ -154,7 +167,10 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
      active_mode=regime_policy.get(rg,'flat')
     elif regime_filter is not None and rg!=regime_filter:
      active_mode='flat'
-    if active_mode!='flat':
+    if rg=='sideways' and sideways_action=='hold':
+     # Freeze the existing portfolio: no new entries or additions while sideways.
+     target=qty.copy()
+    if active_mode!='flat' and not (rg=='sideways' and sideways_action=='hold'):
      leg=max(0.,equity)*lev*(.5 if active_mode=='both' else 1.0)
      if active_mode in ('both','long_only'):
       for s in longs:target[s]=leg/k/px[s]
@@ -192,7 +208,7 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
   "liquidated":liquidated,"liquidation_time_utc":liq_time,"equity_at_liquidation_usdt":liq_equity,
   "price_pnl_usdt":round(price_pnl,6),"funding_pnl_usdt":round(funding_pnl,6),
   "trading_fees_usdt":round(fee_total,6),"slippage_usdt":round(slip_total,6),
-  "rebalance_count":rebalances,"hourly_adverse_checks":hourly_checks,"lookback_days":lookback_days,"rebalance_days":rebalance_days,"tail_fraction":tail_fraction,"side_mode":side_mode,"regime_filter":regime_filter,"regime_policy":regime_policy,
+  "rebalance_count":rebalances,"hourly_adverse_checks":hourly_checks,"hourly_sideways_exits":hourly_sideways_exits,"sideways_action":sideways_action,"lookback_days":lookback_days,"rebalance_days":rebalance_days,"tail_fraction":tail_fraction,"side_mode":side_mode,"regime_filter":regime_filter,"regime_policy":regime_policy,
   "symbol_attribution":{z:{"price_pnl_usdt":round(price_by_symbol[z],6),"funding_pnl_usdt":round(funding_by_symbol[z],6),"fees_usdt":round(fees_by_symbol[z],6),"slippage_usdt":round(slippage_by_symbol[z],6),"net_contribution_usdt":round(price_by_symbol[z]+funding_by_symbol[z]-fees_by_symbol[z]-slippage_by_symbol[z],6)} for z in symbols},
   "market_regime_attribution":{k:{q:round(v,6) for q,v in vals.items()}|{"net_contribution_usdt":round(vals['price_pnl_usdt']+vals['funding_pnl_usdt']-vals['fees_usdt']-vals['slippage_usdt'],6)} for k,vals in regime_pnl.items()},
   "entry_regime_attribution":{k:{q:round(v,6) for q,v in vals.items()}|{"net_contribution_usdt":round(vals['price_pnl_usdt']+vals['funding_pnl_usdt'],6)} for k,vals in entry_regime_pnl.items()},
@@ -329,6 +345,19 @@ def main():
  }.items():
   v=run(data,cuts['oos'],1.0,5,slip_bp=2,**kwargs)
   regime_side_by_side[label]={k:v[k] for k in ('net_return_pct','max_drawdown_pct','end_equity_usdt','rebalance_count','market_regime_attribution','entry_regime_attribution')}
+ # Matched OOS comparison of sideways handling. Parameters, policy, dates and costs are frozen.
+ sideways_management={}
+ for action in ('flat','hold','immediate_flat'):
+  v=run(data,cuts['oos'],1.0,5,slip_bp=2,
+   lookback_days=chosen['lookback_days'],rebalance_days=chosen['rebalance_days'],
+   tail_fraction=chosen['tail_fraction'],regime_policy=chosen_mapping,
+   regime_threshold_pct=chosen_threshold,sideways_action=action)
+  sideways_management[action]={k:v[k] for k in ('net_return_pct','end_equity_usdt','max_drawdown_pct','rebalance_count','hourly_sideways_exits','price_pnl_usdt','funding_pnl_usdt','trading_fees_usdt','slippage_usdt','liquidated')}
+ # Parameter-matched no-regime reference, to isolate the value of the BTC filter.
+ v=run(data,cuts['oos'],1.0,5,slip_bp=2,
+  lookback_days=chosen['lookback_days'],rebalance_days=chosen['rebalance_days'],
+  tail_fraction=chosen['tail_fraction'])
+ sideways_management['no_regime_reference']={k:v[k] for k in ('net_return_pct','end_equity_usdt','max_drawdown_pct','rebalance_count','hourly_sideways_exits','price_pnl_usdt','funding_pnl_usdt','trading_fees_usdt','slippage_usdt','liquidated')}
  # Diagnostics for the validation-selected configuration, all on the already-frozen OOS window.
  selected_config_robustness={"leave_one_symbol_out":{},"slippage_stress":{},"oos_halves":{}}
  for excluded in symbols:
@@ -366,7 +395,7 @@ def main():
    "margin_mode":"cross-portfolio approximation; funding cashflow at settlement; positions resized weekly",
    "limitations":["not exact Binance liquidation engine","static MMR instead of historical symbol-specific tier brackets","hourly OHLC cannot reconstruct tick order or exact liquidation price","spread and market impact beyond fixed slippage are not modeled","static universe survivorship bias"]},
   "regime_tests_oos_1x_5bp_fee_2bp_slippage":regime_tests,
-  "matched_regime_comparison_oos_1x_5bp_fee_2bp_slippage":regime_side_by_side,
+  "matched_regime_comparison_oos_1x_5bp_fee_2bp_slippage":regime_side_by_side,"sideways_management_oos_1x_5bp_fee_2bp_slippage":sideways_management,
   "symbol_universe_selection":{"selection_protocol":"Rank by net symbol contribution on first half of validation; compare top-5/7/9/11/13 portfolios on second half; freeze selected symbols before OOS.","discovery_period_utc":[datetime.fromtimestamp(val_start/1000,timezone.utc).isoformat(),datetime.fromtimestamp(val_mid/1000,timezone.utc).isoformat()],"selection_period_utc":[datetime.fromtimestamp(val_mid/1000,timezone.utc).isoformat(),datetime.fromtimestamp(val_end/1000,timezone.utc).isoformat()],"discovery_ranking":ranked_symbols,"candidate_results":universe_candidates,"chosen_count":chosen_universe_n,"chosen_symbols":frozen_symbols,"chosen_validation":universe_candidates[str(chosen_universe_n)],"frozen_oos_1x":universe_oos},
   "regime_policy_sweep":{"selection_period":"validation only","selection_rule":"Highest validation net return among policies with max drawdown >= -25% and no liquidation; frozen before OOS.","validation_results":{k:{"net_return_pct":v["net_return_pct"],"max_drawdown_pct":v["max_drawdown_pct"],"liquidated":v["liquidated"]} for k,v in policy_validation.items()},"chosen_policy":chosen_policy_name,"chosen_policy_mapping":regime_policies[chosen_policy_name],"chosen_policy_validation":chosen_policy_result,"chosen_policy_oos":adaptive_policy_oos,
    "threshold_sensitivity":{"candidates_pct":[3,5,7,10],"selection_period":"validation only","validation_results":threshold_validation,"chosen_threshold_pct":chosen_threshold,"chosen_threshold_validation":chosen_threshold_validation,"frozen_threshold_oos_1x":threshold_oos}},
