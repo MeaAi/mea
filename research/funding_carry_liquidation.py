@@ -216,7 +216,11 @@ def main():
  }.items():
   reduced={s:v for s,v in data.items() if s not in excluded_set}
   leave_one_out[label]=run(reduced,cuts["oos"],1.0,5,slip_bp=2)
- # Independent OOS regime tests: hold the strategy only during one regime, flatten at regime transitions.\n regime_tests={}\n for regime_name in ("bull","bear","sideways"):\n  regime_tests[regime_name]=run(data,cuts["oos"],1.0,5,slip_bp=2,regime_filter=regime_name)\n # Select parameters on validation only, then freeze before OOS evaluation.
+ # Independent OOS regime tests: hold the strategy only during one regime, flatten at regime transitions.
+ regime_tests={}
+ for regime_name in ("bull","bear","sideways"):
+  regime_tests[regime_name]=run(data,cuts["oos"],1.0,5,slip_bp=2,regime_filter=regime_name)
+ # Select parameters on validation only, then freeze before OOS evaluation.
  grid=[]
  val_period=cuts["validation"]
  for lb in (3,7,14,28):
@@ -249,7 +253,8 @@ def main():
    "intrabar":"1h mark-price OHLC; simultaneous adverse low for longs and high for shorts, conservative but not tick-accurate",
    "margin_mode":"cross-portfolio approximation; funding cashflow at settlement; positions resized weekly",
    "limitations":["not exact Binance liquidation engine","static MMR instead of historical symbol-specific tier brackets","hourly OHLC cannot reconstruct tick order or exact liquidation price","spread and market impact beyond fixed slippage are not modeled","static universe survivorship bias"]},
-  "regime_tests_oos_1x_5bp_fee_2bp_slippage":regime_tests,\n  "robustness_tests":{"oos_side_decomposition_1x_5bp_fee_2bp_slippage":oos_sides,"leave_one_symbol_out_1x_5bp_fee_2bp_slippage":leave_one_out,"note":"Each reduced-universe test recalculates cross-sectional ranks using only remaining symbols; fixed original OOS dates; not re-tuned."},"results":results,"parameter_sweep":{"selection_rule":"Choose highest validation net return at 1x, 5bp fee + 2bp slippage, subject to max drawdown >= -25%; freeze parameters before OOS. If none eligible, choose highest validation return from full grid.","grid_size":len(grid),"chosen_on_validation":chosen,"validation_top_10":sorted(grid,key=lambda x:x["validation_net_return_pct"],reverse=True)[:10],"selected_configuration_oos":selected_oos}}
+  "regime_tests_oos_1x_5bp_fee_2bp_slippage":regime_tests,
+  "robustness_tests":{"oos_side_decomposition_1x_5bp_fee_2bp_slippage":oos_sides,"leave_one_symbol_out_1x_5bp_fee_2bp_slippage":leave_one_out,"note":"Each reduced-universe test recalculates cross-sectional ranks using only remaining symbols; fixed original OOS dates; not re-tuned."},"results":results,"parameter_sweep":{"selection_rule":"Choose highest validation net return at 1x, 5bp fee + 2bp slippage, subject to max drawdown >= -25%; freeze parameters before OOS. If none eligible, choose highest validation return from full grid.","grid_size":len(grid),"chosen_on_validation":chosen,"validation_top_10":sorted(grid,key=lambda x:x["validation_net_return_pct"],reverse=True)[:10],"selected_configuration_oos":selected_oos}}
  Path(a.out).parent.mkdir(parents=True,exist_ok=True);Path(a.out).write_text(json.dumps(report,indent=2),encoding="utf-8")
  print("REPORT",a.out,flush=True)
 if __name__=="__main__":main()
