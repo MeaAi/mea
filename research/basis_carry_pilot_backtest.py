@@ -83,22 +83,24 @@ def main():
     for factor in ("basis_level","basis_5d_change"):
       for sign in (1,-1):
         eq=100.0; peak=100.0; maxdd=0.0; trades=0; pnl_total=0.0; cost_total=0.0; funding_total=0.0
+        skips={"short_window":0,"minute_gap":0,"missing_perp_minute":0,"missing_mark_funding_time":0}; missing_mark_samples=[]; candidates=0; funding_events_seen=0
         for sig_t,levels,changes in snapshots:
+            candidates+=1
             scores=levels if factor=="basis_level" else changes
             ranked=sorted(SYMS,key=lambda s:sign*scores[s])
             long_sym=ranked[-1]; short_sym=ranked[0]
             start_i=idx.get(sig_t,-1)+1
-            if start_i<1 or start_i+1439>=len(times):continue
+            if start_i<1 or start_i+1439>=len(times):skips["short_window"]+=1;continue
             entry_t=times[start_i]; exit_t=times[start_i+1439]
             # Reject any missing minute in the holding window or mismatched spot/perp data.
             window=times[start_i:start_i+1440]
-            if len(window)!=1440 or any(window[k]-window[k-1]!=60000 for k in range(1,len(window))):continue
+            if len(window)!=1440 or any(window[k]-window[k-1]!=60000 for k in range(1,len(window))):skips["minute_gap"]+=1;continue
             notion=eq*0.5
             legs=[]; day_funding=0.0; day_price=0.0; day_cost=0.0
             valid=True
             for sym,side in ((long_sym,1),(short_sym,-1)):
                 bars=d[sym]["perp"]
-                if any(t not in bars for t in window):valid=False;break
+                if any(t not in bars for t in window):valid=False;skips["missing_perp_minute"]+=1;break
                 entry=bars[entry_t]["open"]; exitp=bars[exit_t]["close"]
                 ret=side*(exitp/entry-1)
                 day_price+=notion*ret
@@ -106,9 +108,12 @@ def main():
                 day_cost+=notion*2*(fee_bp+SLIP_BP)/10000
                 for ft,rate in d[sym]["funding"]:
                     if entry_t<=ft<=exit_t:
+                        funding_events_seen+=1
                         # Positive funding: longs pay, shorts receive.
                         if ft not in d[sym]["mark"]:
-                            valid=False;break
+                            valid=False;skips["missing_mark_funding_time"]+=1
+                            if len(missing_mark_samples)<12:missing_mark_samples.append({"symbol":sym,"funding_time_ms":ft,"entry_time_ms":entry_t,"exit_time_ms":exit_t})
+                            break
                         mark_at_funding=d[sym]["mark"][ft]["open"]
                         quantity=notion/entry
                         day_funding += -side*quantity*mark_at_funding*rate
@@ -146,7 +151,8 @@ def main():
           "max_adverse_minute_dd_pct":round(maxdd*100,4),"price_pnl_usdt":round(pnl_total,6),
           "funding_usdt":round(funding_total,6),"cost_usdt":round(cost_total,6),
           "fee_bp_per_side":fee_bp,"slippage_bp_per_side":SLIP_BP,"leverage":1,
-          "portfolio":"50% long highest score + 50% short lowest score; daily 1440m holding"})
+          "portfolio":"50% long highest score + 50% short lowest score; daily 1440m holding",
+          "candidate_signals":candidates,"skip_counts":skips,"funding_events_in_holding_windows":funding_events_seen,"missing_mark_samples":missing_mark_samples})
     report={"period":[START,END],"symbols":list(SYMS),"method":f"UTC daily cross-sectional top-vs-bottom basis; 5-day change uses 7200 contiguous minute index observations; next-minute open entry; 1440 contiguous 1m bars; {fee_bp:g}bp fee + {SLIP_BP:g}bp slippage each side; funding uses event-time mark-price open; entry/exit costs booked at their timestamps; adverse minute high/low DD.",
       "data_qa":"archives checksum-verified; exact spot/perp common timestamps only; no gap interpolation",
       "limitations":["Two-month pilot only; not OOS proof.","Only three-symbol cross-section; 50/50 long-short gross 1x.","No queue/fill model because this is a taker execution baseline.","Funding uses event-time mark-price candles; verify archive alignment before full-period expansion."],
