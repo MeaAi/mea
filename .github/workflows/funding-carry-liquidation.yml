@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - research/binance-data-pipeline
+      - research/experiments-v1
     paths:
       - "research/funding_carry_liquidation.py"
       - ".github/workflows/funding-carry-liquidation.yml"
@@ -23,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: research/binance-data-pipeline
+          ref: ${{ github.ref_name }}
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
