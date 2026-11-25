@@ -1,0 +1,50 @@
+name: Basis carry data QA pilot
+on:
+  push:
+    branches: [research/basis-carry-risk-v1]
+    paths:
+      - ".github/workflows/basis-carry-risk.yml"
+      - "research/basis_carry_data_qa.py"
+  workflow_dispatch:
+    inputs:
+      start_month:
+        description: "Start month YYYY-MM"
+        required: true
+        default: "2024-05"
+      end_month:
+        description: "End month YYYY-MM (maximum 2 months)"
+        required: true
+        default: "2024-06"
+permissions:
+  contents: write
+concurrency:
+  group: basis-carry-risk-v1
+  cancel-in-progress: false
+jobs:
+  data-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      START_MONTH: ${{ github.event.inputs.start_month || '2024-05' }}
+      END_MONTH: ${{ github.event.inputs.end_month || '2024-06' }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: research/basis-carry-risk-v1
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Download and verify free Binance archives
+        run: python research/basis_carry_data_qa.py --start "$START_MONTH" --end "$END_MONTH" --symbols BTCUSDT,ETHUSDT,SOLUSDT --out research-output
+      - name: Publish compact QA report only
+        run: |
+          mkdir -p research-results
+          cp research-output/basis_data_qa.json research-results/basis_data_qa.json
+          rm -rf research-output
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research-results/basis_data_qa.json
+          git commit -m "Publish basis carry data QA report" || echo "No report changes"
+          git fetch origin research/basis-carry-risk-v1
+          git rebase origin/research/basis-carry-risk-v1
+          git push origin HEAD:research/basis-carry-risk-v1
