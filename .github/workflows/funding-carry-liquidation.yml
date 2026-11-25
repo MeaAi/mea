@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: research/binance-data-pipeline
+          ref: ${{ github.ref_name }}
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -33,6 +33,13 @@ jobs:
             --start 2023-01 --end 2026-10 \
             --symbols BTCUSDT,ETHUSDT,BNBUSDT,XRPUSDT,ADAUSDT,DOGEUSDT,SOLUSDT,LINKUSDT,LTCUSDT,BCHUSDT,DOTUSDT,TRXUSDT,AVAXUSDT \
             --out research-output/funding_carry_liquidation.json
+      - name: Preserve full test report as workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: funding-carry-selective-sideways-report
+          path: research-output/funding_carry_liquidation.json
+          if-no-files-found: error
+          retention-days: 30
       - name: Publish compact results
         run: |
           mkdir -p research-results
@@ -42,8 +49,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add research-results/funding_carry_liquidation.json
           git commit -m "Publish liquidation-aware funding carry risk results" || exit 0
-          git pull --rebase origin research/binance-data-pipeline
-          git push
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin HEAD:${GITHUB_REF_NAME}
 
 # Retry after research script fixes.
 
