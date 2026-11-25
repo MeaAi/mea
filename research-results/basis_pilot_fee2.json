@@ -1,0 +1,85 @@
+{
+  "period": [
+    "2024-05",
+    "2024-06"
+  ],
+  "symbols": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "SOLUSDT"
+  ],
+  "method": "UTC daily cross-sectional top-vs-bottom basis; 5-day change uses 7200 contiguous minute index observations; next-minute open entry; 1440 contiguous 1m bars; 5bp fee + 2bp slippage each side; funding only at actual timestamps; adverse minute high/low DD.",
+  "data_qa": "archives checksum-verified; exact spot/perp common timestamps only; no gap interpolation",
+  "limitations": [
+    "Two-month pilot only; not OOS proof.",
+    "Only three-symbol cross-section; 50/50 long-short gross 1x.",
+    "No queue/fill model because this is a taker execution baseline.",
+    "Funding timestamp/rate interpretation must be checked against exchange semantics before full-period expansion."
+  ],
+  "results": [
+    {
+      "factor": "basis_level",
+      "sign": 1,
+      "trades": 55,
+      "start_equity": 100.0,
+      "end_equity": 112.043321,
+      "net_return_pct": 12.0433,
+      "max_adverse_minute_dd_pct": -7.6559,
+      "price_pnl_usdt": 16.731373,
+      "funding_usdt": -0.093799,
+      "cost_usdt": 4.594253,
+      "fee_bp_per_side": 2.0,
+      "slippage_bp_per_side": 2.0,
+      "leverage": 1,
+      "portfolio": "50% long highest score + 50% short lowest score; daily 1440m holding"
+    },
+    {
+      "factor": "basis_level",
+      "sign": -1,
+      "trades": 55,
+      "start_equity": 100.0,
+      "end_equity": 80.683547,
+      "net_return_pct": -19.3165,
+      "max_adverse_minute_dd_pct": -22.8527,
+      "price_pnl_usdt": -15.373605,
+      "funding_usdt": 0.078788,
+      "cost_usdt": 4.021636,
+      "fee_bp_per_side": 2.0,
+      "slippage_bp_per_side": 2.0,
+      "leverage": 1,
+      "portfolio": "50% long highest score + 50% short lowest score; daily 1440m holding"
+    },
+    {
+      "factor": "basis_5d_change",
+      "sign": 1,
+      "trades": 55,
+      "start_equity": 100.0,
+      "end_equity": 104.675638,
+      "net_return_pct": 4.6756,
+      "max_adverse_minute_dd_pct": -8.6647,
+      "price_pnl_usdt": 9.199726,
+      "funding_usdt": -0.050007,
+      "cost_usdt": 4.474081,
+      "fee_bp_per_side": 2.0,
+      "slippage_bp_per_side": 2.0,
+      "leverage": 1,
+      "portfolio": "50% long highest score + 50% short lowest score; daily 1440m holding"
+    },
+    {
+      "factor": "basis_5d_change",
+      "sign": -1,
+      "trades": 55,
+      "start_equity": 100.0,
+      "end_equity": 86.745579,
+      "net_return_pct": -13.2544,
+      "max_adverse_minute_dd_pct": -15.4226,
+      "price_pnl_usdt": -9.168832,
+      "funding_usdt": 0.04735,
+      "cost_usdt": 4.132939,
+      "fee_bp_per_side": 2.0,
+      "slippage_bp_per_side": 2.0,
+      "leverage": 1,
+      "portfolio": "50% long highest score + 50% short lowest score; daily 1440m holding"
+    }
+  ]
+}
