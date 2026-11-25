@@ -1,0 +1,54 @@
+name: OI positioning shock OOS research
+on:
+  push:
+    branches: [research/oi-positioning-shock-v1]
+    paths:
+      - ".github/workflows/oi-positioning-shock.yml"
+      - "research/oi_positioning_shock.py"
+  workflow_dispatch:
+    inputs:
+      start_day:
+        description: "UTC start day (YYYY-MM-DD)"
+        required: true
+        default: "2024-05-01"
+      end_day:
+        description: "UTC end day (YYYY-MM-DD)"
+        required: true
+        default: "2024-06-30"
+permissions:
+  contents: write
+concurrency:
+  group: oi-positioning-shock-v1
+  cancel-in-progress: false
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      START_DAY: ${{ github.event.inputs.start_day || '2024-05-01' }}
+      END_DAY: ${{ github.event.inputs.end_day || '2024-06-30' }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: research/oi-positioning-shock-v1
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Acquire free Binance public kline and aggTrade archives
+        run: |
+          python research/binance_public_pipeline.py --start 2024-05 --end 2024-06 --symbols BTCUSDT,ETHUSDT,SOLUSDT --out research-output
+      - name: Test OI and positioning shocks
+        run: |
+          python research/oi_positioning_shock.py --input "research-output/*-1m-orderflow.csv.gz" --start-day "$START_DAY" --end-day "$END_DAY" --out research-output/oi_positioning_oos.json --capital 100
+      - name: Publish compact report only
+        run: |
+          mkdir -p research-results
+          cp research-output/oi_positioning_oos.json research-results/oi_positioning_oos.json
+          rm -rf research-output
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research-results/oi_positioning_oos.json
+          git commit -m "Publish OI positioning shock OOS report" || echo "No report changes"
+          git fetch origin research/oi-positioning-shock-v1
+          git rebase origin/research/oi-positioning-shock-v1
+          git push origin HEAD:research/oi-positioning-shock-v1
