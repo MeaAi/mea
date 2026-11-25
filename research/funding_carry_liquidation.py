@@ -68,7 +68,7 @@ def load_symbol(sym,months,root):
   verified_download(f"{BASE}/markPriceKlines/{sym}/1h/{mn}",mp);marks.update(readzip(mp,"mark"))
  return sym,fund,marks
 
-def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20):
+def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20,side_mode='both'):
  symbols=list(data); first,last=period
  mark_times={s:sorted(data[s]["marks"]) for s in symbols}
  all_events=sorted(set(t for s in symbols for t in data[s]["fund"] if first<=t<=last))
@@ -139,9 +139,11 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
    ordered=sorted(scores,key=scores.get);k=max(1,int(len(ordered)*tail_fraction))
    if len(ordered)>=2*k:
     longs=ordered[:k];shorts=ordered[-k:];target={s:0. for s in symbols}
-    leg=max(0.,equity)*lev*.5
-    for s in longs:target[s]=leg/k/px[s]
-    for s in shorts:target[s]=-leg/k/px[s]
+    leg=max(0.,equity)*lev*(.5 if side_mode=='both' else 1.0)
+    if side_mode in ('both','long_only'):
+     for s in longs:target[s]=leg/k/px[s]
+    if side_mode in ('both','short_only'):
+     for s in shorts:target[s]=-leg/k/px[s]
     turnover=sum(abs((target[s]-qty[s])*px[s]) for s in symbols if s in px)
     fee=turnover*fee_bp/10000;slip=turnover*slip_bp/10000
     for z in symbols:
@@ -161,7 +163,7 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
   "liquidated":liquidated,"liquidation_time_utc":liq_time,"equity_at_liquidation_usdt":liq_equity,
   "price_pnl_usdt":round(price_pnl,6),"funding_pnl_usdt":round(funding_pnl,6),
   "trading_fees_usdt":round(fee_total,6),"slippage_usdt":round(slip_total,6),
-  "rebalance_count":rebalances,"hourly_adverse_checks":hourly_checks,"lookback_days":lookback_days,"rebalance_days":rebalance_days,"tail_fraction":tail_fraction,
+  "rebalance_count":rebalances,"hourly_adverse_checks":hourly_checks,"lookback_days":lookback_days,"rebalance_days":rebalance_days,"tail_fraction":tail_fraction,"side_mode":side_mode,
   "symbol_attribution":{z:{"price_pnl_usdt":round(price_by_symbol[z],6),"funding_pnl_usdt":round(funding_by_symbol[z],6),"fees_usdt":round(fees_by_symbol[z],6),"slippage_usdt":round(slippage_by_symbol[z],6),"net_contribution_usdt":round(price_by_symbol[z]+funding_by_symbol[z]-fees_by_symbol[z]-slippage_by_symbol[z],6)} for z in symbols},
   "market_regime_attribution":{k:{q:round(v,6) for q,v in vals.items()}|{"net_contribution_usdt":round(vals['price_pnl_usdt']+vals['funding_pnl_usdt']-vals['fees_usdt']-vals['slippage_usdt'],6)} for k,vals in regime_pnl.items()},
   "model_note":"Cross-portfolio conservative hourly OHLC stress approximation; not exact Binance liquidation engine. Uses simultaneous adverse extremes and static 0.5% MMR assumption."}
@@ -194,6 +196,25 @@ def main():
     v=run(data,period,lev,fee,slip_bp=2)
     results[name][f"{lev:g}x"][f"fee_{fee}bp"]=v
     print("RESULT",name,lev,fee,json.dumps(v,separators=(",",":")),flush=True)
+ # Robustness diagnostics are evaluated only on the fixed OOS window.
+ # Long-only and short-only each use 100% notional at 1x; combined uses 50/50.
+ oos_sides={}
+ for mode in ("both","long_only","short_only"):
+  oos_sides[mode]=run(data,cuts["oos"],1.0,5,slip_bp=2,side_mode=mode)
+ # Leave-one-symbol-out: recompute cross-sectional ranks on the reduced universe.
+ leave_one_out={}
+ for excluded in symbols:
+  reduced={s:v for s,v in data.items() if s!=excluded}
+  if len(reduced)>=8:
+   leave_one_out[excluded]=run(reduced,cuts["oos"],1.0,5,slip_bp=2)
+ for label,excluded_set in {
+  "without_BCH": {"BCHUSDT"},
+  "without_ETH": {"ETHUSDT"},
+  "without_BCH_ETH": {"BCHUSDT","ETHUSDT"},
+  "without_SOL_AVAX": {"SOLUSDT","AVAXUSDT"},
+ }.items():
+  reduced={s:v for s,v in data.items() if s not in excluded_set}
+  leave_one_out[label]=run(reduced,cuts["oos"],1.0,5,slip_bp=2)
  # Select parameters on validation only, then freeze before OOS evaluation.
  grid=[]
  val_period=cuts["validation"]
@@ -227,7 +248,7 @@ def main():
    "intrabar":"1h mark-price OHLC; simultaneous adverse low for longs and high for shorts, conservative but not tick-accurate",
    "margin_mode":"cross-portfolio approximation; funding cashflow at settlement; positions resized weekly",
    "limitations":["not exact Binance liquidation engine","static MMR instead of historical symbol-specific tier brackets","hourly OHLC cannot reconstruct tick order or exact liquidation price","spread and market impact beyond fixed slippage are not modeled","static universe survivorship bias"]},
-  "results":results,"parameter_sweep":{"selection_rule":"Choose highest validation net return at 1x, 5bp fee + 2bp slippage, subject to max drawdown >= -25%; freeze parameters before OOS. If none eligible, choose highest validation return from full grid.","grid_size":len(grid),"chosen_on_validation":chosen,"validation_top_10":sorted(grid,key=lambda x:x["validation_net_return_pct"],reverse=True)[:10],"selected_configuration_oos":selected_oos}}
+  "robustness_tests":{"oos_side_decomposition_1x_5bp_fee_2bp_slippage":oos_sides,"leave_one_symbol_out_1x_5bp_fee_2bp_slippage":leave_one_out,"note":"Each reduced-universe test recalculates cross-sectional ranks using only remaining symbols; fixed original OOS dates; not re-tuned."},"results":results,"parameter_sweep":{"selection_rule":"Choose highest validation net return at 1x, 5bp fee + 2bp slippage, subject to max drawdown >= -25%; freeze parameters before OOS. If none eligible, choose highest validation return from full grid.","grid_size":len(grid),"chosen_on_validation":chosen,"validation_top_10":sorted(grid,key=lambda x:x["validation_net_return_pct"],reverse=True)[:10],"selected_configuration_oos":selected_oos}}
  Path(a.out).parent.mkdir(parents=True,exist_ok=True);Path(a.out).write_text(json.dumps(report,indent=2),encoding="utf-8")
  print("REPORT",a.out,flush=True)
 if __name__=="__main__":main()
