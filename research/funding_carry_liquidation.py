@@ -78,6 +78,8 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
  equity=100.; peak=100.; maxdd=0.; qty={s:0. for s in symbols}; prev={}; last_rebal=None
  fee_total=slip_total=price_pnl=funding_pnl=0.; liquidated=False; liq_time=None; liq_equity=None; last_regime=None
  price_by_symbol={z:0. for z in symbols}; funding_by_symbol={z:0. for z in symbols}; fees_by_symbol={z:0. for z in symbols}; slippage_by_symbol={z:0. for z in symbols}
+ cohort_qty={z:{k:0. for k in ('bull','bear','sideways','unknown')} for z in symbols}
+ entry_regime_pnl={k:{'price_pnl_usdt':0.,'funding_pnl_usdt':0.} for k in ('bull','bear','sideways','unknown')}
  regime_pnl={k:{'price_pnl_usdt':0.,'funding_pnl_usdt':0.,'fees_usdt':0.,'slippage_usdt':0.} for k in ('bull','bear','sideways','unknown')}
  btc_times=mark_times.get('BTCUSDT',[]); btc_marks=data.get('BTCUSDT',{}).get('marks',{})
  def regime_at(ts):
@@ -113,6 +115,7 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
       cl=bar[3]
       if q:
        dp=q*(cl-current[z]);step+=dp;price_by_symbol[z]+=dp;regime_pnl[regime_at(ht)]['price_pnl_usdt']+=dp
+       for cohort,cohort_q in cohort_qty[z].items(): entry_regime_pnl[cohort]['price_pnl_usdt']+=cohort_q*(cl-current[z])
       # Keep every symbol's mark current, including currently unheld assets;
       # otherwise a newly selected asset can be entered using a stale price.
       current[z]=cl
@@ -131,6 +134,7 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
   for z in symbols:
    if qty[z] and z in px and z in rates:
     v=-qty[z]*px[z]*rates[z];fpnl+=v;funding_by_symbol[z]+=v;regime_pnl[rg]['funding_pnl_usdt']+=v
+    for cohort,cohort_q in cohort_qty[z].items(): entry_regime_pnl[cohort]['funding_pnl_usdt']+=-cohort_q*px[z]*rates[z]
   equity+=fpnl;funding_pnl+=fpnl
   if equity<=0:liquidated=True;liq_time=datetime.fromtimestamp(t/1000,timezone.utc).isoformat();liq_equity=0.;equity=0.;break
   if last_rebal is None and t>=first+lookback or last_rebal is not None and (t-last_rebal>=interval or ((regime_filter is not None or regime_policy is not None) and rg!=last_regime)):
@@ -158,7 +162,11 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
      tr=abs((target[z]-qty[z])*px[z]) if z in px else 0.
      fees_by_symbol[z]+=tr*fee_bp/10000;slippage_by_symbol[z]+=tr*slip_bp/10000
      regime_pnl[rg]['fees_usdt']+=tr*fee_bp/10000;regime_pnl[rg]['slippage_usdt']+=tr*slip_bp/10000
-    equity-=fee+slip;fee_total+=fee;slip_total+=slip;qty=target;last_rebal=t;last_regime=rg;rebalances+=1
+    equity-=fee+slip;fee_total+=fee;slip_total+=slip
+    for z in symbols:
+     delta=target[z]-qty[z]
+     cohort_qty[z][rg]+=delta
+    qty=target;last_rebal=t;last_regime=rg;rebalances+=1
   # Save latest event mark as anchor for next interval.
   prev=px.copy()
   peak=max(peak,equity);maxdd=min(maxdd,(equity/peak-1)*100 if peak else -100)
@@ -174,6 +182,8 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
   "rebalance_count":rebalances,"hourly_adverse_checks":hourly_checks,"lookback_days":lookback_days,"rebalance_days":rebalance_days,"tail_fraction":tail_fraction,"side_mode":side_mode,"regime_filter":regime_filter,"regime_policy":regime_policy,
   "symbol_attribution":{z:{"price_pnl_usdt":round(price_by_symbol[z],6),"funding_pnl_usdt":round(funding_by_symbol[z],6),"fees_usdt":round(fees_by_symbol[z],6),"slippage_usdt":round(slippage_by_symbol[z],6),"net_contribution_usdt":round(price_by_symbol[z]+funding_by_symbol[z]-fees_by_symbol[z]-slippage_by_symbol[z],6)} for z in symbols},
   "market_regime_attribution":{k:{q:round(v,6) for q,v in vals.items()}|{"net_contribution_usdt":round(vals['price_pnl_usdt']+vals['funding_pnl_usdt']-vals['fees_usdt']-vals['slippage_usdt'],6)} for k,vals in regime_pnl.items()},
+  "entry_regime_attribution":{k:{q:round(v,6) for q,v in vals.items()}|{"net_contribution_usdt":round(vals['price_pnl_usdt']+vals['funding_pnl_usdt'],6)} for k,vals in entry_regime_pnl.items()},
+  "entry_regime_attribution_note":"Price and funding PnL are assigned to the regime in which each incremental position quantity was opened. Fees/slippage remain attributed by execution-time regime in market_regime_attribution."
   "model_note":"Cross-portfolio conservative hourly OHLC stress approximation; not exact Binance liquidation engine. Uses simultaneous adverse extremes and static 0.5% MMR assumption."}
 
 def main():
@@ -297,6 +307,15 @@ def main():
     lookback_days=chosen["lookback_days"],rebalance_days=chosen["rebalance_days"],
     tail_fraction=chosen["tail_fraction"],regime_policy=chosen_mapping,
     regime_threshold_pct=chosen_threshold)
+ # Compare the historical baseline, parameter-only change, and regime-policy change on identical frozen OOS dates.
+ regime_side_by_side={}
+ for label,kwargs in {
+  'baseline_7d_7d_20pct_no_regime':dict(lookback_days=7,rebalance_days=7,tail_fraction=.20),
+  'same_parameters_7d_14d_10pct_no_regime':dict(lookback_days=7,rebalance_days=14,tail_fraction=.10),
+  'same_parameters_with_regime_policy':dict(lookback_days=7,rebalance_days=14,tail_fraction=.10,regime_policy=chosen_mapping,regime_threshold_pct=chosen_threshold),
+ }.items():
+  v=run(data,cuts['oos'],1.0,5,slip_bp=2,**kwargs)
+  regime_side_by_side[label]={k:v[k] for k in ('net_return_pct','max_drawdown_pct','end_equity_usdt','rebalance_count','market_regime_attribution','entry_regime_attribution')}
  # Diagnostics for the validation-selected configuration, all on the already-frozen OOS window.
  selected_config_robustness={"leave_one_symbol_out":{},"slippage_stress":{},"oos_halves":{}}
  for excluded in symbols:
