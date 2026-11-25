@@ -31,7 +31,89 @@
       "fee_bp_per_side": 2.0,
       "slippage_bp_per_side": 2.0,
       "leverage": 1,
-      "portfolio": "50% long highest score + 50% short lowest score; daily 1440m holding"
+      "portfolio": "50% long highest score + 50% short lowest score; daily 1440m holding",
+      "candidate_signals": 56,
+      "skip_counts": {
+        "short_window": 1,
+        "minute_gap": 0,
+        "missing_perp_minute": 0,
+        "missing_mark_funding_time": 34
+      },
+      "funding_events_in_holding_windows": 286,
+      "missing_mark_samples": [
+        {
+          "symbol": "BTCUSDT",
+          "funding_time_ms": 1715558400001,
+          "entry_time_ms": 1715558400000,
+          "exit_time_ms": 1715644740000
+        },
+        {
+          "symbol": "ETHUSDT",
+          "funding_time_ms": 1715558400001,
+          "entry_time_ms": 1715558400000,
+          "exit_time_ms": 1715644740000
+        },
+        {
+          "symbol": "BTCUSDT",
+          "funding_time_ms": 1715817600004,
+          "entry_time_ms": 1715817600000,
+          "exit_time_ms": 1715903940000
+        },
+        {
+          "symbol": "ETHUSDT",
+          "funding_time_ms": 1715817600004,
+          "entry_time_ms": 1715817600000,
+          "exit_time_ms": 1715903940000
+        },
+        {
+          "symbol": "ETHUSDT",
+          "funding_time_ms": 1716220800003,
+          "entry_time_ms": 1716163200000,
+          "exit_time_ms": 1716249540000
+        },
+        {
+          "symbol": "BTCUSDT",
+          "funding_time_ms": 1716220800003,
+          "entry_time_ms": 1716163200000,
+          "exit_time_ms": 1716249540000
+        },
+        {
+          "symbol": "ETHUSDT",
+          "funding_time_ms": 1716278400001,
+          "entry_time_ms": 1716249600000,
+          "exit_time_ms": 1716335940000
+        },
+        {
+          "symbol": "SOLUSDT",
+          "funding_time_ms": 1716278400001,
+          "entry_time_ms": 1716249600000,
+          "exit_time_ms": 1716335940000
+        },
+        {
+          "symbol": "SOLUSDT",
+          "funding_time_ms": 1716940800001,
+          "entry_time_ms": 1716940800000,
+          "exit_time_ms": 1717027140000
+        },
+        {
+          "symbol": "ETHUSDT",
+          "funding_time_ms": 1716940800001,
+          "entry_time_ms": 1716940800000,
+          "exit_time_ms": 1717027140000
+        },
+        {
+          "symbol": "SOLUSDT",
+          "funding_time_ms": 1717257600001,
+          "entry_time_ms": 1717200000000,
+          "exit_time_ms": 1717286340000
+        },
+        {
+          "symbol": "ETHUSDT",
+          "funding_time_ms": 1717257600001,
+          "entry_time_ms": 1717200000000,
+          "exit_time_ms": 1717286340000
+        }
+      ]
     },
     {
       "factor": "basis_level",
@@ -47,7 +129,89 @@
       "fee_bp_per_side": 2.0,
       "slippage_bp_per_side": 2.0,
       "leverage": 1,
-      "portfolio": "50% long highest score + 50% short lowest score; daily 1440m holding"
+      "portfolio": "50% long highest score + 50% short lowest score; daily 1440m holding",
+      "candidate_signals": 56,
+      "skip_counts": {
+        "short_window": 1,
+        "minute_gap": 0,
+        "missing_perp_minute": 0,
+        "missing_mark_funding_time": 34
+      },
+      "funding_events_in_holding_windows": 286,
+      "missing_mark_samples": [
+        {
+          "symbol": "ETHUSDT",
+          "funding_time_ms": 1715558400001,
+          "entry_time_ms": 1715558400000,
+          "exit_time_ms": 1715644740000
+        },
+        {
+          "symbol": "BTCUSDT",
+          "funding_time_ms": 1715558400001,
+          "entry_time_ms": 1715558400000,
+          "exit_time_ms": 1715644740000
+        },
+        {
+          "symbol": "ETHUSDT",
+          "funding_time_ms": 1715817600004,
+          "entry_time_ms": 1715817600000,
+          "exit_time_ms": 1715903940000
+        },
+        {
+          "symbol": "BTCUSDT",
+          "funding_time_ms": 1715817600004,
+          "entry_time_ms": 1715817600000,
+          "exit_time_ms": 1715903940000
+        },
+        {
+          "symbol": "BTCUSDT",
+          "funding_time_ms": 1716220800003,
+          "entry_time_ms": 1716163200000,
+          "exit_time_ms": 1716249540000
+        },
+        {
+          "symbol": "ETHUSDT",
+          "funding_time_ms": 1716220800003,
+          "entry_time_ms": 1716163200000,
+          "exit_time_ms": 1716249540000
+        },
+        {
+          "symbol": "SOLUSDT",
+          "funding_time_ms": 1716278400001,
+          "entry_time_ms": 1716249600000,
+          "exit_time_ms": 1716335940000
+        },
+        {
+          "symbol": "ETHUSDT",
+          "funding_time_ms": 1716278400001,
+          "entry_time_ms": 1716249600000,
+          "exit_time_ms": 1716335940000
+        },
+        {
+          "symbol": "ETHUSDT",
+          "funding_time_ms": 1716940800001,
+          "entry_time_ms": 1716940800000,
+          "exit_time_ms": 1717027140000
+        },
+        {
+          "symbol": "SOLUSDT",
+          "funding_time_ms": 1716940800001,
+          "entry_time_ms": 1716940800000,
+          "exit_time_ms": 1717027140000
+        },
+        {
+          "symbol": "ETHUSDT",
+          "funding_time_ms": 1717257600001,
+          "entry_time_ms": 1717200000000,
+          "exit_time_ms": 1717286340000
+        },
+        {
+          "symbol": "SOLUSDT",
+          "funding_time_ms": 1717257600001,
+          "entry_time_ms": 1717200000000,
+          "exit_time_ms": 1717286340000
+        }
+      ]
     },
     {
       "factor": "basis_5d_change",
@@ -63,7 +227,89 @@
       "fee_bp_per_side": 2.0,
       "slippage_bp_per_side": 2.0,
       "leverage": 1,
-      "portfolio": "50% long highest score + 50% short lowest score; daily 1440m holding"
+      "portfolio": "50% long highest score + 50% short lowest score; daily 1440m holding",
+      "candidate_signals": 56,
+      "skip_counts": {
+        "short_window": 1,
+        "minute_gap": 0,
+        "missing_perp_minute": 0,
+        "missing_mark_funding_time": 34
+      },
+      "funding_events_in_holding_windows": 286,
+      "missing_mark_samples": [
+        {
+          "symbol": "ETHUSDT",
+          "funding_time_ms": 1715558400001,
+          "entry_time_ms": 1715558400000,
+          "exit_time_ms": 1715644740000
+        },
+        {
+          "symbol": "SOLUSDT",
+          "funding_time_ms": 1715558400001,
+          "entry_time_ms": 1715558400000,
+          "exit_time_ms": 1715644740000
+        },
+        {
+          "symbol": "BTCUSDT",
+          "funding_time_ms": 1715817600004,
+          "entry_time_ms": 1715817600000,
+          "exit_time_ms": 1715903940000
+        },
+        {
+          "symbol": "SOLUSDT",
+          "funding_time_ms": 1715817600004,
+          "entry_time_ms": 1715817600000,
+          "exit_time_ms": 1715903940000
+        },
+        {
+          "symbol": "SOLUSDT",
+          "funding_time_ms": 1716220800003,
+          "entry_time_ms": 1716163200000,
+          "exit_time_ms": 1716249540000
+        },
+        {
+          "symbol": "BTCUSDT",
+          "funding_time_ms": 1716220800003,
+          "entry_time_ms": 1716163200000,
+          "exit_time_ms": 1716249540000
+        },
+        {
+          "symbol": "ETHUSDT",
+          "funding_time_ms": 1716278400001,
+          "entry_time_ms": 1716249600000,
+          "exit_time_ms": 1716335940000
+        },
+        {
+          "symbol": "SOLUSDT",
+          "funding_time_ms": 1716278400001,
+          "entry_time_ms": 1716249600000,
+          "exit_time_ms": 1716335940000
+        },
+        {
+          "symbol": "SOLUSDT",
+          "funding_time_ms": 1716940800001,
+          "entry_time_ms": 1716940800000,
+          "exit_time_ms": 1717027140000
+        },
+        {
+          "symbol": "BTCUSDT",
+          "funding_time_ms": 1716940800001,
+          "entry_time_ms": 1716940800000,
+          "exit_time_ms": 1717027140000
+        },
+        {
+          "symbol": "BTCUSDT",
+          "funding_time_ms": 1717257600001,
+          "entry_time_ms": 1717200000000,
+          "exit_time_ms": 1717286340000
+        },
+        {
+          "symbol": "SOLUSDT",
+          "funding_time_ms": 1717257600001,
+          "entry_time_ms": 1717200000000,
+          "exit_time_ms": 1717286340000
+        }
+      ]
     },
     {
       "factor": "basis_5d_change",
@@ -79,7 +325,89 @@
       "fee_bp_per_side": 2.0,
       "slippage_bp_per_side": 2.0,
       "leverage": 1,
-      "portfolio": "50% long highest score + 50% short lowest score; daily 1440m holding"
+      "portfolio": "50% long highest score + 50% short lowest score; daily 1440m holding",
+      "candidate_signals": 56,
+      "skip_counts": {
+        "short_window": 1,
+        "minute_gap": 0,
+        "missing_perp_minute": 0,
+        "missing_mark_funding_time": 34
+      },
+      "funding_events_in_holding_windows": 286,
+      "missing_mark_samples": [
+        {
+          "symbol": "SOLUSDT",
+          "funding_time_ms": 1715558400001,
+          "entry_time_ms": 1715558400000,
+          "exit_time_ms": 1715644740000
+        },
+        {
+          "symbol": "ETHUSDT",
+          "funding_time_ms": 1715558400001,
+          "entry_time_ms": 1715558400000,
+          "exit_time_ms": 1715644740000
+        },
+        {
+          "symbol": "SOLUSDT",
+          "funding_time_ms": 1715817600004,
+          "entry_time_ms": 1715817600000,
+          "exit_time_ms": 1715903940000
+        },
+        {
+          "symbol": "BTCUSDT",
+          "funding_time_ms": 1715817600004,
+          "entry_time_ms": 1715817600000,
+          "exit_time_ms": 1715903940000
+        },
+        {
+          "symbol": "BTCUSDT",
+          "funding_time_ms": 1716220800003,
+          "entry_time_ms": 1716163200000,
+          "exit_time_ms": 1716249540000
+        },
+        {
+          "symbol": "SOLUSDT",
+          "funding_time_ms": 1716220800003,
+          "entry_time_ms": 1716163200000,
+          "exit_time_ms": 1716249540000
+        },
+        {
+          "symbol": "SOLUSDT",
+          "funding_time_ms": 1716278400001,
+          "entry_time_ms": 1716249600000,
+          "exit_time_ms": 1716335940000
+        },
+        {
+          "symbol": "ETHUSDT",
+          "funding_time_ms": 1716278400001,
+          "entry_time_ms": 1716249600000,
+          "exit_time_ms": 1716335940000
+        },
+        {
+          "symbol": "BTCUSDT",
+          "funding_time_ms": 1716940800001,
+          "entry_time_ms": 1716940800000,
+          "exit_time_ms": 1717027140000
+        },
+        {
+          "symbol": "SOLUSDT",
+          "funding_time_ms": 1716940800001,
+          "entry_time_ms": 1716940800000,
+          "exit_time_ms": 1717027140000
+        },
+        {
+          "symbol": "SOLUSDT",
+          "funding_time_ms": 1717257600001,
+          "entry_time_ms": 1717200000000,
+          "exit_time_ms": 1717286340000
+        },
+        {
+          "symbol": "BTCUSDT",
+          "funding_time_ms": 1717257600001,
+          "entry_time_ms": 1717200000000,
+          "exit_time_ms": 1717286340000
+        }
+      ]
     }
   ]
 }
