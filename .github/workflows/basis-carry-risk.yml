@@ -5,6 +5,7 @@ on:
     paths:
       - ".github/workflows/basis-carry-risk.yml"
       - "research/basis_carry_data_qa.py"
+      - "research/basis_carry_pilot_backtest.py"
   workflow_dispatch:
     inputs:
       start_month:
@@ -36,15 +37,17 @@ jobs:
           python-version: "3.12"
       - name: Download and verify free Binance archives
         run: python research/basis_carry_data_qa.py --start "$START_MONTH" --end "$END_MONTH" --symbols BTCUSDT,ETHUSDT,SOLUSDT --out research-output
-      - name: Publish compact QA report only
+      - name: Run cross-sectional basis pilot backtest
+        run: python research/basis_carry_pilot_backtest.py
+      - name: Publish compact QA and backtest reports
         run: |
           mkdir -p research-results
           cp research-output/basis_data_qa.json research-results/basis_data_qa.json
           rm -rf research-output
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add research-results/basis_data_qa.json
-          git commit -m "Publish basis carry data QA report" || echo "No report changes"
+          git add research-results/basis_data_qa.json research-results/basis_pilot_backtest.json
+          git commit -m "Publish basis carry pilot results" || echo "No report changes"
           git fetch origin research/basis-carry-risk-v1
           git rebase origin/research/basis-carry-risk-v1
           git push origin HEAD:research/basis-carry-risk-v1
