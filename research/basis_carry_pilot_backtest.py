@@ -97,7 +97,7 @@ def main():
                 ret=side*(exitp/entry-1)
                 day_price+=notion*ret
                 # Entry and exit costs separately on their own notionals.
-                day_cost+=notion*2*(FEE_BP+SLIP_BP)/10000
+                day_cost+=notion*2*(fee_bp+SLIP_BP)/10000
                 for ft,rate in d[sym]["funding"]:
                     if entry_t<=ft<=exit_t:
                         # Positive funding: longs pay, shorts receive.
@@ -122,13 +122,14 @@ def main():
           "end_equity":round(eq,6),"net_return_pct":round((eq/100-1)*100,4),
           "max_adverse_minute_dd_pct":round(maxdd*100,4),"price_pnl_usdt":round(pnl_total,6),
           "funding_usdt":round(funding_total,6),"cost_usdt":round(cost_total,6),
-          "fee_bp_per_side":FEE_BP,"slippage_bp_per_side":SLIP_BP,"leverage":1,
+          "fee_bp_per_side":fee_bp,"slippage_bp_per_side":SLIP_BP,"leverage":1,
           "portfolio":"50% long highest score + 50% short lowest score; daily 1440m holding"})
     report={"period":[START,END],"symbols":list(SYMS),"method":"UTC daily cross-sectional top-vs-bottom basis; 5-day change uses 7200 contiguous minute index observations; next-minute open entry; 1440 contiguous 1m bars; 5bp fee + 2bp slippage each side; funding only at actual timestamps; adverse minute high/low DD.",
       "data_qa":"archives checksum-verified; exact spot/perp common timestamps only; no gap interpolation",
       "limitations":["Two-month pilot only; not OOS proof.","Only three-symbol cross-section; 50/50 long-short gross 1x.","No queue/fill model because this is a taker execution baseline.","Funding timestamp/rate interpretation must be checked against exchange semantics before full-period expansion."],
       "results":variants}
     Path("research-results").mkdir(exist_ok=True)
-    Path("research-results/basis_pilot_backtest.json").write_text(json.dumps(report,indent=2))
+    Path(args.out).parent.mkdir(parents=True,exist_ok=True)
+    Path(args.out).write_text(json.dumps(report,indent=2))
     print(json.dumps(report,indent=2))
 if __name__=="__main__":main()
