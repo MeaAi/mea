@@ -164,8 +164,17 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
      regime_pnl[rg]['fees_usdt']+=tr*fee_bp/10000;regime_pnl[rg]['slippage_usdt']+=tr*slip_bp/10000
     equity-=fee+slip;fee_total+=fee;slip_total+=slip
     for z in symbols:
-     delta=target[z]-qty[z]
-     cohort_qty[z][rg]+=delta
+     old_q=qty[z];new_q=target[z]
+     if old_q:
+      same_direction=(new_q!=0 and old_q*new_q>0)
+      close_amt=(abs(old_q)-abs(new_q)) if same_direction and abs(new_q)<abs(old_q) else (abs(old_q) if not same_direction else 0.)
+      if close_amt>0:
+       for cohort in cohort_qty[z]:
+        cohort_qty[z][cohort]-=math.copysign(close_amt,old_q)*(abs(cohort_qty[z][cohort])/abs(old_q))
+      remaining=old_q-math.copysign(close_amt,old_q)
+     else: remaining=0.
+     add_q=new_q-remaining
+     cohort_qty[z][rg]+=add_q
     qty=target;last_rebal=t;last_regime=rg;rebalances+=1
   # Save latest event mark as anchor for next interval.
   prev=px.copy()
@@ -352,6 +361,7 @@ def main():
    "margin_mode":"cross-portfolio approximation; funding cashflow at settlement; positions resized weekly",
    "limitations":["not exact Binance liquidation engine","static MMR instead of historical symbol-specific tier brackets","hourly OHLC cannot reconstruct tick order or exact liquidation price","spread and market impact beyond fixed slippage are not modeled","static universe survivorship bias"]},
   "regime_tests_oos_1x_5bp_fee_2bp_slippage":regime_tests,
+  "matched_regime_comparison_oos_1x_5bp_fee_2bp_slippage":regime_side_by_side,
   "symbol_universe_selection":{"selection_protocol":"Rank by net symbol contribution on first half of validation; compare top-5/7/9/11/13 portfolios on second half; freeze selected symbols before OOS.","discovery_period_utc":[datetime.fromtimestamp(val_start/1000,timezone.utc).isoformat(),datetime.fromtimestamp(val_mid/1000,timezone.utc).isoformat()],"selection_period_utc":[datetime.fromtimestamp(val_mid/1000,timezone.utc).isoformat(),datetime.fromtimestamp(val_end/1000,timezone.utc).isoformat()],"discovery_ranking":ranked_symbols,"candidate_results":universe_candidates,"chosen_count":chosen_universe_n,"chosen_symbols":frozen_symbols,"chosen_validation":universe_candidates[str(chosen_universe_n)],"frozen_oos_1x":universe_oos},
   "regime_policy_sweep":{"selection_period":"validation only","selection_rule":"Highest validation net return among policies with max drawdown >= -25% and no liquidation; frozen before OOS.","validation_results":{k:{"net_return_pct":v["net_return_pct"],"max_drawdown_pct":v["max_drawdown_pct"],"liquidated":v["liquidated"]} for k,v in policy_validation.items()},"chosen_policy":chosen_policy_name,"chosen_policy_mapping":regime_policies[chosen_policy_name],"chosen_policy_validation":chosen_policy_result,"chosen_policy_oos":adaptive_policy_oos,
    "threshold_sensitivity":{"candidates_pct":[3,5,7,10],"selection_period":"validation only","validation_results":threshold_validation,"chosen_threshold_pct":chosen_threshold,"chosen_threshold_validation":chosen_threshold_validation,"frozen_threshold_oos_1x":threshold_oos}},
