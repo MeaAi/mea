@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Exploratory, no-lookahead BookDepth + aggTrade predictive diagnostic."""
+"""Exploratory OBI / taker-OFI signal diagnostic with chronological holdout.
+
+OBI is computed from Binance Vision aggregated percentage-band notional depth.
+It is NOT full L2, order-level imbalance, or queue position. Signals at minute t
+enter at t+1 open and exit at t+h close. Train-only quantiles are frozen for
+validation/OOS. This is a predictive diagnostic, not a cost-aware strategy test.
+"""
 import argparse, csv, gzip, glob, json, math
 from pathlib import Path
 from collections import defaultdict
@@ -9,88 +15,122 @@ def read_gz(path):
         return list(csv.DictReader(f))
 
 def quantile(values, q):
-    xs=sorted(x for x in values if math.isfinite(x))
-    if not xs: return None
+    xs = sorted(x for x in values if math.isfinite(x))
+    if not xs:
+        return None
     return xs[min(len(xs)-1, max(0, int(math.ceil(q*len(xs))-1)))]
 
 def stats(values):
-    if not values: return {"n":0,"mean_bp":None,"median_bp":None,"win_rate_pct":None}
-    xs=sorted(values); n=len(xs)
-    return {"n":n,"mean_bp":round(sum(xs)/n,4),
-            "median_bp":round(xs[n//2],4),
-            "win_rate_pct":round(100*sum(x>0 for x in xs)/n,2)}
+    if not values:
+        return {"n": 0, "mean_bp": None, "median_bp": None, "win_rate_pct": None}
+    xs = sorted(values)
+    n = len(xs)
+    return {"n": n, "mean_bp": round(sum(xs)/n, 4),
+            "median_bp": round(xs[n//2], 4),
+            "win_rate_pct": round(100*sum(x > 0 for x in xs)/n, 2)}
 
 def main():
-    ap=argparse.ArgumentParser()
-    ap.add_argument("--bookdepth",required=True)
-    ap.add_argument("--orderflow",required=True)
-    ap.add_argument("--out",default="bookdepth_signal_diagnostic.json")
-    args=ap.parse_args()
-    book_files=glob.glob(args.bookdepth); flow_files=glob.glob(args.orderflow)
-    if not book_files or not flow_files: raise SystemExit("BookDepth/orderflow files missing")
-    books=defaultdict(dict); flows=defaultdict(dict)
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--bookdepth", required=True)
+    ap.add_argument("--orderflow", required=True)
+    ap.add_argument("--out", default="bookdepth_signal_diagnostic.json")
+    args = ap.parse_args()
+    book_files = glob.glob(args.bookdepth)
+    flow_files = glob.glob(args.orderflow)
+    if not book_files or not flow_files:
+        raise SystemExit("BookDepth/orderflow files missing")
+    books, flows = defaultdict(dict), defaultdict(dict)
     for p in book_files:
-        name=Path(p).name; symbol=name.split("-")[0]
+        symbol = Path(p).name.split("-")[0]
         for r in read_gz(p):
-            try: books[symbol][int(r["open_time_ms"])]=r
-            except (ValueError,KeyError): continue
+            try: books[symbol][int(r["open_time_ms"])] = r
+            except (ValueError, KeyError): continue
     for p in flow_files:
-        name=Path(p).name; symbol=name.split("-")[0]
+        symbol = Path(p).name.split("-")[0]
         for r in read_gz(p):
-            try: flows[symbol][int(r["open_time_ms"])]=r
-            except (ValueError,KeyError): continue
-    report={"method":"BookDepth snapshot features joined on exact UTC minute; signals formed only from minute t; entry at minute t+1 open; forward exit at t+h close. Train-derived 80th percentile thresholds are frozen for validation/OOS.",
-      "limitations":["BookDepth is aggregated percentage-band depth, not full L2 or queue data.",
-      "A snapshot depth increase does not prove new limit orders; decreases do not prove cancellations.",
-      "No maker fill, spread, slippage, funding, or liquidation simulation in this predictive diagnostic.",
-      "Only exact timestamp intersections are used; missing BookDepth minutes are excluded, not interpolated."],
-      "symbols":{}}
-    for symbol in sorted(set(books)&set(flows)):
-        ts=sorted(set(books[symbol])&set(flows[symbol]))
-        rows=[]
+            try: flows[symbol][int(r["open_time_ms"])] = r
+            except (ValueError, KeyError): continue
+
+    report = {
+      "method": "Exact UTC-minute join; signals at minute t; entry at t+1 open; exit at t+h close. All thresholds estimated on first 50% only; validation 20%, untouched OOS 30%.",
+      "obi_definition": "OBI=(bid_notional_1pct+bid_notional_2pct - ask_notional_1pct-ask_notional_2pct)/(bid+ask). Binance Vision bookDepth aggregated percentage bands; not full L2.",
+      "ofi_definition": "AggTrade taker quote imbalance=(aggressive_buy_quote-aggressive_sell_quote)/(sum); excludes passive order additions/cancellations.",
+      "limitations": ["BookDepth is aggregated percentage-band depth, not full L2 or queue data.",
+        "Depth changes do not identify additions versus cancellations.",
+        "No fees, spread, slippage, maker fills, funding, or liquidation in this predictive diagnostic.",
+        "Only exact timestamp intersections are used; missing minutes are excluded, never interpolated.",
+        "OBI and OFI signals are exploratory; no strategy profitability claim."],
+      "symbols": {}
+    }
+
+    for symbol in sorted(set(books) & set(flows)):
+        ts = sorted(set(books[symbol]) & set(flows[symbol]))
+        rows = []
         for t in ts:
-            b=books[symbol][t]; f=flows[symbol][t]
+            b, f = books[symbol][t], flows[symbol][t]
             try:
-                bid=float(b["notional_-1pct"] or 0)+float(b["notional_-2pct"] or 0)
-                ask=float(b["notional_1pct"] or 0)+float(b["notional_2pct"] or 0)
-                buy=float(f["agg_taker_buy_quote"] or 0); sell=float(f["agg_taker_sell_quote"] or 0)
-                o=float(f["open"]); c=float(f["close"])
-            except (ValueError,KeyError): continue
-            rows.append({"t":t,"bid":bid,"ask":ask,"buy":buy,"sell":sell,
-                         "open":o,"close":c,
-                         "sell_pressure":(sell-buy)/(sell+buy) if sell+buy else 0.0,
-                         "buy_pressure":(buy-sell)/(sell+buy) if sell+buy else 0.0})
-        for i,r in enumerate(rows):
-            prev=rows[i-1] if i else None
-            r["bid_change"]=(r["bid"]/prev["bid"]-1) if prev and r["t"]-prev["t"]==60000 and prev["bid"]>0 else None
-            r["ask_change"]=(r["ask"]/prev["ask"]-1) if prev and r["t"]-prev["t"]==60000 and prev["ask"]>0 else None
-        n=len(rows); a=int(n*.5); b=int(n*.7)
-        train=rows[:a]
-        sell_thr=quantile([x["sell_pressure"] for x in train],.8)
-        buy_thr=quantile([x["buy_pressure"] for x in train],.8)
-        symbol_report={"matched_minutes":n,"train_thresholds":{"sell_pressure_q80":sell_thr,"buy_pressure_q80":buy_thr},
-                       "split":{"train":[0,a],"validation":[a,b],"oos":[b,n]},"horizons":{}}
+                bid = float(b["notional_1pct"] or 0) + float(b["notional_2pct"] or 0)
+                ask = float(b["notional_-1pct"] or 0) + float(b["notional_-2pct"] or 0)
+                buy = float(f["agg_taker_buy_quote"] or 0)
+                sell = float(f["agg_taker_sell_quote"] or 0)
+                op, close = float(f["open"]), float(f["close"])
+            except (KeyError, ValueError):
+                continue
+            depth_sum = bid + ask
+            flow_sum = buy + sell
+            if depth_sum <= 0 or flow_sum <= 0 or op <= 0:
+                continue
+            rows.append({"t":t, "open":op, "close":close,
+                         "obi":(bid-ask)/depth_sum,
+                         "ofi":(buy-sell)/flow_sum,
+                         "bid":bid, "ask":ask,
+                         "buy_pressure":(buy-sell)/flow_sum,
+                         "sell_pressure":(sell-buy)/flow_sum})
+
+        n = len(rows)
+        train_end = int(n*.5)
+        val_end = int(n*.7)
+        train = rows[:train_end]
+        obi_lo, obi_hi = quantile([r["obi"] for r in train], .2), quantile([r["obi"] for r in train], .8)
+        ofi_lo, ofi_hi = quantile([r["ofi"] for r in train], .2), quantile([r["ofi"] for r in train], .8)
+        # Signals are signed: +1 long, -1 short. Thresholds never refit after train.
+        for r in rows:
+            r["obi_signal"] = 1 if r["obi"] >= obi_hi else (-1 if r["obi"] <= obi_lo else 0)
+            r["ofi_signal"] = 1 if r["ofi"] >= ofi_hi else (-1 if r["ofi"] <= ofi_lo else 0)
+            r["obi_ofi_agree"] = r["obi_signal"] if r["obi_signal"] != 0 and r["obi_signal"] == r["ofi_signal"] else 0
+
+        sym = {"matched_minutes":n,
+               "thresholds_train_only":{"obi_q20":obi_lo,"obi_q80":obi_hi,"ofi_q20":ofi_lo,"ofi_q80":ofi_hi},
+               "split":{"train":[0,train_end],"validation":[train_end,val_end],"oos":[val_end,n]},
+               "horizons":{}}
         for h in (1,5,15,60):
-            h_report={}
-            for split,(lo,hi) in {"train":(0,a),"validation":(a,b),"oos":(b,n)}.items():
-                baseline=[]; sell_abs=[]; buy_abs=[]
-                for i in range(max(lo,1),min(hi,n-h-1)):
-                    if rows[i+1]["t"]-rows[i]["t"]!=60000 or rows[i+h]["t"]-rows[i]["t"]!=h*60000: continue
-                    entry=rows[i+1]["open"]; exit_px=rows[i+h]["close"]
-                    if entry<=0: continue
-                    ret=(exit_px/entry-1)*10000
-                    baseline.append(ret)
-                    r=rows[i]
-                    if r["bid_change"] is not None and sell_thr is not None and r["sell_pressure"]>=sell_thr and r["bid_change"]>0:
-                        sell_abs.append(ret)
-                    if r["ask_change"] is not None and buy_thr is not None and r["buy_pressure"]>=buy_thr and r["ask_change"]>0:
-                        buy_abs.append(-ret)
-                h_report[split]={"baseline_long_return":stats(baseline),
-                  "sell_pressure_plus_bid_growth_long":stats(sell_abs),
-                  "buy_pressure_plus_ask_growth_short":stats(buy_abs)}
-            h_report["thresholds_source"]="train only; q80 fixed across all splits"
-            symbol_report["horizons"][str(h)]=h_report
-        report["symbols"][symbol]=symbol_report
-    Path(args.out).write_text(json.dumps(report,indent=2),encoding="utf-8")
-    print(json.dumps(report,indent=2))
-if __name__=="__main__": main()
+            hr = {}
+            for split, lo, hi in (("train",0,train_end),("validation",train_end,val_end),("oos",val_end,n)):
+                always_long, obi_returns, ofi_returns, agree_returns = [], [], [], []
+                counts = {"obi":0,"ofi":0,"obi_ofi_agree":0}
+                for i in range(max(lo,0), min(hi,n-h-1)):
+                    if rows[i+1]["t"]-rows[i]["t"] != 60000 or rows[i+h]["t"]-rows[i]["t"] != h*60000:
+                        continue
+                    entry, exit_px = rows[i+1]["open"], rows[i+h]["close"]
+                    if entry <= 0: continue
+                    raw = (exit_px/entry-1)*10000
+                    always_long.append(raw)
+                    for field, dest in (("obi_signal",obi_returns),("ofi_signal",ofi_returns),("obi_ofi_agree",agree_returns)):
+                        signal = rows[i][field]
+                        if signal:
+                            dest.append(raw*signal)
+                            counts[{"obi_signal":"obi","ofi_signal":"ofi","obi_ofi_agree":"obi_ofi_agree"}[field]] += 1
+                hr[split] = {"always_long_market_return":stats(always_long),
+                             "obi_directional_return":stats(obi_returns),
+                             "ofi_directional_return":stats(ofi_returns),
+                             "obi_plus_ofi_agreement_return":stats(agree_returns),
+                             "signal_counts":counts}
+            hr["thresholds_source"] = "first 50% chronological training segment only"
+            sym["horizons"][str(h)] = hr
+        report["symbols"][symbol] = sym
+
+    Path(args.out).write_text(json.dumps(report, indent=2), encoding="utf-8")
+    print(json.dumps({"output":args.out,"symbols":list(report["symbols"])}, indent=2))
+
+if __name__ == "__main__":
+    main()
