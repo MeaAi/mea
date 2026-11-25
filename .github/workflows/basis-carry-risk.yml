@@ -54,3 +54,5 @@ jobs:
           git fetch origin research/basis-carry-risk-v1
           git rebase origin/research/basis-carry-risk-v1
           git push origin HEAD:research/basis-carry-risk-v1
+
+# Re-run pilot after funding timestamp-to-minute alignment correction.
