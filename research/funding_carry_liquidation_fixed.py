@@ -111,14 +111,31 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
   confirm=max(0,int(regime_confirmation_hours))
   if confirm==0 or raw=='unknown':
    regime_cache[ts]=raw; return raw
-  # Causal confirmation: candidate must persist across N fully completed hourly observations.
-  for h in range(1,confirm+1):
-   if raw_regime_at(ts-h*3600000)!=raw:
-    prior=raw_regime_at(ts-confirm*3600000)
-    regime_cache[ts]=prior
-    return prior
-  regime_cache[ts]=raw
-  return raw
+  # True causal debounce: accept a candidate only after confirm consecutive
+  # completed hourly samples. Until then retain the last accepted regime.
+  candidate=raw
+  stable=True
+  for h in range(1,confirm):
+   if raw_regime_at(ts-h*3600000)!=candidate:
+    stable=False
+    break
+  if stable:
+   regime_cache[ts]=candidate
+   return candidate
+  # Find the most recent prior confirmed state, scanning only information
+  # available by this timestamp. A 30-day lookback bounds the scan.
+  scan=ts-confirm*3600000
+  prior='unknown'; streak_label=None; streak=0
+  while scan>=ts-30*DAY:
+   label=raw_regime_at(scan)
+   if label==streak_label: streak+=1
+   else: streak_label=label; streak=1
+   if streak>=confirm and label!='unknown':
+    prior=label
+    break
+   scan-=3600000
+  regime_cache[ts]=prior
+  return prior
  def entry_cohort_at(ts):
   j=bisect.bisect_right(btc_times,ts)-1; k=bisect.bisect_right(btc_times,ts-30*DAY)-1
   if j<0 or k<0:return 'unknown'
