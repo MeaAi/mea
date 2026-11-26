@@ -261,8 +261,11 @@ def run_variant(hours,minutes,marks,funding,lo,hi,fee_bp,with_pullback):
                     if mb is not None:
                         cashflow=-pos["qty"]*mb["o"]*rate
                         pos["funding"]+=cashflow
+                # Conservative intraminute ordering: record the high-water mark at
+                # minute high, then measure adverse drawdown at minute low.
+                mark_high=equity+pos["funding"]+pos["qty"]*(b["h"]-pos["entry"])
+                peak=max(peak,mark_high)
                 marked=equity+pos["funding"]+pos["qty"]*(b["l"]-pos["entry"])
-                peak=max(peak,marked)
                 if peak>0:maxdd=min(maxdd,marked/peak-1)
                 stop=pos["entry"]*(1-CATASTROPHE_STOP)
                 if b["l"]<=stop:
