@@ -44,7 +44,7 @@ def main():
      "rebalance_count":res["rebalance_count"],"price_pnl_usdt":res["price_pnl_usdt"],"funding_pnl_usdt":res["funding_pnl_usdt"],
      "trading_fees_usdt":res["trading_fees_usdt"],"slippage_usdt":res["slippage_usdt"],
      "market_regime_attribution":res["market_regime_attribution"],"symbol_attribution":res["symbol_attribution"]}
-    print("RESULT",name,cap_name,hours,json.dumps(report[name]["configs"][f"{cap_name}_{'raw' if hours==0 else 'true_debounce_6h'}"],separators=(",",":")),flush=True)
+    print("RESULT",name,cap_name,hours,json.dumps(report[name]["configs"][f"{cap_name}_{'raw' if hours==0 else 'true_debounce_'+str(hours)+'h'}"],separators=(",",":")),flush=True)
  out={"experiment":"MEAFLOW-72 true causal debounce duration sweep (3h/6h/12h) vs raw regime","branch":"research/meaflow72-debounce-duration-sweep-v1",
  "source":"Free official Binance Vision monthly fundingRate + 1h markPriceKlines","loaded_symbols":list(data),"data_errors":errors,
  "capital_usdt":100,"leverage":1,"costs":"5 bp fee one-way + 2 bp slippage one-way",
@@ -53,5 +53,5 @@ def main():
  "windows":report,"cautions":["Historical windows already inspected; exploratory, not pristine OOS.","1h mark OHLC adverse checks are not exact Binance liquidation engine.","No maker queue/partial fills; fixed slippage; static 13-symbol universe survivorship bias."]}
  Path("research-results").mkdir(exist_ok=True)
  Path("research-results/meaflow72_debounce_duration_sweep.json").write_text(json.dumps(out,indent=2),encoding="utf-8")
- print("REPORT research-results/meaflow72_true_regime_debounce.json",flush=True)
+ print("REPORT research-results/meaflow72_debounce_duration_sweep.json",flush=True)
 if __name__=="__main__":main()
