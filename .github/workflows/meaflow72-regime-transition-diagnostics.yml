@@ -1,0 +1,34 @@
+name: MEAFLOW-72 regime transition diagnostics
+on:
+  push:
+    branches:
+      - research/meaflow72-regime-transition-diagnostics-v1
+    paths:
+      - "research/meaflow72_regime_transition_diagnostics.py"
+      - ".github/workflows/meaflow72-regime-transition-diagnostics.yml"
+permissions:
+  contents: write
+concurrency:
+  group: meaflow72-regime-transition-diagnostics-v1
+  cancel-in-progress: false
+jobs:
+  experiment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/meaflow72-regime-transition-diagnostics-v1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run transition diagnostics
+        run: python research/meaflow72_regime_transition_diagnostics.py
+      - name: Publish report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+users.noreply.github.com"
+          git add -f research-results/meaflow72_regime_transition_diagnostics.json
+          git diff --cached --quiet || git commit -m "Publish MEAFLOW-72 regime transition diagnostics"
+          git pull --rebase origin research/meaflow72-regime-transition-diagnostics-v1
+          git push origin HEAD:research/meaflow72-regime-transition-diagnostics-v1
