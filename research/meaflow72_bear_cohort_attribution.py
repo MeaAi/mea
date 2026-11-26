@@ -21,7 +21,6 @@ WINDOWS = {
 }
 CONFIGS = {
     "uncapped": None,
-    "bear_cap_25pct": {"bear": .25},
     "bear_cap_20pct": {"bear": .20},
     "bear_cap_15pct": {"bear": .15},
 }
@@ -74,10 +73,10 @@ def main():
             report[name]["configs"][label] = {k: result[k] for k in keep}
             print("RESULT", name, label, json.dumps(report[name]["configs"][label], separators=(",",":")), flush=True)
     output = {
-        "experiment":"MEAFLOW-72 bear-entry cohort vs PnL-realization regime attribution",
+        "experiment":"MEAFLOW-72 BTC trend severity entry-cohort attribution",
         "branch":"research/meaflow72-bear-cohort-attribution-v1",
         "parent":"research/meaflow72-regime-threshold-sensitivity-v1",
-        "purpose":"Diagnose whether bear-origin positions earn/lose while the market remains bearish or after transitions into other regimes; compare uncapped baseline with already-studied bear-only caps. No parameter optimization.",
+        "purpose":"Split entry cohorts by BTC trailing-30d mark-price return: bull_mild +5% to +10%, bull_strong >+10%, bear_mild -5% to -10%, bear_strong <-10%, sideways otherwise. Compare uncapped baseline with bear-only caps. No parameter optimization.",
         "source":"Free official Binance Vision monthly fundingRate + 1h markPriceKlines",
         "loaded_symbols":list(data), "data_errors":errors,
         "capital_usdt":100, "leverage":1,
@@ -87,7 +86,7 @@ def main():
         "windows":report,
         "interpretation_caution":[
             "Historical windows have been previously inspected and are exploratory, not pristine forward OOS.",
-            "entry_regime_attribution assigns incremental position quantity to the regime at opening; it reports price/funding PnL only and excludes execution costs.",
+            "entry_regime_attribution assigns incremental position quantity to BTC trailing-30d return severity at opening; it reports price/funding PnL only and excludes execution costs.",
             "market_regime_attribution assigns price/funding PnL and execution costs to the regime in which they accrue/execute. Comparing the two is diagnostic, not an exact causal decomposition.",
             "Simulator uses 1h mark OHLC adverse-extreme stress, not Binance's tick-level liquidation engine; static 0.5% MMR and 1% liquidation-fee proxy.",
             "No maker queue/partial-fill model; fixed slippage; static 13-symbol universe survivorship bias."
