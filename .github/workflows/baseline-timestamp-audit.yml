@@ -1,0 +1,36 @@
+name: MEAFLOW-52 frozen baseline timestamp audit
+on:
+  push:
+    branches:
+      - research/baseline-timestamp-audit-v1
+    paths:
+      - "research/funding_carry_liquidation_causal.py"
+      - "research/baseline_timestamp_audit.py"
+      - ".github/workflows/baseline-timestamp-audit.yml"
+permissions:
+  contents: write
+concurrency:
+  group: meaflow-baseline-timestamp-audit-v1
+  cancel-in-progress: false
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/baseline-timestamp-audit-v1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download free Binance Vision data and compare legacy with causal timestamps
+        run: python research/baseline_timestamp_audit.py
+      - name: Publish compact report only
+        run: |
+          rm -rf research-output
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research-results/baseline_timestamp_audit.json
+          git commit -m "Publish baseline timestamp audit results" || exit 0
+          git pull --rebase origin research/baseline-timestamp-audit-v1
+          git push origin HEAD:research/baseline-timestamp-audit-v1
