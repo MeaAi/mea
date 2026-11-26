@@ -1,0 +1,33 @@
+name: MEAFLOW-72 drawdown attribution diagnostics
+on:
+  push:
+    branches:
+      - research/meaflow72-drawdown-attribution-v1
+    paths:
+      - "research/meaflow72_drawdown_attribution.py"
+      - ".github/workflows/meaflow72-drawdown-attribution.yml"
+permissions:
+  contents: write
+concurrency:
+  group: meaflow72-drawdown-attribution-v1
+  cancel-in-progress: false
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/meaflow72-drawdown-attribution-v1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run frozen-strategy diagnostics on free Binance Vision data
+        run: python research/meaflow72_drawdown_attribution.py
+      - name: Publish attribution report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+users.noreply.github.com"
+          git add research-results/meaflow72_drawdown_attribution.json
+          git commit -m "Publish MEAFLOW-72 drawdown attribution report"
+          git push origin HEAD:research/meaflow72-drawdown-attribution-v1
