@@ -1,0 +1,35 @@
+name: MEAFLOW-72 bear cohort attribution
+on:
+  push:
+    branches:
+      - research/meaflow72-bear-cohort-attribution-v1
+    paths:
+      - "research/meaflow72_bear_cohort_attribution.py"
+      - "research/funding_carry_liquidation_fixed.py"
+      - ".github/workflows/meaflow72-bear-cohort-attribution.yml"
+permissions:
+  contents: write
+concurrency:
+  group: meaflow72-bear-cohort-attribution-v1
+  cancel-in-progress: false
+jobs:
+  experiment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/meaflow72-bear-cohort-attribution-v1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run bear cohort attribution
+        run: python research/meaflow72_bear_cohort_attribution.py
+      - name: Publish report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+users.noreply.github.com"
+          git add -f research-results/meaflow72_bear_cohort_attribution.json
+          git diff --cached --quiet || git commit -m "Publish MEAFLOW-72 bear cohort attribution results"
+          git pull --rebase origin research/meaflow72-bear-cohort-attribution-v1
+          git push origin HEAD:research/meaflow72-bear-cohort-attribution-v1
