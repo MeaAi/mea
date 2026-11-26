@@ -58,7 +58,7 @@ def main():
   "source":"Official free Binance Vision monthly fundingRate and 1h markPriceKlines",
   "loaded_symbols":list(data),"data_errors":errors,"capital_usdt":100,"leverage":1,
   "costs":"5 bp fee one-way + 2 bp slippage one-way",
-  "frozen_strategy":"7d funding lookback, 7d rebalance, 20% tails; BTC trailing 30d mark-price regime +/-5%; bull both, bear short-only; sideways fixed 100% of entry exposure, no new/additional exposure; unknown flat.",
+  "frozen_strategy":"7d funding lookback, 7d rebalance, 20% tails; BTC trailing 30d mark-price regime +/-5%; bull both, bear short-only; sideways hold existing positions at 100% of entry exposure, no new/additional exposure; unknown flat.",
   "windows":output,
   "interpretation_caveats":[
    "Symbol net contribution is cumulative attribution, not a standalone counterfactual; interactions and changing portfolio weights matter.",
@@ -75,4 +75,4 @@ if __name__=="__main__":main()
 
 # Trigger diagnostic workflow after registration.
 
-# Trigger timing diagnostics after workflow registration.
+# Trigger timing diagnostics after workflow registration; strategy policy corrected to match retention baseline.
