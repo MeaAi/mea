@@ -214,10 +214,12 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
       for s in shorts:target[s]=-leg/k/px[s]
     # Per-symbol notional cap; applies to newly formed targets, not frozen sideways holdings.
     if max_symbol_exposure_pct is not None and not (rg=='sideways' and sideways_action=='hold'):
-     cap=max(0.,equity)*max_symbol_exposure_pct
-     for s in symbols:
-      if s in px and px[s]>0:
-       target[s]=math.copysign(min(abs(target[s]*px[s]),cap)/px[s],target[s])
+     cap_fraction=(max_symbol_exposure_pct.get(rg) if isinstance(max_symbol_exposure_pct,dict) else max_symbol_exposure_pct)
+     if cap_fraction is not None:
+      cap=max(0.,equity)*cap_fraction
+      for s in symbols:
+       if s in px and px[s]>0:
+        target[s]=math.copysign(min(abs(target[s]*px[s]),cap)/px[s],target[s])
     turnover=sum(abs((target[s]-qty[s])*px[s]) for s in symbols if s in px)
     fee=turnover*fee_bp/10000;slip=turnover*slip_bp/10000
     for z in symbols:
