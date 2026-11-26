@@ -245,8 +245,8 @@ def run_variant(hours,minutes,marks,funding,lo,hi,fee_bp,with_pullback):
                     mb=marks.get(mt)
                     if mb is not None:
                         cashflow=-pos["qty"]*mb["o"]*rate
-                        pos["funding"]+=cashflow; equity+=cashflow
-                marked=equity+pos["qty"]*(b["l"]-pos["entry"])
+                        pos["funding"]+=cashflow
+                marked=equity+pos["funding"]+pos["qty"]*(b["l"]-pos["entry"])
                 peak=max(peak,marked)
                 if peak>0:maxdd=min(maxdd,marked/peak-1)
                 stop=pos["entry"]*(1-CATASTROPHE_STOP)
