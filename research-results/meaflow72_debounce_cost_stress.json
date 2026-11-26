@@ -1,0 +1,1238 @@
+{
+  "experiment": "MEAFLOW-72 raw vs true causal 3h debounce: fee/slippage stress test",
+  "branch": "research/meaflow72-debounce-cost-stress-v1",
+  "source": "Free official Binance Vision monthly fundingRate + 1h markPriceKlines",
+  "loaded_symbols": [
+    "ADAUSDT",
+    "AVAXUSDT",
+    "BCHUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "DOGEUSDT",
+    "DOTUSDT",
+    "ETHUSDT",
+    "LINKUSDT",
+    "LTCUSDT",
+    "SOLUSDT",
+    "TRXUSDT",
+    "XRPUSDT"
+  ],
+  "data_errors": {},
+  "capital_usdt": 100,
+  "leverage": 1,
+  "fee_bp_one_way": [
+    5,
+    8
+  ],
+  "slippage_bp_one_way": [
+    2,
+    4,
+    6,
+    8
+  ],
+  "debounce_hours": [
+    0,
+    3
+  ],
+  "risk_policies": [
+    "uncapped",
+    "bear_cap_20pct"
+  ],
+  "strategy": "7d funding lookback, 7d rebalance, 20% tails; BTC trailing 30d mark-price +/-5%; bull both, bear short-only, sideways hold, unknown flat.",
+  "debounce_definition": "Causal sequential state machine; new regime must persist for 3 consecutive completed BTC 1h observations.",
+  "windows": {
+    "2023_calendar": {
+      "period_utc": [
+        "2023-01-01T00:00:00+00:00",
+        "2024-01-01T00:00:00+00:00"
+      ],
+      "event_count": 8983,
+      "configs": {
+        "fee5_slip2_uncapped_raw": {
+          "net_return_pct": 42.1559,
+          "end_equity_usdt": 142.15595,
+          "max_drawdown_pct": -22.2601,
+          "rebalance_count": 82,
+          "trading_fees_usdt": 3.465974,
+          "slippage_usdt": 1.386389,
+          "liquidated": false
+        },
+        "fee5_slip2_uncapped_debounce_3h": {
+          "net_return_pct": 41.2851,
+          "end_equity_usdt": 141.28511,
+          "max_drawdown_pct": -22.2507,
+          "rebalance_count": 78,
+          "trading_fees_usdt": 3.659835,
+          "slippage_usdt": 1.463934,
+          "liquidated": false
+        },
+        "fee5_slip2_bear_cap_20pct_raw": {
+          "net_return_pct": 22.7334,
+          "end_equity_usdt": 122.733401,
+          "max_drawdown_pct": -15.7259,
+          "rebalance_count": 82,
+          "trading_fees_usdt": 2.458655,
+          "slippage_usdt": 0.983462,
+          "liquidated": false
+        },
+        "fee5_slip2_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 18.6553,
+          "end_equity_usdt": 118.655324,
+          "max_drawdown_pct": -15.7233,
+          "rebalance_count": 78,
+          "trading_fees_usdt": 2.40324,
+          "slippage_usdt": 0.961296,
+          "liquidated": false
+        },
+        "fee5_slip4_uncapped_raw": {
+          "net_return_pct": 40.4877,
+          "end_equity_usdt": 140.48775,
+          "max_drawdown_pct": -22.3473,
+          "rebalance_count": 82,
+          "trading_fees_usdt": 3.444867,
+          "slippage_usdt": 2.755893,
+          "liquidated": false
+        },
+        "fee5_slip4_uncapped_debounce_3h": {
+          "net_return_pct": 39.6369,
+          "end_equity_usdt": 139.636916,
+          "max_drawdown_pct": -22.3352,
+          "rebalance_count": 78,
+          "trading_fees_usdt": 3.638093,
+          "slippage_usdt": 2.910474,
+          "liquidated": false
+        },
+        "fee5_slip4_bear_cap_20pct_raw": {
+          "net_return_pct": 21.6499,
+          "end_equity_usdt": 121.649915,
+          "max_drawdown_pct": -15.8058,
+          "rebalance_count": 82,
+          "trading_fees_usdt": 2.447903,
+          "slippage_usdt": 1.958323,
+          "liquidated": false
+        },
+        "fee5_slip4_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 17.6286,
+          "end_equity_usdt": 117.628562,
+          "max_drawdown_pct": -15.8026,
+          "rebalance_count": 78,
+          "trading_fees_usdt": 2.393078,
+          "slippage_usdt": 1.914463,
+          "liquidated": false
+        },
+        "fee5_slip6_uncapped_raw": {
+          "net_return_pct": 38.8383,
+          "end_equity_usdt": 138.83828,
+          "max_drawdown_pct": -22.4345,
+          "rebalance_count": 82,
+          "trading_fees_usdt": 3.423917,
+          "slippage_usdt": 4.1087,
+          "liquidated": false
+        },
+        "fee5_slip6_uncapped_debounce_3h": {
+          "net_return_pct": 38.0071,
+          "end_equity_usdt": 138.007086,
+          "max_drawdown_pct": -22.4197,
+          "rebalance_count": 78,
+          "trading_fees_usdt": 3.616509,
+          "slippage_usdt": 4.33981,
+          "liquidated": false
+        },
+        "fee5_slip6_bear_cap_20pct_raw": {
+          "net_return_pct": 20.5755,
+          "end_equity_usdt": 120.575533,
+          "max_drawdown_pct": -15.8857,
+          "rebalance_count": 82,
+          "trading_fees_usdt": 2.43721,
+          "slippage_usdt": 2.924651,
+          "liquidated": false
+        },
+        "fee5_slip6_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 16.6102,
+          "end_equity_usdt": 116.610243,
+          "max_drawdown_pct": -15.8818,
+          "rebalance_count": 78,
+          "trading_fees_usdt": 2.38297,
+          "slippage_usdt": 2.859564,
+          "liquidated": false
+        },
+        "fee5_slip8_uncapped_raw": {
+          "net_return_pct": 37.2073,
+          "end_equity_usdt": 137.207341,
+          "max_drawdown_pct": -22.5216,
+          "rebalance_count": 82,
+          "trading_fees_usdt": 3.403123,
+          "slippage_usdt": 5.444997,
+          "liquidated": false
+        },
+        "fee5_slip8_uncapped_debounce_3h": {
+          "net_return_pct": 36.3954,
+          "end_equity_usdt": 136.395426,
+          "max_drawdown_pct": -22.5041,
+          "rebalance_count": 78,
+          "trading_fees_usdt": 3.59508,
+          "slippage_usdt": 5.752129,
+          "liquidated": false
+        },
+        "fee5_slip8_bear_cap_20pct_raw": {
+          "net_return_pct": 19.5102,
+          "end_equity_usdt": 119.510184,
+          "max_drawdown_pct": -15.9656,
+          "rebalance_count": 82,
+          "trading_fees_usdt": 2.426574,
+          "slippage_usdt": 3.882518,
+          "liquidated": false
+        },
+        "fee5_slip8_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 15.6003,
+          "end_equity_usdt": 115.600301,
+          "max_drawdown_pct": -15.9609,
+          "rebalance_count": 78,
+          "trading_fees_usdt": 2.372914,
+          "slippage_usdt": 3.796663,
+          "liquidated": false
+        },
+        "fee8_slip2_uncapped_raw": {
+          "net_return_pct": 39.6607,
+          "end_equity_usdt": 139.660686,
+          "max_drawdown_pct": -22.3909,
+          "rebalance_count": 82,
+          "trading_fees_usdt": 5.494996,
+          "slippage_usdt": 1.373749,
+          "liquidated": false
+        },
+        "fee8_slip2_uncapped_debounce_3h": {
+          "net_return_pct": 38.8197,
+          "end_equity_usdt": 138.819718,
+          "max_drawdown_pct": -22.3774,
+          "rebalance_count": 78,
+          "trading_fees_usdt": 5.80365,
+          "slippage_usdt": 1.450912,
+          "liquidated": false
+        },
+        "fee8_slip2_bear_cap_20pct_raw": {
+          "net_return_pct": 21.1116,
+          "end_equity_usdt": 121.111591,
+          "max_drawdown_pct": -15.8458,
+          "rebalance_count": 82,
+          "trading_fees_usdt": 3.908079,
+          "slippage_usdt": 0.97702,
+          "liquidated": false
+        },
+        "fee8_slip2_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 17.1184,
+          "end_equity_usdt": 117.118351,
+          "max_drawdown_pct": -15.8422,
+          "rebalance_count": 78,
+          "trading_fees_usdt": 3.820828,
+          "slippage_usdt": 0.955207,
+          "liquidated": false
+        },
+        "fee8_slip4_uncapped_raw": {
+          "net_return_pct": 38.0205,
+          "end_equity_usdt": 138.020507,
+          "max_drawdown_pct": -22.4781,
+          "rebalance_count": 82,
+          "trading_fees_usdt": 5.461601,
+          "slippage_usdt": 2.7308,
+          "liquidated": false
+        },
+        "fee8_slip4_uncapped_debounce_3h": {
+          "net_return_pct": 37.199,
+          "end_equity_usdt": 137.198997,
+          "max_drawdown_pct": -22.4619,
+          "rebalance_count": 78,
+          "trading_fees_usdt": 5.76924,
+          "slippage_usdt": 2.88462,
+          "liquidated": false
+        },
+        "fee8_slip4_bear_cap_20pct_raw": {
+          "net_return_pct": 20.0417,
+          "end_equity_usdt": 120.041734,
+          "max_drawdown_pct": -15.9257,
+          "rebalance_count": 82,
+          "trading_fees_usdt": 3.891015,
+          "slippage_usdt": 1.945508,
+          "liquidated": false
+        },
+        "fee8_slip4_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 16.1042,
+          "end_equity_usdt": 116.104229,
+          "max_drawdown_pct": -15.9213,
+          "rebalance_count": 78,
+          "trading_fees_usdt": 3.804697,
+          "slippage_usdt": 1.902348,
+          "liquidated": false
+        },
+        "fee8_slip6_uncapped_raw": {
+          "net_return_pct": 36.3988,
+          "end_equity_usdt": 136.398758,
+          "max_drawdown_pct": -22.5652,
+          "rebalance_count": 82,
+          "trading_fees_usdt": 5.428455,
+          "slippage_usdt": 4.071341,
+          "liquidated": false
+        },
+        "fee8_slip6_uncapped_debounce_3h": {
+          "net_return_pct": 35.5963,
+          "end_equity_usdt": 135.596349,
+          "max_drawdown_pct": -22.5463,
+          "rebalance_count": 78,
+          "trading_fees_usdt": 5.735079,
+          "slippage_usdt": 4.30131,
+          "liquidated": false
+        },
+        "fee8_slip6_bear_cap_20pct_raw": {
+          "net_return_pct": 18.9809,
+          "end_equity_usdt": 118.980873,
+          "max_drawdown_pct": -16.0056,
+          "rebalance_count": 82,
+          "trading_fees_usdt": 3.874044,
+          "slippage_usdt": 2.905533,
+          "liquidated": false
+        },
+        "fee8_slip6_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 15.0985,
+          "end_equity_usdt": 115.09845,
+          "max_drawdown_pct": -16.0005,
+          "rebalance_count": 78,
+          "trading_fees_usdt": 3.78865,
+          "slippage_usdt": 2.841488,
+          "liquidated": false
+        },
+        "fee8_slip8_uncapped_raw": {
+          "net_return_pct": 34.7952,
+          "end_equity_usdt": 134.795242,
+          "max_drawdown_pct": -22.6523,
+          "rebalance_count": 82,
+          "trading_fees_usdt": 5.395555,
+          "slippage_usdt": 5.395555,
+          "liquidated": false
+        },
+        "fee8_slip8_uncapped_debounce_3h": {
+          "net_return_pct": 34.0116,
+          "end_equity_usdt": 134.011581,
+          "max_drawdown_pct": -22.6306,
+          "rebalance_count": 78,
+          "trading_fees_usdt": 5.701166,
+          "slippage_usdt": 5.701166,
+          "liquidated": false
+        },
+        "fee8_slip8_bear_cap_20pct_raw": {
+          "net_return_pct": 17.9289,
+          "end_equity_usdt": 117.928936,
+          "max_drawdown_pct": -16.0854,
+          "rebalance_count": 82,
+          "trading_fees_usdt": 3.857165,
+          "slippage_usdt": 3.857165,
+          "liquidated": false
+        },
+        "fee8_slip8_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 14.101,
+          "end_equity_usdt": 114.100951,
+          "max_drawdown_pct": -16.0796,
+          "rebalance_count": 78,
+          "trading_fees_usdt": 3.772688,
+          "slippage_usdt": 3.772688,
+          "liquidated": false
+        }
+      }
+    },
+    "2024_calendar": {
+      "period_utc": [
+        "2024-01-01T00:00:00+00:00",
+        "2024-12-31T16:00:00+00:00"
+      ],
+      "event_count": 12064,
+      "configs": {
+        "fee5_slip2_uncapped_raw": {
+          "net_return_pct": 14.1269,
+          "end_equity_usdt": 114.126902,
+          "max_drawdown_pct": -35.6759,
+          "rebalance_count": 123,
+          "trading_fees_usdt": 4.255896,
+          "slippage_usdt": 1.702359,
+          "liquidated": false
+        },
+        "fee5_slip2_uncapped_debounce_3h": {
+          "net_return_pct": 33.0282,
+          "end_equity_usdt": 133.028191,
+          "max_drawdown_pct": -40.5289,
+          "rebalance_count": 110,
+          "trading_fees_usdt": 4.824351,
+          "slippage_usdt": 1.92974,
+          "liquidated": false
+        },
+        "fee5_slip2_bear_cap_20pct_raw": {
+          "net_return_pct": 37.4958,
+          "end_equity_usdt": 137.495834,
+          "max_drawdown_pct": -25.8978,
+          "rebalance_count": 123,
+          "trading_fees_usdt": 3.478657,
+          "slippage_usdt": 1.391463,
+          "liquidated": false
+        },
+        "fee5_slip2_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 53.6871,
+          "end_equity_usdt": 153.687079,
+          "max_drawdown_pct": -22.3785,
+          "rebalance_count": 110,
+          "trading_fees_usdt": 3.728143,
+          "slippage_usdt": 1.491257,
+          "liquidated": false
+        },
+        "fee5_slip4_uncapped_raw": {
+          "net_return_pct": 12.4016,
+          "end_equity_usdt": 112.401644,
+          "max_drawdown_pct": -35.8655,
+          "rebalance_count": 123,
+          "trading_fees_usdt": 4.224699,
+          "slippage_usdt": 3.379759,
+          "liquidated": false
+        },
+        "fee5_slip4_uncapped_debounce_3h": {
+          "net_return_pct": 31.0889,
+          "end_equity_usdt": 131.088856,
+          "max_drawdown_pct": -40.9139,
+          "rebalance_count": 110,
+          "trading_fees_usdt": 4.789819,
+          "slippage_usdt": 3.831855,
+          "liquidated": false
+        },
+        "fee5_slip4_bear_cap_20pct_raw": {
+          "net_return_pct": 35.9583,
+          "end_equity_usdt": 135.958278,
+          "max_drawdown_pct": -25.9088,
+          "rebalance_count": 123,
+          "trading_fees_usdt": 3.459001,
+          "slippage_usdt": 2.767201,
+          "liquidated": false
+        },
+        "fee5_slip4_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 52.0192,
+          "end_equity_usdt": 152.0192,
+          "max_drawdown_pct": -22.4139,
+          "rebalance_count": 110,
+          "trading_fees_usdt": 3.707535,
+          "slippage_usdt": 2.966028,
+          "liquidated": false
+        },
+        "fee5_slip6_uncapped_raw": {
+          "net_return_pct": 10.7016,
+          "end_equity_usdt": 110.701586,
+          "max_drawdown_pct": -36.0547,
+          "rebalance_count": 123,
+          "trading_fees_usdt": 4.193793,
+          "slippage_usdt": 5.032551,
+          "liquidated": false
+        },
+        "fee5_slip6_uncapped_debounce_3h": {
+          "net_return_pct": 29.1768,
+          "end_equity_usdt": 129.176823,
+          "max_drawdown_pct": -41.2966,
+          "rebalance_count": 110,
+          "trading_fees_usdt": 4.755595,
+          "slippage_usdt": 5.706714,
+          "liquidated": false
+        },
+        "fee5_slip6_bear_cap_20pct_raw": {
+          "net_return_pct": 34.4373,
+          "end_equity_usdt": 134.437298,
+          "max_drawdown_pct": -25.9197,
+          "rebalance_count": 123,
+          "trading_fees_usdt": 3.439484,
+          "slippage_usdt": 4.127381,
+          "liquidated": false
+        },
+        "fee5_slip6_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 50.3688,
+          "end_equity_usdt": 150.36875,
+          "max_drawdown_pct": -22.4493,
+          "rebalance_count": 110,
+          "trading_fees_usdt": 3.687068,
+          "slippage_usdt": 4.424482,
+          "liquidated": false
+        },
+        "fee5_slip8_uncapped_raw": {
+          "net_return_pct": 9.0264,
+          "end_equity_usdt": 109.026371,
+          "max_drawdown_pct": -36.3219,
+          "rebalance_count": 123,
+          "trading_fees_usdt": 4.163174,
+          "slippage_usdt": 6.661079,
+          "liquidated": false
+        },
+        "fee5_slip8_uncapped_debounce_3h": {
+          "net_return_pct": 27.2917,
+          "end_equity_usdt": 127.29172,
+          "max_drawdown_pct": -41.677,
+          "rebalance_count": 110,
+          "trading_fees_usdt": 4.721676,
+          "slippage_usdt": 7.554682,
+          "liquidated": false
+        },
+        "fee5_slip8_bear_cap_20pct_raw": {
+          "net_return_pct": 32.9327,
+          "end_equity_usdt": 132.932722,
+          "max_drawdown_pct": -25.9307,
+          "rebalance_count": 123,
+          "trading_fees_usdt": 3.420104,
+          "slippage_usdt": 5.472166,
+          "liquidated": false
+        },
+        "fee5_slip8_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 48.7356,
+          "end_equity_usdt": 148.735554,
+          "max_drawdown_pct": -22.4847,
+          "rebalance_count": 110,
+          "trading_fees_usdt": 3.66674,
+          "slippage_usdt": 5.866785,
+          "liquidated": false
+        },
+        "fee8_slip2_uncapped_raw": {
+          "net_return_pct": 11.5485,
+          "end_equity_usdt": 111.548488,
+          "max_drawdown_pct": -35.9601,
+          "rebalance_count": 123,
+          "trading_fees_usdt": 6.734735,
+          "slippage_usdt": 1.683684,
+          "liquidated": false
+        },
+        "fee8_slip2_uncapped_debounce_3h": {
+          "net_return_pct": 30.1295,
+          "end_equity_usdt": 130.12945,
+          "max_drawdown_pct": -41.1055,
+          "rebalance_count": 110,
+          "trading_fees_usdt": 7.636269,
+          "slippage_usdt": 1.909067,
+          "liquidated": false
+        },
+        "fee8_slip2_bear_cap_20pct_raw": {
+          "net_return_pct": 35.1957,
+          "end_equity_usdt": 135.195727,
+          "max_drawdown_pct": -25.9143,
+          "rebalance_count": 123,
+          "trading_fees_usdt": 5.518761,
+          "slippage_usdt": 1.37969,
+          "liquidated": false
+        },
+        "fee8_slip2_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 51.1918,
+          "end_equity_usdt": 151.191807,
+          "max_drawdown_pct": -22.4316,
+          "rebalance_count": 110,
+          "trading_fees_usdt": 5.915655,
+          "slippage_usdt": 1.478914,
+          "liquidated": false
+        },
+        "fee8_slip4_uncapped_raw": {
+          "net_return_pct": 9.8609,
+          "end_equity_usdt": 109.860895,
+          "max_drawdown_pct": -36.149,
+          "rebalance_count": 123,
+          "trading_fees_usdt": 6.685516,
+          "slippage_usdt": 3.342758,
+          "liquidated": false
+        },
+        "fee8_slip4_uncapped_debounce_3h": {
+          "net_return_pct": 28.2309,
+          "end_equity_usdt": 128.230928,
+          "max_drawdown_pct": -41.4871,
+          "rebalance_count": 110,
+          "trading_fees_usdt": 7.581756,
+          "slippage_usdt": 3.790878,
+          "liquidated": false
+        },
+        "fee8_slip4_bear_cap_20pct_raw": {
+          "net_return_pct": 33.683,
+          "end_equity_usdt": 133.68297,
+          "max_drawdown_pct": -25.9252,
+          "rebalance_count": 123,
+          "trading_fees_usdt": 5.487643,
+          "slippage_usdt": 2.743821,
+          "liquidated": false
+        },
+        "fee8_slip4_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 49.55,
+          "end_equity_usdt": 149.550006,
+          "max_drawdown_pct": -22.467,
+          "rebalance_count": 110,
+          "trading_fees_usdt": 5.883019,
+          "slippage_usdt": 2.94151,
+          "liquidated": false
+        },
+        "fee8_slip6_uncapped_raw": {
+          "net_return_pct": 8.198,
+          "end_equity_usdt": 108.19797,
+          "max_drawdown_pct": -36.5424,
+          "rebalance_count": 123,
+          "trading_fees_usdt": 6.636756,
+          "slippage_usdt": 4.977567,
+          "liquidated": false
+        },
+        "fee8_slip6_uncapped_debounce_3h": {
+          "net_return_pct": 26.3592,
+          "end_equity_usdt": 126.359153,
+          "max_drawdown_pct": -41.8664,
+          "rebalance_count": 110,
+          "trading_fees_usdt": 7.527728,
+          "slippage_usdt": 5.645796,
+          "liquidated": false
+        },
+        "fee8_slip6_bear_cap_20pct_raw": {
+          "net_return_pct": 32.1865,
+          "end_equity_usdt": 132.186532,
+          "max_drawdown_pct": -25.9362,
+          "rebalance_count": 123,
+          "trading_fees_usdt": 5.456743,
+          "slippage_usdt": 4.092557,
+          "liquidated": false
+        },
+        "fee8_slip6_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 47.9254,
+          "end_equity_usdt": 147.925372,
+          "max_drawdown_pct": -22.5025,
+          "rebalance_count": 110,
+          "trading_fees_usdt": 5.850605,
+          "slippage_usdt": 4.387954,
+          "liquidated": false
+        },
+        "fee8_slip8_uncapped_raw": {
+          "net_return_pct": 6.5594,
+          "end_equity_usdt": 106.559365,
+          "max_drawdown_pct": -36.9812,
+          "rebalance_count": 123,
+          "trading_fees_usdt": 6.58845,
+          "slippage_usdt": 6.58845,
+          "liquidated": false
+        },
+        "fee8_slip8_uncapped_debounce_3h": {
+          "net_return_pct": 24.5138,
+          "end_equity_usdt": 124.51376,
+          "max_drawdown_pct": -42.2434,
+          "rebalance_count": 110,
+          "trading_fees_usdt": 7.474182,
+          "slippage_usdt": 7.474182,
+          "liquidated": false
+        },
+        "fee8_slip8_bear_cap_20pct_raw": {
+          "net_return_pct": 30.7062,
+          "end_equity_usdt": 130.706242,
+          "max_drawdown_pct": -25.9472,
+          "rebalance_count": 123,
+          "trading_fees_usdt": 5.426061,
+          "slippage_usdt": 5.426061,
+          "liquidated": false
+        },
+        "fee8_slip8_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 46.3177,
+          "end_equity_usdt": 146.317731,
+          "max_drawdown_pct": -22.5379,
+          "rebalance_count": 110,
+          "trading_fees_usdt": 5.818412,
+          "slippage_usdt": 5.818412,
+          "liquidated": false
+        }
+      }
+    },
+    "2025_jan_to_sep": {
+      "period_utc": [
+        "2025-01-01T08:00:00+00:00",
+        "2025-09-06T16:00:00+00:00"
+      ],
+      "event_count": 6006,
+      "configs": {
+        "fee5_slip2_uncapped_raw": {
+          "net_return_pct": 5.069,
+          "end_equity_usdt": 105.069034,
+          "max_drawdown_pct": -34.4392,
+          "rebalance_count": 59,
+          "trading_fees_usdt": 2.14735,
+          "slippage_usdt": 0.85894,
+          "liquidated": false
+        },
+        "fee5_slip2_uncapped_debounce_3h": {
+          "net_return_pct": 0.6065,
+          "end_equity_usdt": 100.606479,
+          "max_drawdown_pct": -34.4397,
+          "rebalance_count": 56,
+          "trading_fees_usdt": 1.983883,
+          "slippage_usdt": 0.793553,
+          "liquidated": false
+        },
+        "fee5_slip2_bear_cap_20pct_raw": {
+          "net_return_pct": 10.4001,
+          "end_equity_usdt": 110.400105,
+          "max_drawdown_pct": -22.5018,
+          "rebalance_count": 59,
+          "trading_fees_usdt": 1.402376,
+          "slippage_usdt": 0.56095,
+          "liquidated": false
+        },
+        "fee5_slip2_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 8.2497,
+          "end_equity_usdt": 108.249682,
+          "max_drawdown_pct": -22.502,
+          "rebalance_count": 56,
+          "trading_fees_usdt": 1.317993,
+          "slippage_usdt": 0.527197,
+          "liquidated": false
+        },
+        "fee5_slip4_uncapped_raw": {
+          "net_return_pct": 4.2723,
+          "end_equity_usdt": 104.272321,
+          "max_drawdown_pct": -34.4762,
+          "rebalance_count": 59,
+          "trading_fees_usdt": 2.139672,
+          "slippage_usdt": 1.711738,
+          "liquidated": false
+        },
+        "fee5_slip4_uncapped_debounce_3h": {
+          "net_return_pct": -0.1095,
+          "end_equity_usdt": 99.890538,
+          "max_drawdown_pct": -34.5069,
+          "rebalance_count": 56,
+          "trading_fees_usdt": 1.977309,
+          "slippage_usdt": 1.581847,
+          "liquidated": false
+        },
+        "fee5_slip4_bear_cap_20pct_raw": {
+          "net_return_pct": 9.831,
+          "end_equity_usdt": 109.831043,
+          "max_drawdown_pct": -22.5222,
+          "rebalance_count": 59,
+          "trading_fees_usdt": 1.398993,
+          "slippage_usdt": 1.119194,
+          "liquidated": false
+        },
+        "fee5_slip4_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 7.7213,
+          "end_equity_usdt": 107.721311,
+          "max_drawdown_pct": -22.5225,
+          "rebalance_count": 56,
+          "trading_fees_usdt": 1.31503,
+          "slippage_usdt": 1.052024,
+          "liquidated": false
+        },
+        "fee5_slip6_uncapped_raw": {
+          "net_return_pct": 3.4812,
+          "end_equity_usdt": 103.481172,
+          "max_drawdown_pct": -34.5133,
+          "rebalance_count": 59,
+          "trading_fees_usdt": 2.132026,
+          "slippage_usdt": 2.558432,
+          "liquidated": false
+        },
+        "fee5_slip6_uncapped_debounce_3h": {
+          "net_return_pct": -0.8207,
+          "end_equity_usdt": 99.179261,
+          "max_drawdown_pct": -34.7048,
+          "rebalance_count": 56,
+          "trading_fees_usdt": 1.97076,
+          "slippage_usdt": 2.364912,
+          "liquidated": false
+        },
+        "fee5_slip6_bear_cap_20pct_raw": {
+          "net_return_pct": 9.2647,
+          "end_equity_usdt": 109.26468,
+          "max_drawdown_pct": -22.5426,
+          "rebalance_count": 59,
+          "trading_fees_usdt": 1.39562,
+          "slippage_usdt": 1.674743,
+          "liquidated": false
+        },
+        "fee5_slip6_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 7.1953,
+          "end_equity_usdt": 107.195294,
+          "max_drawdown_pct": -22.5429,
+          "rebalance_count": 56,
+          "trading_fees_usdt": 1.312075,
+          "slippage_usdt": 1.57449,
+          "liquidated": false
+        },
+        "fee5_slip8_uncapped_raw": {
+          "net_return_pct": 2.6956,
+          "end_equity_usdt": 102.695554,
+          "max_drawdown_pct": -34.5504,
+          "rebalance_count": 59,
+          "trading_fees_usdt": 2.124413,
+          "slippage_usdt": 3.39906,
+          "liquidated": false
+        },
+        "fee5_slip8_uncapped_debounce_3h": {
+          "net_return_pct": -1.5274,
+          "end_equity_usdt": 98.47262,
+          "max_drawdown_pct": -34.9021,
+          "rebalance_count": 56,
+          "trading_fees_usdt": 1.964237,
+          "slippage_usdt": 3.142779,
+          "liquidated": false
+        },
+        "fee5_slip8_bear_cap_20pct_raw": {
+          "net_return_pct": 8.701,
+          "end_equity_usdt": 108.701005,
+          "max_drawdown_pct": -22.563,
+          "rebalance_count": 59,
+          "trading_fees_usdt": 1.392256,
+          "slippage_usdt": 2.22761,
+          "liquidated": false
+        },
+        "fee5_slip8_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 6.6716,
+          "end_equity_usdt": 106.671622,
+          "max_drawdown_pct": -22.5634,
+          "rebalance_count": 56,
+          "trading_fees_usdt": 1.309128,
+          "slippage_usdt": 2.094605,
+          "liquidated": false
+        },
+        "fee8_slip2_uncapped_raw": {
+          "net_return_pct": 3.8761,
+          "end_equity_usdt": 103.876053,
+          "max_drawdown_pct": -34.4947,
+          "rebalance_count": 59,
+          "trading_fees_usdt": 3.417352,
+          "slippage_usdt": 0.854338,
+          "liquidated": false
+        },
+        "fee8_slip2_uncapped_debounce_3h": {
+          "net_return_pct": -0.4657,
+          "end_equity_usdt": 99.534318,
+          "max_drawdown_pct": -34.6059,
+          "rebalance_count": 56,
+          "trading_fees_usdt": 3.15845,
+          "slippage_usdt": 0.789613,
+          "liquidated": false
+        },
+        "fee8_slip2_bear_cap_20pct_raw": {
+          "net_return_pct": 9.5475,
+          "end_equity_usdt": 109.547525,
+          "max_drawdown_pct": -22.5324,
+          "rebalance_count": 59,
+          "trading_fees_usdt": 2.235688,
+          "slippage_usdt": 0.558922,
+          "liquidated": false
+        },
+        "fee8_slip2_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 7.458,
+          "end_equity_usdt": 107.458009,
+          "max_drawdown_pct": -22.5327,
+          "rebalance_count": 56,
+          "trading_fees_usdt": 2.101683,
+          "slippage_usdt": 0.525421,
+          "liquidated": false
+        },
+        "fee8_slip4_uncapped_raw": {
+          "net_return_pct": 3.0877,
+          "end_equity_usdt": 103.087674,
+          "max_drawdown_pct": -34.5318,
+          "rebalance_count": 59,
+          "trading_fees_usdt": 3.405145,
+          "slippage_usdt": 1.702572,
+          "liquidated": false
+        },
+        "fee8_slip4_uncapped_debounce_3h": {
+          "net_return_pct": -1.1746,
+          "end_equity_usdt": 98.825363,
+          "max_drawdown_pct": -34.8035,
+          "rebalance_count": 56,
+          "trading_fees_usdt": 3.147992,
+          "slippage_usdt": 1.573996,
+          "liquidated": false
+        },
+        "fee8_slip4_bear_cap_20pct_raw": {
+          "net_return_pct": 8.9825,
+          "end_equity_usdt": 108.982507,
+          "max_drawdown_pct": -22.5528,
+          "rebalance_count": 59,
+          "trading_fees_usdt": 2.230299,
+          "slippage_usdt": 1.115149,
+          "liquidated": false
+        },
+        "fee8_slip4_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 6.9332,
+          "end_equity_usdt": 106.933166,
+          "max_drawdown_pct": -22.5531,
+          "rebalance_count": 56,
+          "trading_fees_usdt": 2.096961,
+          "slippage_usdt": 1.048481,
+          "liquidated": false
+        },
+        "fee8_slip6_uncapped_raw": {
+          "net_return_pct": 2.3048,
+          "end_equity_usdt": 102.304807,
+          "max_drawdown_pct": -34.5689,
+          "rebalance_count": 59,
+          "trading_fees_usdt": 3.392989,
+          "slippage_usdt": 2.544742,
+          "liquidated": false
+        },
+        "fee8_slip6_uncapped_debounce_3h": {
+          "net_return_pct": -1.879,
+          "end_equity_usdt": 98.121029,
+          "max_drawdown_pct": -35.0006,
+          "rebalance_count": 56,
+          "trading_fees_usdt": 3.137575,
+          "slippage_usdt": 2.353181,
+          "liquidated": false
+        },
+        "fee8_slip6_bear_cap_20pct_raw": {
+          "net_return_pct": 8.4202,
+          "end_equity_usdt": 108.420171,
+          "max_drawdown_pct": -22.5732,
+          "rebalance_count": 59,
+          "trading_fees_usdt": 2.224925,
+          "slippage_usdt": 1.668694,
+          "liquidated": false
+        },
+        "fee8_slip6_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 6.4107,
+          "end_equity_usdt": 106.410662,
+          "max_drawdown_pct": -22.5736,
+          "rebalance_count": 56,
+          "trading_fees_usdt": 2.092252,
+          "slippage_usdt": 1.569189,
+          "liquidated": false
+        },
+        "fee8_slip8_uncapped_raw": {
+          "net_return_pct": 1.5274,
+          "end_equity_usdt": 101.527415,
+          "max_drawdown_pct": -34.606,
+          "rebalance_count": 59,
+          "trading_fees_usdt": 3.380884,
+          "slippage_usdt": 3.380884,
+          "liquidated": false
+        },
+        "fee8_slip8_uncapped_debounce_3h": {
+          "net_return_pct": -2.5787,
+          "end_equity_usdt": 97.421291,
+          "max_drawdown_pct": -35.1973,
+          "rebalance_count": 56,
+          "trading_fees_usdt": 3.127198,
+          "slippage_usdt": 3.127198,
+          "liquidated": false
+        },
+        "fee8_slip8_bear_cap_20pct_raw": {
+          "net_return_pct": 7.8605,
+          "end_equity_usdt": 107.860505,
+          "max_drawdown_pct": -22.5936,
+          "rebalance_count": 59,
+          "trading_fees_usdt": 2.219567,
+          "slippage_usdt": 2.219567,
+          "liquidated": false
+        },
+        "fee8_slip8_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 5.8905,
+          "end_equity_usdt": 105.890488,
+          "max_drawdown_pct": -22.5941,
+          "rebalance_count": 56,
+          "trading_fees_usdt": 2.087556,
+          "slippage_usdt": 2.087556,
+          "liquidated": false
+        }
+      }
+    },
+    "2025_sep_to_2026_oct": {
+      "period_utc": [
+        "2025-09-07T00:00:00+00:00",
+        "2026-10-31T16:00:00+00:00"
+      ],
+      "event_count": 7605,
+      "configs": {
+        "fee5_slip2_uncapped_raw": {
+          "net_return_pct": 72.9428,
+          "end_equity_usdt": 172.94281,
+          "max_drawdown_pct": -26.5454,
+          "rebalance_count": 98,
+          "trading_fees_usdt": 4.498733,
+          "slippage_usdt": 1.799493,
+          "liquidated": false
+        },
+        "fee5_slip2_uncapped_debounce_3h": {
+          "net_return_pct": 90.1837,
+          "end_equity_usdt": 190.183694,
+          "max_drawdown_pct": -26.5527,
+          "rebalance_count": 92,
+          "trading_fees_usdt": 4.538807,
+          "slippage_usdt": 1.815523,
+          "liquidated": false
+        },
+        "fee5_slip2_bear_cap_20pct_raw": {
+          "net_return_pct": 45.3225,
+          "end_equity_usdt": 145.32247,
+          "max_drawdown_pct": -26.5454,
+          "rebalance_count": 98,
+          "trading_fees_usdt": 2.93577,
+          "slippage_usdt": 1.174308,
+          "liquidated": false
+        },
+        "fee5_slip2_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 51.1831,
+          "end_equity_usdt": 151.183055,
+          "max_drawdown_pct": -26.5527,
+          "rebalance_count": 92,
+          "trading_fees_usdt": 2.824895,
+          "slippage_usdt": 1.129958,
+          "liquidated": false
+        },
+        "fee5_slip4_uncapped_raw": {
+          "net_return_pct": 70.6513,
+          "end_equity_usdt": 170.651333,
+          "max_drawdown_pct": -26.5747,
+          "rebalance_count": 98,
+          "trading_fees_usdt": 4.467254,
+          "slippage_usdt": 3.573803,
+          "liquidated": false
+        },
+        "fee5_slip4_uncapped_debounce_3h": {
+          "net_return_pct": 87.7973,
+          "end_equity_usdt": 187.797297,
+          "max_drawdown_pct": -26.5827,
+          "rebalance_count": 92,
+          "trading_fees_usdt": 4.508759,
+          "slippage_usdt": 3.607007,
+          "liquidated": false
+        },
+        "fee5_slip4_bear_cap_20pct_raw": {
+          "net_return_pct": 43.9242,
+          "end_equity_usdt": 143.924218,
+          "max_drawdown_pct": -26.5747,
+          "rebalance_count": 98,
+          "trading_fees_usdt": 2.921406,
+          "slippage_usdt": 2.337125,
+          "liquidated": false
+        },
+        "fee5_slip4_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 49.7974,
+          "end_equity_usdt": 149.797402,
+          "max_drawdown_pct": -26.5827,
+          "rebalance_count": 92,
+          "trading_fees_usdt": 2.811824,
+          "slippage_usdt": 2.249459,
+          "liquidated": false
+        },
+        "fee5_slip6_uncapped_raw": {
+          "net_return_pct": 68.3891,
+          "end_equity_usdt": 168.38906,
+          "max_drawdown_pct": -26.604,
+          "rebalance_count": 98,
+          "trading_fees_usdt": 4.436043,
+          "slippage_usdt": 5.323251,
+          "liquidated": false
+        },
+        "fee5_slip6_uncapped_debounce_3h": {
+          "net_return_pct": 85.4396,
+          "end_equity_usdt": 185.439558,
+          "max_drawdown_pct": -26.6127,
+          "rebalance_count": 92,
+          "trading_fees_usdt": 4.478949,
+          "slippage_usdt": 5.374739,
+          "liquidated": false
+        },
+        "fee5_slip6_bear_cap_20pct_raw": {
+          "net_return_pct": 42.5389,
+          "end_equity_usdt": 142.538855,
+          "max_drawdown_pct": -26.604,
+          "rebalance_count": 98,
+          "trading_fees_usdt": 2.907129,
+          "slippage_usdt": 3.488555,
+          "liquidated": false
+        },
+        "fee5_slip6_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 48.4239,
+          "end_equity_usdt": 148.423873,
+          "max_drawdown_pct": -26.6127,
+          "rebalance_count": 92,
+          "trading_fees_usdt": 2.798828,
+          "slippage_usdt": 3.358594,
+          "liquidated": false
+        },
+        "fee5_slip8_uncapped_raw": {
+          "net_return_pct": 66.1556,
+          "end_equity_usdt": 166.155636,
+          "max_drawdown_pct": -26.6332,
+          "rebalance_count": 98,
+          "trading_fees_usdt": 4.405097,
+          "slippage_usdt": 7.048155,
+          "liquidated": false
+        },
+        "fee5_slip8_uncapped_debounce_3h": {
+          "net_return_pct": 83.1101,
+          "end_equity_usdt": 183.110142,
+          "max_drawdown_pct": -26.6427,
+          "rebalance_count": 92,
+          "trading_fees_usdt": 4.449379,
+          "slippage_usdt": 7.119007,
+          "liquidated": false
+        },
+        "fee5_slip8_bear_cap_20pct_raw": {
+          "net_return_pct": 41.1663,
+          "end_equity_usdt": 141.166268,
+          "max_drawdown_pct": -26.6332,
+          "rebalance_count": 98,
+          "trading_fees_usdt": 2.892938,
+          "slippage_usdt": 4.628701,
+          "liquidated": false
+        },
+        "fee5_slip8_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 47.0624,
+          "end_equity_usdt": 147.062359,
+          "max_drawdown_pct": -26.6427,
+          "rebalance_count": 92,
+          "trading_fees_usdt": 2.785908,
+          "slippage_usdt": 4.457452,
+          "liquidated": false
+        },
+        "fee8_slip2_uncapped_raw": {
+          "net_return_pct": 69.5166,
+          "end_equity_usdt": 169.516568,
+          "max_drawdown_pct": -26.5893,
+          "rebalance_count": 98,
+          "trading_fees_usdt": 7.122584,
+          "slippage_usdt": 1.780646,
+          "liquidated": false
+        },
+        "fee8_slip2_uncapped_debounce_3h": {
+          "net_return_pct": 86.6149,
+          "end_equity_usdt": 186.614866,
+          "max_drawdown_pct": -26.5977,
+          "rebalance_count": 92,
+          "trading_fees_usdt": 7.190119,
+          "slippage_usdt": 1.79753,
+          "liquidated": false
+        },
+        "fee8_slip2_bear_cap_20pct_raw": {
+          "net_return_pct": 43.2299,
+          "end_equity_usdt": 143.229933,
+          "max_drawdown_pct": -26.5893,
+          "rebalance_count": 98,
+          "trading_fees_usdt": 4.662811,
+          "slippage_usdt": 1.165703,
+          "liquidated": false
+        },
+        "fee8_slip2_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 49.1091,
+          "end_equity_usdt": 149.109128,
+          "max_drawdown_pct": -26.5977,
+          "rebalance_count": 92,
+          "trading_fees_usdt": 4.488507,
+          "slippage_usdt": 1.122127,
+          "liquidated": false
+        },
+        "fee8_slip4_uncapped_raw": {
+          "net_return_pct": 67.2688,
+          "end_equity_usdt": 167.268764,
+          "max_drawdown_pct": -26.6186,
+          "rebalance_count": 98,
+          "trading_fees_usdt": 7.072859,
+          "slippage_usdt": 3.536429,
+          "liquidated": false
+        },
+        "fee8_slip4_uncapped_debounce_3h": {
+          "net_return_pct": 84.2713,
+          "end_equity_usdt": 184.271333,
+          "max_drawdown_pct": -26.6277,
+          "rebalance_count": 92,
+          "trading_fees_usdt": 7.142613,
+          "slippage_usdt": 3.571307,
+          "liquidated": false
+        },
+        "fee8_slip4_bear_cap_20pct_raw": {
+          "net_return_pct": 41.851,
+          "end_equity_usdt": 141.850972,
+          "max_drawdown_pct": -26.6186,
+          "rebalance_count": 98,
+          "trading_fees_usdt": 4.640037,
+          "slippage_usdt": 2.320018,
+          "liquidated": false
+        },
+        "fee8_slip4_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 47.7416,
+          "end_equity_usdt": 147.741622,
+          "max_drawdown_pct": -26.6277,
+          "rebalance_count": 92,
+          "trading_fees_usdt": 4.467772,
+          "slippage_usdt": 2.233886,
+          "liquidated": false
+        },
+        "fee8_slip6_uncapped_raw": {
+          "net_return_pct": 65.0496,
+          "end_equity_usdt": 165.049631,
+          "max_drawdown_pct": -26.6479,
+          "rebalance_count": 98,
+          "trading_fees_usdt": 7.023556,
+          "slippage_usdt": 5.267667,
+          "liquidated": false
+        },
+        "fee8_slip6_uncapped_debounce_3h": {
+          "net_return_pct": 81.9559,
+          "end_equity_usdt": 181.955933,
+          "max_drawdown_pct": -26.6577,
+          "rebalance_count": 92,
+          "trading_fees_usdt": 7.095502,
+          "slippage_usdt": 5.321627,
+          "liquidated": false
+        },
+        "fee8_slip6_bear_cap_20pct_raw": {
+          "net_return_pct": 40.4847,
+          "end_equity_usdt": 140.48473,
+          "max_drawdown_pct": -26.6479,
+          "rebalance_count": 98,
+          "trading_fees_usdt": 4.6174,
+          "slippage_usdt": 3.46305,
+          "liquidated": false
+        },
+        "fee8_slip6_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 46.3861,
+          "end_equity_usdt": 146.386061,
+          "max_drawdown_pct": -26.6577,
+          "rebalance_count": 92,
+          "trading_fees_usdt": 4.447169,
+          "slippage_usdt": 3.335377,
+          "liquidated": false
+        },
+        "fee8_slip8_uncapped_raw": {
+          "net_return_pct": 62.8588,
+          "end_equity_usdt": 162.858816,
+          "max_drawdown_pct": -26.6771,
+          "rebalance_count": 98,
+          "trading_fees_usdt": 6.974671,
+          "slippage_usdt": 6.974671,
+          "liquidated": false
+        },
+        "fee8_slip8_uncapped_debounce_3h": {
+          "net_return_pct": 79.6683,
+          "end_equity_usdt": 179.668347,
+          "max_drawdown_pct": -26.6877,
+          "rebalance_count": 92,
+          "trading_fees_usdt": 7.048773,
+          "slippage_usdt": 7.048773,
+          "liquidated": false
+        },
+        "fee8_slip8_bear_cap_20pct_raw": {
+          "net_return_pct": 39.1311,
+          "end_equity_usdt": 139.131095,
+          "max_drawdown_pct": -26.6771,
+          "rebalance_count": 98,
+          "trading_fees_usdt": 4.5949,
+          "slippage_usdt": 4.5949,
+          "liquidated": false
+        },
+        "fee8_slip8_bear_cap_20pct_debounce_3h": {
+          "net_return_pct": 45.0423,
+          "end_equity_usdt": 145.042347,
+          "max_drawdown_pct": -26.6877,
+          "rebalance_count": 92,
+          "trading_fees_usdt": 4.426689,
+          "slippage_usdt": 4.426689,
+          "liquidated": false
+        }
+      }
+    }
+  },
+  "cautions": [
+    "Previously inspected historical periods; this is a cost robustness test, not pristine OOS.",
+    "1h mark OHLC adverse checks are not exact Binance liquidation engine.",
+    "No maker queue/partial fills; fixed slippage stress grid; static 13-symbol universe survivorship bias."
+  ]
+}
