@@ -176,7 +176,7 @@ def run_variant(hours,minutes,marks,funding,lo,hi,fee_bp,with_pullback):
             pos={"entry":fill,"qty":qty,"entry_i":current_i,"bars":0,"funding":0.0,"entry_fee":fee}
             pending=None
         elif pending=="exit" and pos is not None:
-            finish(h["o"],"alpha_or_time"); pending=None
+            finish(h["o"],"alpha_or_time"); pending=None; bars_since_exit=0
         if current_i in regime_map:
             now=regime_map[current_i]>RSI_THRESHOLD
             if now and not active: active=True; zone_high=h["c"]; entries=0
@@ -187,11 +187,9 @@ def run_variant(hours,minutes,marks,funding,lo,hi,fee_bp,with_pullback):
             pos["bars"]+=1
             for mt in h["minute_ts"]:
                 b=minutes[mt]
-                for ft,rate in funding_by_min.get(mt,[]):
-                    mb=marks.get(mt)
-                    if mb is not None:
-                        cashflow=-pos["qty"]*mb["o"]*rate
-                        pos["funding"]+=cashflow
+                for ft,rate,mark_price in funding_by_min.get(mt,[]):
+                    cashflow=-pos["qty"]*mark_price*rate
+                    pos["funding"]+=cashflow
                 # Conservative intraminute ordering: record the high-water mark at
                 # minute high, then measure adverse drawdown at minute low.
                 mark_high=equity+pos["funding"]+pos["qty"]*(b["h"]-pos["entry"])
