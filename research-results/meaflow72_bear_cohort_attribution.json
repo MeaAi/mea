@@ -87,15 +87,25 @@
             }
           },
           "entry_regime_attribution": {
-            "bull": {
-              "price_pnl_usdt": 9.953235,
-              "funding_pnl_usdt": 4.468672,
-              "net_contribution_usdt": 14.421908
+            "bull_mild": {
+              "price_pnl_usdt": -6.402028,
+              "funding_pnl_usdt": 1.973737,
+              "net_contribution_usdt": -4.428292
             },
-            "bear": {
-              "price_pnl_usdt": 31.310359,
-              "funding_pnl_usdt": 1.276047,
-              "net_contribution_usdt": 32.586406
+            "bull_strong": {
+              "price_pnl_usdt": 16.355263,
+              "funding_pnl_usdt": 2.494936,
+              "net_contribution_usdt": 18.850199
+            },
+            "bear_mild": {
+              "price_pnl_usdt": 35.738034,
+              "funding_pnl_usdt": 1.21376,
+              "net_contribution_usdt": 36.951794
+            },
+            "bear_strong": {
+              "price_pnl_usdt": -4.427675,
+              "funding_pnl_usdt": 0.062287,
+              "net_contribution_usdt": -4.365389
             },
             "sideways": {
               "price_pnl_usdt": 0.0,
@@ -246,15 +256,25 @@
             }
           },
           "entry_regime_attribution": {
-            "bull": {
-              "price_pnl_usdt": 9.129768,
-              "funding_pnl_usdt": 4.184222,
-              "net_contribution_usdt": 13.31399
+            "bull_mild": {
+              "price_pnl_usdt": -5.649821,
+              "funding_pnl_usdt": 1.847563,
+              "net_contribution_usdt": -3.802258
             },
-            "bear": {
-              "price_pnl_usdt": 15.676854,
-              "funding_pnl_usdt": 0.669059,
-              "net_contribution_usdt": 16.345912
+            "bull_strong": {
+              "price_pnl_usdt": 14.779589,
+              "funding_pnl_usdt": 2.336659,
+              "net_contribution_usdt": 17.116248
+            },
+            "bear_mild": {
+              "price_pnl_usdt": 16.751491,
+              "funding_pnl_usdt": 0.641915,
+              "net_contribution_usdt": 17.393406
+            },
+            "bear_strong": {
+              "price_pnl_usdt": -1.074637,
+              "funding_pnl_usdt": 0.027143,
+              "net_contribution_usdt": -1.047494
             },
             "sideways": {
               "price_pnl_usdt": 0.0,
@@ -405,15 +425,25 @@
             }
           },
           "entry_regime_attribution": {
-            "bull": {
-              "price_pnl_usdt": 8.793923,
-              "funding_pnl_usdt": 4.139779,
-              "net_contribution_usdt": 12.933703
+            "bull_mild": {
+              "price_pnl_usdt": -5.675831,
+              "funding_pnl_usdt": 1.836691,
+              "net_contribution_usdt": -3.83914
             },
-            "bear": {
-              "price_pnl_usdt": 12.705904,
-              "funding_pnl_usdt": 0.535911,
-              "net_contribution_usdt": 13.241815
+            "bull_strong": {
+              "price_pnl_usdt": 14.469754,
+              "funding_pnl_usdt": 2.303089,
+              "net_contribution_usdt": 16.772843
+            },
+            "bear_mild": {
+              "price_pnl_usdt": 13.158365,
+              "funding_pnl_usdt": 0.51577,
+              "net_contribution_usdt": 13.674135
+            },
+            "bear_strong": {
+              "price_pnl_usdt": -0.452461,
+              "funding_pnl_usdt": 0.020141,
+              "net_contribution_usdt": -0.43232
             },
             "sideways": {
               "price_pnl_usdt": 0.0,
@@ -564,15 +594,25 @@
             }
           },
           "entry_regime_attribution": {
-            "bull": {
-              "price_pnl_usdt": 8.553455,
-              "funding_pnl_usdt": 4.100094,
-              "net_contribution_usdt": 12.653549
+            "bull_mild": {
+              "price_pnl_usdt": -5.975942,
+              "funding_pnl_usdt": 1.83326,
+              "net_contribution_usdt": -4.142682
             },
-            "bear": {
-              "price_pnl_usdt": 9.640814,
-              "funding_pnl_usdt": 0.398145,
-              "net_contribution_usdt": 10.038959
+            "bull_strong": {
+              "price_pnl_usdt": 14.529397,
+              "funding_pnl_usdt": 2.266834,
+              "net_contribution_usdt": 16.796231
+            },
+            "bear_mild": {
+              "price_pnl_usdt": 9.845841,
+              "funding_pnl_usdt": 0.383754,
+              "net_contribution_usdt": 10.229595
+            },
+            "bear_strong": {
+              "price_pnl_usdt": -0.205027,
+              "funding_pnl_usdt": 0.014392,
+              "net_contribution_usdt": -0.190636
             },
             "sideways": {
               "price_pnl_usdt": 0.0,
@@ -732,15 +772,25 @@
             }
           },
           "entry_regime_attribution": {
-            "bull": {
-              "price_pnl_usdt": 38.810041,
-              "funding_pnl_usdt": 4.082634,
-              "net_contribution_usdt": 42.892675
+            "bull_mild": {
+              "price_pnl_usdt": 44.843858,
+              "funding_pnl_usdt": 1.520223,
+              "net_contribution_usdt": 46.364081
             },
-            "bear": {
-              "price_pnl_usdt": -25.226135,
-              "funding_pnl_usdt": 2.418617,
-              "net_contribution_usdt": -22.807518
+            "bull_strong": {
+              "price_pnl_usdt": -6.033817,
+              "funding_pnl_usdt": 2.562411,
+              "net_contribution_usdt": -3.471407
+            },
+            "bear_mild": {
+              "price_pnl_usdt": -10.349585,
+              "funding_pnl_usdt": 2.336928,
+              "net_contribution_usdt": -8.012657
+            },
+            "bear_strong": {
+              "price_pnl_usdt": -14.87655,
+              "funding_pnl_usdt": 0.081689,
+              "net_contribution_usdt": -14.794861
             },
             "sideways": {
               "price_pnl_usdt": 0.0,
@@ -891,15 +941,25 @@
             }
           },
           "entry_regime_attribution": {
-            "bull": {
-              "price_pnl_usdt": 41.297662,
-              "funding_pnl_usdt": 4.376057,
-              "net_contribution_usdt": 45.673719
+            "bull_mild": {
+              "price_pnl_usdt": 49.305925,
+              "funding_pnl_usdt": 1.666338,
+              "net_contribution_usdt": 50.972263
             },
-            "bear": {
-              "price_pnl_usdt": -8.028705,
-              "funding_pnl_usdt": 1.335104,
-              "net_contribution_usdt": -6.693601
+            "bull_strong": {
+              "price_pnl_usdt": -8.008263,
+              "funding_pnl_usdt": 2.709719,
+              "net_contribution_usdt": -5.298544
+            },
+            "bear_mild": {
+              "price_pnl_usdt": -0.960532,
+              "funding_pnl_usdt": 1.299229,
+              "net_contribution_usdt": 0.338697
+            },
+            "bear_strong": {
+              "price_pnl_usdt": -7.068173,
+              "funding_pnl_usdt": 0.035875,
+              "net_contribution_usdt": -7.032298
             },
             "sideways": {
               "price_pnl_usdt": 0.0,
@@ -1050,15 +1110,25 @@
             }
           },
           "entry_regime_attribution": {
-            "bull": {
-              "price_pnl_usdt": 41.283426,
-              "funding_pnl_usdt": 4.457226,
-              "net_contribution_usdt": 45.740652
+            "bull_mild": {
+              "price_pnl_usdt": 49.664829,
+              "funding_pnl_usdt": 1.721188,
+              "net_contribution_usdt": 51.386017
             },
-            "bear": {
-              "price_pnl_usdt": -4.456019,
-              "funding_pnl_usdt": 1.081321,
-              "net_contribution_usdt": -3.374698
+            "bull_strong": {
+              "price_pnl_usdt": -8.381403,
+              "funding_pnl_usdt": 2.736037,
+              "net_contribution_usdt": -5.645366
+            },
+            "bear_mild": {
+              "price_pnl_usdt": 1.109986,
+              "funding_pnl_usdt": 1.053987,
+              "net_contribution_usdt": 2.163974
+            },
+            "bear_strong": {
+              "price_pnl_usdt": -5.566005,
+              "funding_pnl_usdt": 0.027334,
+              "net_contribution_usdt": -5.538672
             },
             "sideways": {
               "price_pnl_usdt": 0.0,
@@ -1209,15 +1279,25 @@
             }
           },
           "entry_regime_attribution": {
-            "bull": {
-              "price_pnl_usdt": 43.175114,
-              "funding_pnl_usdt": 4.548863,
-              "net_contribution_usdt": 47.723977
+            "bull_mild": {
+              "price_pnl_usdt": 51.91666,
+              "funding_pnl_usdt": 1.78786,
+              "net_contribution_usdt": 53.70452
             },
-            "bear": {
-              "price_pnl_usdt": -2.944449,
-              "funding_pnl_usdt": 0.812264,
-              "net_contribution_usdt": -2.132185
+            "bull_strong": {
+              "price_pnl_usdt": -8.741546,
+              "funding_pnl_usdt": 2.761003,
+              "net_contribution_usdt": -5.980543
+            },
+            "bear_mild": {
+              "price_pnl_usdt": 1.150311,
+              "funding_pnl_usdt": 0.793097,
+              "net_contribution_usdt": 1.943408
+            },
+            "bear_strong": {
+              "price_pnl_usdt": -4.09476,
+              "funding_pnl_usdt": 0.019167,
+              "net_contribution_usdt": -4.075594
             },
             "sideways": {
               "price_pnl_usdt": 0.0,
@@ -1377,15 +1457,25 @@
             }
           },
           "entry_regime_attribution": {
-            "bull": {
-              "price_pnl_usdt": 10.88253,
-              "funding_pnl_usdt": 0.847587,
-              "net_contribution_usdt": 11.730118
+            "bull_mild": {
+              "price_pnl_usdt": -7.337514,
+              "funding_pnl_usdt": 0.470806,
+              "net_contribution_usdt": -6.866708
             },
-            "bear": {
-              "price_pnl_usdt": -4.176323,
-              "funding_pnl_usdt": 0.521529,
-              "net_contribution_usdt": -3.654794
+            "bull_strong": {
+              "price_pnl_usdt": 18.220044,
+              "funding_pnl_usdt": 0.376781,
+              "net_contribution_usdt": 18.596825
+            },
+            "bear_mild": {
+              "price_pnl_usdt": -36.923202,
+              "funding_pnl_usdt": 0.474677,
+              "net_contribution_usdt": -36.448524
+            },
+            "bear_strong": {
+              "price_pnl_usdt": 32.746879,
+              "funding_pnl_usdt": 0.046852,
+              "net_contribution_usdt": 32.79373
             },
             "sideways": {
               "price_pnl_usdt": 0.0,
@@ -1536,15 +1626,25 @@
             }
           },
           "entry_regime_attribution": {
-            "bull": {
-              "price_pnl_usdt": 9.465514,
-              "funding_pnl_usdt": 0.785032,
-              "net_contribution_usdt": 10.250545
+            "bull_mild": {
+              "price_pnl_usdt": -7.372497,
+              "funding_pnl_usdt": 0.444947,
+              "net_contribution_usdt": -6.92755
             },
-            "bear": {
-              "price_pnl_usdt": 1.327964,
-              "funding_pnl_usdt": 0.297112,
-              "net_contribution_usdt": 1.625076
+            "bull_strong": {
+              "price_pnl_usdt": 16.838011,
+              "funding_pnl_usdt": 0.340084,
+              "net_contribution_usdt": 17.178095
+            },
+            "bear_mild": {
+              "price_pnl_usdt": -14.898989,
+              "funding_pnl_usdt": 0.278746,
+              "net_contribution_usdt": -14.620242
+            },
+            "bear_strong": {
+              "price_pnl_usdt": 16.226953,
+              "funding_pnl_usdt": 0.018365,
+              "net_contribution_usdt": 16.245318
             },
             "sideways": {
               "price_pnl_usdt": 0.0,
@@ -1695,15 +1795,25 @@
             }
           },
           "entry_regime_attribution": {
-            "bull": {
-              "price_pnl_usdt": 9.672137,
-              "funding_pnl_usdt": 0.773878,
-              "net_contribution_usdt": 10.446015
+            "bull_mild": {
+              "price_pnl_usdt": -6.877656,
+              "funding_pnl_usdt": 0.441156,
+              "net_contribution_usdt": -6.4365
             },
-            "bear": {
-              "price_pnl_usdt": 1.666668,
-              "funding_pnl_usdt": 0.250748,
-              "net_contribution_usdt": 1.917416
+            "bull_strong": {
+              "price_pnl_usdt": 16.549793,
+              "funding_pnl_usdt": 0.332722,
+              "net_contribution_usdt": 16.882515
+            },
+            "bear_mild": {
+              "price_pnl_usdt": -11.284625,
+              "funding_pnl_usdt": 0.236875,
+              "net_contribution_usdt": -11.04775
+            },
+            "bear_strong": {
+              "price_pnl_usdt": 12.951292,
+              "funding_pnl_usdt": 0.013873,
+              "net_contribution_usdt": 12.965166
             },
             "sideways": {
               "price_pnl_usdt": 0.0,
@@ -1854,15 +1964,25 @@
             }
           },
           "entry_regime_attribution": {
-            "bull": {
-              "price_pnl_usdt": 10.509261,
-              "funding_pnl_usdt": 0.778215,
-              "net_contribution_usdt": 11.287476
+            "bull_mild": {
+              "price_pnl_usdt": -5.747991,
+              "funding_pnl_usdt": 0.452865,
+              "net_contribution_usdt": -5.295126
             },
-            "bear": {
-              "price_pnl_usdt": 1.280224,
-              "funding_pnl_usdt": 0.188901,
-              "net_contribution_usdt": 1.469125
+            "bull_strong": {
+              "price_pnl_usdt": 16.257252,
+              "funding_pnl_usdt": 0.325351,
+              "net_contribution_usdt": 16.582602
+            },
+            "bear_mild": {
+              "price_pnl_usdt": -8.408319,
+              "funding_pnl_usdt": 0.179112,
+              "net_contribution_usdt": -8.229207
+            },
+            "bear_strong": {
+              "price_pnl_usdt": 9.688543,
+              "funding_pnl_usdt": 0.009789,
+              "net_contribution_usdt": 9.698332
             },
             "sideways": {
               "price_pnl_usdt": 0.0,
@@ -2022,15 +2142,25 @@
             }
           },
           "entry_regime_attribution": {
-            "bull": {
-              "price_pnl_usdt": 32.234682,
-              "funding_pnl_usdt": 1.653904,
-              "net_contribution_usdt": 33.888586
+            "bull_mild": {
+              "price_pnl_usdt": 25.973724,
+              "funding_pnl_usdt": 1.475286,
+              "net_contribution_usdt": 27.449011
             },
-            "bear": {
-              "price_pnl_usdt": 44.326326,
-              "funding_pnl_usdt": 1.026124,
-              "net_contribution_usdt": 45.35245
+            "bull_strong": {
+              "price_pnl_usdt": 6.260958,
+              "funding_pnl_usdt": 0.178618,
+              "net_contribution_usdt": 6.439576
+            },
+            "bear_mild": {
+              "price_pnl_usdt": 25.096378,
+              "funding_pnl_usdt": 0.502838,
+              "net_contribution_usdt": 25.599216
+            },
+            "bear_strong": {
+              "price_pnl_usdt": 19.229948,
+              "funding_pnl_usdt": 0.523286,
+              "net_contribution_usdt": 19.753234
             },
             "sideways": {
               "price_pnl_usdt": 0.0,
@@ -2181,15 +2311,25 @@
             }
           },
           "entry_regime_attribution": {
-            "bull": {
-              "price_pnl_usdt": 29.305917,
-              "funding_pnl_usdt": 1.512895,
-              "net_contribution_usdt": 30.818812
+            "bull_mild": {
+              "price_pnl_usdt": 23.895019,
+              "funding_pnl_usdt": 1.357036,
+              "net_contribution_usdt": 25.252054
             },
-            "bear": {
-              "price_pnl_usdt": 23.145858,
-              "funding_pnl_usdt": 0.538349,
-              "net_contribution_usdt": 23.684207
+            "bull_strong": {
+              "price_pnl_usdt": 5.410898,
+              "funding_pnl_usdt": 0.15586,
+              "net_contribution_usdt": 5.566758
+            },
+            "bear_mild": {
+              "price_pnl_usdt": 13.987215,
+              "funding_pnl_usdt": 0.283751,
+              "net_contribution_usdt": 14.270966
+            },
+            "bear_strong": {
+              "price_pnl_usdt": 9.158642,
+              "funding_pnl_usdt": 0.254598,
+              "net_contribution_usdt": 9.413241
             },
             "sideways": {
               "price_pnl_usdt": 0.0,
@@ -2340,15 +2480,25 @@
             }
           },
           "entry_regime_attribution": {
-            "bull": {
-              "price_pnl_usdt": 28.934854,
-              "funding_pnl_usdt": 1.502571,
-              "net_contribution_usdt": 30.437424
+            "bull_mild": {
+              "price_pnl_usdt": 23.700975,
+              "funding_pnl_usdt": 1.351483,
+              "net_contribution_usdt": 25.052458
             },
-            "bear": {
-              "price_pnl_usdt": 18.566252,
-              "funding_pnl_usdt": 0.428873,
-              "net_contribution_usdt": 18.995125
+            "bull_strong": {
+              "price_pnl_usdt": 5.233878,
+              "funding_pnl_usdt": 0.151088,
+              "net_contribution_usdt": 5.384966
+            },
+            "bear_mild": {
+              "price_pnl_usdt": 11.299664,
+              "funding_pnl_usdt": 0.227174,
+              "net_contribution_usdt": 11.526839
+            },
+            "bear_strong": {
+              "price_pnl_usdt": 7.266588,
+              "funding_pnl_usdt": 0.201698,
+              "net_contribution_usdt": 7.468286
             },
             "sideways": {
               "price_pnl_usdt": 0.0,
@@ -2499,15 +2649,25 @@
             }
           },
           "entry_regime_attribution": {
-            "bull": {
-              "price_pnl_usdt": 28.633354,
-              "funding_pnl_usdt": 1.498502,
-              "net_contribution_usdt": 30.131856
+            "bull_mild": {
+              "price_pnl_usdt": 23.57816,
+              "funding_pnl_usdt": 1.352242,
+              "net_contribution_usdt": 24.930402
             },
-            "bear": {
-              "price_pnl_usdt": 13.899263,
-              "funding_pnl_usdt": 0.315381,
-              "net_contribution_usdt": 14.214644
+            "bull_strong": {
+              "price_pnl_usdt": 5.055194,
+              "funding_pnl_usdt": 0.14626,
+              "net_contribution_usdt": 5.201454
+            },
+            "bear_mild": {
+              "price_pnl_usdt": 8.453855,
+              "funding_pnl_usdt": 0.168492,
+              "net_contribution_usdt": 8.622347
+            },
+            "bear_strong": {
+              "price_pnl_usdt": 5.445408,
+              "funding_pnl_usdt": 0.146889,
+              "net_contribution_usdt": 5.592297
             },
             "sideways": {
               "price_pnl_usdt": 0.0,
