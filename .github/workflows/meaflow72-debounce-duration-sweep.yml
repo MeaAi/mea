@@ -7,6 +7,7 @@ on:
       - "research/funding_carry_liquidation_fixed.py"
       - "research/meaflow72_debounce_duration_sweep.py"
       - ".github/workflows/meaflow72-debounce-duration-sweep.yml"
+      - "research-results/debounce-sweep-trigger.txt"
 permissions:
   contents: write
 concurrency:
