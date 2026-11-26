@@ -71,10 +71,22 @@ def load_data(start,end):
     minutes=dict(sorted(minutes.items())); marks=dict(sorted(marks.items())); funding.sort()
     if not minutes: raise RuntimeError("No futures minute bars downloaded")
     gaps=sum(1 for a,b in zip(minutes, list(minutes)[1:]) if b-a!=60000)
-    missing_funding_marks=sum(1 for ft,_ in funding if (ft//60000)*60000 not in marks)
-    if missing_funding_marks:
-        raise RuntimeError(f"{missing_funding_marks} funding events lack a corresponding minute-open mark candle")
-    return minutes,marks,funding,{"archives":qa,"perp_minutes":len(minutes),"mark_minutes":len(marks),"funding_events":len(funding),"perp_minute_gaps":gaps,"funding_events_without_mark":missing_funding_marks}
+    # Funding archives occasionally have an event in a minute missing from mark klines.
+    # Use the immediately preceding mark candle close only when it is <=5 minutes stale.
+    resolved=[]; exact=0; fallback=0; excluded=0
+    mark_times=sorted(marks)
+    import bisect
+    for ft,rate in funding:
+        mt=(ft//60000)*60000
+        if mt in marks:
+            resolved.append((ft,rate,marks[mt]["o"])); exact+=1
+            continue
+        j=bisect.bisect_right(mark_times,mt)-1
+        if j>=0 and 0<=mt-mark_times[j]<=5*60000:
+            resolved.append((ft,rate,marks[mark_times[j]]["c"])); fallback+=1
+        else:
+            excluded+=1
+    return minutes,marks,resolved,{"archives":qa,"perp_minutes":len(minutes),"mark_minutes":len(marks),"funding_events":len(funding),"perp_minute_gaps":gaps,"funding_events_exact_mark_minute":exact,"funding_events_previous_mark_close_fallback":fallback,"funding_events_excluded_no_mark_within_5m":excluded}
 
 def build_hours(minutes):
     hours=[]
@@ -125,97 +137,6 @@ def build_regime(hours):
     flush()
     return result
 
-def backtest(hours,minutes,marks,funding,lo,hi,fee_bp,with_pullback):
-    equity=100.0; peak=100.0; maxdd=0.0; trades=[]
-    regime_map=build_regime(hours)
-    active=False; zone_high=0.0; entries=0; bars_since_exit=10**9
-    pending=None; pos=None
-    fund_i=0
-    funding=sorted(funding)
-    # Funding events assigned to the mark-price minute that contains the event timestamp.
-    funding_by_min=defaultdict(list)
-    for ft,rate in funding: funding_by_min[(ft//60000)*60000].append((ft,rate))
-    for i in range(lo,hi):
-        h=hours[i]
-        if pending=="entry" and pos is None:
-            raw=h["o"]; fill=raw*(1+SLIP_BP/10000)
-            notional=equity
-            qty=notional/fill
-            fee=notional*fee_bp/10000
-            equity-=fee
-            pos={"entry":fill,"qty":qty,"entry_i":i,"bars":0,"funding":0.0,"entry_fee":fee,"notional":notional}
-            pending=None
-        elif pending=="exit" and pos is not None:
-            raw=h["o"]; close_pos(pos,raw,"alpha_or_time",fee_bp)
-            pending=None
-        if i in regime_map:
-            rsi=regime_map[i]
-            now=rsi>RSI_THRESHOLD
-            if now and not active:
-                active=True; zone_high=h["c"]; entries=0
-            elif not now and active:
-                active=False
-            elif now and active:
-                zone_high=max(zone_high,h["c"])
-        if pos is not None:
-            pos["bars"]+=1
-            exited=False
-            for mt in h["minute_ts"]:
-                b=minutes[mt]
-                # Apply any funding settled in this minute using minute-open mark price approximation.
-                for ft,rate in funding_by_min.get(mt,[]):
-                    if pos["entry_i"]<=i and mt>=hours[pos["entry_i"]]["t"]:
-                        mb=marks.get(mt)
-                        if mb is not None:
-                            cashflow=-pos["qty"]*mb["o"]*rate
-                            pos["funding"]+=cashflow
-                            equity+=cashflow
-                # Adverse mark-to-market at minute low for a long.
-                unreal=pos["qty"]*(b["l"]-pos["entry"])
-                marked=equity+unreal
-                peak=max(peak,marked)
-                if peak>0:maxdd=min(maxdd,marked/peak-1)
-                stop=pos["entry"]*(1-CATASTROPHE_STOP)
-                if b["l"]<=stop:
-                    raw_exit=min(b["o"],stop)
-                    exit_fill=raw_exit*(1-SLIP_BP/10000)
-                    close_pos(pos,raw_exit,"catastrophe_stop",fee_bp,exit_fill=exit_fill)
-                    pos=None; bars_since_exit=0; exited=True; break
-            if pos is not None:
-                if h["c"]<=pos["entry"]*(1-ALPHA_STOP):
-                    pending="exit"
-                elif pos["bars"]>=HOLD_BARS:
-                    pending="exit"
-            if exited: continue
-        else:
-            bars_since_exit+=1
-        # Signals are evaluated only after this completed 1h candle; fill occurs next hour open.
-        if pos is None and pending is None and active and i+1<hi and entries<MAX_ENTRIES:
-            if entries==0:
-                pending="entry"; entries+=1
-            elif with_pullback and bars_since_exit>=COOLDOWN_BARS and zone_high>0:
-                drop=(zone_high-h["c"])/zone_high
-                if drop>=PULLBACK:
-                    pending="entry"; entries+=1
-            zone_high=max(zone_high,h["c"])
-        peak=max(peak,equity)
-        if peak>0:maxdd=min(maxdd,equity/peak-1)
-    if pos is not None:
-        last=hours[hi-1]; raw=last["c"]
-        close_pos(pos,raw,"end_of_split",fee_bp)
-    wins=[x["net_pnl"] for x in trades if x["net_pnl"]>0]
-    losses=[-x["net_pnl"] for x in trades if x["net_pnl"]<0]
-    return {"trades":len(trades),"ending_equity_usdt":round(equity,6),"net_return_pct":round((equity/100-1)*100,4),
-            "max_adverse_minute_drawdown_pct":round(maxdd*100,4),"win_rate_pct":round(100*len(wins)/len(trades),2) if trades else None,
-            "profit_factor":round(sum(wins)/sum(losses),4) if losses else None,
-            "funding_pnl_usdt":round(sum(x["funding"] for x in trades),6),
-            "commission_usdt":round(sum(x["fees"] for x in trades),6),
-            "slippage_bp_per_side":SLIP_BP,"fee_bp_per_side":fee_bp,"trades_detail":trades}
-
-def close_pos(pos,raw_exit,reason,fee_bp,exit_fill=None):
-    # closure mutates global equity/trades via closure variables in backtest
-    nonlocal_dummy=None
-
 def regime_state_at(hours,regime_map,stop):
     active=False; zone_high=0.0
     for i in range(stop):
@@ -232,7 +153,7 @@ def run_variant(hours,minutes,marks,funding,lo,hi,fee_bp,with_pullback):
     equity=100.0; peak=100.0; maxdd=0.0; trades=[]
     regime_map=build_regime(hours); active,zone_high=regime_state_at(hours,regime_map,lo); entries=0; bars_since_exit=10**9
     pending=None; pos=None; funding_by_min=defaultdict(list)
-    for ft,rate in funding: funding_by_min[(ft//60000)*60000].append((ft,rate))
+    for ft,rate,mark_price in funding: funding_by_min[(ft//60000)*60000].append((ft,rate,mark_price))
     def finish(raw_exit,reason,exit_fill=None):
         nonlocal equity,pos,peak,maxdd
         p=pos
