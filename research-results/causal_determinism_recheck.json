@@ -1,0 +1,1201 @@
+{
+  "experiment": "MEAFLOW-52 deterministic replay and matched directional sleeve recheck",
+  "branch": "research/causal-determinism-recheck-v1",
+  "base_simulator_sha_note": "Simulator sorts symbols and breaks tied funding scores lexicographically; identical results are required under reversed dictionary insertion order.",
+  "strategy": "7d trailing funding rank, 7d rebalance, 20% tails; BTC trailing 30d mark return thresholds +/-5%; bull both, bear short-only, sideways/unknown flat for combined reference.",
+  "capital_usdt": 100,
+  "leverage": 1,
+  "fees_one_way_bp": [
+    2,
+    5,
+    8
+  ],
+  "slippage_one_way_bp": 2,
+  "data_source": "Official free Binance Vision monthly fundingRate and 1h markPriceKlines; ZIP CRC checked; no interpolation.",
+  "loaded_symbols": [
+    "ADAUSDT",
+    "AVAXUSDT",
+    "BCHUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "DOGEUSDT",
+    "DOTUSDT",
+    "ETHUSDT",
+    "LINKUSDT",
+    "LTCUSDT",
+    "SOLUSDT",
+    "TRXUSDT",
+    "XRPUSDT"
+  ],
+  "data_errors": {},
+  "timestamp_semantics": "Regime at each decision/funding timestamp uses last completed BTC 1h mark candle at t-1h.",
+  "drawdown": "Hourly adverse mark using simultaneous low for longs/high for shorts plus funding-event equity; conservative OHLC stress, not tick accurate.",
+  "period_method": "Five fixed chronological calendar windows; each starts from independent 100 USDT. These dates were previously inspected, so this is sequential revalidation, not pristine OOS.",
+  "determinism_check": {
+    "cases": 60,
+    "all_identical": true,
+    "results": [
+      {
+        "period": "2024_H1",
+        "fee_bp": 2,
+        "policy": "combined_reference",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2024_H1",
+        "fee_bp": 2,
+        "policy": "bull_long_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2024_H1",
+        "fee_bp": 2,
+        "policy": "bear_short_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2024_H1",
+        "fee_bp": 2,
+        "policy": "bull_long_plus_bear_short",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2024_H1",
+        "fee_bp": 5,
+        "policy": "combined_reference",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2024_H1",
+        "fee_bp": 5,
+        "policy": "bull_long_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2024_H1",
+        "fee_bp": 5,
+        "policy": "bear_short_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2024_H1",
+        "fee_bp": 5,
+        "policy": "bull_long_plus_bear_short",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2024_H1",
+        "fee_bp": 8,
+        "policy": "combined_reference",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2024_H1",
+        "fee_bp": 8,
+        "policy": "bull_long_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2024_H1",
+        "fee_bp": 8,
+        "policy": "bear_short_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2024_H1",
+        "fee_bp": 8,
+        "policy": "bull_long_plus_bear_short",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2024_H2",
+        "fee_bp": 2,
+        "policy": "combined_reference",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2024_H2",
+        "fee_bp": 2,
+        "policy": "bull_long_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2024_H2",
+        "fee_bp": 2,
+        "policy": "bear_short_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2024_H2",
+        "fee_bp": 2,
+        "policy": "bull_long_plus_bear_short",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2024_H2",
+        "fee_bp": 5,
+        "policy": "combined_reference",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2024_H2",
+        "fee_bp": 5,
+        "policy": "bull_long_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2024_H2",
+        "fee_bp": 5,
+        "policy": "bear_short_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2024_H2",
+        "fee_bp": 5,
+        "policy": "bull_long_plus_bear_short",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2024_H2",
+        "fee_bp": 8,
+        "policy": "combined_reference",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2024_H2",
+        "fee_bp": 8,
+        "policy": "bull_long_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2024_H2",
+        "fee_bp": 8,
+        "policy": "bear_short_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2024_H2",
+        "fee_bp": 8,
+        "policy": "bull_long_plus_bear_short",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2025_H1",
+        "fee_bp": 2,
+        "policy": "combined_reference",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2025_H1",
+        "fee_bp": 2,
+        "policy": "bull_long_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2025_H1",
+        "fee_bp": 2,
+        "policy": "bear_short_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2025_H1",
+        "fee_bp": 2,
+        "policy": "bull_long_plus_bear_short",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2025_H1",
+        "fee_bp": 5,
+        "policy": "combined_reference",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2025_H1",
+        "fee_bp": 5,
+        "policy": "bull_long_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2025_H1",
+        "fee_bp": 5,
+        "policy": "bear_short_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2025_H1",
+        "fee_bp": 5,
+        "policy": "bull_long_plus_bear_short",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2025_H1",
+        "fee_bp": 8,
+        "policy": "combined_reference",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2025_H1",
+        "fee_bp": 8,
+        "policy": "bull_long_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2025_H1",
+        "fee_bp": 8,
+        "policy": "bear_short_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2025_H1",
+        "fee_bp": 8,
+        "policy": "bull_long_plus_bear_short",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2025_H2",
+        "fee_bp": 2,
+        "policy": "combined_reference",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2025_H2",
+        "fee_bp": 2,
+        "policy": "bull_long_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2025_H2",
+        "fee_bp": 2,
+        "policy": "bear_short_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2025_H2",
+        "fee_bp": 2,
+        "policy": "bull_long_plus_bear_short",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2025_H2",
+        "fee_bp": 5,
+        "policy": "combined_reference",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2025_H2",
+        "fee_bp": 5,
+        "policy": "bull_long_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2025_H2",
+        "fee_bp": 5,
+        "policy": "bear_short_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2025_H2",
+        "fee_bp": 5,
+        "policy": "bull_long_plus_bear_short",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2025_H2",
+        "fee_bp": 8,
+        "policy": "combined_reference",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2025_H2",
+        "fee_bp": 8,
+        "policy": "bull_long_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2025_H2",
+        "fee_bp": 8,
+        "policy": "bear_short_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2025_H2",
+        "fee_bp": 8,
+        "policy": "bull_long_plus_bear_short",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2026_JAN_OCT",
+        "fee_bp": 2,
+        "policy": "combined_reference",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2026_JAN_OCT",
+        "fee_bp": 2,
+        "policy": "bull_long_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2026_JAN_OCT",
+        "fee_bp": 2,
+        "policy": "bear_short_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2026_JAN_OCT",
+        "fee_bp": 2,
+        "policy": "bull_long_plus_bear_short",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2026_JAN_OCT",
+        "fee_bp": 5,
+        "policy": "combined_reference",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2026_JAN_OCT",
+        "fee_bp": 5,
+        "policy": "bull_long_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2026_JAN_OCT",
+        "fee_bp": 5,
+        "policy": "bear_short_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2026_JAN_OCT",
+        "fee_bp": 5,
+        "policy": "bull_long_plus_bear_short",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2026_JAN_OCT",
+        "fee_bp": 8,
+        "policy": "combined_reference",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2026_JAN_OCT",
+        "fee_bp": 8,
+        "policy": "bull_long_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2026_JAN_OCT",
+        "fee_bp": 8,
+        "policy": "bear_short_sleeve",
+        "identical_under_reversed_load_order": true
+      },
+      {
+        "period": "2026_JAN_OCT",
+        "fee_bp": 8,
+        "policy": "bull_long_plus_bear_short",
+        "identical_under_reversed_load_order": true
+      }
+    ]
+  },
+  "policies": {
+    "combined_reference": "Bull both directions, bear short-only; sideways/unknown flat.",
+    "bull_long_sleeve": "Only bull-regime long positions; otherwise flat.",
+    "bear_short_sleeve": "Only bear-regime short positions; otherwise flat.",
+    "bull_long_plus_bear_short": "Bull long-only, bear short-only; otherwise flat.",
+    "note": "Sleeves independently start with 100 USDT and use full 1x notional when active; returns are not additive."
+  },
+  "limitations": [
+    "Static 13-symbol universe has survivorship bias.",
+    "Hourly OHLC adverse stress is not tick-level liquidation simulation.",
+    "No maker queue/fill model.",
+    "Not an untouched OOS test."
+  ],
+  "periods": {
+    "2024_H1": {
+      "start": "2024-01-01",
+      "end_exclusive": "2024-07-01",
+      "aligned_funding_events": 546,
+      "fees": {
+        "2bp_commission_plus_2bp_slippage_per_side": {
+          "combined_reference": {
+            "net_return_pct": 15.3182,
+            "end_equity_usdt": 115.318157,
+            "max_drawdown_pct": -25.8814,
+            "liquidated": false,
+            "rebalance_count": 56,
+            "hourly_adverse_checks": 4368,
+            "price_pnl_usdt": 14.53595,
+            "funding_pnl_usdt": 2.99396,
+            "trading_fees_usdt": 1.105876,
+            "slippage_usdt": 1.105876
+          },
+          "bull_long_sleeve": {
+            "net_return_pct": 58.0203,
+            "end_equity_usdt": 158.020332,
+            "max_drawdown_pct": -21.1556,
+            "liquidated": false,
+            "rebalance_count": 56,
+            "hourly_adverse_checks": 4368,
+            "price_pnl_usdt": 62.53085,
+            "funding_pnl_usdt": -3.183284,
+            "trading_fees_usdt": 0.663617,
+            "slippage_usdt": 0.663617
+          },
+          "bear_short_sleeve": {
+            "net_return_pct": 1.7025,
+            "end_equity_usdt": 101.702477,
+            "max_drawdown_pct": -18.9446,
+            "liquidated": false,
+            "rebalance_count": 56,
+            "hourly_adverse_checks": 4368,
+            "price_pnl_usdt": 2.024023,
+            "funding_pnl_usdt": 0.784986,
+            "trading_fees_usdt": 0.553266,
+            "slippage_usdt": 0.553266
+          },
+          "bull_long_plus_bear_short": {
+            "net_return_pct": 60.7106,
+            "end_equity_usdt": 160.710592,
+            "max_drawdown_pct": -24.2581,
+            "liquidated": false,
+            "rebalance_count": 56,
+            "hourly_adverse_checks": 4368,
+            "price_pnl_usdt": 65.62845,
+            "funding_pnl_usdt": -1.943536,
+            "trading_fees_usdt": 1.487161,
+            "slippage_usdt": 1.487161
+          }
+        },
+        "5bp_commission_plus_2bp_slippage_per_side": {
+          "combined_reference": {
+            "net_return_pct": 13.5181,
+            "end_equity_usdt": 113.518094,
+            "max_drawdown_pct": -25.8978,
+            "liquidated": false,
+            "rebalance_count": 56,
+            "hourly_adverse_checks": 4368,
+            "price_pnl_usdt": 14.383838,
+            "funding_pnl_usdt": 2.975175,
+            "trading_fees_usdt": 2.743513,
+            "slippage_usdt": 1.097405
+          },
+          "bull_long_sleeve": {
+            "net_return_pct": 57.0062,
+            "end_equity_usdt": 157.006201,
+            "max_drawdown_pct": -21.1606,
+            "liquidated": false,
+            "rebalance_count": 56,
+            "hourly_adverse_checks": 4368,
+            "price_pnl_usdt": 62.498834,
+            "funding_pnl_usdt": -3.177266,
+            "trading_fees_usdt": 1.653834,
+            "slippage_usdt": 0.661534
+          },
+          "bear_short_sleeve": {
+            "net_return_pct": 0.8719,
+            "end_equity_usdt": 100.871861,
+            "max_drawdown_pct": -19.2218,
+            "liquidated": false,
+            "rebalance_count": 56,
+            "hourly_adverse_checks": 4368,
+            "price_pnl_usdt": 2.019506,
+            "funding_pnl_usdt": 0.781369,
+            "trading_fees_usdt": 1.377867,
+            "slippage_usdt": 0.551147
+          },
+          "bull_long_plus_bear_short": {
+            "net_return_pct": 58.3751,
+            "end_equity_usdt": 158.375077,
+            "max_drawdown_pct": -24.8394,
+            "liquidated": false,
+            "rebalance_count": 56,
+            "hourly_adverse_checks": 4368,
+            "price_pnl_usdt": 65.480928,
+            "funding_pnl_usdt": -1.940384,
+            "trading_fees_usdt": 3.689619,
+            "slippage_usdt": 1.475848
+          }
+        },
+        "8bp_commission_plus_2bp_slippage_per_side": {
+          "combined_reference": {
+            "net_return_pct": 11.7451,
+            "end_equity_usdt": 111.745056,
+            "max_drawdown_pct": -25.9143,
+            "liquidated": false,
+            "rebalance_count": 56,
+            "hourly_adverse_checks": 4368,
+            "price_pnl_usdt": 14.233592,
+            "funding_pnl_usdt": 2.956547,
+            "trading_fees_usdt": 4.356066,
+            "slippage_usdt": 1.089017
+          },
+          "bull_long_sleeve": {
+            "net_return_pct": 55.998,
+            "end_equity_usdt": 155.997984,
+            "max_drawdown_pct": -21.1657,
+            "liquidated": false,
+            "rebalance_count": 56,
+            "hourly_adverse_checks": 4368,
+            "price_pnl_usdt": 62.466529,
+            "funding_pnl_usdt": -3.171259,
+            "trading_fees_usdt": 2.637829,
+            "slippage_usdt": 0.659457
+          },
+          "bear_short_sleeve": {
+            "net_return_pct": 0.0476,
+            "end_equity_usdt": 100.047587,
+            "max_drawdown_pct": -19.4981,
+            "liquidated": false,
+            "rebalance_count": 56,
+            "hourly_adverse_checks": 4368,
+            "price_pnl_usdt": 2.015006,
+            "funding_pnl_usdt": 0.777771,
+            "trading_fees_usdt": 2.196152,
+            "slippage_usdt": 0.549038
+          },
+          "bull_long_plus_bear_short": {
+            "net_return_pct": 56.0722,
+            "end_equity_usdt": 156.072219,
+            "max_drawdown_pct": -25.4166,
+            "liquidated": false,
+            "rebalance_count": 56,
+            "hourly_adverse_checks": 4368,
+            "price_pnl_usdt": 65.332594,
+            "funding_pnl_usdt": -1.937189,
+            "trading_fees_usdt": 5.858548,
+            "slippage_usdt": 1.464637
+          }
+        }
+      }
+    },
+    "2024_H2": {
+      "start": "2024-07-01",
+      "end_exclusive": "2025-01-01",
+      "aligned_funding_events": 552,
+      "fees": {
+        "2bp_commission_plus_2bp_slippage_per_side": {
+          "combined_reference": {
+            "net_return_pct": -15.7085,
+            "end_equity_usdt": 84.291496,
+            "max_drawdown_pct": -30.8511,
+            "liquidated": false,
+            "rebalance_count": 67,
+            "hourly_adverse_checks": 4408,
+            "price_pnl_usdt": -14.591146,
+            "funding_pnl_usdt": 1.11078,
+            "trading_fees_usdt": 1.114069,
+            "slippage_usdt": 1.114069
+          },
+          "bull_long_sleeve": {
+            "net_return_pct": 40.9022,
+            "end_equity_usdt": 140.902191,
+            "max_drawdown_pct": -29.39,
+            "liquidated": false,
+            "rebalance_count": 67,
+            "hourly_adverse_checks": 4408,
+            "price_pnl_usdt": 44.644547,
+            "funding_pnl_usdt": -1.787342,
+            "trading_fees_usdt": 0.977507,
+            "slippage_usdt": 0.977507
+          },
+          "bear_short_sleeve": {
+            "net_return_pct": -25.9015,
+            "end_equity_usdt": 74.09848,
+            "max_drawdown_pct": -32.5082,
+            "liquidated": false,
+            "rebalance_count": 67,
+            "hourly_adverse_checks": 4408,
+            "price_pnl_usdt": -25.525609,
+            "funding_pnl_usdt": 0.256908,
+            "trading_fees_usdt": 0.31641,
+            "slippage_usdt": 0.31641
+          },
+          "bull_long_plus_bear_short": {
+            "net_return_pct": 4.4064,
+            "end_equity_usdt": 104.406382,
+            "max_drawdown_pct": -43.5908,
+            "liquidated": false,
+            "rebalance_count": 67,
+            "hourly_adverse_checks": 4408,
+            "price_pnl_usdt": 7.549749,
+            "funding_pnl_usdt": -1.063991,
+            "trading_fees_usdt": 1.039688,
+            "slippage_usdt": 1.039688
+          }
+        },
+        "5bp_commission_plus_2bp_slippage_per_side": {
+          "combined_reference": {
+            "net_return_pct": -17.4381,
+            "end_equity_usdt": 82.561904,
+            "max_drawdown_pct": -32.0444,
+            "liquidated": false,
+            "rebalance_count": 67,
+            "hourly_adverse_checks": 4408,
+            "price_pnl_usdt": -14.676212,
+            "funding_pnl_usdt": 1.098725,
+            "trading_fees_usdt": 2.757579,
+            "slippage_usdt": 1.103031
+          },
+          "bull_long_sleeve": {
+            "net_return_pct": 38.9155,
+            "end_equity_usdt": 138.915465,
+            "max_drawdown_pct": -30.0098,
+            "liquidated": false,
+            "rebalance_count": 67,
+            "hourly_adverse_checks": 4408,
+            "price_pnl_usdt": 44.07549,
+            "funding_pnl_usdt": -1.763497,
+            "trading_fees_usdt": 2.426091,
+            "slippage_usdt": 0.970437
+          },
+          "bear_short_sleeve": {
+            "net_return_pct": -26.3483,
+            "end_equity_usdt": 73.65175,
+            "max_drawdown_pct": -32.7118,
+            "liquidated": false,
+            "rebalance_count": 67,
+            "hourly_adverse_checks": 4408,
+            "price_pnl_usdt": -25.500179,
+            "funding_pnl_usdt": 0.256508,
+            "trading_fees_usdt": 0.788985,
+            "slippage_usdt": 0.315594
+          },
+          "bull_long_plus_bear_short": {
+            "net_return_pct": 2.3137,
+            "end_equity_usdt": 102.313671,
+            "max_drawdown_pct": -44.5219,
+            "liquidated": false,
+            "rebalance_count": 67,
+            "hourly_adverse_checks": 4408,
+            "price_pnl_usdt": 6.955131,
+            "funding_pnl_usdt": -1.038576,
+            "trading_fees_usdt": 2.573489,
+            "slippage_usdt": 1.029396
+          }
+        },
+        "8bp_commission_plus_2bp_slippage_per_side": {
+          "combined_reference": {
+            "net_return_pct": -19.1333,
+            "end_equity_usdt": 80.866679,
+            "max_drawdown_pct": -33.2178,
+            "liquidated": false,
+            "rebalance_count": 67,
+            "hourly_adverse_checks": 4408,
+            "price_pnl_usdt": -14.759476,
+            "funding_pnl_usdt": 1.086836,
+            "trading_fees_usdt": 4.368545,
+            "slippage_usdt": 1.092136
+          },
+          "bull_long_sleeve": {
+            "net_return_pct": 36.9555,
+            "end_equity_usdt": 136.955484,
+            "max_drawdown_pct": -30.6246,
+            "liquidated": false,
+            "rebalance_count": 67,
+            "hourly_adverse_checks": 4408,
+            "price_pnl_usdt": 43.512562,
+            "funding_pnl_usdt": -1.739924,
+            "trading_fees_usdt": 3.853723,
+            "slippage_usdt": 0.963431
+          },
+          "bear_short_sleeve": {
+            "net_return_pct": -26.7926,
+            "end_equity_usdt": 73.207418,
+            "max_drawdown_pct": -32.9148,
+            "liquidated": false,
+            "rebalance_count": 67,
+            "hourly_adverse_checks": 4408,
+            "price_pnl_usdt": -25.474787,
+            "funding_pnl_usdt": 0.25611,
+            "trading_fees_usdt": 1.259124,
+            "slippage_usdt": 0.314781
+          },
+          "bull_long_plus_bear_short": {
+            "net_return_pct": 0.2616,
+            "end_equity_usdt": 100.261573,
+            "max_drawdown_pct": -45.4383,
+            "liquidated": false,
+            "rebalance_count": 67,
+            "hourly_adverse_checks": 4408,
+            "price_pnl_usdt": 6.371382,
+            "funding_pnl_usdt": -1.013619,
+            "trading_fees_usdt": 4.076952,
+            "slippage_usdt": 1.019238
+          }
+        }
+      }
+    },
+    "2025_H1": {
+      "start": "2025-01-01",
+      "end_exclusive": "2025-07-01",
+      "aligned_funding_events": 543,
+      "fees": {
+        "2bp_commission_plus_2bp_slippage_per_side": {
+          "combined_reference": {
+            "net_return_pct": 18.711,
+            "end_equity_usdt": 118.710954,
+            "max_drawdown_pct": -32.1569,
+            "liquidated": false,
+            "rebalance_count": 42,
+            "hourly_adverse_checks": 4312,
+            "price_pnl_usdt": 19.650711,
+            "funding_pnl_usdt": 0.763386,
+            "trading_fees_usdt": 0.851571,
+            "slippage_usdt": 0.851571
+          },
+          "bull_long_sleeve": {
+            "net_return_pct": -12.5733,
+            "end_equity_usdt": 87.426708,
+            "max_drawdown_pct": -26.3095,
+            "liquidated": false,
+            "rebalance_count": 42,
+            "hourly_adverse_checks": 4312,
+            "price_pnl_usdt": -12.111534,
+            "funding_pnl_usdt": 0.138679,
+            "trading_fees_usdt": 0.300219,
+            "slippage_usdt": 0.300219
+          },
+          "bear_short_sleeve": {
+            "net_return_pct": 16.9564,
+            "end_equity_usdt": 116.956383,
+            "max_drawdown_pct": -33.496,
+            "liquidated": false,
+            "rebalance_count": 42,
+            "hourly_adverse_checks": 4312,
+            "price_pnl_usdt": 17.540226,
+            "funding_pnl_usdt": 0.264325,
+            "trading_fees_usdt": 0.424084,
+            "slippage_usdt": 0.424084
+          },
+          "bull_long_plus_bear_short": {
+            "net_return_pct": 2.2511,
+            "end_equity_usdt": 102.251116,
+            "max_drawdown_pct": -47.0867,
+            "liquidated": false,
+            "rebalance_count": 42,
+            "hourly_adverse_checks": 4312,
+            "price_pnl_usdt": 3.170362,
+            "funding_pnl_usdt": 0.428075,
+            "trading_fees_usdt": 0.673661,
+            "slippage_usdt": 0.673661
+          }
+        },
+        "5bp_commission_plus_2bp_slippage_per_side": {
+          "combined_reference": {
+            "net_return_pct": 17.2985,
+            "end_equity_usdt": 117.29854,
+            "max_drawdown_pct": -32.4117,
+            "liquidated": false,
+            "rebalance_count": 42,
+            "hourly_adverse_checks": 4312,
+            "price_pnl_usdt": 19.502344,
+            "funding_pnl_usdt": 0.758999,
+            "trading_fees_usdt": 2.116288,
+            "slippage_usdt": 0.846515
+          },
+          "bull_long_sleeve": {
+            "net_return_pct": -13.0482,
+            "end_equity_usdt": 86.951814,
+            "max_drawdown_pct": -26.5819,
+            "liquidated": false,
+            "rebalance_count": 42,
+            "hourly_adverse_checks": 4312,
+            "price_pnl_usdt": -12.137722,
+            "funding_pnl_usdt": 0.137828,
+            "trading_fees_usdt": 0.74878,
+            "slippage_usdt": 0.299512
+          },
+          "bear_short_sleeve": {
+            "net_return_pct": 16.2428,
+            "end_equity_usdt": 116.242762,
+            "max_drawdown_pct": -33.6318,
+            "liquidated": false,
+            "rebalance_count": 42,
+            "hourly_adverse_checks": 4312,
+            "price_pnl_usdt": 17.458902,
+            "funding_pnl_usdt": 0.26396,
+            "trading_fees_usdt": 1.057215,
+            "slippage_usdt": 0.422886
+          },
+          "bull_long_plus_bear_short": {
+            "net_return_pct": 1.0752,
+            "end_equity_usdt": 101.07519,
+            "max_drawdown_pct": -47.2936,
+            "liquidated": false,
+            "rebalance_count": 42,
+            "hourly_adverse_checks": 4312,
+            "price_pnl_usdt": 2.994515,
+            "funding_pnl_usdt": 0.425264,
+            "trading_fees_usdt": 1.674706,
+            "slippage_usdt": 0.669882
+          }
+        },
+        "8bp_commission_plus_2bp_slippage_per_side": {
+          "combined_reference": {
+            "net_return_pct": 15.902,
+            "end_equity_usdt": 115.901973,
+            "max_drawdown_pct": -32.6657,
+            "liquidated": false,
+            "rebalance_count": 42,
+            "hourly_adverse_checks": 4312,
+            "price_pnl_usdt": 19.354805,
+            "funding_pnl_usdt": 0.754645,
+            "trading_fees_usdt": 3.365982,
+            "slippage_usdt": 0.841495
+          },
+          "bull_long_sleeve": {
+            "net_return_pct": -13.5208,
+            "end_equity_usdt": 86.479185,
+            "max_drawdown_pct": -26.8587,
+            "liquidated": false,
+            "rebalance_count": 42,
+            "hourly_adverse_checks": 4312,
+            "price_pnl_usdt": -12.163758,
+            "funding_pnl_usdt": 0.13698,
+            "trading_fees_usdt": 1.195229,
+            "slippage_usdt": 0.298807
+          },
+          "bear_short_sleeve": {
+            "net_return_pct": 15.5329,
+            "end_equity_usdt": 115.532943,
+            "max_drawdown_pct": -33.7675,
+            "liquidated": false,
+            "rebalance_count": 42,
+            "hourly_adverse_checks": 4312,
+            "price_pnl_usdt": 17.377807,
+            "funding_pnl_usdt": 0.263595,
+            "trading_fees_usdt": 1.686767,
+            "slippage_usdt": 0.421692
+          },
+          "bull_long_plus_bear_short": {
+            "net_return_pct": -0.0881,
+            "end_equity_usdt": 99.911947,
+            "max_drawdown_pct": -47.4999,
+            "liquidated": false,
+            "rebalance_count": 42,
+            "hourly_adverse_checks": 4312,
+            "price_pnl_usdt": 2.820125,
+            "funding_pnl_usdt": 0.422475,
+            "trading_fees_usdt": 2.664523,
+            "slippage_usdt": 0.666131
+          }
+        }
+      }
+    },
+    "2025_H2": {
+      "start": "2025-07-01",
+      "end_exclusive": "2026-01-01",
+      "aligned_funding_events": 552,
+      "fees": {
+        "2bp_commission_plus_2bp_slippage_per_side": {
+          "combined_reference": {
+            "net_return_pct": -19.0199,
+            "end_equity_usdt": 80.980094,
+            "max_drawdown_pct": -40.0835,
+            "liquidated": false,
+            "rebalance_count": 45,
+            "hourly_adverse_checks": 4344,
+            "price_pnl_usdt": -18.161399,
+            "funding_pnl_usdt": 0.490078,
+            "trading_fees_usdt": 0.674292,
+            "slippage_usdt": 0.674292
+          },
+          "bull_long_sleeve": {
+            "net_return_pct": -9.9572,
+            "end_equity_usdt": 90.04279,
+            "max_drawdown_pct": -54.7928,
+            "liquidated": false,
+            "rebalance_count": 45,
+            "hourly_adverse_checks": 4344,
+            "price_pnl_usdt": -9.240453,
+            "funding_pnl_usdt": -0.057164,
+            "trading_fees_usdt": 0.329797,
+            "slippage_usdt": 0.329797
+          },
+          "bear_short_sleeve": {
+            "net_return_pct": -16.3511,
+            "end_equity_usdt": 83.648903,
+            "max_drawdown_pct": -32.7292,
+            "liquidated": false,
+            "rebalance_count": 45,
+            "hourly_adverse_checks": 4344,
+            "price_pnl_usdt": -15.875728,
+            "funding_pnl_usdt": 0.307046,
+            "trading_fees_usdt": 0.391207,
+            "slippage_usdt": 0.391207
+          },
+          "bull_long_plus_bear_short": {
+            "net_return_pct": -24.6802,
+            "end_equity_usdt": 75.319806,
+            "max_drawdown_pct": -63.4508,
+            "liquidated": false,
+            "rebalance_count": 45,
+            "hourly_adverse_checks": 4344,
+            "price_pnl_usdt": -23.543301,
+            "funding_pnl_usdt": 0.215064,
+            "trading_fees_usdt": 0.675979,
+            "slippage_usdt": 0.675979
+          }
+        },
+        "5bp_commission_plus_2bp_slippage_per_side": {
+          "combined_reference": {
+            "net_return_pct": -20.0168,
+            "end_equity_usdt": 79.983194,
+            "max_drawdown_pct": -40.4355,
+            "liquidated": false,
+            "rebalance_count": 45,
+            "hourly_adverse_checks": 4344,
+            "price_pnl_usdt": -18.157164,
+            "funding_pnl_usdt": 0.487291,
+            "trading_fees_usdt": 1.676381,
+            "slippage_usdt": 0.670552
+          },
+          "bull_long_sleeve": {
+            "net_return_pct": -10.3931,
+            "end_equity_usdt": 89.606931,
+            "max_drawdown_pct": -54.8813,
+            "liquidated": false,
+            "rebalance_count": 45,
+            "hourly_adverse_checks": 4344,
+            "price_pnl_usdt": -9.183628,
+            "funding_pnl_usdt": -0.0575,
+            "trading_fees_usdt": 0.822815,
+            "slippage_usdt": 0.329126
+          },
+          "bear_short_sleeve": {
+            "net_return_pct": -16.9552,
+            "end_equity_usdt": 83.044831,
+            "max_drawdown_pct": -32.994,
+            "liquidated": false,
+            "rebalance_count": 45,
+            "hourly_adverse_checks": 4344,
+            "price_pnl_usdt": -15.896285,
+            "funding_pnl_usdt": 0.305941,
+            "trading_fees_usdt": 0.974875,
+            "slippage_usdt": 0.38995
+          },
+          "bull_long_plus_bear_short": {
+            "net_return_pct": -25.5861,
+            "end_equity_usdt": 74.413925,
+            "max_drawdown_pct": -63.6557,
+            "liquidated": false,
+            "rebalance_count": 45,
+            "hourly_adverse_checks": 4344,
+            "price_pnl_usdt": -23.444776,
+            "funding_pnl_usdt": 0.21252,
+            "trading_fees_usdt": 1.681299,
+            "slippage_usdt": 0.67252
+          }
+        },
+        "8bp_commission_plus_2bp_slippage_per_side": {
+          "combined_reference": {
+            "net_return_pct": -21.0021,
+            "end_equity_usdt": 78.997937,
+            "max_drawdown_pct": -40.7991,
+            "liquidated": false,
+            "rebalance_count": 45,
+            "hourly_adverse_checks": 4344,
+            "price_pnl_usdt": -18.15239,
+            "funding_pnl_usdt": 0.484524,
+            "trading_fees_usdt": 2.667357,
+            "slippage_usdt": 0.666839
+          },
+          "bull_long_sleeve": {
+            "net_return_pct": -10.8271,
+            "end_equity_usdt": 89.172928,
+            "max_drawdown_pct": -55.0176,
+            "liquidated": false,
+            "rebalance_count": 45,
+            "hourly_adverse_checks": 4344,
+            "price_pnl_usdt": -9.126952,
+            "funding_pnl_usdt": -0.057836,
+            "trading_fees_usdt": 1.313827,
+            "slippage_usdt": 0.328457
+          },
+          "bear_short_sleeve": {
+            "net_return_pct": -17.5553,
+            "end_equity_usdt": 82.444735,
+            "max_drawdown_pct": -33.258,
+            "liquidated": false,
+            "rebalance_count": 45,
+            "hourly_adverse_checks": 4344,
+            "price_pnl_usdt": -15.916619,
+            "funding_pnl_usdt": 0.304842,
+            "trading_fees_usdt": 1.554791,
+            "slippage_usdt": 0.388698
+          },
+          "bull_long_plus_bear_short": {
+            "net_return_pct": -26.4816,
+            "end_equity_usdt": 73.518384,
+            "max_drawdown_pct": -63.8597,
+            "liquidated": false,
+            "rebalance_count": 45,
+            "hourly_adverse_checks": 4344,
+            "price_pnl_usdt": -23.346186,
+            "funding_pnl_usdt": 0.209994,
+            "trading_fees_usdt": 2.676339,
+            "slippage_usdt": 0.669085
+          }
+        }
+      }
+    },
+    "2026_JAN_OCT": {
+      "start": "2026-01-01",
+      "end_exclusive": "2026-11-01",
+      "aligned_funding_events": 912,
+      "fees": {
+        "2bp_commission_plus_2bp_slippage_per_side": {
+          "combined_reference": {
+            "net_return_pct": 40.2748,
+            "end_equity_usdt": 140.274788,
+            "max_drawdown_pct": -17.2092,
+            "liquidated": false,
+            "rebalance_count": 70,
+            "hourly_adverse_checks": 7248,
+            "price_pnl_usdt": 42.366306,
+            "funding_pnl_usdt": 1.071407,
+            "trading_fees_usdt": 1.581462,
+            "slippage_usdt": 1.581462
+          },
+          "bull_long_sleeve": {
+            "net_return_pct": -11.636,
+            "end_equity_usdt": 88.364001,
+            "max_drawdown_pct": -28.5806,
+            "liquidated": false,
+            "rebalance_count": 70,
+            "hourly_adverse_checks": 7248,
+            "price_pnl_usdt": -10.708069,
+            "funding_pnl_usdt": 0.533466,
+            "trading_fees_usdt": 0.730698,
+            "slippage_usdt": 0.730698
+          },
+          "bear_short_sleeve": {
+            "net_return_pct": 17.3647,
+            "end_equity_usdt": 117.364713,
+            "max_drawdown_pct": -17.2092,
+            "liquidated": false,
+            "rebalance_count": 70,
+            "hourly_adverse_checks": 7248,
+            "price_pnl_usdt": 18.026189,
+            "funding_pnl_usdt": 0.268393,
+            "trading_fees_usdt": 0.464935,
+            "slippage_usdt": 0.464935
+          },
+          "bull_long_plus_bear_short": {
+            "net_return_pct": 3.7082,
+            "end_equity_usdt": 103.708156,
+            "max_drawdown_pct": -29.195,
+            "liquidated": false,
+            "rebalance_count": 70,
+            "hourly_adverse_checks": 7248,
+            "price_pnl_usdt": 5.310816,
+            "funding_pnl_usdt": 0.828194,
+            "trading_fees_usdt": 1.215427,
+            "slippage_usdt": 1.215427
+          }
+        },
+        "5bp_commission_plus_2bp_slippage_per_side": {
+          "combined_reference": {
+            "net_return_pct": 37.5261,
+            "end_equity_usdt": 137.526076,
+            "max_drawdown_pct": -17.2649,
+            "liquidated": false,
+            "rebalance_count": 70,
+            "hourly_adverse_checks": 7248,
+            "price_pnl_usdt": 41.946652,
+            "funding_pnl_usdt": 1.058564,
+            "trading_fees_usdt": 3.913671,
+            "slippage_usdt": 1.565469
+          },
+          "bull_long_sleeve": {
+            "net_return_pct": -12.7829,
+            "end_equity_usdt": 87.217129,
+            "max_drawdown_pct": -29.1243,
+            "liquidated": false,
+            "rebalance_count": 70,
+            "hourly_adverse_checks": 7248,
+            "price_pnl_usdt": -10.771195,
+            "funding_pnl_usdt": 0.529943,
+            "trading_fees_usdt": 1.815442,
+            "slippage_usdt": 0.726177
+          },
+          "bear_short_sleeve": {
+            "net_return_pct": 16.6287,
+            "end_equity_usdt": 116.628659,
+            "max_drawdown_pct": -17.2649,
+            "liquidated": false,
+            "rebalance_count": 70,
+            "hourly_adverse_checks": 7248,
+            "price_pnl_usdt": 17.983776,
+            "funding_pnl_usdt": 0.267378,
+            "trading_fees_usdt": 1.158925,
+            "slippage_usdt": 0.46357
+          },
+          "bull_long_plus_bear_short": {
+            "net_return_pct": 1.7202,
+            "end_equity_usdt": 101.720168,
+            "max_drawdown_pct": -29.7131,
+            "liquidated": false,
+            "rebalance_count": 70,
+            "hourly_adverse_checks": 7248,
+            "price_pnl_usdt": 5.11424,
+            "funding_pnl_usdt": 0.819229,
+            "trading_fees_usdt": 3.009501,
+            "slippage_usdt": 1.2038
+          }
+        },
+        "8bp_commission_plus_2bp_slippage_per_side": {
+          "combined_reference": {
+            "net_return_pct": 34.8296,
+            "end_equity_usdt": 134.829562,
+            "max_drawdown_pct": -17.3207,
+            "liquidated": false,
+            "rebalance_count": 70,
+            "hourly_adverse_checks": 7248,
+            "price_pnl_usdt": 41.532056,
+            "funding_pnl_usdt": 1.045894,
+            "trading_fees_usdt": 6.198711,
+            "slippage_usdt": 1.549678
+          },
+          "bull_long_sleeve": {
+            "net_return_pct": -13.9155,
+            "end_equity_usdt": 86.084506,
+            "max_drawdown_pct": -29.6642,
+            "liquidated": false,
+            "rebalance_count": 70,
+            "hourly_adverse_checks": 7248,
+            "price_pnl_usdt": -10.833483,
+            "funding_pnl_usdt": 0.526452,
+            "trading_fees_usdt": 2.886769,
+            "slippage_usdt": 0.721692
+          },
+          "bear_short_sleeve": {
+            "net_return_pct": 15.8968,
+            "end_equity_usdt": 115.89676,
+            "max_drawdown_pct": -17.3207,
+            "liquidated": false,
+            "rebalance_count": 70,
+            "hourly_adverse_checks": 7248,
+            "price_pnl_usdt": 17.941442,
+            "funding_pnl_usdt": 0.266366,
+            "trading_fees_usdt": 1.848838,
+            "slippage_usdt": 0.46221
+          },
+          "bull_long_plus_bear_short": {
+            "net_return_pct": -0.2308,
+            "end_equity_usdt": 99.769154,
+            "max_drawdown_pct": -30.2278,
+            "liquidated": false,
+            "rebalance_count": 70,
+            "hourly_adverse_checks": 7248,
+            "price_pnl_usdt": 4.920355,
+            "funding_pnl_usdt": 0.810383,
+            "trading_fees_usdt": 4.769267,
+            "slippage_usdt": 1.192317
+          }
+        }
+      }
+    }
+  },
+  "decision_rule": "Diagnostic only; no strategy promotion or main-branch changes."
+}
