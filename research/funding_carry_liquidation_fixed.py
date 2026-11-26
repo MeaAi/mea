@@ -68,7 +68,7 @@ def load_symbol(sym,months,root):
   verified_download(f"{BASE}/markPriceKlines/{sym}/1h/{mn}",mp);marks.update(readzip(mp,"mark"))
  return sym,fund,marks
 
-def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20,side_mode='both',regime_filter=None,regime_policy=None,regime_threshold_pct=5.0,trade_universe=None,sideways_action='flat',sideways_confirm_hours=1,sideways_retention_fraction=0.0,max_symbol_exposure_pct=None):
+def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20,side_mode='both',regime_filter=None,regime_policy=None,regime_threshold_pct=5.0,trade_universe=None,sideways_action='flat',sideways_confirm_hours=1,sideways_retention_fraction=0.0,max_symbol_exposure_pct=None,regime_confirmation_hours=0):
  symbols=sorted(data); trade_symbols=sorted(trade_universe) if trade_universe is not None else symbols; first,last=period
  if not set(trade_symbols).issubset(set(symbols)) or 'BTCUSDT' not in data: raise ValueError('invalid trade universe or missing BTC regime benchmark')
  mark_times={s:sorted(data[s]["marks"]) for s in symbols}
@@ -98,12 +98,27 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
  peak_snapshot=capture_snapshot(first)
  trough_snapshot=capture_snapshot(first)
  btc_times=mark_times.get('BTCUSDT',[]); btc_marks=data.get('BTCUSDT',{}).get('marks',{})
- def regime_at(ts):
+ def raw_regime_at(ts):
   j=bisect.bisect_right(btc_times,ts)-1; k=bisect.bisect_right(btc_times,ts-30*DAY)-1
   if j<0 or k<0:return 'unknown'
   ret=btc_marks[btc_times[j]][3]/btc_marks[btc_times[k]][3]-1
   threshold=regime_threshold_pct/100.0
   return 'bull' if ret>threshold else ('bear' if ret<-threshold else 'sideways')
+ regime_cache={}
+ def regime_at(ts):
+  if ts in regime_cache:return regime_cache[ts]
+  raw=raw_regime_at(ts)
+  confirm=max(0,int(regime_confirmation_hours))
+  if confirm==0 or raw=='unknown':
+   regime_cache[ts]=raw; return raw
+  # Causal confirmation: candidate must persist across N fully completed hourly observations.
+  for h in range(1,confirm+1):
+   if raw_regime_at(ts-h*3600000)!=raw:
+    prior=raw_regime_at(ts-confirm*3600000)
+    regime_cache[ts]=prior
+    return prior
+  regime_cache[ts]=raw
+  return raw
  def entry_cohort_at(ts):
   j=bisect.bisect_right(btc_times,ts)-1; k=bisect.bisect_right(btc_times,ts-30*DAY)-1
   if j<0 or k<0:return 'unknown'
