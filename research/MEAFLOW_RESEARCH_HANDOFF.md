@@ -208,3 +208,13 @@ Research implications:
 - Compare against existing strict trade-through proxy on identical signal timestamps and prices; report fill-rate bias, partial-fill distribution, missed fills, and post-fill adverse selection.
 - No paid source. If data access requires payment/API key, mark BLOCKED and do not substitute synthetic fills.
 - No strategy integration or main-branch changes.
+
+
+## EXP-015 source audit update — 2026-11-27
+- Tardis exchange identifier for Binance USD-M Futures is `binance-futures` (not `binance`, which is spot). The public downloadable CSV docs explicitly state that first-of-month historical files are available without an API key and that `incremental_book_L2` is available for FUTURES.
+- Candidate file pattern to verify: `https://datasets.tardis.dev/v1/binance-futures/incremental_book_L2/YYYY/MM/01/BTCUSDT.csv.gz` and matching `trades` file. Candidate sample dates: 2024-07-01, 2024-08-01, 2024-09-01; symbols BTCUSDT, ETHUSDT, SOLUSDT.
+- Documentation and public code references confirm the exchange slug and data types, but actual file existence, non-empty payload, gzip integrity, schema and date coverage have NOT yet been verified in this repository/runtime. Keep EXP-015 PLANNED. Do not report data as downloaded.
+- Public research repo found: `Rubin-S/order-flow-imbalance` uses Tardis free first-of-month Binance Futures L2 + trades for 2026, with chronological development/holdout days. This is a methodology reference only; do not copy its results as our results. It demonstrates that the free sample-day approach is used for event-level OFI research.
+- Additional external research repos demonstrate similar Tardis sample use, but no equivalent queue-aware maker test has been found in our repository. Still check the user repo registry before building any new code.
+- New verification checklist: HTTP status; response byte count; gzip integrity; header/schema; symbol identity; min/max exchange and local timestamps; snapshot/reset flags; sequence continuity; trade/book timestamp alignment; empty-file vs missing-file distinction; first/last event coverage. Save manifest and SHA256.
+- If files are available, EXP-015 must be explicitly a sampled-day execution calibration (not continuous OOS), and maker queue fill must be reported as bounds unless queue priority can be reconstructed from the feed semantics.
