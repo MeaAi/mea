@@ -1,0 +1,328 @@
+{
+  "experiment": "MEAFLOW-52 frozen baseline hourly regime timestamp audit",
+  "parent_snapshot": "archive/baseline-7d-7d-20pct-2026-11-25",
+  "isolated_branch": "research/baseline-timestamp-audit-v1",
+  "strategy": "Frozen 7d funding rank, 7d rebalance, 20% tails; bull both, bear short-only, sideways/unknown flat",
+  "legacy_semantics": "At funding event t, legacy regime_at(t) selects the 1h mark candle whose OPEN timestamp is t and reads its CLOSE; that close is not available at t.",
+  "causal_semantics": "At decision timestamp t, use regime_at(t-1h), i.e. the last fully completed 1h mark candle. No look-ahead; same positions, universe, sizing, costs and data otherwise.",
+  "split": "Chronological 50/20/30; OOS is a sequential audit only because the period was previously inspected in MEAFLOW-52 research.",
+  "periods_utc": {
+    "train": {
+      "start": "2023-01-08T00:00:00+00:00",
+      "end": "2024-11-30T20:00:00+00:00"
+    },
+    "validation": {
+      "start": "2024-11-30T20:00:00+00:00",
+      "end": "2025-09-06T18:24:00+00:00"
+    },
+    "oos": {
+      "start": "2025-09-06T18:24:00+00:00",
+      "end": "2026-10-31T16:00:00+00:00"
+    }
+  },
+  "capital_usdt": 100,
+  "leverage": 1,
+  "fees_one_way_bp": [
+    2,
+    5,
+    8
+  ],
+  "slippage_one_way_bp": 2,
+  "data_source": "Official free Binance Vision monthly fundingRate and 1h markPriceKlines; ZIP CRC checked",
+  "data_errors": {},
+  "loaded_symbols": [
+    "LINKUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "ADAUSDT",
+    "ETHUSDT",
+    "DOGEUSDT",
+    "XRPUSDT",
+    "SOLUSDT",
+    "TRXUSDT",
+    "LTCUSDT",
+    "BCHUSDT",
+    "AVAXUSDT",
+    "DOTUSDT"
+  ],
+  "drawdown": "Hourly adverse mark using simultaneous low for longs/high for shorts plus event-time equity; conservative OHLC stress, not tick-accurate.",
+  "results": {
+    "train": {
+      "fee_2bp": {
+        "legacy_open_time_close_used_at_open": {
+          "net_return_pct": 28.9862,
+          "end_equity_usdt": 128.986165,
+          "max_drawdown_pct": -25.8814,
+          "liquidated": false,
+          "rebalance_count": 195,
+          "hourly_adverse_checks": 16616,
+          "price_pnl_usdt": 29.124498,
+          "funding_pnl_usdt": 8.217282,
+          "trading_fees_usdt": 4.177808,
+          "slippage_usdt": 4.177808
+        },
+        "causal_last_completed_candle": {
+          "net_return_pct": 12.716,
+          "end_equity_usdt": 112.715966,
+          "max_drawdown_pct": -30.7531,
+          "liquidated": false,
+          "rebalance_count": 198,
+          "hourly_adverse_checks": 16616,
+          "price_pnl_usdt": 12.446831,
+          "funding_pnl_usdt": 8.692493,
+          "trading_fees_usdt": 4.211679,
+          "slippage_usdt": 4.211679
+        },
+        "delta_causal_minus_legacy": {
+          "net_return_pp": -16.2702,
+          "max_drawdown_pp": -4.8717
+        }
+      },
+      "fee_5bp": {
+        "legacy_open_time_close_used_at_open": {
+          "net_return_pct": 21.6962,
+          "end_equity_usdt": 121.696157,
+          "max_drawdown_pct": -26.462,
+          "liquidated": false,
+          "rebalance_count": 195,
+          "hourly_adverse_checks": 16616,
+          "price_pnl_usdt": 27.892107,
+          "funding_pnl_usdt": 7.984964,
+          "trading_fees_usdt": 10.129225,
+          "slippage_usdt": 4.05169
+        },
+        "causal_last_completed_candle": {
+          "net_return_pct": 6.3149,
+          "end_equity_usdt": 106.314894,
+          "max_drawdown_pct": -31.9469,
+          "liquidated": false,
+          "rebalance_count": 198,
+          "hourly_adverse_checks": 16616,
+          "price_pnl_usdt": 12.165085,
+          "funding_pnl_usdt": 8.457102,
+          "trading_fees_usdt": 10.219495,
+          "slippage_usdt": 4.087798
+        },
+        "delta_causal_minus_legacy": {
+          "net_return_pp": -15.3813,
+          "max_drawdown_pp": -5.4849
+        }
+      },
+      "fee_8bp": {
+        "legacy_open_time_close_used_at_open": {
+          "net_return_pct": 14.8138,
+          "end_equity_usdt": 114.813793,
+          "max_drawdown_pct": -28.501,
+          "liquidated": false,
+          "rebalance_count": 195,
+          "hourly_adverse_checks": 16616,
+          "price_pnl_usdt": 26.705278,
+          "funding_pnl_usdt": 7.760654,
+          "trading_fees_usdt": 15.721711,
+          "slippage_usdt": 3.930428
+        },
+        "causal_last_completed_candle": {
+          "net_return_pct": 0.2736,
+          "end_equity_usdt": 100.273586,
+          "max_drawdown_pct": -33.1236,
+          "liquidated": false,
+          "rebalance_count": 198,
+          "hourly_adverse_checks": 16616,
+          "price_pnl_usdt": 11.88698,
+          "funding_pnl_usdt": 8.229546,
+          "trading_fees_usdt": 15.874353,
+          "slippage_usdt": 3.968588
+        },
+        "delta_causal_minus_legacy": {
+          "net_return_pp": -14.5402,
+          "max_drawdown_pp": -4.6226
+        }
+      }
+    },
+    "validation": {
+      "fee_2bp": {
+        "legacy_open_time_close_used_at_open": {
+          "net_return_pct": 10.4598,
+          "end_equity_usdt": 110.459765,
+          "max_drawdown_pct": -21.142,
+          "liquidated": false,
+          "rebalance_count": 70,
+          "hourly_adverse_checks": 6712,
+          "price_pnl_usdt": 12.058693,
+          "funding_pnl_usdt": 1.046473,
+          "trading_fees_usdt": 1.322701,
+          "slippage_usdt": 1.322701
+        },
+        "causal_last_completed_candle": {
+          "net_return_pct": 12.6598,
+          "end_equity_usdt": 112.659796,
+          "max_drawdown_pct": -32.1569,
+          "liquidated": false,
+          "rebalance_count": 65,
+          "hourly_adverse_checks": 6712,
+          "price_pnl_usdt": 14.215774,
+          "funding_pnl_usdt": 1.019937,
+          "trading_fees_usdt": 1.287958,
+          "slippage_usdt": 1.287958
+        },
+        "delta_causal_minus_legacy": {
+          "net_return_pp": 2.2,
+          "max_drawdown_pp": -11.0149
+        }
+      },
+      "fee_5bp": {
+        "legacy_open_time_close_used_at_open": {
+          "net_return_pct": 8.4518,
+          "end_equity_usdt": 108.451794,
+          "max_drawdown_pct": -21.4819,
+          "liquidated": false,
+          "rebalance_count": 70,
+          "hourly_adverse_checks": 6712,
+          "price_pnl_usdt": 12.001073,
+          "funding_pnl_usdt": 1.037606,
+          "trading_fees_usdt": 3.276346,
+          "slippage_usdt": 1.310538
+        },
+        "causal_last_completed_candle": {
+          "net_return_pct": 10.7244,
+          "end_equity_usdt": 110.724416,
+          "max_drawdown_pct": -32.4117,
+          "liquidated": false,
+          "rebalance_count": 65,
+          "hourly_adverse_checks": 6712,
+          "price_pnl_usdt": 14.181863,
+          "funding_pnl_usdt": 1.011544,
+          "trading_fees_usdt": 3.192136,
+          "slippage_usdt": 1.276855
+        },
+        "delta_causal_minus_legacy": {
+          "net_return_pp": 2.2726,
+          "max_drawdown_pp": -10.9298
+        }
+      },
+      "fee_8bp": {
+        "legacy_open_time_close_used_at_open": {
+          "net_return_pct": 6.4791,
+          "end_equity_usdt": 106.47909,
+          "max_drawdown_pct": -21.8204,
+          "liquidated": false,
+          "rebalance_count": 70,
+          "hourly_adverse_checks": 6712,
+          "price_pnl_usdt": 11.942836,
+          "funding_pnl_usdt": 1.028834,
+          "trading_fees_usdt": 5.194064,
+          "slippage_usdt": 1.298516
+        },
+        "causal_last_completed_candle": {
+          "net_return_pct": 8.821,
+          "end_equity_usdt": 108.821031,
+          "max_drawdown_pct": -32.6657,
+          "liquidated": false,
+          "rebalance_count": 65,
+          "hourly_adverse_checks": 6712,
+          "price_pnl_usdt": 14.147146,
+          "funding_pnl_usdt": 1.003235,
+          "trading_fees_usdt": 5.06348,
+          "slippage_usdt": 1.26587
+        },
+        "delta_causal_minus_legacy": {
+          "net_return_pp": 2.3419,
+          "max_drawdown_pp": -10.8453
+        }
+      }
+    },
+    "oos": {
+      "fee_2bp": {
+        "legacy_open_time_close_used_at_open": {
+          "net_return_pct": 56.4823,
+          "end_equity_usdt": 156.48234,
+          "max_drawdown_pct": -25.5204,
+          "liquidated": false,
+          "rebalance_count": 95,
+          "hourly_adverse_checks": 10072,
+          "price_pnl_usdt": 59.149974,
+          "funding_pnl_usdt": 1.524966,
+          "trading_fees_usdt": 2.0963,
+          "slippage_usdt": 2.0963
+        },
+        "causal_last_completed_candle": {
+          "net_return_pct": 42.7019,
+          "end_equity_usdt": 142.701947,
+          "max_drawdown_pct": -26.5015,
+          "liquidated": false,
+          "rebalance_count": 98,
+          "hourly_adverse_checks": 10072,
+          "price_pnl_usdt": 45.405774,
+          "funding_pnl_usdt": 1.45416,
+          "trading_fees_usdt": 2.078993,
+          "slippage_usdt": 2.078993
+        },
+        "delta_causal_minus_legacy": {
+          "net_return_pp": -13.7804,
+          "max_drawdown_pp": -0.9811
+        }
+      },
+      "fee_5bp": {
+        "legacy_open_time_close_used_at_open": {
+          "net_return_pct": 52.5355,
+          "end_equity_usdt": 152.535542,
+          "max_drawdown_pct": -25.5281,
+          "liquidated": false,
+          "rebalance_count": 95,
+          "hourly_adverse_checks": 10072,
+          "price_pnl_usdt": 58.268628,
+          "funding_pnl_usdt": 1.504488,
+          "trading_fees_usdt": 5.169696,
+          "slippage_usdt": 2.067878
+        },
+        "causal_last_completed_candle": {
+          "net_return_pct": 38.8658,
+          "end_equity_usdt": 138.865845,
+          "max_drawdown_pct": -26.5455,
+          "liquidated": false,
+          "rebalance_count": 98,
+          "hourly_adverse_checks": 10072,
+          "price_pnl_usdt": 44.606434,
+          "funding_pnl_usdt": 1.431845,
+          "trading_fees_usdt": 5.123168,
+          "slippage_usdt": 2.049267
+        },
+        "delta_causal_minus_legacy": {
+          "net_return_pp": -13.6697,
+          "max_drawdown_pp": -1.0174
+        }
+      },
+      "fee_8bp": {
+        "legacy_open_time_close_used_at_open": {
+          "net_return_pct": 48.6859,
+          "end_equity_usdt": 148.685921,
+          "max_drawdown_pct": -25.5357,
+          "liquidated": false,
+          "rebalance_count": 95,
+          "hourly_adverse_checks": 10072,
+          "price_pnl_usdt": 57.401237,
+          "funding_pnl_usdt": 1.484355,
+          "trading_fees_usdt": 8.159737,
+          "slippage_usdt": 2.039934
+        },
+        "causal_last_completed_candle": {
+          "net_return_pct": 35.1306,
+          "end_equity_usdt": 135.130553,
+          "max_drawdown_pct": -26.5894,
+          "liquidated": false,
+          "rebalance_count": 98,
+          "hourly_adverse_checks": 10072,
+          "price_pnl_usdt": 43.820959,
+          "funding_pnl_usdt": 1.409958,
+          "trading_fees_usdt": 8.080291,
+          "slippage_usdt": 2.020073
+        },
+        "delta_causal_minus_legacy": {
+          "net_return_pp": -13.5553,
+          "max_drawdown_pp": -1.0537
+        }
+      }
+    }
+  },
+  "decision": "Legacy baseline results require revalidation; causal run is the reference for further research. This audit does not modify MEAFLOW-52."
+}
