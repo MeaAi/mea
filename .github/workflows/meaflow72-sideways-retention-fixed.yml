@@ -1,0 +1,34 @@
+name: MEAFLOW-72 fixed sideways retention sweep
+on:
+  push:
+    branches:
+      - research/meaflow72-sideways-retention-fixed-v1
+    paths:
+      - "research/meaflow72_sideways_retention.py"
+      - "research/funding_carry_liquidation_fixed.py"
+      - ".github/workflows/meaflow72-sideways-retention-fixed.yml"
+permissions:
+  contents: write
+concurrency:
+  group: meaflow72-sideways-retention-fixed-v1
+  cancel-in-progress: false
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/meaflow72-sideways-retention-fixed-v1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run fixed-entry retention experiment on free Binance Vision data
+        run: python research/meaflow72_sideways_retention.py
+      - name: Publish research report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+users.noreply.github.com"
+          git add research-results/meaflow72_sideways_retention.json
+          git commit -m "Publish MEAFLOW-72 fixed retention report"
+          git push origin HEAD:research/meaflow72-sideways-retention-fixed-v1
