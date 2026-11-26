@@ -31,19 +31,19 @@
   "data_source": "Official free Binance Vision monthly fundingRate and 1h markPriceKlines; ZIP CRC checked by loader",
   "data_errors": {},
   "loaded_symbols": [
-    "SOLUSDT",
-    "DOGEUSDT",
-    "BTCUSDT",
-    "ADAUSDT",
-    "ETHUSDT",
-    "XRPUSDT",
     "LINKUSDT",
+    "ADAUSDT",
+    "XRPUSDT",
+    "SOLUSDT",
+    "BTCUSDT",
+    "DOGEUSDT",
+    "ETHUSDT",
     "BNBUSDT",
     "BCHUSDT",
-    "DOTUSDT",
     "LTCUSDT",
+    "TRXUSDT",
     "AVAXUSDT",
-    "TRXUSDT"
+    "DOTUSDT"
   ],
   "drawdown": "Hourly adverse mark: simultaneous low for longs/high for shorts, plus event-time equity; conservative OHLC stress, not tick-accurate",
   "limitations": [
