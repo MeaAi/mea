@@ -77,6 +77,21 @@ BTCUSDT, ETHUSDT, BNBUSDT, XRPUSDT, ADAUSDT, DOGEUSDT, SOLUSDT, LINKUSDT, LTCUSD
      - Late data cut: +72.9428%/-26.5454%; +47.8230%/-26.5454%; +24.8796%/-26.5454%.
    - No overlay promoted. Exact date cuts in report, not full calendar September. Report: https://github.com/MeaAi/mea/blob/research/meaflow72-drawdown-scaling-v1/research-results/meaflow72_drawdown_scaling.json
 
+## Completed experiment 9: causal inverse-volatility sizing
+- Branch `research/meaflow72-volatility-sizing-v1`; Actions run 45896022724; completed success.
+- Report: `research-results/meaflow72_volatility_sizing.json`.
+- 13/13 symbols loaded; no data errors. Official free Binance Vision fundingRate + 1h markPriceKlines.
+- Compared equal weights, 168h inverse-vol, 720h inverse-vol; 100 USDT, 1x, one-way fee 2/5/8bp and 2bp slippage. Causal hourly log-return volatility uses only completed candles strictly before rebalance; each side's gross exposure preserved after 0.5x-2.0x relative caps.
+- At standard 5bp fee, net return / max DD:
+  - 2023: equal +42.1559% / -22.2601%; 7d +22.8231% / -26.3818%; 30d +17.2909% / -25.9156%.
+  - 2024: equal +14.1269% / -35.6759%; 7d +33.8113% / -32.0751%; 30d +29.5087% / -34.9079%.
+  - 2025 Jan-06 Sep data cut: equal +5.0690% / -34.4392%; 7d +15.9660% / -22.9974%; 30d +9.4225% / -27.2171%.
+  - 2025-09-07 to 2026-10-31: equal +72.9428% / -26.5454%; 7d +58.4721% / -20.9887%; 30d +61.1042% / -21.9849%.
+- No liquidation in simplified model. At 5bp, 7d wins 2024 and 2025 Jan-Sep, but loses 2023 and late window; 30d likewise loses 2023 and late. Not universal; do not promote to baseline.
+- 2025 first window dates are exact data cut 2025-01-01 08:00 to 2025-09-06 16:00 UTC, not full Sep. Late window 2025-09-07 00:00 to 2026-10-31 16:00 UTC. Prior historical windows already inspected; not pristine forward OOS.
+- BTC/ETH/SOL attribution is included per config in report; note it is a simulator contribution estimate, not independent asset strategy performance.
+- Workflow and report are reproducible from the branch; baseline protected branches unchanged.
+
 ## Current experiment in progress
 - Branch: `research/meaflow72-volatility-sizing-v1`
 - Experiment: compare equal weights against causal inverse-volatility weighting with 168h and 720h realized volatility.
@@ -86,7 +101,7 @@ BTCUSDT, ETHUSDT, BNBUSDT, XRPUSDT, ADAUSDT, DOGEUSDT, SOLUSDT, LINKUSDT, LTCUSD
 - Workflow: `.github/workflows/meaflow72-volatility-sizing.yml`.
 - Simulator copy: `research/funding_carry_liquidation_volatility.py`.
 - Research driver: `research/meaflow72_volatility_sizing.py`.
-- Do not draw conclusions until GitHub Actions completes and report is inspected.
+- Completed; see section 9 above. Do not rerun unless correcting methodology.
 
 ## Next research queue after current experiment
 - Inspect volatility-sizing results; if no stable net benefit, do not promote.
