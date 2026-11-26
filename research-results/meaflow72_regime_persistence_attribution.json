@@ -1,0 +1,3895 @@
+{
+  "experiment": "MEAFLOW-72 regime-persistence per-symbol and regime attribution",
+  "branch": "research/meaflow72-regime-persistence-attribution-v1",
+  "parent": "research/meaflow72-bear-cohort-attribution-v1",
+  "purpose": "Explain which symbols and accrual regimes account for the observed differences between raw regime classification (0h) and causal 6h persistence confirmation. No parameter search; compare only the two already observed configurations.",
+  "source": "Free official Binance Vision monthly fundingRate + 1h markPriceKlines",
+  "loaded_symbols": [
+    "ADAUSDT",
+    "AVAXUSDT",
+    "BCHUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "DOGEUSDT",
+    "DOTUSDT",
+    "ETHUSDT",
+    "LINKUSDT",
+    "LTCUSDT",
+    "SOLUSDT",
+    "TRXUSDT",
+    "XRPUSDT"
+  ],
+  "data_errors": {},
+  "capital_usdt": 100,
+  "leverage": 1,
+  "costs": "5 bp fee one-way + 2 bp slippage one-way",
+  "strategy": "7d funding lookback, 7d rebalance, 20% tails; BTC trailing 30d mark-price +/-5%; bull both, bear short-only, sideways hold, unknown flat.",
+  "windows": {
+    "2023_calendar": {
+      "period_utc": [
+        "2023-01-01T00:00:00+00:00",
+        "2024-01-01T00:00:00+00:00"
+      ],
+      "event_count": 8983,
+      "configs": {
+        "uncapped_confirm_0h": {
+          "net_return_pct": 42.1559,
+          "end_equity_usdt": 142.15595,
+          "max_drawdown_pct": -22.2601,
+          "rebalance_count": 82,
+          "price_pnl_usdt": 41.263594,
+          "funding_pnl_usdt": 5.744719,
+          "trading_fees_usdt": 3.465974,
+          "slippage_usdt": 1.386389,
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": -11.429692,
+              "funding_pnl_usdt": 3.844496,
+              "fees_usdt": 2.173621,
+              "slippage_usdt": 0.869448,
+              "net_contribution_usdt": -10.628265
+            },
+            "bear": {
+              "price_pnl_usdt": 10.574631,
+              "funding_pnl_usdt": 0.549587,
+              "fees_usdt": 1.292353,
+              "slippage_usdt": 0.516941,
+              "net_contribution_usdt": 9.314925
+            },
+            "sideways": {
+              "price_pnl_usdt": 42.118654,
+              "funding_pnl_usdt": 1.350636,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 43.46929
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          },
+          "symbol_attribution": {
+            "ADAUSDT": {
+              "price_pnl_usdt": 6.670442,
+              "funding_pnl_usdt": 0.248141,
+              "fees_usdt": 0.188772,
+              "slippage_usdt": 0.075509,
+              "net_contribution_usdt": 6.654301
+            },
+            "AVAXUSDT": {
+              "price_pnl_usdt": 6.678613,
+              "funding_pnl_usdt": 0.5166,
+              "fees_usdt": 0.263023,
+              "slippage_usdt": 0.105209,
+              "net_contribution_usdt": 6.826981
+            },
+            "BCHUSDT": {
+              "price_pnl_usdt": 2.136716,
+              "funding_pnl_usdt": 0.706478,
+              "fees_usdt": 0.172648,
+              "slippage_usdt": 0.069059,
+              "net_contribution_usdt": 2.601487
+            },
+            "BNBUSDT": {
+              "price_pnl_usdt": -2.569454,
+              "funding_pnl_usdt": 1.400314,
+              "fees_usdt": 0.222156,
+              "slippage_usdt": 0.088862,
+              "net_contribution_usdt": -1.480159
+            },
+            "BTCUSDT": {
+              "price_pnl_usdt": -11.872095,
+              "funding_pnl_usdt": 0.083641,
+              "fees_usdt": 0.287249,
+              "slippage_usdt": 0.1149,
+              "net_contribution_usdt": -12.190602
+            },
+            "DOGEUSDT": {
+              "price_pnl_usdt": -2.889266,
+              "funding_pnl_usdt": 0.666868,
+              "fees_usdt": 0.443296,
+              "slippage_usdt": 0.177318,
+              "net_contribution_usdt": -2.843013
+            },
+            "DOTUSDT": {
+              "price_pnl_usdt": 7.040331,
+              "funding_pnl_usdt": 0.143265,
+              "fees_usdt": 0.068005,
+              "slippage_usdt": 0.027202,
+              "net_contribution_usdt": 7.08839
+            },
+            "ETHUSDT": {
+              "price_pnl_usdt": -3.058394,
+              "funding_pnl_usdt": 0.047789,
+              "fees_usdt": 0.162345,
+              "slippage_usdt": 0.064938,
+              "net_contribution_usdt": -3.237888
+            },
+            "LINKUSDT": {
+              "price_pnl_usdt": 19.134142,
+              "funding_pnl_usdt": 0.934364,
+              "fees_usdt": 0.498467,
+              "slippage_usdt": 0.199387,
+              "net_contribution_usdt": 19.370652
+            },
+            "LTCUSDT": {
+              "price_pnl_usdt": 1.464732,
+              "funding_pnl_usdt": 0.485614,
+              "fees_usdt": 0.364025,
+              "slippage_usdt": 0.14561,
+              "net_contribution_usdt": 1.440711
+            },
+            "SOLUSDT": {
+              "price_pnl_usdt": 7.043439,
+              "funding_pnl_usdt": 0.219322,
+              "fees_usdt": 0.30323,
+              "slippage_usdt": 0.121292,
+              "net_contribution_usdt": 6.838239
+            },
+            "TRXUSDT": {
+              "price_pnl_usdt": 5.455413,
+              "funding_pnl_usdt": -0.153504,
+              "fees_usdt": 0.200021,
+              "slippage_usdt": 0.080009,
+              "net_contribution_usdt": 5.021879
+            },
+            "XRPUSDT": {
+              "price_pnl_usdt": 6.028973,
+              "funding_pnl_usdt": 0.445828,
+              "fees_usdt": 0.292737,
+              "slippage_usdt": 0.117095,
+              "net_contribution_usdt": 6.06497
+            }
+          },
+          "drawdown_interval_attribution": {
+            "ADAUSDT": {
+              "price_pnl_change_usdt": -6.670442,
+              "funding_pnl_change_usdt": -0.248141,
+              "fees_change_usdt": -0.188772,
+              "slippage_change_usdt": -0.075509,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -6.654301
+            },
+            "AVAXUSDT": {
+              "price_pnl_change_usdt": -17.691646,
+              "funding_pnl_change_usdt": 0.032951,
+              "fees_change_usdt": -0.085084,
+              "slippage_change_usdt": -0.034034,
+              "trough_intrabar_adverse_usdt": -0.995417,
+              "net_contribution_estimate_usdt": -18.534993
+            },
+            "BCHUSDT": {
+              "price_pnl_change_usdt": -7.915334,
+              "funding_pnl_change_usdt": -0.886143,
+              "fees_change_usdt": -0.081933,
+              "slippage_change_usdt": -0.032773,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -8.686771
+            },
+            "BNBUSDT": {
+              "price_pnl_change_usdt": 3.628479,
+              "funding_pnl_change_usdt": -0.387283,
+              "fees_change_usdt": -0.039465,
+              "slippage_change_usdt": -0.015786,
+              "trough_intrabar_adverse_usdt": 0.339944,
+              "net_contribution_estimate_usdt": 3.63639
+            },
+            "BTCUSDT": {
+              "price_pnl_change_usdt": 8.025559,
+              "funding_pnl_change_usdt": -0.175498,
+              "fees_change_usdt": -0.227318,
+              "slippage_change_usdt": -0.090927,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 8.168306
+            },
+            "DOGEUSDT": {
+              "price_pnl_change_usdt": -4.934954,
+              "funding_pnl_change_usdt": -0.354123,
+              "fees_change_usdt": -0.267191,
+              "slippage_change_usdt": -0.106876,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -4.915011
+            },
+            "DOTUSDT": {
+              "price_pnl_change_usdt": -3.197358,
+              "funding_pnl_change_usdt": -0.2356,
+              "fees_change_usdt": -0.02036,
+              "slippage_change_usdt": -0.008144,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -3.404453
+            },
+            "ETHUSDT": {
+              "price_pnl_change_usdt": 3.058394,
+              "funding_pnl_change_usdt": -0.047789,
+              "fees_change_usdt": -0.162345,
+              "slippage_change_usdt": -0.064938,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 3.237888
+            },
+            "LINKUSDT": {
+              "price_pnl_change_usdt": -15.758176,
+              "funding_pnl_change_usdt": -0.583416,
+              "fees_change_usdt": -0.344682,
+              "slippage_change_usdt": -0.137873,
+              "trough_intrabar_adverse_usdt": -2.219009,
+              "net_contribution_estimate_usdt": -18.078046
+            },
+            "LTCUSDT": {
+              "price_pnl_change_usdt": -2.453662,
+              "funding_pnl_change_usdt": -0.183893,
+              "fees_change_usdt": -0.272591,
+              "slippage_change_usdt": -0.109036,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -2.255928
+            },
+            "SOLUSDT": {
+              "price_pnl_change_usdt": -4.984493,
+              "funding_pnl_change_usdt": -0.091213,
+              "fees_change_usdt": -0.171353,
+              "slippage_change_usdt": -0.068541,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -4.835812
+            },
+            "TRXUSDT": {
+              "price_pnl_change_usdt": -2.058668,
+              "funding_pnl_change_usdt": -0.304074,
+              "fees_change_usdt": -0.103423,
+              "slippage_change_usdt": -0.041369,
+              "trough_intrabar_adverse_usdt": 0.251101,
+              "net_contribution_estimate_usdt": -1.966847
+            },
+            "XRPUSDT": {
+              "price_pnl_change_usdt": -5.417078,
+              "funding_pnl_change_usdt": -0.256211,
+              "fees_change_usdt": -0.169525,
+              "slippage_change_usdt": -0.06781,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -5.435954
+            }
+          }
+        },
+        "uncapped_confirm_6h": {
+          "net_return_pct": 33.0157,
+          "end_equity_usdt": 133.015744,
+          "max_drawdown_pct": -29.4588,
+          "rebalance_count": 73,
+          "price_pnl_usdt": 32.063574,
+          "funding_pnl_usdt": 5.734761,
+          "trading_fees_usdt": 3.416136,
+          "slippage_usdt": 1.366454,
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": -5.928496,
+              "funding_pnl_usdt": 3.87271,
+              "fees_usdt": 1.910248,
+              "slippage_usdt": 0.764099,
+              "net_contribution_usdt": -4.730134
+            },
+            "bear": {
+              "price_pnl_usdt": 23.480989,
+              "funding_pnl_usdt": 0.35486,
+              "fees_usdt": 1.505888,
+              "slippage_usdt": 0.602355,
+              "net_contribution_usdt": 21.727606
+            },
+            "sideways": {
+              "price_pnl_usdt": 14.511081,
+              "funding_pnl_usdt": 1.507192,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 16.018273
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          },
+          "symbol_attribution": {
+            "ADAUSDT": {
+              "price_pnl_usdt": 5.01487,
+              "funding_pnl_usdt": 0.37602,
+              "fees_usdt": 0.180556,
+              "slippage_usdt": 0.072222,
+              "net_contribution_usdt": 5.138111
+            },
+            "AVAXUSDT": {
+              "price_pnl_usdt": -5.212065,
+              "funding_pnl_usdt": 0.534181,
+              "fees_usdt": 0.180604,
+              "slippage_usdt": 0.072242,
+              "net_contribution_usdt": -4.930731
+            },
+            "BCHUSDT": {
+              "price_pnl_usdt": 2.233421,
+              "funding_pnl_usdt": 0.609851,
+              "fees_usdt": 0.172267,
+              "slippage_usdt": 0.068907,
+              "net_contribution_usdt": 2.602099
+            },
+            "BNBUSDT": {
+              "price_pnl_usdt": -1.899003,
+              "funding_pnl_usdt": 1.353419,
+              "fees_usdt": 0.22085,
+              "slippage_usdt": 0.08834,
+              "net_contribution_usdt": -0.854774
+            },
+            "BTCUSDT": {
+              "price_pnl_usdt": -6.193645,
+              "funding_pnl_usdt": 0.089287,
+              "fees_usdt": 0.206408,
+              "slippage_usdt": 0.082563,
+              "net_contribution_usdt": -6.393329
+            },
+            "DOGEUSDT": {
+              "price_pnl_usdt": -0.675925,
+              "funding_pnl_usdt": 0.729764,
+              "fees_usdt": 0.435208,
+              "slippage_usdt": 0.174083,
+              "net_contribution_usdt": -0.555451
+            },
+            "DOTUSDT": {
+              "price_pnl_usdt": 8.25515,
+              "funding_pnl_usdt": 0.132977,
+              "fees_usdt": 0.093221,
+              "slippage_usdt": 0.037289,
+              "net_contribution_usdt": 8.257616
+            },
+            "ETHUSDT": {
+              "price_pnl_usdt": -2.534585,
+              "funding_pnl_usdt": 0.010884,
+              "fees_usdt": 0.062592,
+              "slippage_usdt": 0.025037,
+              "net_contribution_usdt": -2.61133
+            },
+            "LINKUSDT": {
+              "price_pnl_usdt": 2.963952,
+              "funding_pnl_usdt": 1.06233,
+              "fees_usdt": 0.633946,
+              "slippage_usdt": 0.253578,
+              "net_contribution_usdt": 3.138758
+            },
+            "LTCUSDT": {
+              "price_pnl_usdt": 4.003434,
+              "funding_pnl_usdt": 0.467893,
+              "fees_usdt": 0.357689,
+              "slippage_usdt": 0.143076,
+              "net_contribution_usdt": 3.970562
+            },
+            "SOLUSDT": {
+              "price_pnl_usdt": 19.659106,
+              "funding_pnl_usdt": 0.165292,
+              "fees_usdt": 0.197638,
+              "slippage_usdt": 0.079055,
+              "net_contribution_usdt": 19.547704
+            },
+            "TRXUSDT": {
+              "price_pnl_usdt": 0.271129,
+              "funding_pnl_usdt": -0.177382,
+              "fees_usdt": 0.365238,
+              "slippage_usdt": 0.146095,
+              "net_contribution_usdt": -0.417587
+            },
+            "XRPUSDT": {
+              "price_pnl_usdt": 6.177735,
+              "funding_pnl_usdt": 0.380246,
+              "fees_usdt": 0.309918,
+              "slippage_usdt": 0.123967,
+              "net_contribution_usdt": 6.124095
+            }
+          },
+          "drawdown_interval_attribution": {
+            "ADAUSDT": {
+              "price_pnl_change_usdt": 1.846162,
+              "funding_pnl_change_usdt": 0.074286,
+              "fees_change_usdt": 0.033435,
+              "slippage_change_usdt": 0.013374,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 1.873639
+            },
+            "AVAXUSDT": {
+              "price_pnl_change_usdt": -5.085767,
+              "funding_pnl_change_usdt": 0.084007,
+              "fees_change_usdt": 0.016216,
+              "slippage_change_usdt": 0.006487,
+              "trough_intrabar_adverse_usdt": -0.252517,
+              "net_contribution_estimate_usdt": -5.276979
+            },
+            "BCHUSDT": {
+              "price_pnl_change_usdt": 0.852271,
+              "funding_pnl_change_usdt": 0.00057,
+              "fees_change_usdt": 0.051194,
+              "slippage_change_usdt": 0.020478,
+              "trough_intrabar_adverse_usdt": -4.965996,
+              "net_contribution_estimate_usdt": -4.184828
+            },
+            "BNBUSDT": {
+              "price_pnl_change_usdt": -1.254815,
+              "funding_pnl_change_usdt": 0.064022,
+              "fees_change_usdt": 0.033071,
+              "slippage_change_usdt": 0.013228,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -1.237092
+            },
+            "BTCUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "DOGEUSDT": {
+              "price_pnl_change_usdt": -15.441702,
+              "funding_pnl_change_usdt": 0.403769,
+              "fees_change_usdt": 0.093135,
+              "slippage_change_usdt": 0.037254,
+              "trough_intrabar_adverse_usdt": -0.227739,
+              "net_contribution_estimate_usdt": -15.396061
+            },
+            "DOTUSDT": {
+              "price_pnl_change_usdt": 5.256549,
+              "funding_pnl_change_usdt": 0.137024,
+              "fees_change_usdt": 0.038424,
+              "slippage_change_usdt": 0.015369,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 5.339779
+            },
+            "ETHUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "LINKUSDT": {
+              "price_pnl_change_usdt": -23.708505,
+              "funding_pnl_change_usdt": 0.327398,
+              "fees_change_usdt": 0.156694,
+              "slippage_change_usdt": 0.062678,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -23.600479
+            },
+            "LTCUSDT": {
+              "price_pnl_change_usdt": 1.386632,
+              "funding_pnl_change_usdt": 0.025725,
+              "fees_change_usdt": 0.032503,
+              "slippage_change_usdt": 0.013001,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 1.366853
+            },
+            "SOLUSDT": {
+              "price_pnl_change_usdt": 4.986671,
+              "funding_pnl_change_usdt": -0.075155,
+              "fees_change_usdt": 0.016216,
+              "slippage_change_usdt": 0.006487,
+              "trough_intrabar_adverse_usdt": -3.869561,
+              "net_contribution_estimate_usdt": 1.019252
+            },
+            "TRXUSDT": {
+              "price_pnl_change_usdt": -7.150472,
+              "funding_pnl_change_usdt": 0.186218,
+              "fees_change_usdt": 0.076288,
+              "slippage_change_usdt": 0.030515,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -7.071057
+            },
+            "XRPUSDT": {
+              "price_pnl_change_usdt": -2.350866,
+              "funding_pnl_change_usdt": 0.081252,
+              "fees_change_usdt": 0.035712,
+              "slippage_change_usdt": 0.014285,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -2.31961
+            }
+          }
+        },
+        "bear_cap_20pct_confirm_0h": {
+          "net_return_pct": 22.7334,
+          "end_equity_usdt": 122.733401,
+          "max_drawdown_pct": -15.7259,
+          "rebalance_count": 82,
+          "price_pnl_usdt": 21.499828,
+          "funding_pnl_usdt": 4.67569,
+          "trading_fees_usdt": 2.458655,
+          "slippage_usdt": 0.983462,
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": -8.893667,
+              "funding_pnl_usdt": 3.525414,
+              "fees_usdt": 1.898198,
+              "slippage_usdt": 0.759279,
+              "net_contribution_usdt": -8.02573
+            },
+            "bear": {
+              "price_pnl_usdt": 3.943339,
+              "funding_pnl_usdt": 0.222904,
+              "fees_usdt": 0.560457,
+              "slippage_usdt": 0.224183,
+              "net_contribution_usdt": 3.381604
+            },
+            "sideways": {
+              "price_pnl_usdt": 26.450156,
+              "funding_pnl_usdt": 0.927371,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 27.377527
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          },
+          "symbol_attribution": {
+            "ADAUSDT": {
+              "price_pnl_usdt": 4.630323,
+              "funding_pnl_usdt": 0.131067,
+              "fees_usdt": 0.124206,
+              "slippage_usdt": 0.049683,
+              "net_contribution_usdt": 4.587501
+            },
+            "AVAXUSDT": {
+              "price_pnl_usdt": 1.343773,
+              "funding_pnl_usdt": 0.440608,
+              "fees_usdt": 0.21754,
+              "slippage_usdt": 0.087016,
+              "net_contribution_usdt": 1.479826
+            },
+            "BCHUSDT": {
+              "price_pnl_usdt": 1.341669,
+              "funding_pnl_usdt": 0.72449,
+              "fees_usdt": 0.16068,
+              "slippage_usdt": 0.064272,
+              "net_contribution_usdt": 1.841206
+            },
+            "BNBUSDT": {
+              "price_pnl_usdt": -3.063815,
+              "funding_pnl_usdt": 1.27012,
+              "fees_usdt": 0.206789,
+              "slippage_usdt": 0.082715,
+              "net_contribution_usdt": -2.083199
+            },
+            "BTCUSDT": {
+              "price_pnl_usdt": -8.255135,
+              "funding_pnl_usdt": 0.038947,
+              "fees_usdt": 0.158061,
+              "slippage_usdt": 0.063224,
+              "net_contribution_usdt": -8.437472
+            },
+            "DOGEUSDT": {
+              "price_pnl_usdt": -8.330152,
+              "funding_pnl_usdt": 0.504849,
+              "fees_usdt": 0.324317,
+              "slippage_usdt": 0.129727,
+              "net_contribution_usdt": -8.279347
+            },
+            "DOTUSDT": {
+              "price_pnl_usdt": 6.273723,
+              "funding_pnl_usdt": 0.122135,
+              "fees_usdt": 0.062227,
+              "slippage_usdt": 0.024891,
+              "net_contribution_usdt": 6.308741
+            },
+            "ETHUSDT": {
+              "price_pnl_usdt": -1.341643,
+              "funding_pnl_usdt": 0.027492,
+              "fees_usdt": 0.076379,
+              "slippage_usdt": 0.030551,
+              "net_contribution_usdt": -1.42108
+            },
+            "LINKUSDT": {
+              "price_pnl_usdt": 11.836302,
+              "funding_pnl_usdt": 0.657817,
+              "fees_usdt": 0.302541,
+              "slippage_usdt": 0.121016,
+              "net_contribution_usdt": 12.070562
+            },
+            "LTCUSDT": {
+              "price_pnl_usdt": 1.415759,
+              "funding_pnl_usdt": 0.39526,
+              "fees_usdt": 0.208926,
+              "slippage_usdt": 0.08357,
+              "net_contribution_usdt": 1.518522
+            },
+            "SOLUSDT": {
+              "price_pnl_usdt": 6.645056,
+              "funding_pnl_usdt": 0.166918,
+              "fees_usdt": 0.220599,
+              "slippage_usdt": 0.08824,
+              "net_contribution_usdt": 6.503135
+            },
+            "TRXUSDT": {
+              "price_pnl_usdt": 5.292149,
+              "funding_pnl_usdt": -0.120362,
+              "fees_usdt": 0.192397,
+              "slippage_usdt": 0.076959,
+              "net_contribution_usdt": 4.902431
+            },
+            "XRPUSDT": {
+              "price_pnl_usdt": 3.711818,
+              "funding_pnl_usdt": 0.316349,
+              "fees_usdt": 0.203993,
+              "slippage_usdt": 0.081597,
+              "net_contribution_usdt": 3.742576
+            }
+          },
+          "drawdown_interval_attribution": {
+            "ADAUSDT": {
+              "price_pnl_change_usdt": -4.630323,
+              "funding_pnl_change_usdt": -0.131067,
+              "fees_change_usdt": -0.124206,
+              "slippage_change_usdt": -0.049683,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -4.587501
+            },
+            "AVAXUSDT": {
+              "price_pnl_change_usdt": -11.789169,
+              "funding_pnl_change_usdt": 0.041458,
+              "fees_change_usdt": -0.058331,
+              "slippage_change_usdt": -0.023332,
+              "trough_intrabar_adverse_usdt": -1.030306,
+              "net_contribution_estimate_usdt": -12.696353
+            },
+            "BCHUSDT": {
+              "price_pnl_change_usdt": -6.976019,
+              "funding_pnl_change_usdt": -0.855223,
+              "fees_change_usdt": -0.074741,
+              "slippage_change_usdt": -0.029896,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -7.726605
+            },
+            "BNBUSDT": {
+              "price_pnl_change_usdt": 3.709888,
+              "funding_pnl_change_usdt": -0.389937,
+              "fees_change_usdt": -0.039838,
+              "slippage_change_usdt": -0.015935,
+              "trough_intrabar_adverse_usdt": 0.351858,
+              "net_contribution_estimate_usdt": 3.727582
+            },
+            "BTCUSDT": {
+              "price_pnl_change_usdt": 4.311219,
+              "funding_pnl_change_usdt": -0.117059,
+              "fees_change_usdt": -0.101809,
+              "slippage_change_usdt": -0.040724,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 4.336693
+            },
+            "DOGEUSDT": {
+              "price_pnl_change_usdt": 1.603064,
+              "funding_pnl_change_usdt": -0.231416,
+              "fees_change_usdt": -0.164598,
+              "slippage_change_usdt": -0.065839,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 1.602085
+            },
+            "DOTUSDT": {
+              "price_pnl_change_usdt": -2.760508,
+              "funding_pnl_change_usdt": -0.20341,
+              "fees_change_usdt": -0.017579,
+              "slippage_change_usdt": -0.007031,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -2.939308
+            },
+            "ETHUSDT": {
+              "price_pnl_change_usdt": 1.341643,
+              "funding_pnl_change_usdt": -0.027492,
+              "fees_change_usdt": -0.076379,
+              "slippage_change_usdt": -0.030551,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 1.42108
+            },
+            "LINKUSDT": {
+              "price_pnl_change_usdt": -9.028319,
+              "funding_pnl_change_usdt": -0.344828,
+              "fees_change_usdt": -0.164407,
+              "slippage_change_usdt": -0.065763,
+              "trough_intrabar_adverse_usdt": -2.296784,
+              "net_contribution_estimate_usdt": -11.439761
+            },
+            "LTCUSDT": {
+              "price_pnl_change_usdt": 0.936847,
+              "funding_pnl_change_usdt": -0.138542,
+              "fees_change_usdt": -0.154787,
+              "slippage_change_usdt": -0.061915,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 1.015007
+            },
+            "SOLUSDT": {
+              "price_pnl_change_usdt": -4.748608,
+              "funding_pnl_change_usdt": -0.054149,
+              "fees_change_usdt": -0.103384,
+              "slippage_change_usdt": -0.041354,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -4.658019
+            },
+            "TRXUSDT": {
+              "price_pnl_change_usdt": -2.161622,
+              "funding_pnl_change_usdt": -0.276312,
+              "fees_change_usdt": -0.0988,
+              "slippage_change_usdt": -0.03952,
+              "trough_intrabar_adverse_usdt": 0.259902,
+              "net_contribution_estimate_usdt": -2.039712
+            },
+            "XRPUSDT": {
+              "price_pnl_change_usdt": -2.949844,
+              "funding_pnl_change_usdt": -0.159463,
+              "fees_change_usdt": -0.121776,
+              "slippage_change_usdt": -0.04871,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -2.938821
+            }
+          }
+        },
+        "bear_cap_20pct_confirm_6h": {
+          "net_return_pct": 23.7204,
+          "end_equity_usdt": 123.720358,
+          "max_drawdown_pct": -18.4362,
+          "rebalance_count": 73,
+          "price_pnl_usdt": 22.359749,
+          "funding_pnl_usdt": 4.580614,
+          "trading_fees_usdt": 2.300003,
+          "slippage_usdt": 0.920001,
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": -0.768969,
+              "funding_pnl_usdt": 3.647465,
+              "fees_usdt": 1.689209,
+              "slippage_usdt": 0.675684,
+              "net_contribution_usdt": 0.513603
+            },
+            "bear": {
+              "price_pnl_usdt": 9.250925,
+              "funding_pnl_usdt": 0.143413,
+              "fees_usdt": 0.610794,
+              "slippage_usdt": 0.244317,
+              "net_contribution_usdt": 8.539228
+            },
+            "sideways": {
+              "price_pnl_usdt": 13.877793,
+              "funding_pnl_usdt": 0.789735,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 14.667527
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          },
+          "symbol_attribution": {
+            "ADAUSDT": {
+              "price_pnl_usdt": 4.101958,
+              "funding_pnl_usdt": 0.169224,
+              "fees_usdt": 0.105191,
+              "slippage_usdt": 0.042076,
+              "net_contribution_usdt": 4.123915
+            },
+            "AVAXUSDT": {
+              "price_pnl_usdt": -4.856051,
+              "funding_pnl_usdt": 0.500995,
+              "fees_usdt": 0.171229,
+              "slippage_usdt": 0.068492,
+              "net_contribution_usdt": -4.594777
+            },
+            "BCHUSDT": {
+              "price_pnl_usdt": 2.024671,
+              "funding_pnl_usdt": 0.598829,
+              "fees_usdt": 0.164666,
+              "slippage_usdt": 0.065866,
+              "net_contribution_usdt": 2.392967
+            },
+            "BNBUSDT": {
+              "price_pnl_usdt": -2.058136,
+              "funding_pnl_usdt": 1.277015,
+              "fees_usdt": 0.211169,
+              "slippage_usdt": 0.084468,
+              "net_contribution_usdt": -1.076757
+            },
+            "BTCUSDT": {
+              "price_pnl_usdt": -6.021871,
+              "funding_pnl_usdt": 0.048541,
+              "fees_usdt": 0.110759,
+              "slippage_usdt": 0.044304,
+              "net_contribution_usdt": -6.128392
+            },
+            "DOGEUSDT": {
+              "price_pnl_usdt": -5.531846,
+              "funding_pnl_usdt": 0.4686,
+              "fees_usdt": 0.29897,
+              "slippage_usdt": 0.119588,
+              "net_contribution_usdt": -5.481803
+            },
+            "DOTUSDT": {
+              "price_pnl_usdt": 7.828443,
+              "funding_pnl_usdt": 0.123123,
+              "fees_usdt": 0.089436,
+              "slippage_usdt": 0.035774,
+              "net_contribution_usdt": 7.826356
+            },
+            "ETHUSDT": {
+              "price_pnl_usdt": -0.928912,
+              "funding_pnl_usdt": 0.003989,
+              "fees_usdt": 0.02294,
+              "slippage_usdt": 0.009176,
+              "net_contribution_usdt": -0.957038
+            },
+            "LINKUSDT": {
+              "price_pnl_usdt": 4.683548,
+              "funding_pnl_usdt": 0.702196,
+              "fees_usdt": 0.347856,
+              "slippage_usdt": 0.139142,
+              "net_contribution_usdt": 4.898745
+            },
+            "LTCUSDT": {
+              "price_pnl_usdt": 5.261385,
+              "funding_pnl_usdt": 0.381622,
+              "fees_usdt": 0.188464,
+              "slippage_usdt": 0.075385,
+              "net_contribution_usdt": 5.379158
+            },
+            "SOLUSDT": {
+              "price_pnl_usdt": 10.847295,
+              "funding_pnl_usdt": 0.148889,
+              "fees_usdt": 0.163007,
+              "slippage_usdt": 0.065203,
+              "net_contribution_usdt": 10.767974
+            },
+            "TRXUSDT": {
+              "price_pnl_usdt": 3.263174,
+              "funding_pnl_usdt": -0.123975,
+              "fees_usdt": 0.249226,
+              "slippage_usdt": 0.09969,
+              "net_contribution_usdt": 2.790282
+            },
+            "XRPUSDT": {
+              "price_pnl_usdt": 3.74609,
+              "funding_pnl_usdt": 0.281565,
+              "fees_usdt": 0.17709,
+              "slippage_usdt": 0.070836,
+              "net_contribution_usdt": 3.779729
+            }
+          },
+          "drawdown_interval_attribution": {
+            "ADAUSDT": {
+              "price_pnl_change_usdt": 1.716456,
+              "funding_pnl_change_usdt": 0.069072,
+              "fees_change_usdt": 0.031098,
+              "slippage_change_usdt": 0.012439,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 1.741991
+            },
+            "AVAXUSDT": {
+              "price_pnl_change_usdt": -4.730364,
+              "funding_pnl_change_usdt": 0.078137,
+              "fees_change_usdt": 0.015083,
+              "slippage_change_usdt": 0.006033,
+              "trough_intrabar_adverse_usdt": -0.234871,
+              "net_contribution_estimate_usdt": -4.908214
+            },
+            "BCHUSDT": {
+              "price_pnl_change_usdt": 0.793867,
+              "funding_pnl_change_usdt": 0.000507,
+              "fees_change_usdt": 0.047598,
+              "slippage_change_usdt": 0.019039,
+              "trough_intrabar_adverse_usdt": -4.618963,
+              "net_contribution_estimate_usdt": -3.891227
+            },
+            "BNBUSDT": {
+              "price_pnl_change_usdt": -1.167126,
+              "funding_pnl_change_usdt": 0.059548,
+              "fees_change_usdt": 0.03076,
+              "slippage_change_usdt": 0.012304,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -1.150642
+            },
+            "BTCUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "DOGEUSDT": {
+              "price_pnl_change_usdt": -11.696111,
+              "funding_pnl_change_usdt": 0.221387,
+              "fees_change_usdt": 0.062565,
+              "slippage_change_usdt": 0.025026,
+              "trough_intrabar_adverse_usdt": -0.211824,
+              "net_contribution_estimate_usdt": -11.774139
+            },
+            "DOTUSDT": {
+              "price_pnl_change_usdt": 4.889211,
+              "funding_pnl_change_usdt": 0.127448,
+              "fees_change_usdt": 0.035738,
+              "slippage_change_usdt": 0.014295,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 4.966626
+            },
+            "ETHUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "LINKUSDT": {
+              "price_pnl_change_usdt": -7.470835,
+              "funding_pnl_change_usdt": 0.157851,
+              "fees_change_usdt": 0.09124,
+              "slippage_change_usdt": 0.036496,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -7.440721
+            },
+            "LTCUSDT": {
+              "price_pnl_change_usdt": 1.288928,
+              "funding_pnl_change_usdt": 0.023912,
+              "fees_change_usdt": 0.030212,
+              "slippage_change_usdt": 0.012085,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 1.270543
+            },
+            "SOLUSDT": {
+              "price_pnl_change_usdt": 4.638193,
+              "funding_pnl_change_usdt": -0.069903,
+              "fees_change_usdt": 0.015083,
+              "slippage_change_usdt": 0.006033,
+              "trough_intrabar_adverse_usdt": -3.599149,
+              "net_contribution_estimate_usdt": 0.948025
+            },
+            "TRXUSDT": {
+              "price_pnl_change_usdt": -2.633505,
+              "funding_pnl_change_usdt": 0.179148,
+              "fees_change_usdt": 0.045402,
+              "slippage_change_usdt": 0.018161,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -2.517919
+            },
+            "XRPUSDT": {
+              "price_pnl_change_usdt": -2.186583,
+              "funding_pnl_change_usdt": 0.075574,
+              "fees_change_usdt": 0.033216,
+              "slippage_change_usdt": 0.013286,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -2.157512
+            }
+          }
+        }
+      }
+    },
+    "2024_calendar": {
+      "period_utc": [
+        "2024-01-01T00:00:00+00:00",
+        "2024-12-31T16:00:00+00:00"
+      ],
+      "event_count": 12064,
+      "configs": {
+        "uncapped_confirm_0h": {
+          "net_return_pct": 14.1269,
+          "end_equity_usdt": 114.126902,
+          "max_drawdown_pct": -35.6759,
+          "rebalance_count": 123,
+          "price_pnl_usdt": 13.583906,
+          "funding_pnl_usdt": 6.501251,
+          "trading_fees_usdt": 4.255896,
+          "slippage_usdt": 1.702359,
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 36.325726,
+              "funding_pnl_usdt": 3.312986,
+              "fees_usdt": 2.51621,
+              "slippage_usdt": 1.006484,
+              "net_contribution_usdt": 36.116017
+            },
+            "bear": {
+              "price_pnl_usdt": -24.535802,
+              "funding_pnl_usdt": 1.495614,
+              "fees_usdt": 1.739686,
+              "slippage_usdt": 0.695874,
+              "net_contribution_usdt": -25.475748
+            },
+            "sideways": {
+              "price_pnl_usdt": 1.793982,
+              "funding_pnl_usdt": 1.692651,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 3.486633
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          },
+          "symbol_attribution": {
+            "ADAUSDT": {
+              "price_pnl_usdt": 15.613204,
+              "funding_pnl_usdt": 0.443883,
+              "fees_usdt": 0.376536,
+              "slippage_usdt": 0.150614,
+              "net_contribution_usdt": 15.529936
+            },
+            "AVAXUSDT": {
+              "price_pnl_usdt": 12.133198,
+              "funding_pnl_usdt": 1.049445,
+              "fees_usdt": 0.256375,
+              "slippage_usdt": 0.10255,
+              "net_contribution_usdt": 12.823719
+            },
+            "BCHUSDT": {
+              "price_pnl_usdt": 29.233078,
+              "funding_pnl_usdt": -0.35039,
+              "fees_usdt": 0.2958,
+              "slippage_usdt": 0.11832,
+              "net_contribution_usdt": 28.468567
+            },
+            "BNBUSDT": {
+              "price_pnl_usdt": 26.784632,
+              "funding_pnl_usdt": 0.241868,
+              "fees_usdt": 0.268262,
+              "slippage_usdt": 0.107305,
+              "net_contribution_usdt": 26.650934
+            },
+            "BTCUSDT": {
+              "price_pnl_usdt": 2.246665,
+              "funding_pnl_usdt": -0.323145,
+              "fees_usdt": 0.255057,
+              "slippage_usdt": 0.102023,
+              "net_contribution_usdt": 1.566441
+            },
+            "DOGEUSDT": {
+              "price_pnl_usdt": 3.500806,
+              "funding_pnl_usdt": 0.612761,
+              "fees_usdt": 0.247148,
+              "slippage_usdt": 0.098859,
+              "net_contribution_usdt": 3.76756
+            },
+            "DOTUSDT": {
+              "price_pnl_usdt": 2.343609,
+              "funding_pnl_usdt": 0.056755,
+              "fees_usdt": 0.079944,
+              "slippage_usdt": 0.031978,
+              "net_contribution_usdt": 2.288443
+            },
+            "ETHUSDT": {
+              "price_pnl_usdt": 1.451136,
+              "funding_pnl_usdt": 0.709699,
+              "fees_usdt": 0.467864,
+              "slippage_usdt": 0.187146,
+              "net_contribution_usdt": 1.505825
+            },
+            "LINKUSDT": {
+              "price_pnl_usdt": -2.6453,
+              "funding_pnl_usdt": 0.524966,
+              "fees_usdt": 0.258154,
+              "slippage_usdt": 0.103262,
+              "net_contribution_usdt": -2.481749
+            },
+            "LTCUSDT": {
+              "price_pnl_usdt": 0.202755,
+              "funding_pnl_usdt": 1.172868,
+              "fees_usdt": 0.482921,
+              "slippage_usdt": 0.193168,
+              "net_contribution_usdt": 0.699535
+            },
+            "SOLUSDT": {
+              "price_pnl_usdt": -47.694679,
+              "funding_pnl_usdt": 1.421649,
+              "fees_usdt": 0.415478,
+              "slippage_usdt": 0.166191,
+              "net_contribution_usdt": -46.854699
+            },
+            "TRXUSDT": {
+              "price_pnl_usdt": -0.759475,
+              "funding_pnl_usdt": -0.302606,
+              "fees_usdt": 0.346233,
+              "slippage_usdt": 0.138493,
+              "net_contribution_usdt": -1.546807
+            },
+            "XRPUSDT": {
+              "price_pnl_usdt": -28.825724,
+              "funding_pnl_usdt": 1.243496,
+              "fees_usdt": 0.506125,
+              "slippage_usdt": 0.20245,
+              "net_contribution_usdt": -28.290802
+            }
+          },
+          "drawdown_interval_attribution": {
+            "ADAUSDT": {
+              "price_pnl_change_usdt": -0.014289,
+              "funding_pnl_change_usdt": 0.094697,
+              "fees_change_usdt": 0.067057,
+              "slippage_change_usdt": 0.026823,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -0.013473
+            },
+            "AVAXUSDT": {
+              "price_pnl_change_usdt": -10.62283,
+              "funding_pnl_change_usdt": 0.119987,
+              "fees_change_usdt": 0.05729,
+              "slippage_change_usdt": 0.022916,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -10.583048
+            },
+            "BCHUSDT": {
+              "price_pnl_change_usdt": 1.217222,
+              "funding_pnl_change_usdt": 0.133566,
+              "fees_change_usdt": 0.061471,
+              "slippage_change_usdt": 0.024588,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 1.264728
+            },
+            "BNBUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "BTCUSDT": {
+              "price_pnl_change_usdt": -20.913704,
+              "funding_pnl_change_usdt": 0.139518,
+              "fees_change_usdt": 0.119764,
+              "slippage_change_usdt": 0.047906,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -20.941855
+            },
+            "DOGEUSDT": {
+              "price_pnl_change_usdt": 1.177338,
+              "funding_pnl_change_usdt": 0.067453,
+              "fees_change_usdt": 0.034581,
+              "slippage_change_usdt": 0.013832,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 1.196378
+            },
+            "DOTUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "ETHUSDT": {
+              "price_pnl_change_usdt": 1.656793,
+              "funding_pnl_change_usdt": 0.120064,
+              "fees_change_usdt": 0.076015,
+              "slippage_change_usdt": 0.030406,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 1.670436
+            },
+            "LINKUSDT": {
+              "price_pnl_change_usdt": -1.509801,
+              "funding_pnl_change_usdt": 0.090313,
+              "fees_change_usdt": 0.065064,
+              "slippage_change_usdt": 0.026026,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -1.510577
+            },
+            "LTCUSDT": {
+              "price_pnl_change_usdt": 1.021926,
+              "funding_pnl_change_usdt": 0.075831,
+              "fees_change_usdt": 0.082697,
+              "slippage_change_usdt": 0.033079,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.981982
+            },
+            "SOLUSDT": {
+              "price_pnl_change_usdt": -14.355926,
+              "funding_pnl_change_usdt": 0.053727,
+              "fees_change_usdt": 0.113789,
+              "slippage_change_usdt": 0.045516,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -14.461505
+            },
+            "TRXUSDT": {
+              "price_pnl_change_usdt": -5.899229,
+              "funding_pnl_change_usdt": 0.167429,
+              "fees_change_usdt": 0.114762,
+              "slippage_change_usdt": 0.045905,
+              "trough_intrabar_adverse_usdt": -2.780932,
+              "net_contribution_estimate_usdt": -8.673398
+            },
+            "XRPUSDT": {
+              "price_pnl_change_usdt": -2.228083,
+              "funding_pnl_change_usdt": 0.076212,
+              "fees_change_usdt": 0.058854,
+              "slippage_change_usdt": 0.023542,
+              "trough_intrabar_adverse_usdt": -0.594139,
+              "net_contribution_estimate_usdt": -2.828406
+            }
+          }
+        },
+        "uncapped_confirm_6h": {
+          "net_return_pct": 51.9201,
+          "end_equity_usdt": 151.920132,
+          "max_drawdown_pct": -31.9875,
+          "rebalance_count": 120,
+          "price_pnl_usdt": 51.94147,
+          "funding_pnl_usdt": 7.535569,
+          "trading_fees_usdt": 5.39779,
+          "slippage_usdt": 2.159116,
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 49.169849,
+              "funding_pnl_usdt": 3.604589,
+              "fees_usdt": 3.137655,
+              "slippage_usdt": 1.255062,
+              "net_contribution_usdt": 48.381722
+            },
+            "bear": {
+              "price_pnl_usdt": 7.823108,
+              "funding_pnl_usdt": 1.662929,
+              "fees_usdt": 2.260136,
+              "slippage_usdt": 0.904054,
+              "net_contribution_usdt": 6.321846
+            },
+            "sideways": {
+              "price_pnl_usdt": -5.051487,
+              "funding_pnl_usdt": 2.268051,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": -2.783436
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          },
+          "symbol_attribution": {
+            "ADAUSDT": {
+              "price_pnl_usdt": 18.688538,
+              "funding_pnl_usdt": 0.436959,
+              "fees_usdt": 0.324846,
+              "slippage_usdt": 0.129938,
+              "net_contribution_usdt": 18.670713
+            },
+            "AVAXUSDT": {
+              "price_pnl_usdt": 13.395298,
+              "funding_pnl_usdt": 1.115052,
+              "fees_usdt": 0.315805,
+              "slippage_usdt": 0.126322,
+              "net_contribution_usdt": 14.068222
+            },
+            "BCHUSDT": {
+              "price_pnl_usdt": 28.534873,
+              "funding_pnl_usdt": -0.378221,
+              "fees_usdt": 0.320292,
+              "slippage_usdt": 0.128117,
+              "net_contribution_usdt": 27.708243
+            },
+            "BNBUSDT": {
+              "price_pnl_usdt": 21.272002,
+              "funding_pnl_usdt": 0.140258,
+              "fees_usdt": 0.292265,
+              "slippage_usdt": 0.116906,
+              "net_contribution_usdt": 21.003089
+            },
+            "BTCUSDT": {
+              "price_pnl_usdt": -6.309309,
+              "funding_pnl_usdt": -0.129132,
+              "fees_usdt": 0.437888,
+              "slippage_usdt": 0.175155,
+              "net_contribution_usdt": -7.051484
+            },
+            "DOGEUSDT": {
+              "price_pnl_usdt": 11.124327,
+              "funding_pnl_usdt": 0.957628,
+              "fees_usdt": 0.348983,
+              "slippage_usdt": 0.139593,
+              "net_contribution_usdt": 11.593379
+            },
+            "DOTUSDT": {
+              "price_pnl_usdt": 4.986895,
+              "funding_pnl_usdt": 0.032378,
+              "fees_usdt": 0.03116,
+              "slippage_usdt": 0.012464,
+              "net_contribution_usdt": 4.975649
+            },
+            "ETHUSDT": {
+              "price_pnl_usdt": -15.426794,
+              "funding_pnl_usdt": 0.616683,
+              "fees_usdt": 0.768107,
+              "slippage_usdt": 0.307243,
+              "net_contribution_usdt": -15.885461
+            },
+            "LINKUSDT": {
+              "price_pnl_usdt": 22.718065,
+              "funding_pnl_usdt": 1.120512,
+              "fees_usdt": 0.400094,
+              "slippage_usdt": 0.160038,
+              "net_contribution_usdt": 23.278445
+            },
+            "LTCUSDT": {
+              "price_pnl_usdt": -11.946054,
+              "funding_pnl_usdt": 1.34751,
+              "fees_usdt": 0.673019,
+              "slippage_usdt": 0.269208,
+              "net_contribution_usdt": -11.540771
+            },
+            "SOLUSDT": {
+              "price_pnl_usdt": -13.806,
+              "funding_pnl_usdt": 1.140905,
+              "fees_usdt": 0.38819,
+              "slippage_usdt": 0.155276,
+              "net_contribution_usdt": -13.208561
+            },
+            "TRXUSDT": {
+              "price_pnl_usdt": -0.565852,
+              "funding_pnl_usdt": -0.405683,
+              "fees_usdt": 0.467658,
+              "slippage_usdt": 0.187063,
+              "net_contribution_usdt": -1.626256
+            },
+            "XRPUSDT": {
+              "price_pnl_usdt": -20.724519,
+              "funding_pnl_usdt": 1.540719,
+              "fees_usdt": 0.629482,
+              "slippage_usdt": 0.251793,
+              "net_contribution_usdt": -20.065075
+            }
+          },
+          "drawdown_interval_attribution": {
+            "ADAUSDT": {
+              "price_pnl_change_usdt": 0.656067,
+              "funding_pnl_change_usdt": 0.110305,
+              "fees_change_usdt": 0.07524,
+              "slippage_change_usdt": 0.030096,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.661035
+            },
+            "AVAXUSDT": {
+              "price_pnl_change_usdt": -12.160893,
+              "funding_pnl_change_usdt": 0.139619,
+              "fees_change_usdt": 0.073954,
+              "slippage_change_usdt": 0.029582,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -12.124809
+            },
+            "BCHUSDT": {
+              "price_pnl_change_usdt": 0.772705,
+              "funding_pnl_change_usdt": 0.157655,
+              "fees_change_usdt": 0.074828,
+              "slippage_change_usdt": 0.029931,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.8256
+            },
+            "BNBUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "BTCUSDT": {
+              "price_pnl_change_usdt": -19.479094,
+              "funding_pnl_change_usdt": 0.12561,
+              "fees_change_usdt": 0.178329,
+              "slippage_change_usdt": 0.071332,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -19.603145
+            },
+            "DOGEUSDT": {
+              "price_pnl_change_usdt": 2.997549,
+              "funding_pnl_change_usdt": 0.072248,
+              "fees_change_usdt": 0.039938,
+              "slippage_change_usdt": 0.015975,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 3.013884
+            },
+            "DOTUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "ETHUSDT": {
+              "price_pnl_change_usdt": -6.45352,
+              "funding_pnl_change_usdt": 0.154995,
+              "fees_change_usdt": 0.099395,
+              "slippage_change_usdt": 0.039758,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -6.437678
+            },
+            "LINKUSDT": {
+              "price_pnl_change_usdt": -1.019708,
+              "funding_pnl_change_usdt": 0.126943,
+              "fees_change_usdt": 0.076078,
+              "slippage_change_usdt": 0.030431,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -0.999275
+            },
+            "LTCUSDT": {
+              "price_pnl_change_usdt": 1.931116,
+              "funding_pnl_change_usdt": 0.090562,
+              "fees_change_usdt": 0.106773,
+              "slippage_change_usdt": 0.042709,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 1.872195
+            },
+            "SOLUSDT": {
+              "price_pnl_change_usdt": -10.027138,
+              "funding_pnl_change_usdt": 0.067349,
+              "fees_change_usdt": 0.126883,
+              "slippage_change_usdt": 0.050753,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -10.137425
+            },
+            "TRXUSDT": {
+              "price_pnl_change_usdt": -5.627543,
+              "funding_pnl_change_usdt": 0.166239,
+              "fees_change_usdt": 0.14299,
+              "slippage_change_usdt": 0.057196,
+              "trough_intrabar_adverse_usdt": -3.61067,
+              "net_contribution_estimate_usdt": -9.27216
+            },
+            "XRPUSDT": {
+              "price_pnl_change_usdt": -6.599116,
+              "funding_pnl_change_usdt": 0.083331,
+              "fees_change_usdt": 0.106567,
+              "slippage_change_usdt": 0.042627,
+              "trough_intrabar_adverse_usdt": -0.771411,
+              "net_contribution_estimate_usdt": -7.436391
+            }
+          }
+        },
+        "bear_cap_20pct_confirm_0h": {
+          "net_return_pct": 37.4958,
+          "end_equity_usdt": 137.495834,
+          "max_drawdown_pct": -25.8978,
+          "rebalance_count": 123,
+          "price_pnl_usdt": 36.827407,
+          "funding_pnl_usdt": 5.538547,
+          "trading_fees_usdt": 3.478657,
+          "slippage_usdt": 1.391463,
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 39.607398,
+              "funding_pnl_usdt": 3.529996,
+              "fees_usdt": 2.593174,
+              "slippage_usdt": 1.03727,
+              "net_contribution_usdt": 39.506951
+            },
+            "bear": {
+              "price_pnl_usdt": -8.645053,
+              "funding_pnl_usdt": 0.67155,
+              "fees_usdt": 0.885483,
+              "slippage_usdt": 0.354193,
+              "net_contribution_usdt": -9.21318
+            },
+            "sideways": {
+              "price_pnl_usdt": 5.865063,
+              "funding_pnl_usdt": 1.337,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 7.202063
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          },
+          "symbol_attribution": {
+            "ADAUSDT": {
+              "price_pnl_usdt": 12.794384,
+              "funding_pnl_usdt": 0.316073,
+              "fees_usdt": 0.211165,
+              "slippage_usdt": 0.084466,
+              "net_contribution_usdt": 12.814826
+            },
+            "AVAXUSDT": {
+              "price_pnl_usdt": 14.762729,
+              "funding_pnl_usdt": 1.083205,
+              "fees_usdt": 0.279395,
+              "slippage_usdt": 0.111758,
+              "net_contribution_usdt": 15.454781
+            },
+            "BCHUSDT": {
+              "price_pnl_usdt": 32.154728,
+              "funding_pnl_usdt": -0.371396,
+              "fees_usdt": 0.324771,
+              "slippage_usdt": 0.129908,
+              "net_contribution_usdt": 31.328653
+            },
+            "BNBUSDT": {
+              "price_pnl_usdt": 28.641283,
+              "funding_pnl_usdt": 0.246729,
+              "fees_usdt": 0.298043,
+              "slippage_usdt": 0.119217,
+              "net_contribution_usdt": 28.470751
+            },
+            "BTCUSDT": {
+              "price_pnl_usdt": 10.536161,
+              "funding_pnl_usdt": -0.540334,
+              "fees_usdt": 0.178344,
+              "slippage_usdt": 0.071338,
+              "net_contribution_usdt": 9.746145
+            },
+            "DOGEUSDT": {
+              "price_pnl_usdt": -1.97679,
+              "funding_pnl_usdt": 0.603091,
+              "fees_usdt": 0.196664,
+              "slippage_usdt": 0.078666,
+              "net_contribution_usdt": -1.649029
+            },
+            "DOTUSDT": {
+              "price_pnl_usdt": 4.124162,
+              "funding_pnl_usdt": 0.047577,
+              "fees_usdt": 0.054863,
+              "slippage_usdt": 0.021945,
+              "net_contribution_usdt": 4.094931
+            },
+            "ETHUSDT": {
+              "price_pnl_usdt": -2.571831,
+              "funding_pnl_usdt": 0.527723,
+              "fees_usdt": 0.307947,
+              "slippage_usdt": 0.123179,
+              "net_contribution_usdt": -2.475234
+            },
+            "LINKUSDT": {
+              "price_pnl_usdt": -2.808462,
+              "funding_pnl_usdt": 0.563927,
+              "fees_usdt": 0.227489,
+              "slippage_usdt": 0.090996,
+              "net_contribution_usdt": -2.563019
+            },
+            "LTCUSDT": {
+              "price_pnl_usdt": 3.11728,
+              "funding_pnl_usdt": 0.955353,
+              "fees_usdt": 0.358703,
+              "slippage_usdt": 0.143481,
+              "net_contribution_usdt": 3.570449
+            },
+            "SOLUSDT": {
+              "price_pnl_usdt": -27.005836,
+              "funding_pnl_usdt": 1.298699,
+              "fees_usdt": 0.264671,
+              "slippage_usdt": 0.105868,
+              "net_contribution_usdt": -26.077676
+            },
+            "TRXUSDT": {
+              "price_pnl_usdt": 0.956337,
+              "funding_pnl_usdt": -0.338372,
+              "fees_usdt": 0.355327,
+              "slippage_usdt": 0.142131,
+              "net_contribution_usdt": 0.120506
+            },
+            "XRPUSDT": {
+              "price_pnl_usdt": -35.896738,
+              "funding_pnl_usdt": 1.146272,
+              "fees_usdt": 0.421274,
+              "slippage_usdt": 0.16851,
+              "net_contribution_usdt": -35.34025
+            }
+          },
+          "drawdown_interval_attribution": {
+            "ADAUSDT": {
+              "price_pnl_change_usdt": -11.211202,
+              "funding_pnl_change_usdt": -0.212599,
+              "fees_change_usdt": -0.185536,
+              "slippage_change_usdt": -0.074215,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -11.164049
+            },
+            "AVAXUSDT": {
+              "price_pnl_change_usdt": -24.176887,
+              "funding_pnl_change_usdt": -0.377609,
+              "fees_change_usdt": -0.207004,
+              "slippage_change_usdt": -0.082802,
+              "trough_intrabar_adverse_usdt": -1.682397,
+              "net_contribution_estimate_usdt": -25.947087
+            },
+            "BCHUSDT": {
+              "price_pnl_change_usdt": -29.579273,
+              "funding_pnl_change_usdt": -0.134457,
+              "fees_change_usdt": -0.231257,
+              "slippage_change_usdt": -0.092503,
+              "trough_intrabar_adverse_usdt": -1.24657,
+              "net_contribution_estimate_usdt": -30.636541
+            },
+            "BNBUSDT": {
+              "price_pnl_change_usdt": -11.291798,
+              "funding_pnl_change_usdt": -0.106547,
+              "fees_change_usdt": -0.155053,
+              "slippage_change_usdt": -0.062021,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -11.18127
+            },
+            "BTCUSDT": {
+              "price_pnl_change_usdt": 3.433324,
+              "funding_pnl_change_usdt": -0.125194,
+              "fees_change_usdt": -0.061061,
+              "slippage_change_usdt": -0.024424,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 3.393616
+            },
+            "DOGEUSDT": {
+              "price_pnl_change_usdt": -1.087954,
+              "funding_pnl_change_usdt": -0.121545,
+              "fees_change_usdt": -0.09082,
+              "slippage_change_usdt": -0.036328,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -1.082351
+            },
+            "DOTUSDT": {
+              "price_pnl_change_usdt": -4.124162,
+              "funding_pnl_change_usdt": -0.047577,
+              "fees_change_usdt": -0.054863,
+              "slippage_change_usdt": -0.021945,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -4.094931
+            },
+            "ETHUSDT": {
+              "price_pnl_change_usdt": 2.941981,
+              "funding_pnl_change_usdt": -0.444424,
+              "fees_change_usdt": -0.215151,
+              "slippage_change_usdt": -0.08606,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 2.798768
+            },
+            "LINKUSDT": {
+              "price_pnl_change_usdt": 2.320984,
+              "funding_pnl_change_usdt": -0.229895,
+              "fees_change_usdt": -0.190409,
+              "slippage_change_usdt": -0.076164,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 2.357663
+            },
+            "LTCUSDT": {
+              "price_pnl_change_usdt": 2.99735,
+              "funding_pnl_change_usdt": -0.502934,
+              "fees_change_usdt": -0.264787,
+              "slippage_change_usdt": -0.105915,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 2.865117
+            },
+            "SOLUSDT": {
+              "price_pnl_change_usdt": 4.570153,
+              "funding_pnl_change_usdt": -0.335282,
+              "fees_change_usdt": -0.137591,
+              "slippage_change_usdt": -0.055037,
+              "trough_intrabar_adverse_usdt": -0.366283,
+              "net_contribution_estimate_usdt": 4.061216
+            },
+            "TRXUSDT": {
+              "price_pnl_change_usdt": 3.847478,
+              "funding_pnl_change_usdt": 0.139798,
+              "fees_change_usdt": -0.236261,
+              "slippage_change_usdt": -0.094504,
+              "trough_intrabar_adverse_usdt": -0.618561,
+              "net_contribution_estimate_usdt": 3.699481
+            },
+            "XRPUSDT": {
+              "price_pnl_change_usdt": -0.187548,
+              "funding_pnl_change_usdt": -0.491107,
+              "fees_change_usdt": -0.264064,
+              "slippage_change_usdt": -0.105626,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -0.308966
+            }
+          }
+        },
+        "bear_cap_20pct_confirm_6h": {
+          "net_return_pct": 58.3163,
+          "end_equity_usdt": 158.316302,
+          "max_drawdown_pct": -22.3785,
+          "rebalance_count": 120,
+          "price_pnl_usdt": 57.916024,
+          "funding_pnl_usdt": 5.91965,
+          "trading_fees_usdt": 3.942409,
+          "slippage_usdt": 1.576964,
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 47.358838,
+              "funding_pnl_usdt": 3.594136,
+              "fees_usdt": 2.908132,
+              "slippage_usdt": 1.163253,
+              "net_contribution_usdt": 46.881589
+            },
+            "bear": {
+              "price_pnl_usdt": 2.048269,
+              "funding_pnl_usdt": 0.656453,
+              "fees_usdt": 1.034277,
+              "slippage_usdt": 0.413711,
+              "net_contribution_usdt": 1.256734
+            },
+            "sideways": {
+              "price_pnl_usdt": 8.508918,
+              "funding_pnl_usdt": 1.669061,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 10.177979
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          },
+          "symbol_attribution": {
+            "ADAUSDT": {
+              "price_pnl_usdt": 13.584633,
+              "funding_pnl_usdt": 0.321471,
+              "fees_usdt": 0.186219,
+              "slippage_usdt": 0.074488,
+              "net_contribution_usdt": 13.645397
+            },
+            "AVAXUSDT": {
+              "price_pnl_usdt": 14.238298,
+              "funding_pnl_usdt": 1.107282,
+              "fees_usdt": 0.315158,
+              "slippage_usdt": 0.126063,
+              "net_contribution_usdt": 14.904359
+            },
+            "BCHUSDT": {
+              "price_pnl_usdt": 29.621055,
+              "funding_pnl_usdt": -0.39473,
+              "fees_usdt": 0.320555,
+              "slippage_usdt": 0.128222,
+              "net_contribution_usdt": 28.777547
+            },
+            "BNBUSDT": {
+              "price_pnl_usdt": 21.533787,
+              "funding_pnl_usdt": 0.140811,
+              "fees_usdt": 0.297335,
+              "slippage_usdt": 0.118934,
+              "net_contribution_usdt": 21.25833
+            },
+            "BTCUSDT": {
+              "price_pnl_usdt": 5.629678,
+              "funding_pnl_usdt": -0.359647,
+              "fees_usdt": 0.232155,
+              "slippage_usdt": 0.092862,
+              "net_contribution_usdt": 4.945014
+            },
+            "DOGEUSDT": {
+              "price_pnl_usdt": 1.9965,
+              "funding_pnl_usdt": 0.841121,
+              "fees_usdt": 0.24273,
+              "slippage_usdt": 0.097092,
+              "net_contribution_usdt": 2.4978
+            },
+            "DOTUSDT": {
+              "price_pnl_usdt": 5.196854,
+              "funding_pnl_usdt": 0.033741,
+              "fees_usdt": 0.032472,
+              "slippage_usdt": 0.012989,
+              "net_contribution_usdt": 5.185135
+            },
+            "ETHUSDT": {
+              "price_pnl_usdt": -11.559221,
+              "funding_pnl_usdt": 0.340013,
+              "fees_usdt": 0.436211,
+              "slippage_usdt": 0.174484,
+              "net_contribution_usdt": -11.829903
+            },
+            "LINKUSDT": {
+              "price_pnl_usdt": 16.156625,
+              "funding_pnl_usdt": 1.003258,
+              "fees_usdt": 0.285695,
+              "slippage_usdt": 0.114278,
+              "net_contribution_usdt": 16.75991
+            },
+            "LTCUSDT": {
+              "price_pnl_usdt": -4.369421,
+              "funding_pnl_usdt": 1.010934,
+              "fees_usdt": 0.432541,
+              "slippage_usdt": 0.173016,
+              "net_contribution_usdt": -3.964044
+            },
+            "SOLUSDT": {
+              "price_pnl_usdt": -4.886337,
+              "funding_pnl_usdt": 0.993514,
+              "fees_usdt": 0.256828,
+              "slippage_usdt": 0.102731,
+              "net_contribution_usdt": -4.252382
+            },
+            "TRXUSDT": {
+              "price_pnl_usdt": 2.534694,
+              "funding_pnl_usdt": -0.433166,
+              "fees_usdt": 0.431865,
+              "slippage_usdt": 0.172746,
+              "net_contribution_usdt": 1.496916
+            },
+            "XRPUSDT": {
+              "price_pnl_usdt": -31.761122,
+              "funding_pnl_usdt": 1.315048,
+              "fees_usdt": 0.472645,
+              "slippage_usdt": 0.189058,
+              "net_contribution_usdt": -31.107777
+            }
+          },
+          "drawdown_interval_attribution": {
+            "ADAUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "AVAXUSDT": {
+              "price_pnl_change_usdt": -1.195082,
+              "funding_pnl_change_usdt": -0.022497,
+              "fees_change_usdt": 0.030871,
+              "slippage_change_usdt": 0.012348,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -1.260798
+            },
+            "BCHUSDT": {
+              "price_pnl_change_usdt": 0.125915,
+              "funding_pnl_change_usdt": -0.036708,
+              "fees_change_usdt": 0.005781,
+              "slippage_change_usdt": 0.002313,
+              "trough_intrabar_adverse_usdt": 2.924201,
+              "net_contribution_estimate_usdt": 3.005314
+            },
+            "BNBUSDT": {
+              "price_pnl_change_usdt": 1.276613,
+              "funding_pnl_change_usdt": 0.032413,
+              "fees_change_usdt": 0.021064,
+              "slippage_change_usdt": 0.008425,
+              "trough_intrabar_adverse_usdt": -1.526947,
+              "net_contribution_estimate_usdt": -0.24741
+            },
+            "BTCUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "DOGEUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "DOTUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "ETHUSDT": {
+              "price_pnl_change_usdt": 0.183672,
+              "funding_pnl_change_usdt": 0.03118,
+              "fees_change_usdt": 0.027057,
+              "slippage_change_usdt": 0.010823,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.176972
+            },
+            "LINKUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "LTCUSDT": {
+              "price_pnl_change_usdt": -0.505258,
+              "funding_pnl_change_usdt": 0.022359,
+              "fees_change_usdt": 0.023395,
+              "slippage_change_usdt": 0.009358,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -0.515653
+            },
+            "SOLUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "TRXUSDT": {
+              "price_pnl_change_usdt": 8.479357,
+              "funding_pnl_change_usdt": -0.058889,
+              "fees_change_usdt": 0.021064,
+              "slippage_change_usdt": 0.008425,
+              "trough_intrabar_adverse_usdt": 3.627286,
+              "net_contribution_estimate_usdt": 12.018266
+            },
+            "XRPUSDT": {
+              "price_pnl_change_usdt": -39.52489,
+              "funding_pnl_change_usdt": 0.084263,
+              "fees_change_usdt": 0.021064,
+              "slippage_change_usdt": 0.008425,
+              "trough_intrabar_adverse_usdt": -27.250274,
+              "net_contribution_estimate_usdt": -66.720389
+            }
+          }
+        }
+      }
+    },
+    "2025_jan_to_sep": {
+      "period_utc": [
+        "2025-01-01T08:00:00+00:00",
+        "2025-09-06T16:00:00+00:00"
+      ],
+      "event_count": 6006,
+      "configs": {
+        "uncapped_confirm_0h": {
+          "net_return_pct": 5.069,
+          "end_equity_usdt": 105.069034,
+          "max_drawdown_pct": -34.4392,
+          "rebalance_count": 59,
+          "price_pnl_usdt": 6.706208,
+          "funding_pnl_usdt": 1.369116,
+          "trading_fees_usdt": 2.14735,
+          "slippage_usdt": 0.85894,
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": -7.70217,
+              "funding_pnl_usdt": 0.665821,
+              "fees_usdt": 1.102428,
+              "slippage_usdt": 0.440971,
+              "net_contribution_usdt": -8.579748
+            },
+            "bear": {
+              "price_pnl_usdt": -4.570194,
+              "funding_pnl_usdt": 0.333012,
+              "fees_usdt": 1.044922,
+              "slippage_usdt": 0.417969,
+              "net_contribution_usdt": -5.700073
+            },
+            "sideways": {
+              "price_pnl_usdt": 18.978571,
+              "funding_pnl_usdt": 0.370283,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 19.348854
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          },
+          "symbol_attribution": {
+            "ADAUSDT": {
+              "price_pnl_usdt": -15.908129,
+              "funding_pnl_usdt": 0.187385,
+              "fees_usdt": 0.179382,
+              "slippage_usdt": 0.071753,
+              "net_contribution_usdt": -15.971879
+            },
+            "AVAXUSDT": {
+              "price_pnl_usdt": 8.525609,
+              "funding_pnl_usdt": 0.056747,
+              "fees_usdt": 0.068281,
+              "slippage_usdt": 0.027312,
+              "net_contribution_usdt": 8.486763
+            },
+            "BCHUSDT": {
+              "price_pnl_usdt": 3.460493,
+              "funding_pnl_usdt": 0.142919,
+              "fees_usdt": 0.286966,
+              "slippage_usdt": 0.114786,
+              "net_contribution_usdt": 3.20166
+            },
+            "BNBUSDT": {
+              "price_pnl_usdt": 3.333167,
+              "funding_pnl_usdt": -0.031648,
+              "fees_usdt": 0.150266,
+              "slippage_usdt": 0.060106,
+              "net_contribution_usdt": 3.091146
+            },
+            "BTCUSDT": {
+              "price_pnl_usdt": 2.363049,
+              "funding_pnl_usdt": 0.126571,
+              "fees_usdt": 0.199253,
+              "slippage_usdt": 0.079701,
+              "net_contribution_usdt": 2.210666
+            },
+            "DOGEUSDT": {
+              "price_pnl_usdt": -4.186433,
+              "funding_pnl_usdt": -0.02063,
+              "fees_usdt": 0.047507,
+              "slippage_usdt": 0.019003,
+              "net_contribution_usdt": -4.273574
+            },
+            "DOTUSDT": {
+              "price_pnl_usdt": 12.91771,
+              "funding_pnl_usdt": 0.087949,
+              "fees_usdt": 0.156237,
+              "slippage_usdt": 0.062495,
+              "net_contribution_usdt": 12.786927
+            },
+            "ETHUSDT": {
+              "price_pnl_usdt": -2.934816,
+              "funding_pnl_usdt": 0.167673,
+              "fees_usdt": 0.130107,
+              "slippage_usdt": 0.052043,
+              "net_contribution_usdt": -2.949293
+            },
+            "LINKUSDT": {
+              "price_pnl_usdt": 0.620584,
+              "funding_pnl_usdt": 0.113528,
+              "fees_usdt": 0.156715,
+              "slippage_usdt": 0.062686,
+              "net_contribution_usdt": 0.514712
+            },
+            "LTCUSDT": {
+              "price_pnl_usdt": 4.361434,
+              "funding_pnl_usdt": 0.257011,
+              "fees_usdt": 0.19493,
+              "slippage_usdt": 0.077972,
+              "net_contribution_usdt": 4.345544
+            },
+            "SOLUSDT": {
+              "price_pnl_usdt": 1.621324,
+              "funding_pnl_usdt": 0.028847,
+              "fees_usdt": 0.187833,
+              "slippage_usdt": 0.075133,
+              "net_contribution_usdt": 1.387206
+            },
+            "TRXUSDT": {
+              "price_pnl_usdt": 1.255231,
+              "funding_pnl_usdt": 0.083851,
+              "fees_usdt": 0.232146,
+              "slippage_usdt": 0.092858,
+              "net_contribution_usdt": 1.014078
+            },
+            "XRPUSDT": {
+              "price_pnl_usdt": -8.723016,
+              "funding_pnl_usdt": 0.168912,
+              "fees_usdt": 0.157728,
+              "slippage_usdt": 0.063091,
+              "net_contribution_usdt": -8.774922
+            }
+          },
+          "drawdown_interval_attribution": {
+            "ADAUSDT": {
+              "price_pnl_change_usdt": -26.545401,
+              "funding_pnl_change_usdt": 0.056655,
+              "fees_change_usdt": 0.028311,
+              "slippage_change_usdt": 0.011324,
+              "trough_intrabar_adverse_usdt": -2.115539,
+              "net_contribution_estimate_usdt": -28.643921
+            },
+            "AVAXUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "BCHUSDT": {
+              "price_pnl_change_usdt": -14.38699,
+              "funding_pnl_change_usdt": -0.066084,
+              "fees_change_usdt": 0.052828,
+              "slippage_change_usdt": 0.021131,
+              "trough_intrabar_adverse_usdt": 0.190623,
+              "net_contribution_estimate_usdt": -14.336411
+            },
+            "BNBUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "BTCUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "DOGEUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "DOTUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "ETHUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "LINKUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "LTCUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "SOLUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "TRXUSDT": {
+              "price_pnl_change_usdt": 1.333272,
+              "funding_pnl_change_usdt": -0.024708,
+              "fees_change_usdt": 0.014032,
+              "slippage_change_usdt": 0.005613,
+              "trough_intrabar_adverse_usdt": -0.144394,
+              "net_contribution_estimate_usdt": 1.144525
+            },
+            "XRPUSDT": {
+              "price_pnl_change_usdt": -7.706558,
+              "funding_pnl_change_usdt": 0.027458,
+              "fees_change_usdt": 0.014032,
+              "slippage_change_usdt": 0.005613,
+              "trough_intrabar_adverse_usdt": -4.135974,
+              "net_contribution_estimate_usdt": -11.834719
+            }
+          }
+        },
+        "uncapped_confirm_6h": {
+          "net_return_pct": -6.474,
+          "end_equity_usdt": 93.525978,
+          "max_drawdown_pct": -34.4389,
+          "rebalance_count": 63,
+          "price_pnl_usdt": -4.890731,
+          "funding_pnl_usdt": 1.161224,
+          "trading_fees_usdt": 1.960368,
+          "slippage_usdt": 0.784147,
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 4.970611,
+              "funding_pnl_usdt": 0.563697,
+              "fees_usdt": 0.98937,
+              "slippage_usdt": 0.395748,
+              "net_contribution_usdt": 4.14919
+            },
+            "bear": {
+              "price_pnl_usdt": -7.815222,
+              "funding_pnl_usdt": 0.317315,
+              "fees_usdt": 0.970998,
+              "slippage_usdt": 0.388399,
+              "net_contribution_usdt": -8.857304
+            },
+            "sideways": {
+              "price_pnl_usdt": -2.04612,
+              "funding_pnl_usdt": 0.280212,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": -1.765908
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          },
+          "symbol_attribution": {
+            "ADAUSDT": {
+              "price_pnl_usdt": -15.180403,
+              "funding_pnl_usdt": 0.199424,
+              "fees_usdt": 0.120929,
+              "slippage_usdt": 0.048372,
+              "net_contribution_usdt": -15.15028
+            },
+            "AVAXUSDT": {
+              "price_pnl_usdt": 3.127397,
+              "funding_pnl_usdt": 0.023013,
+              "fees_usdt": 0.058998,
+              "slippage_usdt": 0.023599,
+              "net_contribution_usdt": 3.067812
+            },
+            "BCHUSDT": {
+              "price_pnl_usdt": -5.960416,
+              "funding_pnl_usdt": 0.051404,
+              "fees_usdt": 0.261598,
+              "slippage_usdt": 0.104639,
+              "net_contribution_usdt": -6.275249
+            },
+            "BNBUSDT": {
+              "price_pnl_usdt": 4.098599,
+              "funding_pnl_usdt": 0.00573,
+              "fees_usdt": 0.135168,
+              "slippage_usdt": 0.054067,
+              "net_contribution_usdt": 3.915094
+            },
+            "BTCUSDT": {
+              "price_pnl_usdt": 2.174665,
+              "funding_pnl_usdt": 0.124275,
+              "fees_usdt": 0.140741,
+              "slippage_usdt": 0.056296,
+              "net_contribution_usdt": 2.101903
+            },
+            "DOGEUSDT": {
+              "price_pnl_usdt": -4.602484,
+              "funding_pnl_usdt": -0.019499,
+              "fees_usdt": 0.020059,
+              "slippage_usdt": 0.008023,
+              "net_contribution_usdt": -4.650065
+            },
+            "DOTUSDT": {
+              "price_pnl_usdt": 14.031357,
+              "funding_pnl_usdt": 0.058111,
+              "fees_usdt": 0.126174,
+              "slippage_usdt": 0.05047,
+              "net_contribution_usdt": 13.912824
+            },
+            "ETHUSDT": {
+              "price_pnl_usdt": 3.530555,
+              "funding_pnl_usdt": 0.117714,
+              "fees_usdt": 0.127094,
+              "slippage_usdt": 0.050838,
+              "net_contribution_usdt": 3.470337
+            },
+            "LINKUSDT": {
+              "price_pnl_usdt": 3.890512,
+              "funding_pnl_usdt": 0.098842,
+              "fees_usdt": 0.138635,
+              "slippage_usdt": 0.055454,
+              "net_contribution_usdt": 3.795264
+            },
+            "LTCUSDT": {
+              "price_pnl_usdt": 5.039504,
+              "funding_pnl_usdt": 0.319772,
+              "fees_usdt": 0.276869,
+              "slippage_usdt": 0.110748,
+              "net_contribution_usdt": 4.97166
+            },
+            "SOLUSDT": {
+              "price_pnl_usdt": 1.659832,
+              "funding_pnl_usdt": -0.005544,
+              "fees_usdt": 0.106893,
+              "slippage_usdt": 0.042757,
+              "net_contribution_usdt": 1.504637
+            },
+            "TRXUSDT": {
+              "price_pnl_usdt": 1.599528,
+              "funding_pnl_usdt": 0.012679,
+              "fees_usdt": 0.256568,
+              "slippage_usdt": 0.102627,
+              "net_contribution_usdt": 1.253011
+            },
+            "XRPUSDT": {
+              "price_pnl_usdt": -18.299376,
+              "funding_pnl_usdt": 0.175305,
+              "fees_usdt": 0.190642,
+              "slippage_usdt": 0.076257,
+              "net_contribution_usdt": -18.39097
+            }
+          },
+          "drawdown_interval_attribution": {
+            "ADAUSDT": {
+              "price_pnl_change_usdt": -23.381225,
+              "funding_pnl_change_usdt": 0.049902,
+              "fees_change_usdt": 0.024936,
+              "slippage_change_usdt": 0.009974,
+              "trough_intrabar_adverse_usdt": -1.863404,
+              "net_contribution_estimate_usdt": -25.229637
+            },
+            "AVAXUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "BCHUSDT": {
+              "price_pnl_change_usdt": -12.672066,
+              "funding_pnl_change_usdt": -0.058207,
+              "fees_change_usdt": 0.046531,
+              "slippage_change_usdt": 0.018612,
+              "trough_intrabar_adverse_usdt": 0.167904,
+              "net_contribution_estimate_usdt": -12.627512
+            },
+            "BNBUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "BTCUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "DOGEUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "DOTUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "ETHUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "LINKUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "LTCUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "SOLUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "TRXUSDT": {
+              "price_pnl_change_usdt": 1.174369,
+              "funding_pnl_change_usdt": -0.021763,
+              "fees_change_usdt": 0.01236,
+              "slippage_change_usdt": 0.004944,
+              "trough_intrabar_adverse_usdt": -0.127185,
+              "net_contribution_estimate_usdt": 1.008117
+            },
+            "XRPUSDT": {
+              "price_pnl_change_usdt": -6.78807,
+              "funding_pnl_change_usdt": 0.024185,
+              "fees_change_usdt": 0.01236,
+              "slippage_change_usdt": 0.004944,
+              "trough_intrabar_adverse_usdt": -3.643037,
+              "net_contribution_estimate_usdt": -10.424225
+            }
+          }
+        },
+        "bear_cap_20pct_confirm_0h": {
+          "net_return_pct": 10.4001,
+          "end_equity_usdt": 110.400105,
+          "max_drawdown_pct": -22.5018,
+          "rebalance_count": 59,
+          "price_pnl_usdt": 11.338805,
+          "funding_pnl_usdt": 1.024626,
+          "trading_fees_usdt": 1.402376,
+          "slippage_usdt": 0.56095,
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": -1.686008,
+              "funding_pnl_usdt": 0.594535,
+              "fees_usdt": 0.914996,
+              "slippage_usdt": 0.365998,
+              "net_contribution_usdt": -2.372467
+            },
+            "bear": {
+              "price_pnl_usdt": -2.418809,
+              "funding_pnl_usdt": 0.137183,
+              "fees_usdt": 0.48738,
+              "slippage_usdt": 0.194952,
+              "net_contribution_usdt": -2.963958
+            },
+            "sideways": {
+              "price_pnl_usdt": 15.443622,
+              "funding_pnl_usdt": 0.292908,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 15.73653
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          },
+          "symbol_attribution": {
+            "ADAUSDT": {
+              "price_pnl_usdt": -3.117613,
+              "funding_pnl_usdt": 0.13318,
+              "fees_usdt": 0.072039,
+              "slippage_usdt": 0.028816,
+              "net_contribution_usdt": -3.085287
+            },
+            "AVAXUSDT": {
+              "price_pnl_usdt": 7.477084,
+              "funding_pnl_usdt": 0.049767,
+              "fees_usdt": 0.059882,
+              "slippage_usdt": 0.023953,
+              "net_contribution_usdt": 7.443016
+            },
+            "BCHUSDT": {
+              "price_pnl_usdt": 7.532367,
+              "funding_pnl_usdt": 0.1614,
+              "fees_usdt": 0.165048,
+              "slippage_usdt": 0.066019,
+              "net_contribution_usdt": 7.4627
+            },
+            "BNBUSDT": {
+              "price_pnl_usdt": 3.093259,
+              "funding_pnl_usdt": -0.035334,
+              "fees_usdt": 0.139414,
+              "slippage_usdt": 0.055766,
+              "net_contribution_usdt": 2.862746
+            },
+            "BTCUSDT": {
+              "price_pnl_usdt": 0.960679,
+              "funding_pnl_usdt": 0.060702,
+              "fees_usdt": 0.097057,
+              "slippage_usdt": 0.038823,
+              "net_contribution_usdt": 0.885501
+            },
+            "DOGEUSDT": {
+              "price_pnl_usdt": -4.460309,
+              "funding_pnl_usdt": -0.02198,
+              "fees_usdt": 0.033635,
+              "slippage_usdt": 0.013454,
+              "net_contribution_usdt": -4.529379
+            },
+            "DOTUSDT": {
+              "price_pnl_usdt": 11.594123,
+              "funding_pnl_usdt": 0.094629,
+              "fees_usdt": 0.109495,
+              "slippage_usdt": 0.043798,
+              "net_contribution_usdt": 11.535458
+            },
+            "ETHUSDT": {
+              "price_pnl_usdt": -1.43956,
+              "funding_pnl_usdt": 0.088541,
+              "fees_usdt": 0.068944,
+              "slippage_usdt": 0.027578,
+              "net_contribution_usdt": -1.447541
+            },
+            "LINKUSDT": {
+              "price_pnl_usdt": -4.705725,
+              "funding_pnl_usdt": 0.100393,
+              "fees_usdt": 0.078013,
+              "slippage_usdt": 0.031205,
+              "net_contribution_usdt": -4.71455
+            },
+            "LTCUSDT": {
+              "price_pnl_usdt": 1.686788,
+              "funding_pnl_usdt": 0.158337,
+              "fees_usdt": 0.124304,
+              "slippage_usdt": 0.049722,
+              "net_contribution_usdt": 1.6711
+            },
+            "SOLUSDT": {
+              "price_pnl_usdt": -0.824955,
+              "funding_pnl_usdt": 0.007407,
+              "fees_usdt": 0.12342,
+              "slippage_usdt": 0.049368,
+              "net_contribution_usdt": -0.990336
+            },
+            "TRXUSDT": {
+              "price_pnl_usdt": 1.660997,
+              "funding_pnl_usdt": 0.06689,
+              "fees_usdt": 0.184543,
+              "slippage_usdt": 0.073817,
+              "net_contribution_usdt": 1.469527
+            },
+            "XRPUSDT": {
+              "price_pnl_usdt": -8.118331,
+              "funding_pnl_usdt": 0.160694,
+              "fees_usdt": 0.146582,
+              "slippage_usdt": 0.058633,
+              "net_contribution_usdt": -8.162851
+            }
+          },
+          "drawdown_interval_attribution": {
+            "ADAUSDT": {
+              "price_pnl_change_usdt": -12.171952,
+              "funding_pnl_change_usdt": 0.037055,
+              "fees_change_usdt": 0.000901,
+              "slippage_change_usdt": 0.00036,
+              "trough_intrabar_adverse_usdt": -2.103982,
+              "net_contribution_estimate_usdt": -14.240139
+            },
+            "AVAXUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "BCHUSDT": {
+              "price_pnl_change_usdt": -6.129611,
+              "funding_pnl_change_usdt": -0.009174,
+              "fees_change_usdt": 0.027567,
+              "slippage_change_usdt": 0.011027,
+              "trough_intrabar_adverse_usdt": 0.189581,
+              "net_contribution_estimate_usdt": -5.987798
+            },
+            "BNBUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "BTCUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "DOGEUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "DOTUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "ETHUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "LINKUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "LTCUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "SOLUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "TRXUSDT": {
+              "price_pnl_change_usdt": 1.325988,
+              "funding_pnl_change_usdt": -0.024573,
+              "fees_change_usdt": 0.013956,
+              "slippage_change_usdt": 0.005582,
+              "trough_intrabar_adverse_usdt": -0.143605,
+              "net_contribution_estimate_usdt": 1.138272
+            },
+            "XRPUSDT": {
+              "price_pnl_change_usdt": -7.664456,
+              "funding_pnl_change_usdt": 0.027308,
+              "fees_change_usdt": 0.013956,
+              "slippage_change_usdt": 0.005582,
+              "trough_intrabar_adverse_usdt": -4.113379,
+              "net_contribution_estimate_usdt": -11.770064
+            }
+          }
+        },
+        "bear_cap_20pct_confirm_6h": {
+          "net_return_pct": 6.9682,
+          "end_equity_usdt": 106.968151,
+          "max_drawdown_pct": -22.5016,
+          "rebalance_count": 63,
+          "price_pnl_usdt": 7.970173,
+          "funding_pnl_usdt": 0.906922,
+          "trading_fees_usdt": 1.363531,
+          "slippage_usdt": 0.545412,
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 3.6151,
+              "funding_pnl_usdt": 0.550299,
+              "fees_usdt": 0.880075,
+              "slippage_usdt": 0.35203,
+              "net_contribution_usdt": 2.933294
+            },
+            "bear": {
+              "price_pnl_usdt": -4.034265,
+              "funding_pnl_usdt": 0.136052,
+              "fees_usdt": 0.483456,
+              "slippage_usdt": 0.193382,
+              "net_contribution_usdt": -4.575052
+            },
+            "sideways": {
+              "price_pnl_usdt": 8.389338,
+              "funding_pnl_usdt": 0.220571,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 8.609908
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          },
+          "symbol_attribution": {
+            "ADAUSDT": {
+              "price_pnl_usdt": -4.014251,
+              "funding_pnl_usdt": 0.139579,
+              "fees_usdt": 0.05061,
+              "slippage_usdt": 0.020244,
+              "net_contribution_usdt": -3.945526
+            },
+            "AVAXUSDT": {
+              "price_pnl_usdt": 2.996367,
+              "funding_pnl_usdt": 0.022035,
+              "fees_usdt": 0.056512,
+              "slippage_usdt": 0.022605,
+              "net_contribution_usdt": 2.939286
+            },
+            "BCHUSDT": {
+              "price_pnl_usdt": 1.680719,
+              "funding_pnl_usdt": 0.093402,
+              "fees_usdt": 0.174016,
+              "slippage_usdt": 0.069607,
+              "net_contribution_usdt": 1.530497
+            },
+            "BNBUSDT": {
+              "price_pnl_usdt": 4.23091,
+              "funding_pnl_usdt": 0.003622,
+              "fees_usdt": 0.135713,
+              "slippage_usdt": 0.054285,
+              "net_contribution_usdt": 4.044533
+            },
+            "BTCUSDT": {
+              "price_pnl_usdt": 1.379568,
+              "funding_pnl_usdt": 0.059885,
+              "fees_usdt": 0.071578,
+              "slippage_usdt": 0.028631,
+              "net_contribution_usdt": 1.339244
+            },
+            "DOGEUSDT": {
+              "price_pnl_usdt": -5.014214,
+              "funding_pnl_usdt": -0.021244,
+              "fees_usdt": 0.021853,
+              "slippage_usdt": 0.008741,
+              "net_contribution_usdt": -5.066051
+            },
+            "DOTUSDT": {
+              "price_pnl_usdt": 11.740456,
+              "funding_pnl_usdt": 0.053529,
+              "fees_usdt": 0.094422,
+              "slippage_usdt": 0.037769,
+              "net_contribution_usdt": 11.661794
+            },
+            "ETHUSDT": {
+              "price_pnl_usdt": 2.553499,
+              "funding_pnl_usdt": 0.078194,
+              "fees_usdt": 0.067943,
+              "slippage_usdt": 0.027177,
+              "net_contribution_usdt": 2.536572
+            },
+            "LINKUSDT": {
+              "price_pnl_usdt": -3.361347,
+              "funding_pnl_usdt": 0.097047,
+              "fees_usdt": 0.076524,
+              "slippage_usdt": 0.03061,
+              "net_contribution_usdt": -3.371434
+            },
+            "LTCUSDT": {
+              "price_pnl_usdt": 3.457048,
+              "funding_pnl_usdt": 0.230974,
+              "fees_usdt": 0.191404,
+              "slippage_usdt": 0.076561,
+              "net_contribution_usdt": 3.420057
+            },
+            "SOLUSDT": {
+              "price_pnl_usdt": 3.955543,
+              "funding_pnl_usdt": -0.035131,
+              "fees_usdt": 0.092919,
+              "slippage_usdt": 0.037168,
+              "net_contribution_usdt": 3.790325
+            },
+            "TRXUSDT": {
+              "price_pnl_usdt": 1.393336,
+              "funding_pnl_usdt": 0.034023,
+              "fees_usdt": 0.198294,
+              "slippage_usdt": 0.079318,
+              "net_contribution_usdt": 1.149748
+            },
+            "XRPUSDT": {
+              "price_pnl_usdt": -13.02746,
+              "funding_pnl_usdt": 0.151007,
+              "fees_usdt": 0.131743,
+              "slippage_usdt": 0.052697,
+              "net_contribution_usdt": -13.060893
+            }
+          },
+          "drawdown_interval_attribution": {
+            "ADAUSDT": {
+              "price_pnl_change_usdt": -11.710241,
+              "funding_pnl_change_usdt": 0.03565,
+              "fees_change_usdt": 0.000866,
+              "slippage_change_usdt": 0.000347,
+              "trough_intrabar_adverse_usdt": -2.024197,
+              "net_contribution_estimate_usdt": -13.700001
+            },
+            "AVAXUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "BCHUSDT": {
+              "price_pnl_change_usdt": -5.89709,
+              "funding_pnl_change_usdt": -0.008826,
+              "fees_change_usdt": 0.026522,
+              "slippage_change_usdt": 0.010609,
+              "trough_intrabar_adverse_usdt": 0.182392,
+              "net_contribution_estimate_usdt": -5.760653
+            },
+            "BNBUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "BTCUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "DOGEUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "DOTUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "ETHUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "LINKUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "LTCUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "SOLUSDT": {
+              "price_pnl_change_usdt": 0.0,
+              "funding_pnl_change_usdt": 0.0,
+              "fees_change_usdt": 0.0,
+              "slippage_change_usdt": 0.0,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 0.0
+            },
+            "TRXUSDT": {
+              "price_pnl_change_usdt": 1.275706,
+              "funding_pnl_change_usdt": -0.023641,
+              "fees_change_usdt": 0.013426,
+              "slippage_change_usdt": 0.005371,
+              "trough_intrabar_adverse_usdt": -0.13816,
+              "net_contribution_estimate_usdt": 1.095108
+            },
+            "XRPUSDT": {
+              "price_pnl_change_usdt": -7.373815,
+              "funding_pnl_change_usdt": 0.026272,
+              "fees_change_usdt": 0.013426,
+              "slippage_change_usdt": 0.005371,
+              "trough_intrabar_adverse_usdt": -3.957397,
+              "net_contribution_estimate_usdt": -11.323736
+            }
+          }
+        }
+      }
+    },
+    "2025_sep_to_2026_oct": {
+      "period_utc": [
+        "2025-09-07T00:00:00+00:00",
+        "2026-10-31T16:00:00+00:00"
+      ],
+      "event_count": 7605,
+      "configs": {
+        "uncapped_confirm_0h": {
+          "net_return_pct": 72.9428,
+          "end_equity_usdt": 172.94281,
+          "max_drawdown_pct": -26.5454,
+          "rebalance_count": 98,
+          "price_pnl_usdt": 76.561008,
+          "funding_pnl_usdt": 2.680028,
+          "trading_fees_usdt": 4.498733,
+          "slippage_usdt": 1.799493,
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 25.530056,
+              "funding_pnl_usdt": 0.962612,
+              "fees_usdt": 2.502778,
+              "slippage_usdt": 1.001111,
+              "net_contribution_usdt": 22.988778
+            },
+            "bear": {
+              "price_pnl_usdt": 53.411072,
+              "funding_pnl_usdt": 0.558918,
+              "fees_usdt": 1.995954,
+              "slippage_usdt": 0.798382,
+              "net_contribution_usdt": 51.175654
+            },
+            "sideways": {
+              "price_pnl_usdt": -2.380119,
+              "funding_pnl_usdt": 1.158498,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": -1.221621
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          },
+          "symbol_attribution": {
+            "ADAUSDT": {
+              "price_pnl_usdt": 21.845056,
+              "funding_pnl_usdt": 0.061865,
+              "fees_usdt": 0.360024,
+              "slippage_usdt": 0.14401,
+              "net_contribution_usdt": 21.402888
+            },
+            "AVAXUSDT": {
+              "price_pnl_usdt": -6.636818,
+              "funding_pnl_usdt": 0.017799,
+              "fees_usdt": 0.123809,
+              "slippage_usdt": 0.049524,
+              "net_contribution_usdt": -6.792353
+            },
+            "BCHUSDT": {
+              "price_pnl_usdt": 25.696289,
+              "funding_pnl_usdt": 0.048766,
+              "fees_usdt": 0.437126,
+              "slippage_usdt": 0.17485,
+              "net_contribution_usdt": 25.133079
+            },
+            "BNBUSDT": {
+              "price_pnl_usdt": -8.0854,
+              "funding_pnl_usdt": 0.057376,
+              "fees_usdt": 0.229467,
+              "slippage_usdt": 0.091787,
+              "net_contribution_usdt": -8.349278
+            },
+            "BTCUSDT": {
+              "price_pnl_usdt": 3.689969,
+              "funding_pnl_usdt": 0.413314,
+              "fees_usdt": 0.770805,
+              "slippage_usdt": 0.308322,
+              "net_contribution_usdt": 3.024156
+            },
+            "DOGEUSDT": {
+              "price_pnl_usdt": 8.075647,
+              "funding_pnl_usdt": 0.082054,
+              "fees_usdt": 0.305317,
+              "slippage_usdt": 0.122127,
+              "net_contribution_usdt": 7.730258
+            },
+            "DOTUSDT": {
+              "price_pnl_usdt": 5.249447,
+              "funding_pnl_usdt": 0.48484,
+              "fees_usdt": 0.292163,
+              "slippage_usdt": 0.116865,
+              "net_contribution_usdt": 5.325258
+            },
+            "ETHUSDT": {
+              "price_pnl_usdt": 20.854764,
+              "funding_pnl_usdt": 0.169028,
+              "fees_usdt": 0.344314,
+              "slippage_usdt": 0.137726,
+              "net_contribution_usdt": 20.541752
+            },
+            "LINKUSDT": {
+              "price_pnl_usdt": 9.75329,
+              "funding_pnl_usdt": 0.485612,
+              "fees_usdt": 0.558059,
+              "slippage_usdt": 0.223223,
+              "net_contribution_usdt": 9.45762
+            },
+            "LTCUSDT": {
+              "price_pnl_usdt": 7.304751,
+              "funding_pnl_usdt": 0.126428,
+              "fees_usdt": 0.302649,
+              "slippage_usdt": 0.12106,
+              "net_contribution_usdt": 7.00747
+            },
+            "SOLUSDT": {
+              "price_pnl_usdt": -9.448569,
+              "funding_pnl_usdt": 0.13636,
+              "fees_usdt": 0.298787,
+              "slippage_usdt": 0.119515,
+              "net_contribution_usdt": -9.73051
+            },
+            "TRXUSDT": {
+              "price_pnl_usdt": 2.861299,
+              "funding_pnl_usdt": 0.550744,
+              "fees_usdt": 0.230035,
+              "slippage_usdt": 0.092014,
+              "net_contribution_usdt": 3.089993
+            },
+            "XRPUSDT": {
+              "price_pnl_usdt": -4.598715,
+              "funding_pnl_usdt": 0.045842,
+              "fees_usdt": 0.246178,
+              "slippage_usdt": 0.098471,
+              "net_contribution_usdt": -4.897523
+            }
+          },
+          "drawdown_interval_attribution": {
+            "ADAUSDT": {
+              "price_pnl_change_usdt": -22.106915,
+              "funding_pnl_change_usdt": -0.034454,
+              "fees_change_usdt": -0.334893,
+              "slippage_change_usdt": -0.133957,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -21.672519
+            },
+            "AVAXUSDT": {
+              "price_pnl_change_usdt": 3.410389,
+              "funding_pnl_change_usdt": -0.019422,
+              "fees_change_usdt": -0.111037,
+              "slippage_change_usdt": -0.044415,
+              "trough_intrabar_adverse_usdt": -17.529943,
+              "net_contribution_estimate_usdt": -13.983525
+            },
+            "BCHUSDT": {
+              "price_pnl_change_usdt": -25.696289,
+              "funding_pnl_change_usdt": -0.048766,
+              "fees_change_usdt": -0.437126,
+              "slippage_change_usdt": -0.17485,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -25.133079
+            },
+            "BNBUSDT": {
+              "price_pnl_change_usdt": 8.0854,
+              "funding_pnl_change_usdt": -0.057376,
+              "fees_change_usdt": -0.229467,
+              "slippage_change_usdt": -0.091787,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 8.349278
+            },
+            "BTCUSDT": {
+              "price_pnl_change_usdt": -2.094892,
+              "funding_pnl_change_usdt": -0.412944,
+              "fees_change_usdt": -0.758032,
+              "slippage_change_usdt": -0.303213,
+              "trough_intrabar_adverse_usdt": 1.263942,
+              "net_contribution_estimate_usdt": -0.18265
+            },
+            "DOGEUSDT": {
+              "price_pnl_change_usdt": -8.075647,
+              "funding_pnl_change_usdt": -0.082054,
+              "fees_change_usdt": -0.305317,
+              "slippage_change_usdt": -0.122127,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -7.730258
+            },
+            "DOTUSDT": {
+              "price_pnl_change_usdt": -5.249447,
+              "funding_pnl_change_usdt": -0.48484,
+              "fees_change_usdt": -0.292163,
+              "slippage_change_usdt": -0.116865,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -5.325258
+            },
+            "ETHUSDT": {
+              "price_pnl_change_usdt": -20.854764,
+              "funding_pnl_change_usdt": -0.169028,
+              "fees_change_usdt": -0.344314,
+              "slippage_change_usdt": -0.137726,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -20.541752
+            },
+            "LINKUSDT": {
+              "price_pnl_change_usdt": -9.75329,
+              "funding_pnl_change_usdt": -0.485612,
+              "fees_change_usdt": -0.558059,
+              "slippage_change_usdt": -0.223223,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -9.45762
+            },
+            "LTCUSDT": {
+              "price_pnl_change_usdt": -8.16304,
+              "funding_pnl_change_usdt": -0.125142,
+              "fees_change_usdt": -0.289877,
+              "slippage_change_usdt": -0.115951,
+              "trough_intrabar_adverse_usdt": -1.077316,
+              "net_contribution_estimate_usdt": -8.959671
+            },
+            "SOLUSDT": {
+              "price_pnl_change_usdt": 6.290959,
+              "funding_pnl_change_usdt": -0.128505,
+              "fees_change_usdt": -0.285544,
+              "slippage_change_usdt": -0.114218,
+              "trough_intrabar_adverse_usdt": -8.564611,
+              "net_contribution_estimate_usdt": -2.002394
+            },
+            "TRXUSDT": {
+              "price_pnl_change_usdt": -2.474352,
+              "funding_pnl_change_usdt": -0.553111,
+              "fees_change_usdt": -0.204842,
+              "slippage_change_usdt": -0.081937,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -2.740684
+            },
+            "XRPUSDT": {
+              "price_pnl_change_usdt": 1.768514,
+              "funding_pnl_change_usdt": 0.001657,
+              "fees_change_usdt": -0.221291,
+              "slippage_change_usdt": -0.088516,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 2.079978
+            }
+          }
+        },
+        "uncapped_confirm_6h": {
+          "net_return_pct": 93.0012,
+          "end_equity_usdt": 193.001233,
+          "max_drawdown_pct": -26.5527,
+          "rebalance_count": 104,
+          "price_pnl_usdt": 96.852585,
+          "funding_pnl_usdt": 2.884175,
+          "trading_fees_usdt": 4.811091,
+          "slippage_usdt": 1.924437,
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 37.267879,
+              "funding_pnl_usdt": 1.043722,
+              "fees_usdt": 2.756155,
+              "slippage_usdt": 1.102462,
+              "net_contribution_usdt": 34.452984
+            },
+            "bear": {
+              "price_pnl_usdt": 48.423468,
+              "funding_pnl_usdt": 0.579292,
+              "fees_usdt": 2.054937,
+              "slippage_usdt": 0.821975,
+              "net_contribution_usdt": 46.125848
+            },
+            "sideways": {
+              "price_pnl_usdt": 11.161239,
+              "funding_pnl_usdt": 1.261161,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 12.422401
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          },
+          "symbol_attribution": {
+            "ADAUSDT": {
+              "price_pnl_usdt": 22.195854,
+              "funding_pnl_usdt": -0.009238,
+              "fees_usdt": 0.388568,
+              "slippage_usdt": 0.155427,
+              "net_contribution_usdt": 21.642621
+            },
+            "AVAXUSDT": {
+              "price_pnl_usdt": -2.702298,
+              "funding_pnl_usdt": 0.039833,
+              "fees_usdt": 0.200121,
+              "slippage_usdt": 0.080048,
+              "net_contribution_usdt": -2.942634
+            },
+            "BCHUSDT": {
+              "price_pnl_usdt": 37.407597,
+              "funding_pnl_usdt": -0.008009,
+              "fees_usdt": 0.427681,
+              "slippage_usdt": 0.171073,
+              "net_contribution_usdt": 36.800834
+            },
+            "BNBUSDT": {
+              "price_pnl_usdt": -11.047126,
+              "funding_pnl_usdt": 0.103872,
+              "fees_usdt": 0.279803,
+              "slippage_usdt": 0.111921,
+              "net_contribution_usdt": -11.334978
+            },
+            "BTCUSDT": {
+              "price_pnl_usdt": 6.092913,
+              "funding_pnl_usdt": 0.58064,
+              "fees_usdt": 0.854244,
+              "slippage_usdt": 0.341697,
+              "net_contribution_usdt": 5.477611
+            },
+            "DOGEUSDT": {
+              "price_pnl_usdt": 7.110989,
+              "funding_pnl_usdt": 0.095522,
+              "fees_usdt": 0.335007,
+              "slippage_usdt": 0.134003,
+              "net_contribution_usdt": 6.737501
+            },
+            "DOTUSDT": {
+              "price_pnl_usdt": 4.794557,
+              "funding_pnl_usdt": 0.556118,
+              "fees_usdt": 0.312043,
+              "slippage_usdt": 0.124817,
+              "net_contribution_usdt": 4.913814
+            },
+            "ETHUSDT": {
+              "price_pnl_usdt": 24.182263,
+              "funding_pnl_usdt": 0.066911,
+              "fees_usdt": 0.305739,
+              "slippage_usdt": 0.122296,
+              "net_contribution_usdt": 23.821139
+            },
+            "LINKUSDT": {
+              "price_pnl_usdt": 3.092667,
+              "funding_pnl_usdt": 0.473892,
+              "fees_usdt": 0.615096,
+              "slippage_usdt": 0.246038,
+              "net_contribution_usdt": 2.705423
+            },
+            "LTCUSDT": {
+              "price_pnl_usdt": 4.408849,
+              "funding_pnl_usdt": 0.153805,
+              "fees_usdt": 0.270707,
+              "slippage_usdt": 0.108283,
+              "net_contribution_usdt": 4.183665
+            },
+            "SOLUSDT": {
+              "price_pnl_usdt": -6.157007,
+              "funding_pnl_usdt": 0.172901,
+              "fees_usdt": 0.354709,
+              "slippage_usdt": 0.141884,
+              "net_contribution_usdt": -6.4807
+            },
+            "TRXUSDT": {
+              "price_pnl_usdt": 3.975204,
+              "funding_pnl_usdt": 0.546908,
+              "fees_usdt": 0.283884,
+              "slippage_usdt": 0.113553,
+              "net_contribution_usdt": 4.124675
+            },
+            "XRPUSDT": {
+              "price_pnl_usdt": 3.498125,
+              "funding_pnl_usdt": 0.111022,
+              "fees_usdt": 0.18349,
+              "slippage_usdt": 0.073396,
+              "net_contribution_usdt": 3.352261
+            }
+          },
+          "drawdown_interval_attribution": {
+            "ADAUSDT": {
+              "price_pnl_change_usdt": -22.500391,
+              "funding_pnl_change_usdt": 0.035182,
+              "fees_change_usdt": -0.363415,
+              "slippage_change_usdt": -0.145366,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -21.956428
+            },
+            "AVAXUSDT": {
+              "price_pnl_change_usdt": -0.518959,
+              "funding_pnl_change_usdt": -0.041454,
+              "fees_change_usdt": -0.187369,
+              "slippage_change_usdt": -0.074947,
+              "trough_intrabar_adverse_usdt": -17.501839,
+              "net_contribution_estimate_usdt": -17.799935
+            },
+            "BCHUSDT": {
+              "price_pnl_change_usdt": -37.407597,
+              "funding_pnl_change_usdt": 0.008009,
+              "fees_change_usdt": -0.427681,
+              "slippage_change_usdt": -0.171073,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -36.800834
+            },
+            "BNBUSDT": {
+              "price_pnl_change_usdt": 11.047126,
+              "funding_pnl_change_usdt": -0.103872,
+              "fees_change_usdt": -0.279803,
+              "slippage_change_usdt": -0.111921,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 11.334978
+            },
+            "BTCUSDT": {
+              "price_pnl_change_usdt": -5.435045,
+              "funding_pnl_change_usdt": -0.57109,
+              "fees_change_usdt": -0.795587,
+              "slippage_change_usdt": -0.318235,
+              "trough_intrabar_adverse_usdt": 1.261915,
+              "net_contribution_estimate_usdt": -3.630398
+            },
+            "DOGEUSDT": {
+              "price_pnl_change_usdt": -7.110989,
+              "funding_pnl_change_usdt": -0.095522,
+              "fees_change_usdt": -0.335007,
+              "slippage_change_usdt": -0.134003,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -6.737501
+            },
+            "DOTUSDT": {
+              "price_pnl_change_usdt": -4.794557,
+              "funding_pnl_change_usdt": -0.556118,
+              "fees_change_usdt": -0.312043,
+              "slippage_change_usdt": -0.124817,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -4.913814
+            },
+            "ETHUSDT": {
+              "price_pnl_change_usdt": -24.182263,
+              "funding_pnl_change_usdt": -0.066911,
+              "fees_change_usdt": -0.305739,
+              "slippage_change_usdt": -0.122296,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -23.821139
+            },
+            "LINKUSDT": {
+              "price_pnl_change_usdt": -3.092667,
+              "funding_pnl_change_usdt": -0.473892,
+              "fees_change_usdt": -0.615096,
+              "slippage_change_usdt": -0.246038,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -2.705423
+            },
+            "LTCUSDT": {
+              "price_pnl_change_usdt": -5.265761,
+              "funding_pnl_change_usdt": -0.152522,
+              "fees_change_usdt": -0.257955,
+              "slippage_change_usdt": -0.103182,
+              "trough_intrabar_adverse_usdt": -1.075589,
+              "net_contribution_estimate_usdt": -6.132736
+            },
+            "SOLUSDT": {
+              "price_pnl_change_usdt": 3.551594,
+              "funding_pnl_change_usdt": -0.170639,
+              "fees_change_usdt": -0.293095,
+              "slippage_change_usdt": -0.117238,
+              "trough_intrabar_adverse_usdt": -8.55088,
+              "net_contribution_estimate_usdt": -4.759592
+            },
+            "TRXUSDT": {
+              "price_pnl_change_usdt": -3.650539,
+              "funding_pnl_change_usdt": -0.548532,
+              "fees_change_usdt": -0.258721,
+              "slippage_change_usdt": -0.103489,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -3.836861
+            },
+            "XRPUSDT": {
+              "price_pnl_change_usdt": -6.375341,
+              "funding_pnl_change_usdt": -0.063278,
+              "fees_change_usdt": -0.156595,
+              "slippage_change_usdt": -0.062638,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -6.219386
+            }
+          }
+        },
+        "bear_cap_20pct_confirm_0h": {
+          "net_return_pct": 45.3225,
+          "end_equity_usdt": 145.32247,
+          "max_drawdown_pct": -26.5454,
+          "rebalance_count": 98,
+          "price_pnl_usdt": 47.501106,
+          "funding_pnl_usdt": 1.931443,
+          "trading_fees_usdt": 2.93577,
+          "slippage_usdt": 1.174308,
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 20.354308,
+              "funding_pnl_usdt": 0.813418,
+              "fees_usdt": 2.043113,
+              "slippage_usdt": 0.817245,
+              "net_contribution_usdt": 18.307367
+            },
+            "bear": {
+              "price_pnl_usdt": 21.19544,
+              "funding_pnl_usdt": 0.200768,
+              "fees_usdt": 0.892657,
+              "slippage_usdt": 0.357063,
+              "net_contribution_usdt": 20.146488
+            },
+            "sideways": {
+              "price_pnl_usdt": 5.951358,
+              "funding_pnl_usdt": 0.917258,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 6.868616
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          },
+          "symbol_attribution": {
+            "ADAUSDT": {
+              "price_pnl_usdt": 18.483505,
+              "funding_pnl_usdt": 0.057437,
+              "fees_usdt": 0.262505,
+              "slippage_usdt": 0.105002,
+              "net_contribution_usdt": 18.173435
+            },
+            "AVAXUSDT": {
+              "price_pnl_usdt": -6.685613,
+              "funding_pnl_usdt": 0.019985,
+              "fees_usdt": 0.112024,
+              "slippage_usdt": 0.044809,
+              "net_contribution_usdt": -6.822462
+            },
+            "BCHUSDT": {
+              "price_pnl_usdt": 24.141314,
+              "funding_pnl_usdt": 0.034169,
+              "fees_usdt": 0.343734,
+              "slippage_usdt": 0.137494,
+              "net_contribution_usdt": 23.694256
+            },
+            "BNBUSDT": {
+              "price_pnl_usdt": -2.732091,
+              "funding_pnl_usdt": 0.043464,
+              "fees_usdt": 0.117605,
+              "slippage_usdt": 0.047042,
+              "net_contribution_usdt": -2.853274
+            },
+            "BTCUSDT": {
+              "price_pnl_usdt": -4.360339,
+              "funding_pnl_usdt": 0.222558,
+              "fees_usdt": 0.413285,
+              "slippage_usdt": 0.165314,
+              "net_contribution_usdt": -4.71638
+            },
+            "DOGEUSDT": {
+              "price_pnl_usdt": 3.487021,
+              "funding_pnl_usdt": 0.076494,
+              "fees_usdt": 0.199472,
+              "slippage_usdt": 0.079789,
+              "net_contribution_usdt": 3.284254
+            },
+            "DOTUSDT": {
+              "price_pnl_usdt": 5.099914,
+              "funding_pnl_usdt": 0.438699,
+              "fees_usdt": 0.254856,
+              "slippage_usdt": 0.101942,
+              "net_contribution_usdt": 5.181815
+            },
+            "ETHUSDT": {
+              "price_pnl_usdt": 5.036297,
+              "funding_pnl_usdt": 0.048588,
+              "fees_usdt": 0.143359,
+              "slippage_usdt": 0.057343,
+              "net_contribution_usdt": 4.884183
+            },
+            "LINKUSDT": {
+              "price_pnl_usdt": 8.214018,
+              "funding_pnl_usdt": 0.287618,
+              "fees_usdt": 0.270711,
+              "slippage_usdt": 0.108284,
+              "net_contribution_usdt": 8.122641
+            },
+            "LTCUSDT": {
+              "price_pnl_usdt": 5.114201,
+              "funding_pnl_usdt": 0.105761,
+              "fees_usdt": 0.238119,
+              "slippage_usdt": 0.095247,
+              "net_contribution_usdt": 4.886596
+            },
+            "SOLUSDT": {
+              "price_pnl_usdt": -5.880702,
+              "funding_pnl_usdt": 0.102734,
+              "fees_usdt": 0.193707,
+              "slippage_usdt": 0.077483,
+              "net_contribution_usdt": -6.049158
+            },
+            "TRXUSDT": {
+              "price_pnl_usdt": 2.548571,
+              "funding_pnl_usdt": 0.467914,
+              "fees_usdt": 0.208861,
+              "slippage_usdt": 0.083544,
+              "net_contribution_usdt": 2.72408
+            },
+            "XRPUSDT": {
+              "price_pnl_usdt": -4.964991,
+              "funding_pnl_usdt": 0.026022,
+              "fees_usdt": 0.177534,
+              "slippage_usdt": 0.071013,
+              "net_contribution_usdt": -5.187516
+            }
+          },
+          "drawdown_interval_attribution": {
+            "ADAUSDT": {
+              "price_pnl_change_usdt": -18.745365,
+              "funding_pnl_change_usdt": -0.030026,
+              "fees_change_usdt": -0.237374,
+              "slippage_change_usdt": -0.09495,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -18.443066
+            },
+            "AVAXUSDT": {
+              "price_pnl_change_usdt": 3.459184,
+              "funding_pnl_change_usdt": -0.021608,
+              "fees_change_usdt": -0.099251,
+              "slippage_change_usdt": -0.0397,
+              "trough_intrabar_adverse_usdt": -17.529943,
+              "net_contribution_estimate_usdt": -13.953416
+            },
+            "BCHUSDT": {
+              "price_pnl_change_usdt": -24.141314,
+              "funding_pnl_change_usdt": -0.034169,
+              "fees_change_usdt": -0.343734,
+              "slippage_change_usdt": -0.137494,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -23.694256
+            },
+            "BNBUSDT": {
+              "price_pnl_change_usdt": 2.732091,
+              "funding_pnl_change_usdt": -0.043464,
+              "fees_change_usdt": -0.117605,
+              "slippage_change_usdt": -0.047042,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 2.853274
+            },
+            "BTCUSDT": {
+              "price_pnl_change_usdt": 5.955415,
+              "funding_pnl_change_usdt": -0.222189,
+              "fees_change_usdt": -0.400513,
+              "slippage_change_usdt": -0.160205,
+              "trough_intrabar_adverse_usdt": 1.263942,
+              "net_contribution_estimate_usdt": 7.557886
+            },
+            "DOGEUSDT": {
+              "price_pnl_change_usdt": -3.487021,
+              "funding_pnl_change_usdt": -0.076494,
+              "fees_change_usdt": -0.199472,
+              "slippage_change_usdt": -0.079789,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -3.284254
+            },
+            "DOTUSDT": {
+              "price_pnl_change_usdt": -5.099914,
+              "funding_pnl_change_usdt": -0.438699,
+              "fees_change_usdt": -0.254856,
+              "slippage_change_usdt": -0.101942,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -5.181815
+            },
+            "ETHUSDT": {
+              "price_pnl_change_usdt": -5.036297,
+              "funding_pnl_change_usdt": -0.048588,
+              "fees_change_usdt": -0.143359,
+              "slippage_change_usdt": -0.057343,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -4.884183
+            },
+            "LINKUSDT": {
+              "price_pnl_change_usdt": -8.214018,
+              "funding_pnl_change_usdt": -0.287618,
+              "fees_change_usdt": -0.270711,
+              "slippage_change_usdt": -0.108284,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -8.122641
+            },
+            "LTCUSDT": {
+              "price_pnl_change_usdt": -5.97249,
+              "funding_pnl_change_usdt": -0.104475,
+              "fees_change_usdt": -0.225346,
+              "slippage_change_usdt": -0.090138,
+              "trough_intrabar_adverse_usdt": -1.077316,
+              "net_contribution_estimate_usdt": -6.838797
+            },
+            "SOLUSDT": {
+              "price_pnl_change_usdt": 3.928811,
+              "funding_pnl_change_usdt": -0.104865,
+              "fees_change_usdt": -0.180464,
+              "slippage_change_usdt": -0.072186,
+              "trough_intrabar_adverse_usdt": -8.564611,
+              "net_contribution_estimate_usdt": -4.488015
+            },
+            "TRXUSDT": {
+              "price_pnl_change_usdt": -2.161624,
+              "funding_pnl_change_usdt": -0.470281,
+              "fees_change_usdt": -0.183667,
+              "slippage_change_usdt": -0.073467,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -2.374771
+            },
+            "XRPUSDT": {
+              "price_pnl_change_usdt": 4.168023,
+              "funding_pnl_change_usdt": 0.003867,
+              "fees_change_usdt": -0.152646,
+              "slippage_change_usdt": -0.061058,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 4.385595
+            }
+          }
+        },
+        "bear_cap_20pct_confirm_6h": {
+          "net_return_pct": 53.4825,
+          "end_equity_usdt": 153.482466,
+          "max_drawdown_pct": -26.5527,
+          "rebalance_count": 104,
+          "price_pnl_usdt": 55.862583,
+          "funding_pnl_usdt": 1.97167,
+          "trading_fees_usdt": 3.108419,
+          "slippage_usdt": 1.243368,
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 27.91264,
+              "funding_pnl_usdt": 0.857663,
+              "fees_usdt": 2.198803,
+              "slippage_usdt": 0.879521,
+              "net_contribution_usdt": 25.691978
+            },
+            "bear": {
+              "price_pnl_usdt": 18.826653,
+              "funding_pnl_usdt": 0.208915,
+              "fees_usdt": 0.909616,
+              "slippage_usdt": 0.363847,
+              "net_contribution_usdt": 17.762104
+            },
+            "sideways": {
+              "price_pnl_usdt": 9.123291,
+              "funding_pnl_usdt": 0.905092,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 10.028383
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          },
+          "symbol_attribution": {
+            "ADAUSDT": {
+              "price_pnl_usdt": 18.121277,
+              "funding_pnl_usdt": -0.000157,
+              "fees_usdt": 0.279592,
+              "slippage_usdt": 0.111837,
+              "net_contribution_usdt": 17.72969
+            },
+            "AVAXUSDT": {
+              "price_pnl_usdt": -3.399234,
+              "funding_pnl_usdt": 0.038977,
+              "fees_usdt": 0.177663,
+              "slippage_usdt": 0.071065,
+              "net_contribution_usdt": -3.608985
+            },
+            "BCHUSDT": {
+              "price_pnl_usdt": 30.322575,
+              "funding_pnl_usdt": -0.009258,
+              "fees_usdt": 0.326592,
+              "slippage_usdt": 0.130637,
+              "net_contribution_usdt": 29.856089
+            },
+            "BNBUSDT": {
+              "price_pnl_usdt": -5.809663,
+              "funding_pnl_usdt": 0.078927,
+              "fees_usdt": 0.114642,
+              "slippage_usdt": 0.045857,
+              "net_contribution_usdt": -5.891235
+            },
+            "BTCUSDT": {
+              "price_pnl_usdt": -2.767439,
+              "funding_pnl_usdt": 0.280806,
+              "fees_usdt": 0.460602,
+              "slippage_usdt": 0.184241,
+              "net_contribution_usdt": -3.131476
+            },
+            "DOGEUSDT": {
+              "price_pnl_usdt": 2.23809,
+              "funding_pnl_usdt": 0.081274,
+              "fees_usdt": 0.213278,
+              "slippage_usdt": 0.085311,
+              "net_contribution_usdt": 2.020775
+            },
+            "DOTUSDT": {
+              "price_pnl_usdt": 4.438901,
+              "funding_pnl_usdt": 0.491029,
+              "fees_usdt": 0.267113,
+              "slippage_usdt": 0.106845,
+              "net_contribution_usdt": 4.555972
+            },
+            "ETHUSDT": {
+              "price_pnl_usdt": 5.713487,
+              "funding_pnl_usdt": 0.008474,
+              "fees_usdt": 0.150931,
+              "slippage_usdt": 0.060373,
+              "net_contribution_usdt": 5.510657
+            },
+            "LINKUSDT": {
+              "price_pnl_usdt": 6.404182,
+              "funding_pnl_usdt": 0.266116,
+              "fees_usdt": 0.310844,
+              "slippage_usdt": 0.124338,
+              "net_contribution_usdt": 6.235116
+            },
+            "LTCUSDT": {
+              "price_pnl_usdt": 3.222628,
+              "funding_pnl_usdt": 0.126256,
+              "fees_usdt": 0.208712,
+              "slippage_usdt": 0.083485,
+              "net_contribution_usdt": 3.056688
+            },
+            "SOLUSDT": {
+              "price_pnl_usdt": -5.654011,
+              "funding_pnl_usdt": 0.121433,
+              "fees_usdt": 0.230958,
+              "slippage_usdt": 0.092383,
+              "net_contribution_usdt": -5.85592
+            },
+            "TRXUSDT": {
+              "price_pnl_usdt": 3.463298,
+              "funding_pnl_usdt": 0.444095,
+              "fees_usdt": 0.250006,
+              "slippage_usdt": 0.100002,
+              "net_contribution_usdt": 3.557385
+            },
+            "XRPUSDT": {
+              "price_pnl_usdt": -0.431509,
+              "funding_pnl_usdt": 0.043698,
+              "fees_usdt": 0.117486,
+              "slippage_usdt": 0.046994,
+              "net_contribution_usdt": -0.552291
+            }
+          },
+          "drawdown_interval_attribution": {
+            "ADAUSDT": {
+              "price_pnl_change_usdt": -18.425813,
+              "funding_pnl_change_usdt": 0.026101,
+              "fees_change_usdt": -0.25444,
+              "slippage_change_usdt": -0.101776,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -18.043497
+            },
+            "AVAXUSDT": {
+              "price_pnl_change_usdt": 0.177977,
+              "funding_pnl_change_usdt": -0.040598,
+              "fees_change_usdt": -0.164911,
+              "slippage_change_usdt": -0.065964,
+              "trough_intrabar_adverse_usdt": -17.501839,
+              "net_contribution_estimate_usdt": -17.133584
+            },
+            "BCHUSDT": {
+              "price_pnl_change_usdt": -30.322575,
+              "funding_pnl_change_usdt": 0.009258,
+              "fees_change_usdt": -0.326592,
+              "slippage_change_usdt": -0.130637,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -29.856089
+            },
+            "BNBUSDT": {
+              "price_pnl_change_usdt": 5.809663,
+              "funding_pnl_change_usdt": -0.078927,
+              "fees_change_usdt": -0.114642,
+              "slippage_change_usdt": -0.045857,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": 5.891235
+            },
+            "BTCUSDT": {
+              "price_pnl_change_usdt": 4.059235,
+              "funding_pnl_change_usdt": -0.277483,
+              "fees_change_usdt": -0.43308,
+              "slippage_change_usdt": -0.173232,
+              "trough_intrabar_adverse_usdt": 1.261915,
+              "net_contribution_estimate_usdt": 5.649979
+            },
+            "DOGEUSDT": {
+              "price_pnl_change_usdt": -2.23809,
+              "funding_pnl_change_usdt": -0.081274,
+              "fees_change_usdt": -0.213278,
+              "slippage_change_usdt": -0.085311,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -2.020775
+            },
+            "DOTUSDT": {
+              "price_pnl_change_usdt": -4.438901,
+              "funding_pnl_change_usdt": -0.491029,
+              "fees_change_usdt": -0.267113,
+              "slippage_change_usdt": -0.106845,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -4.555972
+            },
+            "ETHUSDT": {
+              "price_pnl_change_usdt": -5.713487,
+              "funding_pnl_change_usdt": -0.008474,
+              "fees_change_usdt": -0.150931,
+              "slippage_change_usdt": -0.060373,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -5.510657
+            },
+            "LINKUSDT": {
+              "price_pnl_change_usdt": -6.404182,
+              "funding_pnl_change_usdt": -0.266116,
+              "fees_change_usdt": -0.310844,
+              "slippage_change_usdt": -0.124338,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -6.235116
+            },
+            "LTCUSDT": {
+              "price_pnl_change_usdt": -4.079541,
+              "funding_pnl_change_usdt": -0.124973,
+              "fees_change_usdt": -0.19596,
+              "slippage_change_usdt": -0.078384,
+              "trough_intrabar_adverse_usdt": -1.075589,
+              "net_contribution_estimate_usdt": -5.005759
+            },
+            "SOLUSDT": {
+              "price_pnl_change_usdt": 3.801156,
+              "funding_pnl_change_usdt": -0.124042,
+              "fees_change_usdt": -0.202477,
+              "slippage_change_usdt": -0.080991,
+              "trough_intrabar_adverse_usdt": -8.55088,
+              "net_contribution_estimate_usdt": -4.590297
+            },
+            "TRXUSDT": {
+              "price_pnl_change_usdt": -3.138633,
+              "funding_pnl_change_usdt": -0.445719,
+              "fees_change_usdt": -0.224843,
+              "slippage_change_usdt": -0.089937,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -3.269572
+            },
+            "XRPUSDT": {
+              "price_pnl_change_usdt": -0.274076,
+              "funding_pnl_change_usdt": -0.015453,
+              "fees_change_usdt": -0.092215,
+              "slippage_change_usdt": -0.036886,
+              "trough_intrabar_adverse_usdt": 0.0,
+              "net_contribution_estimate_usdt": -0.160429
+            }
+          }
+        }
+      }
+    }
+  },
+  "cautions": [
+    "Previously inspected historical periods; exploratory attribution, not pristine OOS.",
+    "Per-symbol attribution sums price/funding cashflows less fees/slippage; it does not isolate cross-margin interactions or prove causality.",
+    "1h mark OHLC adverse-extreme stress is not Binance tick-level liquidation engine; static 0.5% MMR and 1% liquidation-fee proxy.",
+    "No maker queue/partial-fill model; fixed slippage; static 13-symbol universe survivorship bias."
+  ]
+}
