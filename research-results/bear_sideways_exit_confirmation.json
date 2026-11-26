@@ -31,20 +31,34 @@
   "data_source": "Official free Binance Vision monthly fundingRate and 1h markPriceKlines; ZIP CRC checked by loader",
   "data_errors": {},
   "loaded_symbols": [
-    "BTCUSDT",
-    "ADAUSDT",
     "LINKUSDT",
-    "SOLUSDT",
+    "BTCUSDT",
     "ETHUSDT",
-    "XRPUSDT",
-    "DOGEUSDT",
+    "ADAUSDT",
     "BNBUSDT",
+    "DOGEUSDT",
+    "SOLUSDT",
+    "XRPUSDT",
     "LTCUSDT",
     "BCHUSDT",
+    "AVAXUSDT",
     "DOTUSDT",
-    "TRXUSDT",
-    "AVAXUSDT"
+    "TRXUSDT"
   ],
+  "prior_frozen_baseline_oos_reference_original_timestamp_semantics": {
+    "fee_2bp": {
+      "net_return_pct": 56.4823,
+      "max_drawdown_pct": -25.5204
+    },
+    "fee_5bp": {
+      "net_return_pct": 52.5355,
+      "max_drawdown_pct": -25.5281
+    },
+    "fee_8bp": {
+      "net_return_pct": 48.6859,
+      "max_drawdown_pct": -25.5357
+    }
+  },
   "drawdown": "Hourly adverse mark: simultaneous low for longs/high for shorts, plus event-time equity; both funding-event regime decisions and hourly exit signals use only the last fully completed hourly mark candle; exits execute at the next hourly open; conservative OHLC stress, not tick-accurate",
   "limitations": [
     "1h OHLC cannot identify intrahour event order",
@@ -223,6 +237,52 @@
     }
   },
   "selected_confirmation_hours": null,
-  "oos_sequential_robustness": {},
+  "oos_sequential_robustness": {
+    "fee_2bp": {
+      "causal_control_flat": {
+        "net_return_pct": 42.7019,
+        "end_equity_usdt": 142.701947,
+        "max_drawdown_pct": -26.5015,
+        "liquidated": false,
+        "rebalance_count": 98,
+        "hourly_adverse_checks": 10072,
+        "hourly_sideways_exits": 0,
+        "price_pnl_usdt": 45.405774,
+        "funding_pnl_usdt": 1.45416,
+        "trading_fees_usdt": 2.078993,
+        "slippage_usdt": 2.078993
+      }
+    },
+    "fee_5bp": {
+      "causal_control_flat": {
+        "net_return_pct": 38.8658,
+        "end_equity_usdt": 138.865845,
+        "max_drawdown_pct": -26.5455,
+        "liquidated": false,
+        "rebalance_count": 98,
+        "hourly_adverse_checks": 10072,
+        "hourly_sideways_exits": 0,
+        "price_pnl_usdt": 44.606434,
+        "funding_pnl_usdt": 1.431845,
+        "trading_fees_usdt": 5.123168,
+        "slippage_usdt": 2.049267
+      }
+    },
+    "fee_8bp": {
+      "causal_control_flat": {
+        "net_return_pct": 35.1306,
+        "end_equity_usdt": 135.130553,
+        "max_drawdown_pct": -26.5894,
+        "liquidated": false,
+        "rebalance_count": 98,
+        "hourly_adverse_checks": 10072,
+        "hourly_sideways_exits": 0,
+        "price_pnl_usdt": 43.820959,
+        "funding_pnl_usdt": 1.409958,
+        "trading_fees_usdt": 8.080291,
+        "slippage_usdt": 2.020073
+      }
+    }
+  },
   "decision": "No candidate passed both validation gates"
 }
