@@ -34,3 +34,5 @@ jobs:
           git push origin HEAD:research/meaflow72-dd-interval-attribution-v1
 
 # Re-trigger diagnostic after workflow registration.
+
+# Rerun after snapshot instrumentation correction.
