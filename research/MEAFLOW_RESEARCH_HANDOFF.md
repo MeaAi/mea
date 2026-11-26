@@ -93,22 +93,10 @@ BTCUSDT, ETHUSDT, BNBUSDT, XRPUSDT, ADAUSDT, DOGEUSDT, SOLUSDT, LINKUSDT, LTCUSD
 - BTC/ETH/SOL attribution is included per config in report; note it is a simulator contribution estimate, not independent asset strategy performance.
 - Workflow and report are reproducible from the branch; baseline protected branches unchanged.
 
-## Current experiment in progress
-- Branch: `research/meaflow72-volatility-sizing-v1`
-- Experiment: compare equal weights against causal inverse-volatility weighting with 168h and 720h realized volatility.
-- Only completed hourly mark-price candles strictly before each rebalance are used. Raw relative weights capped 0.5x-2.0x the basket mean, then renormalized so gross notional per long/short basket is preserved.
-- Tests: 2023, 2024, 2025-01-01 through actual data cut 2025-09-06 18:24 UTC, and 2025-09-06 18:24 UTC through 2026-10-31 16:00 UTC. 100 USDT, 1x; fee sensitivity 2/5/8 bp one-way; slippage 2bp one-way.
-- Report path expected: `research-results/meaflow72_volatility_sizing.json`.
-- Workflow: `.github/workflows/meaflow72-volatility-sizing.yml`.
-- Simulator copy: `research/funding_carry_liquidation_volatility.py`.
-- Research driver: `research/meaflow72_volatility_sizing.py`.
-- Completed; see section 9 above. Do not rerun unless correcting methodology.
-
-## Next research queue after current experiment
-- Inspect volatility-sizing results; if no stable net benefit, do not promote.
-- Then prioritize missing market-microstructure validation: maker/taker split, limit-order non-fill and missed-trade simulation, fill probability, whale-size trade analysis, BTC/ETH/SOL separate results, realistic execution costs and out-of-sample design. Current funding carry data alone does not satisfy those order-flow requirements.
-- Before any new experiment, check this ledger and the corresponding report/run to avoid repeating prior tests.
-
+## Current experiment status
+- No experiment is currently running in this ledger snapshot.
+- Most recent completed funding-carry parameter study: causal inverse-volatility sizing, experiment 9 above. Do not rerun without a methodological correction.
+- Existing market-microstructure pilot tests are already recorded as EXP-010 through EXP-013 below. They were present on `research/binance-data-pipeline` and were missed by the previous chat summary; do not repeat them as untested work.
 
 ## Experiment registry — Binance microstructure work reconciled 2026-11-27
 
