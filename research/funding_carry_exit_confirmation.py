@@ -179,7 +179,8 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
      if active_mode in ('both','short_only'):
       for s in shorts:target[s]=-leg/k/px[s]
     turnover=sum(abs((target[s]-qty[s])*px[s]) for s in symbols if s in px)
-    fee=turnover*fee_bp/10000;slip=turnover*slip_bp/10000    for z in symbols:
+    fee=turnover*fee_bp/10000;slip=turnover*slip_bp/10000
+    for z in symbols:
      tr=abs((target[z]-qty[z])*px[z]) if z in px else 0.
      fees_by_symbol[z]+=tr*fee_bp/10000;slippage_by_symbol[z]+=tr*slip_bp/10000
      regime_pnl[rg]['fees_usdt']+=tr*fee_bp/10000;regime_pnl[rg]['slippage_usdt']+=tr*slip_bp/10000
