@@ -69,3 +69,5 @@ def main():
     Path("research-results/bear_sideways_exit_confirmation.json").write_text(json.dumps(report,indent=2),encoding="utf-8")
     print("REPORT research-results/bear_sideways_exit_confirmation.json",flush=True)
 if __name__=="__main__": main()
+
+# Triggered after isolated simulator syntax correction; no strategy logic change.
