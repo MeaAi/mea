@@ -78,8 +78,9 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
  equity=100.; peak=100.; maxdd=0.; peak_time=first; maxdd_peak_time=first; maxdd_trough_time=first; maxdd_peak_equity=100.; maxdd_trough_equity=100.; qty={s:0. for s in symbols}; prev={}; last_rebal=None
  fee_total=slip_total=price_pnl=funding_pnl=0.; liquidated=False; liq_time=None; liq_equity=None; last_regime=None; sideways_anchor_qty=None
  price_by_symbol={z:0. for z in symbols}; funding_by_symbol={z:0. for z in symbols}; fees_by_symbol={z:0. for z in symbols}; slippage_by_symbol={z:0. for z in symbols}
- cohort_qty={z:{k:0. for k in ('bull','bear','sideways','unknown')} for z in symbols}
- entry_regime_pnl={k:{'price_pnl_usdt':0.,'funding_pnl_usdt':0.} for k in ('bull','bear','sideways','unknown')}
+ cohort_keys=('bull_mild','bull_strong','bear_mild','bear_strong','sideways','unknown')
+ cohort_qty={z:{k:0. for k in cohort_keys} for z in symbols}
+ entry_regime_pnl={k:{'price_pnl_usdt':0.,'funding_pnl_usdt':0.} for k in cohort_keys}
  regime_pnl={k:{'price_pnl_usdt':0.,'funding_pnl_usdt':0.,'fees_usdt':0.,'slippage_usdt':0.} for k in ('bull','bear','sideways','unknown')}
  def capture_snapshot(ts, adverse=False):
   snap={}
@@ -103,6 +104,15 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
   ret=btc_marks[btc_times[j]][3]/btc_marks[btc_times[k]][3]-1
   threshold=regime_threshold_pct/100.0
   return 'bull' if ret>threshold else ('bear' if ret<-threshold else 'sideways')
+ def entry_cohort_at(ts):
+  j=bisect.bisect_right(btc_times,ts)-1; k=bisect.bisect_right(btc_times,ts-30*DAY)-1
+  if j<0 or k<0:return 'unknown'
+  ret=btc_marks[btc_times[j]][3]/btc_marks[btc_times[k]][3]-1
+  if ret>0.10:return 'bull_strong'
+  if ret>0.05:return 'bull_mild'
+  if ret<-0.10:return 'bear_strong'
+  if ret<-0.05:return 'bear_mild'
+  return 'sideways'
  rebalances=0; hourly_checks=0; hourly_sideways_exits=0; sideways_streak=0
  lookback=lookback_days*DAY; interval=rebalance_days*DAY
  for ix,t in enumerate(events):
@@ -238,7 +248,7 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
       remaining=old_q-math.copysign(close_amt,old_q)
      else: remaining=0.
      add_q=new_q-remaining
-     cohort_qty[z][rg]+=add_q
+     cohort_qty[z][entry_cohort_at(t-3600000)]+=add_q
     qty=target;last_rebal=t;last_regime=rg;rebalances+=1
   # Save latest event mark as anchor for next interval.
   prev=px.copy()
