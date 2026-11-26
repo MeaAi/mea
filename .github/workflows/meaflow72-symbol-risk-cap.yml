@@ -33,3 +33,5 @@ jobs:
           git commit -m "Publish MEAFLOW-72 per-symbol risk cap results"
           git pull --rebase origin research/meaflow72-symbol-risk-cap-v1
           git push origin HEAD:research/meaflow72-symbol-risk-cap-v1
+
+# Trigger isolated risk-cap run.
