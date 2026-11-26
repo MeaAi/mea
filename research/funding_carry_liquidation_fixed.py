@@ -148,10 +148,10 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
     hourly_checks+=1
     # Track adverse intrabar portfolio equity using simultaneous adverse extremes.
     if equity>peak:
-     peak=equity; peak_time=ht
+     peak=equity; peak_time=ht; peak_snapshot=capture_snapshot(ht)
     dd=(worst/peak-1)*100 if peak else -100
     if dd<maxdd:
-     maxdd=dd; maxdd_peak_time=peak_time; maxdd_trough_time=ht; maxdd_peak_equity=peak; maxdd_trough_equity=worst
+     maxdd=dd; maxdd_peak_time=peak_time; maxdd_trough_time=ht; maxdd_peak_equity=peak; maxdd_trough_equity=worst; trough_snapshot=capture_snapshot(ht, adverse=True)
     if worst<=notion*(mmr+liq_fee):
      equity=max(0.,worst-notion*liq_fee);liquidated=True
      liq_time=datetime.fromtimestamp(ht/1000,timezone.utc).isoformat();liq_equity=equity
