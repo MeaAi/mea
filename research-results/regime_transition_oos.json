@@ -1,0 +1,2799 @@
+{
+  "experiment": "MEAFLOW-52 regime-transition attribution",
+  "parent_snapshot": "archive/baseline-7d-7d-20pct-2026-11-25",
+  "strategy": "7d trailing funding rank; 7d rebalance; bottom 20% long / top 20% short; bull both, bear short-only, sideways/unknown flat",
+  "regime": "causal BTC 30d mark-price return; bull > +5%, bear < -5%, otherwise sideways",
+  "split": "chronological 50/20/30; only final 30% OOS reported",
+  "oos_utc": {
+    "start": "2025-09-06T18:24:00+00:00",
+    "end": "2026-10-31T16:00:00+00:00"
+  },
+  "capital_usdt": 100,
+  "leverage": 1,
+  "data_source": "official free Binance Vision monthly fundingRate and 1h markPriceKlines",
+  "data_errors": {},
+  "method_note": "Transition segment is the holding interval between consecutive strategy rebalances; its label is entry regime -> exit regime. Regime changes trigger the same immediate rebalance condition as the frozen baseline. Hourly adverse DD uses simultaneous adverse OHLC extremes. Funding cashflow is applied at settlement.",
+  "frozen_baseline_control_fee5": {
+    "net_return_pct": 52.5355,
+    "end_equity_usdt": 152.535542,
+    "max_drawdown_pct": -25.5281,
+    "rebalance_count": 95,
+    "hourly_adverse_checks": 10072,
+    "liquidated": false,
+    "price_pnl_usdt": 58.268628,
+    "funding_pnl_usdt": 1.504488,
+    "trading_fees_usdt": 5.169696,
+    "slippage_usdt": 2.067878
+  },
+  "transition_results": {
+    "fee_2bp": {
+      "fee_bp_one_way": 2,
+      "slippage_bp_one_way": 2,
+      "start_equity_usdt": 100.0,
+      "end_equity_usdt": 156.48234,
+      "net_return_pct": 56.48234,
+      "max_drawdown_pct": -25.52042,
+      "rebalances": 95,
+      "hourly_adverse_checks": 10072,
+      "liquidated": false,
+      "price_pnl_usdt": 59.149974,
+      "funding_pnl_usdt": 1.524966,
+      "fees_usdt": 2.0963,
+      "slippage_usdt": 2.0963,
+      "transition_attribution": {
+        "sideways->sideways": {
+          "segments": 11,
+          "net_pnl_usdt": 0.0,
+          "mean_segment_return_pct": 0.0,
+          "median_segment_return_pct": 0.0,
+          "win_rate_pct": 0.0
+        },
+        "sideways->bull": {
+          "segments": 20,
+          "net_pnl_usdt": 0.0,
+          "mean_segment_return_pct": 0.0,
+          "median_segment_return_pct": 0.0,
+          "win_rate_pct": 0.0
+        },
+        "bull->bull": {
+          "segments": 8,
+          "net_pnl_usdt": 11.694589,
+          "mean_segment_return_pct": 1.13253,
+          "median_segment_return_pct": 1.3085,
+          "win_rate_pct": 75.0
+        },
+        "bull->sideways": {
+          "segments": 20,
+          "net_pnl_usdt": 22.909839,
+          "mean_segment_return_pct": 0.84127,
+          "median_segment_return_pct": 0.53853,
+          "win_rate_pct": 75.0
+        },
+        "sideways->bear": {
+          "segments": 11,
+          "net_pnl_usdt": 0.0,
+          "mean_segment_return_pct": 0.0,
+          "median_segment_return_pct": 0.0,
+          "win_rate_pct": 0.0
+        },
+        "bear->sideways": {
+          "segments": 10,
+          "net_pnl_usdt": -30.505082,
+          "mean_segment_return_pct": -2.70797,
+          "median_segment_return_pct": -3.73641,
+          "win_rate_pct": 10.0
+        },
+        "bear->bear": {
+          "segments": 15,
+          "net_pnl_usdt": 56.575593,
+          "mean_segment_return_pct": 3.69487,
+          "median_segment_return_pct": 3.30474,
+          "win_rate_pct": 60.0
+        }
+      },
+      "segments": [
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 100.0,
+          "end_equity_before_rebalance": 100.0
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 100.0,
+          "end_equity_before_rebalance": 100.0
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 100.0,
+          "end_equity_before_rebalance": 100.0
+        },
+        {
+          "transition": "bull->bull",
+          "entry_regime": "bull",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 1.2611289402037045,
+          "return_pct": 1.2616335936411538,
+          "start_equity": 99.96,
+          "end_equity_before_rebalance": 101.2211289402037
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -0.19658805082255526,
+          "return_pct": -0.19429480919584963,
+          "start_equity": 101.18028970315436,
+          "end_equity_before_rebalance": 100.9837016523318
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 100.95136435520008,
+          "end_equity_before_rebalance": 100.95136435520008
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -8.866235870522473,
+          "return_pct": -8.786195056094058,
+          "start_equity": 100.910983809458,
+          "end_equity_before_rebalance": 92.04474793893553
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 92.00081735002472,
+          "end_equity_before_rebalance": 92.00081735002472
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -4.153504654450245,
+          "return_pct": -4.516445441272577,
+          "start_equity": 91.96401702308471,
+          "end_equity_before_rebalance": 87.81051236863446
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 87.77205133037026,
+          "end_equity_before_rebalance": 87.77205133037026
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.19094601822230572,
+          "return_pct": 0.21763468472917324,
+          "start_equity": 87.73694250983812,
+          "end_equity_before_rebalance": 87.92788852806042
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 87.89312167984936,
+          "end_equity_before_rebalance": 87.89312167984936
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 6.9653753791699415,
+          "return_pct": 7.927995400606158,
+          "start_equity": 87.85796443117742,
+          "end_equity_before_rebalance": 94.82333981034736
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -5.154528670566108,
+          "return_pct": -5.4380931995717035,
+          "start_equity": 94.78558901807844,
+          "end_equity_before_rebalance": 89.63106034751233
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 89.59106400433018,
+          "end_equity_before_rebalance": 89.59106400433018
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 11.958586166267636,
+          "return_pct": 13.353308890600246,
+          "start_equity": 89.55522757872845,
+          "end_equity_before_rebalance": 101.51381374499609
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 6.219338703220828,
+          "return_pct": 6.12902450497157,
+          "start_equity": 101.47354930912725,
+          "end_equity_before_rebalance": 107.69288801234808
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": -9.847691756248238,
+          "return_pct": -9.147884208911606,
+          "start_equity": 107.64993884219584,
+          "end_equity_before_rebalance": 97.8022470859476
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 3.2305595051734457,
+          "return_pct": 3.304743926662068,
+          "start_equity": 97.75521422733782,
+          "end_equity_before_rebalance": 100.98577373251126
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 10.020625890142966,
+          "return_pct": 9.926640673540344,
+          "start_equity": 100.94679781099714,
+          "end_equity_before_rebalance": 110.9674237011401
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -4.143177471914598,
+          "return_pct": -3.736408141374592,
+          "start_equity": 110.88664072952044,
+          "end_equity_before_rebalance": 106.74346325760584
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 106.69741441225209,
+          "end_equity_before_rebalance": 106.69741441225209
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 106.69741441225209,
+          "end_equity_before_rebalance": 106.69741441225209
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 106.69741441225209,
+          "end_equity_before_rebalance": 106.69741441225209
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 106.69741441225209,
+          "end_equity_before_rebalance": 106.69741441225209
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 3.1871594467061612,
+          "return_pct": 2.9882962377280275,
+          "start_equity": 106.65473544648718,
+          "end_equity_before_rebalance": 109.84189489319334
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 109.80373178453421,
+          "end_equity_before_rebalance": 109.80373178453421
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -0.2708547860066943,
+          "return_pct": -0.24677045749857962,
+          "start_equity": 109.7598102918204,
+          "end_equity_before_rebalance": 109.4889555058137
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 109.44492502489139,
+          "end_equity_before_rebalance": 109.44492502489139
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 8.220422773556919,
+          "return_pct": 7.514018815024959,
+          "start_equity": 109.40114705488143,
+          "end_equity_before_rebalance": 117.62156982843835
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": -2.8964575088079414,
+          "return_pct": -2.4635010079132935,
+          "start_equity": 117.57484569739977,
+          "end_equity_before_rebalance": 114.67838818859182
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": -0.15347291442408562,
+          "return_pct": -0.13383171213476874,
+          "start_equity": 114.67604499413503,
+          "end_equity_before_rebalance": 114.52257207971094
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": -3.7789133499452134,
+          "return_pct": -3.3010561293921215,
+          "start_equity": 114.47588898287205,
+          "end_equity_before_rebalance": 110.69697563292684
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 9.107712636523914,
+          "return_pct": 8.23112668945727,
+          "start_equity": 110.649647127767,
+          "end_equity_before_rebalance": 119.75735976429091
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 119.71672290548999,
+          "end_equity_before_rebalance": 119.71672290548999
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -6.215650738183015,
+          "return_pct": -5.194042939422305,
+          "start_equity": 119.66883621632779,
+          "end_equity_before_rebalance": 113.45318547814477
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 113.4028127589852,
+          "end_equity_before_rebalance": 113.4028127589852
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.1767631289362157,
+          "return_pct": 0.1559342825623089,
+          "start_equity": 113.35745163388161,
+          "end_equity_before_rebalance": 113.53421476281783
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 113.48950968689358,
+          "end_equity_before_rebalance": 113.48950968689358
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 3.316664813096139,
+          "return_pct": 2.9236111945977417,
+          "start_equity": 113.44411388301883,
+          "end_equity_before_rebalance": 116.76077869611497
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 116.7160929181365,
+          "end_equity_before_rebalance": 116.7160929181365
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -2.0669341465195714,
+          "return_pct": -1.7716162350210674,
+          "start_equity": 116.66940648096924,
+          "end_equity_before_rebalance": 114.60247233444967
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 114.55767339524945,
+          "end_equity_before_rebalance": 114.55767339524945
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -0.641270640588715,
+          "return_pct": -0.5600037365248278,
+          "start_equity": 114.51185032589136,
+          "end_equity_before_rebalance": 113.87057968530264
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 113.82675847808156,
+          "end_equity_before_rebalance": 113.82675847808156
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -0.33540387708214325,
+          "return_pct": -0.2947796254636259,
+          "start_equity": 113.78122777469032,
+          "end_equity_before_rebalance": 113.44582389760818
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 113.40015974099208,
+          "end_equity_before_rebalance": 113.40015974099208
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.6104509681000394,
+          "return_pct": 0.5385312045356416,
+          "start_equity": 113.35479967709568,
+          "end_equity_before_rebalance": 113.96525064519572
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 113.92174609056475,
+          "end_equity_before_rebalance": 113.92174609056475
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 113.92174609056475,
+          "end_equity_before_rebalance": 113.92174609056475
+        },
+        {
+          "transition": "bull->bull",
+          "entry_regime": "bull",
+          "exit_regime": "bull",
+          "net_pnl_usdt": -0.03821192628400638,
+          "return_pct": -0.03355568052870739,
+          "start_equity": 113.87617739212853,
+          "end_equity_before_rebalance": 113.83796546584452
+        },
+        {
+          "transition": "bull->bull",
+          "entry_regime": "bull",
+          "exit_regime": "bull",
+          "net_pnl_usdt": -2.7012909855288,
+          "return_pct": -2.373889352387659,
+          "start_equity": 113.79178152561488,
+          "end_equity_before_rebalance": 111.09049054008608
+        },
+        {
+          "transition": "bull->bull",
+          "entry_regime": "bull",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 2.949146445263338,
+          "return_pct": 2.6558684916811126,
+          "start_equity": 111.04263838743752,
+          "end_equity_before_rebalance": 113.99178483270086
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 1.7636520296001947,
+          "return_pct": 1.5481099786431862,
+          "start_equity": 113.92291593817635,
+          "end_equity_before_rebalance": 115.68656796777654
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 115.64387466404148,
+          "end_equity_before_rebalance": 115.64387466404148
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 115.64387466404148,
+          "end_equity_before_rebalance": 115.64387466404148
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 14.744155747983271,
+          "return_pct": 12.754722905248528,
+          "start_equity": 115.59761711417586,
+          "end_equity_before_rebalance": 130.34177286215913
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": -4.15631290770898,
+          "return_pct": -3.1910451962138486,
+          "start_equity": 130.2492648064155,
+          "end_equity_before_rebalance": 126.09295189870653
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 15.249969654020944,
+          "return_pct": 12.099392001978181,
+          "start_equity": 126.03914024380448,
+          "end_equity_before_rebalance": 141.28910989782543
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 1.9467772584268062,
+          "return_pct": 1.3784116144082148,
+          "start_equity": 141.23337601610456,
+          "end_equity_before_rebalance": 143.18015327453136
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -7.5896804767214405,
+          "return_pct": -5.302920464009775,
+          "start_equity": 143.12265341770828,
+          "end_equity_before_rebalance": 135.53297294098684
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 135.4726517307989,
+          "end_equity_before_rebalance": 135.4726517307989
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.8679808640986835,
+          "return_pct": 0.6409619833103397,
+          "start_equity": 135.41846267010658,
+          "end_equity_before_rebalance": 136.28644353420526
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 136.23300356811893,
+          "end_equity_before_rebalance": 136.23300356811893
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 136.23300356811893,
+          "end_equity_before_rebalance": 136.23300356811893
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 136.23300356811893,
+          "end_equity_before_rebalance": 136.23300356811893
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.004054133390809511,
+          "return_pct": 0.0029770727994371526,
+          "start_equity": 136.17851036669168,
+          "end_equity_before_rebalance": 136.1825645000825
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 136.12848661377615,
+          "end_equity_before_rebalance": 136.12848661377615
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -3.826042467440544,
+          "return_pct": -2.811735876928445,
+          "start_equity": 136.07403521913065,
+          "end_equity_before_rebalance": 132.2479927516901
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 132.19488297508622,
+          "end_equity_before_rebalance": 132.19488297508622
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 132.19488297508622,
+          "end_equity_before_rebalance": 132.19488297508622
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 132.19488297508622,
+          "end_equity_before_rebalance": 132.19488297508622
+        },
+        {
+          "transition": "bull->bull",
+          "entry_regime": "bull",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.7544465704010292,
+          "return_pct": 0.5709362214354252,
+          "start_equity": 132.14200502189618,
+          "end_equity_before_rebalance": 132.8964515922972
+        },
+        {
+          "transition": "bull->bull",
+          "entry_regime": "bull",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 3.1516590860154565,
+          "return_pct": 2.3730529651567966,
+          "start_equity": 132.81031364621134,
+          "end_equity_before_rebalance": 135.9619727322268
+        },
+        {
+          "transition": "bull->bull",
+          "entry_regime": "bull",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 4.4817979036613735,
+          "return_pct": 3.297695215083274,
+          "start_equity": 135.90697779352516,
+          "end_equity_before_rebalance": 140.38877569718653
+        },
+        {
+          "transition": "bull->bull",
+          "entry_regime": "bull",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 1.83591344918716,
+          "return_pct": 1.3084953487487283,
+          "start_equity": 140.3072201168153,
+          "end_equity_before_rebalance": 142.14313356600246
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.6598147081220418,
+          "return_pct": 0.46438253309581956,
+          "start_equity": 142.08430789232526,
+          "end_equity_before_rebalance": 142.7441226004473
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 142.68799837116737,
+          "end_equity_before_rebalance": 142.68799837116737
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 7.633239179597524,
+          "return_pct": 5.351742111633273,
+          "start_equity": 142.6309231718189,
+          "end_equity_before_rebalance": 150.26416235141642
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 150.2023321783416,
+          "end_equity_before_rebalance": 150.2023321783416
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -1.455284688610277,
+          "return_pct": -0.9692705927467404,
+          "start_equity": 150.14225124547028,
+          "end_equity_before_rebalance": 148.68696655686
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 148.62651910579007,
+          "end_equity_before_rebalance": 148.62651910579007
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 2.874195204854317,
+          "return_pct": 1.9346112391590564,
+          "start_equity": 148.56706849814776,
+          "end_equity_before_rebalance": 151.44126370300208
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 151.38341733109877,
+          "end_equity_before_rebalance": 151.38341733109877
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.23161787259897437,
+          "return_pct": 0.15306204662755007,
+          "start_equity": 151.32286396416632,
+          "end_equity_before_rebalance": 151.5544818367653
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 151.49277473523108,
+          "end_equity_before_rebalance": 151.49277473523108
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 5.082244247360336,
+          "return_pct": 3.3561191069539253,
+          "start_equity": 151.43217762533698,
+          "end_equity_before_rebalance": 156.5144218726973
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 156.4589010500984,
+          "end_equity_before_rebalance": 156.4589010500984
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 2.1235158646344416,
+          "return_pct": 1.357778686045208,
+          "start_equity": 156.39631748967835,
+          "end_equity_before_rebalance": 158.5198333543128
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 158.45926320428387,
+          "end_equity_before_rebalance": 158.45926320428387
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 2.3736607270326715,
+          "return_pct": 1.4985621687511275,
+          "start_equity": 158.39587949900215,
+          "end_equity_before_rebalance": 160.76954022603482
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 160.70626705917297,
+          "end_equity_before_rebalance": 160.70626705917297
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -2.8837580371304057,
+          "return_pct": -1.7951459235058587,
+          "start_equity": 160.6419845523493,
+          "end_equity_before_rebalance": 157.7582265152189
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 157.692786209212,
+          "end_equity_before_rebalance": 157.692786209212
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": -1.1473694462659694,
+          "return_pct": -0.7278890843961716,
+          "start_equity": 157.6297090947283,
+          "end_equity_before_rebalance": 156.48233964846233
+        }
+      ]
+    },
+    "fee_5bp": {
+      "fee_bp_one_way": 5,
+      "slippage_bp_one_way": 2,
+      "start_equity_usdt": 100.0,
+      "end_equity_usdt": 152.535542,
+      "net_return_pct": 52.53554,
+      "max_drawdown_pct": -25.52806,
+      "rebalances": 95,
+      "hourly_adverse_checks": 10072,
+      "liquidated": false,
+      "price_pnl_usdt": 58.268628,
+      "funding_pnl_usdt": 1.504488,
+      "fees_usdt": 5.169696,
+      "slippage_usdt": 2.067878,
+      "transition_attribution": {
+        "sideways->sideways": {
+          "segments": 11,
+          "net_pnl_usdt": 0.0,
+          "mean_segment_return_pct": 0.0,
+          "median_segment_return_pct": 0.0,
+          "win_rate_pct": 0.0
+        },
+        "sideways->bull": {
+          "segments": 20,
+          "net_pnl_usdt": 0.0,
+          "mean_segment_return_pct": 0.0,
+          "median_segment_return_pct": 0.0,
+          "win_rate_pct": 0.0
+        },
+        "bull->bull": {
+          "segments": 8,
+          "net_pnl_usdt": 11.498242,
+          "mean_segment_return_pct": 1.13296,
+          "median_segment_return_pct": 1.30907,
+          "win_rate_pct": 75.0
+        },
+        "bull->sideways": {
+          "segments": 20,
+          "net_pnl_usdt": 22.480854,
+          "mean_segment_return_pct": 0.84153,
+          "median_segment_return_pct": 0.53869,
+          "win_rate_pct": 75.0
+        },
+        "sideways->bear": {
+          "segments": 11,
+          "net_pnl_usdt": 0.0,
+          "mean_segment_return_pct": 0.0,
+          "median_segment_return_pct": 0.0,
+          "win_rate_pct": 0.0
+        },
+        "bear->sideways": {
+          "segments": 10,
+          "net_pnl_usdt": -30.278331,
+          "mean_segment_return_pct": -2.70886,
+          "median_segment_return_pct": -3.73845,
+          "win_rate_pct": 10.0
+        },
+        "bear->bear": {
+          "segments": 15,
+          "net_pnl_usdt": 56.07235,
+          "mean_segment_return_pct": 3.69595,
+          "median_segment_return_pct": 3.30594,
+          "win_rate_pct": 60.0
+        }
+      },
+      "segments": [
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 100.0,
+          "end_equity_before_rebalance": 100.0
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 100.0,
+          "end_equity_before_rebalance": 100.0
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 100.0,
+          "end_equity_before_rebalance": 100.0
+        },
+        {
+          "transition": "bull->bull",
+          "entry_regime": "bull",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 1.2611289402037045,
+          "return_pct": 1.2620123488479074,
+          "start_equity": 99.93,
+          "end_equity_before_rebalance": 101.19112894020371
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -0.19652978589721215,
+          "return_pct": -0.19435368489374438,
+          "start_equity": 101.11966027536738,
+          "end_equity_before_rebalance": 100.92313048947017
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 100.86655699175962,
+          "end_equity_before_rebalance": 100.86655699175962
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -8.858787510684778,
+          "return_pct": -8.788832761004283,
+          "start_equity": 100.7959504018654,
+          "end_equity_before_rebalance": 91.93716289118062
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 91.86034894481027,
+          "end_equity_before_rebalance": 91.86034894481027
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -4.147163013238057,
+          "return_pct": -4.517801324022875,
+          "start_equity": 91.7960467005489,
+          "end_equity_before_rebalance": 87.64888368731084
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 87.58167963553592,
+          "end_equity_before_rebalance": 87.58167963553592
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.190531869110373,
+          "return_pct": 0.21770002086989315,
+          "start_equity": 87.52037245979105,
+          "end_equity_before_rebalance": 87.71090432890142
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 87.65019430671714,
+          "end_equity_before_rebalance": 87.65019430671714
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 6.9461238119097,
+          "return_pct": 7.930375465271733,
+          "start_equity": 87.58883917070244,
+          "end_equity_before_rebalance": 94.53496298261214
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -5.138852713260036,
+          "return_pct": -5.43971807503143,
+          "start_equity": 94.46910009633805,
+          "end_equity_before_rebalance": 89.33024738307802
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 89.2604666471113,
+          "end_equity_before_rebalance": 89.2604666471113
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 11.914458138248548,
+          "return_pct": 13.357317689426607,
+          "start_equity": 89.19798432045832,
+          "end_equity_before_rebalance": 101.11244245870687
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 6.194748316128795,
+          "return_pct": 6.1308490239235125,
+          "start_equity": 101.04225845320835,
+          "end_equity_before_rebalance": 107.23700676933714
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": -9.80600489984127,
+          "return_pct": -9.150622326134672,
+          "start_equity": 107.16216395287988,
+          "end_equity_before_rebalance": 97.35615905303861
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 3.2158245274219297,
+          "return_pct": 3.3059377803881462,
+          "start_equity": 97.2741999713122,
+          "end_equity_before_rebalance": 100.49002449873413
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 9.97143363836932,
+          "return_pct": 9.929515954513413,
+          "start_equity": 100.42215233902566,
+          "end_equity_before_rebalance": 110.39358597739498
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -4.121752161221991,
+          "return_pct": -3.73845135547326,
+          "start_equity": 110.25293013877416,
+          "end_equity_before_rebalance": 106.13117797755217
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 106.05100922397978,
+          "end_equity_before_rebalance": 106.05100922397978
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 106.05100922397978,
+          "end_equity_before_rebalance": 106.05100922397978
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 106.05100922397978,
+          "end_equity_before_rebalance": 106.05100922397978
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 106.05100922397978,
+          "end_equity_before_rebalance": 106.05100922397978
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 3.1678506713850965,
+          "return_pct": 2.9891933545809435,
+          "start_equity": 105.97677351752299,
+          "end_equity_before_rebalance": 109.14462418890808
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 109.07824335513848,
+          "end_equity_before_rebalance": 109.07824335513848
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -0.26906521100676173,
+          "return_pct": -0.2468445404938624,
+          "start_equity": 109.00188858478988,
+          "end_equity_before_rebalance": 108.73282337378312
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 108.65627913424493,
+          "end_equity_before_rebalance": 108.65627913424493
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 8.16118747654987,
+          "return_pct": 7.516274599718575,
+          "start_equity": 108.58021973885096,
+          "end_equity_before_rebalance": 116.74140721540083
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": -2.874783307271457,
+          "return_pct": -2.464235468200715,
+          "start_equity": 116.66025200791823,
+          "end_equity_before_rebalance": 113.78546870064677
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": -0.15227792940258666,
+          "return_pct": -0.13383379322017275,
+          "start_equity": 113.78137444857946,
+          "end_equity_before_rebalance": 113.62909651917687
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": -3.7494312429487877,
+          "return_pct": -3.3020660632918974,
+          "start_equity": 113.54803844266242,
+          "end_equity_before_rebalance": 109.79860719971363
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 9.03379840820243,
+          "return_pct": 8.233770030794885,
+          "start_equity": 109.71642849406028,
+          "end_equity_before_rebalance": 118.75022690226271
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 118.67968953368825,
+          "end_equity_before_rebalance": 118.67968953368825
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -6.161808325139006,
+          "return_pct": -5.195602243817254,
+          "start_equity": 118.59661375101467,
+          "end_equity_before_rebalance": 112.43480542587567
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 112.34741677690468,
+          "end_equity_before_rebalance": 112.34741677690468
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.17511806307305733,
+          "return_pct": 0.15598109561625328,
+          "start_equity": 112.26877358516084,
+          "end_equity_before_rebalance": 112.4438916482339
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 112.36638585776235,
+          "end_equity_before_rebalance": 112.36638585776235
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 3.283842173408047,
+          "return_pct": 2.9244888923445123,
+          "start_equity": 112.28772938766193,
+          "end_equity_before_rebalance": 115.57157156106997
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 115.49414533971314,
+          "end_equity_before_rebalance": 115.49414533971314
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -2.0452945841254717,
+          "return_pct": -1.7721480921916166,
+          "start_equity": 115.41329943797534,
+          "end_equity_before_rebalance": 113.36800485384987
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 113.29042749185147,
+          "end_equity_before_rebalance": 113.29042749185147
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -0.6341768548285245,
+          "return_pct": -0.5601718553289836,
+          "start_equity": 113.21112419260717,
+          "end_equity_before_rebalance": 112.57694733777865
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 112.50110854395317,
+          "end_equity_before_rebalance": 112.50110854395317
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -0.3314976942697285,
+          "return_pct": -0.2948681212983528,
+          "start_equity": 112.4223577679724,
+          "end_equity_before_rebalance": 112.09086007370267
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 112.01187847447005,
+          "end_equity_before_rebalance": 112.01187847447005
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.602977630804233,
+          "return_pct": 0.5386928770677812,
+          "start_equity": 111.93347015953792,
+          "end_equity_before_rebalance": 112.53644779034215
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 112.46124686407632,
+          "end_equity_before_rebalance": 112.46124686407632
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 112.46124686407632,
+          "end_equity_before_rebalance": 112.46124686407632
+        },
+        {
+          "transition": "bull->bull",
+          "entry_regime": "bull",
+          "exit_regime": "bull",
+          "net_pnl_usdt": -0.03772204186161332,
+          "return_pct": -0.033565754284481386,
+          "start_equity": 112.38252399127146,
+          "end_equity_before_rebalance": 112.34480194940984
+        },
+        {
+          "transition": "bull->bull",
+          "entry_regime": "bull",
+          "exit_regime": "bull",
+          "net_pnl_usdt": -2.6658593162227078,
+          "return_pct": -2.3746121859611224,
+          "start_equity": 112.2650398234901,
+          "end_equity_before_rebalance": 109.59918050726739
+        },
+        {
+          "transition": "bull->bull",
+          "entry_regime": "bull",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 2.9095562727770243,
+          "return_pct": 2.6567277741999407,
+          "start_equity": 109.5165376382318,
+          "end_equity_before_rebalance": 112.42609391100882
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 1.7394280561286024,
+          "return_pct": 1.5488123713637725,
+          "start_equity": 112.30721605077282,
+          "end_equity_before_rebalance": 114.04664410690143
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 113.97295702130367,
+          "end_equity_before_rebalance": 113.97295702130367
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 113.97295702130367,
+          "end_equity_before_rebalance": 113.97295702130367
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 14.531120081043369,
+          "return_pct": 12.758552002488255,
+          "start_equity": 113.89317595138876,
+          "end_equity_before_rebalance": 128.42429603243212
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": -4.095168782363487,
+          "return_pct": -3.1927463660804234,
+          "start_equity": 128.2647699757913,
+          "end_equity_before_rebalance": 124.16960119342781
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 15.017355225951206,
+          "return_pct": 12.103272546565735,
+          "start_equity": 124.07681615177984,
+          "end_equity_before_rebalance": 139.09417137773104
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 1.9165339056472703,
+          "return_pct": 1.378819695644662,
+          "start_equity": 138.99815267370386,
+          "end_equity_before_rebalance": 140.91468657935113
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -7.469592825228887,
+          "return_pct": -5.3045187953394635,
+          "start_equity": 140.81565384953757,
+          "end_equity_before_rebalance": 133.34606102430868
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 133.24216916214542,
+          "end_equity_before_rebalance": 133.24216916214542
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.8536900374074037,
+          "return_pct": 0.6411544066016628,
+          "start_equity": 133.1488996437319,
+          "end_equity_before_rebalance": 134.0025896811393
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 133.91060949478384,
+          "end_equity_before_rebalance": 133.91060949478384
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 133.91060949478384,
+          "end_equity_before_rebalance": 133.91060949478384
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 133.91060949478384,
+          "end_equity_before_rebalance": 133.91060949478384
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0039850216843149155,
+          "return_pct": 0.00297796654691318,
+          "start_equity": 133.81687206813749,
+          "end_equity_before_rebalance": 133.8208570898218
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 133.72783407469214,
+          "end_equity_before_rebalance": 133.72783407469214
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -3.758569458722576,
+          "return_pct": -2.812579988569941,
+          "start_equity": 133.63422459083986,
+          "end_equity_before_rebalance": 129.8756551321173
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 129.78435207536793,
+          "end_equity_before_rebalance": 129.78435207536793
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 129.78435207536793,
+          "end_equity_before_rebalance": 129.78435207536793
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 129.78435207536793,
+          "end_equity_before_rebalance": 129.78435207536793
+        },
+        {
+          "transition": "bull->bull",
+          "entry_regime": "bull",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.7406894814032228,
+          "return_pct": 0.5711076222824296,
+          "start_equity": 129.6935030289152,
+          "end_equity_before_rebalance": 130.4341925103184
+        },
+        {
+          "transition": "bull->bull",
+          "entry_regime": "bull",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 3.093266246215279,
+          "return_pct": 2.3742081688443495,
+          "start_equity": 130.2862270801193,
+          "end_equity_before_rebalance": 133.37949332633457
+        },
+        {
+          "transition": "bull->bull",
+          "entry_regime": "bull",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 4.396670050961035,
+          "return_pct": 3.29869634379254,
+          "start_equity": 133.28507970230913,
+          "end_equity_before_rebalance": 137.68174975327017
+        },
+        {
+          "transition": "bull->bull",
+          "entry_regime": "bull",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 1.8005127178036844,
+          "return_pct": 1.3090662905031802,
+          "start_equity": 137.54175253505315,
+          "end_equity_before_rebalance": 139.34226525285683
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.6468133477176536,
+          "return_pct": 0.46452685037969843,
+          "start_equity": 139.2413263493685,
+          "end_equity_before_rebalance": 139.88813969708616
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 139.79185762680484,
+          "end_equity_before_rebalance": 139.79185762680484
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 7.478307193362923,
+          "return_pct": 5.353348758919929,
+          "start_equity": 139.6940033264661,
+          "end_equity_before_rebalance": 147.172310519829
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 147.06630391108953,
+          "end_equity_before_rebalance": 147.06630391108953
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -1.4249002474755343,
+          "return_pct": -0.9695615776140087,
+          "start_equity": 146.96335749835177,
+          "end_equity_before_rebalance": 145.53845725087623
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 145.4348828230271,
+          "end_equity_before_rebalance": 145.4348828230271
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 2.8124741489164933,
+          "return_pct": 1.9351920290836988,
+          "start_equity": 145.33307840505097,
+          "end_equity_before_rebalance": 148.14555255396746
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 148.0464952615832,
+          "end_equity_before_rebalance": 148.0464952615832
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.22651235440960704,
+          "return_pct": 0.15310799740715364,
+          "start_equity": 147.9428627149001,
+          "end_equity_before_rebalance": 148.1693750693097
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 148.06376799237276,
+          "end_equity_before_rebalance": 148.06376799237276
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 4.967208729504819,
+          "return_pct": 3.357126647964792,
+          "start_equity": 147.9601233547781,
+          "end_equity_before_rebalance": 152.9273320842829
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 152.83236987325867,
+          "end_equity_before_rebalance": 152.83236987325867
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 2.0742952933794925,
+          "return_pct": 1.358186304984299,
+          "start_equity": 152.7253872143474,
+          "end_equity_before_rebalance": 154.79968250772689
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 154.69614164719965,
+          "end_equity_before_rebalance": 154.69614164719965
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 2.3172905681003044,
+          "return_pct": 1.4990120523201256,
+          "start_equity": 154.58785434804662,
+          "end_equity_before_rebalance": 156.90514491614692
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 156.79704646532466,
+          "end_equity_before_rebalance": 156.79704646532466
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -2.813609893484795,
+          "return_pct": -1.7956848445276563,
+          "start_equity": 156.68728853279893,
+          "end_equity_before_rebalance": 153.87367863931414
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 153.7619438447942,
+          "end_equity_before_rebalance": 153.7619438447942
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": -1.1187687186395294,
+          "return_pct": -0.7281076040852597,
+          "start_equity": 153.65431048410284,
+          "end_equity_before_rebalance": 152.5355417654633
+        }
+      ]
+    },
+    "fee_8bp": {
+      "fee_bp_one_way": 8,
+      "slippage_bp_one_way": 2,
+      "start_equity_usdt": 100.0,
+      "end_equity_usdt": 148.685921,
+      "net_return_pct": 48.68592,
+      "max_drawdown_pct": -25.53571,
+      "rebalances": 95,
+      "hourly_adverse_checks": 10072,
+      "liquidated": false,
+      "price_pnl_usdt": 57.401237,
+      "funding_pnl_usdt": 1.484355,
+      "fees_usdt": 8.159737,
+      "slippage_usdt": 2.039934,
+      "transition_attribution": {
+        "sideways->sideways": {
+          "segments": 11,
+          "net_pnl_usdt": 0.0,
+          "mean_segment_return_pct": 0.0,
+          "median_segment_return_pct": 0.0,
+          "win_rate_pct": 0.0
+        },
+        "sideways->bull": {
+          "segments": 20,
+          "net_pnl_usdt": 0.0,
+          "mean_segment_return_pct": 0.0,
+          "median_segment_return_pct": 0.0,
+          "win_rate_pct": 0.0
+        },
+        "bull->bull": {
+          "segments": 8,
+          "net_pnl_usdt": 11.305468,
+          "mean_segment_return_pct": 1.13338,
+          "median_segment_return_pct": 1.30964,
+          "win_rate_pct": 75.0
+        },
+        "bull->sideways": {
+          "segments": 20,
+          "net_pnl_usdt": 22.060518,
+          "mean_segment_return_pct": 0.8418,
+          "median_segment_return_pct": 0.53885,
+          "win_rate_pct": 75.0
+        },
+        "sideways->bear": {
+          "segments": 11,
+          "net_pnl_usdt": 0.0,
+          "mean_segment_return_pct": 0.0,
+          "median_segment_return_pct": 0.0,
+          "win_rate_pct": 0.0
+        },
+        "bear->sideways": {
+          "segments": 10,
+          "net_pnl_usdt": -30.055144,
+          "mean_segment_return_pct": -2.70974,
+          "median_segment_return_pct": -3.7405,
+          "win_rate_pct": 10.0
+        },
+        "bear->bear": {
+          "segments": 15,
+          "net_pnl_usdt": 55.574751,
+          "mean_segment_return_pct": 3.69704,
+          "median_segment_return_pct": 3.30713,
+          "win_rate_pct": 60.0
+        }
+      },
+      "segments": [
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 100.0,
+          "end_equity_before_rebalance": 100.0
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 100.0,
+          "end_equity_before_rebalance": 100.0
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 100.0,
+          "end_equity_before_rebalance": 100.0
+        },
+        {
+          "transition": "bull->bull",
+          "entry_regime": "bull",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 1.2611289402037045,
+          "return_pct": 1.2623913315352286,
+          "start_equity": 99.9,
+          "end_equity_before_rebalance": 101.16112894020371
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -0.19647152097179799,
+          "return_pct": -0.19441263123541885,
+          "start_equity": 101.05903084758037,
+          "end_equity_before_rebalance": 100.86255932660858
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 100.78176400455058,
+          "end_equity_before_rebalance": 100.78176400455058
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -8.851340413465607,
+          "return_pct": -8.791472050121707,
+          "start_equity": 100.68098224054603,
+          "end_equity_before_rebalance": 91.82964182708042
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 91.71999986551633,
+          "end_equity_before_rebalance": 91.71999986551633
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -4.140826759160262,
+          "return_pct": -4.519158021117187,
+          "start_equity": 91.62827986565081,
+          "end_equity_before_rebalance": 87.48745310649055
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 87.39159400094046,
+          "end_equity_before_rebalance": 87.39159400094046
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.1901183423157562,
+          "return_pct": 0.2177653962515791,
+          "start_equity": 87.30420240693952,
+          "end_equity_before_rebalance": 87.49432074925528
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 87.4077803802682,
+          "end_equity_before_rebalance": 87.4077803802682
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 6.926912934396185,
+          "return_pct": 7.932756959405229,
+          "start_equity": 87.32037259988793,
+          "end_equity_before_rebalance": 94.24728553428412
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -5.123214773716342,
+          "return_pct": -5.441343917507934,
+          "start_equity": 94.15348214311567,
+          "end_equity_before_rebalance": 89.03026736939933
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 88.93088395852826,
+          "end_equity_before_rebalance": 88.93088395852826
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 11.870465547869898,
+          "return_pct": 13.36132889593995,
+          "start_equity": 88.84195307456973,
+          "end_equity_before_rebalance": 100.71241862243963
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 6.170240481821978,
+          "return_pct": 6.13267462126168,
+          "start_equity": 100.6125526443235,
+          "end_equity_before_rebalance": 106.78279312614548
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": -9.764470532695967,
+          "return_pct": -9.153362078392846,
+          "start_equity": 106.67632776972398,
+          "end_equity_before_rebalance": 96.91185723702802
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 3.201148551177681,
+          "return_pct": 3.3071332847731227,
+          "start_equity": 96.79526875788714,
+          "end_equity_before_rebalance": 99.99641730906482
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 9.922453937550515,
+          "return_pct": 9.9323928282238,
+          "start_equity": 99.89993457925814,
+          "end_equity_before_rebalance": 109.82238851680866
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -4.1004254297202465,
+          "return_pct": -3.7404972915928147,
+          "start_equity": 109.62246755094334,
+          "end_equity_before_rebalance": 105.5220421212231
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 105.40810791385583,
+          "end_equity_before_rebalance": 105.40810791385583
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 105.40810791385583,
+          "end_equity_before_rebalance": 105.40810791385583
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 105.40810791385583,
+          "end_equity_before_rebalance": 105.40810791385583
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 105.40810791385583,
+          "end_equity_before_rebalance": 105.40810791385583
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 3.1486465604406675,
+          "return_pct": 2.9900910102430123,
+          "start_equity": 105.30269980594197,
+          "end_equity_before_rebalance": 108.45134636638264
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 108.35709147984134,
+          "end_equity_before_rebalance": 108.35709147984134
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -0.2672863330607953,
+          "return_pct": -0.24691866798355333,
+          "start_equity": 108.2487343883615,
+          "end_equity_before_rebalance": 107.9814480553007
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 107.87282208303952,
+          "end_equity_before_rebalance": 107.87282208303952
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 8.102341913958938,
+          "return_pct": 7.518531739238177,
+          "start_equity": 107.76494926095648,
+          "end_equity_before_rebalance": 115.86729117491542
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": -2.853258003938649,
+          "return_pct": -2.4649703637041998,
+          "start_equity": 115.75222347302191,
+          "end_equity_before_rebalance": 112.89896546908327
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": -0.15109153119159657,
+          "return_pct": -0.1338359001974876,
+          "start_equity": 112.89312581201823,
+          "end_equity_before_rebalance": 112.74203428082663
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": -3.7201607570187747,
+          "return_pct": -3.3030766159462543,
+          "start_equity": 112.6271409830144,
+          "end_equity_before_rebalance": 108.90698022599562
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 8.960438840705976,
+          "return_pct": 8.236416745239561,
+          "start_equity": 108.79049856097772,
+          "end_equity_before_rebalance": 117.7509374016837
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 117.65098802292754,
+          "end_equity_before_rebalance": 117.65098802292754
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -6.10839849943082,
+          "return_pct": -5.197162484731265,
+          "start_equity": 117.5333370349046,
+          "end_equity_before_rebalance": 111.42493853547379
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 111.3011797147616,
+          "end_equity_before_rebalance": 111.3011797147616
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.17348727339316383,
+          "return_pct": 0.15602793678606286,
+          "start_equity": 111.18987853504684,
+          "end_equity_before_rebalance": 111.36336580844001
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 111.25367435616135,
+          "end_equity_before_rebalance": 111.25367435616135
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 3.2513238279269245,
+          "return_pct": 2.9253671172371654,
+          "start_equity": 111.14242068180519,
+          "end_equity_before_rebalance": 114.39374450973212
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 114.28423092990248,
+          "end_equity_before_rebalance": 114.28423092990248
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -2.0238681180274227,
+          "return_pct": -1.7726802687958454,
+          "start_equity": 114.16994669897258,
+          "end_equity_before_rebalance": 112.14607858094516
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 112.0364147765595,
+          "end_equity_before_rebalance": 112.0364147765595
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -0.6271571457735945,
+          "return_pct": -0.5603400751053367,
+          "start_equity": 111.92437836178294,
+          "end_equity_before_rebalance": 111.29722121600935
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 111.19007931091645,
+          "end_equity_before_rebalance": 111.19007931091645
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -0.327634593065639,
+          "return_pct": -0.2949566702836748,
+          "start_equity": 111.07888923160553,
+          "end_equity_before_rebalance": 110.75125463853989
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 110.63973865443171,
+          "end_equity_before_rebalance": 110.63973865443171
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.5955911854638885,
+          "return_pct": 0.5388546467005373,
+          "start_equity": 110.52909891577728,
+          "end_equity_before_rebalance": 111.12469010124117
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 111.01857621732687,
+          "end_equity_before_rebalance": 111.01857621732687
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 111.01857621732687,
+          "end_equity_before_rebalance": 111.01857621732687
+        },
+        {
+          "transition": "bull->bull",
+          "entry_regime": "bull",
+          "exit_regime": "bull",
+          "net_pnl_usdt": -0.037238137547575434,
+          "return_pct": -0.033575834090648904,
+          "start_equity": 110.90755764110953,
+          "end_equity_before_rebalance": 110.87031950356196
+        },
+        {
+          "transition": "bull->bull",
+          "entry_regime": "bull",
+          "exit_regime": "bull",
+          "net_pnl_usdt": -2.630870934947623,
+          "return_pct": -2.3753354659748482,
+          "start_equity": 110.75786863090079,
+          "end_equity_before_rebalance": 108.12699769595316
+        },
+        {
+          "transition": "bull->bull",
+          "entry_regime": "bull",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 2.870473875322091,
+          "return_pct": 2.657588149640855,
+          "start_equity": 108.0104859629964,
+          "end_equity_before_rebalance": 110.88095983831849
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 1.7155221330193484,
+          "return_pct": 1.549515551830405,
+          "start_equity": 110.71345047120255,
+          "end_equity_before_rebalance": 112.4289726042219
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 112.32515208540642,
+          "end_equity_before_rebalance": 112.32515208540642
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 112.32515208540642,
+          "end_equity_before_rebalance": 112.32515208540642
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 14.321031196632134,
+          "return_pct": 12.76238339948601,
+          "start_equity": 112.21282693332101,
+          "end_equity_before_rebalance": 126.53385812995315
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": -4.034886869030828,
+          "return_pct": -3.1944497469225563,
+          "start_equity": 126.3092923254756,
+          "end_equity_before_rebalance": 122.27440545644477
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 14.788145924065347,
+          "return_pct": 12.107159863188333,
+          "start_equity": 122.14380656712488,
+          "end_equity_before_rebalance": 136.93195249119023
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 1.8867413861876798,
+          "return_pct": 1.3792280152916225,
+          "start_equity": 136.7969157578896,
+          "end_equity_before_rebalance": 138.68365714407727
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -7.35133062086183,
+          "return_pct": -5.306118094157863,
+          "start_equity": 138.54442156038303,
+          "end_equity_before_rebalance": 131.1930909395212
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 131.04702380240582,
+          "end_equity_before_rebalance": 131.04702380240582
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.8396256181919171,
+          "return_pct": 0.641346945462451,
+          "start_equity": 130.9159767786034,
+          "end_equity_before_rebalance": 131.75560239679533
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 131.6263669308499,
+          "end_equity_before_rebalance": 131.6263669308499
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 131.6263669308499,
+          "end_equity_before_rebalance": 131.6263669308499
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 131.6263669308499,
+          "end_equity_before_rebalance": 131.6263669308499
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.003917045321657042,
+          "return_pct": 0.0029788608311376308,
+          "start_equity": 131.49474056391907,
+          "end_equity_before_rebalance": 131.49865760924072
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 131.36803442103792,
+          "end_equity_before_rebalance": 131.36803442103792
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -3.692244665770133,
+          "return_pct": -2.8134246071848223,
+          "start_equity": 131.2366663866169,
+          "end_equity_before_rebalance": 127.54442172084676
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 127.41629043961119,
+          "end_equity_before_rebalance": 127.41629043961119
+        },
+        {
+          "transition": "sideways->sideways",
+          "entry_regime": "sideways",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 127.41629043961119,
+          "end_equity_before_rebalance": 127.41629043961119
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 127.41629043961119,
+          "end_equity_before_rebalance": 127.41629043961119
+        },
+        {
+          "transition": "bull->bull",
+          "entry_regime": "bull",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.7271747678273783,
+          "return_pct": 0.5712791260728656,
+          "start_equity": 127.28887414917158,
+          "end_equity_before_rebalance": 128.01604891699895
+        },
+        {
+          "transition": "bull->bull",
+          "entry_regime": "bull",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 3.0359196117804714,
+          "return_pct": 2.3753647624175978,
+          "start_equity": 127.80856480714066,
+          "end_equity_before_rebalance": 130.84448441892113
+        },
+        {
+          "transition": "bull->bull",
+          "entry_regime": "bull",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 4.313106997419965,
+          "return_pct": 3.2996980911341955,
+          "start_equity": 130.71217057732176,
+          "end_equity_before_rebalance": 135.02527757474172
+        },
+        {
+          "transition": "bull->bull",
+          "entry_regime": "bull",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 1.7657730958094646,
+          "return_pct": 1.3096379511797984,
+          "start_equity": 134.8291025178957,
+          "end_equity_before_rebalance": 136.59487561370517
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.6340602301566207,
+          "return_pct": 0.46467132178804604,
+          "start_equity": 136.45348882663615,
+          "end_equity_before_rebalance": 137.08754905679277
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 136.9527152114096,
+          "end_equity_before_rebalance": 136.9527152114096
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 7.3264243905409785,
+          "return_pct": 5.354956371159769,
+          "start_equity": 136.8157624961982,
+          "end_equity_before_rebalance": 144.14218688673918
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 143.9938245475577,
+          "end_equity_before_rebalance": 143.9938245475577
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -1.3951315207921482,
+          "return_pct": -0.9698527372469012,
+          "start_equity": 143.84983072301014,
+          "end_equity_before_rebalance": 142.454699202218
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 142.30982695660305,
+          "end_equity_before_rebalance": 142.30982695660305
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 2.752040649967455,
+          "return_pct": 1.9357731678311563,
+          "start_equity": 142.16751712964646,
+          "end_equity_before_rebalance": 144.9195577796139
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 144.7810880902012,
+          "end_equity_before_rebalance": 144.7810880902012
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 0.2215162546017666,
+          "return_pct": 0.15315397578461454,
+          "start_equity": 144.63630700211098,
+          "end_equity_before_rebalance": 144.85782325671275
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 144.71028362752938,
+          "end_equity_before_rebalance": 144.71028362752938
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 4.854706818759297,
+          "return_pct": 3.3581347941052497,
+          "start_equity": 144.56557334390186,
+          "end_equity_before_rebalance": 149.42028016266116
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 149.28769242044766,
+          "end_equity_before_rebalance": 149.28769242044766
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 2.026185669986347,
+          "return_pct": 1.3585941687396685,
+          "start_equity": 149.1384047280272,
+          "end_equity_before_rebalance": 151.16459039801356
+        },
+        {
+          "transition": "sideways->bull",
+          "entry_regime": "sideways",
+          "exit_regime": "bull",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 151.0201055226455,
+          "end_equity_before_rebalance": 151.0201055226455
+        },
+        {
+          "transition": "bull->sideways",
+          "entry_regime": "bull",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": 2.2622249165029302,
+          "return_pct": 1.4994622060896967,
+          "start_equity": 150.86908541712288,
+          "end_equity_before_rebalance": 153.1313103336258
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 152.98055360058603,
+          "end_equity_before_rebalance": 152.98055360058603
+        },
+        {
+          "transition": "bear->sideways",
+          "entry_regime": "bear",
+          "exit_regime": "sideways",
+          "net_pnl_usdt": -2.7451256820488936,
+          "return_pct": -1.796224089225662,
+          "start_equity": 152.82757304698544,
+          "end_equity_before_rebalance": 150.08244736493654
+        },
+        {
+          "transition": "sideways->bear",
+          "entry_regime": "sideways",
+          "exit_regime": "bear",
+          "net_pnl_usdt": 0.0,
+          "return_pct": 0.0,
+          "start_equity": 149.92671146203855,
+          "end_equity_before_rebalance": 149.92671146203855
+        },
+        {
+          "transition": "bear->bear",
+          "entry_regime": "bear",
+          "exit_regime": "bear",
+          "net_pnl_usdt": -1.0908636472593685,
+          "return_pct": -0.7283262550174197,
+          "start_equity": 149.77678475057652,
+          "end_equity_before_rebalance": 148.68592110331716
+        }
+      ]
+    }
+  }
+}
