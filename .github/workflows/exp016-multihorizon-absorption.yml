@@ -1,0 +1,63 @@
+name: EXP-016 multi-horizon absorption validation
+
+on:
+  # Manual-only to prevent duplicate historical runs on follow-up commits.
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: exp016-multihorizon-absorption
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - name: Checkout isolated research branch
+        uses: actions/checkout@v4
+        with:
+          ref: research/meaflow-exp016-multihorizon-absorption-v1
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Acquire calibration data (May-June 2024)
+        run: |
+          python research/binance_public_pipeline.py --start 2024-05 --end 2024-06 --symbols BTCUSDT,ETHUSDT,SOLUSDT --out calibration-data
+      - name: Acquire independent OOS data (September-October 2024)
+        run: |
+          python research/binance_public_pipeline.py --start 2024-09 --end 2024-10 --symbols BTCUSDT,ETHUSDT,SOLUSDT --out oos-data
+      - name: Run frozen multi-horizon absorption evaluation
+        env:
+          WORKFLOW_COMMIT_SHA: ${{ github.sha }}
+          WORKFLOW_RUN_ID: ${{ github.run_id }}
+        run: |
+          python research/exp016_multihorizon_absorption.py \
+            --calibration "calibration-data/*-1m-orderflow.csv.gz" \
+            --oos "oos-data/*-1m-orderflow.csv.gz" \
+            --out exp016_absorption.json
+          python - <<'PY'
+          import json, os
+          p="exp016_absorption.json"
+          d=json.load(open(p))
+          d["provenance"]={
+            "workflow_commit_sha":os.environ["WORKFLOW_COMMIT_SHA"],
+            "workflow_run_id":os.environ["WORKFLOW_RUN_ID"],
+            "data_source":"Official Binance Vision USD-M Futures monthly 1m klines + aggTrades",
+            "branch":"research/meaflow-exp016-multihorizon-absorption-v1"
+          }
+          json.dump(d,open(p,"w"),indent=2)
+          PY
+      - name: Publish compact report only
+        run: |
+          mkdir -p research-results
+          cp exp016_absorption.json research-results/exp016_absorption.json
+          rm -rf calibration-data oos-data
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research-results/exp016_absorption.json
+          git commit -m "Publish EXP-016 absorption OOS report" || exit 0
+          git push origin HEAD:research/meaflow-exp016-multihorizon-absorption-v1
