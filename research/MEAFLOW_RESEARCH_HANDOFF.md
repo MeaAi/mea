@@ -159,3 +159,17 @@ This section was added after auditing the existing `research/binance-data-pipeli
 3. Extend free Binance aggTrades + bookDepth data beyond May–June 2024 only after checking archive availability and data volume. Prefer a genuinely separate period for external validation, not a random split of the same 2-month pilot.
 4. Improve maker execution only with a defensible queue model or label current trade-through results as an upper-bound proxy; no invented fill probability.
 5. Then test whether taker-flow / depth features add incremental net value to frozen MEAFLOW-72 signals. Keep signal discovery and execution validation separated.
+
+
+## EXP-014 — independent-period order-flow validation
+- Status: PLANNED (not run; no result may be claimed).
+- Hypothesis: previously observed taker-flow / aggregated-depth effects from May–June 2024 do not necessarily persist; test whether they generalize to a separate later period before any strategy integration.
+- Proposed window: 2024-07-01 through 2024-08-31 UTC; BTCUSDT, ETHUSDT, SOLUSDT.
+- Data: official free Binance Vision USD-M monthly aggTrades + daily bookDepth + 1m klines; verify every archive checksum and minute coverage before modeling.
+- Train/calibration: freeze all signal thresholds using only the existing 2024-05 through 2024-06 pilot. Validation/OOS: 2024-07 through 2024-08 only; no refitting thresholds on the new window. Exact UTC joins only; no interpolation.
+- Tests: (a) taker buy/sell imbalance alone, (b) whale-notional imbalance alone, (c) aggregated depth OBI alone, (d) agreement filters, (e) incremental value over frozen MEAFLOW-72 baseline signals. Separate BTC/ETH/SOL.
+- Execution: next-minute taker entry/exit with 5bp one-way fee + 2bp one-way slippage and stress scenarios; maker trade-through reported only as a queue-agnostic proxy. Do not call it fill probability. Funding and liquidation must be modeled if holding extends through funding or leverage is above 1x.
+- Capital: 100 USDT, 1x; explicit sizing and no compounding between independent symbol/window comparisons unless the test design specifies portfolio compounding.
+- Acceptance: positive net expectancy after costs, stable across all three symbols or a justified narrowly scoped result, and no parameter refit on OOS. A positive signal-only mean is insufficient.
+- Required implementation: separate calibration and test input paths; add checks that no OOS timestamps enter threshold estimation; immutable code SHA and completed Actions run ID; report all trades, missed/unfilled orders, fill-proxy counts, gross/net bp, fees, slippage, drawdown, ending equity, and BTC/ETH/SOL attribution.
+- Blocker: current GitHub connector exposes read/write repository operations but no workflow-dispatch action. This plan remains PLANNED until a supported Actions run is actually started and completed; do not treat a pushed workflow definition as a test result.
