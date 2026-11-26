@@ -1,0 +1,121 @@
+{
+  "period": [
+    "2026-01",
+    "2026-02"
+  ],
+  "symbols": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "SOLUSDT"
+  ],
+  "method": "UTC daily cross-sectional top-vs-bottom basis; 5-day change uses 7200 contiguous minute index observations; next-minute open entry; 1440 contiguous 1m bars; 2bp fee + 2bp slippage each side; funding uses event-time mark-price open; entry/exit costs booked at their timestamps; adverse minute high/low DD.",
+  "data_qa": "archives checksum-verified; exact spot/perp common timestamps only; no gap interpolation",
+  "limitations": [
+    "One- or two-month window only; results are not OOS proof unless this period was predesignated untouched.",
+    "Only three-symbol cross-section; 50/50 long-short gross 1x.",
+    "No queue/fill model because this is a taker execution baseline.",
+    "Funding uses event-time mark-price candles; verify archive alignment before full-period expansion."
+  ],
+  "results": [
+    {
+      "factor": "basis_level",
+      "sign": 1,
+      "trades": 53,
+      "start_equity": 100.0,
+      "end_equity": 101.138705,
+      "net_return_pct": 1.1387,
+      "max_adverse_minute_dd_pct": -7.5952,
+      "price_pnl_usdt": 5.762622,
+      "funding_usdt": -0.442866,
+      "cost_usdt": 4.181052,
+      "fee_bp_per_side": 2.0,
+      "slippage_bp_per_side": 2.0,
+      "leverage": 1,
+      "portfolio": "50% long highest score + 50% short lowest score; daily 1440m holding",
+      "candidate_signals": 54,
+      "skip_counts": {
+        "short_window": 1,
+        "minute_gap": 0,
+        "missing_perp_minute": 0,
+        "missing_mark_funding_time": 0
+      },
+      "funding_events_in_holding_windows": 318,
+      "missing_mark_samples": []
+    },
+    {
+      "factor": "basis_level",
+      "sign": -1,
+      "trades": 53,
+      "start_equity": 100.0,
+      "end_equity": 90.447314,
+      "net_return_pct": -9.5527,
+      "max_adverse_minute_dd_pct": -14.5037,
+      "price_pnl_usdt": -5.868152,
+      "funding_usdt": 0.43899,
+      "cost_usdt": 4.123524,
+      "fee_bp_per_side": 2.0,
+      "slippage_bp_per_side": 2.0,
+      "leverage": 1,
+      "portfolio": "50% long highest score + 50% short lowest score; daily 1440m holding",
+      "candidate_signals": 54,
+      "skip_counts": {
+        "short_window": 1,
+        "minute_gap": 0,
+        "missing_perp_minute": 0,
+        "missing_mark_funding_time": 0
+      },
+      "funding_events_in_holding_windows": 318,
+      "missing_mark_samples": []
+    },
+    {
+      "factor": "basis_5d_change",
+      "sign": 1,
+      "trades": 53,
+      "start_equity": 100.0,
+      "end_equity": 95.277819,
+      "net_return_pct": -4.7222,
+      "max_adverse_minute_dd_pct": -14.6821,
+      "price_pnl_usdt": -0.701923,
+      "funding_usdt": -0.043805,
+      "cost_usdt": 3.976454,
+      "fee_bp_per_side": 2.0,
+      "slippage_bp_per_side": 2.0,
+      "leverage": 1,
+      "portfolio": "50% long highest score + 50% short lowest score; daily 1440m holding",
+      "candidate_signals": 54,
+      "skip_counts": {
+        "short_window": 1,
+        "minute_gap": 0,
+        "missing_perp_minute": 0,
+        "missing_mark_funding_time": 0
+      },
+      "funding_events_in_holding_windows": 318,
+      "missing_mark_samples": []
+    },
+    {
+      "factor": "basis_5d_change",
+      "sign": -1,
+      "trades": 53,
+      "start_equity": 100.0,
+      "end_equity": 96.003151,
+      "net_return_pct": -3.9968,
+      "max_adverse_minute_dd_pct": -13.1337,
+      "price_pnl_usdt": 0.284291,
+      "funding_usdt": 0.05331,
+      "cost_usdt": 4.33445,
+      "fee_bp_per_side": 2.0,
+      "slippage_bp_per_side": 2.0,
+      "leverage": 1,
+      "portfolio": "50% long highest score + 50% short lowest score; daily 1440m holding",
+      "candidate_signals": 54,
+      "skip_counts": {
+        "short_window": 1,
+        "minute_gap": 0,
+        "missing_perp_minute": 0,
+        "missing_mark_funding_time": 0
+      },
+      "funding_events_in_holding_windows": 318,
+      "missing_mark_samples": []
+    }
+  ]
+}
