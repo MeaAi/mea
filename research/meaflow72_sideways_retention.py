@@ -4,7 +4,7 @@ import json, math
 from pathlib import Path
 from datetime import datetime, timezone
 from concurrent.futures import ThreadPoolExecutor, as_completed
-import funding_carry_liquidation_partial as sim
+import funding_carry_liquidation_fixed as sim
 
 SYMBOLS="BTCUSDT,ETHUSDT,BNBUSDT,XRPUSDT,ADAUSDT,DOGEUSDT,SOLUSDT,LINKUSDT,LTCUSDT,BCHUSDT,DOTUSDT,TRXUSDT,AVAXUSDT".split(",")
 POLICY={"bull":"both","bear":"short_only","sideways":"flat","unknown":"flat"}
@@ -60,7 +60,7 @@ def main():
                 print("RESULT",period_name,label,fee,json.dumps(compact(result),separators=(",",":")),flush=True)
     report={
         "experiment":"MEAFLOW-72 copied-branch sideways position retention sweep",
-        "branch":"research/meaflow72-sideways-retention-v1",
+        "branch":"research/meaflow72-sideways-retention-fixed-v1",
         "parent":"MEAFLOW-72 (unchanged)",
         "source":"Official free Binance Vision monthly fundingRate and 1h markPriceKlines",
         "loaded_symbols":list(data),"data_errors":errors,
@@ -70,7 +70,7 @@ def main():
         "capital_usdt":100,"leverage":1,
         "strategy_frozen":"7d funding lookback, 7d rebalance, 20% tails; BTC trailing 30d mark-price regime threshold +/-5%; bull both, bear short-only, sideways retains stated fraction of existing quantity and opens/adds nothing, unknown flat.",
         "costs":"2/5/8 bp fee one-way plus 2 bp slippage one-way; split periods use 5 bp fee + 2 bp slippage.",
-        "retention_semantics":"At each scheduled or regime-triggered rebalance while sideways, target quantity equals current quantity multiplied by retention fraction. Thus 75/50/25% is applied to remaining exposure at each such rebalance; it is not a one-time reduction at regime entry.",
+        "retention_semantics":"At first rebalance after entering sideways, capture pre-sideways quantity as anchor; target is a fixed fraction of that entry exposure at every sideways rebalance. Reduction is not compounded. No new/additional exposure is opened while sideways.",
         "variants":list(FRACTIONS),"periods":out,
         "limitations":["1h OHLC adverse stress is not tick-level liquidation simulation",
           "static 0.5% maintenance margin and 1% liquidation-fee proxy",
