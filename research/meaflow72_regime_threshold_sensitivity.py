@@ -76,3 +76,5 @@ def main():
  Path("research-results/meaflow72_regime_threshold_sensitivity.json").write_text(json.dumps(out,indent=2),encoding="utf-8")
  print("REPORT research-results/meaflow72_regime_threshold_sensitivity.json",flush=True)
 if __name__=="__main__": main()
+
+# Trigger corrected threshold sensitivity run.
