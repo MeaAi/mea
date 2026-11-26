@@ -69,7 +69,7 @@ def load_symbol(sym,months,root):
  return sym,fund,marks
 
 def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20,side_mode='both',regime_filter=None,regime_policy=None,regime_threshold_pct=5.0,trade_universe=None,sideways_action='flat',sideways_confirm_hours=1):
- symbols=list(data); trade_symbols=list(trade_universe) if trade_universe is not None else symbols; first,last=period
+ symbols=sorted(data); trade_symbols=sorted(trade_universe) if trade_universe is not None else symbols; first,last=period
  if not set(trade_symbols).issubset(set(symbols)) or 'BTCUSDT' not in data: raise ValueError('invalid trade universe or missing BTC regime benchmark')
  mark_times={s:sorted(data[s]["marks"]) for s in symbols}
  all_events=sorted(set(t for s in symbols for t in data[s]["fund"] if first<=t<=last))
@@ -170,7 +170,7 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
    for s in trade_symbols:
     vals=[r for et,r in data[s]["fund"].items() if t-lookback<et<=t]
     if len(vals)>=12 and s in px:scores[s]=sum(vals)
-   ordered=sorted(scores,key=scores.get);k=max(1,int(len(ordered)*tail_fraction))
+   ordered=sorted(scores,key=lambda s:(scores[s],s));k=max(1,int(len(ordered)*tail_fraction))
    if len(ordered)>=2*k:
     longs=ordered[:k];shorts=ordered[-k:];target={s:0. for s in symbols}
     active_mode=side_mode
