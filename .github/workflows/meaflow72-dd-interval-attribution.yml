@@ -32,3 +32,5 @@ jobs:
           git add research-results/meaflow72_dd_interval_attribution.json
           git commit -m "Publish MEAFLOW-72 drawdown interval attribution"
           git push origin HEAD:research/meaflow72-dd-interval-attribution-v1
+
+# Re-trigger diagnostic after workflow registration.
