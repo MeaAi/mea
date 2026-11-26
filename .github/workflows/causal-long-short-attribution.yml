@@ -1,0 +1,35 @@
+name: MEAFLOW-52 causal long short sleeve diagnostic
+on:
+  push:
+    branches:
+      - research/causal-long-short-attribution-v1
+    paths:
+      - "research/causal_long_short_attribution.py"
+      - ".github/workflows/causal-long-short-attribution.yml"
+permissions:
+  contents: write
+concurrency:
+  group: meaflow-causal-long-short-attribution-v1
+  cancel-in-progress: false
+jobs:
+  attribution:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/causal-long-short-attribution-v1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download free Binance Vision data and run fixed directional sleeve diagnostic
+        run: python research/causal_long_short_attribution.py
+      - name: Publish diagnostic report only
+        run: |
+          rm -rf research-output
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research-results/causal_long_short_attribution.json
+          git commit -m "Publish causal long short sleeve diagnostic" || exit 0
+          git pull --rebase origin research/causal-long-short-attribution-v1
+          git push origin HEAD:research/causal-long-short-attribution-v1
