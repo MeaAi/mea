@@ -1,0 +1,36 @@
+name: MEAFLOW-72 debounce cost stress
+on:
+  push:
+    branches:
+      - research/meaflow72-debounce-cost-stress-v1
+    paths:
+      - "research/funding_carry_liquidation_fixed.py"
+      - "research/meaflow72_debounce_cost_stress.py"
+      - ".github/workflows/meaflow72-debounce-cost-stress.yml"
+      - "research-results/cost-stress-trigger.txt"
+permissions:
+  contents: write
+concurrency:
+  group: meaflow72-debounce-cost-stress-v1
+  cancel-in-progress: false
+jobs:
+  experiment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/meaflow72-debounce-cost-stress-v1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run matched cost stress
+        run: python research/meaflow72_debounce_cost_stress.py
+      - name: Publish report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+users.noreply.github.com"
+          git add -f research-results/meaflow72_debounce_cost_stress.json
+          git diff --cached --quiet || git commit -m "Publish debounce cost stress results"
+          git pull --rebase origin research/meaflow72-debounce-cost-stress-v1
+          git push origin HEAD:research/meaflow72-debounce-cost-stress-v1
