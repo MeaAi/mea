@@ -1,0 +1,228 @@
+{
+  "experiment": "MEAFLOW-52 bear-to-sideways hourly short-exit confirmation",
+  "parent_snapshot": "archive/baseline-7d-7d-20pct-2026-11-25",
+  "isolated_branch": "research/bear-sideways-exit-confirm-v1",
+  "strategy": "Frozen 7d funding rank, 7d rebalance, 20% tails; bull both, bear short-only, sideways/unknown flat; causal BTC 30d mark return thresholds +/-5%",
+  "change": "During an open position, count consecutive completed hourly BTC regime marks classified sideways; flatten at close of hour 1, 2, or 3. Counter resets if regime leaves sideways.",
+  "selection_rule": "Choose only candidates that improve BOTH validation net return and hourly adverse-mark max drawdown versus the same-parameter flat control at 5bp fee + 2bp slippage. If none qualify, no OOS candidate is promoted.",
+  "split": "Chronological 50/20/30. Validation chooses candidate; final 30% is sequential robustness only because this date range was previously inspected for MEAFLOW-52.",
+  "periods_utc": {
+    "train": {
+      "start": "2023-01-08T00:00:00+00:00",
+      "end": "2024-11-30T20:00:00+00:00"
+    },
+    "validation": {
+      "start": "2024-11-30T20:00:00+00:00",
+      "end": "2025-09-06T18:24:00+00:00"
+    },
+    "oos": {
+      "start": "2025-09-06T18:24:00+00:00",
+      "end": "2026-10-31T16:00:00+00:00"
+    }
+  },
+  "capital_usdt": 100,
+  "leverage": 1,
+  "fees_one_way_bp": [
+    2,
+    5,
+    8
+  ],
+  "slippage_one_way_bp": 2,
+  "data_source": "Official free Binance Vision monthly fundingRate and 1h markPriceKlines; ZIP CRC checked by loader",
+  "data_errors": {},
+  "loaded_symbols": [
+    "SOLUSDT",
+    "DOGEUSDT",
+    "BTCUSDT",
+    "ADAUSDT",
+    "ETHUSDT",
+    "XRPUSDT",
+    "LINKUSDT",
+    "BNBUSDT",
+    "BCHUSDT",
+    "DOTUSDT",
+    "LTCUSDT",
+    "AVAXUSDT",
+    "TRXUSDT"
+  ],
+  "drawdown": "Hourly adverse mark: simultaneous low for longs/high for shorts, plus event-time equity; conservative OHLC stress, not tick-accurate",
+  "limitations": [
+    "1h OHLC cannot identify intrahour event order",
+    "BTC regime is a market-state proxy",
+    "static universe survivorship bias",
+    "not Binance's exact liquidation engine"
+  ],
+  "validation": {
+    "fee_2bp": {
+      "control_flat": {
+        "net_return_pct": 10.4598,
+        "end_equity_usdt": 110.459765,
+        "max_drawdown_pct": -21.142,
+        "liquidated": false,
+        "rebalance_count": 70,
+        "hourly_adverse_checks": 6712,
+        "hourly_sideways_exits": 0,
+        "price_pnl_usdt": 12.058693,
+        "funding_pnl_usdt": 1.046473,
+        "trading_fees_usdt": 1.322701,
+        "slippage_usdt": 1.322701
+      },
+      "confirmations": {
+        "1": {
+          "net_return_pct": 1.38,
+          "end_equity_usdt": 101.380014,
+          "max_drawdown_pct": -20.2189,
+          "liquidated": false,
+          "rebalance_count": 70,
+          "hourly_adverse_checks": 6712,
+          "hourly_sideways_exits": 20,
+          "price_pnl_usdt": 3.359017,
+          "funding_pnl_usdt": 0.633054,
+          "trading_fees_usdt": 1.306029,
+          "slippage_usdt": 1.306029
+        },
+        "2": {
+          "net_return_pct": 10.2664,
+          "end_equity_usdt": 110.266368,
+          "max_drawdown_pct": -18.7692,
+          "liquidated": false,
+          "rebalance_count": 70,
+          "hourly_adverse_checks": 6712,
+          "hourly_sideways_exits": 17,
+          "price_pnl_usdt": 12.161495,
+          "funding_pnl_usdt": 0.802573,
+          "trading_fees_usdt": 1.34885,
+          "slippage_usdt": 1.34885
+        },
+        "3": {
+          "net_return_pct": -2.0722,
+          "end_equity_usdt": 97.927809,
+          "max_drawdown_pct": -21.4564,
+          "liquidated": false,
+          "rebalance_count": 70,
+          "hourly_adverse_checks": 6712,
+          "hourly_sideways_exits": 14,
+          "price_pnl_usdt": -0.445236,
+          "funding_pnl_usdt": 0.903265,
+          "trading_fees_usdt": 1.26511,
+          "slippage_usdt": 1.26511
+        }
+      }
+    },
+    "fee_5bp": {
+      "control_flat": {
+        "net_return_pct": 8.4518,
+        "end_equity_usdt": 108.451794,
+        "max_drawdown_pct": -21.4819,
+        "liquidated": false,
+        "rebalance_count": 70,
+        "hourly_adverse_checks": 6712,
+        "hourly_sideways_exits": 0,
+        "price_pnl_usdt": 12.001073,
+        "funding_pnl_usdt": 1.037606,
+        "trading_fees_usdt": 3.276346,
+        "slippage_usdt": 1.310538
+      },
+      "confirmations": {
+        "1": {
+          "net_return_pct": -0.4974,
+          "end_equity_usdt": 99.50258,
+          "max_drawdown_pct": -20.5959,
+          "liquidated": false,
+          "rebalance_count": 70,
+          "hourly_adverse_checks": 6712,
+          "hourly_sideways_exits": 20,
+          "price_pnl_usdt": 3.405711,
+          "funding_pnl_usdt": 0.626503,
+          "trading_fees_usdt": 3.235453,
+          "slippage_usdt": 1.294181
+        },
+        "2": {
+          "net_return_pct": 8.2668,
+          "end_equity_usdt": 108.266779,
+          "max_drawdown_pct": -19.1519,
+          "liquidated": false,
+          "rebalance_count": 70,
+          "hourly_adverse_checks": 6712,
+          "hourly_sideways_exits": 17,
+          "price_pnl_usdt": 12.149952,
+          "funding_pnl_usdt": 0.795077,
+          "trading_fees_usdt": 3.341607,
+          "slippage_usdt": 1.336643
+        },
+        "3": {
+          "net_return_pct": -3.8578,
+          "end_equity_usdt": 96.142159,
+          "max_drawdown_pct": -21.8289,
+          "liquidated": false,
+          "rebalance_count": 70,
+          "hourly_adverse_checks": 6712,
+          "hourly_sideways_exits": 14,
+          "price_pnl_usdt": -0.365473,
+          "funding_pnl_usdt": 0.89571,
+          "trading_fees_usdt": 3.134341,
+          "slippage_usdt": 1.253736
+        }
+      }
+    },
+    "fee_8bp": {
+      "control_flat": {
+        "net_return_pct": 6.4791,
+        "end_equity_usdt": 106.47909,
+        "max_drawdown_pct": -21.8204,
+        "liquidated": false,
+        "rebalance_count": 70,
+        "hourly_adverse_checks": 6712,
+        "hourly_sideways_exits": 0,
+        "price_pnl_usdt": 11.942836,
+        "funding_pnl_usdt": 1.028834,
+        "trading_fees_usdt": 5.194064,
+        "slippage_usdt": 1.298516
+      },
+      "confirmations": {
+        "1": {
+          "net_return_pct": -2.3412,
+          "end_equity_usdt": 97.658775,
+          "max_drawdown_pct": -20.9714,
+          "liquidated": false,
+          "rebalance_count": 70,
+          "hourly_adverse_checks": 6712,
+          "hourly_sideways_exits": 20,
+          "price_pnl_usdt": 3.451102,
+          "funding_pnl_usdt": 0.620027,
+          "trading_fees_usdt": 5.129884,
+          "slippage_usdt": 1.282471
+        },
+        "2": {
+          "net_return_pct": 6.3022,
+          "end_equity_usdt": 106.302222,
+          "max_drawdown_pct": -19.533,
+          "liquidated": false,
+          "rebalance_count": 70,
+          "hourly_adverse_checks": 6712,
+          "hourly_sideways_exits": 17,
+          "price_pnl_usdt": 12.137435,
+          "funding_pnl_usdt": 0.787662,
+          "trading_fees_usdt": 5.2983,
+          "slippage_usdt": 1.324575
+        },
+        "3": {
+          "net_return_pct": -5.612,
+          "end_equity_usdt": 94.387965,
+          "max_drawdown_pct": -22.1997,
+          "liquidated": false,
+          "rebalance_count": 70,
+          "hourly_adverse_checks": 6712,
+          "hourly_sideways_exits": 14,
+          "price_pnl_usdt": -0.287808,
+          "funding_pnl_usdt": 0.888236,
+          "trading_fees_usdt": 4.96997,
+          "slippage_usdt": 1.242493
+        }
+      }
+    }
+  },
+  "selected_confirmation_hours": null,
+  "oos_sequential_robustness": {},
+  "decision": "No candidate passed both validation gates"
+}
