@@ -1,0 +1,35 @@
+name: MEAFLOW-72 causal volatility sizing experiment
+on:
+  push:
+    branches:
+      - research/meaflow72-volatility-sizing-v1
+    paths:
+      - "research/funding_carry_liquidation_volatility.py"
+      - "research/meaflow72_volatility_sizing.py"
+      - ".github/workflows/meaflow72-volatility-sizing.yml"
+permissions:
+  contents: write
+concurrency:
+  group: meaflow72-volatility-sizing-v1
+  cancel-in-progress: false
+jobs:
+  experiment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/meaflow72-volatility-sizing-v1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run isolated volatility sizing experiment
+        run: python research/meaflow72_volatility_sizing.py
+      - name: Publish report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+users.noreply.github.com"
+          git add research-results/meaflow72_volatility_sizing.json
+          git commit -m "Publish MEAFLOW-72 volatility sizing results"
+          git pull --rebase origin research/meaflow72-volatility-sizing-v1
+          git push origin HEAD:research/meaflow72-volatility-sizing-v1
