@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""MEAFLOW-72 copied-branch diagnostic: symbol, regime and PnL attribution."""
+"""MEAFLOW-72 copied-branch diagnostic: max drawdown timing on frozen retention strategy."""
 import json, math
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 import funding_carry_liquidation_fixed as sim
 
 SYMBOLS="BTCUSDT,ETHUSDT,BNBUSDT,XRPUSDT,ADAUSDT,DOGEUSDT,SOLUSDT,LINKUSDT,LTCUSDT,BCHUSDT,DOTUSDT,TRXUSDT,AVAXUSDT".split(",")
-POLICY={"bull":"both","bear":"short_only","sideways":"flat","unknown":"flat"}
+POLICY={"bull":"both","bear":"short_only","sideways":"hold","unknown":"flat"}
 WINDOWS={
  "2023_calendar":("2023-01-01T00:00:00+00:00","2024-01-01T00:00:00+00:00"),
  "2024_calendar":("2024-01-01T00:00:00+00:00","2025-01-01T00:00:00+00:00"),
@@ -39,7 +39,7 @@ def main():
   result=sim.run(data,(window[0],window[-1]),1.0,5,slip_bp=2,
    lookback_days=7,rebalance_days=7,tail_fraction=.20,
    regime_policy=POLICY,regime_threshold_pct=5.0,
-   sideways_action="flat",sideways_retention_fraction=1.0)
+   sideways_action="hold",sideways_retention_fraction=1.0)
   output[name]={
    "period_utc":[iso(window[0]),iso(window[-1])],
    "event_count":len(window),
@@ -52,8 +52,8 @@ def main():
   }
   print("DIAGNOSTIC",name,json.dumps(output[name],separators=(",",":")),flush=True)
  report={
-  "experiment":"MEAFLOW-72 drawdown source attribution (frozen strategy; no parameter sweep)",
-  "branch":"research/meaflow72-drawdown-attribution-v1",
+  "experiment":"MEAFLOW-72 max drawdown timing (frozen 100% sideways retention strategy; no parameter sweep)",
+  "branch":"research/meaflow72-drawdown-timing-v1",
   "parent":"research/meaflow72-retention-multiwindow-v1; MEAFLOW-72 main branch unchanged",
   "source":"Official free Binance Vision monthly fundingRate and 1h markPriceKlines",
   "loaded_symbols":list(data),"data_errors":errors,"capital_usdt":100,"leverage":1,
