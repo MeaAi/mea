@@ -1,7 +1,13 @@
 name: EXP-016 multi-horizon absorption validation
 
 on:
-  # Manual-only to prevent duplicate historical runs on follow-up commits.
+  # A one-time branch-scoped push trigger lets the prepared test run without
+  # requiring a workflow-dispatch API. Subsequent commits to other paths do not rerun it.
+  push:
+    branches:
+      - research/meaflow-exp016-multihorizon-absorption-v1
+    paths:
+      - .github/workflows/exp016-multihorizon-absorption.yml
   workflow_dispatch:
 
 permissions:
