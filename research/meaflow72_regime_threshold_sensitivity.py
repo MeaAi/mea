@@ -41,6 +41,10 @@ def main():
   if len(w)<100:
    report[name]={"error":"insufficient aligned events","event_count":len(w)}; continue
   period=(w[0],w[-1]); report[name]={"period_utc":[iso(w[0]),iso(w[-1])],"event_count":len(w),"thresholds":{}}
+  keep=("net_return_pct","end_equity_usdt","max_drawdown_pct","maxdd_peak_time_utc",
+   "maxdd_trough_time_utc","rebalance_count","liquidated","price_pnl_usdt",
+   "funding_pnl_usdt","trading_fees_usdt","slippage_usdt","max_symbol_exposure_pct",
+   "market_regime_attribution")
   for threshold in THRESHOLDS:
    report[name]["thresholds"][str(threshold)]={}
    for label,cap in CONFIGS.items():
@@ -48,11 +52,7 @@ def main():
      tail_fraction=.20,regime_policy=POLICY,regime_threshold_pct=threshold,
      sideways_action="hold",sideways_retention_fraction=1.0,
      max_symbol_exposure_pct=cap)
-   keep=("net_return_pct","end_equity_usdt","max_drawdown_pct","maxdd_peak_time_utc",
-    "maxdd_trough_time_utc","rebalance_count","liquidated","price_pnl_usdt",
-    "funding_pnl_usdt","trading_fees_usdt","slippage_usdt","max_symbol_exposure_pct",
-    "market_regime_attribution")
-   report[name]["thresholds"][str(threshold)][label]={k:v[k] for k in keep}
+    report[name]["thresholds"][str(threshold)][label]={k:v[k] for k in keep}
     print("RESULT",name,threshold,label,json.dumps(report[name]["thresholds"][str(threshold)][label],separators=(",",":")),flush=True)
  out={
   "experiment":"MEAFLOW-72 BTC trailing-30d regime threshold sensitivity, uncapped vs bear-only 20% cap; isolated copy; main branches unchanged",
