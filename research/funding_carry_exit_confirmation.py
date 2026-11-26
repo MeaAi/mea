@@ -96,6 +96,33 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
   if ix and current:
    start=events[ix-1]
    for ht in range(start,t,3600000):
+    # At ht the current candle has just opened. Only the candle at ht-1h is complete.
+    completed_regime=regime_at(ht-3600000)
+    if completed_regime=='sideways': sideways_streak += 1
+    else: sideways_streak = 0
+    if sideways_action=='immediate_flat' and sideways_streak>=sideways_confirm_hours and any(qty[z] for z in symbols):
+     # Execute at this hour's OPEN, after N completed sideways candles; account any close-to-open gap.
+     gap_step=0.
+     for z in symbols:
+      bar=data[z]["marks"].get(ht)
+      if z in current and bar is not None:
+       op=bar[0]
+       if qty[z]:
+        dp=qty[z]*(op-current[z]);gap_step+=dp;price_by_symbol[z]+=dp
+        regime_pnl[completed_regime]['price_pnl_usdt']+=dp
+        for cohort,cohort_q in cohort_qty[z].items(): entry_regime_pnl[cohort]['price_pnl_usdt']+=cohort_q*(op-current[z])
+       current[z]=op
+     equity+=gap_step;price_pnl+=gap_step
+     exit_turnover=sum(abs(qty[z]*current[z]) for z in symbols if qty[z] and z in current)
+     exit_fee=exit_turnover*fee_bp/10000;exit_slip=exit_turnover*slip_bp/10000
+     equity-=exit_fee+exit_slip;fee_total+=exit_fee;slip_total+=exit_slip
+     regime_pnl[completed_regime]['fees_usdt']+=exit_fee;regime_pnl[completed_regime]['slippage_usdt']+=exit_slip
+     for z in symbols:
+      tr=abs(qty[z]*current[z]) if qty[z] and z in current else 0.
+      fees_by_symbol[z]+=tr*fee_bp/10000;slippage_by_symbol[z]+=tr*slip_bp/10000
+      qty[z]=0.
+      for cohort in cohort_qty[z]: cohort_qty[z][cohort]=0.
+     hourly_sideways_exits+=1; sideways_streak=0
     worst=equity;notion=0.
     for z in symbols:
      q=qty[z]
@@ -104,8 +131,7 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
      o,h,l,cl=bar;adverse=l if q>0 else h
      worst+=q*(adverse-current[z]);notion+=abs(q*adverse)
     hourly_checks+=1
-    # Track adverse intrabar portfolio equity, not only funding-event closes.
-    # Use simultaneous adverse extremes across held symbols as a conservative stress mark.
+    # Track adverse intrabar portfolio equity using simultaneous adverse extremes.
     peak=max(peak,equity)
     maxdd=min(maxdd,(worst/peak-1)*100 if peak else -100)
     if worst<=notion*(mmr+liq_fee):
@@ -118,27 +144,10 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
      if z in current and bar is not None:
       cl=bar[3]
       if q:
-       dp=q*(cl-current[z]);step+=dp;price_by_symbol[z]+=dp;regime_pnl[regime_at(ht)]['price_pnl_usdt']+=dp
+       dp=q*(cl-current[z]);step+=dp;price_by_symbol[z]+=dp;regime_pnl[completed_regime]['price_pnl_usdt']+=dp
        for cohort,cohort_q in cohort_qty[z].items(): entry_regime_pnl[cohort]['price_pnl_usdt']+=cohort_q*(cl-current[z])
-      # Keep every symbol's mark current, including currently unheld assets;
-      # otherwise a newly selected asset can be entered using a stale price.
       current[z]=cl
     equity+=step;price_pnl+=step
-    # Optional causal hourly exit after N consecutive completed hourly sideways marks.
-    if regime_at(ht)=='sideways': sideways_streak += 1
-    else: sideways_streak = 0
-    if sideways_action=='immediate_flat' and sideways_streak>=sideways_confirm_hours and any(qty[z] for z in symbols):
-     exit_turnover=sum(abs(qty[z]*current[z]) for z in symbols if qty[z] and z in current)
-     exit_fee=exit_turnover*fee_bp/10000;exit_slip=exit_turnover*slip_bp/10000
-     equity-=exit_fee+exit_slip;fee_total+=exit_fee;slip_total+=exit_slip
-     rg_exit=regime_at(ht)
-     regime_pnl[rg_exit]['fees_usdt']+=exit_fee;regime_pnl[rg_exit]['slippage_usdt']+=exit_slip
-     for z in symbols:
-      tr=abs(qty[z]*current[z]) if qty[z] and z in current else 0.
-      fees_by_symbol[z]+=tr*fee_bp/10000;slippage_by_symbol[z]+=tr*slip_bp/10000
-      qty[z]=0.
-      for cohort in cohort_qty[z]: cohort_qty[z][cohort]=0.
-     hourly_sideways_exits+=1; sideways_streak=0
    if liquidated:break
   px={}
   for s in symbols:
