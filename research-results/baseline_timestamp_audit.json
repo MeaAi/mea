@@ -31,111 +31,111 @@
   "data_source": "Official free Binance Vision monthly fundingRate and 1h markPriceKlines; ZIP CRC checked",
   "data_errors": {},
   "loaded_symbols": [
-    "LINKUSDT",
-    "BNBUSDT",
-    "BTCUSDT",
-    "ADAUSDT",
-    "ETHUSDT",
-    "DOGEUSDT",
     "XRPUSDT",
+    "BTCUSDT",
+    "BNBUSDT",
+    "DOGEUSDT",
+    "ETHUSDT",
+    "LINKUSDT",
     "SOLUSDT",
-    "TRXUSDT",
+    "ADAUSDT",
     "LTCUSDT",
     "BCHUSDT",
-    "AVAXUSDT",
-    "DOTUSDT"
+    "DOTUSDT",
+    "TRXUSDT",
+    "AVAXUSDT"
   ],
   "drawdown": "Hourly adverse mark using simultaneous low for longs/high for shorts plus event-time equity; conservative OHLC stress, not tick-accurate.",
   "results": {
     "train": {
       "fee_2bp": {
         "legacy_open_time_close_used_at_open": {
-          "net_return_pct": 28.9862,
-          "end_equity_usdt": 128.986165,
+          "net_return_pct": 31.2533,
+          "end_equity_usdt": 131.253293,
           "max_drawdown_pct": -25.8814,
           "liquidated": false,
           "rebalance_count": 195,
           "hourly_adverse_checks": 16616,
-          "price_pnl_usdt": 29.124498,
-          "funding_pnl_usdt": 8.217282,
-          "trading_fees_usdt": 4.177808,
-          "slippage_usdt": 4.177808
+          "price_pnl_usdt": 31.31621,
+          "funding_pnl_usdt": 8.282898,
+          "trading_fees_usdt": 4.172907,
+          "slippage_usdt": 4.172907
         },
         "causal_last_completed_candle": {
-          "net_return_pct": 12.716,
-          "end_equity_usdt": 112.715966,
-          "max_drawdown_pct": -30.7531,
+          "net_return_pct": 14.2752,
+          "end_equity_usdt": 114.275212,
+          "max_drawdown_pct": -29.9023,
           "liquidated": false,
           "rebalance_count": 198,
           "hourly_adverse_checks": 16616,
-          "price_pnl_usdt": 12.446831,
-          "funding_pnl_usdt": 8.692493,
-          "trading_fees_usdt": 4.211679,
-          "slippage_usdt": 4.211679
+          "price_pnl_usdt": 13.92286,
+          "funding_pnl_usdt": 8.725758,
+          "trading_fees_usdt": 4.186703,
+          "slippage_usdt": 4.186703
         },
         "delta_causal_minus_legacy": {
-          "net_return_pp": -16.2702,
-          "max_drawdown_pp": -4.8717
+          "net_return_pp": -16.9781,
+          "max_drawdown_pp": -4.0209
         }
       },
       "fee_5bp": {
         "legacy_open_time_close_used_at_open": {
-          "net_return_pct": 21.6962,
-          "end_equity_usdt": 121.696157,
-          "max_drawdown_pct": -26.462,
+          "net_return_pct": 23.8921,
+          "end_equity_usdt": 123.892134,
+          "max_drawdown_pct": -25.8978,
           "liquidated": false,
           "rebalance_count": 195,
           "hourly_adverse_checks": 16616,
-          "price_pnl_usdt": 27.892107,
-          "funding_pnl_usdt": 7.984964,
-          "trading_fees_usdt": 10.129225,
-          "slippage_usdt": 4.05169
+          "price_pnl_usdt": 30.008293,
+          "funding_pnl_usdt": 8.05046,
+          "trading_fees_usdt": 10.119013,
+          "slippage_usdt": 4.047605
         },
         "causal_last_completed_candle": {
-          "net_return_pct": 6.3149,
-          "end_equity_usdt": 106.314894,
-          "max_drawdown_pct": -31.9469,
+          "net_return_pct": 7.8348,
+          "end_equity_usdt": 107.834809,
+          "max_drawdown_pct": -31.11,
           "liquidated": false,
           "rebalance_count": 198,
           "hourly_adverse_checks": 16616,
-          "price_pnl_usdt": 12.165085,
-          "funding_pnl_usdt": 8.457102,
-          "trading_fees_usdt": 10.219495,
-          "slippage_usdt": 4.087798
+          "price_pnl_usdt": 13.568632,
+          "funding_pnl_usdt": 8.491578,
+          "trading_fees_usdt": 10.161001,
+          "slippage_usdt": 4.0644
         },
         "delta_causal_minus_legacy": {
-          "net_return_pp": -15.3813,
-          "max_drawdown_pp": -5.4849
+          "net_return_pp": -16.0573,
+          "max_drawdown_pp": -5.2122
         }
       },
       "fee_8bp": {
         "legacy_open_time_close_used_at_open": {
-          "net_return_pct": 14.8138,
-          "end_equity_usdt": 114.813793,
-          "max_drawdown_pct": -28.501,
+          "net_return_pct": 16.9394,
+          "end_equity_usdt": 116.939441,
+          "max_drawdown_pct": -27.7726,
           "liquidated": false,
           "rebalance_count": 195,
           "hourly_adverse_checks": 16616,
-          "price_pnl_usdt": 26.705278,
-          "funding_pnl_usdt": 7.760654,
-          "trading_fees_usdt": 15.721711,
-          "slippage_usdt": 3.930428
+          "price_pnl_usdt": 28.748956,
+          "funding_pnl_usdt": 7.825962,
+          "trading_fees_usdt": 15.708382,
+          "slippage_usdt": 3.927096
         },
         "causal_last_completed_candle": {
-          "net_return_pct": 0.2736,
-          "end_equity_usdt": 100.273586,
-          "max_drawdown_pct": -33.1236,
+          "net_return_pct": 1.7536,
+          "end_equity_usdt": 101.753641,
+          "max_drawdown_pct": -32.3004,
           "liquidated": false,
           "rebalance_count": 198,
           "hourly_adverse_checks": 16616,
-          "price_pnl_usdt": 11.88698,
-          "funding_pnl_usdt": 8.229546,
-          "trading_fees_usdt": 15.874353,
-          "slippage_usdt": 3.968588
+          "price_pnl_usdt": 13.221905,
+          "funding_pnl_usdt": 8.265116,
+          "trading_fees_usdt": 15.786704,
+          "slippage_usdt": 3.946676
         },
         "delta_causal_minus_legacy": {
-          "net_return_pp": -14.5402,
-          "max_drawdown_pp": -4.6226
+          "net_return_pp": -15.1858,
+          "max_drawdown_pp": -4.5278
         }
       }
     },
