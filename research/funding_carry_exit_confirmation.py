@@ -359,7 +359,8 @@ def main():
   v=run(data,cuts['oos'],1.0,5,slip_bp=2,
    lookback_days=chosen['lookback_days'],rebalance_days=chosen['rebalance_days'],
    tail_fraction=chosen['tail_fraction'],regime_policy=chosen_mapping,
-   regime_threshold_pct=chosen_threshold,sideways_action=action)  sideways_management[action]={k:v[k] for k in ('net_return_pct','end_equity_usdt','max_drawdown_pct','rebalance_count','hourly_sideways_exits','price_pnl_usdt','funding_pnl_usdt','trading_fees_usdt','slippage_usdt','liquidated')}
+   regime_threshold_pct=chosen_threshold,sideways_action=action)
+  sideways_management[action]={k:v[k] for k in ('net_return_pct','end_equity_usdt','max_drawdown_pct','rebalance_count','hourly_sideways_exits','price_pnl_usdt','funding_pnl_usdt','trading_fees_usdt','slippage_usdt','liquidated')}
  # Parameter-matched no-regime reference, to isolate the value of the BTC filter.
  v=run(data,cuts['oos'],1.0,5,slip_bp=2,
   lookback_days=chosen['lookback_days'],rebalance_days=chosen['rebalance_days'],
