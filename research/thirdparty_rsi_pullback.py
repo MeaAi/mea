@@ -112,8 +112,18 @@ def build_regime(hours):
         if len(items)!=4: continue
         if [x[1]["t"] for x in items] != [block*14400000+j*3600000 for j in range(4)]: continue
         four.append({"end_hour_index":items[-1][0],"close":items[-1][1]["c"],"end_ts":(block+1)*14400000})
-    vals=wilder_rsi([x["close"] for x in four],RSI_PERIOD)
-    return {four[i]["end_hour_index"]:vals[i] for i in range(len(four)) if vals[i] is not None}
+    result={}; segment=[]
+    def flush():
+        if len(segment)>RSI_PERIOD:
+            vals=wilder_rsi([x["close"] for x in segment],RSI_PERIOD)
+            for k,item in enumerate(segment):
+                if vals[k] is not None: result[item["end_hour_index"]]=vals[k]
+    for item in four:
+        if segment and item["end_ts"]-segment[-1]["end_ts"]!=14400000:
+            flush(); segment=[]
+        segment.append(item)
+    flush()
+    return result
 
 def backtest(hours,minutes,marks,funding,lo,hi,fee_bp,with_pullback):
     equity=100.0; peak=100.0; maxdd=0.0; trades=[]
@@ -307,6 +317,8 @@ def main():
     if len(hours)<1000: raise SystemExit("Insufficient complete hourly candles")
     # Only compare complete contiguous UTC-aligned hourly candles.
     gaps=sum(1 for x,y in zip(hours,hours[1:]) if y["t"]-x["t"]!=3600000)
+    if gaps:
+        raise RuntimeError(f"Hourly series contains {gaps} missing-hour gaps; refusing to score trades across incomplete history")
     n=len(hours); a1=int(n*.5); a2=int(n*.7)
     splits={"train":(0,a1),"validation":(a1,a2),"oos":(a2,n)}
     report={"strategy":"4h Wilder RSI(20)>70 regime; 1h first entry; optional 0.75% pullback re-entry",
