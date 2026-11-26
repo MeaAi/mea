@@ -1,6 +1,6 @@
 {
-  "experiment": "MEAFLOW-72 drawdown source attribution (frozen strategy; no parameter sweep)",
-  "branch": "research/meaflow72-drawdown-attribution-v1",
+  "experiment": "MEAFLOW-72 max drawdown timing (frozen 100% sideways retention strategy; no parameter sweep)",
+  "branch": "research/meaflow72-drawdown-timing-v1",
   "parent": "research/meaflow72-retention-multiwindow-v1; MEAFLOW-72 main branch unchanged",
   "source": "Official free Binance Vision monthly fundingRate and 1h markPriceKlines",
   "loaded_symbols": [
@@ -22,7 +22,7 @@
   "capital_usdt": 100,
   "leverage": 1,
   "costs": "5 bp fee one-way + 2 bp slippage one-way",
-  "frozen_strategy": "7d funding lookback, 7d rebalance, 20% tails; BTC trailing 30d mark-price regime +/-5%; bull both, bear short-only; sideways fixed 100% of entry exposure, no new/additional exposure; unknown flat.",
+  "frozen_strategy": "7d funding lookback, 7d rebalance, 20% tails; BTC trailing 30d mark-price regime +/-5%; bull both, bear short-only; sideways hold existing positions at 100% of entry exposure, no new/additional exposure; unknown flat.",
   "windows": {
     "2023_calendar": {
       "period_utc": [
