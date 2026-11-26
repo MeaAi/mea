@@ -27,12 +27,12 @@ def main():
     first,last=times[0],times[-1]; span=last-first
     cuts={"train":(first+7*legacy.DAY,first+int(span*.5)),"validation":(first+int(span*.5),first+int(span*.7)),"oos":(first+int(span*.7),last)}
     policy={"bull":"both","bear":"short_only","sideways":"flat","unknown":"flat"}
-    common=dict(lev=1.0,slip_bp=2,lookback_days=7,rebalance_days=7,tail_fraction=.20,regime_policy=policy,regime_threshold_pct=5.0,sideways_action="flat")
+    common=dict(slip_bp=2,lookback_days=7,rebalance_days=7,tail_fraction=.20,regime_policy=policy,regime_threshold_pct=5.0,sideways_action="flat")
     results={}
     for split,period in cuts.items():
         results[split]={}
         for fee in (2,5,8):
-            old=legacy.run(data,period,1.0,fee,**{k:v for k,v in common.items() if k!="lev"})
+            old=legacy.run(data,period,1.0,fee,**common)
             new=causal.run(data,period,1.0,fee,**common)
             results[split][f"fee_{fee}bp"]={"legacy_open_time_close_used_at_open":compact(old),"causal_last_completed_candle":compact(new),
               "delta_causal_minus_legacy":{"net_return_pp":round(new["net_return_pct"]-old["net_return_pct"],5),
