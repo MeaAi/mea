@@ -75,7 +75,7 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
  all_events=sorted(set(t for s in symbols for t in data[s]["fund"] if first<=t<=last))
  events=[t for t in all_events if sum(t in data[s]["fund"] and t in data[s]["marks"] for s in symbols)>=math.ceil(.8*len(symbols))]
  if len(events)<100:raise RuntimeError("insufficient aligned funding events")
- equity=100.; peak=100.; maxdd=0.; qty={s:0. for s in symbols}; prev={}; last_rebal=None
+ equity=100.; peak=100.; maxdd=0.; peak_time=first; maxdd_peak_time=first; maxdd_trough_time=first; maxdd_peak_equity=100.; maxdd_trough_equity=100.; qty={s:0. for s in symbols}; prev={}; last_rebal=None
  fee_total=slip_total=price_pnl=funding_pnl=0.; liquidated=False; liq_time=None; liq_equity=None; last_regime=None; sideways_anchor_qty=None
  price_by_symbol={z:0. for z in symbols}; funding_by_symbol={z:0. for z in symbols}; fees_by_symbol={z:0. for z in symbols}; slippage_by_symbol={z:0. for z in symbols}
  cohort_qty={z:{k:0. for k in ('bull','bear','sideways','unknown')} for z in symbols}
@@ -132,8 +132,11 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
      worst+=q*(adverse-current[z]);notion+=abs(q*adverse)
     hourly_checks+=1
     # Track adverse intrabar portfolio equity using simultaneous adverse extremes.
-    peak=max(peak,equity)
-    maxdd=min(maxdd,(worst/peak-1)*100 if peak else -100)
+    if equity>peak:
+     peak=equity; peak_time=ht
+    dd=(worst/peak-1)*100 if peak else -100
+    if dd<maxdd:
+     maxdd=dd; maxdd_peak_time=peak_time; maxdd_trough_time=ht; maxdd_peak_equity=peak; maxdd_trough_equity=worst
     if worst<=notion*(mmr+liq_fee):
      equity=max(0.,worst-notion*liq_fee);liquidated=True
      liq_time=datetime.fromtimestamp(ht/1000,timezone.utc).isoformat();liq_equity=equity
@@ -216,13 +219,20 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
     qty=target;last_rebal=t;last_regime=rg;rebalances+=1
   # Save latest event mark as anchor for next interval.
   prev=px.copy()
-  peak=max(peak,equity);maxdd=min(maxdd,(equity/peak-1)*100 if peak else -100)
+  if equity>peak:
+   peak=equity; peak_time=t
+  dd=(equity/peak-1)*100 if peak else -100
+  if dd<maxdd:
+   maxdd=dd; maxdd_peak_time=peak_time; maxdd_trough_time=t; maxdd_peak_equity=peak; maxdd_trough_equity=equity
   if equity<=0:liquidated=True;equity=0.;break
  gross=sum(abs(qty[s]*prev.get(s,0)) for s in symbols)
  return {"leverage":lev,"fee_bp_one_way":fee_bp,"slippage_bp_one_way":slip_bp,
   "maintenance_margin_rate_assumption":mmr,"liquidation_fee_assumption":liq_fee,
   "start_equity_usdt":100.,"end_equity_usdt":round(equity,6),
   "net_return_pct":round((equity/100-1)*100,4),"max_drawdown_pct":round(maxdd,4),
+  "maxdd_peak_time_utc":datetime.fromtimestamp(maxdd_peak_time/1000,timezone.utc).isoformat(),
+  "maxdd_trough_time_utc":datetime.fromtimestamp(maxdd_trough_time/1000,timezone.utc).isoformat(),
+  "maxdd_peak_equity_usdt":round(maxdd_peak_equity,6),"maxdd_trough_equity_usdt":round(maxdd_trough_equity,6),
   "liquidated":liquidated,"liquidation_time_utc":liq_time,"equity_at_liquidation_usdt":liq_equity,
   "price_pnl_usdt":round(price_pnl,6),"funding_pnl_usdt":round(funding_pnl,6),
   "trading_fees_usdt":round(fee_total,6),"slippage_usdt":round(slip_total,6),
