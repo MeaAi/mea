@@ -1,0 +1,2131 @@
+{
+  "experiment": "MEAFLOW-72 regime-aware per-symbol exposure caps; isolated copy; main branches unchanged",
+  "branch": "research/meaflow72-regime-cap-isolation-v1",
+  "parent": "research/meaflow72-regime-risk-cap-v1",
+  "source": "Official free Binance Vision monthly fundingRate + 1h markPriceKlines",
+  "loaded_symbols": [
+    "ADAUSDT",
+    "AVAXUSDT",
+    "BCHUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "DOGEUSDT",
+    "DOTUSDT",
+    "ETHUSDT",
+    "LINKUSDT",
+    "LTCUSDT",
+    "SOLUSDT",
+    "TRXUSDT",
+    "XRPUSDT"
+  ],
+  "data_errors": {},
+  "capital_usdt": 100,
+  "leverage": 1,
+  "costs": "5 bp fee one-way + 2 bp slippage one-way",
+  "frozen_strategy": "7d funding lookback, 7d rebalance, 20% tails; BTC trailing 30d mark-price regime +/-5%; bull both, bear short-only; sideways hold; unknown flat.",
+  "cap_definition": "Scalar configs cap all non-sideways targets at fraction of equity. Dict configs apply only the named regime caps; absent regime keys are uncapped. Sideways hold positions are not resized and no new/additional exposure is opened. No leverage change; unused notional remains cash.",
+  "configs": {
+    "uncapped": null,
+    "bear_only_30pct": {
+      "bear": 0.3
+    },
+    "bear_only_25pct": {
+      "bear": 0.25
+    },
+    "bear_only_20pct": {
+      "bear": 0.2
+    },
+    "bear_only_15pct": {
+      "bear": 0.15
+    },
+    "bull_only_50pct": {
+      "bull": 0.5
+    },
+    "bull_only_40pct": {
+      "bull": 0.4
+    },
+    "bull_only_30pct": {
+      "bull": 0.3
+    },
+    "bull_only_25pct": {
+      "bull": 0.25
+    },
+    "adaptive_bull40_bear20": {
+      "bull": 0.4,
+      "bear": 0.2
+    },
+    "adaptive_bull25_bear15": {
+      "bull": 0.25,
+      "bear": 0.15
+    }
+  },
+  "windows": {
+    "2023_calendar": {
+      "period_utc": [
+        "2023-01-01T00:00:00+00:00",
+        "2024-01-01T00:00:00+00:00"
+      ],
+      "event_count": 8983,
+      "configs": {
+        "uncapped": {
+          "net_return_pct": 42.1559,
+          "end_equity_usdt": 142.15595,
+          "max_drawdown_pct": -22.2601,
+          "maxdd_peak_time_utc": "2023-03-11T08:00:00+00:00",
+          "maxdd_trough_time_utc": "2023-04-18T11:00:00+00:00",
+          "rebalance_count": 82,
+          "liquidated": false,
+          "price_pnl_usdt": 41.263594,
+          "funding_pnl_usdt": 5.744719,
+          "trading_fees_usdt": 3.465974,
+          "slippage_usdt": 1.386389,
+          "max_symbol_exposure_pct": null,
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": -11.429692,
+              "funding_pnl_usdt": 3.844496,
+              "fees_usdt": 2.173621,
+              "slippage_usdt": 0.869448,
+              "net_contribution_usdt": -10.628265
+            },
+            "bear": {
+              "price_pnl_usdt": 10.574631,
+              "funding_pnl_usdt": 0.549587,
+              "fees_usdt": 1.292353,
+              "slippage_usdt": 0.516941,
+              "net_contribution_usdt": 9.314925
+            },
+            "sideways": {
+              "price_pnl_usdt": 42.118654,
+              "funding_pnl_usdt": 1.350636,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 43.46929
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bear_only_30pct": {
+          "net_return_pct": 29.2491,
+          "end_equity_usdt": 129.249105,
+          "max_drawdown_pct": -17.9716,
+          "maxdd_peak_time_utc": "2023-03-11T08:00:00+00:00",
+          "maxdd_trough_time_utc": "2023-04-18T11:00:00+00:00",
+          "rebalance_count": 82,
+          "liquidated": false,
+          "price_pnl_usdt": 28.111769,
+          "funding_pnl_usdt": 5.03102,
+          "trading_fees_usdt": 2.781203,
+          "slippage_usdt": 1.112481,
+          "max_symbol_exposure_pct": {
+            "bear": 0.3
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": -9.740957,
+              "funding_pnl_usdt": 3.634486,
+              "fees_usdt": 1.984039,
+              "slippage_usdt": 0.793616,
+              "net_contribution_usdt": -8.884126
+            },
+            "bear": {
+              "price_pnl_usdt": 5.992134,
+              "funding_pnl_usdt": 0.329319,
+              "fees_usdt": 0.797164,
+              "slippage_usdt": 0.318865,
+              "net_contribution_usdt": 5.205424
+            },
+            "sideways": {
+              "price_pnl_usdt": 31.860591,
+              "funding_pnl_usdt": 1.067216,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 32.927807
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bear_only_25pct": {
+          "net_return_pct": 26.0003,
+          "end_equity_usdt": 126.000254,
+          "max_drawdown_pct": -16.8575,
+          "maxdd_peak_time_utc": "2023-03-11T08:00:00+00:00",
+          "maxdd_trough_time_utc": "2023-04-18T11:00:00+00:00",
+          "rebalance_count": 82,
+          "liquidated": false,
+          "price_pnl_usdt": 24.806621,
+          "funding_pnl_usdt": 4.853281,
+          "trading_fees_usdt": 2.614035,
+          "slippage_usdt": 1.045614,
+          "max_symbol_exposure_pct": {
+            "bear": 0.25
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": -9.317648,
+              "funding_pnl_usdt": 3.58039,
+              "fees_usdt": 1.937146,
+              "slippage_usdt": 0.774858,
+              "net_contribution_usdt": -8.449262
+            },
+            "bear": {
+              "price_pnl_usdt": 4.94665,
+              "funding_pnl_usdt": 0.275788,
+              "fees_usdt": 0.676889,
+              "slippage_usdt": 0.270756,
+              "net_contribution_usdt": 4.274794
+            },
+            "sideways": {
+              "price_pnl_usdt": 29.17762,
+              "funding_pnl_usdt": 0.997102,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 30.174722
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bear_only_20pct": {
+          "net_return_pct": 22.7334,
+          "end_equity_usdt": 122.733401,
+          "max_drawdown_pct": -15.7259,
+          "maxdd_peak_time_utc": "2023-03-11T08:00:00+00:00",
+          "maxdd_trough_time_utc": "2023-04-18T11:00:00+00:00",
+          "rebalance_count": 82,
+          "liquidated": false,
+          "price_pnl_usdt": 21.499828,
+          "funding_pnl_usdt": 4.67569,
+          "trading_fees_usdt": 2.458655,
+          "slippage_usdt": 0.983462,
+          "max_symbol_exposure_pct": {
+            "bear": 0.2
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": -8.893667,
+              "funding_pnl_usdt": 3.525414,
+              "fees_usdt": 1.898198,
+              "slippage_usdt": 0.759279,
+              "net_contribution_usdt": -8.02573
+            },
+            "bear": {
+              "price_pnl_usdt": 3.943339,
+              "funding_pnl_usdt": 0.222904,
+              "fees_usdt": 0.560457,
+              "slippage_usdt": 0.224183,
+              "net_contribution_usdt": 3.381604
+            },
+            "sideways": {
+              "price_pnl_usdt": 26.450156,
+              "funding_pnl_usdt": 0.927371,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 27.377527
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bear_only_15pct": {
+          "net_return_pct": 19.4508,
+          "end_equity_usdt": 119.450844,
+          "max_drawdown_pct": -14.5764,
+          "maxdd_peak_time_utc": "2023-03-11T08:00:00+00:00",
+          "maxdd_trough_time_utc": "2023-04-18T11:00:00+00:00",
+          "rebalance_count": 82,
+          "liquidated": false,
+          "price_pnl_usdt": 18.194269,
+          "funding_pnl_usdt": 4.49824,
+          "trading_fees_usdt": 2.315475,
+          "slippage_usdt": 0.92619,
+          "max_symbol_exposure_pct": {
+            "bear": 0.15
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": -8.468418,
+              "funding_pnl_usdt": 3.469495,
+              "fees_usdt": 1.863334,
+              "slippage_usdt": 0.745334,
+              "net_contribution_usdt": -7.60759
+            },
+            "bear": {
+              "price_pnl_usdt": 2.983346,
+              "funding_pnl_usdt": 0.170683,
+              "fees_usdt": 0.45214,
+              "slippage_usdt": 0.180856,
+              "net_contribution_usdt": 2.521033
+            },
+            "sideways": {
+              "price_pnl_usdt": 23.67934,
+              "funding_pnl_usdt": 0.858061,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 24.537402
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bull_only_50pct": {
+          "net_return_pct": 42.1559,
+          "end_equity_usdt": 142.15595,
+          "max_drawdown_pct": -22.2601,
+          "maxdd_peak_time_utc": "2023-03-11T08:00:00+00:00",
+          "maxdd_trough_time_utc": "2023-04-18T11:00:00+00:00",
+          "rebalance_count": 82,
+          "liquidated": false,
+          "price_pnl_usdt": 41.263594,
+          "funding_pnl_usdt": 5.744719,
+          "trading_fees_usdt": 3.465974,
+          "slippage_usdt": 1.386389,
+          "max_symbol_exposure_pct": {
+            "bull": 0.5
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": -11.429692,
+              "funding_pnl_usdt": 3.844496,
+              "fees_usdt": 2.173621,
+              "slippage_usdt": 0.869448,
+              "net_contribution_usdt": -10.628265
+            },
+            "bear": {
+              "price_pnl_usdt": 10.574631,
+              "funding_pnl_usdt": 0.549587,
+              "fees_usdt": 1.292353,
+              "slippage_usdt": 0.516941,
+              "net_contribution_usdt": 9.314925
+            },
+            "sideways": {
+              "price_pnl_usdt": 42.118654,
+              "funding_pnl_usdt": 1.350636,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 43.46929
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bull_only_40pct": {
+          "net_return_pct": 42.1559,
+          "end_equity_usdt": 142.15595,
+          "max_drawdown_pct": -22.2601,
+          "maxdd_peak_time_utc": "2023-03-11T08:00:00+00:00",
+          "maxdd_trough_time_utc": "2023-04-18T11:00:00+00:00",
+          "rebalance_count": 82,
+          "liquidated": false,
+          "price_pnl_usdt": 41.263594,
+          "funding_pnl_usdt": 5.744719,
+          "trading_fees_usdt": 3.465974,
+          "slippage_usdt": 1.386389,
+          "max_symbol_exposure_pct": {
+            "bull": 0.4
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": -11.429692,
+              "funding_pnl_usdt": 3.844496,
+              "fees_usdt": 2.173621,
+              "slippage_usdt": 0.869448,
+              "net_contribution_usdt": -10.628265
+            },
+            "bear": {
+              "price_pnl_usdt": 10.574631,
+              "funding_pnl_usdt": 0.549587,
+              "fees_usdt": 1.292353,
+              "slippage_usdt": 0.516941,
+              "net_contribution_usdt": 9.314925
+            },
+            "sideways": {
+              "price_pnl_usdt": 42.118654,
+              "funding_pnl_usdt": 1.350636,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 43.46929
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bull_only_30pct": {
+          "net_return_pct": 42.1559,
+          "end_equity_usdt": 142.15595,
+          "max_drawdown_pct": -22.2601,
+          "maxdd_peak_time_utc": "2023-03-11T08:00:00+00:00",
+          "maxdd_trough_time_utc": "2023-04-18T11:00:00+00:00",
+          "rebalance_count": 82,
+          "liquidated": false,
+          "price_pnl_usdt": 41.263594,
+          "funding_pnl_usdt": 5.744719,
+          "trading_fees_usdt": 3.465974,
+          "slippage_usdt": 1.386389,
+          "max_symbol_exposure_pct": {
+            "bull": 0.3
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": -11.429692,
+              "funding_pnl_usdt": 3.844496,
+              "fees_usdt": 2.173621,
+              "slippage_usdt": 0.869448,
+              "net_contribution_usdt": -10.628265
+            },
+            "bear": {
+              "price_pnl_usdt": 10.574631,
+              "funding_pnl_usdt": 0.549587,
+              "fees_usdt": 1.292353,
+              "slippage_usdt": 0.516941,
+              "net_contribution_usdt": 9.314925
+            },
+            "sideways": {
+              "price_pnl_usdt": 42.118654,
+              "funding_pnl_usdt": 1.350636,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 43.46929
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bull_only_25pct": {
+          "net_return_pct": 42.1559,
+          "end_equity_usdt": 142.15595,
+          "max_drawdown_pct": -22.2601,
+          "maxdd_peak_time_utc": "2023-03-11T08:00:00+00:00",
+          "maxdd_trough_time_utc": "2023-04-18T11:00:00+00:00",
+          "rebalance_count": 82,
+          "liquidated": false,
+          "price_pnl_usdt": 41.263594,
+          "funding_pnl_usdt": 5.744719,
+          "trading_fees_usdt": 3.465974,
+          "slippage_usdt": 1.386389,
+          "max_symbol_exposure_pct": {
+            "bull": 0.25
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": -11.429692,
+              "funding_pnl_usdt": 3.844496,
+              "fees_usdt": 2.173621,
+              "slippage_usdt": 0.869448,
+              "net_contribution_usdt": -10.628265
+            },
+            "bear": {
+              "price_pnl_usdt": 10.574631,
+              "funding_pnl_usdt": 0.549587,
+              "fees_usdt": 1.292353,
+              "slippage_usdt": 0.516941,
+              "net_contribution_usdt": 9.314925
+            },
+            "sideways": {
+              "price_pnl_usdt": 42.118654,
+              "funding_pnl_usdt": 1.350636,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 43.46929
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "adaptive_bull40_bear20": {
+          "net_return_pct": 22.7334,
+          "end_equity_usdt": 122.733401,
+          "max_drawdown_pct": -15.7259,
+          "maxdd_peak_time_utc": "2023-03-11T08:00:00+00:00",
+          "maxdd_trough_time_utc": "2023-04-18T11:00:00+00:00",
+          "rebalance_count": 82,
+          "liquidated": false,
+          "price_pnl_usdt": 21.499828,
+          "funding_pnl_usdt": 4.67569,
+          "trading_fees_usdt": 2.458655,
+          "slippage_usdt": 0.983462,
+          "max_symbol_exposure_pct": {
+            "bull": 0.4,
+            "bear": 0.2
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": -8.893667,
+              "funding_pnl_usdt": 3.525414,
+              "fees_usdt": 1.898198,
+              "slippage_usdt": 0.759279,
+              "net_contribution_usdt": -8.02573
+            },
+            "bear": {
+              "price_pnl_usdt": 3.943339,
+              "funding_pnl_usdt": 0.222904,
+              "fees_usdt": 0.560457,
+              "slippage_usdt": 0.224183,
+              "net_contribution_usdt": 3.381604
+            },
+            "sideways": {
+              "price_pnl_usdt": 26.450156,
+              "funding_pnl_usdt": 0.927371,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 27.377527
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "adaptive_bull25_bear15": {
+          "net_return_pct": 19.4508,
+          "end_equity_usdt": 119.450844,
+          "max_drawdown_pct": -14.5764,
+          "maxdd_peak_time_utc": "2023-03-11T08:00:00+00:00",
+          "maxdd_trough_time_utc": "2023-04-18T11:00:00+00:00",
+          "rebalance_count": 82,
+          "liquidated": false,
+          "price_pnl_usdt": 18.194269,
+          "funding_pnl_usdt": 4.49824,
+          "trading_fees_usdt": 2.315475,
+          "slippage_usdt": 0.92619,
+          "max_symbol_exposure_pct": {
+            "bull": 0.25,
+            "bear": 0.15
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": -8.468418,
+              "funding_pnl_usdt": 3.469495,
+              "fees_usdt": 1.863334,
+              "slippage_usdt": 0.745334,
+              "net_contribution_usdt": -7.60759
+            },
+            "bear": {
+              "price_pnl_usdt": 2.983346,
+              "funding_pnl_usdt": 0.170683,
+              "fees_usdt": 0.45214,
+              "slippage_usdt": 0.180856,
+              "net_contribution_usdt": 2.521033
+            },
+            "sideways": {
+              "price_pnl_usdt": 23.67934,
+              "funding_pnl_usdt": 0.858061,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 24.537402
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        }
+      }
+    },
+    "2024_calendar": {
+      "period_utc": [
+        "2024-01-01T00:00:00+00:00",
+        "2024-12-31T16:00:00+00:00"
+      ],
+      "event_count": 12064,
+      "configs": {
+        "uncapped": {
+          "net_return_pct": 14.1269,
+          "end_equity_usdt": 114.126902,
+          "max_drawdown_pct": -35.6759,
+          "maxdd_peak_time_utc": "2024-07-05T09:00:00+00:00",
+          "maxdd_trough_time_utc": "2024-08-25T14:00:00+00:00",
+          "rebalance_count": 123,
+          "liquidated": false,
+          "price_pnl_usdt": 13.583906,
+          "funding_pnl_usdt": 6.501251,
+          "trading_fees_usdt": 4.255896,
+          "slippage_usdt": 1.702359,
+          "max_symbol_exposure_pct": null,
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 36.325726,
+              "funding_pnl_usdt": 3.312986,
+              "fees_usdt": 2.51621,
+              "slippage_usdt": 1.006484,
+              "net_contribution_usdt": 36.116017
+            },
+            "bear": {
+              "price_pnl_usdt": -24.535802,
+              "funding_pnl_usdt": 1.495614,
+              "fees_usdt": 1.739686,
+              "slippage_usdt": 0.695874,
+              "net_contribution_usdt": -25.475748
+            },
+            "sideways": {
+              "price_pnl_usdt": 1.793982,
+              "funding_pnl_usdt": 1.692651,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 3.486633
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bear_only_30pct": {
+          "net_return_pct": 30.2138,
+          "end_equity_usdt": 130.213793,
+          "max_drawdown_pct": -25.8978,
+          "maxdd_peak_time_utc": "2024-03-11T02:00:00+00:00",
+          "maxdd_trough_time_utc": "2024-03-18T16:00:00+00:00",
+          "rebalance_count": 123,
+          "liquidated": false,
+          "price_pnl_usdt": 29.564916,
+          "funding_pnl_usdt": 5.878373,
+          "trading_fees_usdt": 3.735355,
+          "slippage_usdt": 1.494142,
+          "max_symbol_exposure_pct": {
+            "bear": 0.3
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 38.600161,
+              "funding_pnl_usdt": 3.463944,
+              "fees_usdt": 2.563434,
+              "slippage_usdt": 1.025374,
+              "net_contribution_usdt": 38.475297
+            },
+            "bear": {
+              "price_pnl_usdt": -13.750554,
+              "funding_pnl_usdt": 0.954517,
+              "fees_usdt": 1.171921,
+              "slippage_usdt": 0.468768,
+              "net_contribution_usdt": -14.436726
+            },
+            "sideways": {
+              "price_pnl_usdt": 4.71531,
+              "funding_pnl_usdt": 1.459913,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 6.175223
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bear_only_25pct": {
+          "net_return_pct": 33.9485,
+          "end_equity_usdt": 133.948536,
+          "max_drawdown_pct": -25.8978,
+          "maxdd_peak_time_utc": "2024-03-11T02:00:00+00:00",
+          "maxdd_trough_time_utc": "2024-03-18T16:00:00+00:00",
+          "rebalance_count": 123,
+          "liquidated": false,
+          "price_pnl_usdt": 33.268957,
+          "funding_pnl_usdt": 5.711162,
+          "trading_fees_usdt": 3.593988,
+          "slippage_usdt": 1.437595,
+          "max_symbol_exposure_pct": {
+            "bear": 0.25
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 39.120238,
+              "funding_pnl_usdt": 3.498114,
+              "fees_usdt": 2.568813,
+              "slippage_usdt": 1.027525,
+              "net_contribution_usdt": 39.022014
+            },
+            "bear": {
+              "price_pnl_usdt": -11.169858,
+              "funding_pnl_usdt": 0.813955,
+              "fees_usdt": 1.025175,
+              "slippage_usdt": 0.41007,
+              "net_contribution_usdt": -11.791148
+            },
+            "sideways": {
+              "price_pnl_usdt": 5.318576,
+              "funding_pnl_usdt": 1.399092,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 6.717669
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bear_only_20pct": {
+          "net_return_pct": 37.4958,
+          "end_equity_usdt": 137.495834,
+          "max_drawdown_pct": -25.8978,
+          "maxdd_peak_time_utc": "2024-03-11T02:00:00+00:00",
+          "maxdd_trough_time_utc": "2024-03-18T16:00:00+00:00",
+          "rebalance_count": 123,
+          "liquidated": false,
+          "price_pnl_usdt": 36.827407,
+          "funding_pnl_usdt": 5.538547,
+          "trading_fees_usdt": 3.478657,
+          "slippage_usdt": 1.391463,
+          "max_symbol_exposure_pct": {
+            "bear": 0.2
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 39.607398,
+              "funding_pnl_usdt": 3.529996,
+              "fees_usdt": 2.593174,
+              "slippage_usdt": 1.03727,
+              "net_contribution_usdt": 39.506951
+            },
+            "bear": {
+              "price_pnl_usdt": -8.645053,
+              "funding_pnl_usdt": 0.67155,
+              "fees_usdt": 0.885483,
+              "slippage_usdt": 0.354193,
+              "net_contribution_usdt": -9.21318
+            },
+            "sideways": {
+              "price_pnl_usdt": 5.865063,
+              "funding_pnl_usdt": 1.337,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 7.202063
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bear_only_15pct": {
+          "net_return_pct": 40.8514,
+          "end_equity_usdt": 140.851432,
+          "max_drawdown_pct": -25.8978,
+          "maxdd_peak_time_utc": "2024-03-11T02:00:00+00:00",
+          "maxdd_trough_time_utc": "2024-03-18T16:00:00+00:00",
+          "rebalance_count": 123,
+          "liquidated": false,
+          "price_pnl_usdt": 40.230664,
+          "funding_pnl_usdt": 5.361127,
+          "trading_fees_usdt": 3.385971,
+          "slippage_usdt": 1.354388,
+          "max_symbol_exposure_pct": {
+            "bear": 0.15
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 40.063464,
+              "funding_pnl_usdt": 3.559739,
+              "fees_usdt": 2.634451,
+              "slippage_usdt": 1.053781,
+              "net_contribution_usdt": 39.934971
+            },
+            "bear": {
+              "price_pnl_usdt": -6.184071,
+              "funding_pnl_usdt": 0.527622,
+              "fees_usdt": 0.75152,
+              "slippage_usdt": 0.300608,
+              "net_contribution_usdt": -6.708577
+            },
+            "sideways": {
+              "price_pnl_usdt": 6.351272,
+              "funding_pnl_usdt": 1.273766,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 7.625038
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bull_only_50pct": {
+          "net_return_pct": 14.1269,
+          "end_equity_usdt": 114.126902,
+          "max_drawdown_pct": -35.6759,
+          "maxdd_peak_time_utc": "2024-07-05T09:00:00+00:00",
+          "maxdd_trough_time_utc": "2024-08-25T14:00:00+00:00",
+          "rebalance_count": 123,
+          "liquidated": false,
+          "price_pnl_usdt": 13.583906,
+          "funding_pnl_usdt": 6.501251,
+          "trading_fees_usdt": 4.255896,
+          "slippage_usdt": 1.702359,
+          "max_symbol_exposure_pct": {
+            "bull": 0.5
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 36.325726,
+              "funding_pnl_usdt": 3.312986,
+              "fees_usdt": 2.51621,
+              "slippage_usdt": 1.006484,
+              "net_contribution_usdt": 36.116017
+            },
+            "bear": {
+              "price_pnl_usdt": -24.535802,
+              "funding_pnl_usdt": 1.495614,
+              "fees_usdt": 1.739686,
+              "slippage_usdt": 0.695874,
+              "net_contribution_usdt": -25.475748
+            },
+            "sideways": {
+              "price_pnl_usdt": 1.793982,
+              "funding_pnl_usdt": 1.692651,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 3.486633
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bull_only_40pct": {
+          "net_return_pct": 14.1269,
+          "end_equity_usdt": 114.126902,
+          "max_drawdown_pct": -35.6759,
+          "maxdd_peak_time_utc": "2024-07-05T09:00:00+00:00",
+          "maxdd_trough_time_utc": "2024-08-25T14:00:00+00:00",
+          "rebalance_count": 123,
+          "liquidated": false,
+          "price_pnl_usdt": 13.583906,
+          "funding_pnl_usdt": 6.501251,
+          "trading_fees_usdt": 4.255896,
+          "slippage_usdt": 1.702359,
+          "max_symbol_exposure_pct": {
+            "bull": 0.4
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 36.325726,
+              "funding_pnl_usdt": 3.312986,
+              "fees_usdt": 2.51621,
+              "slippage_usdt": 1.006484,
+              "net_contribution_usdt": 36.116017
+            },
+            "bear": {
+              "price_pnl_usdt": -24.535802,
+              "funding_pnl_usdt": 1.495614,
+              "fees_usdt": 1.739686,
+              "slippage_usdt": 0.695874,
+              "net_contribution_usdt": -25.475748
+            },
+            "sideways": {
+              "price_pnl_usdt": 1.793982,
+              "funding_pnl_usdt": 1.692651,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 3.486633
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bull_only_30pct": {
+          "net_return_pct": 14.1269,
+          "end_equity_usdt": 114.126902,
+          "max_drawdown_pct": -35.6759,
+          "maxdd_peak_time_utc": "2024-07-05T09:00:00+00:00",
+          "maxdd_trough_time_utc": "2024-08-25T14:00:00+00:00",
+          "rebalance_count": 123,
+          "liquidated": false,
+          "price_pnl_usdt": 13.583906,
+          "funding_pnl_usdt": 6.501251,
+          "trading_fees_usdt": 4.255896,
+          "slippage_usdt": 1.702359,
+          "max_symbol_exposure_pct": {
+            "bull": 0.3
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 36.325726,
+              "funding_pnl_usdt": 3.312986,
+              "fees_usdt": 2.51621,
+              "slippage_usdt": 1.006484,
+              "net_contribution_usdt": 36.116017
+            },
+            "bear": {
+              "price_pnl_usdt": -24.535802,
+              "funding_pnl_usdt": 1.495614,
+              "fees_usdt": 1.739686,
+              "slippage_usdt": 0.695874,
+              "net_contribution_usdt": -25.475748
+            },
+            "sideways": {
+              "price_pnl_usdt": 1.793982,
+              "funding_pnl_usdt": 1.692651,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 3.486633
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bull_only_25pct": {
+          "net_return_pct": 14.1269,
+          "end_equity_usdt": 114.126902,
+          "max_drawdown_pct": -35.6759,
+          "maxdd_peak_time_utc": "2024-07-05T09:00:00+00:00",
+          "maxdd_trough_time_utc": "2024-08-25T14:00:00+00:00",
+          "rebalance_count": 123,
+          "liquidated": false,
+          "price_pnl_usdt": 13.583906,
+          "funding_pnl_usdt": 6.501251,
+          "trading_fees_usdt": 4.255896,
+          "slippage_usdt": 1.702359,
+          "max_symbol_exposure_pct": {
+            "bull": 0.25
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 36.325726,
+              "funding_pnl_usdt": 3.312986,
+              "fees_usdt": 2.51621,
+              "slippage_usdt": 1.006484,
+              "net_contribution_usdt": 36.116017
+            },
+            "bear": {
+              "price_pnl_usdt": -24.535802,
+              "funding_pnl_usdt": 1.495614,
+              "fees_usdt": 1.739686,
+              "slippage_usdt": 0.695874,
+              "net_contribution_usdt": -25.475748
+            },
+            "sideways": {
+              "price_pnl_usdt": 1.793982,
+              "funding_pnl_usdt": 1.692651,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 3.486633
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "adaptive_bull40_bear20": {
+          "net_return_pct": 37.4958,
+          "end_equity_usdt": 137.495834,
+          "max_drawdown_pct": -25.8978,
+          "maxdd_peak_time_utc": "2024-03-11T02:00:00+00:00",
+          "maxdd_trough_time_utc": "2024-03-18T16:00:00+00:00",
+          "rebalance_count": 123,
+          "liquidated": false,
+          "price_pnl_usdt": 36.827407,
+          "funding_pnl_usdt": 5.538547,
+          "trading_fees_usdt": 3.478657,
+          "slippage_usdt": 1.391463,
+          "max_symbol_exposure_pct": {
+            "bull": 0.4,
+            "bear": 0.2
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 39.607398,
+              "funding_pnl_usdt": 3.529996,
+              "fees_usdt": 2.593174,
+              "slippage_usdt": 1.03727,
+              "net_contribution_usdt": 39.506951
+            },
+            "bear": {
+              "price_pnl_usdt": -8.645053,
+              "funding_pnl_usdt": 0.67155,
+              "fees_usdt": 0.885483,
+              "slippage_usdt": 0.354193,
+              "net_contribution_usdt": -9.21318
+            },
+            "sideways": {
+              "price_pnl_usdt": 5.865063,
+              "funding_pnl_usdt": 1.337,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 7.202063
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "adaptive_bull25_bear15": {
+          "net_return_pct": 40.8514,
+          "end_equity_usdt": 140.851432,
+          "max_drawdown_pct": -25.8978,
+          "maxdd_peak_time_utc": "2024-03-11T02:00:00+00:00",
+          "maxdd_trough_time_utc": "2024-03-18T16:00:00+00:00",
+          "rebalance_count": 123,
+          "liquidated": false,
+          "price_pnl_usdt": 40.230664,
+          "funding_pnl_usdt": 5.361127,
+          "trading_fees_usdt": 3.385971,
+          "slippage_usdt": 1.354388,
+          "max_symbol_exposure_pct": {
+            "bull": 0.25,
+            "bear": 0.15
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 40.063464,
+              "funding_pnl_usdt": 3.559739,
+              "fees_usdt": 2.634451,
+              "slippage_usdt": 1.053781,
+              "net_contribution_usdt": 39.934971
+            },
+            "bear": {
+              "price_pnl_usdt": -6.184071,
+              "funding_pnl_usdt": 0.527622,
+              "fees_usdt": 0.75152,
+              "slippage_usdt": 0.300608,
+              "net_contribution_usdt": -6.708577
+            },
+            "sideways": {
+              "price_pnl_usdt": 6.351272,
+              "funding_pnl_usdt": 1.273766,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 7.625038
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        }
+      }
+    },
+    "2025_jan_to_sep": {
+      "period_utc": [
+        "2025-01-01T08:00:00+00:00",
+        "2025-09-06T16:00:00+00:00"
+      ],
+      "event_count": 6006,
+      "configs": {
+        "uncapped": {
+          "net_return_pct": 5.069,
+          "end_equity_usdt": 105.069034,
+          "max_drawdown_pct": -34.4392,
+          "maxdd_peak_time_utc": "2025-06-22T20:00:00+00:00",
+          "maxdd_trough_time_utc": "2025-07-18T00:00:00+00:00",
+          "rebalance_count": 59,
+          "liquidated": false,
+          "price_pnl_usdt": 6.706208,
+          "funding_pnl_usdt": 1.369116,
+          "trading_fees_usdt": 2.14735,
+          "slippage_usdt": 0.85894,
+          "max_symbol_exposure_pct": null,
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": -7.70217,
+              "funding_pnl_usdt": 0.665821,
+              "fees_usdt": 1.102428,
+              "slippage_usdt": 0.440971,
+              "net_contribution_usdt": -8.579748
+            },
+            "bear": {
+              "price_pnl_usdt": -4.570194,
+              "funding_pnl_usdt": 0.333012,
+              "fees_usdt": 1.044922,
+              "slippage_usdt": 0.417969,
+              "net_contribution_usdt": -5.700073
+            },
+            "sideways": {
+              "price_pnl_usdt": 18.978571,
+              "funding_pnl_usdt": 0.370283,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 19.348854
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bear_only_30pct": {
+          "net_return_pct": 8.9994,
+          "end_equity_usdt": 108.999398,
+          "max_drawdown_pct": -26.5902,
+          "maxdd_peak_time_utc": "2025-06-22T20:00:00+00:00",
+          "maxdd_trough_time_utc": "2025-07-18T00:00:00+00:00",
+          "rebalance_count": 59,
+          "liquidated": false,
+          "price_pnl_usdt": 10.156348,
+          "funding_pnl_usdt": 1.139628,
+          "trading_fees_usdt": 1.640413,
+          "slippage_usdt": 0.656165,
+          "max_symbol_exposure_pct": {
+            "bear": 0.3
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": -3.586878,
+              "funding_pnl_usdt": 0.618149,
+              "fees_usdt": 0.971072,
+              "slippage_usdt": 0.388429,
+              "net_contribution_usdt": -4.328229
+            },
+            "bear": {
+              "price_pnl_usdt": -3.135363,
+              "funding_pnl_usdt": 0.201948,
+              "fees_usdt": 0.669342,
+              "slippage_usdt": 0.267737,
+              "net_contribution_usdt": -3.870493
+            },
+            "sideways": {
+              "price_pnl_usdt": 16.878589,
+              "funding_pnl_usdt": 0.319531,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 17.19812
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bear_only_25pct": {
+          "net_return_pct": 9.7531,
+          "end_equity_usdt": 109.753125,
+          "max_drawdown_pct": -24.5601,
+          "maxdd_peak_time_utc": "2025-06-22T20:00:00+00:00",
+          "maxdd_trough_time_utc": "2025-07-18T00:00:00+00:00",
+          "rebalance_count": 59,
+          "liquidated": false,
+          "price_pnl_usdt": 10.793478,
+          "funding_pnl_usdt": 1.082143,
+          "trading_fees_usdt": 1.516069,
+          "slippage_usdt": 0.606428,
+          "max_symbol_exposure_pct": {
+            "bear": 0.25
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": -2.623481,
+              "funding_pnl_usdt": 0.606337,
+              "fees_usdt": 0.939423,
+              "slippage_usdt": 0.375769,
+              "net_contribution_usdt": -3.332337
+            },
+            "bear": {
+              "price_pnl_usdt": -2.775259,
+              "funding_pnl_usdt": 0.169493,
+              "fees_usdt": 0.576646,
+              "slippage_usdt": 0.230658,
+              "net_contribution_usdt": -3.41307
+            },
+            "sideways": {
+              "price_pnl_usdt": 16.192218,
+              "funding_pnl_usdt": 0.306314,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 16.498532
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bear_only_20pct": {
+          "net_return_pct": 10.4001,
+          "end_equity_usdt": 110.400105,
+          "max_drawdown_pct": -22.5018,
+          "maxdd_peak_time_utc": "2025-06-22T20:00:00+00:00",
+          "maxdd_trough_time_utc": "2025-07-18T00:00:00+00:00",
+          "rebalance_count": 59,
+          "liquidated": false,
+          "price_pnl_usdt": 11.338805,
+          "funding_pnl_usdt": 1.024626,
+          "trading_fees_usdt": 1.402376,
+          "slippage_usdt": 0.56095,
+          "max_symbol_exposure_pct": {
+            "bear": 0.2
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": -1.686008,
+              "funding_pnl_usdt": 0.594535,
+              "fees_usdt": 0.914996,
+              "slippage_usdt": 0.365998,
+              "net_contribution_usdt": -2.372467
+            },
+            "bear": {
+              "price_pnl_usdt": -2.418809,
+              "funding_pnl_usdt": 0.137183,
+              "fees_usdt": 0.48738,
+              "slippage_usdt": 0.194952,
+              "net_contribution_usdt": -2.963958
+            },
+            "sideways": {
+              "price_pnl_usdt": 15.443622,
+              "funding_pnl_usdt": 0.292908,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 15.73653
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bear_only_15pct": {
+          "net_return_pct": 10.9327,
+          "end_equity_usdt": 110.932721,
+          "max_drawdown_pct": -20.4216,
+          "maxdd_peak_time_utc": "2025-06-22T20:00:00+00:00",
+          "maxdd_trough_time_utc": "2025-07-18T00:00:00+00:00",
+          "rebalance_count": 59,
+          "liquidated": false,
+          "price_pnl_usdt": 11.789485,
+          "funding_pnl_usdt": 0.967116,
+          "trading_fees_usdt": 1.302771,
+          "slippage_usdt": 0.521109,
+          "max_symbol_exposure_pct": {
+            "bear": 0.15
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": -0.775223,
+              "funding_pnl_usdt": 0.582755,
+              "fees_usdt": 0.901197,
+              "slippage_usdt": 0.360479,
+              "net_contribution_usdt": -1.454143
+            },
+            "bear": {
+              "price_pnl_usdt": -2.068139,
+              "funding_pnl_usdt": 0.105029,
+              "fees_usdt": 0.401575,
+              "slippage_usdt": 0.16063,
+              "net_contribution_usdt": -2.525315
+            },
+            "sideways": {
+              "price_pnl_usdt": 14.632848,
+              "funding_pnl_usdt": 0.279332,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 14.912179
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bull_only_50pct": {
+          "net_return_pct": 5.069,
+          "end_equity_usdt": 105.069034,
+          "max_drawdown_pct": -34.4392,
+          "maxdd_peak_time_utc": "2025-06-22T20:00:00+00:00",
+          "maxdd_trough_time_utc": "2025-07-18T00:00:00+00:00",
+          "rebalance_count": 59,
+          "liquidated": false,
+          "price_pnl_usdt": 6.706208,
+          "funding_pnl_usdt": 1.369116,
+          "trading_fees_usdt": 2.14735,
+          "slippage_usdt": 0.85894,
+          "max_symbol_exposure_pct": {
+            "bull": 0.5
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": -7.70217,
+              "funding_pnl_usdt": 0.665821,
+              "fees_usdt": 1.102428,
+              "slippage_usdt": 0.440971,
+              "net_contribution_usdt": -8.579748
+            },
+            "bear": {
+              "price_pnl_usdt": -4.570194,
+              "funding_pnl_usdt": 0.333012,
+              "fees_usdt": 1.044922,
+              "slippage_usdt": 0.417969,
+              "net_contribution_usdt": -5.700073
+            },
+            "sideways": {
+              "price_pnl_usdt": 18.978571,
+              "funding_pnl_usdt": 0.370283,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 19.348854
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bull_only_40pct": {
+          "net_return_pct": 5.069,
+          "end_equity_usdt": 105.069034,
+          "max_drawdown_pct": -34.4392,
+          "maxdd_peak_time_utc": "2025-06-22T20:00:00+00:00",
+          "maxdd_trough_time_utc": "2025-07-18T00:00:00+00:00",
+          "rebalance_count": 59,
+          "liquidated": false,
+          "price_pnl_usdt": 6.706208,
+          "funding_pnl_usdt": 1.369116,
+          "trading_fees_usdt": 2.14735,
+          "slippage_usdt": 0.85894,
+          "max_symbol_exposure_pct": {
+            "bull": 0.4
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": -7.70217,
+              "funding_pnl_usdt": 0.665821,
+              "fees_usdt": 1.102428,
+              "slippage_usdt": 0.440971,
+              "net_contribution_usdt": -8.579748
+            },
+            "bear": {
+              "price_pnl_usdt": -4.570194,
+              "funding_pnl_usdt": 0.333012,
+              "fees_usdt": 1.044922,
+              "slippage_usdt": 0.417969,
+              "net_contribution_usdt": -5.700073
+            },
+            "sideways": {
+              "price_pnl_usdt": 18.978571,
+              "funding_pnl_usdt": 0.370283,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 19.348854
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bull_only_30pct": {
+          "net_return_pct": 5.069,
+          "end_equity_usdt": 105.069034,
+          "max_drawdown_pct": -34.4392,
+          "maxdd_peak_time_utc": "2025-06-22T20:00:00+00:00",
+          "maxdd_trough_time_utc": "2025-07-18T00:00:00+00:00",
+          "rebalance_count": 59,
+          "liquidated": false,
+          "price_pnl_usdt": 6.706208,
+          "funding_pnl_usdt": 1.369116,
+          "trading_fees_usdt": 2.14735,
+          "slippage_usdt": 0.85894,
+          "max_symbol_exposure_pct": {
+            "bull": 0.3
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": -7.70217,
+              "funding_pnl_usdt": 0.665821,
+              "fees_usdt": 1.102428,
+              "slippage_usdt": 0.440971,
+              "net_contribution_usdt": -8.579748
+            },
+            "bear": {
+              "price_pnl_usdt": -4.570194,
+              "funding_pnl_usdt": 0.333012,
+              "fees_usdt": 1.044922,
+              "slippage_usdt": 0.417969,
+              "net_contribution_usdt": -5.700073
+            },
+            "sideways": {
+              "price_pnl_usdt": 18.978571,
+              "funding_pnl_usdt": 0.370283,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 19.348854
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bull_only_25pct": {
+          "net_return_pct": 5.069,
+          "end_equity_usdt": 105.069034,
+          "max_drawdown_pct": -34.4392,
+          "maxdd_peak_time_utc": "2025-06-22T20:00:00+00:00",
+          "maxdd_trough_time_utc": "2025-07-18T00:00:00+00:00",
+          "rebalance_count": 59,
+          "liquidated": false,
+          "price_pnl_usdt": 6.706208,
+          "funding_pnl_usdt": 1.369116,
+          "trading_fees_usdt": 2.14735,
+          "slippage_usdt": 0.85894,
+          "max_symbol_exposure_pct": {
+            "bull": 0.25
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": -7.70217,
+              "funding_pnl_usdt": 0.665821,
+              "fees_usdt": 1.102428,
+              "slippage_usdt": 0.440971,
+              "net_contribution_usdt": -8.579748
+            },
+            "bear": {
+              "price_pnl_usdt": -4.570194,
+              "funding_pnl_usdt": 0.333012,
+              "fees_usdt": 1.044922,
+              "slippage_usdt": 0.417969,
+              "net_contribution_usdt": -5.700073
+            },
+            "sideways": {
+              "price_pnl_usdt": 18.978571,
+              "funding_pnl_usdt": 0.370283,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 19.348854
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "adaptive_bull40_bear20": {
+          "net_return_pct": 10.4001,
+          "end_equity_usdt": 110.400105,
+          "max_drawdown_pct": -22.5018,
+          "maxdd_peak_time_utc": "2025-06-22T20:00:00+00:00",
+          "maxdd_trough_time_utc": "2025-07-18T00:00:00+00:00",
+          "rebalance_count": 59,
+          "liquidated": false,
+          "price_pnl_usdt": 11.338805,
+          "funding_pnl_usdt": 1.024626,
+          "trading_fees_usdt": 1.402376,
+          "slippage_usdt": 0.56095,
+          "max_symbol_exposure_pct": {
+            "bull": 0.4,
+            "bear": 0.2
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": -1.686008,
+              "funding_pnl_usdt": 0.594535,
+              "fees_usdt": 0.914996,
+              "slippage_usdt": 0.365998,
+              "net_contribution_usdt": -2.372467
+            },
+            "bear": {
+              "price_pnl_usdt": -2.418809,
+              "funding_pnl_usdt": 0.137183,
+              "fees_usdt": 0.48738,
+              "slippage_usdt": 0.194952,
+              "net_contribution_usdt": -2.963958
+            },
+            "sideways": {
+              "price_pnl_usdt": 15.443622,
+              "funding_pnl_usdt": 0.292908,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 15.73653
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "adaptive_bull25_bear15": {
+          "net_return_pct": 10.9327,
+          "end_equity_usdt": 110.932721,
+          "max_drawdown_pct": -20.4216,
+          "maxdd_peak_time_utc": "2025-06-22T20:00:00+00:00",
+          "maxdd_trough_time_utc": "2025-07-18T00:00:00+00:00",
+          "rebalance_count": 59,
+          "liquidated": false,
+          "price_pnl_usdt": 11.789485,
+          "funding_pnl_usdt": 0.967116,
+          "trading_fees_usdt": 1.302771,
+          "slippage_usdt": 0.521109,
+          "max_symbol_exposure_pct": {
+            "bull": 0.25,
+            "bear": 0.15
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": -0.775223,
+              "funding_pnl_usdt": 0.582755,
+              "fees_usdt": 0.901197,
+              "slippage_usdt": 0.360479,
+              "net_contribution_usdt": -1.454143
+            },
+            "bear": {
+              "price_pnl_usdt": -2.068139,
+              "funding_pnl_usdt": 0.105029,
+              "fees_usdt": 0.401575,
+              "slippage_usdt": 0.16063,
+              "net_contribution_usdt": -2.525315
+            },
+            "sideways": {
+              "price_pnl_usdt": 14.632848,
+              "funding_pnl_usdt": 0.279332,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 14.912179
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        }
+      }
+    },
+    "2025_sep_to_2026_oct": {
+      "period_utc": [
+        "2025-09-07T00:00:00+00:00",
+        "2026-10-31T16:00:00+00:00"
+      ],
+      "event_count": 7605,
+      "configs": {
+        "uncapped": {
+          "net_return_pct": 72.9428,
+          "end_equity_usdt": 172.94281,
+          "max_drawdown_pct": -26.5454,
+          "maxdd_peak_time_utc": "2025-10-09T07:00:00+00:00",
+          "maxdd_trough_time_utc": "2025-10-10T21:00:00+00:00",
+          "rebalance_count": 98,
+          "liquidated": false,
+          "price_pnl_usdt": 76.561008,
+          "funding_pnl_usdt": 2.680028,
+          "trading_fees_usdt": 4.498733,
+          "slippage_usdt": 1.799493,
+          "max_symbol_exposure_pct": null,
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 25.530056,
+              "funding_pnl_usdt": 0.962612,
+              "fees_usdt": 2.502778,
+              "slippage_usdt": 1.001111,
+              "net_contribution_usdt": 22.988778
+            },
+            "bear": {
+              "price_pnl_usdt": 53.411072,
+              "funding_pnl_usdt": 0.558918,
+              "fees_usdt": 1.995954,
+              "slippage_usdt": 0.798382,
+              "net_contribution_usdt": 51.175654
+            },
+            "sideways": {
+              "price_pnl_usdt": -2.380119,
+              "funding_pnl_usdt": 1.158498,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": -1.221621
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bear_only_30pct": {
+          "net_return_pct": 54.7556,
+          "end_equity_usdt": 154.755645,
+          "max_drawdown_pct": -26.5454,
+          "maxdd_peak_time_utc": "2025-10-09T07:00:00+00:00",
+          "maxdd_trough_time_utc": "2025-10-10T21:00:00+00:00",
+          "rebalance_count": 98,
+          "liquidated": false,
+          "price_pnl_usdt": 57.368149,
+          "funding_pnl_usdt": 2.17297,
+          "trading_fees_usdt": 3.418195,
+          "slippage_usdt": 1.367278,
+          "max_symbol_exposure_pct": {
+            "bear": 0.3
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 22.11237,
+              "funding_pnl_usdt": 0.863968,
+              "fees_usdt": 2.181915,
+              "slippage_usdt": 0.872766,
+              "net_contribution_usdt": 19.921656
+            },
+            "bear": {
+              "price_pnl_usdt": 31.990438,
+              "funding_pnl_usdt": 0.313976,
+              "fees_usdt": 1.23628,
+              "slippage_usdt": 0.494512,
+              "net_contribution_usdt": 30.573622
+            },
+            "sideways": {
+              "price_pnl_usdt": 3.265341,
+              "funding_pnl_usdt": 0.995025,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 4.260366
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bear_only_25pct": {
+          "net_return_pct": 50.0757,
+          "end_equity_usdt": 150.075721,
+          "max_drawdown_pct": -26.5454,
+          "maxdd_peak_time_utc": "2025-10-09T07:00:00+00:00",
+          "maxdd_trough_time_utc": "2025-10-10T21:00:00+00:00",
+          "rebalance_count": 98,
+          "liquidated": false,
+          "price_pnl_usdt": 52.451775,
+          "funding_pnl_usdt": 2.051244,
+          "trading_fees_usdt": 3.162355,
+          "slippage_usdt": 1.264942,
+          "max_symbol_exposure_pct": {
+            "bear": 0.25
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 21.238496,
+              "funding_pnl_usdt": 0.838839,
+              "fees_usdt": 2.102761,
+              "slippage_usdt": 0.841104,
+              "net_contribution_usdt": 19.13347
+            },
+            "bear": {
+              "price_pnl_usdt": 26.59343,
+              "funding_pnl_usdt": 0.25658,
+              "fees_usdt": 1.059595,
+              "slippage_usdt": 0.423838,
+              "net_contribution_usdt": 25.366578
+            },
+            "sideways": {
+              "price_pnl_usdt": 4.619848,
+              "funding_pnl_usdt": 0.955826,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 5.575674
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bear_only_20pct": {
+          "net_return_pct": 45.3225,
+          "end_equity_usdt": 145.32247,
+          "max_drawdown_pct": -26.5454,
+          "maxdd_peak_time_utc": "2025-10-09T07:00:00+00:00",
+          "maxdd_trough_time_utc": "2025-10-10T21:00:00+00:00",
+          "rebalance_count": 98,
+          "liquidated": false,
+          "price_pnl_usdt": 47.501106,
+          "funding_pnl_usdt": 1.931443,
+          "trading_fees_usdt": 2.93577,
+          "slippage_usdt": 1.174308,
+          "max_symbol_exposure_pct": {
+            "bear": 0.2
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 20.354308,
+              "funding_pnl_usdt": 0.813418,
+              "fees_usdt": 2.043113,
+              "slippage_usdt": 0.817245,
+              "net_contribution_usdt": 18.307367
+            },
+            "bear": {
+              "price_pnl_usdt": 21.19544,
+              "funding_pnl_usdt": 0.200768,
+              "fees_usdt": 0.892657,
+              "slippage_usdt": 0.357063,
+              "net_contribution_usdt": 20.146488
+            },
+            "sideways": {
+              "price_pnl_usdt": 5.951358,
+              "funding_pnl_usdt": 0.917258,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 6.868616
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bear_only_15pct": {
+          "net_return_pct": 40.5266,
+          "end_equity_usdt": 140.526565,
+          "max_drawdown_pct": -26.5454,
+          "maxdd_peak_time_utc": "2025-10-09T07:00:00+00:00",
+          "maxdd_trough_time_utc": "2025-10-10T21:00:00+00:00",
+          "rebalance_count": 98,
+          "liquidated": false,
+          "price_pnl_usdt": 42.532617,
+          "funding_pnl_usdt": 1.813883,
+          "trading_fees_usdt": 2.728525,
+          "slippage_usdt": 1.09141,
+          "max_symbol_exposure_pct": {
+            "bear": 0.15
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 19.463749,
+              "funding_pnl_usdt": 0.787853,
+              "fees_usdt": 1.995697,
+              "slippage_usdt": 0.798279,
+              "net_contribution_usdt": 17.457626
+            },
+            "bear": {
+              "price_pnl_usdt": 15.807725,
+              "funding_pnl_usdt": 0.146594,
+              "fees_usdt": 0.732828,
+              "slippage_usdt": 0.293131,
+              "net_contribution_usdt": 14.928361
+            },
+            "sideways": {
+              "price_pnl_usdt": 7.261143,
+              "funding_pnl_usdt": 0.879436,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 8.140579
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bull_only_50pct": {
+          "net_return_pct": 72.9428,
+          "end_equity_usdt": 172.94281,
+          "max_drawdown_pct": -26.5454,
+          "maxdd_peak_time_utc": "2025-10-09T07:00:00+00:00",
+          "maxdd_trough_time_utc": "2025-10-10T21:00:00+00:00",
+          "rebalance_count": 98,
+          "liquidated": false,
+          "price_pnl_usdt": 76.561008,
+          "funding_pnl_usdt": 2.680028,
+          "trading_fees_usdt": 4.498733,
+          "slippage_usdt": 1.799493,
+          "max_symbol_exposure_pct": {
+            "bull": 0.5
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 25.530056,
+              "funding_pnl_usdt": 0.962612,
+              "fees_usdt": 2.502778,
+              "slippage_usdt": 1.001111,
+              "net_contribution_usdt": 22.988778
+            },
+            "bear": {
+              "price_pnl_usdt": 53.411072,
+              "funding_pnl_usdt": 0.558918,
+              "fees_usdt": 1.995954,
+              "slippage_usdt": 0.798382,
+              "net_contribution_usdt": 51.175654
+            },
+            "sideways": {
+              "price_pnl_usdt": -2.380119,
+              "funding_pnl_usdt": 1.158498,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": -1.221621
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bull_only_40pct": {
+          "net_return_pct": 72.9428,
+          "end_equity_usdt": 172.94281,
+          "max_drawdown_pct": -26.5454,
+          "maxdd_peak_time_utc": "2025-10-09T07:00:00+00:00",
+          "maxdd_trough_time_utc": "2025-10-10T21:00:00+00:00",
+          "rebalance_count": 98,
+          "liquidated": false,
+          "price_pnl_usdt": 76.561008,
+          "funding_pnl_usdt": 2.680028,
+          "trading_fees_usdt": 4.498733,
+          "slippage_usdt": 1.799493,
+          "max_symbol_exposure_pct": {
+            "bull": 0.4
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 25.530056,
+              "funding_pnl_usdt": 0.962612,
+              "fees_usdt": 2.502778,
+              "slippage_usdt": 1.001111,
+              "net_contribution_usdt": 22.988778
+            },
+            "bear": {
+              "price_pnl_usdt": 53.411072,
+              "funding_pnl_usdt": 0.558918,
+              "fees_usdt": 1.995954,
+              "slippage_usdt": 0.798382,
+              "net_contribution_usdt": 51.175654
+            },
+            "sideways": {
+              "price_pnl_usdt": -2.380119,
+              "funding_pnl_usdt": 1.158498,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": -1.221621
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bull_only_30pct": {
+          "net_return_pct": 72.9428,
+          "end_equity_usdt": 172.94281,
+          "max_drawdown_pct": -26.5454,
+          "maxdd_peak_time_utc": "2025-10-09T07:00:00+00:00",
+          "maxdd_trough_time_utc": "2025-10-10T21:00:00+00:00",
+          "rebalance_count": 98,
+          "liquidated": false,
+          "price_pnl_usdt": 76.561008,
+          "funding_pnl_usdt": 2.680028,
+          "trading_fees_usdt": 4.498733,
+          "slippage_usdt": 1.799493,
+          "max_symbol_exposure_pct": {
+            "bull": 0.3
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 25.530056,
+              "funding_pnl_usdt": 0.962612,
+              "fees_usdt": 2.502778,
+              "slippage_usdt": 1.001111,
+              "net_contribution_usdt": 22.988778
+            },
+            "bear": {
+              "price_pnl_usdt": 53.411072,
+              "funding_pnl_usdt": 0.558918,
+              "fees_usdt": 1.995954,
+              "slippage_usdt": 0.798382,
+              "net_contribution_usdt": 51.175654
+            },
+            "sideways": {
+              "price_pnl_usdt": -2.380119,
+              "funding_pnl_usdt": 1.158498,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": -1.221621
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "bull_only_25pct": {
+          "net_return_pct": 72.9428,
+          "end_equity_usdt": 172.94281,
+          "max_drawdown_pct": -26.5454,
+          "maxdd_peak_time_utc": "2025-10-09T07:00:00+00:00",
+          "maxdd_trough_time_utc": "2025-10-10T21:00:00+00:00",
+          "rebalance_count": 98,
+          "liquidated": false,
+          "price_pnl_usdt": 76.561008,
+          "funding_pnl_usdt": 2.680028,
+          "trading_fees_usdt": 4.498733,
+          "slippage_usdt": 1.799493,
+          "max_symbol_exposure_pct": {
+            "bull": 0.25
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 25.530056,
+              "funding_pnl_usdt": 0.962612,
+              "fees_usdt": 2.502778,
+              "slippage_usdt": 1.001111,
+              "net_contribution_usdt": 22.988778
+            },
+            "bear": {
+              "price_pnl_usdt": 53.411072,
+              "funding_pnl_usdt": 0.558918,
+              "fees_usdt": 1.995954,
+              "slippage_usdt": 0.798382,
+              "net_contribution_usdt": 51.175654
+            },
+            "sideways": {
+              "price_pnl_usdt": -2.380119,
+              "funding_pnl_usdt": 1.158498,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": -1.221621
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "adaptive_bull40_bear20": {
+          "net_return_pct": 45.3225,
+          "end_equity_usdt": 145.32247,
+          "max_drawdown_pct": -26.5454,
+          "maxdd_peak_time_utc": "2025-10-09T07:00:00+00:00",
+          "maxdd_trough_time_utc": "2025-10-10T21:00:00+00:00",
+          "rebalance_count": 98,
+          "liquidated": false,
+          "price_pnl_usdt": 47.501106,
+          "funding_pnl_usdt": 1.931443,
+          "trading_fees_usdt": 2.93577,
+          "slippage_usdt": 1.174308,
+          "max_symbol_exposure_pct": {
+            "bull": 0.4,
+            "bear": 0.2
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 20.354308,
+              "funding_pnl_usdt": 0.813418,
+              "fees_usdt": 2.043113,
+              "slippage_usdt": 0.817245,
+              "net_contribution_usdt": 18.307367
+            },
+            "bear": {
+              "price_pnl_usdt": 21.19544,
+              "funding_pnl_usdt": 0.200768,
+              "fees_usdt": 0.892657,
+              "slippage_usdt": 0.357063,
+              "net_contribution_usdt": 20.146488
+            },
+            "sideways": {
+              "price_pnl_usdt": 5.951358,
+              "funding_pnl_usdt": 0.917258,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 6.868616
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        },
+        "adaptive_bull25_bear15": {
+          "net_return_pct": 40.5266,
+          "end_equity_usdt": 140.526565,
+          "max_drawdown_pct": -26.5454,
+          "maxdd_peak_time_utc": "2025-10-09T07:00:00+00:00",
+          "maxdd_trough_time_utc": "2025-10-10T21:00:00+00:00",
+          "rebalance_count": 98,
+          "liquidated": false,
+          "price_pnl_usdt": 42.532617,
+          "funding_pnl_usdt": 1.813883,
+          "trading_fees_usdt": 2.728525,
+          "slippage_usdt": 1.09141,
+          "max_symbol_exposure_pct": {
+            "bull": 0.25,
+            "bear": 0.15
+          },
+          "market_regime_attribution": {
+            "bull": {
+              "price_pnl_usdt": 19.463749,
+              "funding_pnl_usdt": 0.787853,
+              "fees_usdt": 1.995697,
+              "slippage_usdt": 0.798279,
+              "net_contribution_usdt": 17.457626
+            },
+            "bear": {
+              "price_pnl_usdt": 15.807725,
+              "funding_pnl_usdt": 0.146594,
+              "fees_usdt": 0.732828,
+              "slippage_usdt": 0.293131,
+              "net_contribution_usdt": 14.928361
+            },
+            "sideways": {
+              "price_pnl_usdt": 7.261143,
+              "funding_pnl_usdt": 0.879436,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 8.140579
+            },
+            "unknown": {
+              "price_pnl_usdt": 0.0,
+              "funding_pnl_usdt": 0.0,
+              "fees_usdt": 0.0,
+              "slippage_usdt": 0.0,
+              "net_contribution_usdt": 0.0
+            }
+          }
+        }
+      }
+    }
+  },
+  "limitations": [
+    "Historical windows were previously inspected; they are not pristine forward OOS.",
+    "1h OHLC adverse stress is not tick-level liquidation simulation; static 0.5% MMR and 1% liquidation-fee proxy.",
+    "No maker queue/fill model; fixed slippage only; static 13-symbol universe survivorship bias.",
+    "Risk caps change gross exposure and return opportunity; compare return and drawdown jointly.",
+    "Regime classification is based on trailing 30-day BTC mark-price return; threshold +/-5% is held fixed, not optimized in this experiment."
+  ]
+}
