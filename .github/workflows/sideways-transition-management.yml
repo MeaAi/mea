@@ -1,0 +1,34 @@
+name: MEAFLOW sideways transition management OOS
+on:
+  push:
+    branches:
+      - research/sideways-transition-management-v1
+    paths:
+      - "research/sideways_transition_management.py"
+      - "research/funding_carry_liquidation_causal.py"
+      - ".github/workflows/sideways-transition-management.yml"
+permissions:
+  contents: write
+concurrency:
+  group: meaflow-sideways-transition-management-v1
+  cancel-in-progress: false
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/sideways-transition-management-v1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run matched OOS experiment on free Binance Vision data
+        run: python research/sideways_transition_management.py
+      - name: Publish research report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research-results/sideways_transition_management.json
+          git commit -m "Publish sideways transition management OOS report"
+          git push origin HEAD:research/sideways-transition-management-v1
