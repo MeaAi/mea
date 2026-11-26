@@ -158,7 +158,7 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
   rates={s:data[s]["fund"][t] for s in symbols if t in data[s]["fund"]}
   # Funding cashflow for positions held across this settlement.
   fpnl=0.
-  rg=regime_at(t)
+  rg=regime_at(t-3600000)  # last fully completed 1h mark candle at settlement time
   for z in symbols:
    if qty[z] and z in px and z in rates:
     v=-qty[z]*px[z]*rates[z];fpnl+=v;funding_by_symbol[z]+=v;regime_pnl[rg]['funding_pnl_usdt']+=v
