@@ -105,37 +105,31 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
   threshold=regime_threshold_pct/100.0
   return 'bull' if ret>threshold else ('bear' if ret<-threshold else 'sideways')
  regime_cache={}
+ debounce_processed=-1
+ debounce_accepted='unknown'
+ debounce_candidate=None
+ debounce_streak=0
  def regime_at(ts):
-  if ts in regime_cache:return regime_cache[ts]
-  raw=raw_regime_at(ts)
+  nonlocal debounce_processed,debounce_accepted,debounce_candidate,debounce_streak
+  j=bisect.bisect_right(btc_times,ts)-1
+  if j<0:return 'unknown'
+  if j<=debounce_processed:
+   return regime_cache.get(btc_times[j],'unknown')
   confirm=max(0,int(regime_confirmation_hours))
-  if confirm==0 or raw=='unknown':
-   regime_cache[ts]=raw; return raw
-  # True causal debounce: accept a candidate only after confirm consecutive
-  # completed hourly samples. Until then retain the last accepted regime.
-  candidate=raw
-  stable=True
-  for h in range(1,confirm):
-   if raw_regime_at(ts-h*3600000)!=candidate:
-    stable=False
-    break
-  if stable:
-   regime_cache[ts]=candidate
-   return candidate
-  # Find the most recent prior confirmed state, scanning only information
-  # available by this timestamp. A 30-day lookback bounds the scan.
-  scan=ts-confirm*3600000
-  prior='unknown'; streak_label=None; streak=0
-  while scan>=ts-30*DAY:
-   label=raw_regime_at(scan)
-   if label==streak_label: streak+=1
-   else: streak_label=label; streak=1
-   if streak>=confirm and label!='unknown':
-    prior=label
-    break
-   scan-=3600000
-  regime_cache[ts]=prior
-  return prior
+  for i in range(debounce_processed+1,j+1):
+   stamp=btc_times[i]
+   raw=raw_regime_at(stamp)
+   if confirm==0 or raw=='unknown':
+    debounce_accepted=raw
+    debounce_candidate=None
+    debounce_streak=0
+   else:
+    if raw==debounce_candidate: debounce_streak+=1
+    else: debounce_candidate=raw;debounce_streak=1
+    if debounce_streak>=confirm: debounce_accepted=debounce_candidate
+   regime_cache[stamp]=debounce_accepted
+  debounce_processed=j
+  return regime_cache.get(btc_times[j],'unknown')
  def entry_cohort_at(ts):
   j=bisect.bisect_right(btc_times,ts)-1; k=bisect.bisect_right(btc_times,ts-30*DAY)-1
   if j<0 or k<0:return 'unknown'
