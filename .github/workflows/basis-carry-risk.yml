@@ -11,11 +11,11 @@ on:
       start_month:
         description: "Start month YYYY-MM"
         required: true
-        default: "2025-07"
+        default: "2025-09"
       end_month:
         description: "End month YYYY-MM (maximum 2 months)"
         required: true
-        default: "2025-08"
+        default: "2025-10"
 permissions:
   contents: write
 concurrency:
@@ -26,8 +26,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 180
     env:
-      START_MONTH: ${{ github.event.inputs.start_month || '2025-07' }}
-      END_MONTH: ${{ github.event.inputs.end_month || '2025-08' }}
+      START_MONTH: ${{ github.event.inputs.start_month || '2025-09' }}
+      END_MONTH: ${{ github.event.inputs.end_month || '2025-10' }}
     steps:
       - uses: actions/checkout@v6
         with:
