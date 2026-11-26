@@ -66,3 +66,5 @@ def main():
  Path("research-results/causal_period_robustness.json").write_text(json.dumps(report,indent=2),encoding="utf-8")
  print("REPORT research-results/causal_period_robustness.json",flush=True)
 if __name__=="__main__": main()
+
+# Execution trigger commit; strategy parameters remain unchanged.
