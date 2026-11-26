@@ -71,7 +71,10 @@ def load_data(start,end):
     minutes=dict(sorted(minutes.items())); marks=dict(sorted(marks.items())); funding.sort()
     if not minutes: raise RuntimeError("No futures minute bars downloaded")
     gaps=sum(1 for a,b in zip(minutes, list(minutes)[1:]) if b-a!=60000)
-    return minutes,marks,funding,{"archives":qa,"perp_minutes":len(minutes),"mark_minutes":len(marks),"funding_events":len(funding),"perp_minute_gaps":gaps}
+    missing_funding_marks=sum(1 for ft,_ in funding if (ft//60000)*60000 not in marks)
+    if missing_funding_marks:
+        raise RuntimeError(f"{missing_funding_marks} funding events lack a corresponding minute-open mark candle")
+    return minutes,marks,funding,{"archives":qa,"perp_minutes":len(minutes),"mark_minutes":len(marks),"funding_events":len(funding),"perp_minute_gaps":gaps,"funding_events_without_mark":missing_funding_marks}
 
 def build_hours(minutes):
     hours=[]
@@ -203,9 +206,21 @@ def close_pos(pos,raw_exit,reason,fee_bp,exit_fill=None):
     # closure mutates global equity/trades via closure variables in backtest
     nonlocal_dummy=None
 
+def regime_state_at(hours,regime_map,stop):
+    active=False; zone_high=0.0
+    for i in range(stop):
+        h=hours[i]
+        if i in regime_map:
+            now=regime_map[i]>RSI_THRESHOLD
+            if now and not active: active=True; zone_high=h["c"]
+            elif not now and active: active=False; zone_high=0.0
+            elif now and active: zone_high=max(zone_high,h["c"])
+        if active: zone_high=max(zone_high,h["c"])
+    return active,zone_high
+
 def run_variant(hours,minutes,marks,funding,lo,hi,fee_bp,with_pullback):
     equity=100.0; peak=100.0; maxdd=0.0; trades=[]
-    regime_map=build_regime(hours); active=False; zone_high=0.0; entries=0; bars_since_exit=10**9
+    regime_map=build_regime(hours); active,zone_high=regime_state_at(hours,regime_map,lo); entries=0; bars_since_exit=10**9
     pending=None; pos=None; funding_by_min=defaultdict(list)
     for ft,rate in funding: funding_by_min[(ft//60000)*60000].append((ft,rate))
     def finish(raw_exit,reason,exit_fill=None):
