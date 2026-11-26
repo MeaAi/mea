@@ -173,3 +173,38 @@ This section was added after auditing the existing `research/binance-data-pipeli
 - Acceptance: positive net expectancy after costs, stable across all three symbols or a justified narrowly scoped result, and no parameter refit on OOS. A positive signal-only mean is insufficient.
 - Required implementation: separate calibration and test input paths; add checks that no OOS timestamps enter threshold estimation; immutable code SHA and completed Actions run ID; report all trades, missed/unfilled orders, fill-proxy counts, gross/net bp, fees, slippage, drawdown, ending equity, and BTC/ETH/SOL attribution.
 - Blocker: current GitHub connector exposes read/write repository operations but no workflow-dispatch action. This plan remains PLANNED until a supported Actions run is actually started and completed; do not treat a pushed workflow definition as a test result.
+
+
+## External research update — free market-data routes (2026-11-27)
+
+Sources reviewed:
+- Official Binance public-data repository: https://github.com/binance/binance-public-data
+- Binance historical futures order-book documentation: https://github.com/binance/binance-public-data/blob/master/README.md (historical order-book download documentation)
+- Tardis historical data details: https://docs.tardis.dev/historical-data-details
+- Tardis downloadable CSV access: https://docs.tardis.dev/downloadable-csv-files
+- Independent data audit (mm-lab): https://github.com/batuhanboztepe0/mm-lab/blob/main/docs/DATA.md
+
+Findings / constraints:
+1. Binance Vision publishes daily/monthly public archives. Official README confirms USD-M aggTrades, trades and klines; these remain the primary free historical trade source. Verify each target file and checksum rather than assuming archive completeness.
+2. Binance Vision BookDepth is cumulative percentage-band depth, not a full event-level L2 book. Our existing OBI tests use that proxy and were weak/negative at most horizons. Do not build maker queue simulation from BookDepth.
+3. An independent 2026-07 audit reports Binance USD-M bookTicker event-level L1 archives only from 2023-05-16 through 2024-03-30, after which publication stopped. This needs file-by-file verification for our selected symbols; it is not official confirmation of all symbols/dates.
+4. Tardis documentation says historical downloadable CSV data includes trades, quotes, book snapshots and incremental L2; first day of each month is available without an API key. For Binance, confirm the exact futures exchange identifier, symbols, and actual files by GET/download before relying on it. Free monthly sample days can support queue-model calibration/cross-source QA, but not full continuous-period strategy validation.
+5. Binance's historical futures L2 download docs describe T_DEPTH incremental L2 data, but access requires an API key whitelisted for the data download service; bulk requests can take hours and are limited to ranges under 7 days. Treat as access-controlled / not assumed free; do not make this the critical path.
+6. Binance futures metrics endpoints for open interest and long/short ratios currently expose only a recent rolling lookback (documentation states latest 1 month for OI history and latest 30 days for top-trader ratios). These REST endpoints cannot provide the multi-year historical OOS dataset required. Use only for a future live/paper observation layer unless a verified free archive is found.
+
+Research implications:
+- Keep EXP-014 focused on free Binance Vision aggTrades + BookDepth + klines for a truly separate period. It can validate flow/price-impact features, but cannot claim queue-aware maker fills.
+- Add a distinct queue-calibration experiment using Tardis's no-key first-of-month Binance Futures samples, if GET confirms data availability. Compare reconstructed L2 state and trade-through events to quantify how optimistic the existing maker proxy is. Do not extrapolate a one-day-per-month sample into a full-period fill rate.
+- Candidate features worth testing against frozen MEAFLOW-72 signals: multi-horizon signed trade imbalance (1m/5m/15m/1h), CVD slope/acceleration, large-trade net flow (not just gross whale volume), trade intensity, price impact per unit signed volume, absorption (high signed flow with low subsequent price response), and depth imbalance only as a secondary confirmation. Use walk-forward thresholds and test incremental net PnL, not standalone classification accuracy.
+- Do not add open-interest or long/short ratio filters to historical backtests until a verified historical source and point-in-time publication timestamps are available.
+- These are research discoveries and proposed work, not completed experiments or profitability evidence.
+
+## EXP-015 — free L2 sample / maker queue-model calibration
+- Status: PLANNED (not run).
+- Objective: quantify whether the existing aggTrade strict trade-through fill proxy overstates maker execution versus an event-level L2 replay.
+- Candidate source: Tardis downloadable CSV / HTTP historical API, first day of each month available without API key according to provider docs; Binance USD-M futures exchange identifier and BTCUSDT/ETHUSDT/SOLUSDT must be verified by actual download first.
+- Sample design: one first-of-month UTC day per month across available historical range; report coverage and gaps. This is execution-model calibration only, not a strategy OOS.
+- Reconstruct book from snapshot + incremental L2 updates, enforce sequence/order integrity, then replay historical trades. Model queue ahead, cancellations, executions, partial fills, order expiry, and adverse selection where source fields support it. If public feed lacks enough information to determine queue priority, report lower/upper fill bounds rather than a point fill probability.
+- Compare against existing strict trade-through proxy on identical signal timestamps and prices; report fill-rate bias, partial-fill distribution, missed fills, and post-fill adverse selection.
+- No paid source. If data access requires payment/API key, mark BLOCKED and do not substitute synthetic fills.
+- No strategy integration or main-branch changes.
