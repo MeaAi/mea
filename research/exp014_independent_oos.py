@@ -66,8 +66,10 @@ def make_thresholds(pilot):
             for k in ("obi", "ofi", "whale")}
 
 def sign(value, threshold):
-    if value >= threshold["q80"]: return 1
-    if value <= threshold["q20"]: return -1
+    # Strict inequalities prevent zero whale-flow minutes at q20=0 from
+    # being misclassified as sell-pressure signals.
+    if value > threshold["q80"]: return 1
+    if value < threshold["q20"]: return -1
     return 0
 
 def strategy_signals(rows, thresholds):
