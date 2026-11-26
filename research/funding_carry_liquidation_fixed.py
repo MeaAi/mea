@@ -81,6 +81,21 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
  cohort_qty={z:{k:0. for k in ('bull','bear','sideways','unknown')} for z in symbols}
  entry_regime_pnl={k:{'price_pnl_usdt':0.,'funding_pnl_usdt':0.} for k in ('bull','bear','sideways','unknown')}
  regime_pnl={k:{'price_pnl_usdt':0.,'funding_pnl_usdt':0.,'fees_usdt':0.,'slippage_usdt':0.} for k in ('bull','bear','sideways','unknown')}
+ def capture_snapshot(ts, adverse=False):
+  snap={}
+  for z in symbols:
+   intrabar=0.0
+   if adverse and qty[z]:
+    bar=data[z]["marks"].get(ts)
+    if bar is not None and z in prev:
+     px_adverse=bar[2] if qty[z]>0 else bar[1]
+     intrabar=qty[z]*(px_adverse-prev[z])
+   snap[z]={"price":price_by_symbol[z],"funding":funding_by_symbol[z],
+    "fees":fees_by_symbol[z],"slippage":slippage_by_symbol[z],
+    "intrabar_adverse":intrabar}
+  return snap
+ peak_snapshot=capture_snapshot(first)
+ trough_snapshot=capture_snapshot(first)
  btc_times=mark_times.get('BTCUSDT',[]); btc_marks=data.get('BTCUSDT',{}).get('marks',{})
  def regime_at(ts):
   j=bisect.bisect_right(btc_times,ts)-1; k=bisect.bisect_right(btc_times,ts-30*DAY)-1
@@ -237,7 +252,7 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
   "price_pnl_usdt":round(price_pnl,6),"funding_pnl_usdt":round(funding_pnl,6),
   "trading_fees_usdt":round(fee_total,6),"slippage_usdt":round(slip_total,6),
   "rebalance_count":rebalances,"hourly_adverse_checks":hourly_checks,"hourly_sideways_exits":hourly_sideways_exits,"sideways_action":sideways_action,"sideways_retention_fraction":sideways_retention_fraction,"lookback_days":lookback_days,"rebalance_days":rebalance_days,"tail_fraction":tail_fraction,"side_mode":side_mode,"regime_filter":regime_filter,"regime_policy":regime_policy,
-  "symbol_attribution":{z:{"price_pnl_usdt":round(price_by_symbol[z],6),"funding_pnl_usdt":round(funding_by_symbol[z],6),"fees_usdt":round(fees_by_symbol[z],6),"slippage_usdt":round(slippage_by_symbol[z],6),"net_contribution_usdt":round(price_by_symbol[z]+funding_by_symbol[z]-fees_by_symbol[z]-slippage_by_symbol[z],6)} for z in symbols},
+  "drawdown_interval_attribution":{z:{"price_pnl_change_usdt":round(trough_snapshot[z]["price"]-peak_snapshot[z]["price"],6),"funding_pnl_change_usdt":round(trough_snapshot[z]["funding"]-peak_snapshot[z]["funding"],6),"fees_change_usdt":round(trough_snapshot[z]["fees"]-peak_snapshot[z]["fees"],6),"slippage_change_usdt":round(trough_snapshot[z]["slippage"]-peak_snapshot[z]["slippage"],6),"trough_intrabar_adverse_usdt":round(trough_snapshot[z]["intrabar_adverse"],6),"net_contribution_estimate_usdt":round((trough_snapshot[z]["price"]-peak_snapshot[z]["price"])+(trough_snapshot[z]["funding"]-peak_snapshot[z]["funding"])-(trough_snapshot[z]["fees"]-peak_snapshot[z]["fees"])-(trough_snapshot[z]["slippage"]-peak_snapshot[z]["slippage"])+trough_snapshot[z]["intrabar_adverse"],6)} for z in symbols},\n  "symbol_attribution":{z:{"price_pnl_usdt":round(price_by_symbol[z],6),"funding_pnl_usdt":round(funding_by_symbol[z],6),"fees_usdt":round(fees_by_symbol[z],6),"slippage_usdt":round(slippage_by_symbol[z],6),"net_contribution_usdt":round(price_by_symbol[z]+funding_by_symbol[z]-fees_by_symbol[z]-slippage_by_symbol[z],6)} for z in symbols},
   "market_regime_attribution":{k:{q:round(v,6) for q,v in vals.items()}|{"net_contribution_usdt":round(vals['price_pnl_usdt']+vals['funding_pnl_usdt']-vals['fees_usdt']-vals['slippage_usdt'],6)} for k,vals in regime_pnl.items()},
   "entry_regime_attribution":{k:{q:round(v,6) for q,v in vals.items()}|{"net_contribution_usdt":round(vals['price_pnl_usdt']+vals['funding_pnl_usdt'],6)} for k,vals in entry_regime_pnl.items()},
   "entry_regime_attribution_note":"Price and funding PnL are assigned to the regime in which each incremental position quantity was opened. Fees/slippage remain attributed by execution-time regime in market_regime_attribution.",
