@@ -1,0 +1,35 @@
+name: MEAFLOW-72 true regime debounce
+on:
+  push:
+    branches:
+      - research/meaflow72-true-regime-debounce-v1
+    paths:
+      - "research/funding_carry_liquidation_fixed.py"
+      - "research/meaflow72_true_regime_debounce.py"
+      - ".github/workflows/meaflow72-true-regime-debounce.yml"
+permissions:
+  contents: write
+concurrency:
+  group: meaflow72-true-regime-debounce-v1
+  cancel-in-progress: false
+jobs:
+  experiment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/meaflow72-true-regime-debounce-v1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run matched experiment
+        run: python research/meaflow72_true_regime_debounce.py
+      - name: Publish report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+users.noreply.github.com"
+          git add -f research-results/meaflow72_true_regime_debounce.json
+          git diff --cached --quiet || git commit -m "Publish true regime debounce experiment"
+          git pull --rebase origin research/meaflow72-true-regime-debounce-v1
+          git push origin HEAD:research/meaflow72-true-regime-debounce-v1
