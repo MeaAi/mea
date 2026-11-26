@@ -1,0 +1,49 @@
+name: Third-party 4h RSI pullback isolated experiment
+on:
+  workflow_dispatch:
+    inputs:
+      start_month:
+        description: "Start month YYYY-MM"
+        required: true
+        default: "2020-01"
+        type: string
+      end_month:
+        description: "End month YYYY-MM"
+        required: true
+        default: "2026-10"
+        type: string
+  push:
+    branches: [research/thirdparty-rsi-pullback-v1]
+    paths:
+      - ".github/workflows/thirdparty-rsi-pullback.yml"
+      - "research/thirdparty_rsi_pullback.py"
+permissions:
+  contents: write
+concurrency:
+  group: thirdparty-rsi-pullback-v1
+  cancel-in-progress: false
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    env:
+      START_MONTH: ${{ github.event.inputs.start_month || '2020-01' }}
+      END_MONTH: ${{ github.event.inputs.end_month || '2026-10' }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: research/thirdparty-rsi-pullback-v1
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Download, checksum-verify and backtest free Binance data
+        run: python research/thirdparty_rsi_pullback.py --start-month "$START_MONTH" --end-month "$END_MONTH" --out research-results/thirdparty_rsi_pullback.json
+      - name: Publish compact report only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research-results/thirdparty_rsi_pullback.json
+          git commit -m "Publish isolated RSI pullback experiment" || echo "No report changes"
+          git fetch origin research/thirdparty-rsi-pullback-v1
+          git rebase origin/research/thirdparty-rsi-pullback-v1
+          git push origin HEAD:research/thirdparty-rsi-pullback-v1
