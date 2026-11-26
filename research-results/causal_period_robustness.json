@@ -1,0 +1,259 @@
+{
+  "experiment": "MEAFLOW-52 causal calendar-period robustness, fixed strategy",
+  "parent_snapshot": "research/baseline-timestamp-audit-v1 (causal timestamp correction copied from frozen baseline)",
+  "isolated_branch": "research/causal-period-robustness-v1",
+  "baseline_strategy": "7d funding rank, 7d rebalance, 20% tails; bull both sides, bear short-only, sideways/unknown flat; BTC 30d mark return regime thresholds +/-5%",
+  "no_parameter_search": true,
+  "period_method": "Five chronological calendar windows; each window starts with an independent 100 USDT equity account. No parameters selected from these results.",
+  "capital_usdt": 100,
+  "leverage": 1,
+  "fees_one_way_bp": [
+    2,
+    5,
+    8
+  ],
+  "slippage_one_way_bp": 2,
+  "data_source": "Official free Binance Vision monthly fundingRate and 1h markPriceKlines; ZIP CRC checked by loader; no interpolation.",
+  "data_errors": {},
+  "loaded_symbols": [
+    "BTCUSDT",
+    "XRPUSDT",
+    "BNBUSDT",
+    "LINKUSDT",
+    "ADAUSDT",
+    "ETHUSDT",
+    "DOGEUSDT",
+    "SOLUSDT",
+    "LTCUSDT",
+    "BCHUSDT",
+    "DOTUSDT",
+    "AVAXUSDT",
+    "TRXUSDT"
+  ],
+  "drawdown": "Hourly adverse mark using simultaneous low for longs/high for shorts plus event-time equity; conservative OHLC stress, not tick-accurate.",
+  "timestamp_semantics": "At decision timestamp t, regime uses BTC mark-price candle at t-1h, the last fully completed hourly candle. No current-hour close is read.",
+  "limitations": [
+    "These periods were previously inspected under the old timestamp logic; this is corrected-semantics sequential revalidation, not pristine unseen OOS.",
+    "Static symbol universe has survivorship bias.",
+    "Hourly OHLC adverse stress is not tick-level liquidation simulation.",
+    "No maker queue/fill modelling; this is the frozen funding-rank baseline only."
+  ],
+  "periods": {
+    "2024_H1": {
+      "start": "2024-01-01",
+      "end_exclusive": "2024-07-01",
+      "aligned_funding_events": 546,
+      "fees": {
+        "2bp_commission_plus_2bp_slippage_per_side": {
+          "net_return_pct": 16.441,
+          "end_equity_usdt": 116.44097,
+          "max_drawdown_pct": -25.8814,
+          "liquidated": false,
+          "rebalance_count": 56,
+          "hourly_adverse_checks": 4368,
+          "price_pnl_usdt": 15.623033,
+          "funding_pnl_usdt": 3.026235,
+          "trading_fees_usdt": 1.104149,
+          "slippage_usdt": 1.104149
+        },
+        "5bp_commission_plus_2bp_slippage_per_side": {
+          "net_return_pct": 14.6407,
+          "end_equity_usdt": 114.640667,
+          "max_drawdown_pct": -25.8978,
+          "liquidated": false,
+          "rebalance_count": 56,
+          "hourly_adverse_checks": 4368,
+          "price_pnl_usdt": 15.468217,
+          "funding_pnl_usdt": 3.007596,
+          "trading_fees_usdt": 2.739389,
+          "slippage_usdt": 1.095756
+        },
+        "8bp_commission_plus_2bp_slippage_per_side": {
+          "net_return_pct": 12.8671,
+          "end_equity_usdt": 112.867148,
+          "max_drawdown_pct": -25.9143,
+          "liquidated": false,
+          "rebalance_count": 56,
+          "hourly_adverse_checks": 4368,
+          "price_pnl_usdt": 15.315253,
+          "funding_pnl_usdt": 2.98911,
+          "trading_fees_usdt": 4.349772,
+          "slippage_usdt": 1.087443
+        }
+      }
+    },
+    "2024_H2": {
+      "start": "2024-07-01",
+      "end_exclusive": "2025-01-01",
+      "aligned_funding_events": 552,
+      "fees": {
+        "2bp_commission_plus_2bp_slippage_per_side": {
+          "net_return_pct": -15.6922,
+          "end_equity_usdt": 84.307791,
+          "max_drawdown_pct": -30.8378,
+          "liquidated": false,
+          "rebalance_count": 67,
+          "hourly_adverse_checks": 4408,
+          "price_pnl_usdt": -14.557888,
+          "funding_pnl_usdt": 1.110088,
+          "trading_fees_usdt": 1.122205,
+          "slippage_usdt": 1.122205
+        },
+        "5bp_commission_plus_2bp_slippage_per_side": {
+          "net_return_pct": -17.4343,
+          "end_equity_usdt": 82.565682,
+          "max_drawdown_pct": -32.0413,
+          "liquidated": false,
+          "rebalance_count": 67,
+          "hourly_adverse_checks": 4408,
+          "price_pnl_usdt": -14.643788,
+          "funding_pnl_usdt": 1.097995,
+          "trading_fees_usdt": 2.777518,
+          "slippage_usdt": 1.111007
+        },
+        "8bp_commission_plus_2bp_slippage_per_side": {
+          "net_return_pct": -19.1416,
+          "end_equity_usdt": 80.858425,
+          "max_drawdown_pct": -33.2246,
+          "liquidated": false,
+          "rebalance_count": 67,
+          "hourly_adverse_checks": 4408,
+          "price_pnl_usdt": -14.727866,
+          "funding_pnl_usdt": 1.086068,
+          "trading_fees_usdt": 4.399821,
+          "slippage_usdt": 1.099955
+        }
+      }
+    },
+    "2025_H1": {
+      "start": "2025-01-01",
+      "end_exclusive": "2025-07-01",
+      "aligned_funding_events": 543,
+      "fees": {
+        "2bp_commission_plus_2bp_slippage_per_side": {
+          "net_return_pct": 18.711,
+          "end_equity_usdt": 118.710954,
+          "max_drawdown_pct": -32.1569,
+          "liquidated": false,
+          "rebalance_count": 42,
+          "hourly_adverse_checks": 4312,
+          "price_pnl_usdt": 19.650711,
+          "funding_pnl_usdt": 0.763386,
+          "trading_fees_usdt": 0.851571,
+          "slippage_usdt": 0.851571
+        },
+        "5bp_commission_plus_2bp_slippage_per_side": {
+          "net_return_pct": 17.2985,
+          "end_equity_usdt": 117.29854,
+          "max_drawdown_pct": -32.4117,
+          "liquidated": false,
+          "rebalance_count": 42,
+          "hourly_adverse_checks": 4312,
+          "price_pnl_usdt": 19.502344,
+          "funding_pnl_usdt": 0.758999,
+          "trading_fees_usdt": 2.116288,
+          "slippage_usdt": 0.846515
+        },
+        "8bp_commission_plus_2bp_slippage_per_side": {
+          "net_return_pct": 15.902,
+          "end_equity_usdt": 115.901973,
+          "max_drawdown_pct": -32.6657,
+          "liquidated": false,
+          "rebalance_count": 42,
+          "hourly_adverse_checks": 4312,
+          "price_pnl_usdt": 19.354805,
+          "funding_pnl_usdt": 0.754645,
+          "trading_fees_usdt": 3.365982,
+          "slippage_usdt": 0.841495
+        }
+      }
+    },
+    "2025_H2": {
+      "start": "2025-07-01",
+      "end_exclusive": "2026-01-01",
+      "aligned_funding_events": 552,
+      "fees": {
+        "2bp_commission_plus_2bp_slippage_per_side": {
+          "net_return_pct": -19.0199,
+          "end_equity_usdt": 80.980094,
+          "max_drawdown_pct": -40.0835,
+          "liquidated": false,
+          "rebalance_count": 45,
+          "hourly_adverse_checks": 4344,
+          "price_pnl_usdt": -18.161399,
+          "funding_pnl_usdt": 0.490078,
+          "trading_fees_usdt": 0.674292,
+          "slippage_usdt": 0.674292
+        },
+        "5bp_commission_plus_2bp_slippage_per_side": {
+          "net_return_pct": -20.0168,
+          "end_equity_usdt": 79.983194,
+          "max_drawdown_pct": -40.4355,
+          "liquidated": false,
+          "rebalance_count": 45,
+          "hourly_adverse_checks": 4344,
+          "price_pnl_usdt": -18.157164,
+          "funding_pnl_usdt": 0.487291,
+          "trading_fees_usdt": 1.676381,
+          "slippage_usdt": 0.670552
+        },
+        "8bp_commission_plus_2bp_slippage_per_side": {
+          "net_return_pct": -21.0021,
+          "end_equity_usdt": 78.997937,
+          "max_drawdown_pct": -40.7991,
+          "liquidated": false,
+          "rebalance_count": 45,
+          "hourly_adverse_checks": 4344,
+          "price_pnl_usdt": -18.15239,
+          "funding_pnl_usdt": 0.484524,
+          "trading_fees_usdt": 2.667357,
+          "slippage_usdt": 0.666839
+        }
+      }
+    },
+    "2026_JAN_OCT": {
+      "start": "2026-01-01",
+      "end_exclusive": "2026-11-01",
+      "aligned_funding_events": 912,
+      "fees": {
+        "2bp_commission_plus_2bp_slippage_per_side": {
+          "net_return_pct": 40.2748,
+          "end_equity_usdt": 140.274788,
+          "max_drawdown_pct": -17.2092,
+          "liquidated": false,
+          "rebalance_count": 70,
+          "hourly_adverse_checks": 7248,
+          "price_pnl_usdt": 42.366306,
+          "funding_pnl_usdt": 1.071407,
+          "trading_fees_usdt": 1.581462,
+          "slippage_usdt": 1.581462
+        },
+        "5bp_commission_plus_2bp_slippage_per_side": {
+          "net_return_pct": 37.5261,
+          "end_equity_usdt": 137.526076,
+          "max_drawdown_pct": -17.2649,
+          "liquidated": false,
+          "rebalance_count": 70,
+          "hourly_adverse_checks": 7248,
+          "price_pnl_usdt": 41.946652,
+          "funding_pnl_usdt": 1.058564,
+          "trading_fees_usdt": 3.913671,
+          "slippage_usdt": 1.565469
+        },
+        "8bp_commission_plus_2bp_slippage_per_side": {
+          "net_return_pct": 34.8296,
+          "end_equity_usdt": 134.829562,
+          "max_drawdown_pct": -17.3207,
+          "liquidated": false,
+          "rebalance_count": 70,
+          "hourly_adverse_checks": 7248,
+          "price_pnl_usdt": 41.532056,
+          "funding_pnl_usdt": 1.045894,
+          "trading_fees_usdt": 6.198711,
+          "slippage_usdt": 1.549678
+        }
+      }
+    }
+  },
+  "decision_rule": "No candidate or parameter tuning. Report each period independently; do not pool periods or promote the strategy solely on aggregate return."
+}
