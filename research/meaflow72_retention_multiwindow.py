@@ -72,3 +72,5 @@ def main():
  Path("research-results/meaflow72_retention_multiwindow.json").write_text(json.dumps(report,indent=2),encoding="utf-8")
  print("REPORT research-results/meaflow72_retention_multiwindow.json",flush=True)
 if __name__=="__main__":main()
+
+# Trigger verified multi-window workflow after workflow registration.
