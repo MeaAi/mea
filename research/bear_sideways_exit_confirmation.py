@@ -52,7 +52,7 @@ def main():
       "experiment":"MEAFLOW-52 bear-to-sideways hourly short-exit confirmation",
       "parent_snapshot":"archive/baseline-7d-7d-20pct-2026-11-25",
       "isolated_branch":"research/bear-sideways-exit-confirm-v1",
-      "strategy":"Frozen 7d funding rank, 7d rebalance, 20% tails; bull both, bear short-only, sideways/unknown flat; causal BTC 30d mark return thresholds +/-5%",
+      "strategy":"Frozen 7d funding rank, 7d rebalance, 20% tails; bull both, bear short-only, sideways/unknown flat; causal BTC 30d mark return thresholds +/-5%, evaluated only on the last fully completed hourly mark candle at each decision time",
       "change":"During an open position, count consecutive completed hourly BTC regime marks classified sideways; after the 1st, 2nd, or 3rd completed sideways candle, execute the flatten at the next candle open. Counter resets if regime leaves sideways.",
       "selection_rule":"Choose only candidates that improve BOTH validation net return and hourly adverse-mark max drawdown versus the same-parameter flat control at 5bp fee + 2bp slippage. If none qualify, no OOS candidate is promoted.",
       "split":"Chronological 50/20/30. Validation chooses candidate; final 30% is sequential robustness only because this date range was previously inspected for MEAFLOW-52.",
@@ -60,7 +60,7 @@ def main():
       "capital_usdt":100,"leverage":1,"fees_one_way_bp":[2,5,8],"slippage_one_way_bp":2,
       "data_source":"Official free Binance Vision monthly fundingRate and 1h markPriceKlines; ZIP CRC checked by loader",
       "data_errors":errors,"loaded_symbols":list(data),
-      "drawdown":"Hourly adverse mark: simultaneous low for longs/high for shorts, plus event-time equity; exit signal uses only the previous completed hourly candle and executes at the next hourly open; conservative OHLC stress, not tick-accurate",
+      "drawdown":"Hourly adverse mark: simultaneous low for longs/high for shorts, plus event-time equity; both funding-event regime decisions and hourly exit signals use only the last fully completed hourly mark candle; exits execute at the next hourly open; conservative OHLC stress, not tick-accurate",
       "limitations":["1h OHLC cannot identify intrahour event order","BTC regime is a market-state proxy","static universe survivorship bias","not Binance's exact liquidation engine"],
       "validation":validation,"selected_confirmation_hours":chosen,"oos_sequential_robustness":oos,
       "decision":"No candidate passed both validation gates" if chosen is None else "Candidate selected on validation only; OOS is sequential robustness, not pristine unseen OOS"
