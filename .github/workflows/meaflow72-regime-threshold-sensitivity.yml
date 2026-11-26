@@ -29,7 +29,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+users.noreply.github.com"
-          git add research-results/meaflow72_regime_threshold_sensitivity.json
-          git commit -m "Publish MEAFLOW-72 regime threshold sensitivity results"
+          git add -f research-results/meaflow72_regime_threshold_sensitivity.json
+          git diff --cached --quiet || git commit -m "Publish MEAFLOW-72 regime threshold sensitivity results"
           git pull --rebase origin research/meaflow72-regime-threshold-sensitivity-v1
           git push origin HEAD:research/meaflow72-regime-threshold-sensitivity-v1
