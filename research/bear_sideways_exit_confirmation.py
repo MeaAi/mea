@@ -41,13 +41,16 @@ def main():
         if not v["liquidated"] and v["net_return_pct"]>control5["net_return_pct"] and v["max_drawdown_pct"]>control5["max_drawdown_pct"]:
             eligible.append((n,v))
     chosen=max(eligible,key=lambda x:x[1]["net_return_pct"])[0] if eligible else None
+    # Always re-run the no-exit control on the final 30% with causal hourly timestamps.
+    # This is a timestamp-semantics audit, not a pristine OOS claim; the period was previously inspected.
     oos={}
-    if chosen is not None:
-        for fee in (2,5,8):
-            control=base.run(data,cuts["oos"],1.0,fee,**common,sideways_action="flat")
+    for fee in (2,5,8):
+        control=base.run(data,cuts["oos"],1.0,fee,**common,sideways_action="flat")
+        oos[f"fee_{fee}bp"]={"causal_control_flat":compact(control)}
+        if chosen is not None:
             candidate=base.run(data,cuts["oos"],1.0,fee,**common,sideways_action="immediate_flat",sideways_confirm_hours=chosen)
-            oos[f"fee_{fee}bp"]={"control_flat":compact(control),f"chosen_confirmation_{chosen}h":compact(candidate)}
-            print("OOS",fee,chosen,json.dumps(oos[f"fee_{fee}bp"],separators=(",",":")),flush=True)
+            oos[f"fee_{fee}bp"][f"chosen_confirmation_{chosen}h"]=compact(candidate)
+        print("OOS_CONTROL",fee,json.dumps(oos[f"fee_{fee}bp"],separators=(",",":")),flush=True)
     report={
       "experiment":"MEAFLOW-52 bear-to-sideways hourly short-exit confirmation",
       "parent_snapshot":"archive/baseline-7d-7d-20pct-2026-11-25",
@@ -60,6 +63,7 @@ def main():
       "capital_usdt":100,"leverage":1,"fees_one_way_bp":[2,5,8],"slippage_one_way_bp":2,
       "data_source":"Official free Binance Vision monthly fundingRate and 1h markPriceKlines; ZIP CRC checked by loader",
       "data_errors":errors,"loaded_symbols":list(data),
+      "prior_frozen_baseline_oos_reference_original_timestamp_semantics":{"fee_2bp":{"net_return_pct":56.4823,"max_drawdown_pct":-25.5204},"fee_5bp":{"net_return_pct":52.5355,"max_drawdown_pct":-25.5281},"fee_8bp":{"net_return_pct":48.6859,"max_drawdown_pct":-25.5357}},
       "drawdown":"Hourly adverse mark: simultaneous low for longs/high for shorts, plus event-time equity; both funding-event regime decisions and hourly exit signals use only the last fully completed hourly mark candle; exits execute at the next hourly open; conservative OHLC stress, not tick-accurate",
       "limitations":["1h OHLC cannot identify intrahour event order","BTC regime is a market-state proxy","static universe survivorship bias","not Binance's exact liquidation engine"],
       "validation":validation,"selected_confirmation_hours":chosen,"oos_sequential_robustness":oos,
