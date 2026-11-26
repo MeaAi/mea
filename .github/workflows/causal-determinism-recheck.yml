@@ -1,0 +1,36 @@
+name: MEAFLOW-52 deterministic replay recheck
+on:
+  push:
+    branches:
+      - research/causal-determinism-recheck-v1
+    paths:
+      - "research/causal_determinism_recheck.py"
+      - "research/funding_carry_liquidation_causal.py"
+      - ".github/workflows/causal-determinism-recheck.yml"
+permissions:
+  contents: write
+concurrency:
+  group: meaflow-causal-determinism-recheck-v1
+  cancel-in-progress: false
+jobs:
+  recheck:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/causal-determinism-recheck-v1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download free Binance Vision data and run deterministic replay
+        run: python research/causal_determinism_recheck.py
+      - name: Publish report only
+        run: |
+          rm -rf research-output
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research-results/causal_determinism_recheck.json
+          git commit -m "Publish deterministic replay recheck" || exit 0
+          git pull --rebase origin research/causal-determinism-recheck-v1
+          git push origin HEAD:research/causal-determinism-recheck-v1
