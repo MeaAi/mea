@@ -1,0 +1,35 @@
+name: MEAFLOW-72 bull-only vs bear-only cap isolation experiment
+on:
+  push:
+    branches:
+      - research/meaflow72-regime-cap-isolation-v1
+    paths:
+      - "research/meaflow72_regime_cap_isolation.py"
+      - "research/funding_carry_liquidation_fixed.py"
+      - ".github/workflows/meaflow72-regime-cap-isolation.yml"
+permissions:
+  contents: write
+concurrency:
+  group: meaflow72-regime-cap-isolation-v1
+  cancel-in-progress: false
+jobs:
+  experiment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/meaflow72-regime-cap-isolation-v1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run isolated bull-only vs bear-only cap experiment
+        run: python research/meaflow72_regime_cap_isolation.py
+      - name: Publish report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+users.noreply.github.com"
+          git add research-results/meaflow72_regime_cap_isolation.json
+          git commit -m "Publish MEAFLOW-72 regime-aware risk cap results"
+          git pull --rebase origin research/meaflow72-regime-cap-isolation-v1
+          git push origin HEAD:research/meaflow72-regime-cap-isolation-v1
