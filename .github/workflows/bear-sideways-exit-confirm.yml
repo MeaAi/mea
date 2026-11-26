@@ -1,0 +1,36 @@
+name: MEAFLOW-52 bear-to-sideways exit confirmation research
+on:
+  push:
+    branches:
+      - research/bear-sideways-exit-confirm-v1
+    paths:
+      - "research/funding_carry_exit_confirmation.py"
+      - "research/bear_sideways_exit_confirmation.py"
+      - ".github/workflows/bear-sideways-exit-confirm.yml"
+permissions:
+  contents: write
+concurrency:
+  group: meaflow-bear-sideways-exit-confirm-v1
+  cancel-in-progress: false
+jobs:
+  validation-and-sequential-robustness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/bear-sideways-exit-confirm-v1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download free Binance Vision data and run isolated experiment
+        run: python research/bear_sideways_exit_confirmation.py
+      - name: Publish compact result only
+        run: |
+          rm -rf research-output
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research-results/bear_sideways_exit_confirmation.json
+          git commit -m "Publish bear-to-sideways exit confirmation results" || exit 0
+          git pull --rebase origin research/bear-sideways-exit-confirm-v1
+          git push origin HEAD:research/bear-sideways-exit-confirm-v1
