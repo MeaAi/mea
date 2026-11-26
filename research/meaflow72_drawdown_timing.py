@@ -74,3 +74,5 @@ def main():
 if __name__=="__main__":main()
 
 # Trigger diagnostic workflow after registration.
+
+# Trigger timing diagnostics after workflow registration.
