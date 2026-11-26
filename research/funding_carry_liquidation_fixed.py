@@ -68,7 +68,7 @@ def load_symbol(sym,months,root):
   verified_download(f"{BASE}/markPriceKlines/{sym}/1h/{mn}",mp);marks.update(readzip(mp,"mark"))
  return sym,fund,marks
 
-def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20,side_mode='both',regime_filter=None,regime_policy=None,regime_threshold_pct=5.0,trade_universe=None,sideways_action='flat',sideways_confirm_hours=1,sideways_retention_fraction=0.0):
+def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20,side_mode='both',regime_filter=None,regime_policy=None,regime_threshold_pct=5.0,trade_universe=None,sideways_action='flat',sideways_confirm_hours=1,sideways_retention_fraction=0.0,max_symbol_exposure_pct=None):
  symbols=sorted(data); trade_symbols=sorted(trade_universe) if trade_universe is not None else symbols; first,last=period
  if not set(trade_symbols).issubset(set(symbols)) or 'BTCUSDT' not in data: raise ValueError('invalid trade universe or missing BTC regime benchmark')
  mark_times={s:sorted(data[s]["marks"]) for s in symbols}
@@ -212,6 +212,12 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
       for s in longs:target[s]=leg/k/px[s]
      if active_mode in ('both','short_only'):
       for s in shorts:target[s]=-leg/k/px[s]
+    # Per-symbol notional cap; applies to newly formed targets, not frozen sideways holdings.
+    if max_symbol_exposure_pct is not None and not (rg=='sideways' and sideways_action=='hold'):
+     cap=max(0.,equity)*max_symbol_exposure_pct
+     for s in symbols:
+      if s in px and px[s]>0:
+       target[s]=math.copysign(min(abs(target[s]*px[s]),cap)/px[s],target[s])
     turnover=sum(abs((target[s]-qty[s])*px[s]) for s in symbols if s in px)
     fee=turnover*fee_bp/10000;slip=turnover*slip_bp/10000
     for z in symbols:
@@ -251,7 +257,7 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
   "liquidated":liquidated,"liquidation_time_utc":liq_time,"equity_at_liquidation_usdt":liq_equity,
   "price_pnl_usdt":round(price_pnl,6),"funding_pnl_usdt":round(funding_pnl,6),
   "trading_fees_usdt":round(fee_total,6),"slippage_usdt":round(slip_total,6),
-  "rebalance_count":rebalances,"hourly_adverse_checks":hourly_checks,"hourly_sideways_exits":hourly_sideways_exits,"sideways_action":sideways_action,"sideways_retention_fraction":sideways_retention_fraction,"lookback_days":lookback_days,"rebalance_days":rebalance_days,"tail_fraction":tail_fraction,"side_mode":side_mode,"regime_filter":regime_filter,"regime_policy":regime_policy,
+  "rebalance_count":rebalances,"hourly_adverse_checks":hourly_checks,"hourly_sideways_exits":hourly_sideways_exits,"sideways_action":sideways_action,"sideways_retention_fraction":sideways_retention_fraction,"max_symbol_exposure_pct":max_symbol_exposure_pct,"lookback_days":lookback_days,"rebalance_days":rebalance_days,"tail_fraction":tail_fraction,"side_mode":side_mode,"regime_filter":regime_filter,"regime_policy":regime_policy,
   "drawdown_interval_attribution":{z:{"price_pnl_change_usdt":round(trough_snapshot[z]["price"]-peak_snapshot[z]["price"],6),"funding_pnl_change_usdt":round(trough_snapshot[z]["funding"]-peak_snapshot[z]["funding"],6),"fees_change_usdt":round(trough_snapshot[z]["fees"]-peak_snapshot[z]["fees"],6),"slippage_change_usdt":round(trough_snapshot[z]["slippage"]-peak_snapshot[z]["slippage"],6),"trough_intrabar_adverse_usdt":round(trough_snapshot[z]["intrabar_adverse"],6),"net_contribution_estimate_usdt":round((trough_snapshot[z]["price"]-peak_snapshot[z]["price"])+(trough_snapshot[z]["funding"]-peak_snapshot[z]["funding"])-(trough_snapshot[z]["fees"]-peak_snapshot[z]["fees"])-(trough_snapshot[z]["slippage"]-peak_snapshot[z]["slippage"])+trough_snapshot[z]["intrabar_adverse"],6)} for z in symbols},
   "symbol_attribution":{z:{"price_pnl_usdt":round(price_by_symbol[z],6),"funding_pnl_usdt":round(funding_by_symbol[z],6),"fees_usdt":round(fees_by_symbol[z],6),"slippage_usdt":round(slippage_by_symbol[z],6),"net_contribution_usdt":round(price_by_symbol[z]+funding_by_symbol[z]-fees_by_symbol[z]-slippage_by_symbol[z],6)} for z in symbols},
   "market_regime_attribution":{k:{q:round(v,6) for q,v in vals.items()}|{"net_contribution_usdt":round(vals['price_pnl_usdt']+vals['funding_pnl_usdt']-vals['fees_usdt']-vals['slippage_usdt'],6)} for k,vals in regime_pnl.items()},
