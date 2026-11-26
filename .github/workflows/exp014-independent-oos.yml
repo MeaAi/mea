@@ -1,12 +1,7 @@
 name: EXP-014 frozen pilot / independent OOS validation
 
 on:
-  push:
-    branches:
-      - research/meaflow-exp014-independent-oos-v1
-    paths:
-      - "research/exp014_independent_oos.py"
-      - ".github/workflows/exp014-independent-oos.yml"
+  # Manual-only after code freeze: prevents accidental duplicate OOS runs on follow-up commits.
   workflow_dispatch:
 
 permissions:
