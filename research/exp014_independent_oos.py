@@ -49,13 +49,14 @@ def build_rows(flow, book):
             op, close = float(f["open"]), float(f["close"])
         except (KeyError, ValueError):
             continue
-        if bid + ask <= 0 or buy + sell <= 0 or whale_buy + whale_sell <= 0 or op <= 0:
+        if bid + ask <= 0 or buy + sell <= 0 or op <= 0:
             continue
+        whale_total = whale_buy + whale_sell
         rows.append({
             "t": t, "open": op, "close": close,
             "obi": (bid-ask)/(bid+ask),
             "ofi": (buy-sell)/(buy+sell),
-            "whale": (whale_buy-whale_sell)/(whale_buy+whale_sell),
+            "whale": (whale_buy-whale_sell)/whale_total if whale_total else 0.0,
         })
     return rows
 
@@ -102,18 +103,20 @@ def simulate(rows, candidates, horizon):
             continue
         entry, exit_px = rows[i+1]["open"], rows[i+horizon]["close"]
         gross_bp = direction * (exit_px/entry - 1.0) * 10000
-        net_bp = gross_bp - ROUND_TRIP_COST_BP
         notional = equity  # 100% of wallet equity at 1x; no leverage
-        fees = notional * (2*ONE_WAY_FEE_BP) / 10000
-        slippage = notional * (2*ONE_WAY_SLIPPAGE_BP) / 10000
-        pnl = notional * net_bp / 10000
+        exit_notional = notional * (exit_px / entry)
+        fees = (notional + exit_notional) * ONE_WAY_FEE_BP / 10000
+        slippage = (notional + exit_notional) * ONE_WAY_SLIPPAGE_BP / 10000
+        gross_pnl = notional * gross_bp / 10000
+        pnl = gross_pnl - fees - slippage
+        net_bp = pnl / notional * 10000
         equity += pnl
         peak = max(peak, equity)
         max_dd = max(max_dd, (peak-equity)/peak if peak else 0)
         trades.append({"signal_time_ms": rows[i]["t"], "entry_time_ms": rows[i+1]["t"],
                        "exit_time_ms": rows[i+horizon]["t"], "direction": direction,
                        "gross_bp": gross_bp, "net_bp": net_bp, "notional_usdt": notional,
-                       "fees_usdt": fees, "slippage_usdt": slippage, "net_pnl_usdt": pnl,
+                       "exit_notional_usdt": exit_notional, "fees_usdt": fees, "slippage_usdt": slippage, "net_pnl_usdt": pnl,
                        "equity_after_usdt": equity})
         next_free = i + horizon
         if equity <= 0:
@@ -180,8 +183,14 @@ def main():
         pf = load_files(args.pilot_flow, symbol); pb = load_files(args.pilot_book, symbol)
         tf = load_files(args.test_flow, symbol); tb = load_files(args.test_book, symbol)
         pilot = build_rows(pf, pb); test = build_rows(tf, tb)
-        if len(pilot) < 10000 or len(test) < 10000:
-            raise SystemExit(f"{symbol}: insufficient exact-minute pilot/test intersection ({len(pilot)}/{len(test)})")
+        if len(pilot) < 50000 or len(test) < 50000:
+            raise SystemExit(f"{symbol}: insufficient exact-minute pilot/test intersection ({len(pilot)}/{len(test)}); require >=50,000 each")
+        pilot_min, pilot_max = min(r["t"] for r in pilot), max(r["t"] for r in pilot)
+        test_min, test_max = min(r["t"] for r in test), max(r["t"] for r in test)
+        if not (1714521600000 <= pilot_min < 1714608000000 and 1719792000000 <= pilot_max < 1719878400000):
+            raise SystemExit(f"{symbol}: pilot timestamps outside May-June 2024 bounds")
+        if not (1719792000000 <= test_min < 1722470400000 and 1725062400000 <= test_max < 1725148800000):
+            raise SystemExit(f"{symbol}: OOS timestamps outside July-August 2024 bounds")
         thresholds = make_thresholds(pilot)
         sigs = strategy_signals(test, thresholds)
         sym = {"pilot_matched_minutes": len(pilot), "oos_matched_minutes": len(test),
