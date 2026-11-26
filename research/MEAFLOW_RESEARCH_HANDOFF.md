@@ -1,6 +1,7 @@
 # MEAFLOW Research Handoff / Continuity Ledger
 
 Last updated: 2026-11-27
+Ledger revision: v2 — reconciled with pre-existing Binance microstructure research branch
 Repository: https://github.com/MeaAi/mea
 Purpose: prevent repeated experiments across chat sessions. Read this file before proposing or running another experiment.
 
@@ -107,3 +108,66 @@ BTCUSDT, ETHUSDT, BNBUSDT, XRPUSDT, ADAUSDT, DOGEUSDT, SOLUSDT, LINKUSDT, LTCUSD
 - Inspect volatility-sizing results; if no stable net benefit, do not promote.
 - Then prioritize missing market-microstructure validation: maker/taker split, limit-order non-fill and missed-trade simulation, fill probability, whale-size trade analysis, BTC/ETH/SOL separate results, realistic execution costs and out-of-sample design. Current funding carry data alone does not satisfy those order-flow requirements.
 - Before any new experiment, check this ledger and the corresponding report/run to avoid repeating prior tests.
+
+
+## Experiment registry — Binance microstructure work reconciled 2026-11-27
+
+This section was added after auditing the existing `research/binance-data-pipeline` branch. These are NOT new tests performed in this chat; they were already present in the repository and must be treated as prior work.
+
+10. Official Binance aggTrades + 1m kline acquisition / QA
+   - Branch: `research/binance-data-pipeline`.
+   - Code: `research/binance_public_pipeline.py`; workflow: `.github/workflows/maker-trade-through.yml` and related research workflow.
+   - Report: https://github.com/MeaAi/mea/blob/research/binance-data-pipeline/research-results/qa_report.json
+   - Pilot period: 2024-05 through 2024-06; BTCUSDT, ETHUSDT, SOLUSDT.
+   - Downloads official free Binance Vision USD-M monthly 1m klines and aggTrades; SHA256 checksums verified; aggregates aggressive buyer/seller quote/base volume, trade counts, whale-notional aggregates, and trade-through min/max prices.
+   - This was data acquisition/QA, not a strategy profitability result. The data manifest shows 86,400 minutes per symbol-month (2 months); BTC May alone: 44,640 kline rows, 38,945,717 aggTrades, zero missing kline minutes, checksums verified.
+   - Whale definition is a configurable individual aggTrade notional threshold (default 100,000 USDT); it does not identify a trader or wallet.
+
+11. BookDepth acquisition / coverage QA
+   - Branch: `research/binance-data-pipeline`.
+   - Code: `research/binance_bookdepth_pipeline.py`; report: https://github.com/MeaAi/mea/blob/research/binance-data-pipeline/research-results/bookdepth_qa_report.json
+   - Pilot period: 2024-05 through 2024-06; BTCUSDT, ETHUSDT, SOLUSDT.
+   - Official Binance Vision USD-M daily bookDepth archives; SHA256 verified; 30-second snapshots aggregated into minute-level percentage-band depth features.
+   - This is aggregated percentage-band depth, NOT full per-price L2 order book, order additions/cancellations, or queue position.
+   - Coverage QA is recorded per symbol/month, including missing minute ranges. Never assume complete coverage.
+
+12. Order-flow and OBI/OFI predictive diagnostics
+   - Branch: `research/binance-data-pipeline`.
+   - Taker-flow diagnostic code: `research/orderflow_diagnostic.py`; report: https://github.com/MeaAi/mea/blob/research/binance-data-pipeline/research-results/orderflow_diagnostic.json
+   - BookDepth signal diagnostic code: `research/bookdepth_signal_diagnostic.py`; report: https://github.com/MeaAi/mea/blob/research/binance-data-pipeline/research-results/bookdepth_signal_diagnostic.json
+   - OBI/OFI report uses chronological 50% train / 20% validation / 30% OOS, thresholds frozen from training, exact timestamp intersections, no interpolation. OOS is only the last 30% of the same May–June 2024 pilot; not a new-year or independent market-regime OOS.
+   - OBI uses aggregate +/-1% and +/-2% depth-band notionals. OFI is aggressive taker buy-vs-sell quote imbalance from aggTrades, not order-book OFI. No fees, spread, slippage, funding, maker fills, or liquidation in the predictive diagnostic.
+   - Key OOS directional mean returns (bp) from the existing report:
+     - BTC: OBI 1m -0.032; 5m -0.1756; 15m -0.6713; 60m -2.6044. OFI 1m +0.0724; 5m +0.0287; 15m -0.4654; 60m -0.3593.
+     - ETH: OBI 1m -0.1037; 5m -0.0981; 15m -0.3272; 60m -1.2296. OFI 1m +0.0240; 5m -0.1971; 15m -0.8256; 60m -1.2407.
+     - SOL: OBI 1m -0.0993; 5m -0.6073; 15m -1.4450; 60m -3.0697. OFI 1m +0.2722; 5m +0.0226; 15m -0.6626; 60m -0.7459.
+   - These are gross directional diagnostics, not net strategy results. Most horizons are negative; 1m positives are tiny and cannot establish tradable edge.
+
+13. BookDepth cost-aware backtest and maker trade-through simulation
+   - Branch: `research/binance-data-pipeline`.
+   - Cost-aware code: `research/bookdepth_cost_backtest.py`; workflow: `.github/workflows/bookdepth-cost-backtest.yml`; report: https://github.com/MeaAi/mea/blob/research/binance-data-pipeline/research-results/bookdepth_cost_backtest.json
+   - Maker code: `research/bookdepth_maker_trade_through_backtest.py`; workflow: `.github/workflows/maker-trade-through.yml`; report: https://github.com/MeaAi/mea/blob/research/binance-data-pipeline/research-results/maker_trade_through_backtest.json
+   - Pilot period: 2024-05 through 2024-06; BTCUSDT, ETHUSDT, SOLUSDT; 86,340 matched minutes per symbol.
+   - Cost-aware backtest tests 5/15/60m horizons, taker-taker and deterministic maker fill-rate sensitivities (25/50/75%), 1x/2x/3x and 2/4/6/8bp round-trip slippage. Important: maker fill is timestamp-modulo sampling, not empirical fill probability or queue simulation. Funding and liquidation are not modeled.
+   - Maker trade-through test uses a 1-minute passive limit at signal-minute close. It counts a fill only if next-minute aggressive trade prints strictly through the limit; unfilled orders cancelled after one minute. This is a conservative trade-through proxy, but NOT proof of queue fill; no queue position/available quantity reconstruction. Entry maker fee 2bp, exit taker fee 5bp; exit slippage scenarios 0/2/4/6bp; no funding, 1x only.
+   - Existing maker OOS (last 30% of the two-month pilot) results at 2bp exit slippage, net return with 100% equity compounded per trade:
+     - BTC 5m long -82.7894%, short -80.9429%; 15m long -63.6350%, short -56.5482%; 60m long -32.0354%, short -21.3332%.
+     - ETH 5m long -83.3921%, short -83.1125%; 15m long -64.4012%, short -60.6211%; 60m long -31.9167%, short -21.1187%.
+     - SOL 5m long -84.4063%, short -84.7528%; 15m long -66.4998%, short -65.8094%; 60m long -36.3899%, short -27.5882%.
+   - Observed trade-through fill ratios in this test are roughly 82.7%–91.6%, but these are NOT queue-aware real fill probabilities. All listed OOS strategy returns are strongly negative even before treating the proxy limitations as unresolved. Do not rerun as if untested; do not promote.
+   - Workflow run IDs were not recovered in this audit; report files and workflow definitions exist in the branch. If needed, recover run metadata from GitHub Actions history rather than inventing IDs.
+
+## Registry protocol — mandatory for every future experiment
+- Assign sequential ID `EXP-###` before starting. Record status: `PLANNED`, `RUNNING`, `COMPLETED`, `FAILED`, or `BLOCKED`.
+- Every record must include: hypothesis; exact code path and immutable commit SHA; research branch; data source and exact date range; symbol universe; train/validation/OOS boundaries; execution/fill model; fees/slippage/funding assumptions; starting capital/leverage/position sizing; metrics; workflow run ID + status; report path/link; limitations; decision (promote/reject/inconclusive).
+- On completion, update this ledger in the same research branch/commit sequence as the report. Update the current status and next queue. Never leave a completed experiment labeled in progress.
+- Before any new experiment, search this ledger, `research/binance-data-pipeline`, workflow definitions, reports, and Actions history for an equivalent prior test. If equivalent exists, cite it and extend only the missing dimension.
+- Distinguish a test that has code/report from a test with a recovered completed Actions run. Never infer a successful run solely from a workflow file.
+- No repeated parameter sweeps unless there is a methodological correction or a new independent dataset/window.
+
+## Updated next queue (do not repeat completed pilots)
+1. Recover exact Actions run IDs / timestamps for EXP-010–013 and record immutable commit SHAs.
+2. Audit the existing `bookdepth_cost_backtest.json` and its accounting assumptions, then reconcile with maker trade-through report; avoid assuming its synthetic fill-rate sweep is measured fill probability.
+3. Extend free Binance aggTrades + bookDepth data beyond May–June 2024 only after checking archive availability and data volume. Prefer a genuinely separate period for external validation, not a random split of the same 2-month pilot.
+4. Improve maker execution only with a defensible queue model or label current trade-through results as an upper-bound proxy; no invented fill probability.
+5. Then test whether taker-flow / depth features add incremental net value to frozen MEAFLOW-72 signals. Keep signal discovery and execution validation separated.
