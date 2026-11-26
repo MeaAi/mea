@@ -1,0 +1,755 @@
+{
+  "experiment": "Matched OOS sideways-regime transition and position-management test",
+  "branch": "research/sideways-transition-management-v1",
+  "source": "Official free Binance Vision monthly fundingRate and 1h markPriceKlines",
+  "loaded_symbols": [
+    "ADAUSDT",
+    "AVAXUSDT",
+    "BCHUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "DOGEUSDT",
+    "DOTUSDT",
+    "ETHUSDT",
+    "LINKUSDT",
+    "LTCUSDT",
+    "SOLUSDT",
+    "TRXUSDT",
+    "XRPUSDT"
+  ],
+  "data_errors": {},
+  "period_utc": {
+    "first_available": "2023-01-01T00:00:00+00:00",
+    "last_available": "2026-10-31T16:00:00+00:00",
+    "oos_start": "2025-09-06T18:24:00+00:00",
+    "oos_end": "2026-10-31T16:00:00+00:00",
+    "oos_split": "2026-04-04T17:12:00+00:00"
+  },
+  "split": "Chronological first 70% excluded from OOS; final 30% fixed OOS. No parameter selection on OOS.",
+  "capital_usdt": 100,
+  "leverage": 1,
+  "costs": "2/5/8 bp fee one-way plus 2 bp slippage one-way",
+  "fixed_strategy": "7d funding lookback, 7d rebalance, 20% tails; BTC trailing 30d return regime threshold +/-5%; bull both, bear short-only.",
+  "variants": {
+    "sideways_flat": [
+      "flat",
+      1
+    ],
+    "sideways_hold_existing": [
+      "hold",
+      1
+    ],
+    "immediate_flat_1h": [
+      "immediate_flat",
+      1
+    ],
+    "immediate_flat_6h": [
+      "immediate_flat",
+      6
+    ],
+    "immediate_flat_24h": [
+      "immediate_flat",
+      24
+    ]
+  },
+  "periods": {
+    "full_oos": {
+      "sideways_flat": {
+        "fee_2bp": {
+          "net_return_pct": 42.7019,
+          "end_equity_usdt": 142.701947,
+          "max_drawdown_pct": -26.5015,
+          "liquidated": false,
+          "rebalance_count": 98,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 45.405774,
+          "funding_pnl_usdt": 1.45416,
+          "trading_fees_usdt": 2.078993,
+          "slippage_usdt": 2.078993
+        },
+        "fee_5bp": {
+          "net_return_pct": 38.8658,
+          "end_equity_usdt": 138.865845,
+          "max_drawdown_pct": -26.5455,
+          "liquidated": false,
+          "rebalance_count": 98,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 44.606434,
+          "funding_pnl_usdt": 1.431845,
+          "trading_fees_usdt": 5.123168,
+          "slippage_usdt": 2.049267
+        },
+        "fee_8bp": {
+          "net_return_pct": 35.1306,
+          "end_equity_usdt": 135.130553,
+          "max_drawdown_pct": -26.5894,
+          "liquidated": false,
+          "rebalance_count": 98,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 43.820959,
+          "funding_pnl_usdt": 1.409958,
+          "trading_fees_usdt": 8.080291,
+          "slippage_usdt": 2.020073
+        }
+      },
+      "sideways_hold_existing": {
+        "fee_2bp": {
+          "net_return_pct": 76.4356,
+          "end_equity_usdt": 176.435579,
+          "max_drawdown_pct": -26.5015,
+          "liquidated": false,
+          "rebalance_count": 98,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 77.363725,
+          "funding_pnl_usdt": 2.70902,
+          "trading_fees_usdt": 1.818583,
+          "slippage_usdt": 1.818583
+        },
+        "fee_5bp": {
+          "net_return_pct": 72.9428,
+          "end_equity_usdt": 172.94281,
+          "max_drawdown_pct": -26.5454,
+          "liquidated": false,
+          "rebalance_count": 98,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 76.561008,
+          "funding_pnl_usdt": 2.680028,
+          "trading_fees_usdt": 4.498733,
+          "slippage_usdt": 1.799493
+        },
+        "fee_8bp": {
+          "net_return_pct": 69.5166,
+          "end_equity_usdt": 169.516568,
+          "max_drawdown_pct": -26.5893,
+          "liquidated": false,
+          "rebalance_count": 98,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 75.768386,
+          "funding_pnl_usdt": 2.651413,
+          "trading_fees_usdt": 7.122584,
+          "slippage_usdt": 1.780646
+        }
+      },
+      "immediate_flat_1h": {
+        "fee_2bp": {
+          "net_return_pct": 35.2504,
+          "end_equity_usdt": 135.250386,
+          "max_drawdown_pct": -20.5516,
+          "liquidated": false,
+          "rebalance_count": 98,
+          "hourly_sideways_exits": 33,
+          "price_pnl_usdt": 38.296537,
+          "funding_pnl_usdt": 1.016049,
+          "trading_fees_usdt": 2.0311,
+          "slippage_usdt": 2.0311
+        },
+        "fee_5bp": {
+          "net_return_pct": 31.5239,
+          "end_equity_usdt": 131.523878,
+          "max_drawdown_pct": -20.5861,
+          "liquidated": false,
+          "rebalance_count": 98,
+          "hourly_sideways_exits": 33,
+          "price_pnl_usdt": 37.529647,
+          "funding_pnl_usdt": 1.000036,
+          "trading_fees_usdt": 5.004146,
+          "slippage_usdt": 2.001659
+        },
+        "fee_8bp": {
+          "net_return_pct": 27.8978,
+          "end_equity_usdt": 127.897829,
+          "max_drawdown_pct": -20.7571,
+          "liquidated": false,
+          "rebalance_count": 98,
+          "hourly_sideways_exits": 33,
+          "price_pnl_usdt": 36.777291,
+          "funding_pnl_usdt": 0.984323,
+          "trading_fees_usdt": 7.891028,
+          "slippage_usdt": 1.972757
+        }
+      },
+      "immediate_flat_6h": {
+        "fee_2bp": {
+          "net_return_pct": 34.2858,
+          "end_equity_usdt": 134.285828,
+          "max_drawdown_pct": -25.5398,
+          "liquidated": false,
+          "rebalance_count": 98,
+          "hourly_sideways_exits": 19,
+          "price_pnl_usdt": 36.994316,
+          "funding_pnl_usdt": 1.201677,
+          "trading_fees_usdt": 1.955083,
+          "slippage_usdt": 1.955083
+        },
+        "fee_5bp": {
+          "net_return_pct": 30.6304,
+          "end_equity_usdt": 130.630352,
+          "max_drawdown_pct": -25.857,
+          "liquidated": false,
+          "rebalance_count": 98,
+          "hourly_sideways_exits": 19,
+          "price_pnl_usdt": 36.192625,
+          "funding_pnl_usdt": 1.181488,
+          "trading_fees_usdt": 4.816971,
+          "slippage_usdt": 1.926789
+        },
+        "fee_8bp": {
+          "net_return_pct": 27.0722,
+          "end_equity_usdt": 127.072212,
+          "max_drawdown_pct": -26.1731,
+          "liquidated": false,
+          "rebalance_count": 98,
+          "hourly_sideways_exits": 19,
+          "price_pnl_usdt": 35.405566,
+          "funding_pnl_usdt": 1.161691,
+          "trading_fees_usdt": 7.596036,
+          "slippage_usdt": 1.899009
+        }
+      },
+      "immediate_flat_24h": {
+        "fee_2bp": {
+          "net_return_pct": 37.2523,
+          "end_equity_usdt": 137.252326,
+          "max_drawdown_pct": -26.5015,
+          "liquidated": false,
+          "rebalance_count": 98,
+          "hourly_sideways_exits": 4,
+          "price_pnl_usdt": 39.916729,
+          "funding_pnl_usdt": 1.405172,
+          "trading_fees_usdt": 2.034788,
+          "slippage_usdt": 2.034788
+        },
+        "fee_5bp": {
+          "net_return_pct": 33.5583,
+          "end_equity_usdt": 133.558298,
+          "max_drawdown_pct": -26.5455,
+          "liquidated": false,
+          "rebalance_count": 98,
+          "hourly_sideways_exits": 4,
+          "price_pnl_usdt": 39.195269,
+          "funding_pnl_usdt": 1.383742,
+          "trading_fees_usdt": 5.014795,
+          "slippage_usdt": 2.005918
+        },
+        "fee_8bp": {
+          "net_return_pct": 29.9615,
+          "end_equity_usdt": 129.961465,
+          "max_drawdown_pct": -26.5894,
+          "liquidated": false,
+          "rebalance_count": 98,
+          "hourly_sideways_exits": 4,
+          "price_pnl_usdt": 38.486558,
+          "funding_pnl_usdt": 1.362722,
+          "trading_fees_usdt": 7.910252,
+          "slippage_usdt": 1.977563
+        }
+      },
+      "no_regime_reference": {
+        "fee_2bp": {
+          "net_return_pct": 29.1761,
+          "end_equity_usdt": 129.176058,
+          "max_drawdown_pct": -26.946,
+          "liquidated": false,
+          "rebalance_count": 56,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 28.97601,
+          "funding_pnl_usdt": 3.207286,
+          "trading_fees_usdt": 1.503619,
+          "slippage_usdt": 1.503619
+        },
+        "fee_5bp": {
+          "net_return_pct": 26.632,
+          "end_equity_usdt": 126.63199,
+          "max_drawdown_pct": -26.9985,
+          "liquidated": false,
+          "rebalance_count": 56,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 28.663994,
+          "funding_pnl_usdt": 3.178725,
+          "trading_fees_usdt": 3.72195,
+          "slippage_usdt": 1.48878
+        },
+        "fee_8bp": {
+          "net_return_pct": 24.1363,
+          "end_equity_usdt": 124.136267,
+          "max_drawdown_pct": -27.0688,
+          "liquidated": false,
+          "rebalance_count": 56,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 28.356408,
+          "funding_pnl_usdt": 3.150488,
+          "trading_fees_usdt": 5.896503,
+          "slippage_usdt": 1.474126
+        }
+      }
+    },
+    "oos_first_half": {
+      "sideways_flat": {
+        "fee_2bp": {
+          "net_return_pct": 8.4553,
+          "end_equity_usdt": 108.455263,
+          "max_drawdown_pct": -26.5015,
+          "liquidated": false,
+          "rebalance_count": 52,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 9.798639,
+          "funding_pnl_usdt": 0.546227,
+          "trading_fees_usdt": 0.944802,
+          "slippage_usdt": 0.944802
+        },
+        "fee_5bp": {
+          "net_return_pct": 6.948,
+          "end_equity_usdt": 106.947959,
+          "max_drawdown_pct": -26.5455,
+          "liquidated": false,
+          "rebalance_count": 52,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 9.688633,
+          "funding_pnl_usdt": 0.543196,
+          "trading_fees_usdt": 2.345622,
+          "slippage_usdt": 0.938249
+        },
+        "fee_8bp": {
+          "net_return_pct": 5.4607,
+          "end_equity_usdt": 105.46069,
+          "max_drawdown_pct": -26.5894,
+          "liquidated": false,
+          "rebalance_count": 52,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 9.579265,
+          "funding_pnl_usdt": 0.540187,
+          "trading_fees_usdt": 3.72701,
+          "slippage_usdt": 0.931752
+        }
+      },
+      "sideways_hold_existing": {
+        "fee_2bp": {
+          "net_return_pct": 35.1176,
+          "end_equity_usdt": 135.117601,
+          "max_drawdown_pct": -26.5015,
+          "liquidated": false,
+          "rebalance_count": 52,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 35.605397,
+          "funding_pnl_usdt": 1.022191,
+          "trading_fees_usdt": 0.754993,
+          "slippage_usdt": 0.754993
+        },
+        "fee_5bp": {
+          "net_return_pct": 33.8331,
+          "end_equity_usdt": 133.833102,
+          "max_drawdown_pct": -26.5454,
+          "liquidated": false,
+          "rebalance_count": 52,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 35.445284,
+          "funding_pnl_usdt": 1.017634,
+          "trading_fees_usdt": 1.87844,
+          "slippage_usdt": 0.751376
+        },
+        "fee_8bp": {
+          "net_return_pct": 32.5599,
+          "end_equity_usdt": 132.559876,
+          "max_drawdown_pct": -26.5893,
+          "liquidated": false,
+          "rebalance_count": 52,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 35.285667,
+          "funding_pnl_usdt": 1.013102,
+          "trading_fees_usdt": 2.991115,
+          "slippage_usdt": 0.747779
+        }
+      },
+      "immediate_flat_1h": {
+        "fee_2bp": {
+          "net_return_pct": 0.8206,
+          "end_equity_usdt": 100.820587,
+          "max_drawdown_pct": -20.5516,
+          "liquidated": false,
+          "rebalance_count": 52,
+          "hourly_sideways_exits": 17,
+          "price_pnl_usdt": 2.333888,
+          "funding_pnl_usdt": 0.37409,
+          "trading_fees_usdt": 0.943696,
+          "slippage_usdt": 0.943696
+        },
+        "fee_5bp": {
+          "net_return_pct": -0.6182,
+          "end_equity_usdt": 99.381773,
+          "max_drawdown_pct": -20.5861,
+          "liquidated": false,
+          "rebalance_count": 52,
+          "hourly_sideways_exits": 17,
+          "price_pnl_usdt": 2.29003,
+          "funding_pnl_usdt": 0.371574,
+          "trading_fees_usdt": 2.342737,
+          "slippage_usdt": 0.937095
+        },
+        "fee_8bp": {
+          "net_return_pct": -2.0374,
+          "end_equity_usdt": 97.96264,
+          "max_drawdown_pct": -20.6206,
+          "liquidated": false,
+          "rebalance_count": 52,
+          "hourly_sideways_exits": 17,
+          "price_pnl_usdt": 2.246322,
+          "funding_pnl_usdt": 0.369077,
+          "trading_fees_usdt": 3.722207,
+          "slippage_usdt": 0.930552
+        }
+      },
+      "immediate_flat_6h": {
+        "fee_2bp": {
+          "net_return_pct": 0.2624,
+          "end_equity_usdt": 100.262356,
+          "max_drawdown_pct": -25.5398,
+          "liquidated": false,
+          "rebalance_count": 52,
+          "hourly_sideways_exits": 10,
+          "price_pnl_usdt": 1.666183,
+          "funding_pnl_usdt": 0.389594,
+          "trading_fees_usdt": 0.89671,
+          "slippage_usdt": 0.89671
+        },
+        "fee_5bp": {
+          "net_return_pct": -1.167,
+          "end_equity_usdt": 98.833015,
+          "max_drawdown_pct": -25.857,
+          "liquidated": false,
+          "rebalance_count": 52,
+          "hourly_sideways_exits": 10,
+          "price_pnl_usdt": 1.562591,
+          "funding_pnl_usdt": 0.386883,
+          "trading_fees_usdt": 2.226042,
+          "slippage_usdt": 0.890417
+        },
+        "fee_8bp": {
+          "net_return_pct": -2.5768,
+          "end_equity_usdt": 97.423205,
+          "max_drawdown_pct": -26.1731,
+          "liquidated": false,
+          "rebalance_count": 52,
+          "hourly_sideways_exits": 10,
+          "price_pnl_usdt": 1.459907,
+          "funding_pnl_usdt": 0.384193,
+          "trading_fees_usdt": 3.536716,
+          "slippage_usdt": 0.884179
+        }
+      },
+      "immediate_flat_24h": {
+        "fee_2bp": {
+          "net_return_pct": 7.4852,
+          "end_equity_usdt": 107.485179,
+          "max_drawdown_pct": -26.5015,
+          "liquidated": false,
+          "rebalance_count": 52,
+          "hourly_sideways_exits": 3,
+          "price_pnl_usdt": 8.835283,
+          "funding_pnl_usdt": 0.535174,
+          "trading_fees_usdt": 0.942638,
+          "slippage_usdt": 0.942638
+        },
+        "fee_5bp": {
+          "net_return_pct": 5.9908,
+          "end_equity_usdt": 105.99076,
+          "max_drawdown_pct": -26.5455,
+          "liquidated": false,
+          "rebalance_count": 52,
+          "hourly_sideways_exits": 3,
+          "price_pnl_usdt": 8.734867,
+          "funding_pnl_usdt": 0.532275,
+          "trading_fees_usdt": 2.340272,
+          "slippage_usdt": 0.936109
+        },
+        "fee_8bp": {
+          "net_return_pct": 4.5162,
+          "end_equity_usdt": 104.516213,
+          "max_drawdown_pct": -26.5894,
+          "liquidated": false,
+          "rebalance_count": 52,
+          "hourly_sideways_exits": 3,
+          "price_pnl_usdt": 8.634996,
+          "funding_pnl_usdt": 0.529396,
+          "trading_fees_usdt": 3.718543,
+          "slippage_usdt": 0.929636
+        }
+      },
+      "no_regime_reference": {
+        "fee_2bp": {
+          "net_return_pct": 10.1776,
+          "end_equity_usdt": 110.177579,
+          "max_drawdown_pct": -26.946,
+          "liquidated": false,
+          "rebalance_count": 28,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 9.904012,
+          "funding_pnl_usdt": 1.592796,
+          "trading_fees_usdt": 0.659615,
+          "slippage_usdt": 0.659615
+        },
+        "fee_5bp": {
+          "net_return_pct": 9.1781,
+          "end_equity_usdt": 109.178094,
+          "max_drawdown_pct": -26.9985,
+          "liquidated": false,
+          "rebalance_count": 28,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 9.891191,
+          "funding_pnl_usdt": 1.585536,
+          "trading_fees_usdt": 1.641881,
+          "slippage_usdt": 0.656752
+        },
+        "fee_8bp": {
+          "net_return_pct": 8.1871,
+          "end_equity_usdt": 108.187051,
+          "max_drawdown_pct": -27.0688,
+          "liquidated": false,
+          "rebalance_count": 28,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 9.878261,
+          "funding_pnl_usdt": 1.578314,
+          "trading_fees_usdt": 2.615619,
+          "slippage_usdt": 0.653905
+        }
+      }
+    },
+    "oos_second_half": {
+      "sideways_flat": {
+        "fee_2bp": {
+          "net_return_pct": 31.0452,
+          "end_equity_usdt": 131.045236,
+          "max_drawdown_pct": -13.0322,
+          "liquidated": false,
+          "rebalance_count": 43,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 32.172676,
+          "funding_pnl_usdt": 0.837559,
+          "trading_fees_usdt": 0.9825,
+          "slippage_usdt": 0.9825
+        },
+        "fee_5bp": {
+          "net_return_pct": 29.4346,
+          "end_equity_usdt": 129.43459,
+          "max_drawdown_pct": -13.325,
+          "liquidated": false,
+          "rebalance_count": 43,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 32.020149,
+          "funding_pnl_usdt": 0.83209,
+          "trading_fees_usdt": 2.441178,
+          "slippage_usdt": 0.976471
+        },
+        "fee_8bp": {
+          "net_return_pct": 27.8427,
+          "end_equity_usdt": 127.84274,
+          "max_drawdown_pct": -13.617,
+          "liquidated": false,
+          "rebalance_count": 43,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 31.868518,
+          "funding_pnl_usdt": 0.82666,
+          "trading_fees_usdt": 3.881951,
+          "slippage_usdt": 0.970488
+        }
+      },
+      "sideways_hold_existing": {
+        "fee_2bp": {
+          "net_return_pct": 36.4456,
+          "end_equity_usdt": 136.445644,
+          "max_drawdown_pct": -14.6207,
+          "liquidated": false,
+          "rebalance_count": 43,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 36.914516,
+          "funding_pnl_usdt": 1.112392,
+          "trading_fees_usdt": 0.790632,
+          "slippage_usdt": 0.790632
+        },
+        "fee_5bp": {
+          "net_return_pct": 35.0961,
+          "end_equity_usdt": 135.096142,
+          "max_drawdown_pct": -14.7572,
+          "liquidated": false,
+          "rebalance_count": 43,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 36.743646,
+          "funding_pnl_usdt": 1.106392,
+          "trading_fees_usdt": 1.967068,
+          "slippage_usdt": 0.786827
+        },
+        "fee_8bp": {
+          "net_return_pct": 33.759,
+          "end_equity_usdt": 133.758965,
+          "max_drawdown_pct": -14.8935,
+          "liquidated": false,
+          "rebalance_count": 43,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 36.573761,
+          "funding_pnl_usdt": 1.100426,
+          "trading_fees_usdt": 3.132178,
+          "slippage_usdt": 0.783045
+        }
+      },
+      "immediate_flat_1h": {
+        "fee_2bp": {
+          "net_return_pct": 34.3805,
+          "end_equity_usdt": 134.380548,
+          "max_drawdown_pct": -12.775,
+          "liquidated": false,
+          "rebalance_count": 43,
+          "hourly_sideways_exits": 14,
+          "price_pnl_usdt": 35.783808,
+          "funding_pnl_usdt": 0.637846,
+          "trading_fees_usdt": 1.020553,
+          "slippage_usdt": 1.020553
+        },
+        "fee_5bp": {
+          "net_return_pct": 32.6893,
+          "end_equity_usdt": 132.689264,
+          "max_drawdown_pct": -13.0689,
+          "liquidated": false,
+          "rebalance_count": 43,
+          "hourly_sideways_exits": 14,
+          "price_pnl_usdt": 35.604536,
+          "funding_pnl_usdt": 0.634047,
+          "trading_fees_usdt": 2.535227,
+          "slippage_usdt": 1.014091
+        },
+        "fee_8bp": {
+          "net_return_pct": 31.0182,
+          "end_equity_usdt": 131.01822,
+          "max_drawdown_pct": -13.3619,
+          "liquidated": false,
+          "rebalance_count": 43,
+          "hourly_sideways_exits": 14,
+          "price_pnl_usdt": 35.426341,
+          "funding_pnl_usdt": 0.630273,
+          "trading_fees_usdt": 4.030715,
+          "slippage_usdt": 1.007679
+        }
+      },
+      "immediate_flat_6h": {
+        "fee_2bp": {
+          "net_return_pct": 32.2291,
+          "end_equity_usdt": 132.229148,
+          "max_drawdown_pct": -13.2048,
+          "liquidated": false,
+          "rebalance_count": 43,
+          "hourly_sideways_exits": 7,
+          "price_pnl_usdt": 33.391648,
+          "funding_pnl_usdt": 0.804045,
+          "trading_fees_usdt": 0.983273,
+          "slippage_usdt": 0.983273
+        },
+        "fee_5bp": {
+          "net_return_pct": 30.605,
+          "end_equity_usdt": 130.604956,
+          "max_drawdown_pct": -13.4973,
+          "liquidated": false,
+          "rebalance_count": 43,
+          "hourly_sideways_exits": 7,
+          "price_pnl_usdt": 33.226419,
+          "funding_pnl_usdt": 0.798855,
+          "trading_fees_usdt": 2.443085,
+          "slippage_usdt": 0.977234
+        },
+        "fee_8bp": {
+          "net_return_pct": 28.9997,
+          "end_equity_usdt": 128.999706,
+          "max_drawdown_pct": -13.789,
+          "liquidated": false,
+          "rebalance_count": 43,
+          "hourly_sideways_exits": 7,
+          "price_pnl_usdt": 33.062207,
+          "funding_pnl_usdt": 0.793702,
+          "trading_fees_usdt": 3.884963,
+          "slippage_usdt": 0.971241
+        }
+      },
+      "immediate_flat_24h": {
+        "fee_2bp": {
+          "net_return_pct": 31.0452,
+          "end_equity_usdt": 131.045236,
+          "max_drawdown_pct": -13.0322,
+          "liquidated": false,
+          "rebalance_count": 43,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 32.172676,
+          "funding_pnl_usdt": 0.837559,
+          "trading_fees_usdt": 0.9825,
+          "slippage_usdt": 0.9825
+        },
+        "fee_5bp": {
+          "net_return_pct": 29.4346,
+          "end_equity_usdt": 129.43459,
+          "max_drawdown_pct": -13.325,
+          "liquidated": false,
+          "rebalance_count": 43,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 32.020149,
+          "funding_pnl_usdt": 0.83209,
+          "trading_fees_usdt": 2.441178,
+          "slippage_usdt": 0.976471
+        },
+        "fee_8bp": {
+          "net_return_pct": 27.8427,
+          "end_equity_usdt": 127.84274,
+          "max_drawdown_pct": -13.617,
+          "liquidated": false,
+          "rebalance_count": 43,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 31.868518,
+          "funding_pnl_usdt": 0.82666,
+          "trading_fees_usdt": 3.881951,
+          "slippage_usdt": 0.970488
+        }
+      },
+      "no_regime_reference": {
+        "fee_2bp": {
+          "net_return_pct": 17.9363,
+          "end_equity_usdt": 117.936308,
+          "max_drawdown_pct": -12.9801,
+          "liquidated": false,
+          "rebalance_count": 28,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 18.051075,
+          "funding_pnl_usdt": 1.424558,
+          "trading_fees_usdt": 0.769662,
+          "slippage_usdt": 0.769662
+        },
+        "fee_5bp": {
+          "net_return_pct": 16.6734,
+          "end_equity_usdt": 116.673423,
+          "max_drawdown_pct": -13.0514,
+          "liquidated": false,
+          "rebalance_count": 28,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 17.934891,
+          "funding_pnl_usdt": 1.418439,
+          "trading_fees_usdt": 1.91422,
+          "slippage_usdt": 0.765688
+        },
+        "fee_8bp": {
+          "net_return_pct": 15.4231,
+          "end_equity_usdt": 115.423103,
+          "max_drawdown_pct": -13.1226,
+          "liquidated": false,
+          "rebalance_count": 28,
+          "hourly_sideways_exits": 0,
+          "price_pnl_usdt": 17.819436,
+          "funding_pnl_usdt": 1.412358,
+          "trading_fees_usdt": 3.046953,
+          "slippage_usdt": 0.761738
+        }
+      }
+    }
+  },
+  "limitations": [
+    "1h OHLC adverse stress is not tick-level liquidation simulation",
+    "static 0.5% maintenance margin and 1% liquidation-fee proxy",
+    "no maker queue/fill model",
+    "static symbol universe survivorship bias",
+    "historical data windows have been inspected in prior experiments; this is not pristine unseen OOS"
+  ],
+  "decision_rule": "Diagnostic only. No promotion to MEAFLOW-52 main branch."
+}
