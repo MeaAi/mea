@@ -1,0 +1,374 @@
+{
+  "experiment": "MEAFLOW-72 portfolio drawdown-based exposure scaling",
+  "branch": "research/meaflow72-drawdown-scaling-v1",
+  "source": "Official free Binance Vision monthly fundingRate + 1h markPriceKlines",
+  "loaded_symbols": [
+    "ADAUSDT",
+    "AVAXUSDT",
+    "BCHUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "DOGEUSDT",
+    "DOTUSDT",
+    "ETHUSDT",
+    "LINKUSDT",
+    "LTCUSDT",
+    "SOLUSDT",
+    "TRXUSDT",
+    "XRPUSDT"
+  ],
+  "data_errors": {},
+  "capital_usdt": 100,
+  "leverage": 1,
+  "costs": "5 bp fee one-way + 2 bp slippage one-way",
+  "frozen_strategy": "7d funding lookback, 7d rebalance, 20% tails; BTC trailing 30d mark-price +/-5%; bull both, bear short-only; sideways hold; unknown flat.",
+  "controls": {
+    "baseline": null,
+    "gentle": [
+      [
+        -10.0,
+        0.75
+      ],
+      [
+        -15.0,
+        0.5
+      ],
+      [
+        -20.0,
+        0.25
+      ]
+    ],
+    "moderate": [
+      [
+        -8.0,
+        0.75
+      ],
+      [
+        -12.0,
+        0.5
+      ],
+      [
+        -16.0,
+        0.25
+      ]
+    ]
+  },
+  "method": "At each normal rebalance, new target gross exposure is multiplied by the scale selected from current equity versus the running equity peak. Existing positions are resized only at the strategy's next normal rebalance; sideways hold freezes positions, so this overlay does not force exits during sideways regimes. The same fixed controls are applied in all four periods.",
+  "windows": {
+    "2023_calendar": {
+      "period_utc": [
+        "2023-01-01T00:00:00+00:00",
+        "2024-01-01T00:00:00+00:00"
+      ],
+      "event_count": 8983,
+      "configs": {
+        "baseline": {
+          "net_return_pct": 42.1559,
+          "end_equity_usdt": 142.15595,
+          "max_drawdown_pct": -22.2601,
+          "maxdd_peak_time_utc": "2023-03-11T08:00:00+00:00",
+          "maxdd_trough_time_utc": "2023-04-18T11:00:00+00:00",
+          "rebalance_count": 82,
+          "liquidated": false,
+          "price_pnl_usdt": 41.263594,
+          "funding_pnl_usdt": 5.744719,
+          "trading_fees_usdt": 3.465974,
+          "slippage_usdt": 1.386389,
+          "drawdown_scale_steps": null
+        },
+        "gentle": {
+          "net_return_pct": 22.7836,
+          "end_equity_usdt": 122.783604,
+          "max_drawdown_pct": -18.7305,
+          "maxdd_peak_time_utc": "2023-06-10T17:00:00+00:00",
+          "maxdd_trough_time_utc": "2023-07-27T05:00:00+00:00",
+          "rebalance_count": 82,
+          "liquidated": false,
+          "price_pnl_usdt": 22.344012,
+          "funding_pnl_usdt": 4.481879,
+          "trading_fees_usdt": 2.887348,
+          "slippage_usdt": 1.154939,
+          "drawdown_scale_steps": [
+            [
+              -10.0,
+              0.75
+            ],
+            [
+              -15.0,
+              0.5
+            ],
+            [
+              -20.0,
+              0.25
+            ]
+          ]
+        },
+        "moderate": {
+          "net_return_pct": 21.2845,
+          "end_equity_usdt": 121.284505,
+          "max_drawdown_pct": -17.5213,
+          "maxdd_peak_time_utc": "2023-03-11T08:00:00+00:00",
+          "maxdd_trough_time_utc": "2023-04-18T11:00:00+00:00",
+          "rebalance_count": 82,
+          "liquidated": false,
+          "price_pnl_usdt": 20.862246,
+          "funding_pnl_usdt": 4.251666,
+          "trading_fees_usdt": 2.73529,
+          "slippage_usdt": 1.094116,
+          "drawdown_scale_steps": [
+            [
+              -8.0,
+              0.75
+            ],
+            [
+              -12.0,
+              0.5
+            ],
+            [
+              -16.0,
+              0.25
+            ]
+          ]
+        }
+      }
+    },
+    "2024_calendar": {
+      "period_utc": [
+        "2024-01-01T00:00:00+00:00",
+        "2024-12-31T16:00:00+00:00"
+      ],
+      "event_count": 12064,
+      "configs": {
+        "baseline": {
+          "net_return_pct": 14.1269,
+          "end_equity_usdt": 114.126902,
+          "max_drawdown_pct": -35.6759,
+          "maxdd_peak_time_utc": "2024-07-05T09:00:00+00:00",
+          "maxdd_trough_time_utc": "2024-08-25T14:00:00+00:00",
+          "rebalance_count": 123,
+          "liquidated": false,
+          "price_pnl_usdt": 13.583906,
+          "funding_pnl_usdt": 6.501251,
+          "trading_fees_usdt": 4.255896,
+          "slippage_usdt": 1.702359,
+          "drawdown_scale_steps": null
+        },
+        "gentle": {
+          "net_return_pct": -12.7918,
+          "end_equity_usdt": 87.208197,
+          "max_drawdown_pct": -27.6489,
+          "maxdd_peak_time_utc": "2024-01-23T14:00:00+00:00",
+          "maxdd_trough_time_utc": "2024-03-16T10:00:00+00:00",
+          "rebalance_count": 123,
+          "liquidated": false,
+          "price_pnl_usdt": -13.823157,
+          "funding_pnl_usdt": 3.079467,
+          "trading_fees_usdt": 1.462938,
+          "slippage_usdt": 0.585175,
+          "drawdown_scale_steps": [
+            [
+              -10.0,
+              0.75
+            ],
+            [
+              -15.0,
+              0.5
+            ],
+            [
+              -20.0,
+              0.25
+            ]
+          ]
+        },
+        "moderate": {
+          "net_return_pct": -9.096,
+          "end_equity_usdt": 90.904001,
+          "max_drawdown_pct": -26.8593,
+          "maxdd_peak_time_utc": "2024-01-23T14:00:00+00:00",
+          "maxdd_trough_time_utc": "2024-03-16T10:00:00+00:00",
+          "rebalance_count": 123,
+          "liquidated": false,
+          "price_pnl_usdt": -10.203996,
+          "funding_pnl_usdt": 3.055945,
+          "trading_fees_usdt": 1.391391,
+          "slippage_usdt": 0.556556,
+          "drawdown_scale_steps": [
+            [
+              -8.0,
+              0.75
+            ],
+            [
+              -12.0,
+              0.5
+            ],
+            [
+              -16.0,
+              0.25
+            ]
+          ]
+        }
+      }
+    },
+    "2025_jan_to_sep": {
+      "period_utc": [
+        "2025-01-01T08:00:00+00:00",
+        "2025-09-06T16:00:00+00:00"
+      ],
+      "event_count": 6006,
+      "configs": {
+        "baseline": {
+          "net_return_pct": 5.069,
+          "end_equity_usdt": 105.069034,
+          "max_drawdown_pct": -34.4392,
+          "maxdd_peak_time_utc": "2025-06-22T20:00:00+00:00",
+          "maxdd_trough_time_utc": "2025-07-18T00:00:00+00:00",
+          "rebalance_count": 59,
+          "liquidated": false,
+          "price_pnl_usdt": 6.706208,
+          "funding_pnl_usdt": 1.369116,
+          "trading_fees_usdt": 2.14735,
+          "slippage_usdt": 0.85894,
+          "drawdown_scale_steps": null
+        },
+        "gentle": {
+          "net_return_pct": 8.0217,
+          "end_equity_usdt": 108.021714,
+          "max_drawdown_pct": -32.0972,
+          "maxdd_peak_time_utc": "2025-01-13T19:00:00+00:00",
+          "maxdd_trough_time_utc": "2025-03-03T00:00:00+00:00",
+          "rebalance_count": 59,
+          "liquidated": false,
+          "price_pnl_usdt": 9.390175,
+          "funding_pnl_usdt": 1.087074,
+          "trading_fees_usdt": 1.753954,
+          "slippage_usdt": 0.701581,
+          "drawdown_scale_steps": [
+            [
+              -10.0,
+              0.75
+            ],
+            [
+              -15.0,
+              0.5
+            ],
+            [
+              -20.0,
+              0.25
+            ]
+          ]
+        },
+        "moderate": {
+          "net_return_pct": 2.3553,
+          "end_equity_usdt": 102.355296,
+          "max_drawdown_pct": -29.8877,
+          "maxdd_peak_time_utc": "2025-06-22T20:00:00+00:00",
+          "maxdd_trough_time_utc": "2025-07-11T15:00:00+00:00",
+          "rebalance_count": 59,
+          "liquidated": false,
+          "price_pnl_usdt": 3.528746,
+          "funding_pnl_usdt": 0.983632,
+          "trading_fees_usdt": 1.540773,
+          "slippage_usdt": 0.616309,
+          "drawdown_scale_steps": [
+            [
+              -8.0,
+              0.75
+            ],
+            [
+              -12.0,
+              0.5
+            ],
+            [
+              -16.0,
+              0.25
+            ]
+          ]
+        }
+      }
+    },
+    "2025_sep_to_2026_oct": {
+      "period_utc": [
+        "2025-09-07T00:00:00+00:00",
+        "2026-10-31T16:00:00+00:00"
+      ],
+      "event_count": 7605,
+      "configs": {
+        "baseline": {
+          "net_return_pct": 72.9428,
+          "end_equity_usdt": 172.94281,
+          "max_drawdown_pct": -26.5454,
+          "maxdd_peak_time_utc": "2025-10-09T07:00:00+00:00",
+          "maxdd_trough_time_utc": "2025-10-10T21:00:00+00:00",
+          "rebalance_count": 98,
+          "liquidated": false,
+          "price_pnl_usdt": 76.561008,
+          "funding_pnl_usdt": 2.680028,
+          "trading_fees_usdt": 4.498733,
+          "slippage_usdt": 1.799493,
+          "drawdown_scale_steps": null
+        },
+        "gentle": {
+          "net_return_pct": 47.823,
+          "end_equity_usdt": 147.822977,
+          "max_drawdown_pct": -26.5454,
+          "maxdd_peak_time_utc": "2025-10-09T07:00:00+00:00",
+          "maxdd_trough_time_utc": "2025-10-10T21:00:00+00:00",
+          "rebalance_count": 98,
+          "liquidated": false,
+          "price_pnl_usdt": 50.650033,
+          "funding_pnl_usdt": 1.95446,
+          "trading_fees_usdt": 3.415368,
+          "slippage_usdt": 1.366147,
+          "drawdown_scale_steps": [
+            [
+              -10.0,
+              0.75
+            ],
+            [
+              -15.0,
+              0.5
+            ],
+            [
+              -20.0,
+              0.25
+            ]
+          ]
+        },
+        "moderate": {
+          "net_return_pct": 24.8796,
+          "end_equity_usdt": 124.879597,
+          "max_drawdown_pct": -26.5454,
+          "maxdd_peak_time_utc": "2025-10-09T07:00:00+00:00",
+          "maxdd_trough_time_utc": "2025-10-10T21:00:00+00:00",
+          "rebalance_count": 98,
+          "liquidated": false,
+          "price_pnl_usdt": 26.922979,
+          "funding_pnl_usdt": 1.348889,
+          "trading_fees_usdt": 2.423051,
+          "slippage_usdt": 0.96922,
+          "drawdown_scale_steps": [
+            [
+              -8.0,
+              0.75
+            ],
+            [
+              -12.0,
+              0.5
+            ],
+            [
+              -16.0,
+              0.25
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "limitations": [
+    "These historical windows were previously inspected; this is not pristine forward OOS.",
+    "The control only changes target sizing at rebalance; it is not an intrabar stop or guaranteed drawdown limit.",
+    "1h OHLC adverse stress is not the exact Binance liquidation engine.",
+    "No maker queue/partial-fill model; fixed slippage; static 13-symbol universe survivorship bias.",
+    "A drawdown overlay can reduce exposure after losses and may also delay recovery or increase turnover."
+  ]
+}
