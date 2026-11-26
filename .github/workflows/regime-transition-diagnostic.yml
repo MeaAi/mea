@@ -1,0 +1,47 @@
+name: MEAFLOW-52 regime transition OOS diagnostic
+
+on:
+  push:
+    branches:
+      - research/regime-transition-v1
+    paths:
+      - "research/regime_transition_diagnostic.py"
+      - ".github/workflows/regime-transition-diagnostic.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: meaflow-regime-transition-v1
+  cancel-in-progress: false
+
+jobs:
+  transition-oos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - name: Checkout isolated experiment branch
+        uses: actions/checkout@v4
+        with:
+          ref: research/regime-transition-v1
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download free Binance Vision data and run frozen OOS transition test
+        run: |
+          python research/regime_transition_diagnostic.py \
+            --start 2023-01 \
+            --end 2026-10 \
+            --out research-output/regime_transition_oos.json
+      - name: Publish compact report only
+        run: |
+          mkdir -p research-results
+          cp research-output/regime_transition_oos.json research-results/
+          rm -rf research-output
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research-results/regime_transition_oos.json
+          git commit -m "Publish MEAFLOW-52 regime transition OOS results" || exit 0
+          git pull --rebase origin research/regime-transition-v1
+          git push origin HEAD:research/regime-transition-v1
