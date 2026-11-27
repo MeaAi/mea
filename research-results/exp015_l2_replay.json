@@ -1,0 +1,59 @@
+{
+  "experiment": "EXP-015-L2-REPLAY-PILOT",
+  "date_utc": "2024-07-01",
+  "exchange": "binance-futures",
+  "probe_order_notional_usdt": 100.0,
+  "symbols": {
+    "BTCUSDT": {
+      "l2": {
+        "download_bytes": 472205818,
+        "sha256": "1f2bda016462070c81f9c9ae640c8053745d16d79bb25406d9d7debf366d567c",
+        "rows": 84504879
+      },
+      "trades": {
+        "download_bytes": 21281017,
+        "sha256": "58f06d337fae55be7fa1019ca4f62383ea2381bf69bc7a7e58497d96e34a0d0c",
+        "rows": 2206156
+      },
+      "valid_minute_quotes": 1440,
+      "passive_order_results": {
+        "passive_buy": {
+          "orders": 1440,
+          "exact_touch": 1364,
+          "queue_lower_fills": 253,
+          "strict_through_upper_fills": 870,
+          "no_fill": 317,
+          "exact_trade_qty": 3580.1930000000007,
+          "initial_queue_qty": 15074.30000000001,
+          "quote_mid_move_bp_abs": 0.0,
+          "exact_touch_rate_pct": 94.72222222222223,
+          "queue_lower_fill_rate_pct": 17.569444444444443,
+          "strict_through_upper_fill_rate_pct": 77.98611111111111,
+          "no_fill_rate_pct": 22.01388888888889
+        },
+        "passive_sell": {
+          "orders": 1440,
+          "exact_touch": 1379,
+          "queue_lower_fills": 242,
+          "strict_through_upper_fills": 908,
+          "no_fill": 290,
+          "exact_trade_qty": 3600.980999999997,
+          "initial_queue_qty": 16317.783999999978,
+          "quote_mid_move_bp_abs": 0.0,
+          "exact_touch_rate_pct": 95.76388888888889,
+          "queue_lower_fill_rate_pct": 16.805555555555557,
+          "strict_through_upper_fill_rate_pct": 79.86111111111111,
+          "no_fill_rate_pct": 20.13888888888889
+        }
+      }
+    }
+  },
+  "raw_data_committed": false,
+  "method_limits": [
+    "L2 market-by-price, not market-by-order; exact FIFO queue position unavailable.",
+    "Lower bound assumes all displayed quantity at quote is ahead and only observed same-price taker volume consumes it; later cancellations ahead are not credited.",
+    "Upper bound requires a subsequent aggressive trade strictly through the quote while the one-minute order is live.",
+    "Orders are analytical probes placed at the first valid L2 quote per minute, not MEAFLOW signals or a portfolio backtest.",
+    "No fees, funding, portfolio PnL, partial-fill path reconstruction, or market impact in this calibration pilot."
+  ]
+}
