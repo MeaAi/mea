@@ -78,27 +78,21 @@ def make_quotes(path):
                 book[px] = qty
                 heapq.heappush(heap, -px if side == "bid" else px)
             last_local = local
-    if last_local is not None:
-        minute = last_local // 60_000_000
-        if current_minute != minute:
-            bp, bq = best(bids, bh, 1); ap, aq = best(asks, ah, -1)
-            if bp is not None and ap is not None and bp < ap:
-                quotes.append({"minute": minute, "local": last_local,
-                               "bid": bp, "bid_qty": bq, "ask": ap, "ask_qty": aq})
+    # Do not emit the final minute quote: there is no following full minute
+    # of trade data available to evaluate its 60-second lifetime.
     return quotes, rows
 
 def replay_trades(path, quotes):
     # For each minute's quote, inspect only subsequent trade events until the
     # next quote minute. Aggressor side is the taker side in Tardis trade data.
     stats = {s: {"orders": 0, "exact_touch": 0, "queue_lower_fills": 0,
-                 "strict_through_upper_fills": 0, "no_fill": 0,
-                 "exact_trade_qty": 0.0, "initial_queue_qty": 0.0,
-                 "quote_mid_move_bp_abs": 0.0} for s in ("passive_buy", "passive_sell")}
+                 "strict_through_only_fills": 0, "no_fill": 0,
+                 "exact_trade_qty": 0.0, "initial_queue_qty": 0.0} for s in ("passive_buy", "passive_sell")}
     qidx = 0; active = None; last_local = -1; trade_rows = 0
     def activate(q):
         nonlocal active
         active = {
-            "minute": q["minute"], "end": (q["minute"] + 1) * 60_000_000,
+            "minute": q["minute"], "end": q["local"] + 60_000_000,
             "buy_px": q["bid"], "buy_queue": q["bid_qty"],
             "buy_qty": NOTIONAL / q["bid"], "buy_trade": 0.0, "buy_through": False,
             "sell_px": q["ask"], "sell_queue": q["ask_qty"],
@@ -127,7 +121,7 @@ def replay_trades(path, quotes):
                         if a[tkey] >= a[qkey] + a["buy_qty" if s=="passive_buy" else "sell_qty"]:
                             stats[s]["queue_lower_fills"] += 1
                         elif a[xkey]:
-                            stats[s]["strict_through_upper_fills"] += 1
+                            stats[s]["strict_through_only_fills"] += 1
                         else:
                             stats[s]["no_fill"] += 1
                         stats[s]["exact_trade_qty"] += a[tkey]
@@ -150,14 +144,14 @@ def replay_trades(path, quotes):
             through = a["buy_through" if is_buy else "sell_through"]
             if traded > 0: stats[s]["exact_touch"] += 1
             if traded >= queue + own: stats[s]["queue_lower_fills"] += 1
-            elif through: stats[s]["strict_through_upper_fills"] += 1
+            elif through: stats[s]["strict_through_only_fills"] += 1
             else: stats[s]["no_fill"] += 1
             stats[s]["exact_trade_qty"] += traded
     for s, d in stats.items():
         n = d["orders"]
         d["exact_touch_rate_pct"] = 100*d["exact_touch"]/n if n else None
         d["queue_lower_fill_rate_pct"] = 100*d["queue_lower_fills"]/n if n else None
-        d["strict_through_upper_fill_rate_pct"] = 100*(d["queue_lower_fills"]+d["strict_through_upper_fills"])/n if n else None
+        d["upper_bound_fill_rate_pct"] = 100*(d["queue_lower_fills"]+d["strict_through_only_fills"])/n if n else None
         d["no_fill_rate_pct"] = 100*d["no_fill"]/n if n else None
     return stats, trade_rows
 
@@ -167,7 +161,7 @@ def main():
               "symbols":{},"raw_data_committed":False,
               "method_limits":["L2 market-by-price, not market-by-order; exact FIFO queue position unavailable.",
                 "Lower bound assumes all displayed quantity at quote is ahead and only observed same-price taker volume consumes it; later cancellations ahead are not credited.",
-                "Upper bound requires a subsequent aggressive trade strictly through the quote while the one-minute order is live.",
+                "Upper bound requires a subsequent aggressive trade strictly through the quote while the full 60-second order window is live.",
                 "Orders are analytical probes placed at the first valid L2 quote per minute, not MEAFLOW signals or a portfolio backtest.",
                 "No fees, funding, portfolio PnL, partial-fill path reconstruction, or market impact in this calibration pilot."]}
     for sym in SYMBOLS:
