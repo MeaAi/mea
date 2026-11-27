@@ -1,0 +1,35 @@
+name: EXP-017 MEAFLOW-72 signal alignment audit
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Checkout isolated experiment branch
+        uses: actions/checkout@v4
+        with:
+          ref: research/meaflow-exp017-signal-alignment-audit-v1
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Audit actual OOS rebalance times and order sizes
+        run: python research/exp017_signal_alignment_audit.py
+      - name: Publish compact report and discard raw data
+        run: |
+          cp research-results/exp017_signal_alignment_audit.json /tmp/exp017_signal_alignment_audit.json
+          rm -rf research-output
+          mkdir -p research-results
+          cp /tmp/exp017_signal_alignment_audit.json research-results/exp017_signal_alignment_audit.json
+          test "$(wc -c < research-results/exp017_signal_alignment_audit.json)" -lt 1000000
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research-results/exp017_signal_alignment_audit.json
+          git commit -m "Publish EXP-017 MEAFLOW-72 signal alignment audit" || exit 0
+          git push
