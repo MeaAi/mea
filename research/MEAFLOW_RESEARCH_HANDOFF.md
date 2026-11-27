@@ -270,3 +270,15 @@ Research implications:
 - Root cause: pilot max timestamp lower bound incorrectly used 2024-07-01 00:00 UTC instead of 2024-06-30 00:00 UTC. This excluded the actual final June observation.
 - Corrected bound to `1719705600000 <= pilot_max < 1719792000000` in commit `771d0898da9719b4a79bf44f371500a5dcd36559`.
 - New run `45964033868` created 2026-11-27 08:13 UTC; status last checked: in_progress, calibration acquisition step running. No EXP-014 performance result yet.
+
+
+## EXP-014 — independent-period OOS completed (rejected)
+- Branch: `research/meaflow-exp014-independent-oos-v1`; evaluator/report commit: `a20fd7b1688239770116774ed241a4789dfd916b`; Actions run `45967810555` completed success.
+- Report: `research-results/exp014_independent_oos.json`.
+- Calibration: 2024-05-01 to 2024-07-01 UTC; independent OOS: 2024-07-01 to 2024-09-01 UTC. BTC/ETH/SOL; 89,223 matched OOS minutes per symbol.
+- Frozen q20/q80 thresholds from pilot only. Signals: OBI, taker quote-flow imbalance (OFI; not order-book OFI), >100k USDT aggTrade whale imbalance, and agreement combinations. 5/15/60m horizons.
+- Execution: next 1m open entry, horizon close exit; 100 USDT per independent symbol/strategy/horizon, 1x, 100% current-equity sizing and within-series compounding; 5bp one-way fee +2bp one-way slippage (14bp round trip); market fills assumed. Funding not charged explicitly; no market impact or partial fills.
+- Result: all 54 symbol/strategy/horizon combinations negative net return; all mean net bp/trade negative. Best net mean was still below costs: SOL three-way agreement 60m gross +3.5941bp, net -10.4060bp; SOL OFI+whale 60m gross +3.5619bp, net -10.4375bp. Example SOL three-way 60m: -61.9657% return, -64.0114% DD, final 38.0343 USDT. BTC OBI 60m: -73.1138%, -73.3972% DD, final 26.8862 USDT.
+- Decision: reject; do not add to MEAFLOW-72/52. OBI/OFI/whale direction and simple agreement variants have now been explicitly tested out-of-period; do not repeat as novel.
+- Limitations: coarse +/-1%/+/-2% BookDepth bands, not event-level L2; no queue position/maker fill reconstruction; taker market fills assumed; fixed slippage; no market impact; no explicit funding; 100% equity compounding is aggressive. July-August 2024 is independent within EXP-014 but may have been inspected in other broader research.
+- Next candidate: EXP-015 event-level L2/maker fill calibration remains unverified/planned only. First verify a freely accessible source and schema; no claims of Tardis data availability until download and QA are actually complete.
