@@ -1,0 +1,196 @@
+{
+  "experiment": "EXP-015-MULTISYMBOL-PROBE",
+  "date_utc": "2024-07-01",
+  "exchange": "binance-futures",
+  "results": {
+    "ETHUSDT": {
+      "incremental_book_L2": {
+        "url": "https://datasets.tardis.dev/v1/binance-futures/incremental_book_L2/2024/07/01/ETHUSDT.csv.gz",
+        "http_status": 200,
+        "download_bytes": 416457917,
+        "sha256": "fbdd913fbfc8f6c5f4ca71ccb3bd29212b4fe73e8195797369f6a96355377769",
+        "valid_gzip": true,
+        "csv_rows": 67761931,
+        "columns": [
+          "exchange",
+          "symbol",
+          "timestamp",
+          "local_timestamp",
+          "is_snapshot",
+          "side",
+          "price",
+          "amount"
+        ],
+        "required_columns_present": true,
+        "first_local_timestamp_us": "1719792001489427",
+        "last_local_timestamp_us": "1719878399977120",
+        "snapshot_rows": 2029,
+        "sample_rows": [
+          {
+            "exchange": "binance-futures",
+            "symbol": "ETHUSDT",
+            "timestamp": "1719792000298000",
+            "local_timestamp": "1719792001489427",
+            "is_snapshot": "true",
+            "side": "ask",
+            "price": "3436.73",
+            "amount": "120.731"
+          },
+          {
+            "exchange": "binance-futures",
+            "symbol": "ETHUSDT",
+            "timestamp": "1719792000298000",
+            "local_timestamp": "1719792001489427",
+            "is_snapshot": "true",
+            "side": "ask",
+            "price": "3436.74",
+            "amount": "0.006"
+          }
+        ],
+        "symbol_rows_match": true,
+        "usable": true
+      },
+      "trades": {
+        "url": "https://datasets.tardis.dev/v1/binance-futures/trades/2024/07/01/ETHUSDT.csv.gz",
+        "http_status": 200,
+        "download_bytes": 21814153,
+        "sha256": "4fccaf923501e666e4cf2aaac2c16c85e174924db6a4c00ea34704e93f5bb398",
+        "valid_gzip": true,
+        "csv_rows": 2268545,
+        "columns": [
+          "exchange",
+          "symbol",
+          "timestamp",
+          "local_timestamp",
+          "id",
+          "side",
+          "price",
+          "amount"
+        ],
+        "required_columns_present": true,
+        "first_local_timestamp_us": "1719792000033166",
+        "last_local_timestamp_us": "1719878399992402",
+        "snapshot_rows": null,
+        "sample_rows": [
+          {
+            "exchange": "binance-futures",
+            "symbol": "ETHUSDT",
+            "timestamp": "1719792000030000",
+            "local_timestamp": "1719792000033166",
+            "id": "4158355596",
+            "side": "sell",
+            "price": "3436.72",
+            "amount": "1"
+          },
+          {
+            "exchange": "binance-futures",
+            "symbol": "ETHUSDT",
+            "timestamp": "1719792000057000",
+            "local_timestamp": "1719792000061022",
+            "id": "4158355597",
+            "side": "buy",
+            "price": "3436.73",
+            "amount": "2.436"
+          }
+        ],
+        "symbol_rows_match": true,
+        "usable": true
+      }
+    },
+    "SOLUSDT": {
+      "incremental_book_L2": {
+        "url": "https://datasets.tardis.dev/v1/binance-futures/incremental_book_L2/2024/07/01/SOLUSDT.csv.gz",
+        "http_status": 200,
+        "download_bytes": 245890062,
+        "sha256": "bfa6a451cf4b66418c57acf8f9c0ca5099bf75070f84ec6e6d0f292c4ca606f3",
+        "valid_gzip": true,
+        "csv_rows": 51007065,
+        "columns": [
+          "exchange",
+          "symbol",
+          "timestamp",
+          "local_timestamp",
+          "is_snapshot",
+          "side",
+          "price",
+          "amount"
+        ],
+        "required_columns_present": true,
+        "first_local_timestamp_us": "1719792001379125",
+        "last_local_timestamp_us": "1719878399956142",
+        "snapshot_rows": 2006,
+        "sample_rows": [
+          {
+            "exchange": "binance-futures",
+            "symbol": "SOLUSDT",
+            "timestamp": "1719792000768000",
+            "local_timestamp": "1719792001379125",
+            "is_snapshot": "true",
+            "side": "ask",
+            "price": "146.583",
+            "amount": "103"
+          },
+          {
+            "exchange": "binance-futures",
+            "symbol": "SOLUSDT",
+            "timestamp": "1719792000768000",
+            "local_timestamp": "1719792001379125",
+            "is_snapshot": "true",
+            "side": "ask",
+            "price": "146.585",
+            "amount": "42"
+          }
+        ],
+        "symbol_rows_match": true,
+        "usable": true
+      },
+      "trades": {
+        "url": "https://datasets.tardis.dev/v1/binance-futures/trades/2024/07/01/SOLUSDT.csv.gz",
+        "http_status": 200,
+        "download_bytes": 11353124,
+        "sha256": "a3161778b26e6df3fa7e8559daf9129b9eff08a4beb779e80d4000370b78760e",
+        "valid_gzip": true,
+        "csv_rows": 1261462,
+        "columns": [
+          "exchange",
+          "symbol",
+          "timestamp",
+          "local_timestamp",
+          "id",
+          "side",
+          "price",
+          "amount"
+        ],
+        "required_columns_present": true,
+        "first_local_timestamp_us": "1719792000154235",
+        "last_local_timestamp_us": "1719878395922898",
+        "snapshot_rows": null,
+        "sample_rows": [
+          {
+            "exchange": "binance-futures",
+            "symbol": "SOLUSDT",
+            "timestamp": "1719792000150000",
+            "local_timestamp": "1719792000154235",
+            "id": "1635786346",
+            "side": "sell",
+            "price": "146.582",
+            "amount": "4"
+          },
+          {
+            "exchange": "binance-futures",
+            "symbol": "SOLUSDT",
+            "timestamp": "1719792001146000",
+            "local_timestamp": "1719792001149494",
+            "id": "1635786347",
+            "side": "buy",
+            "price": "146.583",
+            "amount": "20"
+          }
+        ],
+        "symbol_rows_match": true,
+        "usable": true
+      }
+    }
+  },
+  "all_usable": true
+}
