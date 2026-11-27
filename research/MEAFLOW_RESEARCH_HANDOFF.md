@@ -254,3 +254,11 @@ Research implications:
 - Current job state: checkout and Python setup succeeded; May-June calibration acquisition still in progress; July-August OOS acquisition, frozen evaluation, and report publication pending.
 - No result/report exists yet. Do not infer success or failure from the workflow being queued/running.
 - Scope remains frozen: May-June 2024 calibration, July-August 2024 OOS; BTC/ETH/SOL; OBI, taker imbalance, whale imbalance and agreement cohorts; 5/15/60m; 5bp one-way fee +2bp one-way slippage; 100 USDT 1x per independent series.
+
+
+## EXP-014 run 45957519970 — FAILED BEFORE EVALUATION; syntax corrected
+- Run `45957519970` completed with failure on 2026-11-27 07:44 UTC.
+- Data acquisition succeeded for both calibration (May-June 2024) and OOS (July-August 2024). Binance Vision daily BookDepth archives had no missing days and checksums verified. Per-month feature coverage was approximately 99.93-99.94%; missing minute gaps were recorded by the pipeline.
+- Evaluation did NOT execute: Python raised `SyntaxError: unmatched '}'` at line 183 in `research/exp014_independent_oos.py`. Therefore there is no EXP-014 performance result from run 45957519970.
+- Corrected the extra closing brace in evaluator commit `858e8054bcb60a9cf388997b69e66415938c259e`.
+- Added evaluator path to the one-time branch push trigger; follow-up run `45960711569` was created 2026-11-27 07:45 UTC and is currently running. It reacquires official data and reruns the frozen evaluator; no result exists yet.
