@@ -245,3 +245,12 @@ Research implications:
 - Mean gross bp/trade for 60m was BTC +0.4175, ETH +2.4509, SOL -2.4094; all are below the 14bp round-trip fee+slippage assumption. Net mean bp/trade: BTC -13.5831, ETH -11.5491, SOL -16.4097. At 5m/15m gross edge is also near zero or negative. Win rates and profit factors in report.
 - Decision: REJECT this contrarian multi-horizon absorption rule under tested assumptions. No integration into MEAFLOW-72 or MEAFLOW-52. Do not rerun as an untested idea.
 - Limitations: OOS is a two-month 2024 window and may have been inspected in other research; not pristine unseen history. Not true event-level L2 absorption; no queue model, market impact or liquidation engine; fixed slippage; funding omitted for rare trades crossing 8h timestamps. Compounding full equity per trade makes large losses visible but is an aggressive sizing assumption; the negative per-trade expectancy is independently clear.
+
+
+## EXP-014 — independent-period order-flow validation — RUNNING
+- Triggered by branch-scoped workflow push after code/workflow freeze; this is an actual Actions run, not merely a prepared workflow.
+- Run ID: `45957519970`; status last checked 2026-11-27 07:21 UTC: `in_progress`.
+- Branch: `research/meaflow-exp014-independent-oos-v1`; workflow trigger commit: `8525c6980ae744da0c7d77dbbc40e1a868a9912c`.
+- Current job state: checkout and Python setup succeeded; May-June calibration acquisition still in progress; July-August OOS acquisition, frozen evaluation, and report publication pending.
+- No result/report exists yet. Do not infer success or failure from the workflow being queued/running.
+- Scope remains frozen: May-June 2024 calibration, July-August 2024 OOS; BTC/ETH/SOL; OBI, taker imbalance, whale imbalance and agreement cohorts; 5/15/60m; 5bp one-way fee +2bp one-way slippage; 100 USDT 1x per independent series.
