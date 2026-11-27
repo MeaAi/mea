@@ -11,7 +11,7 @@ import csv, gzip, heapq, hashlib, json, os, urllib.request
 from pathlib import Path
 
 DATE = "2024/07/01"
-SYMBOLS = ("BTCUSDT",)
+SYMBOLS = ("BTCUSDT", "ETHUSDT", "SOLUSDT")
 BASE = "https://datasets.tardis.dev/v1/binance-futures"
 OUT = Path("exp015_l2_replay.json")
 NOTIONAL = 100.0
