@@ -20,15 +20,15 @@
         "passive_buy": {
           "orders": 1440,
           "exact_touch": 1364,
-          "queue_lower_fills": 253,
+          "queue_lower_fills": 254,
           "strict_through_only_fills": 870,
-          "no_fill": 317,
-          "exact_trade_qty": 3580.2080000000005,
+          "no_fill": 316,
+          "exact_trade_qty": 3594.579000000001,
           "initial_queue_qty": 15074.30000000001,
           "exact_touch_rate_pct": 94.72222222222223,
-          "queue_lower_fill_rate_pct": 17.569444444444443,
-          "upper_bound_fill_rate_pct": 77.98611111111111,
-          "no_fill_rate_pct": 22.01388888888889
+          "queue_lower_fill_rate_pct": 17.63888888888889,
+          "upper_bound_fill_rate_pct": 78.05555555555556,
+          "no_fill_rate_pct": 21.944444444444443
         },
         "passive_sell": {
           "orders": 1440,
@@ -36,7 +36,7 @@
           "queue_lower_fills": 242,
           "strict_through_only_fills": 908,
           "no_fill": 290,
-          "exact_trade_qty": 3601.2149999999974,
+          "exact_trade_qty": 3601.2369999999974,
           "initial_queue_qty": 16317.783999999978,
           "exact_touch_rate_pct": 95.76388888888889,
           "queue_lower_fill_rate_pct": 16.805555555555557,
