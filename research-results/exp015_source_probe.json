@@ -1,0 +1,125 @@
+{
+  "experiment": "EXP-015-SOURCE-PROBE",
+  "status": "completed_probe",
+  "source": "Tardis downloadable CSV, unauthenticated first-of-month sample",
+  "date_utc": "2024-07-01",
+  "exchange": "binance-futures",
+  "symbol": "BTCUSDT",
+  "files": {
+    "incremental_book_L2": {
+      "url": "https://datasets.tardis.dev/v1/binance-futures/incremental_book_L2/2024/07/01/BTCUSDT.csv.gz",
+      "http_status": 200,
+      "content_type": "text/csv",
+      "content_length_header": "472205818",
+      "download_bytes": 472205818,
+      "sha256": "1f2bda016462070c81f9c9ae640c8053745d16d79bb25406d9d7debf366d567c",
+      "valid_gzip": true,
+      "csv_rows": 84504879,
+      "columns": [
+        "exchange",
+        "symbol",
+        "timestamp",
+        "local_timestamp",
+        "is_snapshot",
+        "side",
+        "price",
+        "amount"
+      ],
+      "first_local_timestamp_us": "1719792001811127",
+      "last_local_timestamp_us": "1719878399955658",
+      "snapshot_rows": 2009,
+      "sample_rows": [
+        {
+          "exchange": "binance-futures",
+          "symbol": "BTCUSDT",
+          "timestamp": "1719792001033000",
+          "local_timestamp": "1719792001811127",
+          "is_snapshot": "true",
+          "side": "ask",
+          "price": "62766.1",
+          "amount": "4.548"
+        },
+        {
+          "exchange": "binance-futures",
+          "symbol": "BTCUSDT",
+          "timestamp": "1719792001033000",
+          "local_timestamp": "1719792001811127",
+          "is_snapshot": "true",
+          "side": "ask",
+          "price": "62766.5",
+          "amount": "0.004"
+        },
+        {
+          "exchange": "binance-futures",
+          "symbol": "BTCUSDT",
+          "timestamp": "1719792001033000",
+          "local_timestamp": "1719792001811127",
+          "is_snapshot": "true",
+          "side": "ask",
+          "price": "62767.9",
+          "amount": "0.509"
+        }
+      ],
+      "required_columns_present": true,
+      "symbol_rows_match": true
+    },
+    "trades": {
+      "url": "https://datasets.tardis.dev/v1/binance-futures/trades/2024/07/01/BTCUSDT.csv.gz",
+      "http_status": 200,
+      "content_type": "text/csv",
+      "content_length_header": "21281017",
+      "download_bytes": 21281017,
+      "sha256": "58f06d337fae55be7fa1019ca4f62383ea2381bf69bc7a7e58497d96e34a0d0c",
+      "valid_gzip": true,
+      "csv_rows": 2206156,
+      "columns": [
+        "exchange",
+        "symbol",
+        "timestamp",
+        "local_timestamp",
+        "id",
+        "side",
+        "price",
+        "amount"
+      ],
+      "first_local_timestamp_us": "1719792000050777",
+      "last_local_timestamp_us": "1719878399886256",
+      "snapshot_rows": null,
+      "sample_rows": [
+        {
+          "exchange": "binance-futures",
+          "symbol": "BTCUSDT",
+          "timestamp": "1719792000047000",
+          "local_timestamp": "1719792000050777",
+          "id": "5122738414",
+          "side": "buy",
+          "price": "62766.1",
+          "amount": "0.208"
+        },
+        {
+          "exchange": "binance-futures",
+          "symbol": "BTCUSDT",
+          "timestamp": "1719792000047000",
+          "local_timestamp": "1719792000050786",
+          "id": "5122738415",
+          "side": "buy",
+          "price": "62766.1",
+          "amount": "0.231"
+        },
+        {
+          "exchange": "binance-futures",
+          "symbol": "BTCUSDT",
+          "timestamp": "1719792000050000",
+          "local_timestamp": "1719792000053012",
+          "id": "5122738416",
+          "side": "buy",
+          "price": "62766.1",
+          "amount": "0.002"
+        }
+      ],
+      "required_columns_present": true,
+      "symbol_rows_match": true
+    }
+  },
+  "all_files_usable": true
+}
