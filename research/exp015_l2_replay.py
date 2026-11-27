@@ -10,7 +10,7 @@ Raw archives stay in /tmp and are never committed or uploaded as artifacts.
 import csv, gzip, heapq, hashlib, json, os, urllib.request
 from pathlib import Path
 
-DATE = "2024/07/01"
+DATE = "2024/07/02"
 SYMBOLS = ("BTCUSDT", "ETHUSDT", "SOLUSDT")
 BASE = "https://datasets.tardis.dev/v1/binance-futures"
 OUT = Path("exp015_l2_replay.json")
@@ -184,7 +184,7 @@ def replay_trades(path, quotes):
     return stats, trade_rows
 
 def main():
-    report = {"experiment":"EXP-015-L2-REPLAY-PILOT","date_utc":"2024-07-01",
+    report = {"experiment":"EXP-015-L2-REPLAY-PILOT","date_utc":"2024-07-02",
               "exchange":"binance-futures","probe_order_notional_usdt":NOTIONAL,
               "symbols":{},"raw_data_committed":False,
               "method_limits":["L2 market-by-price, not market-by-order; exact FIFO queue position unavailable.",
