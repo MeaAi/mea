@@ -7,6 +7,7 @@ on:
       - research/meaflow-exp014-independent-oos-v1
     paths:
       - .github/workflows/exp014-independent-oos.yml
+      - research/exp014_independent_oos.py
   workflow_dispatch:
 
 permissions:
