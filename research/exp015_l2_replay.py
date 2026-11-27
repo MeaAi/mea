@@ -86,7 +86,7 @@ def replay_trades(path, quotes):
     # Each probe remains live until its own quote_timestamp + 60 seconds.
     # Minute quotes can be offset from the minute boundary, so orders may
     # overlap; keep all live probes instead of closing one at the next quote.
-    stats = {s: {"orders": 0, "exact_touch": 0, "queue_lower_fills": 0,
+    stats = {s: {"orders": 0, "exact_price_trade_hit": 0, "queue_lower_fills": 0,
                  "strict_through_only_fills": 0, "no_fill": 0,
                  "exact_trade_qty": 0.0, "initial_queue_qty": 0.0}
              for s in ("passive_buy", "passive_sell")}
@@ -116,7 +116,7 @@ def replay_trades(path, quotes):
             own = order["buy_qty" if is_buy else "sell_qty"]
             through = order["buy_through" if is_buy else "sell_through"]
             if traded > 0:
-                stats[side]["exact_touch"] += 1
+                stats[side]["exact_price_trade_hit"] += 1
             if traded >= queue + own:
                 stats[side]["queue_lower_fills"] += 1
             elif through:
@@ -176,7 +176,7 @@ def replay_trades(path, quotes):
 
     for side, data in stats.items():
         n = data["orders"]
-        data["exact_touch_rate_pct"] = 100 * data["exact_touch"] / n if n else None
+        data["exact_price_trade_hit_rate_pct"] = 100 * data["exact_price_trade_hit"] / n if n else None
         data["queue_lower_fill_rate_pct"] = 100 * data["queue_lower_fills"] / n if n else None
         data["upper_bound_fill_rate_pct"] = 100 * (
             data["queue_lower_fills"] + data["strict_through_only_fills"]) / n if n else None
