@@ -1,0 +1,516 @@
+{
+  "experiment": "EXP-017-MEAFLOW72-REAL-REBALANCE-SIGNAL-ALIGNMENT-AUDIT",
+  "purpose": "Identify actual frozen MEAFLOW-72 OOS rebalance timestamps and per-symbol order sizes before any L2 execution replay.",
+  "strategy_branch": "MEAFLOW-72",
+  "audit_branch": "research/meaflow-exp017-signal-alignment-audit-v1",
+  "source": "Official free Binance Vision monthly fundingRate and 1h markPriceKlines",
+  "oos_period_utc": {
+    "start": "2025-09-06T18:24:00+00:00",
+    "end": "2026-10-31T16:00:00+00:00"
+  },
+  "configuration": {
+    "capital_usdt": 100,
+    "leverage": 1,
+    "lookback_days": 7,
+    "rebalance_days": 7,
+    "tail_fraction": 0.2,
+    "regime": "BTC trailing 30d mark-price return, +/-5%, last completed hourly candle",
+    "policy": {
+      "bull": "both",
+      "bear": "short_only",
+      "sideways": "flat",
+      "unknown": "flat"
+    },
+    "sideways_action": "hold",
+    "fee_bp_one_way": 5,
+    "slippage_bp_one_way": 2
+  },
+  "data_errors": {},
+  "loaded_symbols": [
+    "ADAUSDT",
+    "AVAXUSDT",
+    "BCHUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "DOGEUSDT",
+    "DOTUSDT",
+    "ETHUSDT",
+    "LINKUSDT",
+    "LTCUSDT",
+    "SOLUSDT",
+    "TRXUSDT",
+    "XRPUSDT"
+  ],
+  "strategy_replay_metrics": {
+    "start_equity_usdt": 100.0,
+    "end_equity_usdt": 172.94281,
+    "net_return_pct": 72.9428,
+    "max_drawdown_pct": -26.5454,
+    "rebalance_count": 98,
+    "hourly_adverse_checks": 10072,
+    "liquidated": false,
+    "trading_fees_usdt": 4.498733,
+    "slippage_usdt": 1.799493
+  },
+  "rebalance_event_count": 98,
+  "rebalance_events_with_orders": 56,
+  "total_order_delta_count": 268,
+  "monthly_l2_sample_dates_in_oos": [
+    "2025-10-01",
+    "2025-11-01",
+    "2025-12-01",
+    "2026-01-01",
+    "2026-02-01",
+    "2026-03-01",
+    "2026-04-01",
+    "2026-05-01",
+    "2026-06-01",
+    "2026-07-01",
+    "2026-08-01",
+    "2026-09-01",
+    "2026-10-01"
+  ],
+  "matched_first_of_month_rebalance_events": 5,
+  "matched_first_of_month_order_count": 15,
+  "matched_first_of_month_events": [
+    {
+      "time_utc": "2025-10-01T00:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 99.93,
+      "turnover_usdt": 100.0,
+      "fee_usdt": 0.05,
+      "slippage_usdt": 0.02,
+      "long_candidates": [
+        "SOLUSDT",
+        "TRXUSDT"
+      ],
+      "short_candidates": [
+        "XRPUSDT",
+        "ADAUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ADAUSDT",
+          "side": "SELL",
+          "quantity_delta": -30.982351597417,
+          "reference_price": 0.80691099,
+          "notional_usdt": 25.0,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -25.0
+        },
+        {
+          "symbol": "SOLUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.119840851349,
+          "reference_price": 208.61,
+          "notional_usdt": 25.0,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 25.0
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "BUY",
+          "quantity_delta": 74.973759184285,
+          "reference_price": 0.33345,
+          "notional_usdt": 25.0,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 25.0
+        },
+        {
+          "symbol": "XRPUSDT",
+          "side": "SELL",
+          "quantity_delta": -8.7862888711,
+          "reference_price": 2.84534237,
+          "notional_usdt": 25.0,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -25.0
+        }
+      ]
+    },
+    {
+      "time_utc": "2025-10-01T08:00:00+00:00",
+      "regime": "sideways",
+      "active_mode": "flat",
+      "equity_after_cost_usdt": 100.17821199,
+      "turnover_usdt": 0.0,
+      "fee_usdt": 0.0,
+      "slippage_usdt": 0.0,
+      "long_candidates": [
+        "SOLUSDT",
+        "TRXUSDT"
+      ],
+      "short_candidates": [
+        "XRPUSDT",
+        "ADAUSDT"
+      ],
+      "orders": []
+    },
+    {
+      "time_utc": "2025-10-01T16:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 99.90622127,
+      "turnover_usdt": 3.81119002,
+      "fee_usdt": 0.0019056,
+      "slippage_usdt": 0.00076224,
+      "long_candidates": [
+        "SOLUSDT",
+        "TRXUSDT"
+      ],
+      "short_candidates": [
+        "XRPUSDT",
+        "ADAUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ADAUSDT",
+          "side": "BUY",
+          "quantity_delta": 1.261715857078,
+          "reference_price": 0.8404,
+          "notional_usdt": 1.06034601,
+          "from_notional_usdt": -26.03756828,
+          "to_notional_usdt": -24.97722228
+        },
+        {
+          "symbol": "SOLUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.006371679568,
+          "reference_price": 220.12342105,
+          "notional_usdt": 1.4025559,
+          "from_notional_usdt": 26.37977818,
+          "to_notional_usdt": 24.97722228
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "SELL",
+          "quantity_delta": -1.443411659761,
+          "reference_price": 0.3396859,
+          "notional_usdt": 0.49030659,
+          "from_notional_usdt": 25.46752886,
+          "to_notional_usdt": 24.97722228
+        },
+        {
+          "symbol": "XRPUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.291790749694,
+          "reference_price": 2.9404,
+          "notional_usdt": 0.85798152,
+          "from_notional_usdt": -25.8352038,
+          "to_notional_usdt": -24.97722228
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-02-01T16:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 134.52084703,
+      "turnover_usdt": 129.01820471,
+      "fee_usdt": 0.0645091,
+      "slippage_usdt": 0.02580364,
+      "long_candidates": [
+        "TRXUSDT",
+        "AVAXUSDT"
+      ],
+      "short_candidates": [
+        "LINKUSDT",
+        "BTCUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "BTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.000134085925,
+          "reference_price": 77554.9,
+          "notional_usdt": 10.39902052,
+          "from_notional_usdt": -56.90655937,
+          "to_notional_usdt": -67.30557989
+        },
+        {
+          "symbol": "ETHUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.022175570257,
+          "reference_price": 2313.97,
+          "notional_usdt": 51.31360431,
+          "from_notional_usdt": -51.31360431,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "SELL",
+          "quantity_delta": -7.063236424209,
+          "reference_price": 9.529,
+          "notional_usdt": 67.30557989,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -67.30557989
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-06-01T16:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 129.62790413,
+      "turnover_usdt": 238.25513322,
+      "fee_usdt": 0.11912757,
+      "slippage_usdt": 0.04765103,
+      "long_candidates": [
+        "BCHUSDT",
+        "TRXUSDT"
+      ],
+      "short_candidates": [
+        "ETHUSDT",
+        "BTCUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ADAUSDT",
+          "side": "BUY",
+          "quantity_delta": 115.259799514549,
+          "reference_price": 0.2269,
+          "notional_usdt": 26.15244851,
+          "from_notional_usdt": -26.15244851,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "BTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.001309151359,
+          "reference_price": 71103.79261594,
+          "notional_usdt": 93.08562674,
+          "from_notional_usdt": 28.18828538,
+          "to_notional_usdt": -64.89734136
+        },
+        {
+          "symbol": "ETHUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.046716660578,
+          "reference_price": 1967.68379845,
+          "notional_usdt": 91.92361614,
+          "from_notional_usdt": 27.02627478,
+          "to_notional_usdt": -64.89734136
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "BUY",
+          "quantity_delta": 3.041167222245,
+          "reference_price": 8.90889578,
+          "notional_usdt": 27.09344183,
+          "from_notional_usdt": -27.09344183,
+          "to_notional_usdt": 0.0
+        }
+      ]
+    }
+  ],
+  "per_symbol_order_size_summary": {
+    "ADAUSDT": {
+      "oos_order_count": 22,
+      "oos_order_notional_usdt": {
+        "min": 1.0238459,
+        "median": 31.08823917,
+        "p90": 59.63587569,
+        "max": 68.01501979
+      },
+      "first_of_month_sample_order_count": 3,
+      "first_of_month_sample_notional_usdt": {
+        "min": 1.06034601,
+        "median": 25.0,
+        "max": 26.15244851
+      }
+    },
+    "AVAXUSDT": {
+      "oos_order_count": 10,
+      "oos_order_notional_usdt": {
+        "min": 0.47895837,
+        "median": 31.34806266,
+        "p90": 36.05482942,
+        "max": 36.86134878
+      },
+      "first_of_month_sample_order_count": 0,
+      "first_of_month_sample_notional_usdt": {
+        "min": null,
+        "median": null,
+        "max": null
+      }
+    },
+    "BCHUSDT": {
+      "oos_order_count": 26,
+      "oos_order_notional_usdt": {
+        "min": 0.60559344,
+        "median": 31.19158952,
+        "p90": 80.85102939,
+        "max": 84.5851301
+      },
+      "first_of_month_sample_order_count": 0,
+      "first_of_month_sample_notional_usdt": {
+        "min": null,
+        "median": null,
+        "max": null
+      }
+    },
+    "BNBUSDT": {
+      "oos_order_count": 9,
+      "oos_order_notional_usdt": {
+        "min": 0.27466864,
+        "median": 40.66418768,
+        "p90": 80.50206603,
+        "max": 80.50206603
+      },
+      "first_of_month_sample_order_count": 0,
+      "first_of_month_sample_notional_usdt": {
+        "min": null,
+        "median": null,
+        "max": null
+      }
+    },
+    "BTCUSDT": {
+      "oos_order_count": 35,
+      "oos_order_notional_usdt": {
+        "min": 0.47139586,
+        "median": 40.11186132,
+        "p90": 79.16047385,
+        "max": 93.08562674
+      },
+      "first_of_month_sample_order_count": 2,
+      "first_of_month_sample_notional_usdt": {
+        "min": 10.39902052,
+        "median": 10.39902052,
+        "max": 93.08562674
+      }
+    },
+    "DOGEUSDT": {
+      "oos_order_count": 16,
+      "oos_order_notional_usdt": {
+        "min": 5.51989797,
+        "median": 35.7166683,
+        "p90": 69.67864108,
+        "max": 70.66668842
+      },
+      "first_of_month_sample_order_count": 0,
+      "first_of_month_sample_notional_usdt": {
+        "min": null,
+        "median": null,
+        "max": null
+      }
+    },
+    "DOTUSDT": {
+      "oos_order_count": 23,
+      "oos_order_notional_usdt": {
+        "min": 0.67419546,
+        "median": 33.98741245,
+        "p90": 39.94528726,
+        "max": 72.40139574
+      },
+      "first_of_month_sample_order_count": 0,
+      "first_of_month_sample_notional_usdt": {
+        "min": null,
+        "median": null,
+        "max": null
+      }
+    },
+    "ETHUSDT": {
+      "oos_order_count": 17,
+      "oos_order_notional_usdt": {
+        "min": 1.23341617,
+        "median": 47.31033512,
+        "p90": 85.34048489,
+        "max": 91.92361614
+      },
+      "first_of_month_sample_order_count": 2,
+      "first_of_month_sample_notional_usdt": {
+        "min": 51.31360431,
+        "median": 51.31360431,
+        "max": 91.92361614
+      }
+    },
+    "LINKUSDT": {
+      "oos_order_count": 39,
+      "oos_order_notional_usdt": {
+        "min": 0.02723604,
+        "median": 32.17602277,
+        "p90": 58.50884158,
+        "max": 78.43520947
+      },
+      "first_of_month_sample_order_count": 2,
+      "first_of_month_sample_notional_usdt": {
+        "min": 27.09344183,
+        "median": 27.09344183,
+        "max": 67.30557989
+      }
+    },
+    "LTCUSDT": {
+      "oos_order_count": 16,
+      "oos_order_notional_usdt": {
+        "min": 3.75329402,
+        "median": 37.50889165,
+        "p90": 53.25993237,
+        "max": 72.85117652
+      },
+      "first_of_month_sample_order_count": 0,
+      "first_of_month_sample_notional_usdt": {
+        "min": null,
+        "median": null,
+        "max": null
+      }
+    },
+    "SOLUSDT": {
+      "oos_order_count": 15,
+      "oos_order_notional_usdt": {
+        "min": 0.08184912,
+        "median": 38.13984502,
+        "p90": 84.84758226,
+        "max": 87.22549191
+      },
+      "first_of_month_sample_order_count": 2,
+      "first_of_month_sample_notional_usdt": {
+        "min": 1.4025559,
+        "median": 1.4025559,
+        "max": 25.0
+      }
+    },
+    "TRXUSDT": {
+      "oos_order_count": 26,
+      "oos_order_notional_usdt": {
+        "min": 0.04392411,
+        "median": 21.90781065,
+        "p90": 37.07930019,
+        "max": 41.22448452
+      },
+      "first_of_month_sample_order_count": 2,
+      "first_of_month_sample_notional_usdt": {
+        "min": 0.49030659,
+        "median": 0.49030659,
+        "max": 25.0
+      }
+    },
+    "XRPUSDT": {
+      "oos_order_count": 14,
+      "oos_order_notional_usdt": {
+        "min": 0.85798152,
+        "median": 31.91605437,
+        "p90": 46.34122446,
+        "max": 87.22549191
+      },
+      "first_of_month_sample_order_count": 2,
+      "first_of_month_sample_notional_usdt": {
+        "min": 0.85798152,
+        "median": 0.85798152,
+        "max": 25.0
+      }
+    }
+  },
+  "l2_symbol_coverage": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "SOLUSDT"
+  ],
+  "interpretation_limits": [
+    "The order deltas are target changes at the simulator's funding-event mark, not exchange fills.",
+    "The audit uses the already-inspected MEAFLOW-72 OOS window; it is not a new unseen profitability result.",
+    "Only BTC, ETH and SOL have been covered by the EXP-015 event-level L2 pilot; other strategy symbols have no L2 replay coverage here.",
+    "A first-of-month L2 sample is useful only when an actual rebalance occurs on that UTC date; no date/time matching is assumed.",
+    "Actual order sizes must replace EXP-015's fixed 100 USDT probes before any fill-rate transfer is attempted.",
+    "No strategy files on MEAFLOW-72 or MEAFLOW-52 are modified."
+  ]
+}
