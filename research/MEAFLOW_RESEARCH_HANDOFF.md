@@ -262,3 +262,11 @@ Research implications:
 - Evaluation did NOT execute: Python raised `SyntaxError: unmatched '}'` at line 183 in `research/exp014_independent_oos.py`. Therefore there is no EXP-014 performance result from run 45957519970.
 - Corrected the extra closing brace in evaluator commit `858e8054bcb60a9cf388997b69e66415938c259e`.
 - Added evaluator path to the one-time branch push trigger; follow-up run `45960711569` was created 2026-11-27 07:45 UTC and is currently running. It reacquires official data and reruns the frozen evaluator; no result exists yet.
+
+
+## EXP-014 run 45960711569 — second failure; date-boundary fix
+- Run completed failure 2026-11-27 08:11 UTC.
+- Both calibration and OOS acquisition steps succeeded; evaluator ran after syntax fix but stopped on BTC pilot date validation.
+- Root cause: pilot max timestamp lower bound incorrectly used 2024-07-01 00:00 UTC instead of 2024-06-30 00:00 UTC. This excluded the actual final June observation.
+- Corrected bound to `1719705600000 <= pilot_max < 1719792000000` in commit `771d0898da9719b4a79bf44f371500a5dcd36559`.
+- New run `45964033868` created 2026-11-27 08:13 UTC; status last checked: in_progress, calibration acquisition step running. No EXP-014 performance result yet.
