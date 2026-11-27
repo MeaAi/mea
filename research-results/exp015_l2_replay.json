@@ -1,129 +1,129 @@
 {
   "experiment": "EXP-015-L2-REPLAY-PILOT",
-  "date_utc": "2024-10-01",
+  "date_utc": "2024-11-01",
   "exchange": "binance-futures",
   "probe_order_notional_usdt": 100.0,
   "symbols": {
     "BTCUSDT": {
       "l2": {
-        "download_bytes": 679012865,
-        "sha256": "d16e412467f3ee318e14757a069f00891b03109cbe59cc46e62bef255fd17eb1",
-        "rows": 123931252
+        "download_bytes": 673268474,
+        "sha256": "ca1244948a66f39760b38b9d00225ebffddf319b1fb64ae18675ff4fc9c6ff52",
+        "rows": 123152769
       },
       "trades": {
-        "download_bytes": 47881495,
-        "sha256": "7b59454dbc5f8eac0b88d093b73adb016a7a4493940399a5ecd14d29d2cb3ec4",
-        "rows": 5090124
+        "download_bytes": 42700288,
+        "sha256": "25f250e32b91518939ffd62caa6573726c69e53ec2880bbea9ad89be757bd026",
+        "rows": 4618172
+      },
+      "valid_minute_quotes": 1440,
+      "passive_order_results": {
+        "passive_buy": {
+          "orders": 1440,
+          "exact_price_trade_hit": 1392,
+          "queue_lower_fills": 279,
+          "strict_through_only_fills": 915,
+          "no_fill": 246,
+          "exact_trade_qty": 4266.340999999991,
+          "initial_queue_qty": 12892.35600000002,
+          "exact_price_trade_hit_rate_pct": 96.66666666666667,
+          "queue_lower_fill_rate_pct": 19.375,
+          "upper_bound_fill_rate_pct": 82.91666666666667,
+          "no_fill_rate_pct": 17.083333333333332
+        },
+        "passive_sell": {
+          "orders": 1440,
+          "exact_price_trade_hit": 1393,
+          "queue_lower_fills": 281,
+          "strict_through_only_fills": 932,
+          "no_fill": 227,
+          "exact_trade_qty": 3723.121,
+          "initial_queue_qty": 11982.898000000003,
+          "exact_price_trade_hit_rate_pct": 96.73611111111111,
+          "queue_lower_fill_rate_pct": 19.51388888888889,
+          "upper_bound_fill_rate_pct": 84.23611111111111,
+          "no_fill_rate_pct": 15.76388888888889
+        }
+      }
+    },
+    "ETHUSDT": {
+      "l2": {
+        "download_bytes": 613550100,
+        "sha256": "09aa0dc822bf1c4afe4ec1fafdcd2e889d0fb23037bb09539854bd829c3cd1ab",
+        "rows": 99131459
+      },
+      "trades": {
+        "download_bytes": 41660836,
+        "sha256": "ad8a6d86ef5c768ce594a0f6d0b747b9ce81f137eb96afe1f2fac324282e91f9",
+        "rows": 4542761
       },
       "valid_minute_quotes": 1440,
       "passive_order_results": {
         "passive_buy": {
           "orders": 1440,
           "exact_price_trade_hit": 1389,
-          "queue_lower_fills": 284,
-          "strict_through_only_fills": 880,
-          "no_fill": 276,
-          "exact_trade_qty": 6015.860999999994,
-          "initial_queue_qty": 15516.797999999999,
+          "queue_lower_fills": 270,
+          "strict_through_only_fills": 948,
+          "no_fill": 222,
+          "exact_trade_qty": 36464.44099999997,
+          "initial_queue_qty": 92436.0000000001,
           "exact_price_trade_hit_rate_pct": 96.45833333333333,
-          "queue_lower_fill_rate_pct": 19.72222222222222,
-          "upper_bound_fill_rate_pct": 80.83333333333333,
-          "no_fill_rate_pct": 19.166666666666668
+          "queue_lower_fill_rate_pct": 18.75,
+          "upper_bound_fill_rate_pct": 84.58333333333333,
+          "no_fill_rate_pct": 15.416666666666666
         },
         "passive_sell": {
           "orders": 1440,
-          "exact_price_trade_hit": 1398,
-          "queue_lower_fills": 296,
-          "strict_through_only_fills": 872,
-          "no_fill": 272,
-          "exact_trade_qty": 4391.497999999992,
-          "initial_queue_qty": 14393.365999999989,
-          "exact_price_trade_hit_rate_pct": 97.08333333333333,
-          "queue_lower_fill_rate_pct": 20.555555555555557,
-          "upper_bound_fill_rate_pct": 81.11111111111111,
-          "no_fill_rate_pct": 18.88888888888889
-        }
-      }
-    },
-    "ETHUSDT": {
-      "l2": {
-        "download_bytes": 725001932,
-        "sha256": "58337ff74cd7dbd9f99a5e5d35f3d5ccf66d0699588da98ac3f99a016253a270",
-        "rows": 120609598
-      },
-      "trades": {
-        "download_bytes": 52198821,
-        "sha256": "5f9f4471b4b9eeb18f2d75618b8756c1f8d20210a342284c38e9bee4bf52940f",
-        "rows": 5506518
-      },
-      "valid_minute_quotes": 1440,
-      "passive_order_results": {
-        "passive_buy": {
-          "orders": 1440,
-          "exact_price_trade_hit": 1376,
-          "queue_lower_fills": 317,
-          "strict_through_only_fills": 929,
-          "no_fill": 194,
-          "exact_trade_qty": 30040.23599999994,
-          "initial_queue_qty": 77150.07499999995,
-          "exact_price_trade_hit_rate_pct": 95.55555555555556,
-          "queue_lower_fill_rate_pct": 22.01388888888889,
-          "upper_bound_fill_rate_pct": 86.52777777777777,
-          "no_fill_rate_pct": 13.472222222222221
-        },
-        "passive_sell": {
-          "orders": 1440,
-          "exact_price_trade_hit": 1394,
-          "queue_lower_fills": 304,
-          "strict_through_only_fills": 932,
-          "no_fill": 204,
-          "exact_trade_qty": 31151.805999999968,
-          "initial_queue_qty": 88950.15499999991,
-          "exact_price_trade_hit_rate_pct": 96.80555555555556,
-          "queue_lower_fill_rate_pct": 21.11111111111111,
-          "upper_bound_fill_rate_pct": 85.83333333333333,
-          "no_fill_rate_pct": 14.166666666666666
+          "exact_price_trade_hit": 1380,
+          "queue_lower_fills": 309,
+          "strict_through_only_fills": 923,
+          "no_fill": 208,
+          "exact_trade_qty": 31229.200000000026,
+          "initial_queue_qty": 81553.5229999999,
+          "exact_price_trade_hit_rate_pct": 95.83333333333333,
+          "queue_lower_fill_rate_pct": 21.458333333333332,
+          "upper_bound_fill_rate_pct": 85.55555555555556,
+          "no_fill_rate_pct": 14.444444444444445
         }
       }
     },
     "SOLUSDT": {
       "l2": {
-        "download_bytes": 408774161,
-        "sha256": "99e96e47b7d84baaf80ed9ff66e836e13cb8b4cc4f4a71d90bc51682ce944ddb",
-        "rows": 87158461
+        "download_bytes": 186087245,
+        "sha256": "2e543e9c2f874f58f6f873937847a733144059eee660e79c2a2fe54ff237a913",
+        "rows": 34664897
       },
       "trades": {
-        "download_bytes": 23893627,
-        "sha256": "014d64c30b54318699da2dd8e5e270364c934669ba7d49db008769b3d849d28a",
-        "rows": 2683763
+        "download_bytes": 13133833,
+        "sha256": "dbd3f39d20af8efb6ba8a6608cfc1d3446a016b088a17e62d383345a9f1485a5",
+        "rows": 1618317
       },
       "valid_minute_quotes": 1440,
       "passive_order_results": {
         "passive_buy": {
           "orders": 1440,
-          "exact_price_trade_hit": 1301,
-          "queue_lower_fills": 531,
-          "strict_through_only_fills": 754,
-          "no_fill": 155,
-          "exact_trade_qty": 133906.0,
-          "initial_queue_qty": 194236.0,
-          "exact_price_trade_hit_rate_pct": 90.34722222222223,
-          "queue_lower_fill_rate_pct": 36.875,
-          "upper_bound_fill_rate_pct": 89.23611111111111,
-          "no_fill_rate_pct": 10.76388888888889
+          "exact_price_trade_hit": 1363,
+          "queue_lower_fills": 551,
+          "strict_through_only_fills": 658,
+          "no_fill": 231,
+          "exact_trade_qty": 350898.0,
+          "initial_queue_qty": 403847.0,
+          "exact_price_trade_hit_rate_pct": 94.65277777777777,
+          "queue_lower_fill_rate_pct": 38.263888888888886,
+          "upper_bound_fill_rate_pct": 83.95833333333333,
+          "no_fill_rate_pct": 16.041666666666668
         },
         "passive_sell": {
           "orders": 1440,
-          "exact_price_trade_hit": 1312,
-          "queue_lower_fills": 490,
-          "strict_through_only_fills": 787,
-          "no_fill": 163,
-          "exact_trade_qty": 125701.0,
-          "initial_queue_qty": 191736.0,
-          "exact_price_trade_hit_rate_pct": 91.11111111111111,
-          "queue_lower_fill_rate_pct": 34.02777777777778,
-          "upper_bound_fill_rate_pct": 88.68055555555556,
-          "no_fill_rate_pct": 11.319444444444445
+          "exact_price_trade_hit": 1380,
+          "queue_lower_fills": 652,
+          "strict_through_only_fills": 582,
+          "no_fill": 206,
+          "exact_trade_qty": 385076.0,
+          "initial_queue_qty": 405110.0,
+          "exact_price_trade_hit_rate_pct": 95.83333333333333,
+          "queue_lower_fill_rate_pct": 45.27777777777778,
+          "upper_bound_fill_rate_pct": 85.69444444444444,
+          "no_fill_rate_pct": 14.305555555555555
         }
       }
     }
