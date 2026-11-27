@@ -1,0 +1,43 @@
+name: EXP-015 L2 event replay pilot
+
+on:
+  push:
+    branches:
+      - research/meaflow-exp015-l2-replay-v1
+    paths:
+      - research/exp015_l2_replay.py
+      - .github/workflows/exp015-l2-replay.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: exp015-l2-replay
+  cancel-in-progress: false
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - name: Checkout isolated research branch
+        uses: actions/checkout@v4
+        with:
+          ref: research/meaflow-exp015-l2-replay-v1
+      - name: Run one-day BTC L2 and trade replay (raw files stay temporary)
+        run: |
+          python research/exp015_l2_replay.py
+      - name: Publish compact JSON report only
+        if: success()
+        run: |
+          test -f exp015_l2_replay.json
+          test "$(stat -c%s exp015_l2_replay.json)" -lt 1000000
+          mkdir -p research-results
+          cp exp015_l2_replay.json research-results/exp015_l2_replay.json
+          rm -f exp015_l2_replay.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research-results/exp015_l2_replay.json
+          git commit -m "Publish compact EXP-015 L2 replay report"
+          git push origin HEAD:research/meaflow-exp015-l2-replay-v1
