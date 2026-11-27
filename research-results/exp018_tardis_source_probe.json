@@ -1,0 +1,284 @@
+{
+  "experiment": "EXP-018-TARDIS-ACTUAL-SIGNAL-SOURCE-PROBE",
+  "purpose": "Check unauthenticated Tardis L2/trade archive availability at exact dates and symbols where frozen MEAFLOW-72 OOS replay generated actual order deltas.",
+  "strategy_oos": "2025-09-06T18:24:00+00:00/2026-10-31T16:00:00+00:00",
+  "source": "Tardis public Binance Futures CSV archives; 4 KiB HTTP Range probe only",
+  "actual_order_dates": {
+    "2025-10-01": [
+      "ADAUSDT",
+      "SOLUSDT",
+      "TRXUSDT",
+      "XRPUSDT"
+    ],
+    "2026-02-01": [
+      "BTCUSDT",
+      "ETHUSDT",
+      "LINKUSDT"
+    ],
+    "2026-06-01": [
+      "ADAUSDT",
+      "BTCUSDT",
+      "ETHUSDT",
+      "LINKUSDT"
+    ]
+  },
+  "files": {
+    "2025-10-01/ADAUSDT/incremental_book_L2": {
+      "http_status": 206,
+      "content_type": "text/csv",
+      "content_length": "4096",
+      "content_range": "bytes 0-4095/81573480",
+      "range_honored": true,
+      "gzip_magic": true,
+      "prefix_bytes_read": 4096,
+      "usable_prefix": true,
+      "url": "https://datasets.tardis.dev/v1/binance-futures/incremental_book_L2/2025/10/01/ADAUSDT.csv.gz"
+    },
+    "2025-10-01/ADAUSDT/trades": {
+      "http_status": 206,
+      "content_type": "text/csv",
+      "content_length": "4096",
+      "content_range": "bytes 0-4095/7034090",
+      "range_honored": true,
+      "gzip_magic": true,
+      "prefix_bytes_read": 4096,
+      "usable_prefix": true,
+      "url": "https://datasets.tardis.dev/v1/binance-futures/trades/2025/10/01/ADAUSDT.csv.gz"
+    },
+    "2025-10-01/SOLUSDT/incremental_book_L2": {
+      "http_status": 206,
+      "content_type": "text/csv",
+      "content_length": "4096",
+      "content_range": "bytes 0-4095/263452169",
+      "range_honored": true,
+      "gzip_magic": true,
+      "prefix_bytes_read": 4096,
+      "usable_prefix": true,
+      "url": "https://datasets.tardis.dev/v1/binance-futures/incremental_book_L2/2025/10/01/SOLUSDT.csv.gz"
+    },
+    "2025-10-01/SOLUSDT/trades": {
+      "http_status": 206,
+      "content_type": "text/csv",
+      "content_length": "4096",
+      "content_range": "bytes 0-4095/28391711",
+      "range_honored": true,
+      "gzip_magic": true,
+      "prefix_bytes_read": 4096,
+      "usable_prefix": true,
+      "url": "https://datasets.tardis.dev/v1/binance-futures/trades/2025/10/01/SOLUSDT.csv.gz"
+    },
+    "2025-10-01/TRXUSDT/incremental_book_L2": {
+      "http_status": 206,
+      "content_type": "text/csv",
+      "content_length": "4096",
+      "content_range": "bytes 0-4095/37032840",
+      "range_honored": true,
+      "gzip_magic": true,
+      "prefix_bytes_read": 4096,
+      "usable_prefix": true,
+      "url": "https://datasets.tardis.dev/v1/binance-futures/incremental_book_L2/2025/10/01/TRXUSDT.csv.gz"
+    },
+    "2025-10-01/TRXUSDT/trades": {
+      "http_status": 206,
+      "content_type": "text/csv",
+      "content_length": "4096",
+      "content_range": "bytes 0-4095/2689480",
+      "range_honored": true,
+      "gzip_magic": true,
+      "prefix_bytes_read": 4096,
+      "usable_prefix": true,
+      "url": "https://datasets.tardis.dev/v1/binance-futures/trades/2025/10/01/TRXUSDT.csv.gz"
+    },
+    "2025-10-01/XRPUSDT/incremental_book_L2": {
+      "http_status": 206,
+      "content_type": "text/csv",
+      "content_length": "4096",
+      "content_range": "bytes 0-4095/194753343",
+      "range_honored": true,
+      "gzip_magic": true,
+      "prefix_bytes_read": 4096,
+      "usable_prefix": true,
+      "url": "https://datasets.tardis.dev/v1/binance-futures/incremental_book_L2/2025/10/01/XRPUSDT.csv.gz"
+    },
+    "2025-10-01/XRPUSDT/trades": {
+      "http_status": 206,
+      "content_type": "text/csv",
+      "content_length": "4096",
+      "content_range": "bytes 0-4095/15903816",
+      "range_honored": true,
+      "gzip_magic": true,
+      "prefix_bytes_read": 4096,
+      "usable_prefix": true,
+      "url": "https://datasets.tardis.dev/v1/binance-futures/trades/2025/10/01/XRPUSDT.csv.gz"
+    },
+    "2026-02-01/BTCUSDT/incremental_book_L2": {
+      "http_status": 206,
+      "content_type": "text/csv",
+      "content_length": "4096",
+      "content_range": "bytes 0-4095/865907076",
+      "range_honored": true,
+      "gzip_magic": true,
+      "prefix_bytes_read": 4096,
+      "usable_prefix": true,
+      "url": "https://datasets.tardis.dev/v1/binance-futures/incremental_book_L2/2026/02/01/BTCUSDT.csv.gz"
+    },
+    "2026-02-01/BTCUSDT/trades": {
+      "http_status": 206,
+      "content_type": "text/csv",
+      "content_length": "4096",
+      "content_range": "bytes 0-4095/57631972",
+      "range_honored": true,
+      "gzip_magic": true,
+      "prefix_bytes_read": 4096,
+      "usable_prefix": true,
+      "url": "https://datasets.tardis.dev/v1/binance-futures/trades/2026/02/01/BTCUSDT.csv.gz"
+    },
+    "2026-02-01/ETHUSDT/incremental_book_L2": {
+      "http_status": 206,
+      "content_type": "text/csv",
+      "content_length": "4096",
+      "content_range": "bytes 0-4095/1113550838",
+      "range_honored": true,
+      "gzip_magic": true,
+      "prefix_bytes_read": 4096,
+      "usable_prefix": true,
+      "url": "https://datasets.tardis.dev/v1/binance-futures/incremental_book_L2/2026/02/01/ETHUSDT.csv.gz"
+    },
+    "2026-02-01/ETHUSDT/trades": {
+      "http_status": 206,
+      "content_type": "text/csv",
+      "content_length": "4096",
+      "content_range": "bytes 0-4095/128864322",
+      "range_honored": true,
+      "gzip_magic": true,
+      "prefix_bytes_read": 4096,
+      "usable_prefix": true,
+      "url": "https://datasets.tardis.dev/v1/binance-futures/trades/2026/02/01/ETHUSDT.csv.gz"
+    },
+    "2026-02-01/LINKUSDT/incremental_book_L2": {
+      "http_status": 206,
+      "content_type": "text/csv",
+      "content_length": "4096",
+      "content_range": "bytes 0-4095/111841831",
+      "range_honored": true,
+      "gzip_magic": true,
+      "prefix_bytes_read": 4096,
+      "usable_prefix": true,
+      "url": "https://datasets.tardis.dev/v1/binance-futures/incremental_book_L2/2026/02/01/LINKUSDT.csv.gz"
+    },
+    "2026-02-01/LINKUSDT/trades": {
+      "http_status": 206,
+      "content_type": "text/csv",
+      "content_length": "4096",
+      "content_range": "bytes 0-4095/7297557",
+      "range_honored": true,
+      "gzip_magic": true,
+      "prefix_bytes_read": 4096,
+      "usable_prefix": true,
+      "url": "https://datasets.tardis.dev/v1/binance-futures/trades/2026/02/01/LINKUSDT.csv.gz"
+    },
+    "2026-06-01/ADAUSDT/incremental_book_L2": {
+      "http_status": 206,
+      "content_type": "text/csv",
+      "content_length": "4096",
+      "content_range": "bytes 0-4095/53498519",
+      "range_honored": true,
+      "gzip_magic": true,
+      "prefix_bytes_read": 4096,
+      "usable_prefix": true,
+      "url": "https://datasets.tardis.dev/v1/binance-futures/incremental_book_L2/2026/06/01/ADAUSDT.csv.gz"
+    },
+    "2026-06-01/ADAUSDT/trades": {
+      "http_status": 206,
+      "content_type": "text/csv",
+      "content_length": "4096",
+      "content_range": "bytes 0-4095/3691414",
+      "range_honored": true,
+      "gzip_magic": true,
+      "prefix_bytes_read": 4096,
+      "usable_prefix": true,
+      "url": "https://datasets.tardis.dev/v1/binance-futures/trades/2026/06/01/ADAUSDT.csv.gz"
+    },
+    "2026-06-01/BTCUSDT/incremental_book_L2": {
+      "http_status": 206,
+      "content_type": "text/csv",
+      "content_length": "4096",
+      "content_range": "bytes 0-4095/893502369",
+      "range_honored": true,
+      "gzip_magic": true,
+      "prefix_bytes_read": 4096,
+      "usable_prefix": true,
+      "url": "https://datasets.tardis.dev/v1/binance-futures/incremental_book_L2/2026/06/01/BTCUSDT.csv.gz"
+    },
+    "2026-06-01/BTCUSDT/trades": {
+      "http_status": 206,
+      "content_type": "text/csv",
+      "content_length": "4096",
+      "content_range": "bytes 0-4095/34960370",
+      "range_honored": true,
+      "gzip_magic": true,
+      "prefix_bytes_read": 4096,
+      "usable_prefix": true,
+      "url": "https://datasets.tardis.dev/v1/binance-futures/trades/2026/06/01/BTCUSDT.csv.gz"
+    },
+    "2026-06-01/ETHUSDT/incremental_book_L2": {
+      "http_status": 206,
+      "content_type": "text/csv",
+      "content_length": "4096",
+      "content_range": "bytes 0-4095/881069479",
+      "range_honored": true,
+      "gzip_magic": true,
+      "prefix_bytes_read": 4096,
+      "usable_prefix": true,
+      "url": "https://datasets.tardis.dev/v1/binance-futures/incremental_book_L2/2026/06/01/ETHUSDT.csv.gz"
+    },
+    "2026-06-01/ETHUSDT/trades": {
+      "http_status": 206,
+      "content_type": "text/csv",
+      "content_length": "4096",
+      "content_range": "bytes 0-4095/44460412",
+      "range_honored": true,
+      "gzip_magic": true,
+      "prefix_bytes_read": 4096,
+      "usable_prefix": true,
+      "url": "https://datasets.tardis.dev/v1/binance-futures/trades/2026/06/01/ETHUSDT.csv.gz"
+    },
+    "2026-06-01/LINKUSDT/incremental_book_L2": {
+      "http_status": 206,
+      "content_type": "text/csv",
+      "content_length": "4096",
+      "content_range": "bytes 0-4095/76957695",
+      "range_honored": true,
+      "gzip_magic": true,
+      "prefix_bytes_read": 4096,
+      "usable_prefix": true,
+      "url": "https://datasets.tardis.dev/v1/binance-futures/incremental_book_L2/2026/06/01/LINKUSDT.csv.gz"
+    },
+    "2026-06-01/LINKUSDT/trades": {
+      "http_status": 206,
+      "content_type": "text/csv",
+      "content_length": "4096",
+      "content_range": "bytes 0-4095/3763923",
+      "range_honored": true,
+      "gzip_magic": true,
+      "prefix_bytes_read": 4096,
+      "usable_prefix": true,
+      "url": "https://datasets.tardis.dev/v1/binance-futures/trades/2026/06/01/LINKUSDT.csv.gz"
+    }
+  },
+  "limitations": [
+    "A successful prefix probe proves only archive reachability and gzip prefix, not full-file integrity or complete day coverage.",
+    "No execution replay, fill rate, slippage, PnL, fees, or strategy change is performed.",
+    "Order timestamps and sizes come from the existing EXP-017 report; no strategy code is modified.",
+    "No raw data is persisted."
+  ],
+  "summary": {
+    "files_tested": 22,
+    "http_200_or_206": 22,
+    "range_supported": 22,
+    "valid_gzip_prefix": 22,
+    "http_401": 0,
+    "http_404": 0,
+    "other_errors": 0
+  }
+}
