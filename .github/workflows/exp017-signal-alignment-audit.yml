@@ -1,6 +1,13 @@
 name: EXP-017 MEAFLOW-72 signal alignment audit
 
 on:
+  push:
+    branches:
+      - research/meaflow-exp017-signal-alignment-audit-v1
+    paths:
+      - "research/funding_carry_liquidation_causal.py"
+      - "research/exp017_signal_alignment_audit.py"
+      - ".github/workflows/exp017-signal-alignment-audit.yml"
   workflow_dispatch:
 
 permissions:
