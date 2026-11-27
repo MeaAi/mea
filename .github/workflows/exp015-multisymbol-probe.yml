@@ -1,0 +1,91 @@
+name: EXP-015 Tardis multi-symbol sample verification
+
+on:
+  push:
+    branches:
+      - research/meaflow-exp015-l2-source-probe-v1
+    paths:
+      - .github/workflows/exp015-multisymbol-probe.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: exp015-multisymbol-probe
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - name: Checkout isolated research branch
+        uses: actions/checkout@v4
+        with:
+          ref: research/meaflow-exp015-l2-source-probe-v1
+      - name: Verify ETH and SOL L2 plus trades on July 1, 2024
+        run: |
+          python - <<'PY'
+          import csv, gzip, hashlib, json, urllib.request, urllib.error
+          from pathlib import Path
+          out={"experiment":"EXP-015-MULTISYMBOL-PROBE","date_utc":"2024-07-01",
+               "exchange":"binance-futures","results":{}}
+          for symbol in ("ETHUSDT","SOLUSDT"):
+            out["results"][symbol]={}
+            for kind in ("incremental_book_L2","trades"):
+              url=f"https://datasets.tardis.dev/v1/binance-futures/{kind}/2024/07/01/{symbol}.csv.gz"
+              item={"url":url}; path=Path(f"/tmp/{symbol}-{kind}.csv.gz")
+              try:
+                req=urllib.request.Request(url,headers={"User-Agent":"MEAFLOW-research/1.0"})
+                with urllib.request.urlopen(req,timeout=120) as resp,path.open("wb") as f:
+                  item["http_status"]=resp.status
+                  h=hashlib.sha256(); size=0
+                  while True:
+                    b=resp.read(1024*1024)
+                    if not b: break
+                    f.write(b); h.update(b); size+=len(b)
+                item["download_bytes"]=size; item["sha256"]=h.hexdigest()
+                rows=0; first=last=None; sample=[]; header=None; snapshots=0
+                with gzip.open(path,"rt",encoding="utf-8",newline="") as stream:
+                  rd=csv.DictReader(stream); header=rd.fieldnames
+                  for row in rd:
+                    rows+=1
+                    if len(sample)<2: sample.append(row)
+                    ts=row.get("local_timestamp")
+                    if ts:
+                      if first is None:first=ts
+                      last=ts
+                    if row.get("is_snapshot","").lower()=="true":snapshots+=1
+                required=({"exchange","symbol","timestamp","local_timestamp","is_snapshot","side","price","amount"}
+                          if kind=="incremental_book_L2" else
+                          {"exchange","symbol","timestamp","local_timestamp","id","side","price","amount"})
+                item.update({"valid_gzip":True,"csv_rows":rows,"columns":header,
+                             "required_columns_present":required.issubset(set(header or [])),
+                             "first_local_timestamp_us":first,"last_local_timestamp_us":last,
+                             "snapshot_rows":snapshots if kind=="incremental_book_L2" else None,
+                             "sample_rows":sample,
+                             "symbol_rows_match":all(x.get("symbol")==symbol for x in sample)})
+                item["usable"]=(item["http_status"]==200 and rows>0 and
+                                item["required_columns_present"] and item["symbol_rows_match"])
+              except urllib.error.HTTPError as e:item.update({"http_status":e.code,"error":str(e),"usable":False})
+              except Exception as e:item.update({"error":repr(e),"usable":False})
+              out["results"][symbol][kind]=item
+              print(symbol,kind,json.dumps({k:item.get(k) for k in ("http_status","download_bytes","csv_rows","valid_gzip","required_columns_present","usable","error")}),flush=True)
+          out["all_usable"]=all(x.get("usable") for sym in out["results"].values() for x in sym.values())
+          Path("exp015_multisymbol_probe.json").write_text(json.dumps(out,indent=2),encoding="utf-8")
+          print("ALL_USABLE",out["all_usable"],flush=True)
+          if not out["all_usable"]:raise SystemExit("One or more ETH/SOL files failed verification")
+          PY
+      - name: Publish multi-symbol source report
+        if: always()
+        run: |
+          if [ -f exp015_multisymbol_probe.json ]; then
+            mkdir -p research-results
+            cp exp015_multisymbol_probe.json research-results/exp015_multisymbol_probe.json
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add research-results/exp015_multisymbol_probe.json
+            git commit -m "Publish EXP-015 ETH SOL source verification" || exit 0
+            git push origin HEAD:research/meaflow-exp015-l2-source-probe-v1
+          fi
