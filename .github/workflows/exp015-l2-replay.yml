@@ -1,4 +1,5 @@
 name: EXP-015 L2 event replay pilot
+# Re-run after correcting the full 60-second passive-order lifetime.
 
 on:
   push:
