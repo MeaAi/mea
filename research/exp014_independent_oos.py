@@ -189,7 +189,7 @@ def main():
             raise SystemExit(f"{symbol}: insufficient exact-minute pilot/test intersection ({len(pilot)}/{len(test)}); require >=50,000 each")
         pilot_min, pilot_max = min(r["t"] for r in pilot), max(r["t"] for r in pilot)
         test_min, test_max = min(r["t"] for r in test), max(r["t"] for r in test)
-        if not (1714521600000 <= pilot_min < 1714608000000 and 1719792000000 <= pilot_max < 1719878400000):
+        if not (1714521600000 <= pilot_min < 1714608000000 and 1719705600000 <= pilot_max < 1719792000000):
             raise SystemExit(f"{symbol}: pilot timestamps outside May-June 2024 bounds")
         if not (1719792000000 <= test_min < 1722470400000 and 1725062400000 <= test_max < 1725148800000):
             raise SystemExit(f"{symbol}: OOS timestamps outside July-August 2024 bounds")
