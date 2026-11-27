@@ -142,7 +142,6 @@ def simulate(rows, candidates, horizon):
         "max_drawdown_pct": round(max_dd*100, 4),
         "fees_usdt": round(sum(t["fees_usdt"] for t in trades), 6),
         "slippage_usdt": round(sum(t["slippage_usdt"] for t in trades), 6),
-        "trade_log": trades,
     }
 
 def main():
