@@ -1,0 +1,39 @@
+name: EXP-018 Tardis actual-signal source probe
+
+on:
+  push:
+    branches:
+      - research/meaflow-exp018-tardis-signal-probe-v1
+    paths:
+      - research/exp018_tardis_source_probe.py
+      - .github/workflows/exp018-tardis-source-probe.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: exp018-tardis-source-probe
+  cancel-in-progress: false
+
+jobs:
+  source-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout isolated research branch
+        uses: actions/checkout@v4
+        with:
+          ref: research/meaflow-exp018-tardis-signal-probe-v1
+      - name: Probe exact OOS order-date archive prefixes
+        run: python research/exp018_tardis_source_probe.py
+      - name: Publish compact QA report only
+        if: always()
+        run: |
+          if [ -f research-results/exp018_tardis_source_probe.json ]; then
+            test "$(stat -c%s research-results/exp018_tardis_source_probe.json)" -lt 1000000
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add research-results/exp018_tardis_source_probe.json
+            git commit -m "Publish EXP-018 Tardis source availability report" || exit 0
+            git push origin HEAD:research/meaflow-exp018-tardis-signal-probe-v1
+          fi
