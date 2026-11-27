@@ -83,16 +83,21 @@ def make_quotes(path):
     return quotes, rows
 
 def replay_trades(path, quotes):
-    # For each minute's quote, inspect only subsequent trade events until the
-    # next quote minute. Aggressor side is the taker side in Tardis trade data.
+    # Each probe remains live until its own quote_timestamp + 60 seconds.
+    # Minute quotes can be offset from the minute boundary, so orders may
+    # overlap; keep all live probes instead of closing one at the next quote.
     stats = {s: {"orders": 0, "exact_touch": 0, "queue_lower_fills": 0,
                  "strict_through_only_fills": 0, "no_fill": 0,
-                 "exact_trade_qty": 0.0, "initial_queue_qty": 0.0} for s in ("passive_buy", "passive_sell")}
-    qidx = 0; active = None; last_local = -1; trade_rows = 0
+                 "exact_trade_qty": 0.0, "initial_queue_qty": 0.0}
+             for s in ("passive_buy", "passive_sell")}
+    qidx = 0
+    active = []
+    last_local = -1
+    trade_rows = 0
+
     def activate(q):
-        nonlocal active
-        active = {
-            "minute": q["minute"], "end": q["local"] + 60_000_000,
+        order = {
+            "end": q["local"] + 60_000_000,
             "buy_px": q["bid"], "buy_queue": q["bid_qty"],
             "buy_qty": NOTIONAL / q["bid"], "buy_trade": 0.0, "buy_through": False,
             "sell_px": q["ask"], "sell_queue": q["ask_qty"],
@@ -100,7 +105,26 @@ def replay_trades(path, quotes):
         }
         for side, key in (("passive_buy", "buy_queue"), ("passive_sell", "sell_queue")):
             stats[side]["orders"] += 1
-            stats[side]["initial_queue_qty"] += active[key]
+            stats[side]["initial_queue_qty"] += order[key]
+        active.append(order)
+
+    def finalize(order):
+        for side in ("passive_buy", "passive_sell"):
+            is_buy = side == "passive_buy"
+            traded = order["buy_trade" if is_buy else "sell_trade"]
+            queue = order["buy_queue" if is_buy else "sell_queue"]
+            own = order["buy_qty" if is_buy else "sell_qty"]
+            through = order["buy_through" if is_buy else "sell_through"]
+            if traded > 0:
+                stats[side]["exact_touch"] += 1
+            if traded >= queue + own:
+                stats[side]["queue_lower_fills"] += 1
+            elif through:
+                stats[side]["strict_through_only_fills"] += 1
+            else:
+                stats[side]["no_fill"] += 1
+            stats[side]["exact_trade_qty"] += traded
+
     with gzip.open(path, "rt", encoding="utf-8", newline="") as f:
         rd = csv.DictReader(f)
         required = {"local_timestamp", "side", "price", "amount"}
@@ -109,50 +133,54 @@ def replay_trades(path, quotes):
         for row in rd:
             trade_rows += 1
             local = int(row["local_timestamp"])
-            if local < last_local: raise RuntimeError("trade local_timestamp is not monotonic")
+            if local < last_local:
+                raise RuntimeError("trade local_timestamp is not monotonic")
             last_local = local
+
+            # Activate every quote strictly before this trade event.
             while qidx < len(quotes) and quotes[qidx]["local"] < local:
-                if active is not None:
-                    for s, pkey, qkey, tkey, xkey in (
-                        ("passive_buy","buy_px","buy_queue","buy_trade","buy_through"),
-                        ("passive_sell","sell_px","sell_queue","sell_trade","sell_through")):
-                        a = active
-                        if a[tkey] > 0: stats[s]["exact_touch"] += 1
-                        if a[tkey] >= a[qkey] + a["buy_qty" if s=="passive_buy" else "sell_qty"]:
-                            stats[s]["queue_lower_fills"] += 1
-                        elif a[xkey]:
-                            stats[s]["strict_through_only_fills"] += 1
-                        else:
-                            stats[s]["no_fill"] += 1
-                        stats[s]["exact_trade_qty"] += a[tkey]
-                activate(quotes[qidx]); qidx += 1
-            if active is None or local >= active["end"]: continue
-            px = float(row["price"]); qty = float(row["amount"]); taker = row["side"].lower()
+                activate(quotes[qidx])
+                qidx += 1
+
+            # Expire orders at their individual 60-second deadline before
+            # processing a trade at/after that deadline.
+            still_live = []
+            for order in active:
+                if local >= order["end"]:
+                    finalize(order)
+                else:
+                    still_live.append(order)
+            active = still_live
+
+            if not active:
+                continue
+            px = float(row["price"])
+            qty = float(row["amount"])
+            taker = row["side"].lower()
             if taker == "sell":
-                if px == active["buy_px"]: active["buy_trade"] += qty
-                if px < active["buy_px"]: active["buy_through"] = True
+                for order in active:
+                    if px == order["buy_px"]:
+                        order["buy_trade"] += qty
+                    if px < order["buy_px"]:
+                        order["buy_through"] = True
             elif taker == "buy":
-                if px == active["sell_px"]: active["sell_trade"] += qty
-                if px > active["sell_px"]: active["sell_through"] = True
-    # Close the final active quote window.
-    if active is not None:
-        for s in ("passive_buy", "passive_sell"):
-            a = active; is_buy = s == "passive_buy"
-            traded = a["buy_trade" if is_buy else "sell_trade"]
-            queue = a["buy_queue" if is_buy else "sell_queue"]
-            own = a["buy_qty" if is_buy else "sell_qty"]
-            through = a["buy_through" if is_buy else "sell_through"]
-            if traded > 0: stats[s]["exact_touch"] += 1
-            if traded >= queue + own: stats[s]["queue_lower_fills"] += 1
-            elif through: stats[s]["strict_through_only_fills"] += 1
-            else: stats[s]["no_fill"] += 1
-            stats[s]["exact_trade_qty"] += traded
-    for s, d in stats.items():
-        n = d["orders"]
-        d["exact_touch_rate_pct"] = 100*d["exact_touch"]/n if n else None
-        d["queue_lower_fill_rate_pct"] = 100*d["queue_lower_fills"]/n if n else None
-        d["upper_bound_fill_rate_pct"] = 100*(d["queue_lower_fills"]+d["strict_through_only_fills"])/n if n else None
-        d["no_fill_rate_pct"] = 100*d["no_fill"]/n if n else None
+                for order in active:
+                    if px == order["sell_px"]:
+                        order["sell_trade"] += qty
+                    if px > order["sell_px"]:
+                        order["sell_through"] = True
+
+    # Finalize any orders whose full windows fit in the available trade file.
+    for order in active:
+        finalize(order)
+
+    for side, data in stats.items():
+        n = data["orders"]
+        data["exact_touch_rate_pct"] = 100 * data["exact_touch"] / n if n else None
+        data["queue_lower_fill_rate_pct"] = 100 * data["queue_lower_fills"] / n if n else None
+        data["upper_bound_fill_rate_pct"] = 100 * (
+            data["queue_lower_fills"] + data["strict_through_only_fills"]) / n if n else None
+        data["no_fill_rate_pct"] = 100 * data["no_fill"] / n if n else None
     return stats, trade_rows
 
 def main():
