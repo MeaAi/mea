@@ -179,7 +179,7 @@ def main():
           "No funding debit/credit explicitly modeled for trades crossing funding timestamps.",
           "Fixed slippage, no market impact, and next-minute-open execution are proxies.",
           "The pilot period has been previously inspected in EXP-010-013; only July-August is the new OOS evaluation window.",
-          "No claim of pristine untouched historical data; the independent period is new to this EXP, but the calendar window may have been inspected elsewhere in the broader research."]},
+          "No claim of pristine untouched historical data; the independent period is new to this EXP, but the calendar window may have been inspected elsewhere in the broader research."]
     }
     for symbol in SYMBOLS:
         pf = load_files(args.pilot_flow, symbol); pb = load_files(args.pilot_book, symbol)
