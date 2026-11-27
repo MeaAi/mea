@@ -1,0 +1,39 @@
+name: EXP-018 actual MEAFLOW-72 order L2 sweep
+
+on:
+  push:
+    branches:
+      - research/meaflow-exp018-tardis-signal-probe-v1
+    paths:
+      - research/exp018_actual_order_l2_sweep.py
+      - .github/workflows/exp018-actual-order-l2-sweep.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: exp018-actual-order-l2-sweep
+  cancel-in-progress: false
+
+jobs:
+  l2-sweep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - name: Checkout isolated research branch
+        uses: actions/checkout@v4
+        with:
+          ref: research/meaflow-exp018-tardis-signal-probe-v1
+      - name: Reconstruct book and sweep actual order deltas
+        run: python research/exp018_actual_order_l2_sweep.py
+      - name: Publish compact result only; raw archives are removed per symbol
+        if: always()
+        run: |
+          if [ -f research-results/exp018_actual_order_l2_sweep.json ]; then
+            test "$(stat -c%s research-results/exp018_actual_order_l2_sweep.json)" -lt 1000000
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add research-results/exp018_actual_order_l2_sweep.json
+            git commit -m "Publish EXP-018 actual-order L2 sweep report" || exit 0
+            git push origin HEAD:research/meaflow-exp018-tardis-signal-probe-v1
+          fi
