@@ -218,3 +218,30 @@ Research implications:
 - Additional external research repos demonstrate similar Tardis sample use, but no equivalent queue-aware maker test has been found in our repository. Still check the user repo registry before building any new code.
 - New verification checklist: HTTP status; response byte count; gzip integrity; header/schema; symbol identity; min/max exchange and local timestamps; snapshot/reset flags; sequence continuity; trade/book timestamp alignment; empty-file vs missing-file distinction; first/last event coverage. Save manifest and SHA256.
 - If files are available, EXP-015 must be explicitly a sampled-day execution calibration (not continuous OOS), and maker queue fill must be reported as bounds unless queue priority can be reconstructed from the feed semantics.
+
+
+## EXP-016 — multi-horizon taker-flow absorption extension — COMPLETED (2026-11-26)
+- Status: COMPLETED; workflow run succeeded.
+- Hypothesis: unusually strong 5/15/60-minute signed taker quote flow with weak same-window signed price response indicates passive absorption; fade aggressive-flow direction.
+- Prior-work distinction: EXP-012 tested same-minute OFI-extreme + candle-direction-failure proxies. EXP-016 uses cumulative multi-minute signed quote flow plus a conditional price-response quantile. Still an aggTrades + 1m OHLC proxy, not event-level L2 absorption.
+- Branch: `research/meaflow-exp016-multihorizon-absorption-v1`.
+- Evaluator: `research/exp016_multihorizon_absorption.py`, code commit `76c8103d015395ffc5700a829f4595f1933ee011`.
+- Workflow: `.github/workflows/exp016-multihorizon-absorption.yml`; trigger commit `63b4da7b9427be4417e24ddf381ccb4c319c93b4`.
+- Report commit: `acb214079097c363f3bbdaf5475a32b1076b42f9`.
+- Actions run: `45902943168`, completed success; report: https://github.com/MeaAi/mea/blob/research/meaflow-exp016-multihorizon-absorption-v1/research-results/exp016_absorption.json
+- Data: official free Binance Vision USD-M monthly 1m klines + aggTrades. Calibration 2024-05-01 00:00 UTC through 2024-07-01 00:00 UTC; OOS 2024-09-01 00:00 UTC through 2024-11-01 00:00 UTC. BTCUSDT, ETHUSDT, SOLUSDT. 87,840 minute rows per symbol in both calibration and OOS.
+- Frozen thresholds: per horizon, calibration q80 absolute signed quote-flow imbalance; conditional q20 signed price response among high-flow windows. Contrarian signal; next-minute open entry; horizon close exit; non-overlapping trades.
+- Execution/capital: 100 USDT per independent symbol/horizon series; 1x; full equity notional; 5bp one-way fee +2bp one-way slippage charged on entry and exit notionals. Market orders assumed filled. Funding not explicitly charged.
+- OOS results (net return / max DD; ending equity):
+  - BTC 5m: -94.9887% / -94.9887%; 2,128 trades; 100 -> 5.0113 USDT.
+  - BTC 15m: -76.1938% / -76.1938%; 990 trades; 100 -> 23.8062 USDT.
+  - BTC 60m: -31.4647% / -31.4866%; 277 trades; 100 -> 68.5353 USDT.
+  - ETH 5m: -97.4891% / -97.4891%; 2,649 trades; 100 -> 2.5109 USDT.
+  - ETH 15m: -82.9289% / -82.9289%; 1,202 trades; 100 -> 17.0712 USDT.
+  - ETH 60m: -34.7657% / -34.7657%; 367 trades; 100 -> 65.2343 USDT.
+  - SOL 5m: -97.7576% / -97.7576%; 2,705 trades; 100 -> 2.2424 USDT.
+  - SOL 15m: -85.4321% / -85.4376%; 1,406 trades; 100 -> 14.5679 USDT.
+  - SOL 60m: -50.8222% / -51.9936%; 428 trades; 100 -> 49.1778 USDT.
+- Mean gross bp/trade for 60m was BTC +0.4175, ETH +2.4509, SOL -2.4094; all are below the 14bp round-trip fee+slippage assumption. Net mean bp/trade: BTC -13.5831, ETH -11.5491, SOL -16.4097. At 5m/15m gross edge is also near zero or negative. Win rates and profit factors in report.
+- Decision: REJECT this contrarian multi-horizon absorption rule under tested assumptions. No integration into MEAFLOW-72 or MEAFLOW-52. Do not rerun as an untested idea.
+- Limitations: OOS is a two-month 2024 window and may have been inspected in other research; not pristine unseen history. Not true event-level L2 absorption; no queue model, market impact or liquidation engine; fixed slippage; funding omitted for rare trades crossing 8h timestamps. Compounding full equity per trade makes large losses visible but is an aggressive sizing assumption; the negative per-trade expectancy is independently clear.
