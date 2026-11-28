@@ -1287,6 +1287,521 @@
         ]
       },
       "status": "ok"
+    },
+    {
+      "download": {
+        "url": "https://api.cryptohftdata.com/v1/download?file=binance_futures/2026-08-20/08/BTCUSDT_orderbook.parquet",
+        "http_status": 200,
+        "bytes": 52531801,
+        "sha256": "b60d45d64fcf21a42cffd71d0571cc6e18437771f9f4f86bb42828471b2ab3fc"
+      },
+      "qa": {
+        "date": "2026-08-20",
+        "hour_utc": "08",
+        "symbol": "BTCUSDT",
+        "rows": 14228755,
+        "event_type_counts": {
+          "update": 14222755,
+          "snapshot": 6000
+        },
+        "snapshot_rows": 6000,
+        "snapshot_groups": 6,
+        "first_snapshot_received_time_ns": 1787213534690000000,
+        "last_snapshot_received_time_ns": 1787216272058352353,
+        "snapshot_details": [
+          {
+            "received_time_ns": 1787213534690000000,
+            "event_time_ms": 1787213534690,
+            "last_update_id": 11329478545481,
+            "final_update_id": 11329478545481,
+            "side": "ask"
+          },
+          {
+            "received_time_ns": 1787213534841820980,
+            "event_time_ms": 1787213534690,
+            "last_update_id": 11329478545481,
+            "final_update_id": 11329478545481,
+            "side": "ask"
+          },
+          {
+            "received_time_ns": 1787215276630000000,
+            "event_time_ms": 1787215276630,
+            "last_update_id": 11329760681445,
+            "final_update_id": 11329760681445,
+            "side": "ask"
+          },
+          {
+            "received_time_ns": 1787215277031678427,
+            "event_time_ms": 1787215276630,
+            "last_update_id": 11329760681445,
+            "final_update_id": 11329760681445,
+            "side": "ask"
+          },
+          {
+            "received_time_ns": 1787216271888000000,
+            "event_time_ms": 1787216271888,
+            "last_update_id": 11329895690859,
+            "final_update_id": 11329895690859,
+            "side": "ask"
+          },
+          {
+            "received_time_ns": 1787216272058352353,
+            "event_time_ms": 1787216271888,
+            "last_update_id": 11329895690859,
+            "final_update_id": 11329895690859,
+            "side": "ask"
+          }
+        ],
+        "first_rows": [
+          {
+            "received_time": 1787212800003676598,
+            "event_time": 1787212799887,
+            "transaction_time": 1787212799884,
+            "event_type": "update",
+            "first_update_id": 11329369296726.0,
+            "final_update_id": 11329369297911,
+            "prev_final_update_id": 11329369296610.0,
+            "last_update_id": NaN,
+            "side": "ask"
+          },
+          {
+            "received_time": 1787212800003676598,
+            "event_time": 1787212799887,
+            "transaction_time": 1787212799884,
+            "event_type": "update",
+            "first_update_id": 11329369296726.0,
+            "final_update_id": 11329369297911,
+            "prev_final_update_id": 11329369296610.0,
+            "last_update_id": NaN,
+            "side": "ask"
+          },
+          {
+            "received_time": 1787212800003676598,
+            "event_time": 1787212799887,
+            "transaction_time": 1787212799884,
+            "event_type": "update",
+            "first_update_id": 11329369296726.0,
+            "final_update_id": 11329369297911,
+            "prev_final_update_id": 11329369296610.0,
+            "last_update_id": NaN,
+            "side": "ask"
+          },
+          {
+            "received_time": 1787212800003676598,
+            "event_time": 1787212799887,
+            "transaction_time": 1787212799884,
+            "event_type": "update",
+            "first_update_id": 11329369296726.0,
+            "final_update_id": 11329369297911,
+            "prev_final_update_id": 11329369296610.0,
+            "last_update_id": NaN,
+            "side": "ask"
+          },
+          {
+            "received_time": 1787212800003676598,
+            "event_time": 1787212799887,
+            "transaction_time": 1787212799884,
+            "event_type": "update",
+            "first_update_id": 11329369296726.0,
+            "final_update_id": 11329369297911,
+            "prev_final_update_id": 11329369296610.0,
+            "last_update_id": NaN,
+            "side": "ask"
+          }
+        ],
+        "first_received_time_ns": 1787212800003676598,
+        "hour_start_ns": 1787212800000000000,
+        "first_group_is_snapshot": false,
+        "first_group_rows": 12,
+        "min_event_time_ms": 1787212799887,
+        "max_event_time_ms": 1787216399854,
+        "min_transaction_time_ms": 1787212799884,
+        "max_transaction_time_ms": 1787216399853,
+        "update_message_groups": 135095,
+        "sequence_gaps_within_file": 3,
+        "first_sequence_gaps": [
+          {
+            "prev_final": 11329476388912,
+            "current_prev": 11329478540669,
+            "current_final": 11329478547313
+          },
+          {
+            "prev_final": 11329759094355,
+            "current_prev": 11329760681299,
+            "current_final": 11329760683617
+          },
+          {
+            "prev_final": 11329894866580,
+            "current_prev": 11329895689763,
+            "current_final": 11329895691506
+          }
+        ],
+        "has_hour_start_checkpoint": false,
+        "schema_columns": [
+          "received_time",
+          "event_time",
+          "transaction_time",
+          "symbol",
+          "event_type",
+          "first_update_id",
+          "final_update_id",
+          "prev_final_update_id",
+          "last_update_id",
+          "side",
+          "price",
+          "quantity",
+          "order_count"
+        ]
+      },
+      "status": "ok"
+    },
+    {
+      "download": {
+        "url": "https://api.cryptohftdata.com/v1/download?file=binance_futures/2026-09-18/16/BTCUSDT_orderbook.parquet",
+        "http_status": 200,
+        "bytes": 29206568,
+        "sha256": "d1deb8cab25200cf9e1bf4ae649bcea14ba350b83743868e58db574e5c14d4b2"
+      },
+      "qa": {
+        "date": "2026-09-18",
+        "hour_utc": "16",
+        "symbol": "BTCUSDT",
+        "rows": 7454228,
+        "event_type_counts": {
+          "update": 7408955,
+          "snapshot": 45273
+        },
+        "snapshot_rows": 45273,
+        "snapshot_groups": 1,
+        "first_snapshot_received_time_ns": 1789747200000000000,
+        "last_snapshot_received_time_ns": 1789747200000000000,
+        "snapshot_details": [
+          {
+            "received_time_ns": 1789747200000000000,
+            "event_time_ms": 1789747200000,
+            "last_update_id": 11591676642552,
+            "final_update_id": 11591676642552,
+            "side": "bid"
+          }
+        ],
+        "first_rows": [
+          {
+            "received_time": 1789747200000000000,
+            "event_time": 1789747200000,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11591676642552,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11591676642552.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1789747200000000000,
+            "event_time": 1789747200000,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11591676642552,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11591676642552.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1789747200000000000,
+            "event_time": 1789747200000,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11591676642552,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11591676642552.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1789747200000000000,
+            "event_time": 1789747200000,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11591676642552,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11591676642552.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1789747200000000000,
+            "event_time": 1789747200000,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11591676642552,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11591676642552.0,
+            "side": "bid"
+          }
+        ],
+        "first_received_time_ns": 1789747200000000000,
+        "hour_start_ns": 1789747200000000000,
+        "first_group_is_snapshot": true,
+        "first_group_rows": 45273,
+        "min_event_time_ms": 1789747199893,
+        "max_event_time_ms": 1789750799879,
+        "min_transaction_time_ms": 1789747199890,
+        "max_transaction_time_ms": 1789750799877,
+        "update_message_groups": 136335,
+        "sequence_gaps_within_file": 0,
+        "first_sequence_gaps": [],
+        "has_hour_start_checkpoint": true,
+        "schema_columns": [
+          "received_time",
+          "event_time",
+          "transaction_time",
+          "symbol",
+          "event_type",
+          "first_update_id",
+          "final_update_id",
+          "prev_final_update_id",
+          "last_update_id",
+          "side",
+          "price",
+          "quantity",
+          "order_count"
+        ]
+      },
+      "status": "ok"
+    },
+    {
+      "download": {
+        "url": "https://api.cryptohftdata.com/v1/download?file=binance_futures/2026-09-22/00/BTCUSDT_orderbook.parquet",
+        "http_status": 200,
+        "bytes": 25594339,
+        "sha256": "3b46dd14ee046a6fa71fe4a60d317809b169b11d23cf9744bc88290f06ddfd33"
+      },
+      "qa": {
+        "date": "2026-09-22",
+        "hour_utc": "00",
+        "symbol": "BTCUSDT",
+        "rows": 6571608,
+        "event_type_counts": {
+          "update": 6524763,
+          "snapshot": 46845
+        },
+        "snapshot_rows": 46845,
+        "snapshot_groups": 1,
+        "first_snapshot_received_time_ns": 1790035200000000000,
+        "last_snapshot_received_time_ns": 1790035200000000000,
+        "snapshot_details": [
+          {
+            "received_time_ns": 1790035200000000000,
+            "event_time_ms": 1790035200000,
+            "last_update_id": 11621091574925,
+            "final_update_id": 11621091574925,
+            "side": "bid"
+          }
+        ],
+        "first_rows": [
+          {
+            "received_time": 1790035200000000000,
+            "event_time": 1790035200000,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11621091574925,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11621091574925.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1790035200000000000,
+            "event_time": 1790035200000,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11621091574925,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11621091574925.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1790035200000000000,
+            "event_time": 1790035200000,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11621091574925,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11621091574925.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1790035200000000000,
+            "event_time": 1790035200000,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11621091574925,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11621091574925.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1790035200000000000,
+            "event_time": 1790035200000,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11621091574925,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11621091574925.0,
+            "side": "bid"
+          }
+        ],
+        "first_received_time_ns": 1790035200000000000,
+        "hour_start_ns": 1790035200000000000,
+        "first_group_is_snapshot": true,
+        "first_group_rows": 46845,
+        "min_event_time_ms": 1790035199870,
+        "max_event_time_ms": 1790038799860,
+        "min_transaction_time_ms": 1790035199869,
+        "max_transaction_time_ms": 1790038799859,
+        "update_message_groups": 135210,
+        "sequence_gaps_within_file": 0,
+        "first_sequence_gaps": [],
+        "has_hour_start_checkpoint": true,
+        "schema_columns": [
+          "received_time",
+          "event_time",
+          "transaction_time",
+          "symbol",
+          "event_type",
+          "first_update_id",
+          "final_update_id",
+          "prev_final_update_id",
+          "last_update_id",
+          "side",
+          "price",
+          "quantity",
+          "order_count"
+        ]
+      },
+      "status": "ok"
+    },
+    {
+      "download": {
+        "url": "https://api.cryptohftdata.com/v1/download?file=binance_futures/2026-10-15/08/SOLUSDT_orderbook.parquet",
+        "http_status": 200,
+        "bytes": 12742322,
+        "sha256": "5d021ac3da3e08e092cc9d03c53ac388aa9e85e6515ea6c942461badd5e4bb42"
+      },
+      "qa": {
+        "date": "2026-10-15",
+        "hour_utc": "08",
+        "symbol": "SOLUSDT",
+        "rows": 1400312,
+        "event_type_counts": {
+          "update": 1395269,
+          "snapshot": 5043
+        },
+        "snapshot_rows": 5043,
+        "snapshot_groups": 1,
+        "first_snapshot_received_time_ns": 1792051200000000000,
+        "last_snapshot_received_time_ns": 1792051200000000000,
+        "snapshot_details": [
+          {
+            "received_time_ns": 1792051200000000000,
+            "event_time_ms": 1792051199851,
+            "last_update_id": 11824111516946,
+            "final_update_id": 11824111516946,
+            "side": "bid"
+          }
+        ],
+        "first_rows": [
+          {
+            "received_time": 1792051200000000000,
+            "event_time": 1792051199851,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11824111516946,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11824111516946.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1792051200000000000,
+            "event_time": 1792051199851,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11824111516946,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11824111516946.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1792051200000000000,
+            "event_time": 1792051199851,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11824111516946,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11824111516946.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1792051200000000000,
+            "event_time": 1792051199851,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11824111516946,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11824111516946.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1792051200000000000,
+            "event_time": 1792051199851,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11824111516946,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11824111516946.0,
+            "side": "bid"
+          }
+        ],
+        "first_received_time_ns": 1792051200000000000,
+        "hour_start_ns": 1792051200000000000,
+        "first_group_is_snapshot": true,
+        "first_group_rows": 5043,
+        "min_event_time_ms": 1792051199851,
+        "max_event_time_ms": 1792054799856,
+        "min_transaction_time_ms": 1792051199872,
+        "max_transaction_time_ms": 1792054799854,
+        "update_message_groups": 124917,
+        "sequence_gaps_within_file": 0,
+        "first_sequence_gaps": [],
+        "has_hour_start_checkpoint": true,
+        "schema_columns": [
+          "received_time",
+          "event_time",
+          "transaction_time",
+          "symbol",
+          "event_type",
+          "first_update_id",
+          "final_update_id",
+          "prev_final_update_id",
+          "last_update_id",
+          "side",
+          "price",
+          "quantity",
+          "order_count"
+        ]
+      },
+      "status": "ok"
     }
   ],
   "limitations": [
@@ -1297,11 +1812,11 @@
     "Provider documents historical empty-snapshot omissions before its 2026-10 data-quality release; any affected stale book must be rejected."
   ],
   "summary": {
-    "files_tested": 18,
-    "files_downloaded_and_read": 10,
-    "files_with_sequence_gaps": 2,
-    "files_with_hour_start_checkpoint": 7,
-    "total_rows": 64345539,
+    "files_tested": 22,
+    "files_downloaded_and_read": 14,
+    "files_with_sequence_gaps": 3,
+    "files_with_hour_start_checkpoint": 10,
+    "total_rows": 94000442,
     "failed_files": 8
   }
 }
