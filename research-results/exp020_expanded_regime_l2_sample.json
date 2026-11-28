@@ -1,0 +1,35 @@
+{
+  "experiment": "EXP-020-EXPANDED-REGIME-MEAFLOW72-L2-SAMPLE",
+  "status": "blocked_source_access",
+  "branch": "research/meaflow-exp020-expanded-regime-l2-sample-v1",
+  "based_on": "EXP-019 full OOS order event export",
+  "planned_dates_utc": [
+    "2026-09-03",
+    "2026-10-24"
+  ],
+  "planned_symbols": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "SOLUSDT"
+  ],
+  "planned_actual_order_subset": "BTC/ETH/SOL order deltas selected from actual EXP-019 OOS rebalance events; one bull and one bear regime",
+  "observed_failure": {
+    "date_utc": "2026-09-03",
+    "symbol": "BTCUSDT",
+    "dataset": "Tardis incremental_book_L2",
+    "http_status": 401,
+    "workflow_run_id": 46098712772,
+    "note": "Unauthenticated archive request was rejected. The job stopped before downloading the file or producing any execution result."
+  },
+  "untested_after_failure": [
+    "2026-09-03 remaining symbols",
+    "2026-10-24 all symbols"
+  ],
+  "decision": "Do not infer fills, slippage, or PnL from unavailable data. Keep the earlier 15-order/three-date L2 sample as the only completed direct replay.",
+  "limitations": [
+    "No new order was replayed in EXP-020.",
+    "HTTP 401 is a source-access limitation, not evidence of poor or good execution.",
+    "No paid Tardis access will be used.",
+    "MEAFLOW-72 and MEAFLOW-52 remain unchanged."
+  ]
+}
