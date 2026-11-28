@@ -1,0 +1,36 @@
+name: EXP-041 regime-isolated VWAP robustness
+on:
+  push:
+    branches:
+      - research/exp041-regime-isolated-robustness
+    paths:
+      - ".github/workflows/exp041-regime-isolated-robustness.yml"
+      - "research/exp041_regime_isolated_robustness.py"
+      - "research/exp039_binance_vwap.py"
+      - "research/funding_carry_liquidation_causal.py"
+permissions:
+  contents: read
+concurrency:
+  group: exp041-regime-isolated-robustness
+  cancel-in-progress: false
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - name: Checkout isolated experiment branch
+        uses: actions/checkout@v6
+        with:
+          ref: research/exp041-regime-isolated-robustness
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Run regime-isolated comparisons and robustness
+        run: python research/exp041_regime_isolated_robustness.py
+      - name: Upload reproducible report
+        uses: actions/upload-artifact@v6
+        with:
+          name: exp041-regime-isolated-robustness-results
+          path: research-results/exp041_regime_isolated_robustness.json
+          retention-days: 90
