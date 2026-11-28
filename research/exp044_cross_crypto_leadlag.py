@@ -52,10 +52,10 @@ def load_month(sym,month,root):
                 except (ValueError,IndexError):pass
     return out,h
 
-def corr(a,b):
+def corr(a,b,min_n=30):
     a=np.asarray(a,float); b=np.asarray(b,float)
     ok=np.isfinite(a)&np.isfinite(b)
-    if ok.sum()<30:return None
+    if ok.sum()<min_n:return None
     a=a[ok];b=b[ok]
     if np.std(a)==0 or np.std(b)==0:return None
     return float(np.corrcoef(a,b)[0,1])
@@ -105,7 +105,7 @@ def main():
             for t in range(lo,hi-h):
                 y=np.log(close[t+h]/close[t])
                 xpeer=peer[t-1]; xbtc=np.repeat(ret[t-1,0],len(SYMBOLS)); xown=ret[t-1]
-                c1=corr(xpeer,y); c2=corr(xbtc,y); c3=corr(xown,y)
+                c1=corr(xpeer,y,min_n=8); c2=corr(xbtc,y,min_n=8); c3=corr(xown,y,min_n=8)
                 if c1 is not None:ics_peer.append(c1);dates.append(t)
                 if c2 is not None:ics_btc.append(c2)
                 if c3 is not None:ics_own.append(c3)
@@ -120,6 +120,24 @@ def main():
               "pooled_btc_predictor_corr":corr(pooled_btc,pooled_y),
               "pooled_own_predictor_corr":corr(pooled_own,pooled_y)}
         results["splits"][split]=sp
+    # Three chronological OOS subperiods, required by preregistration.
+    oos_subperiods={}
+    oos_lo=va; oos_hi=n-24
+    edges=np.linspace(oos_lo,oos_hi,4,dtype=int)
+    for q in range(3):
+        qlo,qhi=int(edges[q]),int(edges[q+1])
+        qout={}
+        for h in (1,4,24):
+            vals=[]
+            for t in range(qlo,qhi-h):
+                ic=corr(peer[t-1],np.log(close[t+h]/close[t]),min_n=8)
+                if ic is not None: vals.append(ic)
+            qout[str(h)]={"start_utc":datetime.fromtimestamp(common[qlo]*3600,timezone.utc).isoformat(),
+                          "end_utc":datetime.fromtimestamp(common[qhi-1]*3600,timezone.utc).isoformat(),
+                          "n_timestamps":len(vals),
+                          "peer_mean_cs_ic":float(np.mean(vals)) if vals else None}
+        oos_subperiods[f"oos_{q+1}"]=qout
+    results["oos_subperiods"]=oos_subperiods
     # OOS calendar-year and BTC 30d regime stability for each horizon.
     btc30=np.full(n,np.nan)
     for t in range(720,n): btc30[t]=close[t,0]/close[t-720,0]-1
@@ -128,7 +146,7 @@ def main():
         by_year={}; by_regime={}
         for t in range(va,n-h):
             y=np.log(close[t+h]/close[t]); x=peer[t-1]
-            ic=corr(x,y)
+            ic=corr(x,y,min_n=8)
             if ic is None: continue
             year=datetime.fromtimestamp(common[t]*3600,timezone.utc).strftime("%Y")
             by_year.setdefault(year,[]).append(ic)
