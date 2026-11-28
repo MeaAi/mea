@@ -104,8 +104,16 @@ def main():
     data = {s: data[s] for s in sorted(data)}
     first, last = ms(START), ms(END)
     all_times = sorted(set(t for s in data for t in data[s]["fund"] if first <= t <= last))
+    # Diagnostics before enforcing the simulator's event-coverage guard.
+    coverage = {t: sum(t in data[s]["fund"] and t in data[s]["marks"] for s in data) for t in all_times}
+    nov_first, nov_last = ms(START), ms(END)
+    nov_funding_counts = {s: sum(nov_first <= t <= nov_last for t in data[s]["fund"]) for s in sorted(data)}
+    coverage_hist = {str(n): sum(v == n for v in coverage.values()) for n in range(len(data)+1) if any(v == n for v in coverage.values())}
+    print("NOV_FUNDING_COUNTS", json.dumps(nov_funding_counts), flush=True)
+    print("EVENT_COVERAGE_HISTOGRAM", json.dumps(coverage_hist), flush=True)
     required = math.ceil(.8 * len(data))
-    aligned = [t for t in all_times if sum(t in data[s]["fund"] and t in data[s]["marks"] for s in data) >= required]
+    aligned = [t for t in all_times if coverage[t] >= required]
+    print("ALIGNED_EVENTS_AT_80PCT", len(aligned), "required_symbols", required, flush=True)
     if errors:
         raise RuntimeError("BLOCKED: one or more required archives failed checksum/download validation; no strategy run: " + json.dumps(errors))
     if len(aligned) < 60:
