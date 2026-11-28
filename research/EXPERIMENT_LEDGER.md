@@ -114,10 +114,10 @@ Protected strategy base: `MEAFLOW-72` at `a1e5293e9e7b7258ab43b6c95ff13bfeefe2ab
 
 **Expected limitations:** fixed-universe survivorship; daily studies in literature are not direct evidence for weekly portfolio; hourly Binance archive quality and symbol listing histories; basis can be mechanically related to funding; 2025-09-18 methodology change; signal screen does not create account-level equity/DD.
 
-**Status:** Plan recorded before code/run. Branch to be created from protected SHA; no test result exists yet.
+**Status:** Preregistered before implementation. Research branch created from protected SHA. Preregistration commit `0f0f33fdda3f63f9132bcc99857367b3c074c344`; analysis script commit `c07db05aad623469822d76184645e700f271782e`; workflow commit `0fe1ef850b33986baa362d008eee8f3d828d0fee`. Workflow is configured for branch push and manual dispatch. Run status has not yet been independently confirmed; no result/artifact is recorded yet.
 
 ## Current status / handoff
 - EXP038–046 records above; EXP039 VWAP looked promising in one window but EXP040/042 failed robustness, so it is not promoted.
 - EXP043 rejected at univariate screen gates; EXP047 is the distinct funding-conditional follow-up.
-- EXP047 is next; do not restart EXP043 or repeat EXP045 peer-mean/EXP046 leader-LASSO.
+- EXP047 is in implementation on `research/exp047-basis-funding-incremental`; do not restart EXP043 or repeat EXP045 peer-mean/EXP046 leader-LASSO.
 - Protected MEAFLOW-72 branch remains at `a1e5293e9e7b7258ab43b6c95ff13bfeefe2abb1`; no experiment changes it.
