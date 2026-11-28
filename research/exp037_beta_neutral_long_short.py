@@ -173,7 +173,7 @@ def main():
         "mean_long_beta":sum(x["beta_long"] for x in active_beta)/len(active_beta) if active_beta else None,
         "mean_short_beta":sum(x["beta_short"] for x in active_beta)/len(active_beta) if active_beta else None
     }
-    comparison = {
+    beta_comparison = {
         "return_delta_pp":round(candidate["net_return_pct"]-baseline["net_return_pct"],4),
         "max_drawdown_delta_pp":round(candidate["max_drawdown_pct"]-baseline["max_drawdown_pct"],4),
         "joint_gate_passed":candidate["net_return_pct"]>baseline["net_return_pct"] and candidate["max_drawdown_pct"]>baseline["max_drawdown_pct"]
@@ -255,7 +255,7 @@ def main():
         },
         "frozen_meaflow72_metrics": metrics(baseline),
         "beta_neutral_candidate_metrics":metrics(candidate),
-        "candidate_comparison_vs_frozen_baseline":comparison,
+        "candidate_comparison_vs_frozen_baseline":beta_comparison,
         "beta_split_summary":beta_summary,
         "beta_neutral_log":beta_rows,
         "candidate_fee_sensitivity":candidate_fee_sensitivity,
@@ -285,7 +285,7 @@ def main():
     OUT.write_text(json.dumps(report, indent=2), encoding="utf-8")
     print("EXP037 BASELINE", json.dumps(metrics(baseline)), flush=True)
     print("EXP037 CANDIDATE", json.dumps(metrics(candidate)), flush=True)
-    print("EXP037 COMPARISON", json.dumps(comparison), flush=True)
+    print("EXP037 COMPARISON", json.dumps(beta_comparison), flush=True)
     print("EXP037 BETA SUMMARY", json.dumps(beta_summary), flush=True)
     print("EXP028 REGIMES", json.dumps({"occupancy": occupancy, "rebalance_events": rebalance_events}), flush=True)
     print("EXP028 COMPARISON", json.dumps(comparison), flush=True)
