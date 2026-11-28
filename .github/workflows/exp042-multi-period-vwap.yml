@@ -1,0 +1,38 @@
+name: EXP-042 multi-period VWAP validation
+
+on:
+  push:
+    branches:
+      - research/exp042-multi-period-vwap
+    paths:
+      - ".github/workflows/exp042-multi-period-vwap.yml"
+      - "research/exp042_multi_period_vwap.py"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: exp042-multi-period-vwap
+  cancel-in-progress: false
+
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - name: Checkout isolated experiment branch
+        uses: actions/checkout@v6
+        with:
+          ref: research/exp042-multi-period-vwap
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Run matched multi-period backtests
+        run: python research/exp042_multi_period_vwap.py
+      - name: Upload reproducible report
+        uses: actions/upload-artifact@v6
+        with:
+          name: exp042-multi-period-vwap-results
+          path: research-results/exp042_multi_period_vwap.json
+          retention-days: 90
