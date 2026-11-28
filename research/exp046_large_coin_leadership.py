@@ -84,7 +84,6 @@ def main():
  btc=np.full(n,np.nan);btc[721:]=C[720:-1,ix["BTCUSDT"]]/C[:-721,ix["BTCUSDT"]]-1
  regime[btc>=.05]="bull";regime[btc<=-.05]="bear";regime[(btc>-.05)&(btc<.05)]="sideways"
  out={"experiment":"EXP-046","symbols":S,"leaders":L,"followers":F,"common_hours":n,"start_utc":datetime.fromtimestamp(ts[0]*H/1000,timezone.utc).isoformat(),"end_utc":datetime.fromtimestamp(ts[-1]*H/1000,timezone.utc).isoformat(),"archive_sha256":{s:loaded[s][2] for s in S},"funding_qa":fc,"load_errors":errors,"split_indices":{"train":[0,b1],"validation":[b1,b2],"oos":[b2,end]},"horizons":{},"limitations":["Static 13-symbol universe survivorship bias","LTC is an available-universe proxy for EOS in the paper's historical leader set","Hourly predictive diagnostics are not executable trading results","No portfolio simulation; no final equity or drawdown"]}
-for_h="" 
  for h in (1,4):
   per={};ys=[];pb_all=[];pc_all=[];num_t=np.zeros((end-b2,len(F)));den_t=np.zeros_like(num_t);third=[]
   for fj,s in enumerate(F):
