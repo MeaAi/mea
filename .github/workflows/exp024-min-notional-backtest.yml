@@ -1,0 +1,45 @@
+name: EXP-024 MEAFLOW-72 min-notional execution backtest
+
+on:
+  push:
+    branches:
+      - research/meaflow-exp024-min-notional-backtest-v1
+    paths:
+      - research/funding_carry_liquidation_causal.py
+      - research/exp024_min_notional_backtest.py
+      - .github/workflows/exp024-min-notional-backtest.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: exp024-min-notional-backtest
+  cancel-in-progress: false
+
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - name: Checkout isolated research branch
+        uses: actions/checkout@v4
+        with:
+          ref: research/meaflow-exp024-min-notional-backtest-v1
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Replay baseline and minimum-notional execution variants
+        run: python research/exp024_min_notional_backtest.py
+      - name: Remove raw market data and publish compact report only
+        if: always()
+        run: |
+          rm -rf research-output
+          if [ -f research-results/exp024_min_notional_backtest.json ]; then
+            test "$(stat -c%s research-results/exp024_min_notional_backtest.json)" -lt 1000000
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add research-results/exp024_min_notional_backtest.json
+            git commit -m "Publish EXP-024 min-notional backtest" || exit 0
+            git push origin HEAD:research/meaflow-exp024-min-notional-backtest-v1
+          fi
