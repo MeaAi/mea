@@ -1,0 +1,45 @@
+name: EXP-025 November 2026 MEAFLOW-72 forward validation
+
+on:
+  push:
+    branches:
+      - research/meaflow-exp025-nov-forward-validation-v1
+    paths:
+      - research/exp025_forward_simulator.py
+      - research/exp025_november_forward_validation.py
+      - .github/workflows/exp025-nov-forward-validation.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: exp025-nov-forward-validation
+  cancel-in-progress: false
+
+jobs:
+  forward-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Checkout isolated research branch
+        uses: actions/checkout@v4
+        with:
+          ref: research/meaflow-exp025-nov-forward-validation-v1
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run untouched November forward validation
+        run: python research/exp025_november_forward_validation.py
+      - name: Publish compact report and discard raw archives
+        if: always()
+        run: |
+          if [ -f research-results/exp025_november_forward_validation.json ]; then
+            test "$(stat -c%s research-results/exp025_november_forward_validation.json)" -lt 1000000
+            rm -rf research-output
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add research-results/exp025_november_forward_validation.json
+            git commit -m "Publish EXP-025 November forward validation" || exit 0
+            git push origin HEAD:research/meaflow-exp025-nov-forward-validation-v1
+          fi
