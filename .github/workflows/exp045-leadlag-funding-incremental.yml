@@ -1,0 +1,40 @@
+name: EXP-045 funding-conditioned lead-lag diagnostic
+on:
+  push:
+    branches:
+      - research/exp045-leadlag-funding-incremental
+    paths:
+      - "research/exp045_leadlag_funding_incremental.py"
+      - "research/EXP045_leadlag_funding_incremental_preregistration.md"
+      - ".github/workflows/exp045-leadlag-funding-incremental.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: exp045-leadlag-funding-incremental
+  cancel-in-progress: false
+jobs:
+  diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/exp045-leadlag-funding-incremental
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install numeric dependency
+        run: python -m pip install --disable-pip-version-check numpy
+      - name: Run frozen diagnostic on public Binance Vision data
+        run: |
+          python research/exp045_leadlag_funding_incremental.py \
+            --start 2023-01 --end 2026-10 \
+            --out exp045_results.json --data exp045-data
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp045-leadlag-funding-incremental-results
+          path: exp045_results.json
+          if-no-files-found: error
+          retention-days: 30
