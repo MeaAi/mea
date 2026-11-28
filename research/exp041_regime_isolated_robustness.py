@@ -79,7 +79,7 @@ def main():
     # Use the simulator's exact regime timestamp convention: last completed 1h bar.
     hourly=[t for t in bt if oos_start<=t<=oos_end]
     labels=[regime_at(t-HOUR) for t in hourly]
-    MIN_SEGMENT_DAYS=14
+    MIN_SEGMENT_DAYS=45
     segments=[]; start=None; prev=None; prev_t=None
     for t,lab in zip(hourly,labels):
         if lab=="unknown": 
@@ -93,7 +93,7 @@ def main():
             if prev_t-start>=MIN_SEGMENT_DAYS*DAY:segments.append((prev,start,prev_t,prev_t-start))
             start=t;prev=lab;prev_t=t
     if start is not None and prev_t-start>=MIN_SEGMENT_DAYS*DAY:segments.append((prev,start,prev_t,prev_t-start))
-    # Include contiguous regime-pure blocks >=14 days; shorter episodes are counted, not silently treated as full samples.
+    # Include contiguous regime-pure blocks  >=45 days; shorter episodes are counted, not silently treated as full samples.
     if not segments:raise RuntimeError(f"No regime-pure segments >= {MIN_SEGMENT_DAYS} days")
     short_segments=[]
     # Count shorter contiguous episodes for transparency.
@@ -185,7 +185,7 @@ def main():
       "regime_results":by_regime,"cost_stress":costs,"window_sensitivity":windows,
       "decision_rule":"Reject unless candidate increases compounded return and improves worst segment hourly adverse drawdown, with zero liquidations; require segment-level consistency plus cost and window robustness.",
       "limitations":["Regime blocks are historical contiguous samples, not independent market cycles.",
-       "Only blocks >=14d are included; shorter regime episodes are separately counted and listed.",
+       "Only blocks  >=45d are included; shorter regime episodes are separately counted and listed.",
        "Each segment restarts at 100 USDT; compounded return is a regime-conditional growth factor, not a tradable continuous portfolio equity curve.",
        "VWAP is a volume-weighted traded-price proxy, not holder cost basis.",
        "Static 13-symbol universe survivorship bias; portfolio hourly adverse/liquidation remains an approximation."]}
