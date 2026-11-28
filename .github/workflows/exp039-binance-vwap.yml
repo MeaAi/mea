@@ -1,0 +1,39 @@
+name: EXP-039 Binance VWAP overlay research
+
+on:
+  push:
+    branches:
+      - research/exp039-binance-vwap
+    paths:
+      - ".github/workflows/exp039-binance-vwap.yml"
+      - "research/exp039_binance_vwap.py"
+      - "research/funding_carry_liquidation_causal.py"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: exp039-binance-vwap
+  cancel-in-progress: false
+
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - name: Checkout isolated experiment branch
+        uses: actions/checkout@v6
+        with:
+          ref: research/exp039-binance-vwap
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Run causal VWAP overlays against frozen simulator
+        run: python research/exp039_binance_vwap.py
+      - name: Upload reproducible report
+        uses: actions/upload-artifact@v6
+        with:
+          name: exp039-binance-vwap-results
+          path: research-results/exp039_binance_vwap.json
+          retention-days: 90
