@@ -1,0 +1,29 @@
+name: EXP-032 causal relative-momentum gate screen
+on:
+  push:
+    branches:
+      - research/exp032-relative-momentum-gate-v1
+    paths:
+      - research/exp032_relative_momentum_gate.py
+      - research/exp025_forward_simulator.py
+      - .github/workflows/exp032-relative-momentum-gate.yml
+permissions:
+  contents: read
+jobs:
+  relative-momentum-screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run fixed relative-momentum gate screen
+        run: python research/exp032_relative_momentum_gate.py
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp032-relative-momentum-gate-report
+          path: research-results/exp032_relative_momentum_gate.json
+          if-no-files-found: warn
