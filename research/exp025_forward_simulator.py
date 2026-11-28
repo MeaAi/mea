@@ -68,14 +68,14 @@ def load_symbol(sym,months,root):
   verified_download(f"{BASE}/markPriceKlines/{sym}/1h/{mn}",mp);marks.update(readzip(mp,"mark"))
  return sym,fund,marks
 
-def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20,side_mode='both',regime_filter=None,regime_policy=None,regime_threshold_pct=5.0,trade_universe=None,sideways_action='flat',sideways_confirm_hours=1):
+def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20,side_mode='both',regime_filter=None,regime_policy=None,regime_threshold_pct=5.0,trade_universe=None,sideways_action='flat',sideways_confirm_hours=1,position_stop_pct=None):
  symbols=sorted(data); trade_symbols=sorted(trade_universe) if trade_universe is not None else symbols; first,last=period
  if not set(trade_symbols).issubset(set(symbols)) or 'BTCUSDT' not in data: raise ValueError('invalid trade universe or missing BTC regime benchmark')
  mark_times={s:sorted(data[s]["marks"]) for s in symbols}
  all_events=sorted(set(t for s in symbols for t in data[s]["fund"] if first<=t<=last))
  events=[t for t in all_events if sum(t in data[s]["fund"] and t in data[s]["marks"] for s in symbols)>=math.ceil(.8*len(symbols))]
  if len(events)<60:raise RuntimeError("insufficient aligned funding events for short forward window")
- equity=100.; peak=100.; maxdd=0.; qty={s:0. for s in symbols}; prev={}; last_rebal=None
+ equity=100.; peak=100.; maxdd=0.; qty={s:0. for s in symbols}; entry_price={s:None for s in symbols}; prev={}; last_rebal=None
  fee_total=slip_total=price_pnl=funding_pnl=0.; liquidated=False; liq_time=None; liq_equity=None; last_regime=None
  price_by_symbol={z:0. for z in symbols}; funding_by_symbol={z:0. for z in symbols}; fees_by_symbol={z:0. for z in symbols}; slippage_by_symbol={z:0. for z in symbols}
  cohort_qty={z:{k:0. for k in ('bull','bear','sideways','unknown')} for z in symbols}
@@ -88,7 +88,7 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
   ret=btc_marks[btc_times[j]][3]/btc_marks[btc_times[k]][3]-1
   threshold=regime_threshold_pct/100.0
   return 'bull' if ret>threshold else ('bear' if ret<-threshold else 'sideways')
- rebalances=0; hourly_checks=0; hourly_sideways_exits=0; sideways_streak=0; rebalance_log=[]
+ rebalances=0; hourly_checks=0; hourly_sideways_exits=0; sideways_streak=0; rebalance_log=[]; stop_count=0; stop_log=[]
  lookback=lookback_days*DAY; interval=rebalance_days*DAY
  for ix,t in enumerate(events):
   # Walk the union of hourly mark candles once; update portfolio equity close-to-close.
@@ -120,9 +120,40 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
      for z in symbols:
       tr=abs(qty[z]*current[z]) if qty[z] and z in current else 0.
       fees_by_symbol[z]+=tr*fee_bp/10000;slippage_by_symbol[z]+=tr*slip_bp/10000
-      qty[z]=0.
+      qty[z]=0.;entry_price[z]=None
       for cohort in cohort_qty[z]: cohort_qty[z][cohort]=0.
      hourly_sideways_exits+=1; sideways_streak=0
+    # Optional per-position hard stop. Trigger from the current hourly OHLC;
+    # if the bar opens beyond the stop, fill at the worse open, otherwise at stop.
+    # A stopped position stays flat until the next scheduled/regime rebalance.
+    if position_stop_pct is not None:
+     for z in symbols:
+      q=qty[z];bar=data[z]["marks"].get(ht);ep=entry_price[z]
+      if not q or ep is None or z not in current or bar is None:continue
+      o,h,l,cl=bar
+      stop_level=ep*(1-position_stop_pct/100) if q>0 else ep*(1+position_stop_pct/100)
+      hit=(l<=stop_level) if q>0 else (h>=stop_level)
+      if not hit:continue
+      fill=min(o,stop_level) if q>0 else max(o,stop_level)
+      pnl=q*(fill-current[z]);turnover=abs(q*fill)
+      stop_fee=turnover*fee_bp/10000;stop_slip=turnover*slip_bp/10000
+      equity+=pnl-stop_fee-stop_slip;price_pnl+=pnl
+      price_by_symbol[z]+=pnl;regime_pnl[completed_regime]['price_pnl_usdt']+=pnl
+      for cohort,cohort_q in cohort_qty[z].items():
+       entry_regime_pnl[cohort]['price_pnl_usdt']+=cohort_q*(fill-current[z])
+       cohort_qty[z][cohort]=0.
+      fee_total+=stop_fee;slip_total+=stop_slip
+      fees_by_symbol[z]+=stop_fee;slippage_by_symbol[z]+=stop_slip
+      regime_pnl[completed_regime]['fees_usdt']+=stop_fee
+      regime_pnl[completed_regime]['slippage_usdt']+=stop_slip
+      stop_count+=1
+      stop_log.append({"timestamp_utc":datetime.fromtimestamp(ht/1000,timezone.utc).isoformat(),
+       "symbol":z,"side":"long" if q>0 else "short","entry_price":round(ep,10),
+       "stop_level":round(stop_level,10),"bar_open":o,"bar_high":h,"bar_low":l,
+       "fill_price":round(fill,10),"closed_quantity":round(q,10),
+       "price_pnl_usdt":round(pnl,6),"fee_usdt":round(stop_fee,6),
+       "slippage_usdt":round(stop_slip,6)})
+      qty[z]=0.;entry_price[z]=None
     worst=equity;notion=0.
     for z in symbols:
      q=qty[z]
@@ -207,6 +238,12 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
      else: remaining=0.
      add_q=new_q-remaining
      cohort_qty[z][rg]+=add_q
+     if abs(new_q)<1e-12:
+      entry_price[z]=None
+     elif abs(old_q)<1e-12 or old_q*new_q<0:
+      entry_price[z]=px[z]
+     elif abs(new_q)>abs(old_q) and entry_price[z] is not None:
+      entry_price[z]=(abs(old_q)*entry_price[z]+abs(add_q)*px[z])/abs(new_q)
     qty=target;last_rebal=t;last_regime=rg;rebalances+=1
     rebalance_log.append({"timestamp_utc":datetime.fromtimestamp(t/1000,timezone.utc).isoformat(),"regime":rg,"turnover_usdt":round(turnover,6),"orders":order_deltas})
   # Save latest event mark as anchor for next interval.
@@ -221,7 +258,7 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
   "liquidated":liquidated,"liquidation_time_utc":liq_time,"equity_at_liquidation_usdt":liq_equity,
   "price_pnl_usdt":round(price_pnl,6),"funding_pnl_usdt":round(funding_pnl,6),
   "trading_fees_usdt":round(fee_total,6),"slippage_usdt":round(slip_total,6),
-  "rebalance_count":rebalances,"rebalance_log":rebalance_log,"hourly_adverse_checks":hourly_checks,"hourly_sideways_exits":hourly_sideways_exits,"sideways_action":sideways_action,"lookback_days":lookback_days,"rebalance_days":rebalance_days,"tail_fraction":tail_fraction,"side_mode":side_mode,"regime_filter":regime_filter,"regime_policy":regime_policy,
+  "rebalance_count":rebalances,"rebalance_log":rebalance_log,"position_stop_pct":position_stop_pct,"position_stop_count":stop_count,"position_stop_log":stop_log,"hourly_adverse_checks":hourly_checks,"hourly_sideways_exits":hourly_sideways_exits,"sideways_action":sideways_action,"lookback_days":lookback_days,"rebalance_days":rebalance_days,"tail_fraction":tail_fraction,"side_mode":side_mode,"regime_filter":regime_filter,"regime_policy":regime_policy,
   "symbol_attribution":{z:{"price_pnl_usdt":round(price_by_symbol[z],6),"funding_pnl_usdt":round(funding_by_symbol[z],6),"fees_usdt":round(fees_by_symbol[z],6),"slippage_usdt":round(slippage_by_symbol[z],6),"net_contribution_usdt":round(price_by_symbol[z]+funding_by_symbol[z]-fees_by_symbol[z]-slippage_by_symbol[z],6)} for z in symbols},
   "market_regime_attribution":{k:{q:round(v,6) for q,v in vals.items()}|{"net_contribution_usdt":round(vals['price_pnl_usdt']+vals['funding_pnl_usdt']-vals['fees_usdt']-vals['slippage_usdt'],6)} for k,vals in regime_pnl.items()},
   "entry_regime_attribution":{k:{q:round(v,6) for q,v in vals.items()}|{"net_contribution_usdt":round(vals['price_pnl_usdt']+vals['funding_pnl_usdt'],6)} for k,vals in entry_regime_pnl.items()},
