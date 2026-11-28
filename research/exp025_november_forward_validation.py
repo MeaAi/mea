@@ -6,7 +6,7 @@ November daily public archives. Only the research copy relaxes the simulator's
 minimum event-count guard from 100 to 60 so this 27-day forward window can run.
 No strategy parameters or MEAFLOW-72 files are modified.
 """
-import json, math, hashlib, urllib.request
+import json, math, hashlib, urllib.request, time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -46,7 +46,16 @@ def load_funding_rest(symbol, start, end):
     # Public, unauthenticated Binance USD-M mirror; response schema matches Binance.
     url = 'https://api-dev.pipai.org/fapi/v1/fundingRate?symbol=' + symbol + '&startTime=' + str(ms(start)) + '&endTime=' + str(ms(end)) + '&limit=1000'
     req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-    with urllib.request.urlopen(req, timeout=60) as response: rows = json.loads(response.read().decode('utf-8'))
+    last_error = None
+    for attempt in range(5):
+        try:
+            with urllib.request.urlopen(req, timeout=60) as response:
+                rows = json.loads(response.read().decode('utf-8'))
+            break
+        except Exception as exc:
+            last_error = exc
+            if attempt == 4: raise
+            time.sleep(2 ** attempt)
     out = {}
     for row in rows:
         ts = int(row['fundingTime']); rate = float(row['fundingRate'])
