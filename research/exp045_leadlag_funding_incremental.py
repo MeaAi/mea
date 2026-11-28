@@ -112,7 +112,7 @@ def main():
  ap=argparse.ArgumentParser()
  ap.add_argument("--start",default="2023-01");ap.add_argument("--end",default="2026-10")
  ap.add_argument("--out",default="exp045_results.json");ap.add_argument("--data",default="exp045-data")
- a=ap.parse_args(); root=Path(a.data); root.mkdir(parents=True,exist_ok=True)
+ a=ap.parse_args(); out_path=a.out; data_path=a.data; root=Path(data_path); root.mkdir(parents=True,exist_ok=True)
  ms=list(months(a.start,a.end)); loaded={}; errors={}
  with ThreadPoolExecutor(max_workers=8) as ex:
   fs={ex.submit(load_symbol,s,ms,root):s for s in SYMBOLS}
@@ -237,6 +237,6 @@ def main():
   output["per_symbol"][str(h)]={"positive_train_peer_beta_symbols":positive_beta_symbols,
                                   "peer_beta_positive_gate_required":9,
                                   "symbols":ps}
- Path(a.out).write_text(json.dumps(output,indent=2),encoding="utf-8")
+ Path(out_path).write_text(json.dumps(output,indent=2),encoding="utf-8")
  print(json.dumps({k:v for k,v in output.items() if k!="archive_qa"},indent=2),flush=True)
 if __name__=="__main__":main()
