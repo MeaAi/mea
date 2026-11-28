@@ -319,3 +319,31 @@ This update records an audit of existing repository artifacts and the two workfl
 - EXP-020 through EXP-024 remain represented in the prior conversation audit; retain their existing run IDs and decisions there: EXP-020 failed; EXP-021 source QA succeeded; EXP-022 completed as summarized above; EXP-023 Binance exchangeInfo QA failed with HTTP 451; EXP-024 min-notional sensitivity completed but all scenarios rejected (none increased net return while reducing drawdown). EXP-024 assumed filters are not verified historical exchange filters.
 - Still to recover: exact Actions run IDs / immutable trigger and report commit SHAs for EXP-010–013; exact EXP-017/018 workflow metadata and report path for the 15-order sample; complete EXP-020/021/023/024 report-level code SHA and run provenance in one place.
 - No new experiment is authorized by this audit. Next action is artifact/provenance recovery only; do not dispatch another workflow or create another experiment branch until the user explicitly asks to resume experiments.
+
+
+### EXP-024 — minimum-notional sensitivity report cross-check
+- Report `research-results/exp024_min_notional_backtest.json`, branch `research/meaflow-exp024-min-notional-backtest-v1`, blob SHA `aa203c88314ee222738203449254a29c1cb11503`; OOS data window 2025-09-06 18:24 UTC to 2026-10-31 16:00 UTC; 100 USDT, 1x, 5 bp one-way fee + 2 bp one-way slippage.
+- Baseline: 100 -> 172.9428 USDT (+72.9428%), max DD -26.5454%.
+- BTC/ETH historical minimums with modeled reduce-only exemption: 100 -> 170.8010 (+70.8010%), max DD -27.9299%.
+- Default 5 USDT all-symbol floor with modeled reduce-only exemption: 100 -> 170.9526 (+70.9526%), max DD -27.9008%.
+- Default 5 USDT all-symbol floor without reduce-only exemption: 100 -> 170.6170 (+70.6170%), max DD -28.4002%.
+- All three filter scenarios reduce return and worsen drawdown versus baseline; reject. Historical non-BTC/ETH filter values were assumed, not verified. Binance exchangeInfo access was blocked with HTTP 451; quantity step sizes/minQty and actual live reduceOnly behavior are not validated.
+
+### Existing EXP-013 maker trade-through and BookDepth cost report audit — 2026-11-28
+- Existing maker report: `research-results/maker_trade_through_backtest.json` on `research/binance-data-pipeline`, blob SHA `9368508dd032a3071a309a38142647bf0eef50db`. BTC/ETH/SOL each have 86,340 matched minutes. The report uses train-only q80 thresholds, signal at minute t, passive limit at close(t), fill only if next-minute aggressive trade prints strictly through the limit, and exit at horizon close. Unfilled orders expire after one minute.
+- Assumptions: 100 USDT, 100% equity notional compounded per filled trade, maker entry fee 2 bp, taker exit fee 5 bp, 0/2/4/6 bp exit-slippage sensitivity, 1x, no funding or liquidation. The reported observed fill ratio is only a strict trade-through proxy; it is not a queue-aware fill probability.
+- OOS at 2 bp exit slippage (100 USDT independently per symbol/direction/horizon):
+  | Symbol | Horizon | Long return / DD | Short return / DD |
+  | BTC | 5m | -82.7894% / -82.8122% | -80.9429% / -80.9506% |
+  | BTC | 15m | -63.6350% / -63.7293% | -56.5482% / -56.5510% |
+  | BTC | 60m | -32.0354% / -32.2227% | -21.3332% / -22.4529% |
+  | ETH | 5m | -83.3921% / -83.4123% | -83.1125% / -83.1125% |
+  | ETH | 15m | -64.4012% / -64.5051% | -60.6211% / -60.6981% |
+  | ETH | 60m | -31.9167% / -32.6206% | -21.1187% / -21.7586% |
+  | SOL | 5m | -84.4063% / -84.4301% | -84.7528% / -84.7528% |
+  | SOL | 15m | -66.4998% / -66.6063% | -65.8094% / -65.8444% |
+  | SOL | 60m | -36.3899% / -38.1311% | -27.5882% / -31.5558% |
+- All 18 OOS return cells are negative. Trade-through observed fill ratios are approximately 82.74%–91.58%, but queue position, quantity ahead, cancellation priority and partial fills are not reconstructed. The maker proxy does not establish a real execution edge. Do not rerun or promote.
+- The expected `research-results/bookdepth_cost_backtest.json` on the same branch currently fetches as an empty file (zero content bytes; blob SHA `1206deff50fbe030fb883a1960f1e46b3d37e644`). Therefore its prior reported sensitivity results cannot be independently audited from that artifact as currently stored. The corresponding code/workflow may exist, but an empty JSON artifact is not an auditable result. Mark the report artifact as missing/invalid until recovered from the actual Actions artifact or a verified commit; do not infer a result from the workflow definition.
+- Exact Actions run IDs for the EXP-013 workflows remain unrecovered. No rerun is authorized merely to reconstruct missing provenance.
+
