@@ -1,0 +1,29 @@
+name: EXP-037 beta-neutral long-short allocation screen
+on:
+  push:
+    branches:
+      - research/exp037-beta-neutral-long-short-v1
+    paths:
+      - research/exp037_beta_neutral_long_short.py
+      - research/exp025_forward_simulator.py
+      - .github/workflows/exp037-beta-neutral-long-short.yml
+permissions:
+  contents: read
+jobs:
+  beta-neutral-screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run causal rolling BTC-beta-neutral screen
+        run: python research/exp037_beta_neutral_long_short.py
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp037-beta-neutral-report
+          path: research-results/exp037_beta_neutral_long_short.json
+          if-no-files-found: warn
