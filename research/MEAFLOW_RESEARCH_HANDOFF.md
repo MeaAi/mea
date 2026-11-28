@@ -282,3 +282,40 @@ Research implications:
 - Decision: reject; do not add to MEAFLOW-72/52. OBI/OFI/whale direction and simple agreement variants have now been explicitly tested out-of-period; do not repeat as novel.
 - Limitations: coarse +/-1%/+/-2% BookDepth bands, not event-level L2; no queue position/maker fill reconstruction; taker market fills assumed; fixed slippage; no market impact; no explicit funding; 100% equity compounding is aggressive. July-August 2024 is independent within EXP-014 but may have been inspected in other broader research.
 - Next candidate: EXP-015 event-level L2/maker fill calibration remains unverified/planned only. First verify a freely accessible source and schema; no claims of Tardis data availability until download and QA are actually complete.
+
+
+## Continuity audit update — 2026-11-28 (EXP-017 through EXP-025 reconciliation)
+
+This update records an audit of existing repository artifacts and the two workflows inadvertently started before the prior ledger had been read. No strategy experiment was started in this audit. Protected branches `MEAFLOW-72` and `MEAFLOW-52` were not modified.
+
+### EXP-017 / EXP-019 full OOS order export — verified
+- The full OOS export is `research-results/exp019_full_oos_order_events.json` on `research/meaflow-exp019-full-oos-order-events-v1`; blob SHA: `246f452f0b16b01cf9df50d085846dcda45967c1`.
+- It contains 98 rebalance events, 56 events with order deltas, and 268 order deltas.
+- The event split remains: bull 31 events / 177 order deltas; bear 25 / 91; sideways 42 / 0 (hold behavior).
+- The report is an event export for execution research, not a new profitability result.
+
+### EXP-018 / EXP-022 execution-sample overlap audit — completed
+- EXP-022 report: `research-results/exp022_cryptohftdata_actual_order_replay.json`, branch `research/meaflow-exp022-cryptohftdata-order-replay-v1`, blob SHA `a36791a30be88b7f80dc26872b927122623ba57a`.
+- EXP-022 contains 39 replayed order deltas. All 39 match an order in the 268-order EXP-019 full OOS export by exact UTC timestamp + symbol + side (and matching notional in inspected examples). Thus EXP-022 is a subset of the 268-event population, not 39 additional unique strategy orders.
+- The earlier 15-order first-of-month sample (the EXP-018/Tardis probe sample) has 0 exact event-key overlaps with the 39 EXP-022 orders. Therefore do not add 15 + 39 as duplicated observations; they are disjoint order samples within the 268-order parent population.
+- EXP-022 metrics: 39 total; 33 valid full-depth sweeps; 6 invalid/stale; valid-sample mid-price cost median 0.3807 bp, P90 0.807 bp, max 0.9422 bp, notional-weighted 0.3383 bp. Notional-weighted mark-reference difference 0.9820 bp (max 8.271 bp) includes signal-to-book timing movement and is not pure execution cost.
+- Coverage is 39/268 = 14.55% of the parent order deltas. This is still a sample, not full-universe execution validation. Do not extrapolate its costs to every strategy order without qualification.
+
+### EXP-019 stratified L2 duplicate workflow — invalid/inconclusive, not a strategy result
+- Inadvertently started before the ledger audit: branch `research/meaflow-exp019-stratified-l2-sweep-v1`, Actions run `46105126975` (workflow job completed success).
+- Report `research-results/exp019_stratified_l2_sweep.json`, blob SHA `eb371e5b559d0dad8b48d7ce36fa512f9244d823`, reports `completed_with_errors`; 6 selected events / 27 selected order deltas, but `summary_overall.orders_selected = 0`, no full-depth fills and no usable cost distribution. It therefore did not produce a valid L2 cost result despite the workflow job's green status.
+- Treat as a duplicate procedural mistake and invalid L2 sample attempt. Do not count it as a successful execution-cost experiment and do not repeat it unchanged.
+
+### EXP-025 November forward-validation workflow — FAILED before evaluation
+- Inadvertently started before the ledger audit: branch `research/meaflow-exp025-nov-forward-validation-v1`; Actions run `46105517551`; job `140857266260`; final conclusion `failure`.
+- Research evaluator blob SHA: `970e9cb1de72ac066525f4548be740c6421576b6`; simulator-copy blob SHA: `a855a2218d5caa92641e823d4f1133e481b15e03`.
+- Intended UTC window: 2026-11-01 00:00 through 2026-11-27 16:00; 13-symbol frozen MEAFLOW-72 universe; monthly October context plus November daily Binance Vision fundingRate and 1h markPriceKlines.
+- Configuration source was checked directly: `sim.run(data, (first, last), 1.0, 5, slip_bp=2, ...)`; simulator signature makes these 1.0x leverage and 5 bp one-way fee. Initial equity inside simulator is 100 USDT. Thus the prior chat's suspicion that this call used 5x leverage / 1 USDT capital was incorrect; configuration agrees with the report's stated 100 USDT / 1x / 5 bp fee / 2 bp slippage.
+- The actual blocker was data acquisition: all 13 symbols had monthly context loaded (93 funding events and 1,368 hourly mark bars each), but November daily archive downloads failed across the symbols. The evaluator stopped with `Only 0 aligned forward funding events; need at least 60`. No strategy simulation ran, no performance report was published, and no net return / drawdown result exists.
+- Status: FAILED / NO RESULT. Do not present this as a negative or positive strategy result. Do not rerun unchanged; first diagnose the daily archive URL/availability issue and obtain a complete, verified forward dataset. No change to MEAFLOW-72 or MEAFLOW-52.
+
+### Ledger maintenance actions and remaining reconciliation
+- This file was stale at revision v2: it ended at EXP-016 and did not include EXP-017 through EXP-025. The above audit entries reconcile the verified later artifacts and record the two accidental workflows.
+- EXP-020 through EXP-024 remain represented in the prior conversation audit; retain their existing run IDs and decisions there: EXP-020 failed; EXP-021 source QA succeeded; EXP-022 completed as summarized above; EXP-023 Binance exchangeInfo QA failed with HTTP 451; EXP-024 min-notional sensitivity completed but all scenarios rejected (none increased net return while reducing drawdown). EXP-024 assumed filters are not verified historical exchange filters.
+- Still to recover: exact Actions run IDs / immutable trigger and report commit SHAs for EXP-010–013; exact EXP-017/018 workflow metadata and report path for the 15-order sample; complete EXP-020/021/023/024 report-level code SHA and run provenance in one place.
+- No new experiment is authorized by this audit. Next action is artifact/provenance recovery only; do not dispatch another workflow or create another experiment branch until the user explicitly asks to resume experiments.
