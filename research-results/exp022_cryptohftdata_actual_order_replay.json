@@ -1,0 +1,387 @@
+{
+  "experiment": "EXP-022-CRYPTOHFTDATA-ACTUAL-MEAFLOW72-ORDER-REPLAY",
+  "status": "completed",
+  "source": "CryptoHFTData Binance USD-M L2 hourly Parquet, anonymous access",
+  "order_source": "EXP-019 full OOS event export",
+  "execution_method": "Rebuild from snapshots and sequence-checked updates in published row order; sweep exact actual order delta against visible bid/ask levels.",
+  "signal_state_methods": {
+    "asof": "Last valid book state known by collector at signal timestamp (no look-ahead).",
+    "first_after": "Book after first complete message received at or after signal; delay is measured from received_time."
+  },
+  "assumptions": {
+    "fee_bp_one_way": 5,
+    "existing_model_slippage_bp_one_way": 2,
+    "capital_reference_usdt": 100,
+    "leverage": 1
+  },
+  "limitations": [
+    "L2 is aggregated price-level data, not L3/FIFO queue position.",
+    "A displayed-depth sweep is a snapshot taker-cost estimate, not a guarantee of live fills.",
+    "No network delay beyond the archive receive timestamp, hidden liquidity, impact after the snapshot, or exchange liquidation engine is modeled.",
+    "The two dates are a small bull/bear execution sample, not all 268 OOS order deltas.",
+    "No profitability, final capital, or strategy drawdown is recalculated."
+  ],
+  "files": [
+    {
+      "date": "2026-09-03",
+      "hour": "08",
+      "symbol": "BTCUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-09-03/07/BTCUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 23649422,
+          "sha256": "357efcf6019fb965054c36745911ff221aa4d280e2c27d0d2ea44088e933add7",
+          "rows": 5776457,
+          "first_received_time_ns": 1788418800012420266,
+          "last_received_time_ns": 1788422399997320940,
+          "snapshot_messages": 0
+        },
+        {
+          "path": "binance_futures/2026-09-03/08/BTCUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 20655325,
+          "sha256": "e1e2e66c0cf8cbc1663871312cccb0fe9e50de4d1f536b9dc5202e5c997102dd",
+          "rows": 4940273,
+          "first_received_time_ns": 1788422400023396321,
+          "last_received_time_ns": 1788425999981852037,
+          "snapshot_messages": 5000
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 1,
+      "updates_ignored_invalid": 221575
+    },
+    {
+      "date": "2026-09-03",
+      "hour": "08",
+      "symbol": "SOLUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-09-03/07/SOLUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 11726856,
+          "sha256": "f655df463a7ebcca28669be65c8fd29a7a3274a52e96111002d4480bec67ccb4",
+          "rows": 1147934,
+          "first_received_time_ns": 1788418800023432256,
+          "last_received_time_ns": 1788422399972936426,
+          "snapshot_messages": 0
+        },
+        {
+          "path": "binance_futures/2026-09-03/08/SOLUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 10910608,
+          "sha256": "fd49c51d16f2e389a5fea590f829986b189cc00703933df052d1d925874f2687",
+          "rows": 1021731,
+          "first_received_time_ns": 1788422400004902679,
+          "last_received_time_ns": 1788425999978338383,
+          "snapshot_messages": 6000
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 1,
+      "updates_ignored_invalid": 202726
+    },
+    {
+      "date": "2026-10-24",
+      "hour": "16",
+      "symbol": "BTCUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-10-24/16/BTCUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 27203184,
+          "sha256": "f7838212996a859e0f92b3bb980b1ca0b4413d1d293a26560ea2fe61db2c68e7",
+          "rows": 6810216,
+          "first_received_time_ns": 1792857600000000000,
+          "last_received_time_ns": 1792861199981490620,
+          "snapshot_messages": 53153
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 1,
+      "updates_ignored_invalid": 0
+    },
+    {
+      "date": "2026-10-24",
+      "hour": "16",
+      "symbol": "ETHUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-10-24/16/ETHUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 33465498,
+          "sha256": "df9646300e7a0e39e1d5a1c11a066c9b1eb84e65a8189619bd19c0094c92d550",
+          "rows": 6916486,
+          "first_received_time_ns": 1792857600000000000,
+          "last_received_time_ns": 1792861199977200236,
+          "snapshot_messages": 50010
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 1,
+      "updates_ignored_invalid": 0
+    },
+    {
+      "date": "2026-10-24",
+      "hour": "16",
+      "symbol": "SOLUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-10-24/16/SOLUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 13245055,
+          "sha256": "163f16eb8f63f7e9d38e7ae3e539b2855c136636e57f521405f15dea639c4d0f",
+          "rows": 1497290,
+          "first_received_time_ns": 1792857600000000000,
+          "last_received_time_ns": 1792861199994408581,
+          "snapshot_messages": 9181
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 1,
+      "updates_ignored_invalid": 0
+    }
+  ],
+  "orders": [
+    {
+      "time_utc": "2026-09-03T08:00:00+00:00",
+      "regime": "bull",
+      "symbol": "BTCUSDT",
+      "side": "SELL",
+      "order_delta_notional_usdt": 38.3953837,
+      "asof_execution": {
+        "status": "no_valid_asof_book"
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 0.000494648187,
+        "strategy_order_notional_usdt": 38.3953837,
+        "reference_mark_price": 77621.6,
+        "best_bid": 77917.7,
+        "best_ask": 77917.8,
+        "mid": 77917.75,
+        "spread_bp": 0.012834046158394046,
+        "vwap": 77917.7,
+        "filled_qty": 0.000494648187,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.006417027196281566,
+        "market_cost_vs_mark_bp": -38.14659836952488,
+        "book_delay_ms": 2333711.722141,
+        "book_age_ms": -2333945.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11462637224882
+      }
+    },
+    {
+      "time_utc": "2026-09-03T08:00:00+00:00",
+      "regime": "bull",
+      "symbol": "SOLUSDT",
+      "side": "BUY",
+      "order_delta_notional_usdt": 38.3953837,
+      "asof_execution": {
+        "status": "no_valid_asof_book"
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "BUY",
+        "quantity": 0.382614685585,
+        "strategy_order_notional_usdt": 38.3953837,
+        "reference_mark_price": 100.35,
+        "best_bid": 100.74,
+        "best_ask": 100.75,
+        "mid": 100.745,
+        "spread_bp": 0.99260509206463,
+        "vwap": 100.75000000000001,
+        "filled_qty": 0.382614685585,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.49630254603361124,
+        "market_cost_vs_mark_bp": 39.86048829098365,
+        "book_delay_ms": 2341674.70835,
+        "book_age_ms": -2379971.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11462641695324
+      }
+    },
+    {
+      "time_utc": "2026-10-24T16:00:00+00:00",
+      "regime": "bear",
+      "symbol": "BTCUSDT",
+      "side": "SELL",
+      "order_delta_notional_usdt": 85.34048489,
+      "asof_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 0.001069742546,
+        "strategy_order_notional_usdt": 85.34048489,
+        "reference_mark_price": 79776.65766667,
+        "best_bid": 79761.7,
+        "best_ask": 79761.8,
+        "mid": 79761.75,
+        "spread_bp": 0.012537337759743332,
+        "vwap": 79761.7,
+        "filled_qty": 0.001069742546,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.006268672809728315,
+        "market_cost_vs_mark_bp": 1.874942759885832,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 143.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11912262793930
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 0.001069742546,
+        "strategy_order_notional_usdt": 85.34048489,
+        "reference_mark_price": 79776.65766667,
+        "best_bid": 79761.7,
+        "best_ask": 79761.8,
+        "mid": 79761.75,
+        "spread_bp": 0.012537337759743332,
+        "vwap": 79761.7,
+        "filled_qty": 0.001069742546,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.006268672809728315,
+        "market_cost_vs_mark_bp": 1.874942759885832,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 143.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11912262793930
+      }
+    },
+    {
+      "time_utc": "2026-10-24T16:00:00+00:00",
+      "regime": "bear",
+      "symbol": "ETHUSDT",
+      "side": "SELL",
+      "order_delta_notional_usdt": 85.34048489,
+      "asof_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 0.037013900167,
+        "strategy_order_notional_usdt": 85.34048489,
+        "reference_mark_price": 2305.63341085,
+        "best_bid": 2304.73,
+        "best_ask": 2304.74,
+        "mid": 2304.7349999999997,
+        "spread_bp": 0.04338893625411829,
+        "vwap": 2304.73,
+        "filled_qty": 0.037013900167,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.021694515190961994,
+        "market_cost_vs_mark_bp": 3.918276191473764,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 143.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11912262794094
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 0.037013900167,
+        "strategy_order_notional_usdt": 85.34048489,
+        "reference_mark_price": 2305.63341085,
+        "best_bid": 2304.73,
+        "best_ask": 2304.74,
+        "mid": 2304.7349999999997,
+        "spread_bp": 0.04338893625411829,
+        "vwap": 2304.73,
+        "filled_qty": 0.037013900167,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.021694515190961994,
+        "market_cost_vs_mark_bp": 3.918276191473764,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 143.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11912262794094
+      }
+    },
+    {
+      "time_utc": "2026-10-24T16:00:00+00:00",
+      "regime": "bear",
+      "symbol": "SOLUSDT",
+      "side": "BUY",
+      "order_delta_notional_usdt": 40.23687321,
+      "asof_execution": {
+        "status": "full_depth_sweep",
+        "side": "BUY",
+        "quantity": 0.403498528006,
+        "strategy_order_notional_usdt": 40.23687321,
+        "reference_mark_price": 99.72,
+        "best_bid": 99.71,
+        "best_ask": 99.72,
+        "mid": 99.715,
+        "spread_bp": 1.0028581457158017,
+        "vwap": 99.72,
+        "filled_qty": 0.403498528006,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.5014290728566628,
+        "market_cost_vs_mark_bp": 0.0,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 140.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11912262794459
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "BUY",
+        "quantity": 0.403498528006,
+        "strategy_order_notional_usdt": 40.23687321,
+        "reference_mark_price": 99.72,
+        "best_bid": 99.71,
+        "best_ask": 99.72,
+        "mid": 99.715,
+        "spread_bp": 1.0028581457158017,
+        "vwap": 99.72,
+        "filled_qty": 0.403498528006,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.5014290728566628,
+        "market_cost_vs_mark_bp": 0.0,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 140.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11912262794459
+      }
+    }
+  ],
+  "summary": {
+    "orders": 5,
+    "asof": {
+      "valid_orders": 3,
+      "all_orders": 5,
+      "full_depth_fill_count": 3,
+      "median_cost_vs_mid_bp": 0.021694515190961994,
+      "max_cost_vs_mid_bp": 0.5014290728566628,
+      "median_cost_vs_mark_bp": 1.874942759885832,
+      "max_cost_vs_mark_bp": 3.918276191473764,
+      "notional_weighted_cost_vs_mid_bp": 0.10697212588344296,
+      "notional_weighted_cost_vs_mark_bp": 2.3440222381110045
+    },
+    "first_after": {
+      "valid_orders": 5,
+      "all_orders": 5,
+      "full_depth_fill_count": 5,
+      "median_cost_vs_mid_bp": 0.021694515190961994,
+      "max_cost_vs_mid_bp": 0.5014290728566628,
+      "median_cost_vs_mark_bp": 1.874942759885832,
+      "max_cost_vs_mark_bp": 39.86048829098365,
+      "notional_weighted_cost_vs_mid_bp": 0.1455098646589119,
+      "notional_weighted_cost_vs_mark_bp": 1.9471143904159245
+    }
+  }
+}
