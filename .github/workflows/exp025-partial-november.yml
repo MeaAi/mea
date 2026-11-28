@@ -1,0 +1,30 @@
+name: EXP-025 partial November forward validation
+on:
+  push:
+    branches:
+      - research/meaflow-exp025-monthly-funding-fix-prep-v1
+    paths:
+      - research/exp025_november_forward_validation.py
+      - research/exp025_forward_simulator.py
+      - .github/workflows/exp025-partial-november.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  partial-forward-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run partial November validation
+        run: python research/exp025_november_forward_validation.py
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp025-partial-november-report
+          path: research-results/exp025_november_forward_validation.json
+          if-no-files-found: warn
