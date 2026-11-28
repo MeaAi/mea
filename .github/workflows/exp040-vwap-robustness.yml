@@ -1,0 +1,40 @@
+name: EXP-040 VWAP robustness vs frozen MEAFLOW-72
+
+on:
+  push:
+    branches:
+      - research/exp040-vwap-robustness
+    paths:
+      - ".github/workflows/exp040-vwap-robustness.yml"
+      - "research/exp040_vwap_robustness.py"
+      - "research/exp039_binance_vwap.py"
+      - "research/funding_carry_liquidation_causal.py"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: exp040-vwap-robustness
+  cancel-in-progress: false
+
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - name: Checkout isolated robustness branch
+        uses: actions/checkout@v6
+        with:
+          ref: research/exp040-vwap-robustness
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Run matched robustness comparisons
+        run: python research/exp040_vwap_robustness.py
+      - name: Upload reproducible report
+        uses: actions/upload-artifact@v6
+        with:
+          name: exp040-vwap-robustness-results
+          path: research-results/exp040_vwap_robustness.json
+          retention-days: 90
