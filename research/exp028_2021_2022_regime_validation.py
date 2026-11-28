@@ -85,9 +85,11 @@ def main():
     all_times = sorted(set(t for s in data for t in data[s]["fund"] if first <= t <= last))
     required = math.ceil(.8 * len(data))
     coverage = {t: sum(t in data[s]["fund"] and t in data[s]["marks"] for s in data) for t in all_times}
-    aligned = [t for t in all_times if coverage[t] >= required]
-    if len(aligned) < 100:
-        raise RuntimeError("BLOCKED: fewer than 100 aligned funding events: " + str(len(aligned)))
+    usable_events = [t for t in all_times if coverage[t] >= 1]
+    aligned_80pct = [t for t in all_times if coverage[t] >= required]
+    full_coverage_events = [t for t in all_times if coverage[t] == len(data)]
+    if len(usable_events) < 100:
+        raise RuntimeError("BLOCKED: fewer than 100 usable per-symbol funding events: " + str(len(usable_events)))
 
     period = (first, last)
     baseline = sim.run(data, period, 1.0, 5, slip_bp=2,
@@ -154,7 +156,7 @@ def main():
             "monthly_archives_per_symbol": len(months) * 2,
             "context_months": months,
             "funding_events_in_window": len(all_times),
-            "aligned_funding_events": len(aligned),
+            "usable_funding_events_any_symbol": len(usable_events),\n            "events_with_80pct_symbol_coverage": len(aligned_80pct),\n            "events_with_full_13_symbol_coverage": len(full_coverage_events),
             "required_symbols_per_event": required,
             "event_coverage_histogram": {str(n): sum(v == n for v in coverage.values()) for n in range(len(data)+1) if any(v == n for v in coverage.values())},
             "errors": errors, "per_symbol": monthly_meta
@@ -174,7 +176,7 @@ def main():
         "rebalance_log": baseline["rebalance_log"],
         "limitations": [
             "This is a new historical validation window not present in the handoff ledger; it is not a future/live forward test.",
-            "Monthly archive ZIP CRC is checked by the shared loader; SHA-256 sidecar checksums are not required by this evaluator. FundingTime timestamps are normalized to the nearest hour only when the offset is <=100 ms; any larger offset or collision blocks the run.",
+            "Monthly archive ZIP CRC is checked by the shared loader; SHA-256 sidecar checksums are not required by this evaluator. FundingTime timestamps are normalized to the nearest hour only when the offset is <=100 ms; any larger offset or collision blocks the run. The simulator processes each symbol settlement independently whenever that symbol has a matching mark, including 4-hour funding schedules; it does not discard symbol-specific events merely because other symbols do not settle simultaneously.",
             "Hourly OHLC adverse-mark DD and liquidation remain approximations, not Binance's exact portfolio margin engine.",
             "Fixed 2 bp one-way slippage; no event-level L2 fills, partial fills, market impact, or dynamic funding execution costs.",
             "Historical listing dates and universe composition can introduce survivorship/availability bias; report per-symbol data coverage."
