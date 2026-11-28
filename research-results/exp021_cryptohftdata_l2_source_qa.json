@@ -1,0 +1,60 @@
+{
+  "experiment": "EXP-021-CRYPTOHFTDATA-BINANCE-FUTURES-L2-SOURCE-QA",
+  "status": "partial",
+  "access": "anonymous, no API key",
+  "source": "CryptoHFTData hourly Binance USD-M orderbook Parquet",
+  "source_path_pattern": "binance_futures/{date}/{hour}/{symbol}_orderbook.parquet",
+  "orders_selected_from": "EXP-019 actual OOS order events",
+  "files": [
+    {
+      "date": "2026-09-03",
+      "hour_utc": "08",
+      "symbol": "BTCUSDT",
+      "status": "error",
+      "error": "No module named 'pandas'"
+    },
+    {
+      "date": "2026-09-03",
+      "hour_utc": "08",
+      "symbol": "SOLUSDT",
+      "status": "error",
+      "error": "No module named 'pandas'"
+    },
+    {
+      "date": "2026-10-24",
+      "hour_utc": "16",
+      "symbol": "BTCUSDT",
+      "status": "error",
+      "error": "No module named 'pandas'"
+    },
+    {
+      "date": "2026-10-24",
+      "hour_utc": "16",
+      "symbol": "ETHUSDT",
+      "status": "error",
+      "error": "No module named 'pandas'"
+    },
+    {
+      "date": "2026-10-24",
+      "hour_utc": "16",
+      "symbol": "SOLUSDT",
+      "status": "error",
+      "error": "No module named 'pandas'"
+    }
+  ],
+  "limitations": [
+    "This is source and sequence QA only; it does not calculate execution costs or fills.",
+    "L2 is aggregate quantity per price level, not L3/FIFO queue position.",
+    "Binance reconnects can create short sequence gaps; books must be invalidated at a gap until a new snapshot.",
+    "Provider documents duplicate REST snapshot rows in some pre-2026-09-30 files; replay must treat identical snapshots safely.",
+    "Provider documents historical empty-snapshot omissions before its 2026-10 data-quality release; any affected stale book must be rejected."
+  ],
+  "summary": {
+    "files_tested": 5,
+    "files_downloaded_and_read": 0,
+    "files_with_sequence_gaps": 0,
+    "files_with_hour_start_checkpoint": 0,
+    "total_rows": 0,
+    "failed_files": 5
+  }
+}
