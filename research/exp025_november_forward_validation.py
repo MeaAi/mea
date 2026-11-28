@@ -70,7 +70,18 @@ def load_symbol_forward(symbol):
         missing = set(vision_oct) ^ set(mirror_oct)
         if missing:
             raise RuntimeError("Funding mirror October timestamp population mismatch: " + str(len(missing)))
-        funding.update(load_funding_rest(symbol, START, END))
+        november_raw = load_funding_rest(symbol, START, END)
+        # API fundingTime carries 1-5 ms serialization offsets around exact hourly
+        # settlements; normalize only when within 10 ms of an hour boundary.
+        november = {}
+        for ts, rate in november_raw.items():
+            hour_ts = round(ts / 3600000) * 3600000
+            if abs(ts - hour_ts) > 10:
+                raise RuntimeError("Funding timestamp is not within 10 ms of an hourly settlement: " + str(ts))
+            november[hour_ts] = rate
+        if len(november) != len(november_raw):
+            raise RuntimeError("Funding timestamp normalization collision for " + symbol)
+        funding.update(november)
     except Exception as exc:
         errors.append({'date':'2026-11-01..26','kind':'validated_public_funding_mirror','error':str(exc)})
     for date in DATES:
