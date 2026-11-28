@@ -1,0 +1,40 @@
+name: EXP-049 MEAFLOW-72 position duration
+on:
+  push:
+    branches: [research/exp049-position-duration]
+    paths:
+      - "research/funding_carry_duration.py"
+      - "research/exp049_meaflow72_position_duration.py"
+      - ".github/workflows/exp049-position-duration.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: exp049-position-duration
+  cancel-in-progress: false
+jobs:
+  duration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/exp049-position-duration
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run duration diagnostics on official Binance Vision data
+        run: |
+          cd research
+          python exp049_meaflow72_position_duration.py --start 2023-01 --end 2026-10 --out ../research-output/exp049_position_duration.json
+          cd ..
+      - name: Publish report
+        run: |
+          mkdir -p research-results
+          cp research-output/exp049_position_duration.json research-results/
+          rm -rf research-output
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research-results/exp049_position_duration.json
+          git commit -m "Publish EXP-049 position duration diagnostics"
+          git push origin HEAD:research/exp049-position-duration
