@@ -18,30 +18,15 @@ def download_sopr():
     Path("research-output/sth-sopr-source.json").write_bytes(raw)
     obj=json.loads(raw)
     rows=[]
-    def walk(x):
-        if isinstance(x,dict):
-            # Common chart schemas: {date,value}, {timestamp,value}, {x,y}
-            date=next((x[k] for k in ("date","day","timestamp","time","t") if k in x),None)
-            val=next((x[k] for k in ("sth_sopr","sopr","value","y","v") if k in x),None)
-            if date is not None and val is not None:
-                try:
-                    if isinstance(date,(int,float)):
-                        dt=datetime.fromtimestamp(date/1000 if date>10**11 else date,timezone.utc).date().isoformat()
-                    else: dt=str(date)[:10]
-                    v=float(val)
-                    if math.isfinite(v) and dt[:4].isdigit(): rows.append((dt,v))
-                except Exception: pass
-            for v in x.values(): walk(v)
-        elif isinstance(x,list):
-            if len(x)>=2 and isinstance(x[0],(str,int,float)) and isinstance(x[1],(int,float)):
-                try:
-                    d=x[0]
-                    dt=datetime.fromtimestamp(d/1000 if isinstance(d,(int,float)) and d>10**11 else d,timezone.utc).date().isoformat() if isinstance(d,(int,float)) else str(d)[:10]
-                    rows.append((dt,float(x[1])))
-                except Exception: pass
-            else:
-                for v in x: walk(v)
-    walk(obj)
+    # Black Almanak schema: {"rows":[{"d":"YYYY-MM-DD","values":[sth_sopr, btc_price]}, ...]}
+    source_rows=obj.get("rows",[]) if isinstance(obj,dict) else []
+    for row in source_rows:
+        try:
+            dt=str(row["d"])[:10]
+            v=float(row["values"][0])
+            if math.isfinite(v) and 0.5<v<1.5: rows.append((dt,v))
+        except (KeyError,IndexError,TypeError,ValueError):
+            continue
     dedup={d:v for d,v in rows if 0.5<v<1.5}
     if len(dedup)<500:
         raise RuntimeError("Could not parse >=500 daily STH-SOPR rows. JSON top-level="+str(type(obj).__name__)+" keys="+str(list(obj)[:20] if isinstance(obj,dict) else "not-dict")+" sample="+raw[:1200].decode("utf-8","replace"))
