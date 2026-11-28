@@ -1,0 +1,29 @@
+name: EXP-036 DAR forecast multiwindow robustness
+on:
+  push:
+    branches:
+      - research/exp036-dar1-multiwindow-robustness-v1
+    paths:
+      - research/exp036_dar1_multiwindow_robustness.py
+      - research/exp025_forward_simulator.py
+      - .github/workflows/exp036-dar1-multiwindow-robustness.yml
+permissions:
+  contents: read
+jobs:
+  dar1-multiwindow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run fixed DAR forecast robustness windows
+        run: python research/exp036_dar1_multiwindow_robustness.py
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp036-dar1-multiwindow-report
+          path: research-results/exp036_dar1_multiwindow_robustness.json
+          if-no-files-found: warn
