@@ -171,6 +171,8 @@ def execute(order,book,signal_ns):
         return {"status":"invalid_or_missing_book"}
     bids=book["bids"]; asks=book["asks"]
     if not bids or not asks: return {"status":"empty_or_one_sided_book"}
+    if bids[0][0] >= asks[0][0]:
+        return {"status":"crossed_or_invalid_book","best_bid":bids[0][0],"best_ask":asks[0][0]}
     side=order["side"]; qty=abs(float(order["quantity_delta"]))
     levels=asks if side=="BUY" else bids
     ex=sweep(levels,qty)
@@ -222,7 +224,8 @@ def main():
                 "No network delay beyond the archive receive timestamp, hidden liquidity, impact after the snapshot, or exchange liquidation engine is modeled.",
                 "The two dates are a small bull/bear execution sample, not all 268 OOS order deltas.",
                 "No profitability, final capital, or strategy drawdown is recalculated.",
-                "A first-after-signal book arriving more than 1,000 ms after the signal is marked stale and excluded from execution-cost aggregates."
+                "A first-after-signal book arriving more than 1,000 ms after the signal is marked stale and excluded from execution-cost aggregates.",
+                "The provider documents historical empty-snapshot omissions before its 2026-10 data-quality release; crossed books are rejected, but a non-crossed stale level cannot always be identified from this caveat alone."
             ],
             "files":[],"orders":[]}
     for (date,hour,symbol),sym_orders in sorted(grouped.items()):
