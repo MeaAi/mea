@@ -640,9 +640,20 @@ The following run SHAs are GitHub Actions `head_sha` values (workflow-trigger co
 
 
 ### EXP-034 — Funding-rank entry/exit hysteresis screen (2026-11-28)
-- Status: RUNNING; no result available yet.
+- Status: COMPLETED; REJECTED under the joint acceptance rule.
 - Research branch: `research/exp034-funding-rank-hysteresis-v1`; base EXP-028 corrected simulator commit `33eb7483889eba449566290d5a8a1303a497b347`; simulator option commit `c900c6b8012e94614f142b10f2b57bbae0999369`; evaluator commit `aab3d130e7817fb4e96d5b7f57dd8cf257a39e6c`; workflow/head commit `6ec80d4c205b208abd7b4619c1f6ea853c224995`.
-- Actions run `46134399127`, job `140946360730`; currently in progress at the latest check.
-- Predeclared hypothesis: reduce marginal rank churn without changing the frozen funding score, lookback, rebalance cadence, tails, regime policy, or exposure. New long entries must be in the original bottom 20%; existing longs may remain until leaving the bottom 30%. New shorts must be in the original top 20%; existing shorts may remain until leaving the top 30%. Keep at most the original k positions per side; equal-weight selected positions to the same side gross exposure. This is cross-regime funding-rank hysteresis, not sideways retention or regime debounce.
-- Screen window: 2021-10-01 through 2022-12-31 UTC, with 2021-09 context; 100 USDT, 1x, 5bp one-way fee + 2bp one-way slippage; 13-symbol frozen universe. Baseline and candidate are matched on the corrected EXP-028 simulator. The candidate has no tuned thresholds beyond the single predeclared 20% entry / 30% exit bands.
-- Report/artifact and decision will be appended after the workflow completes. No MEAFLOW-72 or MEAFLOW-52 branch is modified.
+- Actions run `46134399127`, job `140946360730`, success. Artifact ID `15258674677`, SHA-256 `13f85449df77e672ec45386f57d1d81e94f86c900aab80a7d687b0f28b891fdc`.
+- Predeclared rule: new long entries in original bottom 20%; incumbents remain until leaving bottom 30%. New shorts in original top 20%; incumbents remain until leaving top 30%. Maximum original k positions per side; equal-weight to same side gross. No other strategy settings changed.
+- Window 2021-10-01 through 2022-12-31 UTC; 2021-09 context; 100 USDT, 1x, 5bp one-way fee + 2bp one-way slippage. 13/13 symbols; 1,446 usable funding events; 1,371 full 13-symbol events; 18 daily mark supplements.
+- Baseline: 100 -> 218.133618 USDT; +118.1336%; hourly adverse DD -47.1792%; 145 rebalances; 10,960 adverse checks.
+- Hysteresis candidate: 100 -> 174.171739 USDT; +74.1717%; DD -49.6667%; 145 rebalances; no liquidation. Return delta -43.9619 pp; DD delta -2.4875 pp. Joint gate FAILED.
+- Turnover decreased from 17,745.790326 to 9,916.174044 USDT (-7,829.616282 USDT, -44.1%); order deltas decreased from 345 to 300 (-45). Lower turnover did not translate to better return or DD.
+- Candidate regime contributions: bull -28.820; bear +90.097; sideways +12.895 USDT. Notable symbol contributions: ETH +37.610; LINK +40.351; SOL +28.769; BTC +30.336; LTC -59.983; DOGE -24.306; TRX -22.690 USDT.
+- Decision: REJECT; do not promote or retune on this window. Hysteresis cut turnover but worsened both return and drawdown.
+- No protected strategy branch modified.
+
+### Updated next queue after EXP-034
+1. Reject 20% entry / 30% exit funding-rank hysteresis; do not retune these bands on the same 2021-2022 screen.
+2. No tested candidate from EXP-032/033/034 is eligible for promotion: EXP-032 passed one screen but failed all four robustness windows; EXP-034 failed even the initial joint gate.
+3. Before another run, audit the remaining untested mechanisms in the repository and predeclare one distinct hypothesis. Avoid repeating rank hysteresis, relative momentum, OI, basis, absorption/maker, OBI/OFI, funding EWMA, regime mappings, hard stops, leverage, volatility sizing, or symbol selection.
+4. Keep MEAFLOW-72 frozen at `a1e5293e9e7b7258ab43b6c95ff13bfeefe2abb1`.
