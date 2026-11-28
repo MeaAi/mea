@@ -519,3 +519,26 @@ The following run SHAs are GitHub Actions `head_sha` values (workflow-trigger co
 1. Do not repeat the per-symbol hard-stop thresholds on this same November sample. If revisited, require a new independent period and a predeclared threshold from validation data.
 2. The proposed 2024-07/08 order-flow extension is already covered by completed EXP-014 (54/54 OOS combinations negative); do not rerun it as a new experiment.
 3. For MEAFLOW-72, next useful work is a genuinely new independent market window with enough rebalances in bull, bear, and sideways regimes. EXP-025/027's 26-day November sample is bear-only at rebalance points and cannot validate all regimes.
+
+
+### EXP-028 — Independent 2021-2022 MEAFLOW-72 regime validation (2026-11-28)
+- Status: COMPLETED; frozen baseline validated on a new historical window with all three regimes represented.
+- Branch: research/exp028-2021-2022-regime-validation-v1.
+- Evaluator commit 779ceac07d67601f7b33e8d012193d598a250d78; simulator event-union commit 8594b0bc4403f149b2f7b690e4a2b468feba8248; rebalance-eligibility commit 683deb30597b8252396bfd5fe69ff3f231493d7b; report commit 33eb7483889eba449566290d5a8a1303a497b347; report research/EXP028_2021_2022_REGIME_VALIDATION.md.
+- Final Actions run 46132144557, job 140939435063, success. Artifact ID 15258171771, SHA-256 b6d5411c3b2e29c26b32ecf271732d8ea5930371e2d5fdb060a064e02cc52183.
+- Period: 2021-10-01 00:00 UTC to 2022-12-31 23:00 UTC; September 2021 loaded as lookback/regime context. Free Binance Vision monthly fundingRate + 1h markPriceKlines; 13/13 symbols.
+- Data correction: historical fundingTime values had offsets up to 47 ms; normalized to nearest hour only within 100 ms. Funding schedules included 1,371 common 13-symbol events and 75 SOL-only events. Simulator copy now processes each symbol settlement whenever that symbol has a matching mark, while rebalancing only at >=80%-coverage events. This avoids discarding SOL's additional 4h settlements and avoids rebalancing on SOL-only events.
+- Data correction: 18 missing hourly mark days were supplemented from daily Binance Vision archives with SHA-256 sidecar + ZIP CRC verification. Final evaluation mark coverage 100% for all 13 symbols. 1,446 usable funding events; 1,371 common 13-symbol events; no unresolved data errors.
+- Frozen MEAFLOW-72 result at 100 USDT, 1x, 5 bp one-way fee + 2 bp one-way slippage: final 218.133618 USDT; +118.1336%; hourly adverse-mark max DD -47.1792%; no liquidation; 145 rebalances; 10,960 adverse checks.
+- Unfiltered control: 100.000036 USDT; +0.0000%; DD -36.7618%. MEAFLOW-72 regime policy gains 118.1336 percentage points return but worsens DD by 10.4174 pp; joint acceptance gate fails.
+- Sideways-flat control: 169.316379 USDT; +69.3164%; DD -48.2095%. Frozen sideways-hold policy beats it by +48.8172 pp return and improves DD by 1.0303 pp; joint gate passes in this new historical window. This supports retaining the existing hold behavior; no new strategy promotion.
+- Hourly regime occupancy: bull 2,732 (24.909%); bear 5,761 (52.526%); sideways 2,474 (22.557%); unknown 1. Rebalance events: bull 35, bear 53, sideways 57 (zero order deltas while holding).
+- Regime net contribution: bull -31.3099 USDT; bear +121.3978 USDT; sideways +28.0457 USDT. Symbol net contributions: BTC +20.5238; ETH +60.2439; SOL +40.6110; LTC -88.9907; DOGE -6.9354; LINK -5.1535 USDT.
+- Fee sensitivity at 2/5/8 bp one-way: +123.6265%/-46.7093%; +118.1336%/-47.1792%; +112.7722%/-47.6453%.
+- Earlier EXP-028 runs are diagnostic/superseded: initial run missed millisecond timestamp alignment; subsequent run initially dropped SOL-only funding events; later run exposed hourly mark gaps. Final run 46132144557 includes normalized funding timestamps, per-symbol settlement processing, eligible rebalance gating, and checksum-verified daily mark supplements. Use only the final report.
+- Limitations: historical, not future/live; hourly OHLC adverse DD/liquidation approximation; fixed slippage, no L2/partial fills/market impact. No protected strategy branch modified.
+
+### Updated next queue after EXP-028
+1. EXP-029 candidate hypothesis: test bull=flat, bear=short_only, sideways=hold, unknown=flat on a separate research copy. Rationale: bull-regime net contribution was negative (-31.31 USDT) in EXP-028 while bear was +121.40 USDT. Predeclare this as a single policy screen, not a parameter sweep; compare against frozen MEAFLOW-72 on the same 2021-2022 period and require both return improvement and lower max DD before considering any further validation. No promotion from one window.
+2. If EXP-029 passes the initial screen, run it across the previously recorded 2023-2026 windows as a robustness check, clearly labeling those windows as previously inspected rather than pristine OOS.
+3. Keep MEAFLOW-72 and MEAFLOW-52 protected branches unchanged.
