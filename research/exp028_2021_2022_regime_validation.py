@@ -82,6 +82,35 @@ def main():
         raise RuntimeError("BLOCKED: not all 13 frozen-universe symbols loaded: " + json.dumps(errors))
     data = {s: data[s] for s in sorted(data)}
     first, last = ms(START), ms(END)
+    expected_hours = list(range(first, last + 1, 3600000))
+    for symbol in sorted(data):
+        actual = set(data[symbol]["marks"])
+        missing = [t for t in expected_hours if t not in actual]
+        gap_ranges = []
+        gap_start = gap_prev = None
+        for ts in missing:
+            if gap_start is None:
+                gap_start = gap_prev = ts
+            elif ts == gap_prev + 3600000:
+                gap_prev = ts
+            else:
+                gap_ranges.append({
+                    "start_utc": datetime.fromtimestamp(gap_start/1000, timezone.utc).isoformat(),
+                    "end_utc_inclusive": datetime.fromtimestamp(gap_prev/1000, timezone.utc).isoformat(),
+                    "missing_hours": int((gap_prev-gap_start)/3600000)+1
+                })
+                gap_start = gap_prev = ts
+        if gap_start is not None:
+            gap_ranges.append({
+                "start_utc": datetime.fromtimestamp(gap_start/1000, timezone.utc).isoformat(),
+                "end_utc_inclusive": datetime.fromtimestamp(gap_prev/1000, timezone.utc).isoformat(),
+                "missing_hours": int((gap_prev-gap_start)/3600000)+1
+            })
+        monthly_meta[symbol]["evaluation_expected_hourly_bars"] = len(expected_hours)
+        monthly_meta[symbol]["evaluation_actual_hourly_bars"] = len(expected_hours)-len(missing)
+        monthly_meta[symbol]["evaluation_missing_hourly_bars"] = len(missing)
+        monthly_meta[symbol]["evaluation_mark_coverage_pct"] = round(100*(len(expected_hours)-len(missing))/len(expected_hours),4)
+        monthly_meta[symbol]["evaluation_missing_hour_ranges"] = gap_ranges
     all_times = sorted(set(t for s in data for t in data[s]["fund"] if first <= t <= last))
     required = math.ceil(.8 * len(data))
     coverage = {t: sum(t in data[s]["fund"] and t in data[s]["marks"] for s in data) for t in all_times}
