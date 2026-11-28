@@ -215,8 +215,9 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
      if forecast is not None and s in px:
       scores[s]=forecast["forecast_7d_rate_sum"]
       future_events=sorted(et for et in data[s]["fund"] if et>t)
-      actual_next=data[s]["fund"][future_events[0]] if future_events else None
-      forecast_log.append({"timestamp_ms":t,"symbol":s,**forecast,"actual_next_rate":actual_next})
+      actual_next_time=future_events[0] if future_events else None
+      actual_next=data[s]["fund"][actual_next_time] if actual_next_time is not None else None
+      forecast_log.append({"timestamp_ms":t,"symbol":s,**forecast,"actual_next_time_ms":actual_next_time,"actual_next_rate":actual_next})
     elif len(vals)>=12 and s in px:
      scores[s]=sum(vals)
    ordered=sorted(scores,key=lambda s:(scores[s],s));k=max(1,int(len(ordered)*tail_fraction))
