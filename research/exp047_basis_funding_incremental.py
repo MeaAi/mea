@@ -107,7 +107,7 @@ def main():
    def prem(tt):return 10000*(pp[tt]/sp[tt]-1) if tt in pp and tt in sp else np.nan
    basis=prem(t-1)
    changes=[basis-prem(t-1-d) for d in (DAY,3*DAY,5*DAY,7*DAY)]
-   events=[v for tt,v in fu.items() if t*H-7*24*H < tt <= t*H]
+   events=[v for tt,v in fu.items() if t-7*24 < tt <= t]
    funding=float(np.sum(events)) if len(events)>=12 else np.nan
    target=np.log(pp[t+WEEK]/pp[t]) if t+WEEK in pp and t in pp else np.nan
    vals.append([funding,basis,*changes,target])
