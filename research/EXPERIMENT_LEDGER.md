@@ -121,3 +121,19 @@ Protected strategy base: `MEAFLOW-72` at `a1e5293e9e7b7258ab43b6c95ff13bfeefe2ab
 - EXP043 rejected at univariate screen gates; EXP047 is the distinct funding-conditional follow-up.
 - EXP047 is in implementation on `research/exp047-basis-funding-incremental`; first run failed due to an hour-vs-millisecond timestamp unit bug; corrected run 46181004123 queued. Do not restart EXP043 or repeat EXP045 peer-mean/EXP046 leader-LASSO.
 - Protected MEAFLOW-72 branch remains at `a1e5293e9e7b7258ab43b6c95ff13bfeefe2abb1`; no experiment changes it.
+
+
+## EXP-047 — corrected run completed; preliminary screen result (2026-11-28)
+- Corrected GitHub Actions run `46181004123` completed successfully (job `141090289305`); artifact `15277337754`, SHA-256 `3eab5b29b84345e3e9059ce3ddb73731d6384ee7e84628a0b5667e5ef16a0af0`. Run URL: https://github.com/MeaAi/mea/actions/runs/46181004123
+- Data window: 2023-01-19 through 2026-10-22; 13 frozen symbols; 197 complete weekly cross-sections; chronological split 98 train / 39 validation / 60 OOS.
+- Preliminary OOS incremental MSE reduction (positive is better) for basis added to funding-only model:
+  - Basis level: -0.000011258; 95% block CI [-0.000028686, +0.000006518].
+  - 1d change: -0.000023716; CI [-0.000051079, +0.000004581].
+  - 3d change: +0.000000991; CI [-0.000000596, +0.000002533].
+  - 5d change: +0.000001539; CI [-0.000003992, +0.000007076].
+  - 7d change: -0.000005145; CI [-0.000013923, +0.000002989].
+- None of the 95% intervals has a lower bound above zero. Therefore the preregistered primary statistical gate fails; no basis variant qualifies for portfolio-stage integration. This is a preliminary screen conclusion, not a MEAFLOW portfolio result.
+- Regime OOS counts: bull 17, bear 17, sideways 26. Structural-break OOS counts: pre-2025-09-18 only 3, post-change 57; the pre-change slice is too small for a meaningful robustness conclusion.
+- Critical QA limitations found on code review after run: the script only checks that at least 12 funding records exist in a 7-day window and sums `row[2]`; it does not emit rate-range / interval / timestamp diagnostics to prove the funding archive schema and settled-event semantics. The script's weekly snapshots are epoch-hour multiples of 168 (Thursday UTC alignment), which has not yet been verified against MEAFLOW-72's actual weekly rebalance timestamp. The preregistered next-1d target, per-year/per-symbol reports, validation-based regularization selection and cost-adjusted high-minus-low portfolio proxy are not present in this run. Validation is unused. Consequently this artifact is not sufficient to claim the complete preregistered protocol passed QA; do not promote or run a portfolio simulation from it.
+- Decision: no promotion; no portfolio final capital or max drawdown exists for EXP-047 because this is a panel signal screen only. Keep MEAFLOW-72 protected and unchanged. If continuing EXP-047, first correct/verify the funding schema and align weekly timestamps to the strategy, then decide whether a strictly preregistered QA rerun is justified; do not tune basis parameters to rescue the failed OOS gate.
+- Corrected run status supersedes the earlier “queued” status above. Main strategy base SHA remains `a1e5293e9e7b7258ab43b6c95ff13bfeefe2abb1`.
