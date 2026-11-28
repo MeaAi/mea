@@ -1,0 +1,773 @@
+{
+  "experiment": "EXP-048",
+  "status": "completed_portfolio_leverage_sweep",
+  "parent_strategy_sha": "a1e5293e9e7b7258ab43b6c95ff13bfeefe2abb1",
+  "strategy_rules": {
+    "funding_lookback_days": 7,
+    "rebalance_days": 7,
+    "regime_change_rebalance": true,
+    "regime_policy": {
+      "bull": "both",
+      "bear": "short_only",
+      "sideways": "flat",
+      "unknown": "flat"
+    },
+    "sideways_action": "hold_existing_positions",
+    "unknown": "flat"
+  },
+  "period_utc": {
+    "first": "2023-01-01T00:00:00+00:00",
+    "last": "2026-10-31T16:00:00+00:00"
+  },
+  "symbols": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "BNBUSDT",
+    "XRPUSDT",
+    "ADAUSDT",
+    "DOGEUSDT",
+    "SOLUSDT",
+    "LINKUSDT",
+    "LTCUSDT",
+    "BCHUSDT",
+    "DOTUSDT",
+    "TRXUSDT",
+    "AVAXUSDT"
+  ],
+  "initial_equity_usdt": 100,
+  "costs": {
+    "fee_bp_one_way": 5,
+    "slippage_bp_one_way": 2
+  },
+  "regime_method": "Run the unchanged MEAFLOW-72 policy continuously; report bull/bear/sideways incremental PnL and costs by regime. Do not reset to flat at regime boundaries because sideways holds inherited positions.",
+  "leverage_results": {
+    "1x": {
+      "leverage": 1.0,
+      "fee_bp_one_way": 5,
+      "slippage_bp_one_way": 2,
+      "maintenance_margin_rate_assumption": 0.005,
+      "liquidation_fee_assumption": 0.01,
+      "start_equity_usdt": 100.0,
+      "end_equity_usdt": 189.135548,
+      "net_return_pct": 89.1355,
+      "max_drawdown_pct": -53.016,
+      "liquidated": false,
+      "liquidation_time_utc": null,
+      "equity_at_liquidation_usdt": null,
+      "price_pnl_usdt": 93.157383,
+      "funding_pnl_usdt": 20.795117,
+      "trading_fees_usdt": 17.726395,
+      "slippage_usdt": 7.090558,
+      "rebalance_count": 364,
+      "hourly_adverse_checks": 33576,
+      "hourly_sideways_exits": 0,
+      "sideways_action": "hold",
+      "lookback_days": 7,
+      "rebalance_days": 7,
+      "tail_fraction": 0.2,
+      "side_mode": "both",
+      "regime_filter": null,
+      "regime_policy": {
+        "bull": "both",
+        "bear": "short_only",
+        "sideways": "flat",
+        "unknown": "flat"
+      },
+      "symbol_attribution": {
+        "BTCUSDT": {
+          "price_pnl_usdt": -7.31561,
+          "funding_pnl_usdt": 0.452851,
+          "fees_usdt": 1.791525,
+          "slippage_usdt": 0.71661,
+          "net_contribution_usdt": -9.370894
+        },
+        "ETHUSDT": {
+          "price_pnl_usdt": 11.890641,
+          "funding_pnl_usdt": 1.443913,
+          "fees_usdt": 1.520416,
+          "slippage_usdt": 0.608166,
+          "net_contribution_usdt": 11.205972
+        },
+        "BNBUSDT": {
+          "price_pnl_usdt": 24.69405,
+          "funding_pnl_usdt": 2.066572,
+          "fees_usdt": 1.148441,
+          "slippage_usdt": 0.459376,
+          "net_contribution_usdt": 25.152805
+        },
+        "XRPUSDT": {
+          "price_pnl_usdt": -49.035586,
+          "funding_pnl_usdt": 2.1758,
+          "fees_usdt": 1.258956,
+          "slippage_usdt": 0.503582,
+          "net_contribution_usdt": -48.622325
+        },
+        "ADAUSDT": {
+          "price_pnl_usdt": 34.49738,
+          "funding_pnl_usdt": 1.487906,
+          "fees_usdt": 1.442633,
+          "slippage_usdt": 0.577053,
+          "net_contribution_usdt": 33.965599
+        },
+        "DOGEUSDT": {
+          "price_pnl_usdt": 0.628473,
+          "funding_pnl_usdt": 1.931748,
+          "fees_usdt": 1.362466,
+          "slippage_usdt": 0.544986,
+          "net_contribution_usdt": 0.65277
+        },
+        "SOLUSDT": {
+          "price_pnl_usdt": -78.37412,
+          "funding_pnl_usdt": 2.04568,
+          "fees_usdt": 1.282271,
+          "slippage_usdt": 0.512908,
+          "net_contribution_usdt": -78.12362
+        },
+        "LINKUSDT": {
+          "price_pnl_usdt": 28.966116,
+          "funding_pnl_usdt": 2.656761,
+          "fees_usdt": 1.635801,
+          "slippage_usdt": 0.65432,
+          "net_contribution_usdt": 29.332755
+        },
+        "LTCUSDT": {
+          "price_pnl_usdt": 18.371897,
+          "funding_pnl_usdt": 2.792118,
+          "fees_usdt": 1.684484,
+          "slippage_usdt": 0.673794,
+          "net_contribution_usdt": 18.805736
+        },
+        "BCHUSDT": {
+          "price_pnl_usdt": 54.662999,
+          "funding_pnl_usdt": 0.361741,
+          "fees_usdt": 1.461055,
+          "slippage_usdt": 0.584422,
+          "net_contribution_usdt": 52.979262
+        },
+        "DOTUSDT": {
+          "price_pnl_usdt": 21.535005,
+          "funding_pnl_usdt": 1.071273,
+          "fees_usdt": 0.799687,
+          "slippage_usdt": 0.319875,
+          "net_contribution_usdt": 21.486716
+        },
+        "TRXUSDT": {
+          "price_pnl_usdt": 22.109619,
+          "funding_pnl_usdt": -0.033824,
+          "fees_usdt": 1.40329,
+          "slippage_usdt": 0.561316,
+          "net_contribution_usdt": 20.111189
+        },
+        "AVAXUSDT": {
+          "price_pnl_usdt": 10.526519,
+          "funding_pnl_usdt": 2.342578,
+          "fees_usdt": 0.935369,
+          "slippage_usdt": 0.374148,
+          "net_contribution_usdt": 11.559581
+        }
+      },
+      "market_regime_attribution": {
+        "bull": {
+          "price_pnl_usdt": -22.716273,
+          "funding_pnl_usdt": 10.334416,
+          "fees_usdt": 9.828712,
+          "slippage_usdt": 3.931485,
+          "net_contribution_usdt": -26.142055
+        },
+        "bear": {
+          "price_pnl_usdt": 249.938345,
+          "funding_pnl_usdt": 3.829677,
+          "fees_usdt": 7.897682,
+          "slippage_usdt": 3.159073,
+          "net_contribution_usdt": 242.711266
+        },
+        "sideways": {
+          "price_pnl_usdt": -134.064689,
+          "funding_pnl_usdt": 6.631025,
+          "fees_usdt": 0.0,
+          "slippage_usdt": 0.0,
+          "net_contribution_usdt": -127.433664
+        },
+        "unknown": {
+          "price_pnl_usdt": 0.0,
+          "funding_pnl_usdt": 0.0,
+          "fees_usdt": 0.0,
+          "slippage_usdt": 0.0,
+          "net_contribution_usdt": 0.0
+        }
+      },
+      "entry_regime_attribution": {
+        "bull": {
+          "price_pnl_usdt": 68.603798,
+          "funding_pnl_usdt": 13.383815,
+          "net_contribution_usdt": 81.987613
+        },
+        "bear": {
+          "price_pnl_usdt": 24.553585,
+          "funding_pnl_usdt": 7.411302,
+          "net_contribution_usdt": 31.964887
+        },
+        "sideways": {
+          "price_pnl_usdt": 0.0,
+          "funding_pnl_usdt": 0.0,
+          "net_contribution_usdt": 0.0
+        },
+        "unknown": {
+          "price_pnl_usdt": 0.0,
+          "funding_pnl_usdt": 0.0,
+          "net_contribution_usdt": 0.0
+        }
+      },
+      "entry_regime_attribution_note": "Price and funding PnL are assigned to the regime in which each incremental position quantity was opened. Fees/slippage remain attributed by execution-time regime in market_regime_attribution.",
+      "model_note": "Cross-portfolio conservative hourly OHLC stress approximation; not exact Binance liquidation engine. Uses simultaneous adverse extremes and static 0.5% MMR assumption."
+    },
+    "1.5x": {
+      "leverage": 1.5,
+      "fee_bp_one_way": 5,
+      "slippage_bp_one_way": 2,
+      "maintenance_margin_rate_assumption": 0.005,
+      "liquidation_fee_assumption": 0.01,
+      "start_equity_usdt": 100.0,
+      "end_equity_usdt": 197.382273,
+      "net_return_pct": 97.3823,
+      "max_drawdown_pct": -71.2732,
+      "liquidated": false,
+      "liquidation_time_utc": null,
+      "equity_at_liquidation_usdt": null,
+      "price_pnl_usdt": 103.207864,
+      "funding_pnl_usdt": 33.692719,
+      "trading_fees_usdt": 28.227365,
+      "slippage_usdt": 11.290946,
+      "rebalance_count": 364,
+      "hourly_adverse_checks": 33576,
+      "hourly_sideways_exits": 0,
+      "sideways_action": "hold",
+      "lookback_days": 7,
+      "rebalance_days": 7,
+      "tail_fraction": 0.2,
+      "side_mode": "both",
+      "regime_filter": null,
+      "regime_policy": {
+        "bull": "both",
+        "bear": "short_only",
+        "sideways": "flat",
+        "unknown": "flat"
+      },
+      "symbol_attribution": {
+        "BTCUSDT": {
+          "price_pnl_usdt": -17.340278,
+          "funding_pnl_usdt": 0.673194,
+          "fees_usdt": 2.825681,
+          "slippage_usdt": 1.130272,
+          "net_contribution_usdt": -20.623037
+        },
+        "ETHUSDT": {
+          "price_pnl_usdt": 14.108636,
+          "funding_pnl_usdt": 2.378944,
+          "fees_usdt": 2.454704,
+          "slippage_usdt": 0.981881,
+          "net_contribution_usdt": 13.050995
+        },
+        "BNBUSDT": {
+          "price_pnl_usdt": 43.854803,
+          "funding_pnl_usdt": 3.383041,
+          "fees_usdt": 1.839266,
+          "slippage_usdt": 0.735706,
+          "net_contribution_usdt": 44.662871
+        },
+        "XRPUSDT": {
+          "price_pnl_usdt": -81.527703,
+          "funding_pnl_usdt": 3.588647,
+          "fees_usdt": 2.023195,
+          "slippage_usdt": 0.809278,
+          "net_contribution_usdt": -80.771529
+        },
+        "ADAUSDT": {
+          "price_pnl_usdt": 44.428631,
+          "funding_pnl_usdt": 2.391231,
+          "fees_usdt": 2.306958,
+          "slippage_usdt": 0.922783,
+          "net_contribution_usdt": 43.59012
+        },
+        "DOGEUSDT": {
+          "price_pnl_usdt": 2.31706,
+          "funding_pnl_usdt": 3.186582,
+          "fees_usdt": 2.160999,
+          "slippage_usdt": 0.8644,
+          "net_contribution_usdt": 2.478243
+        },
+        "SOLUSDT": {
+          "price_pnl_usdt": -136.192625,
+          "funding_pnl_usdt": 3.429476,
+          "fees_usdt": 2.089415,
+          "slippage_usdt": 0.835766,
+          "net_contribution_usdt": -135.68833
+        },
+        "LINKUSDT": {
+          "price_pnl_usdt": 40.601264,
+          "funding_pnl_usdt": 4.176569,
+          "fees_usdt": 2.555196,
+          "slippage_usdt": 1.022079,
+          "net_contribution_usdt": 41.200558
+        },
+        "LTCUSDT": {
+          "price_pnl_usdt": 25.295546,
+          "funding_pnl_usdt": 4.54498,
+          "fees_usdt": 2.711539,
+          "slippage_usdt": 1.084616,
+          "net_contribution_usdt": 26.044371
+        },
+        "BCHUSDT": {
+          "price_pnl_usdt": 81.907491,
+          "funding_pnl_usdt": 0.526294,
+          "fees_usdt": 2.309992,
+          "slippage_usdt": 0.923997,
+          "net_contribution_usdt": 79.199797
+        },
+        "DOTUSDT": {
+          "price_pnl_usdt": 35.918021,
+          "funding_pnl_usdt": 1.637985,
+          "fees_usdt": 1.241284,
+          "slippage_usdt": 0.496514,
+          "net_contribution_usdt": 35.818208
+        },
+        "TRXUSDT": {
+          "price_pnl_usdt": 33.371104,
+          "funding_pnl_usdt": -0.133049,
+          "fees_usdt": 2.221376,
+          "slippage_usdt": 0.88855,
+          "net_contribution_usdt": 30.128129
+        },
+        "AVAXUSDT": {
+          "price_pnl_usdt": 16.465914,
+          "funding_pnl_usdt": 3.908825,
+          "fees_usdt": 1.487759,
+          "slippage_usdt": 0.595104,
+          "net_contribution_usdt": 18.291876
+        }
+      },
+      "market_regime_attribution": {
+        "bull": {
+          "price_pnl_usdt": -44.404393,
+          "funding_pnl_usdt": 16.828174,
+          "fees_usdt": 15.652487,
+          "slippage_usdt": 6.260995,
+          "net_contribution_usdt": -49.4897
+        },
+        "bear": {
+          "price_pnl_usdt": 383.110552,
+          "funding_pnl_usdt": 6.296515,
+          "fees_usdt": 12.574878,
+          "slippage_usdt": 5.029951,
+          "net_contribution_usdt": 371.802238
+        },
+        "sideways": {
+          "price_pnl_usdt": -235.498295,
+          "funding_pnl_usdt": 10.56803,
+          "fees_usdt": 0.0,
+          "slippage_usdt": 0.0,
+          "net_contribution_usdt": -224.930265
+        },
+        "unknown": {
+          "price_pnl_usdt": 0.0,
+          "funding_pnl_usdt": 0.0,
+          "fees_usdt": 0.0,
+          "slippage_usdt": 0.0,
+          "net_contribution_usdt": 0.0
+        }
+      },
+      "entry_regime_attribution": {
+        "bull": {
+          "price_pnl_usdt": 102.088094,
+          "funding_pnl_usdt": 21.64411,
+          "net_contribution_usdt": 123.732203
+        },
+        "bear": {
+          "price_pnl_usdt": 1.119771,
+          "funding_pnl_usdt": 12.048609,
+          "net_contribution_usdt": 13.16838
+        },
+        "sideways": {
+          "price_pnl_usdt": 0.0,
+          "funding_pnl_usdt": 0.0,
+          "net_contribution_usdt": 0.0
+        },
+        "unknown": {
+          "price_pnl_usdt": 0.0,
+          "funding_pnl_usdt": 0.0,
+          "net_contribution_usdt": 0.0
+        }
+      },
+      "entry_regime_attribution_note": "Price and funding PnL are assigned to the regime in which each incremental position quantity was opened. Fees/slippage remain attributed by execution-time regime in market_regime_attribution.",
+      "model_note": "Cross-portfolio conservative hourly OHLC stress approximation; not exact Binance liquidation engine. Uses simultaneous adverse extremes and static 0.5% MMR assumption."
+    },
+    "2x": {
+      "leverage": 2.0,
+      "fee_bp_one_way": 5,
+      "slippage_bp_one_way": 2,
+      "maintenance_margin_rate_assumption": 0.005,
+      "liquidation_fee_assumption": 0.01,
+      "start_equity_usdt": 100.0,
+      "end_equity_usdt": 167.025193,
+      "net_return_pct": 67.0252,
+      "max_drawdown_pct": -85.0873,
+      "liquidated": false,
+      "liquidation_time_utc": null,
+      "equity_at_liquidation_usdt": null,
+      "price_pnl_usdt": 72.446748,
+      "funding_pnl_usdt": 45.399681,
+      "trading_fees_usdt": 36.300883,
+      "slippage_usdt": 14.520353,
+      "rebalance_count": 364,
+      "hourly_adverse_checks": 33576,
+      "hourly_sideways_exits": 0,
+      "sideways_action": "hold",
+      "lookback_days": 7,
+      "rebalance_days": 7,
+      "tail_fraction": 0.2,
+      "side_mode": "both",
+      "regime_filter": null,
+      "regime_policy": {
+        "bull": "both",
+        "bear": "short_only",
+        "sideways": "flat",
+        "unknown": "flat"
+      },
+      "symbol_attribution": {
+        "BTCUSDT": {
+          "price_pnl_usdt": -30.479065,
+          "funding_pnl_usdt": 0.63926,
+          "fees_usdt": 3.529942,
+          "slippage_usdt": 1.411977,
+          "net_contribution_usdt": -34.781723
+        },
+        "ETHUSDT": {
+          "price_pnl_usdt": 9.023785,
+          "funding_pnl_usdt": 3.180821,
+          "fees_usdt": 3.201007,
+          "slippage_usdt": 1.280403,
+          "net_contribution_usdt": 7.723197
+        },
+        "BNBUSDT": {
+          "price_pnl_usdt": 67.20823,
+          "funding_pnl_usdt": 4.796755,
+          "fees_usdt": 2.366911,
+          "slippage_usdt": 0.946765,
+          "net_contribution_usdt": 68.691309
+        },
+        "XRPUSDT": {
+          "price_pnl_usdt": -104.205862,
+          "funding_pnl_usdt": 4.959311,
+          "fees_usdt": 2.648684,
+          "slippage_usdt": 1.059473,
+          "net_contribution_usdt": -102.954708
+        },
+        "ADAUSDT": {
+          "price_pnl_usdt": 46.133045,
+          "funding_pnl_usdt": 3.161198,
+          "fees_usdt": 2.990094,
+          "slippage_usdt": 1.196037,
+          "net_contribution_usdt": 45.108112
+        },
+        "DOGEUSDT": {
+          "price_pnl_usdt": 5.970133,
+          "funding_pnl_usdt": 4.463818,
+          "fees_usdt": 2.83606,
+          "slippage_usdt": 1.134424,
+          "net_contribution_usdt": 6.463466
+        },
+        "SOLUSDT": {
+          "price_pnl_usdt": -196.569799,
+          "funding_pnl_usdt": 4.960529,
+          "fees_usdt": 2.769161,
+          "slippage_usdt": 1.107665,
+          "net_contribution_usdt": -195.486096
+        },
+        "LINKUSDT": {
+          "price_pnl_usdt": 47.322756,
+          "funding_pnl_usdt": 5.368391,
+          "fees_usdt": 3.2228,
+          "slippage_usdt": 1.28912,
+          "net_contribution_usdt": 48.179227
+        },
+        "LTCUSDT": {
+          "price_pnl_usdt": 25.791743,
+          "funding_pnl_usdt": 6.075813,
+          "fees_usdt": 3.555362,
+          "slippage_usdt": 1.422145,
+          "net_contribution_usdt": 26.890049
+        },
+        "BCHUSDT": {
+          "price_pnl_usdt": 94.149384,
+          "funding_pnl_usdt": 0.653832,
+          "fees_usdt": 2.88878,
+          "slippage_usdt": 1.155512,
+          "net_contribution_usdt": 90.758924
+        },
+        "DOTUSDT": {
+          "price_pnl_usdt": 49.790065,
+          "funding_pnl_usdt": 1.999836,
+          "fees_usdt": 1.509423,
+          "slippage_usdt": 0.603769,
+          "net_contribution_usdt": 49.676709
+        },
+        "TRXUSDT": {
+          "price_pnl_usdt": 39.747073,
+          "funding_pnl_usdt": -0.454457,
+          "fees_usdt": 2.834908,
+          "slippage_usdt": 1.133963,
+          "net_contribution_usdt": 35.323744
+        },
+        "AVAXUSDT": {
+          "price_pnl_usdt": 18.565259,
+          "funding_pnl_usdt": 5.594575,
+          "fees_usdt": 1.94775,
+          "slippage_usdt": 0.7791,
+          "net_contribution_usdt": 21.432985
+        }
+      },
+      "market_regime_attribution": {
+        "bull": {
+          "price_pnl_usdt": -72.331945,
+          "funding_pnl_usdt": 23.046577,
+          "fees_usdt": 20.08793,
+          "slippage_usdt": 8.035172,
+          "net_contribution_usdt": -77.40847
+        },
+        "bear": {
+          "price_pnl_usdt": 478.506859,
+          "funding_pnl_usdt": 8.525567,
+          "fees_usdt": 16.212952,
+          "slippage_usdt": 6.485181,
+          "net_contribution_usdt": 464.334292
+        },
+        "sideways": {
+          "price_pnl_usdt": -333.728166,
+          "funding_pnl_usdt": 13.827537,
+          "fees_usdt": 0.0,
+          "slippage_usdt": 0.0,
+          "net_contribution_usdt": -319.900629
+        },
+        "unknown": {
+          "price_pnl_usdt": 0.0,
+          "funding_pnl_usdt": 0.0,
+          "fees_usdt": 0.0,
+          "slippage_usdt": 0.0,
+          "net_contribution_usdt": 0.0
+        }
+      },
+      "entry_regime_attribution": {
+        "bull": {
+          "price_pnl_usdt": 118.01,
+          "funding_pnl_usdt": 29.196907,
+          "net_contribution_usdt": 147.206907
+        },
+        "bear": {
+          "price_pnl_usdt": -45.563252,
+          "funding_pnl_usdt": 16.202774,
+          "net_contribution_usdt": -29.360478
+        },
+        "sideways": {
+          "price_pnl_usdt": 0.0,
+          "funding_pnl_usdt": 0.0,
+          "net_contribution_usdt": 0.0
+        },
+        "unknown": {
+          "price_pnl_usdt": 0.0,
+          "funding_pnl_usdt": 0.0,
+          "net_contribution_usdt": 0.0
+        }
+      },
+      "entry_regime_attribution_note": "Price and funding PnL are assigned to the regime in which each incremental position quantity was opened. Fees/slippage remain attributed by execution-time regime in market_regime_attribution.",
+      "model_note": "Cross-portfolio conservative hourly OHLC stress approximation; not exact Binance liquidation engine. Uses simultaneous adverse extremes and static 0.5% MMR assumption."
+    },
+    "3x": {
+      "leverage": 3.0,
+      "fee_bp_one_way": 5,
+      "slippage_bp_one_way": 2,
+      "maintenance_margin_rate_assumption": 0.005,
+      "liquidation_fee_assumption": 0.01,
+      "start_equity_usdt": 100.0,
+      "end_equity_usdt": 52.199864,
+      "net_return_pct": -47.8001,
+      "max_drawdown_pct": -97.9772,
+      "liquidated": false,
+      "liquidation_time_utc": null,
+      "equity_at_liquidation_usdt": null,
+      "price_pnl_usdt": -51.937527,
+      "funding_pnl_usdt": 59.440905,
+      "trading_fees_usdt": 39.50251,
+      "slippage_usdt": 15.801004,
+      "rebalance_count": 364,
+      "hourly_adverse_checks": 33576,
+      "hourly_sideways_exits": 0,
+      "sideways_action": "hold",
+      "lookback_days": 7,
+      "rebalance_days": 7,
+      "tail_fraction": 0.2,
+      "side_mode": "both",
+      "regime_filter": null,
+      "regime_policy": {
+        "bull": "both",
+        "bear": "short_only",
+        "sideways": "flat",
+        "unknown": "flat"
+      },
+      "symbol_attribution": {
+        "BTCUSDT": {
+          "price_pnl_usdt": -51.590811,
+          "funding_pnl_usdt": -0.535067,
+          "fees_usdt": 3.493089,
+          "slippage_usdt": 1.397236,
+          "net_contribution_usdt": -57.016203
+        },
+        "ETHUSDT": {
+          "price_pnl_usdt": -13.854887,
+          "funding_pnl_usdt": 3.609444,
+          "fees_usdt": 3.513303,
+          "slippage_usdt": 1.405321,
+          "net_contribution_usdt": -15.164067
+        },
+        "BNBUSDT": {
+          "price_pnl_usdt": 112.164075,
+          "funding_pnl_usdt": 7.596323,
+          "fees_usdt": 2.483088,
+          "slippage_usdt": 0.993235,
+          "net_contribution_usdt": 116.284075
+        },
+        "XRPUSDT": {
+          "price_pnl_usdt": -79.030119,
+          "funding_pnl_usdt": 6.751168,
+          "fees_usdt": 2.966816,
+          "slippage_usdt": 1.186726,
+          "net_contribution_usdt": -76.432494
+        },
+        "ADAUSDT": {
+          "price_pnl_usdt": 48.042515,
+          "funding_pnl_usdt": 3.762168,
+          "fees_usdt": 3.311267,
+          "slippage_usdt": 1.324507,
+          "net_contribution_usdt": 47.168909
+        },
+        "DOGEUSDT": {
+          "price_pnl_usdt": 15.582755,
+          "funding_pnl_usdt": 6.637711,
+          "fees_usdt": 3.582899,
+          "slippage_usdt": 1.433159,
+          "net_contribution_usdt": 17.204408
+        },
+        "SOLUSDT": {
+          "price_pnl_usdt": -289.764437,
+          "funding_pnl_usdt": 8.127262,
+          "fees_usdt": 3.313479,
+          "slippage_usdt": 1.325392,
+          "net_contribution_usdt": -286.276045
+        },
+        "LINKUSDT": {
+          "price_pnl_usdt": 52.259306,
+          "funding_pnl_usdt": 6.051293,
+          "fees_usdt": 3.443564,
+          "slippage_usdt": 1.377426,
+          "net_contribution_usdt": 53.489609
+        },
+        "LTCUSDT": {
+          "price_pnl_usdt": 5.917696,
+          "funding_pnl_usdt": 7.259051,
+          "fees_usdt": 4.074584,
+          "slippage_usdt": 1.629833,
+          "net_contribution_usdt": 7.47233
+        },
+        "BCHUSDT": {
+          "price_pnl_usdt": 64.229257,
+          "funding_pnl_usdt": 0.817193,
+          "fees_usdt": 2.743913,
+          "slippage_usdt": 1.097565,
+          "net_contribution_usdt": 61.204971
+        },
+        "DOTUSDT": {
+          "price_pnl_usdt": 62.201538,
+          "funding_pnl_usdt": 2.060571,
+          "fees_usdt": 1.302104,
+          "slippage_usdt": 0.520842,
+          "net_contribution_usdt": 62.439163
+        },
+        "TRXUSDT": {
+          "price_pnl_usdt": 30.718508,
+          "funding_pnl_usdt": -1.538066,
+          "fees_usdt": 2.948208,
+          "slippage_usdt": 1.179283,
+          "net_contribution_usdt": 25.05295
+        },
+        "AVAXUSDT": {
+          "price_pnl_usdt": -8.812921,
+          "funding_pnl_usdt": 8.841854,
+          "fees_usdt": 2.326197,
+          "slippage_usdt": 0.930479,
+          "net_contribution_usdt": -3.227743
+        }
+      },
+      "market_regime_attribution": {
+        "bull": {
+          "price_pnl_usdt": -132.710725,
+          "funding_pnl_usdt": 32.108664,
+          "fees_usdt": 21.514795,
+          "slippage_usdt": 8.605918,
+          "net_contribution_usdt": -130.722775
+        },
+        "bear": {
+          "price_pnl_usdt": 517.163187,
+          "funding_pnl_usdt": 10.699559,
+          "fees_usdt": 17.987715,
+          "slippage_usdt": 7.195086,
+          "net_contribution_usdt": 502.679946
+        },
+        "sideways": {
+          "price_pnl_usdt": -436.389989,
+          "funding_pnl_usdt": 16.632683,
+          "fees_usdt": 0.0,
+          "slippage_usdt": 0.0,
+          "net_contribution_usdt": -419.757307
+        },
+        "unknown": {
+          "price_pnl_usdt": 0.0,
+          "funding_pnl_usdt": 0.0,
+          "fees_usdt": 0.0,
+          "slippage_usdt": 0.0,
+          "net_contribution_usdt": 0.0
+        }
+      },
+      "entry_regime_attribution": {
+        "bull": {
+          "price_pnl_usdt": 72.215286,
+          "funding_pnl_usdt": 38.635312,
+          "net_contribution_usdt": 110.850598
+        },
+        "bear": {
+          "price_pnl_usdt": -124.152813,
+          "funding_pnl_usdt": 20.805593,
+          "net_contribution_usdt": -103.34722
+        },
+        "sideways": {
+          "price_pnl_usdt": 0.0,
+          "funding_pnl_usdt": 0.0,
+          "net_contribution_usdt": 0.0
+        },
+        "unknown": {
+          "price_pnl_usdt": 0.0,
+          "funding_pnl_usdt": 0.0,
+          "net_contribution_usdt": 0.0
+        }
+      },
+      "entry_regime_attribution_note": "Price and funding PnL are assigned to the regime in which each incremental position quantity was opened. Fees/slippage remain attributed by execution-time regime in market_regime_attribution.",
+      "model_note": "Cross-portfolio conservative hourly OHLC stress approximation; not exact Binance liquidation engine. Uses simultaneous adverse extremes and static 0.5% MMR assumption."
+    }
+  },
+  "data_errors": {},
+  "limitations": [
+    "Public hourly mark OHLC stress approximation, not Binance exact liquidation engine",
+    "Static 0.5% maintenance-margin and 1% liquidation-fee assumptions in parent simulator",
+    "Hourly adverse drawdown uses simultaneous adverse extremes; conservative stress estimate",
+    "Fixed 13-symbol universe survivorship bias",
+    "Historical period has already been examined; this is a risk-sizing comparison, not pristine OOS validation"
+  ]
+}
