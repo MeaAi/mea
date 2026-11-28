@@ -11,7 +11,7 @@ import numpy as np
 SYMBOLS = ["BTCUSDT","ETHUSDT","BNBUSDT","XRPUSDT","ADAUSDT","DOGEUSDT","SOLUSDT","LINKUSDT","LTCUSDT","BCHUSDT","DOTUSDT","TRXUSDT","AVAXUSDT"]
 START, END = "2023-01", "2026-10"
 ROOT = Path("research-output/exp043-cache")
-BASE = "https://data.binance.vision/data"
+BASE = "https://data.binance.vision"
 
 def months(a,b):
     y,m=map(int,a.split("-")); ey,em=map(int,b.split("-"))
