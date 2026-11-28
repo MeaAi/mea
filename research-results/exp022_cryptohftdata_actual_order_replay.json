@@ -27,6 +27,47 @@
     {
       "date": "2026-09-03",
       "hour": "08",
+      "symbol": "BCHUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-09-03/06/BCHUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 4145486,
+          "sha256": "17932407dd6556431c6a4834a03016258ebbaa0148b59aa8c8f1b72f1c88a336",
+          "rows": 349009,
+          "first_received_time_ns": 1788415200045470307,
+          "last_received_time_ns": 1788418799964105584,
+          "snapshot_messages": 0
+        },
+        {
+          "path": "binance_futures/2026-09-03/07/BCHUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 5383082,
+          "sha256": "59f3f66d722925bf27c34a7c5be042b4adb27c891ed10aa1c435859490f113bc",
+          "rows": 501674,
+          "first_received_time_ns": 1788418800006881428,
+          "last_received_time_ns": 1788422399953139979,
+          "snapshot_messages": 0
+        },
+        {
+          "path": "binance_futures/2026-09-03/08/BCHUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 4591641,
+          "sha256": "26775036e7eeae66a47a9b82fdb3304a374c6274e8eabadc218135635322ab93",
+          "rows": 415997,
+          "first_received_time_ns": 1788422400032109280,
+          "last_received_time_ns": 1788425999999948828,
+          "snapshot_messages": 6000
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 1,
+      "updates_ignored_invalid": 211922
+    },
+    {
+      "date": "2026-09-03",
+      "hour": "08",
       "symbol": "BTCUSDT",
       "metadata": [
         {
@@ -64,6 +105,47 @@
       "gap_examples": [],
       "snapshots_applied": 1,
       "updates_ignored_invalid": 355321
+    },
+    {
+      "date": "2026-09-03",
+      "hour": "08",
+      "symbol": "DOTUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-09-03/06/DOTUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 2624257,
+          "sha256": "c093ae2127e9563bd533f271e6cce14233a085a290a33ac3a860bff1a2690af0",
+          "rows": 174443,
+          "first_received_time_ns": 1788415200000000000,
+          "last_received_time_ns": 1788418799948291210,
+          "snapshot_messages": 1660
+        },
+        {
+          "path": "binance_futures/2026-09-03/07/DOTUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 3103309,
+          "sha256": "4302ea654bc6636fe3888ea28635817da33118bc65ca3cacd716dc20c837abaa",
+          "rows": 241069,
+          "first_received_time_ns": 1788418800000000000,
+          "last_received_time_ns": 1788422399975146712,
+          "snapshot_messages": 1845
+        },
+        {
+          "path": "binance_futures/2026-09-03/08/DOTUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 2910939,
+          "sha256": "a1b116214cf9917bdb82c8b725674e3b63165303873ab32a81c7870869812fa8",
+          "rows": 219393,
+          "first_received_time_ns": 1788422400000000000,
+          "last_received_time_ns": 1788425999916362140,
+          "snapshot_messages": 3957
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 3,
+      "updates_ignored_invalid": 0
     },
     {
       "date": "2026-09-03",
@@ -107,6 +189,68 @@
       "updates_ignored_invalid": 324731
     },
     {
+      "date": "2026-09-03",
+      "hour": "08",
+      "symbol": "TRXUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-09-03/06/TRXUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 2512490,
+          "sha256": "fb69316bc0c826f093afa0a5c1508d3133703528b6e5b0f68a88ff5755cb6cfb",
+          "rows": 139538,
+          "first_received_time_ns": 1788415200000000000,
+          "last_received_time_ns": 1788418799980112964,
+          "snapshot_messages": 2560
+        },
+        {
+          "path": "binance_futures/2026-09-03/07/TRXUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 2427961,
+          "sha256": "c149a8598c23b87c503aacb8aed049f13fea70f5477e8a63c100623aaf4bc6ff",
+          "rows": 136069,
+          "first_received_time_ns": 1788418800000000000,
+          "last_received_time_ns": 1788422399963122202,
+          "snapshot_messages": 2752
+        },
+        {
+          "path": "binance_futures/2026-09-03/08/TRXUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 1948380,
+          "sha256": "07bd3ad89a2972d9e7d085a209e0024c2a70297a8eb3e5a167fe44fcf919e1d3",
+          "rows": 105787,
+          "first_received_time_ns": 1788422400000000000,
+          "last_received_time_ns": 1788425999948200274,
+          "snapshot_messages": 4954
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 3,
+      "updates_ignored_invalid": 0
+    },
+    {
+      "date": "2026-09-11",
+      "hour": "08",
+      "symbol": "BCHUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-09-11/08/BCHUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 4850952,
+          "sha256": "43cee1f5f95c897d91da090b221978724c9473769513d0f9f8386c3d52267435",
+          "rows": 473817,
+          "first_received_time_ns": 1789113600047998789,
+          "last_received_time_ns": 1789117199953894476,
+          "snapshot_messages": 0
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 0,
+      "updates_ignored_invalid": 77054
+    },
+    {
       "date": "2026-09-11",
       "hour": "08",
       "symbol": "BTCUSDT",
@@ -130,6 +274,27 @@
     {
       "date": "2026-09-11",
       "hour": "08",
+      "symbol": "DOTUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-09-11/08/DOTUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 6004964,
+          "sha256": "abc6d477ba5d171f406fc8cfbbf88322e4bfc47ce619db6b6da06179eafe815b",
+          "rows": 595802,
+          "first_received_time_ns": 1789113600000000000,
+          "last_received_time_ns": 1789117199944607628,
+          "snapshot_messages": 2475
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 1,
+      "updates_ignored_invalid": 0
+    },
+    {
+      "date": "2026-09-11",
+      "hour": "08",
       "symbol": "SOLUSDT",
       "metadata": [
         {
@@ -141,6 +306,48 @@
           "first_received_time_ns": 1789113600000000000,
           "last_received_time_ns": 1789117199992199855,
           "snapshot_messages": 3128
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 1,
+      "updates_ignored_invalid": 0
+    },
+    {
+      "date": "2026-09-11",
+      "hour": "08",
+      "symbol": "TRXUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-09-11/08/TRXUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 1898361,
+          "sha256": "e9e7a0fc2b64bb228deacd9e21e35f2e7e70f63c439bfb7c303b81bb83a2bcb1",
+          "rows": 99401,
+          "first_received_time_ns": 1789113600000000000,
+          "last_received_time_ns": 1789117199957998858,
+          "snapshot_messages": 2590
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 1,
+      "updates_ignored_invalid": 0
+    },
+    {
+      "date": "2026-09-18",
+      "hour": "16",
+      "symbol": "BCHUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-09-18/16/BCHUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 7050362,
+          "sha256": "1c24546a838d8ddc6233c6bcb5002229219dfbf2e1d39cbb086d72a0144a2a4b",
+          "rows": 830247,
+          "first_received_time_ns": 1789747200000000000,
+          "last_received_time_ns": 1789750799965615844,
+          "snapshot_messages": 2957
         }
       ],
       "sequence_gaps": 0,
@@ -170,6 +377,69 @@
       "updates_ignored_invalid": 0
     },
     {
+      "date": "2026-09-18",
+      "hour": "16",
+      "symbol": "DOTUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-09-18/16/DOTUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 5632647,
+          "sha256": "a07ff755328f93d90216b8ea77a780244ab03464617a2398c385d22813506279",
+          "rows": 522379,
+          "first_received_time_ns": 1789747200000000000,
+          "last_received_time_ns": 1789750799995116402,
+          "snapshot_messages": 2273
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 1,
+      "updates_ignored_invalid": 0
+    },
+    {
+      "date": "2026-09-18",
+      "hour": "16",
+      "symbol": "TRXUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-09-18/16/TRXUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 2220847,
+          "sha256": "6b9ea7065819513b573aad2f1fae2a9e2520bf9003db6d39b9ec2951321a59d7",
+          "rows": 130126,
+          "first_received_time_ns": 1789747200000000000,
+          "last_received_time_ns": 1789750799973559452,
+          "snapshot_messages": 3335
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 1,
+      "updates_ignored_invalid": 0
+    },
+    {
+      "date": "2026-09-22",
+      "hour": "00",
+      "symbol": "BCHUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-09-22/00/BCHUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 8976674,
+          "sha256": "8db0e91897f1ee391322449f021f52b0b9df7f272c6d9106339deb6c06d8ae7b",
+          "rows": 1091192,
+          "first_received_time_ns": 1790035200000000000,
+          "last_received_time_ns": 1790038799979567930,
+          "snapshot_messages": 3587
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 1,
+      "updates_ignored_invalid": 0
+    },
+    {
       "date": "2026-09-22",
       "hour": "00",
       "symbol": "BTCUSDT",
@@ -183,6 +453,69 @@
           "first_received_time_ns": 1790035200000000000,
           "last_received_time_ns": 1790038799983996160,
           "snapshot_messages": 46845
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 1,
+      "updates_ignored_invalid": 0
+    },
+    {
+      "date": "2026-09-22",
+      "hour": "00",
+      "symbol": "TRXUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-09-22/00/TRXUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 2643576,
+          "sha256": "965dd14163b8adc84f06f284cb7f0bc204f4cbb37f055a8aea6cff7b71ecd3fb",
+          "rows": 174782,
+          "first_received_time_ns": 1790035200000000000,
+          "last_received_time_ns": 1790038799971477004,
+          "snapshot_messages": 4244
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 1,
+      "updates_ignored_invalid": 0
+    },
+    {
+      "date": "2026-10-15",
+      "hour": "08",
+      "symbol": "BCHUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-10-15/08/BCHUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 6507909,
+          "sha256": "40330850b36e8a1e5ecda5705a8ef00f8946e663fd21a348ed27a41867afd012",
+          "rows": 709707,
+          "first_received_time_ns": 1792051200000000000,
+          "last_received_time_ns": 1792054799966586713,
+          "snapshot_messages": 3188
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 1,
+      "updates_ignored_invalid": 0
+    },
+    {
+      "date": "2026-10-15",
+      "hour": "08",
+      "symbol": "DOTUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-10-15/08/DOTUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 5755870,
+          "sha256": "6d044f4ead27638697500be14b7771c3336bfddcaa59ee340ad16460226fc64c",
+          "rows": 541491,
+          "first_received_time_ns": 1792051200000000000,
+          "last_received_time_ns": 1792054799966776654,
+          "snapshot_messages": 2644
         }
       ],
       "sequence_gaps": 0,
@@ -212,6 +545,69 @@
       "updates_ignored_invalid": 0
     },
     {
+      "date": "2026-10-15",
+      "hour": "08",
+      "symbol": "TRXUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-10-15/08/TRXUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 2451898,
+          "sha256": "cb81a13d49dc5984304955d495be45c3cccceeab63aa37906dc5ad66aa47e869",
+          "rows": 146214,
+          "first_received_time_ns": 1792051200000000000,
+          "last_received_time_ns": 1792054799964483626,
+          "snapshot_messages": 3581
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 1,
+      "updates_ignored_invalid": 0
+    },
+    {
+      "date": "2026-10-15",
+      "hour": "08",
+      "symbol": "XRPUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-10-15/08/XRPUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 13250182,
+          "sha256": "3a3c2a496326dfdc4d9a67133ef771ed22646ceb29eba4a1b5b5b28ff2eaee09",
+          "rows": 1499131,
+          "first_received_time_ns": 1792051200000000000,
+          "last_received_time_ns": 1792054799972492227,
+          "snapshot_messages": 5330
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 1,
+      "updates_ignored_invalid": 0
+    },
+    {
+      "date": "2026-10-24",
+      "hour": "16",
+      "symbol": "BCHUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-10-24/16/BCHUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 8834146,
+          "sha256": "c78f22615bcdc16fa4304f7ea5440a84679a4aafe30ff516f6d3b7d95d7765f7",
+          "rows": 1062038,
+          "first_received_time_ns": 1792857600000000000,
+          "last_received_time_ns": 1792861199975339117,
+          "snapshot_messages": 3937
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 1,
+      "updates_ignored_invalid": 0
+    },
+    {
       "date": "2026-10-24",
       "hour": "16",
       "symbol": "BTCUSDT",
@@ -225,6 +621,27 @@
           "first_received_time_ns": 1792857600000000000,
           "last_received_time_ns": 1792861199981490620,
           "snapshot_messages": 53153
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 1,
+      "updates_ignored_invalid": 0
+    },
+    {
+      "date": "2026-10-24",
+      "hour": "16",
+      "symbol": "DOTUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-10-24/16/DOTUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 8341531,
+          "sha256": "f7ddd220b410e0bb6f2fa3419675f32f475956e1258d53223888b69dbbda7388",
+          "rows": 818731,
+          "first_received_time_ns": 1792857600000000000,
+          "last_received_time_ns": 1792861199993872271,
+          "snapshot_messages": 4114
         }
       ],
       "sequence_gaps": 0,
@@ -267,6 +684,27 @@
           "first_received_time_ns": 1792857600000000000,
           "last_received_time_ns": 1792861199994408581,
           "snapshot_messages": 9181
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 1,
+      "updates_ignored_invalid": 0
+    },
+    {
+      "date": "2026-10-24",
+      "hour": "16",
+      "symbol": "TRXUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-10-24/16/TRXUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 2595244,
+          "sha256": "9a0d685674809e6bfa28848ec20537d1ba39297edc342370c5345299ecb281b5",
+          "rows": 163073,
+          "first_received_time_ns": 1792857600000000000,
+          "last_received_time_ns": 1792861199943392458,
+          "snapshot_messages": 4339
         }
       ],
       "sequence_gaps": 0,
@@ -336,9 +774,45 @@
       "gap_examples": [],
       "snapshots_applied": 1,
       "updates_ignored_invalid": 0
+    },
+    {
+      "date": "2026-10-30",
+      "hour": "00",
+      "symbol": "XRPUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-10-30/00/XRPUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 20786714,
+          "sha256": "5c8e587a684b239c04ffd24994917ddb7b4452c45a1ea86a53a86e9491939152",
+          "rows": 2982205,
+          "first_received_time_ns": 1793318400000000000,
+          "last_received_time_ns": 1793321999997131329,
+          "snapshot_messages": 6722
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 1,
+      "updates_ignored_invalid": 0
     }
   ],
   "orders": [
+    {
+      "time_utc": "2026-09-03T08:00:00+00:00",
+      "regime": "bull",
+      "symbol": "BCHUSDT",
+      "side": "SELL",
+      "order_delta_notional_usdt": 3.44405585,
+      "asof_execution": {
+        "status": "no_valid_asof_book"
+      },
+      "first_after_execution": {
+        "status": "stale_book_after_signal",
+        "book_delay_ms": 2334227.902647,
+        "book_age_ms": -2335051.0
+      }
+    },
     {
       "time_utc": "2026-09-03T08:00:00+00:00",
       "regime": "bull",
@@ -357,6 +831,55 @@
     {
       "time_utc": "2026-09-03T08:00:00+00:00",
       "regime": "bull",
+      "symbol": "DOTUSDT",
+      "side": "SELL",
+      "order_delta_notional_usdt": 37.49278565,
+      "asof_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 42.851322538449,
+        "strategy_order_notional_usdt": 37.49278565,
+        "reference_mark_price": 0.87495049,
+        "best_bid": 0.875,
+        "best_ask": 0.8751,
+        "mid": 0.87505,
+        "spread_bp": 1.1427918404661332,
+        "vwap": 0.875,
+        "filled_qty": 42.851322538449,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.5714285714275569,
+        "market_cost_vs_mark_bp": -0.5658605894371789,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 0.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 3,
+        "last_update_id": 11462362004091
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 42.851322538449,
+        "strategy_order_notional_usdt": 37.49278565,
+        "reference_mark_price": 0.87495049,
+        "best_bid": 0.875,
+        "best_ask": 0.8751,
+        "mid": 0.87505,
+        "spread_bp": 1.1427918404661332,
+        "vwap": 0.875,
+        "filled_qty": 42.851322538449,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.5714285714275569,
+        "market_cost_vs_mark_bp": -0.5658605894371789,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 0.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 3,
+        "last_update_id": 11462362004091
+      }
+    },
+    {
+      "time_utc": "2026-09-03T08:00:00+00:00",
+      "regime": "bull",
       "symbol": "SOLUSDT",
       "side": "BUY",
       "order_delta_notional_usdt": 38.3953837,
@@ -370,6 +893,68 @@
       }
     },
     {
+      "time_utc": "2026-09-03T08:00:00+00:00",
+      "regime": "bull",
+      "symbol": "TRXUSDT",
+      "side": "BUY",
+      "order_delta_notional_usdt": 1.86112721,
+      "asof_execution": {
+        "status": "full_depth_sweep",
+        "side": "BUY",
+        "quantity": 5.709870689794,
+        "strategy_order_notional_usdt": 1.86112721,
+        "reference_mark_price": 0.3259491,
+        "best_bid": 0.32591,
+        "best_ask": 0.32592,
+        "mid": 0.32591499999999995,
+        "spread_bp": 0.30682846754552573,
+        "vwap": 0.32592,
+        "filled_qty": 5.709870689794,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.15341423377446262,
+        "market_cost_vs_mark_bp": -0.8927774305866887,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 0.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 3,
+        "last_update_id": 11462361996280
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "BUY",
+        "quantity": 5.709870689794,
+        "strategy_order_notional_usdt": 1.86112721,
+        "reference_mark_price": 0.3259491,
+        "best_bid": 0.32591,
+        "best_ask": 0.32592,
+        "mid": 0.32591499999999995,
+        "spread_bp": 0.30682846754552573,
+        "vwap": 0.32592,
+        "filled_qty": 5.709870689794,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.15341423377446262,
+        "market_cost_vs_mark_bp": -0.8927774305866887,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 0.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 3,
+        "last_update_id": 11462361996280
+      }
+    },
+    {
+      "time_utc": "2026-09-11T08:00:00+00:00",
+      "regime": "bull",
+      "symbol": "BCHUSDT",
+      "side": "BUY",
+      "order_delta_notional_usdt": 74.47954469,
+      "asof_execution": {
+        "status": "no_valid_asof_book"
+      },
+      "first_after_execution": {
+        "status": "no_valid_post_signal_book"
+      }
+    },
+    {
       "time_utc": "2026-09-11T08:00:00+00:00",
       "regime": "bull",
       "symbol": "BTCUSDT",
@@ -380,6 +965,55 @@
       },
       "first_after_execution": {
         "status": "no_valid_post_signal_book"
+      }
+    },
+    {
+      "time_utc": "2026-09-11T08:00:00+00:00",
+      "regime": "bull",
+      "symbol": "DOTUSDT",
+      "side": "SELL",
+      "order_delta_notional_usdt": 39.63385584,
+      "asof_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 35.241679034867,
+        "strategy_order_notional_usdt": 39.63385584,
+        "reference_mark_price": 1.12463018,
+        "best_bid": 1.1237,
+        "best_ask": 1.1238,
+        "mid": 1.1237499999999998,
+        "spread_bp": 0.8898776418241513,
+        "vwap": 1.1237,
+        "filled_qty": 35.241679034867,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.4449586188481902,
+        "market_cost_vs_mark_bp": 8.270985578566934,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 0.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11529854018106
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 35.241679034867,
+        "strategy_order_notional_usdt": 39.63385584,
+        "reference_mark_price": 1.12463018,
+        "best_bid": 1.1237,
+        "best_ask": 1.1238,
+        "mid": 1.1237499999999998,
+        "spread_bp": 0.8898776418241513,
+        "vwap": 1.1237,
+        "filled_qty": 35.241679034867,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.4449586188481902,
+        "market_cost_vs_mark_bp": 8.270985578566934,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 0.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11529854018106
       }
     },
     {
@@ -432,6 +1066,104 @@
       }
     },
     {
+      "time_utc": "2026-09-11T08:00:00+00:00",
+      "regime": "bull",
+      "symbol": "TRXUSDT",
+      "side": "SELL",
+      "order_delta_notional_usdt": 0.21994393,
+      "asof_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 0.650086997105,
+        "strategy_order_notional_usdt": 0.21994393,
+        "reference_mark_price": 0.33833,
+        "best_bid": 0.33833,
+        "best_ask": 0.33834,
+        "mid": 0.338335,
+        "spread_bp": 0.2955650464762585,
+        "vwap": 0.33833,
+        "filled_qty": 0.650086997105,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.14778470723841863,
+        "market_cost_vs_mark_bp": 0.0,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 0.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11529854010911
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 0.650086997105,
+        "strategy_order_notional_usdt": 0.21994393,
+        "reference_mark_price": 0.33833,
+        "best_bid": 0.33833,
+        "best_ask": 0.33834,
+        "mid": 0.338335,
+        "spread_bp": 0.2955650464762585,
+        "vwap": 0.33833,
+        "filled_qty": 0.650086997105,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.14778470723841863,
+        "market_cost_vs_mark_bp": 0.0,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 0.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11529854010911
+      }
+    },
+    {
+      "time_utc": "2026-09-18T16:00:00+00:00",
+      "regime": "bull",
+      "symbol": "BCHUSDT",
+      "side": "SELL",
+      "order_delta_notional_usdt": 3.79516471,
+      "asof_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 0.015081123435,
+        "strategy_order_notional_usdt": 3.79516471,
+        "reference_mark_price": 251.65,
+        "best_bid": 251.65,
+        "best_ask": 251.66,
+        "mid": 251.655,
+        "spread_bp": 0.3973694144758063,
+        "vwap": 251.65,
+        "filled_qty": 0.015081123435,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.19868865487771004,
+        "market_cost_vs_mark_bp": 0.0,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 0.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11591676641490
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 0.015081123435,
+        "strategy_order_notional_usdt": 3.79516471,
+        "reference_mark_price": 251.65,
+        "best_bid": 251.65,
+        "best_ask": 251.66,
+        "mid": 251.655,
+        "spread_bp": 0.3973694144758063,
+        "vwap": 251.65,
+        "filled_qty": 0.015081123435,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.19868865487771004,
+        "market_cost_vs_mark_bp": 0.0,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 0.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11591676641490
+      }
+    },
+    {
       "time_utc": "2026-09-18T16:00:00+00:00",
       "regime": "bull",
       "symbol": "BTCUSDT",
@@ -478,6 +1210,153 @@
         "sequence_gaps_before_capture": 0,
         "snapshots_before_capture": 1,
         "last_update_id": 11591676642552
+      }
+    },
+    {
+      "time_utc": "2026-09-18T16:00:00+00:00",
+      "regime": "bull",
+      "symbol": "DOTUSDT",
+      "side": "BUY",
+      "order_delta_notional_usdt": 39.94528726,
+      "asof_execution": {
+        "status": "full_depth_sweep",
+        "side": "BUY",
+        "quantity": 35.241679034867,
+        "strategy_order_notional_usdt": 39.94528726,
+        "reference_mark_price": 1.1334672,
+        "best_bid": 1.1331,
+        "best_ask": 1.1332,
+        "mid": 1.13315,
+        "spread_bp": 0.8824956978333758,
+        "vwap": 1.1332,
+        "filled_qty": 35.241679034867,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.44124784891463875,
+        "market_cost_vs_mark_bp": -2.357368611989319,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 0.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11591676641039
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "BUY",
+        "quantity": 35.241679034867,
+        "strategy_order_notional_usdt": 39.94528726,
+        "reference_mark_price": 1.1334672,
+        "best_bid": 1.1331,
+        "best_ask": 1.1332,
+        "mid": 1.13315,
+        "spread_bp": 0.8824956978333758,
+        "vwap": 1.1332,
+        "filled_qty": 35.241679034867,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.44124784891463875,
+        "market_cost_vs_mark_bp": -2.357368611989319,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 0.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11591676641039
+      }
+    },
+    {
+      "time_utc": "2026-09-18T16:00:00+00:00",
+      "regime": "bull",
+      "symbol": "TRXUSDT",
+      "side": "BUY",
+      "order_delta_notional_usdt": 0.34254188,
+      "asof_execution": {
+        "status": "full_depth_sweep",
+        "side": "BUY",
+        "quantity": 1.009000395034,
+        "strategy_order_notional_usdt": 0.34254188,
+        "reference_mark_price": 0.33948637,
+        "best_bid": 0.33941,
+        "best_ask": 0.33942,
+        "mid": 0.339415,
+        "spread_bp": 0.294624574636065,
+        "vwap": 0.33942,
+        "filled_qty": 1.009000395034,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.14731228731745816,
+        "market_cost_vs_mark_bp": -1.9550122144806892,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 0.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11591676639076
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "BUY",
+        "quantity": 1.009000395034,
+        "strategy_order_notional_usdt": 0.34254188,
+        "reference_mark_price": 0.33948637,
+        "best_bid": 0.33941,
+        "best_ask": 0.33942,
+        "mid": 0.339415,
+        "spread_bp": 0.294624574636065,
+        "vwap": 0.33942,
+        "filled_qty": 1.009000395034,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.14731228731745816,
+        "market_cost_vs_mark_bp": -1.9550122144806892,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 0.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11591676639076
+      }
+    },
+    {
+      "time_utc": "2026-09-22T00:00:00+00:00",
+      "regime": "bull",
+      "symbol": "BCHUSDT",
+      "side": "SELL",
+      "order_delta_notional_usdt": 3.86627175,
+      "asof_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 0.014476623172,
+        "strategy_order_notional_usdt": 3.86627175,
+        "reference_mark_price": 267.07,
+        "best_bid": 267.06,
+        "best_ask": 267.07,
+        "mid": 267.065,
+        "spread_bp": 0.3744406792350516,
+        "vwap": 267.06,
+        "filled_qty": 0.014476623172,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.18722384482972032,
+        "market_cost_vs_mark_bp": 0.3744336690751827,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 0.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11621091573171
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 0.014476623172,
+        "strategy_order_notional_usdt": 3.86627175,
+        "reference_mark_price": 267.07,
+        "best_bid": 267.06,
+        "best_ask": 267.07,
+        "mid": 267.065,
+        "spread_bp": 0.3744406792350516,
+        "vwap": 267.06,
+        "filled_qty": 0.014476623172,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.18722384482972032,
+        "market_cost_vs_mark_bp": 0.3744336690751827,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 0.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11621091573171
       }
     },
     {
@@ -530,6 +1409,153 @@
       }
     },
     {
+      "time_utc": "2026-09-22T00:00:00+00:00",
+      "regime": "bull",
+      "symbol": "TRXUSDT",
+      "side": "SELL",
+      "order_delta_notional_usdt": 2.01181654,
+      "asof_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 5.838232444297,
+        "strategy_order_notional_usdt": 2.01181654,
+        "reference_mark_price": 0.34459343,
+        "best_bid": 0.34458,
+        "best_ask": 0.34459,
+        "mid": 0.34458500000000003,
+        "spread_bp": 0.2902041586258833,
+        "vwap": 0.34458,
+        "filled_qty": 5.838232444297,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.14510418480551124,
+        "market_cost_vs_mark_bp": 0.3897346504830623,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 0.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11621091572386
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 5.838232444297,
+        "strategy_order_notional_usdt": 2.01181654,
+        "reference_mark_price": 0.34459343,
+        "best_bid": 0.34458,
+        "best_ask": 0.34459,
+        "mid": 0.34458500000000003,
+        "spread_bp": 0.2902041586258833,
+        "vwap": 0.34458,
+        "filled_qty": 5.838232444297,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.14510418480551124,
+        "market_cost_vs_mark_bp": 0.3897346504830623,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 0.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11621091572386
+      }
+    },
+    {
+      "time_utc": "2026-10-15T08:00:00+00:00",
+      "regime": "bull",
+      "symbol": "BCHUSDT",
+      "side": "BUY",
+      "order_delta_notional_usdt": 80.85102939,
+      "asof_execution": {
+        "status": "full_depth_sweep",
+        "side": "BUY",
+        "quantity": 0.307278159738,
+        "strategy_order_notional_usdt": 80.85102939,
+        "reference_mark_price": 263.12,
+        "best_bid": 263.12,
+        "best_ask": 263.13,
+        "mid": 263.125,
+        "spread_bp": 0.3800475059378966,
+        "vwap": 263.13,
+        "filled_qty": 0.307278159738,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.19002375296839347,
+        "market_cost_vs_mark_bp": 0.3800547278798305,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 147.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11824111516600
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "BUY",
+        "quantity": 0.307278159738,
+        "strategy_order_notional_usdt": 80.85102939,
+        "reference_mark_price": 263.12,
+        "best_bid": 263.12,
+        "best_ask": 263.13,
+        "mid": 263.125,
+        "spread_bp": 0.3800475059378966,
+        "vwap": 263.13,
+        "filled_qty": 0.307278159738,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.19002375296839347,
+        "market_cost_vs_mark_bp": 0.3800547278798305,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 147.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11824111516600
+      }
+    },
+    {
+      "time_utc": "2026-10-15T08:00:00+00:00",
+      "regime": "bull",
+      "symbol": "DOTUSDT",
+      "side": "SELL",
+      "order_delta_notional_usdt": 41.65435009,
+      "asof_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 38.042287055102,
+        "strategy_order_notional_usdt": 41.65435009,
+        "reference_mark_price": 1.09494863,
+        "best_bid": 1.0948,
+        "best_ask": 1.0949,
+        "mid": 1.09485,
+        "spread_bp": 0.9133671279169656,
+        "vwap": 1.0948,
+        "filled_qty": 38.042287055102,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.45670442089917884,
+        "market_cost_vs_mark_bp": 1.3574152789248473,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 153.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11824111516092
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 38.042287055102,
+        "strategy_order_notional_usdt": 41.65435009,
+        "reference_mark_price": 1.09494863,
+        "best_bid": 1.0948,
+        "best_ask": 1.0949,
+        "mid": 1.09485,
+        "spread_bp": 0.9133671279169656,
+        "vwap": 1.0948,
+        "filled_qty": 38.042287055102,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.45670442089917884,
+        "market_cost_vs_mark_bp": 1.3574152789248473,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 153.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11824111516092
+      }
+    },
+    {
       "time_utc": "2026-10-15T08:00:00+00:00",
       "regime": "bull",
       "symbol": "SOLUSDT",
@@ -579,6 +1605,153 @@
       }
     },
     {
+      "time_utc": "2026-10-15T08:00:00+00:00",
+      "regime": "bull",
+      "symbol": "TRXUSDT",
+      "side": "BUY",
+      "order_delta_notional_usdt": 0.75992017,
+      "asof_execution": {
+        "status": "full_depth_sweep",
+        "side": "BUY",
+        "quantity": 2.286368102772,
+        "strategy_order_notional_usdt": 0.75992017,
+        "reference_mark_price": 0.33237,
+        "best_bid": 0.33235,
+        "best_ask": 0.33236,
+        "mid": 0.33235499999999996,
+        "spread_bp": 0.30088309187495305,
+        "vwap": 0.33236,
+        "filled_qty": 2.286368102772,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.15044154593857328,
+        "market_cost_vs_mark_bp": -0.30086951289254316,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 167.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11824111513573
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "BUY",
+        "quantity": 2.286368102772,
+        "strategy_order_notional_usdt": 0.75992017,
+        "reference_mark_price": 0.33237,
+        "best_bid": 0.33235,
+        "best_ask": 0.33236,
+        "mid": 0.33235499999999996,
+        "spread_bp": 0.30088309187495305,
+        "vwap": 0.33236,
+        "filled_qty": 2.286368102772,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.15044154593857328,
+        "market_cost_vs_mark_bp": -0.30086951289254316,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 167.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11824111513573
+      }
+    },
+    {
+      "time_utc": "2026-10-15T08:00:00+00:00",
+      "regime": "bull",
+      "symbol": "XRPUSDT",
+      "side": "SELL",
+      "order_delta_notional_usdt": 38.87436912,
+      "asof_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 29.597735326394,
+        "strategy_order_notional_usdt": 38.87436912,
+        "reference_mark_price": 1.31342377,
+        "best_bid": 1.3133,
+        "best_ask": 1.3134,
+        "mid": 1.3133499999999998,
+        "spread_bp": 0.7614116572123881,
+        "vwap": 1.3133,
+        "filled_qty": 29.597735326394,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.38072032285008106,
+        "market_cost_vs_mark_bp": 0.942346277165964,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 139.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11824111519135
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 29.597735326394,
+        "strategy_order_notional_usdt": 38.87436912,
+        "reference_mark_price": 1.31342377,
+        "best_bid": 1.3133,
+        "best_ask": 1.3134,
+        "mid": 1.3133499999999998,
+        "spread_bp": 0.7614116572123881,
+        "vwap": 1.3133,
+        "filled_qty": 29.597735326394,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.38072032285008106,
+        "market_cost_vs_mark_bp": 0.942346277165964,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 139.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11824111519135
+      }
+    },
+    {
+      "time_utc": "2026-10-24T16:00:00+00:00",
+      "regime": "bear",
+      "symbol": "BCHUSDT",
+      "side": "SELL",
+      "order_delta_notional_usdt": 42.75645573,
+      "asof_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 0.158309326897,
+        "strategy_order_notional_usdt": 42.75645573,
+        "reference_mark_price": 270.08172271,
+        "best_bid": 270.06,
+        "best_ask": 270.07,
+        "mid": 270.065,
+        "spread_bp": 0.37028122859277973,
+        "vwap": 270.06,
+        "filled_qty": 0.158309326897,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.1851440420641559,
+        "market_cost_vs_mark_bp": 0.8043013715271158,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 127.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11912262793207
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 0.158309326897,
+        "strategy_order_notional_usdt": 42.75645573,
+        "reference_mark_price": 270.08172271,
+        "best_bid": 270.06,
+        "best_ask": 270.07,
+        "mid": 270.065,
+        "spread_bp": 0.37028122859277973,
+        "vwap": 270.06,
+        "filled_qty": 0.158309326897,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.1851440420641559,
+        "market_cost_vs_mark_bp": 0.8043013715271158,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 127.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11912262793207
+      }
+    },
+    {
       "time_utc": "2026-10-24T16:00:00+00:00",
       "regime": "bear",
       "symbol": "BTCUSDT",
@@ -625,6 +1798,55 @@
         "sequence_gaps_before_capture": 0,
         "snapshots_before_capture": 1,
         "last_update_id": 11912262793930
+      }
+    },
+    {
+      "time_utc": "2026-10-24T16:00:00+00:00",
+      "regime": "bear",
+      "symbol": "DOTUSDT",
+      "side": "BUY",
+      "order_delta_notional_usdt": 39.49933822,
+      "asof_execution": {
+        "status": "full_depth_sweep",
+        "side": "BUY",
+        "quantity": 38.042287055102,
+        "strategy_order_notional_usdt": 39.49933822,
+        "reference_mark_price": 1.03830083,
+        "best_bid": 1.0381,
+        "best_ask": 1.0382,
+        "mid": 1.03815,
+        "spread_bp": 0.9632519385444203,
+        "vwap": 1.0382,
+        "filled_qty": 38.042287055102,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.48162596927303625,
+        "market_cost_vs_mark_bp": -0.9711058402994688,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 130.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11912262795211
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "BUY",
+        "quantity": 38.042287055102,
+        "strategy_order_notional_usdt": 39.49933822,
+        "reference_mark_price": 1.03830083,
+        "best_bid": 1.0381,
+        "best_ask": 1.0382,
+        "mid": 1.03815,
+        "spread_bp": 0.9632519385444203,
+        "vwap": 1.0382,
+        "filled_qty": 38.042287055102,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.48162596927303625,
+        "market_cost_vs_mark_bp": -0.9711058402994688,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 130.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11912262795211
       }
     },
     {
@@ -723,6 +1945,55 @@
         "sequence_gaps_before_capture": 0,
         "snapshots_before_capture": 1,
         "last_update_id": 11912262794459
+      }
+    },
+    {
+      "time_utc": "2026-10-24T16:00:00+00:00",
+      "regime": "bear",
+      "symbol": "TRXUSDT",
+      "side": "SELL",
+      "order_delta_notional_usdt": 41.22448452,
+      "asof_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 125.325240223397,
+        "strategy_order_notional_usdt": 41.22448452,
+        "reference_mark_price": 0.32894,
+        "best_bid": 0.32893,
+        "best_ask": 0.32894,
+        "mid": 0.328935,
+        "spread_bp": 0.3040114308301033,
+        "vwap": 0.32893,
+        "filled_qty": 125.325240223397,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.15200802602199914,
+        "market_cost_vs_mark_bp": 0.3040068097528425,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 169.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11912262788677
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 125.325240223397,
+        "strategy_order_notional_usdt": 41.22448452,
+        "reference_mark_price": 0.32894,
+        "best_bid": 0.32893,
+        "best_ask": 0.32894,
+        "mid": 0.328935,
+        "spread_bp": 0.3040114308301033,
+        "vwap": 0.32893,
+        "filled_qty": 125.325240223397,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.15200802602199914,
+        "market_cost_vs_mark_bp": 0.3040068097528425,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 169.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11912262788677
       }
     },
     {
@@ -871,31 +2142,80 @@
         "snapshots_before_capture": 1,
         "last_update_id": 11963272536393
       }
+    },
+    {
+      "time_utc": "2026-10-30T00:00:00+00:00",
+      "regime": "bear",
+      "symbol": "XRPUSDT",
+      "side": "SELL",
+      "order_delta_notional_usdt": 87.22549191,
+      "asof_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 70.496639381535,
+        "strategy_order_notional_usdt": 87.22549191,
+        "reference_mark_price": 1.2373,
+        "best_bid": 1.237,
+        "best_ask": 1.2371,
+        "mid": 1.23705,
+        "spread_bp": 0.8083747625398244,
+        "vwap": 1.237,
+        "filled_qty": 70.496639381535,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.404203718673557,
+        "market_cost_vs_mark_bp": 2.4246342843285134,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 151.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11963272536652
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 70.496639381535,
+        "strategy_order_notional_usdt": 87.22549191,
+        "reference_mark_price": 1.2373,
+        "best_bid": 1.237,
+        "best_ask": 1.2371,
+        "mid": 1.23705,
+        "spread_bp": 0.8083747625398244,
+        "vwap": 1.237,
+        "filled_qty": 70.496639381535,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.404203718673557,
+        "market_cost_vs_mark_bp": 2.4246342843285134,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 151.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11963272536652
+      }
     }
   ],
   "summary": {
-    "orders": 13,
+    "orders": 32,
     "asof": {
-      "valid_orders": 10,
-      "all_orders": 13,
-      "full_depth_fill_count": 10,
-      "median_cost_vs_mid_bp": 0.02219908584066843,
-      "max_cost_vs_mid_bp": 0.5229578496002141,
+      "valid_orders": 27,
+      "all_orders": 32,
+      "full_depth_fill_count": 27,
+      "median_cost_vs_mid_bp": 0.18722384482972032,
+      "max_cost_vs_mid_bp": 0.5714285714275569,
       "median_cost_vs_mark_bp": 0.2132057271067775,
-      "max_cost_vs_mark_bp": 3.918276191473764,
-      "notional_weighted_cost_vs_mid_bp": 0.1757790915280534,
-      "notional_weighted_cost_vs_mark_bp": 0.8602690665433471
+      "max_cost_vs_mark_bp": 8.270985578566934,
+      "notional_weighted_cost_vs_mid_bp": 0.25396793394435624,
+      "notional_weighted_cost_vs_mark_bp": 0.970182087797983
     },
     "first_after": {
-      "valid_orders": 10,
-      "all_orders": 13,
-      "full_depth_fill_count": 10,
-      "median_cost_vs_mid_bp": 0.02219908584066843,
-      "max_cost_vs_mid_bp": 0.5229578496002141,
+      "valid_orders": 27,
+      "all_orders": 32,
+      "full_depth_fill_count": 27,
+      "median_cost_vs_mid_bp": 0.18722384482972032,
+      "max_cost_vs_mid_bp": 0.5714285714275569,
       "median_cost_vs_mark_bp": 0.2132057271067775,
-      "max_cost_vs_mark_bp": 3.918276191473764,
-      "notional_weighted_cost_vs_mid_bp": 0.1757790915280534,
-      "notional_weighted_cost_vs_mark_bp": 0.8602690665433471
+      "max_cost_vs_mark_bp": 8.270985578566934,
+      "notional_weighted_cost_vs_mid_bp": 0.25396793394435624,
+      "notional_weighted_cost_vs_mark_bp": 0.970182087797983
     }
   }
 }
