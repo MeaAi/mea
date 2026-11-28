@@ -1,0 +1,30 @@
+name: EXP-027 per-symbol stop-loss screen
+on:
+  push:
+    branches:
+      - research/exp027-per-symbol-stop-loss-v1
+    paths:
+      - research/exp025_forward_simulator.py
+      - research/exp025_november_forward_validation.py
+      - .github/workflows/exp027-per-symbol-stop-loss.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  stop-loss-screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run partial November EXP-027 screen
+        run: python research/exp025_november_forward_validation.py
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp027-per-symbol-stop-report
+          path: research-results/exp025_november_forward_validation.json
+          if-no-files-found: warn
