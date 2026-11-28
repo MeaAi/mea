@@ -68,7 +68,7 @@ def load_symbol(sym,months,root):
   verified_download(f"{BASE}/markPriceKlines/{sym}/1h/{mn}",mp);marks.update(readzip(mp,"mark"))
  return sym,fund,marks
 
-def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20,side_mode='both',regime_filter=None,regime_policy=None,regime_threshold_pct=5.0,trade_universe=None,sideways_action='flat',sideways_confirm_hours=1):
+def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20,side_mode='both',regime_filter=None,regime_policy=None,regime_threshold_pct=5.0,trade_universe=None,sideways_action='flat',sideways_confirm_hours=1,funding_score_halflife_hours=None):
  symbols=sorted(data); trade_symbols=sorted(trade_universe) if trade_universe is not None else symbols; first,last=period
  if not set(trade_symbols).issubset(set(symbols)) or 'BTCUSDT' not in data: raise ValueError('invalid trade universe or missing BTC regime benchmark')
  mark_times={s:sorted(data[s]["marks"]) for s in symbols}
@@ -169,8 +169,13 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
   if rebalance_event_coverage>=math.ceil(.8*len(symbols)) and (last_rebal is None and t>=first+lookback or last_rebal is not None and (t-last_rebal>=interval or ((regime_filter is not None or regime_policy is not None) and rg!=last_regime))):
    scores={}
    for s in trade_symbols:
-    vals=[r for et,r in data[s]["fund"].items() if t-lookback<et<=t]
-    if len(vals)>=12 and s in px:scores[s]=sum(vals)
+    vals=[(et,r) for et,r in data[s]["fund"].items() if t-lookback<et<=t]
+    if len(vals)>=12 and s in px:
+     if funding_score_halflife_hours is None:
+      scores[s]=sum(r for et,r in vals)
+     else:
+      half_life_ms=funding_score_halflife_hours*3600000
+      scores[s]=sum(r*math.exp(-math.log(2)*(t-et)/half_life_ms) for et,r in vals)
    ordered=sorted(scores,key=lambda s:(scores[s],s));k=max(1,int(len(ordered)*tail_fraction))
    if len(ordered)>=2*k:
     longs=ordered[:k];shorts=ordered[-k:];target={s:0. for s in symbols}
@@ -222,7 +227,7 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
   "liquidated":liquidated,"liquidation_time_utc":liq_time,"equity_at_liquidation_usdt":liq_equity,
   "price_pnl_usdt":round(price_pnl,6),"funding_pnl_usdt":round(funding_pnl,6),
   "trading_fees_usdt":round(fee_total,6),"slippage_usdt":round(slip_total,6),
-  "rebalance_count":rebalances,"rebalance_log":rebalance_log,"hourly_adverse_checks":hourly_checks,"hourly_sideways_exits":hourly_sideways_exits,"sideways_action":sideways_action,"lookback_days":lookback_days,"rebalance_days":rebalance_days,"tail_fraction":tail_fraction,"side_mode":side_mode,"regime_filter":regime_filter,"regime_policy":regime_policy,
+  "rebalance_count":rebalances,"rebalance_log":rebalance_log,"hourly_adverse_checks":hourly_checks,"hourly_sideways_exits":hourly_sideways_exits,"sideways_action":sideways_action,"lookback_days":lookback_days,"rebalance_days":rebalance_days,"tail_fraction":tail_fraction,"side_mode":side_mode,"regime_filter":regime_filter,"regime_policy":regime_policy,"funding_score_halflife_hours":funding_score_halflife_hours,
   "symbol_attribution":{z:{"price_pnl_usdt":round(price_by_symbol[z],6),"funding_pnl_usdt":round(funding_by_symbol[z],6),"fees_usdt":round(fees_by_symbol[z],6),"slippage_usdt":round(slippage_by_symbol[z],6),"net_contribution_usdt":round(price_by_symbol[z]+funding_by_symbol[z]-fees_by_symbol[z]-slippage_by_symbol[z],6)} for z in symbols},
   "market_regime_attribution":{k:{q:round(v,6) for q,v in vals.items()}|{"net_contribution_usdt":round(vals['price_pnl_usdt']+vals['funding_pnl_usdt']-vals['fees_usdt']-vals['slippage_usdt'],6)} for k,vals in regime_pnl.items()},
   "entry_regime_attribution":{k:{q:round(v,6) for q,v in vals.items()}|{"net_contribution_usdt":round(vals['price_pnl_usdt']+vals['funding_pnl_usdt'],6)} for k,vals in entry_regime_pnl.items()},
