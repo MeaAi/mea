@@ -558,3 +558,20 @@ The following run SHAs are GitHub Actions `head_sha` values (workflow-trigger co
 1. Do not repeat bull-flat or the rejected per-symbol stop-loss screen on the same historical window.
 2. Existing policy variants (bull long-only/both, bear short-only/both), debounce, exposure caps, drawdown scaling, volatility sizing, and sideways retention have already been tested on prior 2023-2026 windows. Do not re-run those as novel ideas. A new candidate must have a distinct mechanism and a predeclared acceptance test.
 3. Continue research only on a genuinely untested mechanism or a genuinely new market window; keep all work on research branches and preserve MEAFLOW-72.
+
+
+### EXP-030 — Causal EWMA funding-score screen (2026-11-28)
+- Status: COMPLETED; 24h half-life is a candidate for multiwindow robustness validation only; not promoted.
+- Branch: research/exp030-ewma-funding-score-v1; simulator commit 15f6c00015423ce5bfc08863af02b22b5c87de00; evaluator commit 487348a448e365d216ffdb59736215675b471df8; workflow commit f6ff1555a55317d20f48390f41c1e5e94d8089f1; report commit b72925ffa52a9cd3a6ade63e74432dfab58e957c; report research/EXP030_EWMA_FUNDING_SCORE.md.
+- Actions run 46132632109, job 140940946725, success. Artifact ID 15257894361, SHA-256 67a92353c9d71141add9d7c10408737bbb190b5f85259428d3f65b544ccb322f.
+- Method: within the causal 7-day funding lookback, weight each settlement by exp(-ln(2)*age_hours/half_life_hours). Only settlement records at or before the decision timestamp are used. Predeclared half-lives: 24h, 72h, 168h. All other MEAFLOW-72 settings, data, costs and 2021-2022 window are unchanged.
+- Frozen simple-sum baseline: 100 -> 218.133618 USDT; +118.1336%; max DD -47.1792%.
+- EWMA 24h: 100 -> 229.888048 USDT; +129.8880%; max DD -44.5344%; +11.7544 pp return and +2.6448 pp DD improvement versus baseline. Joint gate PASSED on the screening window.
+- EWMA 72h: 100 -> 187.646998; +87.6470%; DD -53.6416%; reject.
+- EWMA 168h: 100 -> 220.846619; +120.8466%; DD -47.1613%; DD improvement only 0.0179 pp, not meaningful; do not treat as robust pass.
+- Decision: 24h EWMA is a candidate for multiwindow robustness validation only. Since this is the same 2021-2022 period used to identify the hypothesis, it is exploratory, not independent confirmation. No MEAFLOW-72 or MEAFLOW-52 files/branches were changed.
+
+### Updated next queue after EXP-030
+1. Validate only the preselected 24h EWMA variant across the previously inspected 2023-2026 windows, with 2023, 2024, 2025 Jan-Sep, and 2025-09-07 to 2026-10-31 reported separately. Do not retune the half-life on those windows.
+2. Require the joint gate (higher net return AND lower hourly adverse-mark DD) per window; report whether it passes consistently, not just aggregate return.
+3. Do not promote or modify MEAFLOW-72 until the 24h variant passes robustness checks; all work remains on research branches.
