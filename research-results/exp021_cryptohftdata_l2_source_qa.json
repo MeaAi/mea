@@ -1802,6 +1802,470 @@
         ]
       },
       "status": "ok"
+    },
+    {
+      "download": {
+        "url": "https://api.cryptohftdata.com/v1/download?file=binance_futures/2026-10-24/16/BCHUSDT_orderbook.parquet",
+        "http_status": 200,
+        "bytes": 8834146,
+        "sha256": "c78f22615bcdc16fa4304f7ea5440a84679a4aafe30ff516f6d3b7d95d7765f7"
+      },
+      "qa": {
+        "date": "2026-10-24",
+        "hour_utc": "16",
+        "symbol": "BCHUSDT",
+        "rows": 1062038,
+        "event_type_counts": {
+          "update": 1058101,
+          "snapshot": 3937
+        },
+        "snapshot_rows": 3937,
+        "snapshot_groups": 1,
+        "first_snapshot_received_time_ns": 1792857600000000000,
+        "last_snapshot_received_time_ns": 1792857600000000000,
+        "snapshot_details": [
+          {
+            "received_time_ns": 1792857600000000000,
+            "event_time_ms": 1792857599873,
+            "last_update_id": 11912262793207,
+            "final_update_id": 11912262793207,
+            "side": "bid"
+          }
+        ],
+        "first_rows": [
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599873,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262793207,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262793207.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599873,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262793207,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262793207.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599873,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262793207,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262793207.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599873,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262793207,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262793207.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599873,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262793207,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262793207.0,
+            "side": "bid"
+          }
+        ],
+        "first_received_time_ns": 1792857600000000000,
+        "hour_start_ns": 1792857600000000000,
+        "first_group_is_snapshot": true,
+        "first_group_rows": 3937,
+        "min_event_time_ms": 1792857599873,
+        "max_event_time_ms": 1792861199845,
+        "min_transaction_time_ms": 1792857599900,
+        "max_transaction_time_ms": 1792861199822,
+        "update_message_groups": 105093,
+        "sequence_gaps_within_file": 0,
+        "first_sequence_gaps": [],
+        "has_hour_start_checkpoint": true,
+        "schema_columns": [
+          "received_time",
+          "event_time",
+          "transaction_time",
+          "symbol",
+          "event_type",
+          "first_update_id",
+          "final_update_id",
+          "prev_final_update_id",
+          "last_update_id",
+          "side",
+          "price",
+          "quantity",
+          "order_count"
+        ]
+      },
+      "status": "ok"
+    },
+    {
+      "download": {
+        "url": "https://api.cryptohftdata.com/v1/download?file=binance_futures/2026-10-24/16/DOTUSDT_orderbook.parquet",
+        "http_status": 200,
+        "bytes": 8341531,
+        "sha256": "f7ddd220b410e0bb6f2fa3419675f32f475956e1258d53223888b69dbbda7388"
+      },
+      "qa": {
+        "date": "2026-10-24",
+        "hour_utc": "16",
+        "symbol": "DOTUSDT",
+        "rows": 818731,
+        "event_type_counts": {
+          "update": 814617,
+          "snapshot": 4114
+        },
+        "snapshot_rows": 4114,
+        "snapshot_groups": 1,
+        "first_snapshot_received_time_ns": 1792857600000000000,
+        "last_snapshot_received_time_ns": 1792857600000000000,
+        "snapshot_details": [
+          {
+            "received_time_ns": 1792857600000000000,
+            "event_time_ms": 1792857599870,
+            "last_update_id": 11912262795211,
+            "final_update_id": 11912262795211,
+            "side": "bid"
+          }
+        ],
+        "first_rows": [
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599870,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262795211,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262795211.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599870,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262795211,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262795211.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599870,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262795211,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262795211.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599870,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262795211,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262795211.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599870,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262795211,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262795211.0,
+            "side": "bid"
+          }
+        ],
+        "first_received_time_ns": 1792857600000000000,
+        "hour_start_ns": 1792857600000000000,
+        "first_group_is_snapshot": true,
+        "first_group_rows": 4114,
+        "min_event_time_ms": 1792857599870,
+        "max_event_time_ms": 1792861199864,
+        "min_transaction_time_ms": 1792857599890,
+        "max_transaction_time_ms": 1792861199859,
+        "update_message_groups": 96948,
+        "sequence_gaps_within_file": 0,
+        "first_sequence_gaps": [],
+        "has_hour_start_checkpoint": true,
+        "schema_columns": [
+          "received_time",
+          "event_time",
+          "transaction_time",
+          "symbol",
+          "event_type",
+          "first_update_id",
+          "final_update_id",
+          "prev_final_update_id",
+          "last_update_id",
+          "side",
+          "price",
+          "quantity",
+          "order_count"
+        ]
+      },
+      "status": "ok"
+    },
+    {
+      "download": {
+        "url": "https://api.cryptohftdata.com/v1/download?file=binance_futures/2026-10-24/16/TRXUSDT_orderbook.parquet",
+        "http_status": 200,
+        "bytes": 2595244,
+        "sha256": "9a0d685674809e6bfa28848ec20537d1ba39297edc342370c5345299ecb281b5"
+      },
+      "qa": {
+        "date": "2026-10-24",
+        "hour_utc": "16",
+        "symbol": "TRXUSDT",
+        "rows": 163073,
+        "event_type_counts": {
+          "update": 158734,
+          "snapshot": 4339
+        },
+        "snapshot_rows": 4339,
+        "snapshot_groups": 1,
+        "first_snapshot_received_time_ns": 1792857600000000000,
+        "last_snapshot_received_time_ns": 1792857600000000000,
+        "snapshot_details": [
+          {
+            "received_time_ns": 1792857600000000000,
+            "event_time_ms": 1792857599831,
+            "last_update_id": 11912262788677,
+            "final_update_id": 11912262788677,
+            "side": "bid"
+          }
+        ],
+        "first_rows": [
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599831,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262788677,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262788677.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599831,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262788677,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262788677.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599831,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262788677,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262788677.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599831,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262788677,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262788677.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599831,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262788677,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262788677.0,
+            "side": "bid"
+          }
+        ],
+        "first_received_time_ns": 1792857600000000000,
+        "hour_start_ns": 1792857600000000000,
+        "first_group_is_snapshot": true,
+        "first_group_rows": 4339,
+        "min_event_time_ms": 1792857599831,
+        "max_event_time_ms": 1792861199813,
+        "min_transaction_time_ms": 1792857599952,
+        "max_transaction_time_ms": 1792861199785,
+        "update_message_groups": 55036,
+        "sequence_gaps_within_file": 0,
+        "first_sequence_gaps": [],
+        "has_hour_start_checkpoint": true,
+        "schema_columns": [
+          "received_time",
+          "event_time",
+          "transaction_time",
+          "symbol",
+          "event_type",
+          "first_update_id",
+          "final_update_id",
+          "prev_final_update_id",
+          "last_update_id",
+          "side",
+          "price",
+          "quantity",
+          "order_count"
+        ]
+      },
+      "status": "ok"
+    },
+    {
+      "download": {
+        "url": "https://api.cryptohftdata.com/v1/download?file=binance_futures/2026-10-30/00/XRPUSDT_orderbook.parquet",
+        "http_status": 200,
+        "bytes": 20786714,
+        "sha256": "5c8e587a684b239c04ffd24994917ddb7b4452c45a1ea86a53a86e9491939152"
+      },
+      "qa": {
+        "date": "2026-10-30",
+        "hour_utc": "00",
+        "symbol": "XRPUSDT",
+        "rows": 2982205,
+        "event_type_counts": {
+          "update": 2975483,
+          "snapshot": 6722
+        },
+        "snapshot_rows": 6722,
+        "snapshot_groups": 1,
+        "first_snapshot_received_time_ns": 1793318400000000000,
+        "last_snapshot_received_time_ns": 1793318400000000000,
+        "snapshot_details": [
+          {
+            "received_time_ns": 1793318400000000000,
+            "event_time_ms": 1793318399849,
+            "last_update_id": 11963272536652,
+            "final_update_id": 11963272536652,
+            "side": "bid"
+          }
+        ],
+        "first_rows": [
+          {
+            "received_time": 1793318400000000000,
+            "event_time": 1793318399849,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11963272536652,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11963272536652.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1793318400000000000,
+            "event_time": 1793318399849,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11963272536652,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11963272536652.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1793318400000000000,
+            "event_time": 1793318399849,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11963272536652,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11963272536652.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1793318400000000000,
+            "event_time": 1793318399849,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11963272536652,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11963272536652.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1793318400000000000,
+            "event_time": 1793318399849,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11963272536652,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11963272536652.0,
+            "side": "bid"
+          }
+        ],
+        "first_received_time_ns": 1793318400000000000,
+        "hour_start_ns": 1793318400000000000,
+        "first_group_is_snapshot": true,
+        "first_group_rows": 6722,
+        "min_event_time_ms": 1793318399849,
+        "max_event_time_ms": 1793321999875,
+        "min_transaction_time_ms": 1793318399877,
+        "max_transaction_time_ms": 1793321999869,
+        "update_message_groups": 130236,
+        "sequence_gaps_within_file": 0,
+        "first_sequence_gaps": [],
+        "has_hour_start_checkpoint": true,
+        "schema_columns": [
+          "received_time",
+          "event_time",
+          "transaction_time",
+          "symbol",
+          "event_type",
+          "first_update_id",
+          "final_update_id",
+          "prev_final_update_id",
+          "last_update_id",
+          "side",
+          "price",
+          "quantity",
+          "order_count"
+        ]
+      },
+      "status": "ok"
     }
   ],
   "limitations": [
@@ -1812,11 +2276,11 @@
     "Provider documents historical empty-snapshot omissions before its 2026-10 data-quality release; any affected stale book must be rejected."
   ],
   "summary": {
-    "files_tested": 22,
-    "files_downloaded_and_read": 14,
+    "files_tested": 26,
+    "files_downloaded_and_read": 18,
     "files_with_sequence_gaps": 3,
-    "files_with_hour_start_checkpoint": 10,
-    "total_rows": 94000442,
+    "files_with_hour_start_checkpoint": 14,
+    "total_rows": 99026489,
     "failed_files": 8
   }
 }
