@@ -48,10 +48,25 @@ def main():
         for future in as_completed(futures):
             symbol = futures[future]
             try:
-                _, funding, marks = future.result()
+                _, funding_raw, marks = future.result()
+                # Binance fundingTime can carry millisecond serialization offsets
+                # from the exact hourly settlement boundary. Normalize only within 10 ms.
+                funding = {}
+                offset_hist = {}
+                for ts, rate in funding_raw.items():
+                    hour_ts = round(ts / 3600000) * 3600000
+                    offset = ts - hour_ts
+                    if abs(offset) > 10:
+                        raise RuntimeError(f"Funding timestamp offset exceeds 10 ms: {symbol} {ts} offset={offset}")
+                    offset_hist[str(offset)] = offset_hist.get(str(offset), 0) + 1
+                    if hour_ts in funding:
+                        raise RuntimeError(f"Funding timestamp collision after hourly normalization: {symbol} {hour_ts}")
+                    funding[hour_ts] = rate
                 data[symbol] = {"fund": funding, "marks": marks}
                 monthly_meta[symbol] = {
+                    "raw_funding_records": len(funding_raw),
                     "funding_records": len(funding),
+                    "funding_timestamp_offset_ms_histogram": offset_hist,
                     "hourly_mark_bars": len(marks),
                     "first_funding_utc": datetime.fromtimestamp(min(funding)/1000, timezone.utc).isoformat() if funding else None,
                     "last_funding_utc": datetime.fromtimestamp(max(funding)/1000, timezone.utc).isoformat() if funding else None,
@@ -159,7 +174,7 @@ def main():
         "rebalance_log": baseline["rebalance_log"],
         "limitations": [
             "This is a new historical validation window not present in the handoff ledger; it is not a future/live forward test.",
-            "Monthly archive ZIP CRC is checked by the shared loader; SHA-256 sidecar checksums are not required by this evaluator.",
+            "Monthly archive ZIP CRC is checked by the shared loader; SHA-256 sidecar checksums are not required by this evaluator. FundingTime timestamps are normalized to the nearest hour only when the offset is <=10 ms; any larger offset or collision blocks the run.",
             "Hourly OHLC adverse-mark DD and liquidation remain approximations, not Binance's exact portfolio margin engine.",
             "Fixed 2 bp one-way slippage; no event-level L2 fills, partial fills, market impact, or dynamic funding execution costs.",
             "Historical listing dates and universe composition can introduce survivorship/availability bias; report per-symbol data coverage."
