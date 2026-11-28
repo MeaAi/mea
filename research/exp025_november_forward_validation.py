@@ -6,7 +6,7 @@ November daily public archives. Only the research copy relaxes the simulator's
 minimum event-count guard from 100 to 60 so this 27-day forward window can run.
 No strategy parameters or MEAFLOW-72 files are modified.
 """
-import json, math
+import json, math, hashlib, urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -24,28 +24,49 @@ DATES = [(datetime(2026, 11, 1, tzinfo=timezone.utc) + timedelta(days=i)).strfti
 def ms(value):
     return int(datetime.fromisoformat(value).timestamp() * 1000)
 
+def verified_archive(url, path, kind):
+    # Binance publishes a sibling SHA-256 CHECKSUM for each ZIP archive.
+    sim.download(url, path)
+    with urllib.request.urlopen(url + ".CHECKSUM", timeout=60) as response:
+        checksum_text = response.read().decode("utf-8").strip()
+    expected = []
+    for line in checksum_text.splitlines():
+        fields = line.split()
+        if len(fields) >= 2 and fields[-1].lstrip("*") == path.name:
+            expected.append(fields[0].lower())
+    if len(expected) != 1:
+        raise RuntimeError(f"Expected exactly one checksum entry for {path.name}; found {len(expected)}")
+    actual = hashlib.sha256(path.read_bytes()).hexdigest()
+    if actual != expected[0]:
+        raise RuntimeError(f"SHA-256 mismatch for {path.name}: expected {expected[0]}, got {actual}")
+    return sim.readzip(path, kind)  # also validates ZIP CRC
+
+
 def load_symbol_forward(symbol):
     root = Path("research-output")
     _, funding, marks = sim.load_symbol(symbol, ["2026-10"], root)
     errors = []
-    for date in DATES:
-        fund_name = f"{symbol}-fundingRate-{date}.zip"
-        fund_path = root / "cache" / symbol / "funding_daily" / fund_name
-        fund_url = f"{DAILY_BASE}/fundingRate/{symbol}/{fund_name}"
-        try:
-            sim.download(fund_url, fund_path)
-            funding.update(sim.readzip(fund_path, "fund"))
-        except Exception as exc:
-            errors.append({"date": date, "kind": "fundingRate", "error": str(exc)})
 
+    # USD-M fundingRate is monthly, not daily. November's monthly archive is
+    # expected only after Binance's first-Monday publication cycle.
+    fund_name = f"{symbol}-fundingRate-2026-11.zip"
+    fund_path = root / "cache" / symbol / "funding_monthly" / fund_name
+    fund_url = f"{sim.BASE}/fundingRate/{symbol}/{fund_name}"
+    try:
+        funding.update(verified_archive(fund_url, fund_path, "fund"))
+    except Exception as exc:
+        errors.append({"date": "2026-11", "kind": "monthly_fundingRate", "error": str(exc)})
+
+    # Mark-price klines remain daily. Every date in the declared forward window
+    # is required; an unpublished or missing date blocks the complete test.
+    for date in DATES:
         mark_name = f"{symbol}-1h-{date}.zip"
         mark_path = root / "cache" / symbol / "mark_daily" / mark_name
         mark_url = f"{DAILY_BASE}/markPriceKlines/{symbol}/1h/{mark_name}"
         try:
-            sim.download(mark_url, mark_path)
-            marks.update(sim.readzip(mark_path, "mark"))
+            marks.update(verified_archive(mark_url, mark_path, "mark"))
         except Exception as exc:
-            errors.append({"date": date, "kind": "markPriceKlines", "error": str(exc)})
+            errors.append({"date": date, "kind": "daily_markPriceKlines", "error": str(exc)})
     return symbol, funding, marks, errors
 
 def main():
@@ -65,14 +86,16 @@ def main():
                 errors[symbol] = [{"kind": "symbol_load", "error": str(exc)}]
                 print("FAILED", symbol, str(exc), flush=True)
 
-    if len(data) < 8 or "BTCUSDT" not in data:
-        raise RuntimeError("Insufficient usable symbols: " + json.dumps(errors))
+    if len(data) != len(SYMBOLS) or "BTCUSDT" not in data:
+        raise RuntimeError("BLOCKED: incomplete 13-symbol universe or archive/checksum failure; no strategy run: " + json.dumps(errors))
 
     data = {s: data[s] for s in sorted(data)}
     first, last = ms(START), ms(END)
     all_times = sorted(set(t for s in data for t in data[s]["fund"] if first <= t <= last))
     required = math.ceil(.8 * len(data))
     aligned = [t for t in all_times if sum(t in data[s]["fund"] and t in data[s]["marks"] for s in data) >= required]
+    if errors:
+        raise RuntimeError("BLOCKED: one or more required archives failed checksum/download validation; no strategy run: " + json.dumps(errors))
     if len(aligned) < 60:
         raise RuntimeError(f"Only {len(aligned)} aligned forward funding events; need at least 60. Errors: {json.dumps(errors)}")
 
