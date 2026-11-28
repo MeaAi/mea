@@ -90,9 +90,9 @@ def main():
         elif lab==prev and t-prev_t==HOUR:
             prev_t=t
         else:
-            if prev_t-start>=45*DAY:segments.append((prev,start,prev_t,prev_t-start))
+            if prev_t-start>=MIN_SEGMENT_DAYS*DAY:segments.append((prev,start,prev_t,prev_t-start))
             start=t;prev=lab;prev_t=t
-    if start is not None and prev_t-start>=45*DAY:segments.append((prev,start,prev_t,prev_t-start))
+    if start is not None and prev_t-start>=MIN_SEGMENT_DAYS*DAY:segments.append((prev,start,prev_t,prev_t-start))
     # Include contiguous regime-pure blocks >=14 days; shorter episodes are counted, not silently treated as full samples.
     if not segments:raise RuntimeError(f"No regime-pure segments >= {MIN_SEGMENT_DAYS} days")
     short_segments=[]
@@ -185,7 +185,7 @@ def main():
       "regime_results":by_regime,"cost_stress":costs,"window_sensitivity":windows,
       "decision_rule":"Reject unless candidate increases compounded return and improves worst segment hourly adverse drawdown, with zero liquidations; require segment-level consistency plus cost and window robustness.",
       "limitations":["Regime blocks are historical contiguous samples, not independent market cycles.",
-       "Only blocks >=14d are included; shorter regime episodes are separately counted and listed."",
+       "Only blocks >=14d are included; shorter regime episodes are separately counted and listed.",
        "Each segment restarts at 100 USDT; compounded return is a regime-conditional growth factor, not a tradable continuous portfolio equity curve.",
        "VWAP is a volume-weighted traded-price proxy, not holder cost basis.",
        "Static 13-symbol universe survivorship bias; portfolio hourly adverse/liquidation remains an approximation."]}
