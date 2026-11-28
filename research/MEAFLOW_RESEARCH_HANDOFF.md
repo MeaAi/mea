@@ -575,3 +575,21 @@ The following run SHAs are GitHub Actions `head_sha` values (workflow-trigger co
 1. Validate only the preselected 24h EWMA variant across the previously inspected 2023-2026 windows, with 2023, 2024, 2025 Jan-Sep, and 2025-09-07 to 2026-10-31 reported separately. Do not retune the half-life on those windows.
 2. Require the joint gate (higher net return AND lower hourly adverse-mark DD) per window; report whether it passes consistently, not just aggregate return.
 3. Do not promote or modify MEAFLOW-72 until the 24h variant passes robustness checks; all work remains on research branches.
+
+
+### EXP-031 — 24h EWMA multiwindow robustness validation (2026-11-28)
+- Status: COMPLETED; REJECTED. The 24h EWMA candidate from EXP-030 did not generalize.
+- Branch: research/exp031-ewma24-multiwindow-validation-v1; evaluator commit 7e41c3e4b3d7d7f16df2c044ae62c2f765842efb; workflow commit 527817a847d0ea5c57c0441a0d78ada67a3ade40; report commit 3fec2241a9635e138646d7c47a7df47eba1539ea; report research/EXP031_EWMA24_MULTIWINDOW_VALIDATION.md.
+- Actions run 46132872854, job 140941700940, success. Artifact ID 15257968107, SHA-256 ea959b220a492da09eb6773688d01cb8280fae1b7a75a40b6d6ca58a1c2254c4.
+- Tested only the preselected 24h EWMA half-life (no retuning) against frozen simple-sum MEAFLOW-72 on four previously inspected windows. Data: 13/13 symbols; 94 monthly archives per symbol; 26 SHA-256-verified daily mark supplements; no errors; event coverage full 13-symbol across each window.
+- 2023: frozen +64.9657% / DD -20.6707%; EWMA24 +20.8647% / DD -25.6427%; return delta -44.1010 pp, DD delta -4.9720 pp; fail.
+- 2024: frozen -7.8040% / DD -34.5262%; EWMA24 -14.4680% / DD -51.3395%; return delta -6.6640 pp, DD delta -16.8133 pp; fail.
+- 2025-01-01 08:00 to 2025-09-06 16:00: frozen +6.9240% / DD -38.1966%; EWMA24 -9.2958% / DD -51.3744%; return delta -16.2198 pp, DD delta -13.1778 pp; fail.
+- 2025-09-07 to 2026-10-31 16:00: frozen +96.8362% / DD -27.0350%; EWMA24 +90.2347% / DD -25.5061%; return delta -6.6015 pp, DD delta +1.5289 pp; fail.
+- All four windows failed the joint gate. The 2021-2022 positive EWMA screen was not robust. Reject; do not promote or retune on these same windows. The corrected research-copy baseline values differ from older simulator reports because event handling/data coverage were corrected; compare candidate and baseline only within this matched run.
+- No MEAFLOW-72 or MEAFLOW-52 protected branch was modified.
+
+### Updated next queue after EXP-031
+1. Reject the 24h EWMA funding-score change; do not repeat 24h/72h/168h half-life sweeps on the same windows.
+2. Search the ledger for a distinct, untested signal mechanism before opening another experiment. Avoid revisiting funding score half-life, regime mappings, per-symbol stop-loss, leverage, volatility sizing, pair selection, and previously tested microstructure ideas.
+3. Keep MEAFLOW-72 frozen. A new candidate must be predeclared, tested on copies, and pass higher net return AND lower hourly adverse-mark DD on matched data before any promotion.
