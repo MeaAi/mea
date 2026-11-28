@@ -372,3 +372,35 @@ This update records an audit of existing repository artifacts and the two workfl
 - Queue item 1 (recover EXP-010–013 Actions IDs and run head SHAs): COMPLETED to the extent described above; exact generated-report publishing commit SHA remains an archival detail.
 - Queue item 2 (audit BookDepth cost report and reconcile maker model): COMPLETED. BookDepth JSON is valid and fully retrieved by blob SHA; 864 OOS cells were checked, none positive. Maker trade-through remains a separate, queue-unaware proxy and all listed OOS returns are negative.
 - Next work is provenance/report reconciliation for EXP-014–024, then independent-period data availability research. No new strategy experiment is authorized by this audit; do not dispatch a workflow or create an experiment branch merely to recover missing provenance.
+
+
+### EXP-017–024 artifact and Actions provenance reconciliation — 2026-11-28
+
+The following run SHAs are GitHub Actions `head_sha` values (workflow-trigger commits); code-file and report blob SHAs are listed separately. A green workflow means the job completed, not that its market-data sample was sufficient or its hypothesis passed.
+
+| Experiment | Actions run(s) | Run head SHA (latest relevant) | Code blob SHA | Report blob SHA | Status / decision |
+|---|---|---|---|---|---|
+| EXP-017 signal alignment | `46071286731` | `d879ba61308648d49f8132884fb288e49682fbc0` | `9d9ec9feeb2ad4e0da6a7da6329f9c31fa60d364` | `5bba880eeaafbc23618a60a3f98f8bc4a848d364` | Completed audit; 268 order deltas across 98 events; no PnL claim |
+| EXP-018 Tardis source probe | `46073949436` | `1ba34e79df586487973f909b6dcaf4f3b85c4fd5` | `da66859bfd99669d555069c5f815403ed9201865` | `e49631d2348a11934f9f0f0d202a84cddda658b7` | 22/22 range probes returned valid gzip prefixes; source probe only |
+| EXP-018 actual order L2 | `46074200877` | `7d82a5f8860e644249ade995296a6f9ebcc99306` | `bb780f5b7d58acd07b55eea461ee531641f859ef` | `9988b30aa33251a14d5bc1d74f518d8f5ffd9d8a` | 12/12 displayed-depth sweeps completed |
+| EXP-018B February L2 | `46076614948` | `954e11b7cfc9e6e826ddf251f961d0b2efc5d4e7` | `8f5d93c291d2fe4280af1efb259ca7bc0e2011f3` | `e5083745148b7718f4b0645fea69f7315801d1ee` | 3/3 displayed-depth sweeps completed |
+| EXP-019 full OOS event export | `46098433866` | `768f7601a35c4b2d3f7ad940beb89dd3df9a03a6` | `75034ef49d523c5103b65f7fa17f919aa2dd630e` | `246f452f0b16b01cf9df50d085846dcda45967c1` | Completed event export |
+| EXP-020 expanded L2 sample | `46098712772` (also failed attempt `46098669063`) | `b6f7a02d66d0f305da57e222a26a3bbe04563b94` | `e0c0d20f6f19819e0d7a0931845912b986ac2afa` | `d445769185b9309861672bab86e90a6a91187956` | Blocked by source access; no fill/cost inference |
+| EXP-021 CryptoHFTData source QA | `46103131490` (earlier iterations also exist) | `2530a60375242882821ddedfa406469e603f40ec` | `0548dede4ac67b353655e1569a0139c72567e058` | `fe06b922d761d7fa51ea09e25c44314060708e35` | Workflow success, report status partial: 31 files tested, 23 downloaded/read, 8 failed, 3 sequence-gap files; not complete source coverage |
+| EXP-022 actual order replay | `46103343368` (multiple earlier iterations) | `84f89ff8101ca3a6a15ed2b24657fa3003d2bcf2` | `ba726d61287ee8909ddb798730d59fad3b6566e4` | `a36791a30be88b7f80dc26872b927122623ba57a` | 39 selected; 33 valid full-depth; 6 invalid/stale; sample only |
+| EXP-023 Binance filter audit | `46104388719` | `0e216cda40f059430d8facb2081946e41b67295f` | `29dd2c786c80d827ffc861eea70043d381129268` | No valid report artifact | Failed: exchangeInfo HTTP 451; no verified exchange filters |
+| EXP-024 min-notional backtest | `46104587286` | `936c431f6395c69d9a86defe5e1c0d771e03c9c9` | `0ba7de3ce1eb1741d84e9ada29726426da243e0f` | `aa203c88314ee222738203449254a29c1cb11503` | Completed sensitivity; all variants rejected by joint return/DD criterion |
+
+#### EXP-018 combined 15-order sample clarification
+- The 15 direct L2 orders are 12 orders from 2025-10-01 and 2026-06-01 in report `exp018_actual_order_l2_sweep.json`, plus 3 orders from 2026-02-01 in `exp018_february_actual_order_l2_sweep.json`.
+- Across all 15, mid-price execution cost median = 0.1757 bp, P90 = 0.6196 bp, max = 2.2041 bp, notional-weighted mean = 0.3038 bp. These are book-sweep execution costs versus mid; do not confuse with mark-reference differences, which also include signal-to-book price movement.
+- All 15 orders had sufficient displayed depth in the captured snapshot. This is not proof of queue-aware passive fills or continuous market-wide execution quality.
+
+#### EXP-021 source QA interpretation
+- The final report has non-standard JSON `NaN` values in optional fields; when parsing for audit only, those values were normalized to null. Preserve the original report blob unchanged.
+- Workflow success is only a successful QA script run. The report's own `status=partial`, 8 failed files and 3 sequence-gap files mean EXP-021 is not a complete validated historical L2 archive. EXP-022 replay used only the valid subset; retain its 33/39 valid coverage caveat.
+
+#### EXP-022 replay interpretation
+- The 39 replayed events are all members of the 268-order EXP-019 parent set; they are not additional independent strategy events. Exact timestamp + symbol + side matching confirmed 39/39.
+- Do not add 39 to the 268 event count. EXP-018's 15 sampled orders are disjoint from these 39 by exact event key, but also belong to the same 268-order parent population.
+
