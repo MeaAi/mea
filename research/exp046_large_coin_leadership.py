@@ -95,7 +95,7 @@ def main():
    mb=fit(X[tr,:2],y[tr]);mc=fit(X[tr],y[tr],True);pb=mb.predict(X[te,:2]);pc=mc.predict(X[te])
    num=(y[te]-pb)**2-(y[te]-pc)**2;den=y[te]**2;loc=te-b2
    np.add.at(num_t[:,fj],loc,num);np.add.at(den_t[:,fj],loc,den)
-   per[s]={"train_n":len(tr),"validation_n":len(va),"oos_n":len(te),"baseline_r2":r2(y[te],pb),"candidate_r2":r2(y[te],pc),"incremental_r2":float(num.sum()/den.sum()),"baseline_mse":float(np.mean((y[te]-pb)**2)),"candidate_mse":float(np.mean((y[te]-pc)**2)),"alpha":float(mc.best_params_["lasso__alpha"]),"leader_coefficients":{z:float(c) for z,c in zip(L,mc[-1].coef_[2:])}}
+   per[s]={"train_n":len(tr),"validation_n":len(va),"oos_n":len(te),"baseline_r2":r2(y[te],pb),"candidate_r2":r2(y[te],pc),"incremental_r2":float(num.sum()/den.sum()),"baseline_mse":float(np.mean((y[te]-pb)**2)),"candidate_mse":float(np.mean((y[te]-pc)**2)),"alpha":float(mc.best_params_["lasso__alpha"]),"leader_coefficients":{z:float(c) for z,c in zip(L,mc.best_estimator_[-1].coef_[2:])}}
    ys.extend(y[te]);pb_all.extend(pb);pc_all.extend(pc)
    for q in range(3):
     lo=b2+q*(end-b2)//3;hi=b2+(q+1)*(end-b2)//3;kk=(te>=lo)&(te<hi)
