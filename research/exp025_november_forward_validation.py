@@ -42,25 +42,37 @@ def verified_archive(url, path, kind):
     return sim.readzip(path, kind)  # also validates ZIP CRC
 
 
-def load_funding_rest(symbol):
-    # Public USD-M endpoint; no API key. Partial month through Nov 26 UTC.
-    url = 'https://fapi.binance.com/fapi/v1/fundingRate?symbol=' + symbol + '&startTime=' + str(ms(START)) + '&endTime=' + str(ms(END)) + '&limit=1000'
+def load_funding_rest(symbol, start, end):
+    # Public, unauthenticated Binance USD-M mirror; response schema matches Binance.
+    url = 'https://api-dev.pipai.org/fapi/v1/fundingRate?symbol=' + symbol + '&startTime=' + str(ms(start)) + '&endTime=' + str(ms(end)) + '&limit=1000'
     req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-    with urllib.request.urlopen(req, timeout=60) as response:
-        rows = json.loads(response.read().decode('utf-8'))
+    with urllib.request.urlopen(req, timeout=60) as response: rows = json.loads(response.read().decode('utf-8'))
     out = {}
     for row in rows:
         ts = int(row['fundingTime']); rate = float(row['fundingRate'])
-        if ms(START) <= ts <= ms(END) and math.isfinite(rate): out[ts] = rate
-    if not out: raise RuntimeError('REST funding endpoint returned no records for ' + symbol)
+        if ms(start) <= ts <= ms(end) and math.isfinite(rate): out[ts] = rate
+    if not out: raise RuntimeError('Funding mirror returned no records for ' + symbol)
     return out
 
 def load_symbol_forward(symbol):
     root = Path('research-output')
     _, funding, marks = sim.load_symbol(symbol, ['2026-10'], root)
     errors = []
-    try: funding.update(load_funding_rest(symbol))
-    except Exception as exc: errors.append({'date':'2026-11-01..26','kind':'public_fundingRate_REST','error':str(exc)})
+    try:
+        # Validate mirror against the complete October Vision monthly archive
+        # before accepting November records; exact timestamp/rate equality required.
+        oct_start, oct_end = "2026-10-01T00:00:00+00:00", "2026-10-31T23:59:59+00:00"
+        mirror_oct = load_funding_rest(symbol, oct_start, oct_end)
+        vision_oct = {t:r for t,r in funding.items() if ms(oct_start) <= t <= ms(oct_end)}
+        common = set(mirror_oct) & set(vision_oct)
+        if len(common) < 90 or any(mirror_oct[t] != vision_oct[t] for t in common):
+            raise RuntimeError("Funding mirror failed October cross-check: common=" + str(len(common)))
+        missing = set(vision_oct) ^ set(mirror_oct)
+        if missing:
+            raise RuntimeError("Funding mirror October timestamp population mismatch: " + str(len(missing)))
+        funding.update(load_funding_rest(symbol, START, END))
+    except Exception as exc:
+        errors.append({'date':'2026-11-01..26','kind':'validated_public_funding_mirror','error':str(exc)})
     for date in DATES:
         mark_name = f'{symbol}-1h-{date}.zip'
         mark_path = root / 'cache' / symbol / 'mark_daily' / mark_name
@@ -121,7 +133,7 @@ def main():
         "status": "completed_with_data_gaps" if errors else "completed",
         "strategy_branch": "MEAFLOW-72 (frozen, read-only)",
         "research_branch": "research/meaflow-exp025-nov-forward-validation-v1",
-        "data_source": "October monthly Binance Vision context + November 1-26 daily markPriceKlines + public Binance USD-M fundingRate REST endpoint",
+        "data_source": "October monthly Binance Vision context + November 1-26 daily markPriceKlines + public Binance USD-M fundingRate mirror, cross-checked against October Vision archives",
         "forward_period_utc": {"start": START, "end": END},
         "sample_scope": "PARTIAL NOVEMBER 1-26 UTC; not a full-month validation.",
         "configuration": {
