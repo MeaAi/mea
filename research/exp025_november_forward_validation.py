@@ -16,10 +16,10 @@ import exp025_forward_simulator as sim
 SYMBOLS = "BTCUSDT,ETHUSDT,BNBUSDT,XRPUSDT,ADAUSDT,DOGEUSDT,SOLUSDT,LINKUSDT,LTCUSDT,BCHUSDT,DOTUSDT,TRXUSDT,AVAXUSDT".split(",")
 POLICY = {"bull": "both", "bear": "short_only", "sideways": "flat", "unknown": "flat"}
 START = "2026-11-01T00:00:00+00:00"
-END = "2026-11-27T16:00:00+00:00"
+END = "2026-11-26T23:00:00+00:00"
 OUT = Path("research-results/exp025_november_forward_validation.json")
 DAILY_BASE = sim.BASE.replace("/monthly", "/daily")
-DATES = [(datetime(2026, 11, 1, tzinfo=timezone.utc) + timedelta(days=i)).strftime("%Y-%m-%d") for i in range(27)]
+DATES = [(datetime(2026, 11, 1, tzinfo=timezone.utc) + timedelta(days=i)).strftime("%Y-%m-%d") for i in range(26)]
 
 def ms(value):
     return int(datetime.fromisoformat(value).timestamp() * 1000)
@@ -42,31 +42,31 @@ def verified_archive(url, path, kind):
     return sim.readzip(path, kind)  # also validates ZIP CRC
 
 
+def load_funding_rest(symbol):
+    # Public USD-M endpoint; no API key. Partial month through Nov 26 UTC.
+    url = 'https://fapi.binance.com/fapi/v1/fundingRate?symbol=' + symbol + '&startTime=' + str(ms(START)) + '&endTime=' + str(ms(END)) + '&limit=1000'
+    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+    with urllib.request.urlopen(req, timeout=60) as response:
+        rows = json.loads(response.read().decode('utf-8'))
+    out = {}
+    for row in rows:
+        ts = int(row['fundingTime']); rate = float(row['fundingRate'])
+        if ms(START) <= ts <= ms(END) and math.isfinite(rate): out[ts] = rate
+    if not out: raise RuntimeError('REST funding endpoint returned no records for ' + symbol)
+    return out
+
 def load_symbol_forward(symbol):
-    root = Path("research-output")
-    _, funding, marks = sim.load_symbol(symbol, ["2026-10"], root)
+    root = Path('research-output')
+    _, funding, marks = sim.load_symbol(symbol, ['2026-10'], root)
     errors = []
-
-    # USD-M fundingRate is monthly, not daily. November's monthly archive is
-    # expected only after Binance's first-Monday publication cycle.
-    fund_name = f"{symbol}-fundingRate-2026-11.zip"
-    fund_path = root / "cache" / symbol / "funding_monthly" / fund_name
-    fund_url = f"{sim.BASE}/fundingRate/{symbol}/{fund_name}"
-    try:
-        funding.update(verified_archive(fund_url, fund_path, "fund"))
-    except Exception as exc:
-        errors.append({"date": "2026-11", "kind": "monthly_fundingRate", "error": str(exc)})
-
-    # Mark-price klines remain daily. Every date in the declared forward window
-    # is required; an unpublished or missing date blocks the complete test.
+    try: funding.update(load_funding_rest(symbol))
+    except Exception as exc: errors.append({'date':'2026-11-01..26','kind':'public_fundingRate_REST','error':str(exc)})
     for date in DATES:
-        mark_name = f"{symbol}-1h-{date}.zip"
-        mark_path = root / "cache" / symbol / "mark_daily" / mark_name
-        mark_url = f"{DAILY_BASE}/markPriceKlines/{symbol}/1h/{mark_name}"
-        try:
-            marks.update(verified_archive(mark_url, mark_path, "mark"))
-        except Exception as exc:
-            errors.append({"date": date, "kind": "daily_markPriceKlines", "error": str(exc)})
+        mark_name = f'{symbol}-1h-{date}.zip'
+        mark_path = root / 'cache' / symbol / 'mark_daily' / mark_name
+        mark_url = f'{DAILY_BASE}/markPriceKlines/{symbol}/1h/{mark_name}'
+        try: marks.update(verified_archive(mark_url, mark_path, 'mark'))
+        except Exception as exc: errors.append({'date':date,'kind':'daily_markPriceKlines','error':str(exc)})
     return symbol, funding, marks, errors
 
 def main():
@@ -121,8 +121,9 @@ def main():
         "status": "completed_with_data_gaps" if errors else "completed",
         "strategy_branch": "MEAFLOW-72 (frozen, read-only)",
         "research_branch": "research/meaflow-exp025-nov-forward-validation-v1",
-        "data_source": "Official free Binance Vision USD-M monthly October + daily November fundingRate and 1h markPriceKlines",
+        "data_source": "October monthly Binance Vision context + November 1-26 daily markPriceKlines + public Binance USD-M fundingRate REST endpoint",
         "forward_period_utc": {"start": START, "end": END},
+        "sample_scope": "PARTIAL NOVEMBER 1-26 UTC; not a full-month validation.",
         "configuration": {
             "capital_usdt": 100, "leverage": 1,
             "lookback_days": 7, "rebalance_days": 7, "tail_fraction": .20,
@@ -151,7 +152,7 @@ def main():
         "market_regime_attribution": result["market_regime_attribution"],
         "entry_regime_attribution": result["entry_regime_attribution"],
         "interpretation_limits": [
-            "This is a new forward window after the previously inspected OOS period ended on 2026-10-31.",
+            "This is a partial new forward window after the previously inspected OOS period ended on 2026-10-31. November 27-30 are excluded.",
             "The forward sample is only 27 days and will contain few weekly rebalances; it is an early generalization check, not final validation.",
             "Execution still uses the existing 5 bp one-way fee and 2 bp one-way slippage assumptions; no new L2 replay is available for November in this experiment.",
             "Hourly OHLC adverse-mark drawdown remains a simulator approximation, not an exchange liquidation-engine result.",
