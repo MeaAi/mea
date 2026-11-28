@@ -1,6 +1,6 @@
 {
   "experiment": "EXP-021-CRYPTOHFTDATA-BINANCE-FUTURES-L2-SOURCE-QA",
-  "status": "completed",
+  "status": "partial",
   "access": "anonymous, no API key",
   "source": "CryptoHFTData hourly Binance USD-M orderbook Parquet",
   "source_path_pattern": "binance_futures/{date}/{hour}/{symbol}_orderbook.parquet",
@@ -660,6 +660,382 @@
         ]
       },
       "status": "ok"
+    },
+    {
+      "date": "2025-10-09",
+      "hour_utc": "08",
+      "symbol": "BTCUSDT",
+      "status": "error",
+      "error": "Parquet magic bytes not found in footer. Either the file is corrupted or this is not a parquet file."
+    },
+    {
+      "date": "2025-10-09",
+      "hour_utc": "08",
+      "symbol": "SOLUSDT",
+      "status": "error",
+      "error": "Parquet magic bytes not found in footer. Either the file is corrupted or this is not a parquet file."
+    },
+    {
+      "date": "2026-07-07",
+      "hour_utc": "00",
+      "symbol": "BTCUSDT",
+      "status": "error",
+      "error": "Parquet magic bytes not found in footer. Either the file is corrupted or this is not a parquet file."
+    },
+    {
+      "date": "2026-07-07",
+      "hour_utc": "00",
+      "symbol": "SOLUSDT",
+      "status": "error",
+      "error": "Parquet magic bytes not found in footer. Either the file is corrupted or this is not a parquet file."
+    },
+    {
+      "download": {
+        "url": "https://api.cryptohftdata.com/v1/download?file=binance_futures/2026-10-30/00/BTCUSDT_orderbook.parquet",
+        "http_status": 200,
+        "bytes": 66466553,
+        "sha256": "be66334c3f619d2af9508e6dceaabb58344fc3f7848d03633105b9e677e2211f"
+      },
+      "qa": {
+        "date": "2026-10-30",
+        "hour_utc": "00",
+        "symbol": "BTCUSDT",
+        "rows": 18613822,
+        "event_type_counts": {
+          "update": 18551046,
+          "snapshot": 62776
+        },
+        "snapshot_rows": 62776,
+        "snapshot_groups": 1,
+        "first_snapshot_received_time_ns": 1793318400000000000,
+        "last_snapshot_received_time_ns": 1793318400000000000,
+        "snapshot_details": [
+          {
+            "received_time_ns": 1793318400000000000,
+            "event_time_ms": 1793318399858,
+            "last_update_id": 11963272537116,
+            "final_update_id": 11963272537116,
+            "side": "bid"
+          }
+        ],
+        "first_rows": [
+          {
+            "received_time": 1793318400000000000,
+            "event_time": 1793318399858,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11963272537116,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11963272537116.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1793318400000000000,
+            "event_time": 1793318399858,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11963272537116,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11963272537116.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1793318400000000000,
+            "event_time": 1793318399858,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11963272537116,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11963272537116.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1793318400000000000,
+            "event_time": 1793318399858,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11963272537116,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11963272537116.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1793318400000000000,
+            "event_time": 1793318399858,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11963272537116,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11963272537116.0,
+            "side": "bid"
+          }
+        ],
+        "first_received_time_ns": 1793318400000000000,
+        "hour_start_ns": 1793318400000000000,
+        "first_group_is_snapshot": true,
+        "first_group_rows": 62776,
+        "min_event_time_ms": 1793318399858,
+        "max_event_time_ms": 1793321999861,
+        "min_transaction_time_ms": 1793318399883,
+        "max_transaction_time_ms": 1793321999857,
+        "update_message_groups": 136902,
+        "sequence_gaps_within_file": 0,
+        "first_sequence_gaps": [],
+        "has_hour_start_checkpoint": true,
+        "schema_columns": [
+          "received_time",
+          "event_time",
+          "transaction_time",
+          "symbol",
+          "event_type",
+          "first_update_id",
+          "final_update_id",
+          "prev_final_update_id",
+          "last_update_id",
+          "side",
+          "price",
+          "quantity",
+          "order_count"
+        ]
+      },
+      "status": "ok"
+    },
+    {
+      "download": {
+        "url": "https://api.cryptohftdata.com/v1/download?file=binance_futures/2026-10-30/00/ETHUSDT_orderbook.parquet",
+        "http_status": 200,
+        "bytes": 68885609,
+        "sha256": "2609dbebc1a64aef9dac5d9ee12be1b7caa7c798f969de64917aa95b3c815163"
+      },
+      "qa": {
+        "date": "2026-10-30",
+        "hour_utc": "00",
+        "symbol": "ETHUSDT",
+        "rows": 16573812,
+        "event_type_counts": {
+          "update": 16517817,
+          "snapshot": 55995
+        },
+        "snapshot_rows": 55995,
+        "snapshot_groups": 1,
+        "first_snapshot_received_time_ns": 1793318400000000000,
+        "last_snapshot_received_time_ns": 1793318400000000000,
+        "snapshot_details": [
+          {
+            "received_time_ns": 1793318400000000000,
+            "event_time_ms": 1793318399859,
+            "last_update_id": 11963272537039,
+            "final_update_id": 11963272537039,
+            "side": "bid"
+          }
+        ],
+        "first_rows": [
+          {
+            "received_time": 1793318400000000000,
+            "event_time": 1793318399859,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11963272537039,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11963272537039.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1793318400000000000,
+            "event_time": 1793318399859,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11963272537039,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11963272537039.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1793318400000000000,
+            "event_time": 1793318399859,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11963272537039,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11963272537039.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1793318400000000000,
+            "event_time": 1793318399859,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11963272537039,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11963272537039.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1793318400000000000,
+            "event_time": 1793318399859,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11963272537039,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11963272537039.0,
+            "side": "bid"
+          }
+        ],
+        "first_received_time_ns": 1793318400000000000,
+        "hour_start_ns": 1793318400000000000,
+        "first_group_is_snapshot": true,
+        "first_group_rows": 55995,
+        "min_event_time_ms": 1793318399859,
+        "max_event_time_ms": 1793321999871,
+        "min_transaction_time_ms": 1793318399884,
+        "max_transaction_time_ms": 1793321999869,
+        "update_message_groups": 136686,
+        "sequence_gaps_within_file": 0,
+        "first_sequence_gaps": [],
+        "has_hour_start_checkpoint": true,
+        "schema_columns": [
+          "received_time",
+          "event_time",
+          "transaction_time",
+          "symbol",
+          "event_type",
+          "first_update_id",
+          "final_update_id",
+          "prev_final_update_id",
+          "last_update_id",
+          "side",
+          "price",
+          "quantity",
+          "order_count"
+        ]
+      },
+      "status": "ok"
+    },
+    {
+      "download": {
+        "url": "https://api.cryptohftdata.com/v1/download?file=binance_futures/2026-10-30/00/SOLUSDT_orderbook.parquet",
+        "http_status": 200,
+        "bytes": 23248553,
+        "sha256": "2c7a8e823e3383f73447dd4d4e0f74399ff274c43480ac745e29f6676f3d8efe"
+      },
+      "qa": {
+        "date": "2026-10-30",
+        "hour_utc": "00",
+        "symbol": "SOLUSDT",
+        "rows": 3612059,
+        "event_type_counts": {
+          "update": 3602336,
+          "snapshot": 9723
+        },
+        "snapshot_rows": 9723,
+        "snapshot_groups": 1,
+        "first_snapshot_received_time_ns": 1793318400000000000,
+        "last_snapshot_received_time_ns": 1793318400000000000,
+        "snapshot_details": [
+          {
+            "received_time_ns": 1793318400000000000,
+            "event_time_ms": 1793318399854,
+            "last_update_id": 11963272536393,
+            "final_update_id": 11963272536393,
+            "side": "bid"
+          }
+        ],
+        "first_rows": [
+          {
+            "received_time": 1793318400000000000,
+            "event_time": 1793318399854,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11963272536393,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11963272536393.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1793318400000000000,
+            "event_time": 1793318399854,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11963272536393,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11963272536393.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1793318400000000000,
+            "event_time": 1793318399854,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11963272536393,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11963272536393.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1793318400000000000,
+            "event_time": 1793318399854,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11963272536393,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11963272536393.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1793318400000000000,
+            "event_time": 1793318399854,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11963272536393,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11963272536393.0,
+            "side": "bid"
+          }
+        ],
+        "first_received_time_ns": 1793318400000000000,
+        "hour_start_ns": 1793318400000000000,
+        "first_group_is_snapshot": true,
+        "first_group_rows": 9723,
+        "min_event_time_ms": 1793318399854,
+        "max_event_time_ms": 1793321999844,
+        "min_transaction_time_ms": 1793318399880,
+        "max_transaction_time_ms": 1793321999840,
+        "update_message_groups": 130528,
+        "sequence_gaps_within_file": 0,
+        "first_sequence_gaps": [],
+        "has_hour_start_checkpoint": true,
+        "schema_columns": [
+          "received_time",
+          "event_time",
+          "transaction_time",
+          "symbol",
+          "event_type",
+          "first_update_id",
+          "final_update_id",
+          "prev_final_update_id",
+          "last_update_id",
+          "side",
+          "price",
+          "quantity",
+          "order_count"
+        ]
+      },
+      "status": "ok"
     }
   ],
   "limitations": [
@@ -670,11 +1046,11 @@
     "Provider documents historical empty-snapshot omissions before its 2026-10 data-quality release; any affected stale book must be rejected."
   ],
   "summary": {
-    "files_tested": 5,
-    "files_downloaded_and_read": 5,
+    "files_tested": 12,
+    "files_downloaded_and_read": 8,
     "files_with_sequence_gaps": 2,
-    "files_with_hour_start_checkpoint": 3,
-    "total_rows": 21185996,
-    "failed_files": 0
+    "files_with_hour_start_checkpoint": 6,
+    "total_rows": 59985689,
+    "failed_files": 4
   }
 }
