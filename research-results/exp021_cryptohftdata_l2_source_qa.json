@@ -1,45 +1,262 @@
 {
   "experiment": "EXP-021-CRYPTOHFTDATA-BINANCE-FUTURES-L2-SOURCE-QA",
-  "status": "partial",
+  "status": "completed",
   "access": "anonymous, no API key",
   "source": "CryptoHFTData hourly Binance USD-M orderbook Parquet",
   "source_path_pattern": "binance_futures/{date}/{hour}/{symbol}_orderbook.parquet",
   "orders_selected_from": "EXP-019 actual OOS order events",
   "files": [
     {
-      "date": "2026-09-03",
-      "hour_utc": "08",
-      "symbol": "BTCUSDT",
-      "status": "error",
-      "error": "No module named 'pandas'"
+      "download": {
+        "url": "https://api.cryptohftdata.com/v1/download?file=binance_futures/2026-09-03/08/BTCUSDT_orderbook.parquet",
+        "http_status": 200,
+        "bytes": 20655325,
+        "sha256": "e1e2e66c0cf8cbc1663871312cccb0fe9e50de4d1f536b9dc5202e5c997102dd"
+      },
+      "qa": {
+        "date": "2026-09-03",
+        "hour_utc": "08",
+        "symbol": "BTCUSDT",
+        "rows": 4940273,
+        "event_type_counts": {
+          "update": 4935273,
+          "snapshot": 5000
+        },
+        "snapshot_rows": 5000,
+        "snapshot_groups": 5,
+        "first_received_time_ns": 1788422400023396321,
+        "hour_start_ns": 1788422400000000000,
+        "first_group_is_snapshot": false,
+        "first_group_rows": 87,
+        "min_event_time_ms": 1788422399894,
+        "max_event_time_ms": 1788425999860,
+        "min_transaction_time_ms": 1788422399890,
+        "max_transaction_time_ms": 1788425999857,
+        "update_message_groups": 125261,
+        "sequence_gaps_within_file": 1,
+        "first_sequence_gaps": [
+          {
+            "prev_final": 11462636884940,
+            "current_prev": 11462660644943,
+            "current_final": 11462660647650
+          }
+        ],
+        "has_hour_start_checkpoint": false,
+        "schema_columns": [
+          "received_time",
+          "event_time",
+          "transaction_time",
+          "symbol",
+          "event_type",
+          "first_update_id",
+          "final_update_id",
+          "prev_final_update_id",
+          "last_update_id",
+          "side",
+          "price",
+          "quantity",
+          "order_count"
+        ]
+      },
+      "status": "ok"
     },
     {
-      "date": "2026-09-03",
-      "hour_utc": "08",
-      "symbol": "SOLUSDT",
-      "status": "error",
-      "error": "No module named 'pandas'"
+      "download": {
+        "url": "https://api.cryptohftdata.com/v1/download?file=binance_futures/2026-09-03/08/SOLUSDT_orderbook.parquet",
+        "http_status": 200,
+        "bytes": 10910608,
+        "sha256": "fd49c51d16f2e389a5fea590f829986b189cc00703933df052d1d925874f2687"
+      },
+      "qa": {
+        "date": "2026-09-03",
+        "hour_utc": "08",
+        "symbol": "SOLUSDT",
+        "rows": 1021731,
+        "event_type_counts": {
+          "update": 1015731,
+          "snapshot": 6000
+        },
+        "snapshot_rows": 6000,
+        "snapshot_groups": 6,
+        "first_received_time_ns": 1788422400004902679,
+        "hour_start_ns": 1788422400000000000,
+        "first_group_is_snapshot": false,
+        "first_group_rows": 6,
+        "min_event_time_ms": 1788422399878,
+        "max_event_time_ms": 1788425999849,
+        "min_transaction_time_ms": 1788422399874,
+        "max_transaction_time_ms": 1788425999846,
+        "update_message_groups": 118285,
+        "sequence_gaps_within_file": 1,
+        "first_sequence_gaps": [
+          {
+            "prev_final": 11462636884943,
+            "current_prev": 11462649578794,
+            "current_final": 11462649580151
+          }
+        ],
+        "has_hour_start_checkpoint": false,
+        "schema_columns": [
+          "received_time",
+          "event_time",
+          "transaction_time",
+          "symbol",
+          "event_type",
+          "first_update_id",
+          "final_update_id",
+          "prev_final_update_id",
+          "last_update_id",
+          "side",
+          "price",
+          "quantity",
+          "order_count"
+        ]
+      },
+      "status": "ok"
     },
     {
-      "date": "2026-10-24",
-      "hour_utc": "16",
-      "symbol": "BTCUSDT",
-      "status": "error",
-      "error": "No module named 'pandas'"
+      "download": {
+        "url": "https://api.cryptohftdata.com/v1/download?file=binance_futures/2026-10-24/16/BTCUSDT_orderbook.parquet",
+        "http_status": 200,
+        "bytes": 27203184,
+        "sha256": "f7838212996a859e0f92b3bb980b1ca0b4413d1d293a26560ea2fe61db2c68e7"
+      },
+      "qa": {
+        "date": "2026-10-24",
+        "hour_utc": "16",
+        "symbol": "BTCUSDT",
+        "rows": 6810216,
+        "event_type_counts": {
+          "update": 6757063,
+          "snapshot": 53153
+        },
+        "snapshot_rows": 53153,
+        "snapshot_groups": 1,
+        "first_received_time_ns": 1792857600000000000,
+        "hour_start_ns": 1792857600000000000,
+        "first_group_is_snapshot": true,
+        "first_group_rows": 53153,
+        "min_event_time_ms": 1792857599857,
+        "max_event_time_ms": 1792861199851,
+        "min_transaction_time_ms": 1792857599881,
+        "max_transaction_time_ms": 1792861199850,
+        "update_message_groups": 136114,
+        "sequence_gaps_within_file": 0,
+        "first_sequence_gaps": [],
+        "has_hour_start_checkpoint": true,
+        "schema_columns": [
+          "received_time",
+          "event_time",
+          "transaction_time",
+          "symbol",
+          "event_type",
+          "first_update_id",
+          "final_update_id",
+          "prev_final_update_id",
+          "last_update_id",
+          "side",
+          "price",
+          "quantity",
+          "order_count"
+        ]
+      },
+      "status": "ok"
     },
     {
-      "date": "2026-10-24",
-      "hour_utc": "16",
-      "symbol": "ETHUSDT",
-      "status": "error",
-      "error": "No module named 'pandas'"
+      "download": {
+        "url": "https://api.cryptohftdata.com/v1/download?file=binance_futures/2026-10-24/16/ETHUSDT_orderbook.parquet",
+        "http_status": 200,
+        "bytes": 33465498,
+        "sha256": "df9646300e7a0e39e1d5a1c11a066c9b1eb84e65a8189619bd19c0094c92d550"
+      },
+      "qa": {
+        "date": "2026-10-24",
+        "hour_utc": "16",
+        "symbol": "ETHUSDT",
+        "rows": 6916486,
+        "event_type_counts": {
+          "update": 6866476,
+          "snapshot": 50010
+        },
+        "snapshot_rows": 50010,
+        "snapshot_groups": 1,
+        "first_received_time_ns": 1792857600000000000,
+        "hour_start_ns": 1792857600000000000,
+        "first_group_is_snapshot": true,
+        "first_group_rows": 50010,
+        "min_event_time_ms": 1792857599857,
+        "max_event_time_ms": 1792861199847,
+        "min_transaction_time_ms": 1792857599880,
+        "max_transaction_time_ms": 1792861199846,
+        "update_message_groups": 135324,
+        "sequence_gaps_within_file": 0,
+        "first_sequence_gaps": [],
+        "has_hour_start_checkpoint": true,
+        "schema_columns": [
+          "received_time",
+          "event_time",
+          "transaction_time",
+          "symbol",
+          "event_type",
+          "first_update_id",
+          "final_update_id",
+          "prev_final_update_id",
+          "last_update_id",
+          "side",
+          "price",
+          "quantity",
+          "order_count"
+        ]
+      },
+      "status": "ok"
     },
     {
-      "date": "2026-10-24",
-      "hour_utc": "16",
-      "symbol": "SOLUSDT",
-      "status": "error",
-      "error": "No module named 'pandas'"
+      "download": {
+        "url": "https://api.cryptohftdata.com/v1/download?file=binance_futures/2026-10-24/16/SOLUSDT_orderbook.parquet",
+        "http_status": 200,
+        "bytes": 13245055,
+        "sha256": "163f16eb8f63f7e9d38e7ae3e539b2855c136636e57f521405f15dea639c4d0f"
+      },
+      "qa": {
+        "date": "2026-10-24",
+        "hour_utc": "16",
+        "symbol": "SOLUSDT",
+        "rows": 1497290,
+        "event_type_counts": {
+          "update": 1488109,
+          "snapshot": 9181
+        },
+        "snapshot_rows": 9181,
+        "snapshot_groups": 1,
+        "first_received_time_ns": 1792857600000000000,
+        "hour_start_ns": 1792857600000000000,
+        "first_group_is_snapshot": true,
+        "first_group_rows": 9181,
+        "min_event_time_ms": 1792857599860,
+        "max_event_time_ms": 1792861199864,
+        "min_transaction_time_ms": 1792857599888,
+        "max_transaction_time_ms": 1792861199848,
+        "update_message_groups": 124277,
+        "sequence_gaps_within_file": 0,
+        "first_sequence_gaps": [],
+        "has_hour_start_checkpoint": true,
+        "schema_columns": [
+          "received_time",
+          "event_time",
+          "transaction_time",
+          "symbol",
+          "event_type",
+          "first_update_id",
+          "final_update_id",
+          "prev_final_update_id",
+          "last_update_id",
+          "side",
+          "price",
+          "quantity",
+          "order_count"
+        ]
+      },
+      "status": "ok"
     }
   ],
   "limitations": [
@@ -51,10 +268,10 @@
   ],
   "summary": {
     "files_tested": 5,
-    "files_downloaded_and_read": 0,
-    "files_with_sequence_gaps": 0,
-    "files_with_hour_start_checkpoint": 0,
-    "total_rows": 0,
-    "failed_files": 5
+    "files_downloaded_and_read": 5,
+    "files_with_sequence_gaps": 2,
+    "files_with_hour_start_checkpoint": 3,
+    "total_rows": 21185996,
+    "failed_files": 0
   }
 }
