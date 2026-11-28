@@ -156,7 +156,9 @@ def main():
             "monthly_archives_per_symbol": len(months) * 2,
             "context_months": months,
             "funding_events_in_window": len(all_times),
-            "usable_funding_events_any_symbol": len(usable_events),\n            "events_with_80pct_symbol_coverage": len(aligned_80pct),\n            "events_with_full_13_symbol_coverage": len(full_coverage_events),
+            "usable_funding_events_any_symbol": len(usable_events),
+            "events_with_80pct_symbol_coverage": len(aligned_80pct),
+            "events_with_full_13_symbol_coverage": len(full_coverage_events),
             "required_symbols_per_event": required,
             "event_coverage_histogram": {str(n): sum(v == n for v in coverage.values()) for n in range(len(data)+1) if any(v == n for v in coverage.values())},
             "errors": errors, "per_symbol": monthly_meta
