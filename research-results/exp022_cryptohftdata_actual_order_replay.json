@@ -168,6 +168,69 @@
       "gap_examples": [],
       "snapshots_applied": 1,
       "updates_ignored_invalid": 0
+    },
+    {
+      "date": "2026-10-30",
+      "hour": "00",
+      "symbol": "BTCUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-10-30/00/BTCUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 66466553,
+          "sha256": "be66334c3f619d2af9508e6dceaabb58344fc3f7848d03633105b9e677e2211f",
+          "rows": 18613822,
+          "first_received_time_ns": 1793318400000000000,
+          "last_received_time_ns": 1793321999989398071,
+          "snapshot_messages": 62776
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 1,
+      "updates_ignored_invalid": 0
+    },
+    {
+      "date": "2026-10-30",
+      "hour": "00",
+      "symbol": "ETHUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-10-30/00/ETHUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 68885609,
+          "sha256": "2609dbebc1a64aef9dac5d9ee12be1b7caa7c798f969de64917aa95b3c815163",
+          "rows": 16573812,
+          "first_received_time_ns": 1793318400000000000,
+          "last_received_time_ns": 1793321999998990999,
+          "snapshot_messages": 55995
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 1,
+      "updates_ignored_invalid": 0
+    },
+    {
+      "date": "2026-10-30",
+      "hour": "00",
+      "symbol": "SOLUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-10-30/00/SOLUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 23248553,
+          "sha256": "2c7a8e823e3383f73447dd4d4e0f74399ff274c43480ac745e29f6676f3d8efe",
+          "rows": 3612059,
+          "first_received_time_ns": 1793318400000000000,
+          "last_received_time_ns": 1793321999972052726,
+          "snapshot_messages": 9723
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 1,
+      "updates_ignored_invalid": 0
     }
   ],
   "orders": [
@@ -347,31 +410,178 @@
         "snapshots_before_capture": 1,
         "last_update_id": 11912262794459
       }
+    },
+    {
+      "time_utc": "2026-10-30T00:00:00+00:00",
+      "regime": "bear",
+      "symbol": "BTCUSDT",
+      "side": "BUY",
+      "order_delta_notional_usdt": 83.41060765,
+      "asof_execution": {
+        "status": "full_depth_sweep",
+        "side": "BUY",
+        "quantity": 0.001069742546,
+        "strategy_order_notional_usdt": 83.41060765,
+        "reference_mark_price": 77972.6,
+        "best_bid": 77962.6,
+        "best_ask": 77962.7,
+        "mid": 77962.65,
+        "spread_bp": 0.012826654813717704,
+        "vwap": 77962.7,
+        "filled_qty": 0.001069742546,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.0064133274069178015,
+        "market_cost_vs_mark_bp": -1.2696767838971112,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 142.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11963272537116
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "BUY",
+        "quantity": 0.001069742546,
+        "strategy_order_notional_usdt": 83.41060765,
+        "reference_mark_price": 77972.6,
+        "best_bid": 77962.6,
+        "best_ask": 77962.7,
+        "mid": 77962.65,
+        "spread_bp": 0.012826654813717704,
+        "vwap": 77962.7,
+        "filled_qty": 0.001069742546,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.0064133274069178015,
+        "market_cost_vs_mark_bp": -1.2696767838971112,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 142.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11963272537116
+      }
+    },
+    {
+      "time_utc": "2026-10-30T00:00:00+00:00",
+      "regime": "bear",
+      "symbol": "ETHUSDT",
+      "side": "BUY",
+      "order_delta_notional_usdt": 83.38380388,
+      "asof_execution": {
+        "status": "full_depth_sweep",
+        "side": "BUY",
+        "quantity": 0.037013900167,
+        "strategy_order_notional_usdt": 83.38380388,
+        "reference_mark_price": 2252.77,
+        "best_bid": 2252.34,
+        "best_ask": 2252.35,
+        "mid": 2252.3450000000003,
+        "spread_bp": 0.044398171682240195,
+        "vwap": 2252.35,
+        "filled_qty": 0.037013900167,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.02219908584066843,
+        "market_cost_vs_mark_bp": -1.8643714182986493,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 141.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11963272537039
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "BUY",
+        "quantity": 0.037013900167,
+        "strategy_order_notional_usdt": 83.38380388,
+        "reference_mark_price": 2252.77,
+        "best_bid": 2252.34,
+        "best_ask": 2252.35,
+        "mid": 2252.3450000000003,
+        "spread_bp": 0.044398171682240195,
+        "vwap": 2252.35,
+        "filled_qty": 0.037013900167,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.02219908584066843,
+        "market_cost_vs_mark_bp": -1.8643714182986493,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 141.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11963272537039
+      }
+    },
+    {
+      "time_utc": "2026-10-30T00:00:00+00:00",
+      "regime": "bear",
+      "symbol": "SOLUSDT",
+      "side": "SELL",
+      "order_delta_notional_usdt": 87.22549191,
+      "asof_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 0.912018945073,
+        "strategy_order_notional_usdt": 87.22549191,
+        "reference_mark_price": 95.64,
+        "best_bid": 95.61,
+        "best_ask": 95.62,
+        "mid": 95.61500000000001,
+        "spread_bp": 1.0458610050729609,
+        "vwap": 95.60999999999999,
+        "filled_qty": 0.912018945073,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.5229578496002141,
+        "market_cost_vs_mark_bp": 3.136762860729334,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 146.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11963272536393
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 0.912018945073,
+        "strategy_order_notional_usdt": 87.22549191,
+        "reference_mark_price": 95.64,
+        "best_bid": 95.61,
+        "best_ask": 95.62,
+        "mid": 95.61500000000001,
+        "spread_bp": 1.0458610050729609,
+        "vwap": 95.60999999999999,
+        "filled_qty": 0.912018945073,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.5229578496002141,
+        "market_cost_vs_mark_bp": 3.136762860729334,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 146.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11963272536393
+      }
     }
   ],
   "summary": {
-    "orders": 5,
+    "orders": 8,
     "asof": {
-      "valid_orders": 3,
-      "all_orders": 5,
-      "full_depth_fill_count": 3,
-      "median_cost_vs_mid_bp": 0.021694515190961994,
-      "max_cost_vs_mid_bp": 0.5014290728566628,
+      "valid_orders": 6,
+      "all_orders": 8,
+      "full_depth_fill_count": 6,
+      "median_cost_vs_mid_bp": 0.02219908584066843,
+      "max_cost_vs_mid_bp": 0.5229578496002141,
       "median_cost_vs_mark_bp": 1.874942759885832,
       "max_cost_vs_mark_bp": 3.918276191473764,
-      "notional_weighted_cost_vs_mid_bp": 0.10697212588344296,
-      "notional_weighted_cost_vs_mark_bp": 2.3440222381110045
+      "notional_weighted_cost_vs_mid_bp": 0.1517699305528679,
+      "notional_weighted_cost_vs_mark_bp": 1.0896919190546532
     },
     "first_after": {
-      "valid_orders": 3,
-      "all_orders": 5,
-      "full_depth_fill_count": 3,
-      "median_cost_vs_mid_bp": 0.021694515190961994,
-      "max_cost_vs_mid_bp": 0.5014290728566628,
+      "valid_orders": 6,
+      "all_orders": 8,
+      "full_depth_fill_count": 6,
+      "median_cost_vs_mid_bp": 0.02219908584066843,
+      "max_cost_vs_mid_bp": 0.5229578496002141,
       "median_cost_vs_mark_bp": 1.874942759885832,
       "max_cost_vs_mark_bp": 3.918276191473764,
-      "notional_weighted_cost_vs_mid_bp": 0.10697212588344296,
-      "notional_weighted_cost_vs_mark_bp": 2.3440222381110045
+      "notional_weighted_cost_vs_mid_bp": 0.1517699305528679,
+      "notional_weighted_cost_vs_mark_bp": 1.0896919190546532
     }
   }
 }
