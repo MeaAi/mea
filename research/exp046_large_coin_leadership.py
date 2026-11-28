@@ -47,7 +47,7 @@ def load(s,ms,root):
  return s,mark,fund,qa
 def fit(x,y,lasso=False):
  if lasso:
-  m=make_pipeline(StandardScaler(),LassoCV(cv=TimeSeriesSplit(n_splits=5),n_alphas=60,max_iter=30000,random_state=42))
+  m=make_pipeline(StandardScaler(),LassoCV(cv=TimeSeriesSplit(n_splits=5),alphas=60,max_iter=30000,random_state=42))
  else:m=LinearRegression()
  return m.fit(x,y)
 def r2(y,p):return float(1-np.sum((y-p)**2)/np.sum(y*y))
