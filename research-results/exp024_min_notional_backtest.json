@@ -1,0 +1,1439 @@
+{
+  "experiment": "EXP-024-MEAFLOW72-HISTORICAL-MIN-NOTIONAL-SENSITIVITY",
+  "status": "completed",
+  "strategy_branch": "MEAFLOW-72 (read-only base; no modifications)",
+  "research_branch": "research/meaflow-exp024-min-notional-backtest-v1",
+  "oos_period_utc": {
+    "start": "2025-09-06T18:24:00+00:00",
+    "end": "2026-10-31T16:00:00+00:00"
+  },
+  "configuration": {
+    "capital_usdt": 100,
+    "leverage": 1,
+    "lookback_days": 7,
+    "rebalance_days": 7,
+    "tail_fraction": 0.2,
+    "regime_policy": {
+      "bull": "both",
+      "bear": "short_only",
+      "sideways": "flat",
+      "unknown": "flat"
+    },
+    "btc_regime_threshold_pct": 5,
+    "sideways_action": "hold",
+    "fee_bp_one_way": 5,
+    "slippage_bp_one_way": 2
+  },
+  "filter_rules": {
+    "BTCUSDT": {
+      "min_notional_before_2026_04_14T06_30_UTC": 100,
+      "min_notional_from_2026_04_14T06_30_UTC": 50
+    },
+    "ETHUSDT": {
+      "min_notional_since_2023_11_02": 20
+    },
+    "other_symbols": {
+      "default_assumption": 5,
+      "note": "General USD-M baseline from Binance's 2021 rule; no per-symbol historical change audit completed."
+    },
+    "reduce_only": "When enabled, a delta that strictly reduces an existing same-direction position is exempted from MIN_NOTIONAL. The actual live order must carry reduceOnly=true for this exemption.",
+    "quantity_steps": "Not applied. Binance exchangeInfo returned HTTP 451 from the hosted runner; MARKET_LOT_SIZE rounding is a separate unresolved execution constraint."
+  },
+  "data_errors": {},
+  "loaded_symbols": [
+    "ADAUSDT",
+    "AVAXUSDT",
+    "BCHUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "DOGEUSDT",
+    "DOTUSDT",
+    "ETHUSDT",
+    "LINKUSDT",
+    "LTCUSDT",
+    "SOLUSDT",
+    "TRXUSDT",
+    "XRPUSDT"
+  ],
+  "baseline": {
+    "start_equity_usdt": 100.0,
+    "end_equity_usdt": 172.94281,
+    "net_return_pct": 72.9428,
+    "max_drawdown_pct": -26.5454,
+    "liquidated": false,
+    "trading_fees_usdt": 4.498733,
+    "slippage_usdt": 1.799493,
+    "rebalance_count": 98,
+    "attempted_order_count": 268,
+    "rejected_order_count": 0,
+    "rejected_order_notional_usdt": 0.0,
+    "rejected_orders_by_symbol": {
+      "ADAUSDT": 0,
+      "AVAXUSDT": 0,
+      "BCHUSDT": 0,
+      "BNBUSDT": 0,
+      "BTCUSDT": 0,
+      "DOGEUSDT": 0,
+      "DOTUSDT": 0,
+      "ETHUSDT": 0,
+      "LINKUSDT": 0,
+      "LTCUSDT": 0,
+      "SOLUSDT": 0,
+      "TRXUSDT": 0,
+      "XRPUSDT": 0
+    },
+    "executed_order_count": 268,
+    "rejected_order_details": []
+  },
+  "confirmed_btc_eth_reduce_only_exempt": {
+    "start_equity_usdt": 100.0,
+    "end_equity_usdt": 170.800999,
+    "net_return_pct": 70.801,
+    "max_drawdown_pct": -27.9299,
+    "liquidated": false,
+    "trading_fees_usdt": 3.720421,
+    "slippage_usdt": 1.488168,
+    "rebalance_count": 98,
+    "attempted_order_count": 257,
+    "rejected_order_count": 22,
+    "rejected_order_notional_usdt": 708.248315,
+    "rejected_orders_by_symbol": {
+      "ADAUSDT": 0,
+      "AVAXUSDT": 0,
+      "BCHUSDT": 0,
+      "BNBUSDT": 0,
+      "BTCUSDT": 17,
+      "DOGEUSDT": 0,
+      "DOTUSDT": 0,
+      "ETHUSDT": 5,
+      "LINKUSDT": 0,
+      "LTCUSDT": 0,
+      "SOLUSDT": 0,
+      "TRXUSDT": 0,
+      "XRPUSDT": 0
+    },
+    "executed_order_count": 235,
+    "rejected_order_details": [
+      {
+        "time_utc": "2025-10-09T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 25.54546596,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2025-10-31T00:00:00+00:00",
+        "regime": "bear",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 44.83946962,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2025-11-09T08:00:00+00:00",
+        "regime": "bear",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 46.11199366,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2025-11-18T16:00:00+00:00",
+        "regime": "bear",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 51.15540459,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2025-11-18T16:00:00+00:00",
+        "regime": "bear",
+        "symbol": "ETHUSDT",
+        "side": "SELL",
+        "notional_usdt": 11.58388378,
+        "min_notional_usdt": 20.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2025-11-26T16:00:00+00:00",
+        "regime": "bear",
+        "symbol": "ETHUSDT",
+        "side": "SELL",
+        "notional_usdt": 14.99881397,
+        "min_notional_usdt": 20.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2025-12-04T08:00:00+00:00",
+        "regime": "bear",
+        "symbol": "ETHUSDT",
+        "side": "SELL",
+        "notional_usdt": 7.52381246,
+        "min_notional_usdt": 20.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2025-12-11T08:00:00+00:00",
+        "regime": "bear",
+        "symbol": "ETHUSDT",
+        "side": "SELL",
+        "notional_usdt": 8.95019196,
+        "min_notional_usdt": 20.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2025-12-19T00:00:00+00:00",
+        "regime": "bear",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 54.10757079,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2025-12-21T16:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 26.5787523,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-01-30T08:00:00+00:00",
+        "regime": "bear",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 58.21380711,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-02-01T16:00:00+00:00",
+        "regime": "bear",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 62.67740541,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-02-22T16:00:00+00:00",
+        "regime": "bear",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 63.06158884,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-03-16T00:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BTCUSDT",
+        "side": "BUY",
+        "notional_usdt": 30.67413837,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-04-18T16:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BTCUSDT",
+        "side": "BUY",
+        "notional_usdt": 29.24314898,
+        "min_notional_usdt": 50.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-04-20T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BTCUSDT",
+        "side": "BUY",
+        "notional_usdt": 29.29534818,
+        "min_notional_usdt": 50.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-05-11T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BTCUSDT",
+        "side": "BUY",
+        "notional_usdt": 29.10078987,
+        "min_notional_usdt": 50.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-05-11T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "ETHUSDT",
+        "side": "BUY",
+        "notional_usdt": 1.12180806,
+        "min_notional_usdt": 20.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-07-02T00:00:00+00:00",
+        "regime": "bear",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 2.25092155,
+        "min_notional_usdt": 50.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-08-20T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 35.09634962,
+        "min_notional_usdt": 50.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-09-03T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 37.2481355,
+        "min_notional_usdt": 50.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-09-18T16:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 38.86951418,
+        "min_notional_usdt": 50.0,
+        "reduce_only_candidate": false
+      }
+    ]
+  },
+  "default5_all_symbols_reduce_only_exempt": {
+    "start_equity_usdt": 100.0,
+    "end_equity_usdt": 170.952552,
+    "net_return_pct": 70.9526,
+    "max_drawdown_pct": -27.9008,
+    "liquidated": false,
+    "trading_fees_usdt": 3.709946,
+    "slippage_usdt": 1.483978,
+    "rebalance_count": 98,
+    "attempted_order_count": 257,
+    "rejected_order_count": 48,
+    "rejected_order_notional_usdt": 753.08781,
+    "rejected_orders_by_symbol": {
+      "ADAUSDT": 0,
+      "AVAXUSDT": 1,
+      "BCHUSDT": 2,
+      "BNBUSDT": 1,
+      "BTCUSDT": 17,
+      "DOGEUSDT": 0,
+      "DOTUSDT": 8,
+      "ETHUSDT": 5,
+      "LINKUSDT": 4,
+      "LTCUSDT": 0,
+      "SOLUSDT": 1,
+      "TRXUSDT": 9,
+      "XRPUSDT": 0
+    },
+    "executed_order_count": 209,
+    "rejected_order_details": [
+      {
+        "time_utc": "2025-10-09T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 25.54546596,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2025-10-09T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "SOLUSDT",
+        "side": "BUY",
+        "notional_usdt": 0.08184912,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2025-10-31T00:00:00+00:00",
+        "regime": "bear",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 44.84661526,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2025-11-09T08:00:00+00:00",
+        "regime": "bear",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 46.11934208,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2025-11-18T16:00:00+00:00",
+        "regime": "bear",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 51.16355673,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2025-11-18T16:00:00+00:00",
+        "regime": "bear",
+        "symbol": "ETHUSDT",
+        "side": "SELL",
+        "notional_usdt": 11.58572979,
+        "min_notional_usdt": 20.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2025-11-26T16:00:00+00:00",
+        "regime": "bear",
+        "symbol": "ETHUSDT",
+        "side": "SELL",
+        "notional_usdt": 15.00120419,
+        "min_notional_usdt": 20.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2025-12-04T08:00:00+00:00",
+        "regime": "bear",
+        "symbol": "ETHUSDT",
+        "side": "SELL",
+        "notional_usdt": 7.52501146,
+        "min_notional_usdt": 20.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2025-12-11T08:00:00+00:00",
+        "regime": "bear",
+        "symbol": "ETHUSDT",
+        "side": "SELL",
+        "notional_usdt": 8.95161826,
+        "min_notional_usdt": 20.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2025-12-19T00:00:00+00:00",
+        "regime": "bear",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 54.11619339,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2025-12-21T16:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 26.5829879,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-01-30T08:00:00+00:00",
+        "regime": "bear",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 58.22308408,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-02-01T16:00:00+00:00",
+        "regime": "bear",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 62.68739369,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-02-22T16:00:00+00:00",
+        "regime": "bear",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 63.07163836,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-02-22T16:00:00+00:00",
+        "regime": "bear",
+        "symbol": "LINKUSDT",
+        "side": "SELL",
+        "notional_usdt": 1.0200429,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-03-15T00:00:00+00:00",
+        "regime": "bull",
+        "symbol": "AVAXUSDT",
+        "side": "SELL",
+        "notional_usdt": 0.4343691,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-03-15T00:00:00+00:00",
+        "regime": "bull",
+        "symbol": "DOTUSDT",
+        "side": "BUY",
+        "notional_usdt": 1.83794134,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-03-15T00:00:00+00:00",
+        "regime": "bull",
+        "symbol": "LINKUSDT",
+        "side": "SELL",
+        "notional_usdt": 0.25093556,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-03-16T00:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BTCUSDT",
+        "side": "BUY",
+        "notional_usdt": 30.6858752,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-03-16T00:00:00+00:00",
+        "regime": "bull",
+        "symbol": "DOTUSDT",
+        "side": "BUY",
+        "notional_usdt": 1.2277836,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-03-21T00:00:00+00:00",
+        "regime": "bull",
+        "symbol": "DOTUSDT",
+        "side": "BUY",
+        "notional_usdt": 0.90322443,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-03-25T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "DOTUSDT",
+        "side": "BUY",
+        "notional_usdt": 2.77778782,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-04-18T16:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BTCUSDT",
+        "side": "BUY",
+        "notional_usdt": 29.32785446,
+        "min_notional_usdt": 50.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-04-18T16:00:00+00:00",
+        "regime": "bull",
+        "symbol": "DOTUSDT",
+        "side": "BUY",
+        "notional_usdt": 0.67682991,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-04-20T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BTCUSDT",
+        "side": "BUY",
+        "notional_usdt": 29.38468917,
+        "min_notional_usdt": 50.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-04-20T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "DOTUSDT",
+        "side": "BUY",
+        "notional_usdt": 1.47424829,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-04-20T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "LINKUSDT",
+        "side": "SELL",
+        "notional_usdt": 0.48402497,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-04-27T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "DOTUSDT",
+        "side": "BUY",
+        "notional_usdt": 1.93040285,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-04-27T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "LINKUSDT",
+        "side": "SELL",
+        "notional_usdt": 0.08129784,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-05-04T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "DOTUSDT",
+        "side": "BUY",
+        "notional_usdt": 1.07836086,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-05-11T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BTCUSDT",
+        "side": "BUY",
+        "notional_usdt": 29.16972792,
+        "min_notional_usdt": 50.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-05-11T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "ETHUSDT",
+        "side": "BUY",
+        "notional_usdt": 1.09870961,
+        "min_notional_usdt": 20.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-07-02T00:00:00+00:00",
+        "regime": "bear",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 2.25619345,
+        "min_notional_usdt": 50.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-07-22T00:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BCHUSDT",
+        "side": "BUY",
+        "notional_usdt": 2.14220807,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-07-25T16:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BNBUSDT",
+        "side": "SELL",
+        "notional_usdt": 0.29230295,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-08-20T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 35.21654516,
+        "min_notional_usdt": 50.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-08-20T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "TRXUSDT",
+        "side": "BUY",
+        "notional_usdt": 0.52494889,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-08-27T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "TRXUSDT",
+        "side": "BUY",
+        "notional_usdt": 1.74427305,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-09-03T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BCHUSDT",
+        "side": "SELL",
+        "notional_usdt": 3.36951376,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-09-03T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 37.38557206,
+        "min_notional_usdt": 50.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-09-03T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "TRXUSDT",
+        "side": "BUY",
+        "notional_usdt": 3.52614404,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-09-11T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "TRXUSDT",
+        "side": "BUY",
+        "notional_usdt": 3.28366215,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-09-18T16:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 38.89570763,
+        "min_notional_usdt": 50.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-09-18T16:00:00+00:00",
+        "regime": "bull",
+        "symbol": "TRXUSDT",
+        "side": "BUY",
+        "notional_usdt": 3.63003483,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-09-22T00:00:00+00:00",
+        "regime": "bull",
+        "symbol": "TRXUSDT",
+        "side": "BUY",
+        "notional_usdt": 2.43278395,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-09-29T00:00:00+00:00",
+        "regime": "bull",
+        "symbol": "TRXUSDT",
+        "side": "BUY",
+        "notional_usdt": 4.16472006,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-10-05T16:00:00+00:00",
+        "regime": "bull",
+        "symbol": "TRXUSDT",
+        "side": "BUY",
+        "notional_usdt": 4.12696945,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-10-15T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "TRXUSDT",
+        "side": "BUY",
+        "notional_usdt": 0.7504339,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      }
+    ]
+  },
+  "default5_all_symbols_no_reduce_only_exempt": {
+    "start_equity_usdt": 100.0,
+    "end_equity_usdt": 170.617039,
+    "net_return_pct": 70.617,
+    "max_drawdown_pct": -28.4002,
+    "liquidated": false,
+    "trading_fees_usdt": 3.704019,
+    "slippage_usdt": 1.481608,
+    "rebalance_count": 98,
+    "attempted_order_count": 257,
+    "rejected_order_count": 69,
+    "rejected_order_notional_usdt": 837.183389,
+    "rejected_orders_by_symbol": {
+      "ADAUSDT": 2,
+      "AVAXUSDT": 2,
+      "BCHUSDT": 6,
+      "BNBUSDT": 1,
+      "BTCUSDT": 18,
+      "DOGEUSDT": 0,
+      "DOTUSDT": 8,
+      "ETHUSDT": 6,
+      "LINKUSDT": 11,
+      "LTCUSDT": 1,
+      "SOLUSDT": 2,
+      "TRXUSDT": 11,
+      "XRPUSDT": 1
+    },
+    "executed_order_count": 188,
+    "rejected_order_details": [
+      {
+        "time_utc": "2025-10-01T16:00:00+00:00",
+        "regime": "bull",
+        "symbol": "ADAUSDT",
+        "side": "BUY",
+        "notional_usdt": 1.06034601,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": true
+      },
+      {
+        "time_utc": "2025-10-01T16:00:00+00:00",
+        "regime": "bull",
+        "symbol": "SOLUSDT",
+        "side": "SELL",
+        "notional_usdt": 1.4025559,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": true
+      },
+      {
+        "time_utc": "2025-10-01T16:00:00+00:00",
+        "regime": "bull",
+        "symbol": "TRXUSDT",
+        "side": "SELL",
+        "notional_usdt": 0.49030659,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": true
+      },
+      {
+        "time_utc": "2025-10-01T16:00:00+00:00",
+        "regime": "bull",
+        "symbol": "XRPUSDT",
+        "side": "BUY",
+        "notional_usdt": 0.85798152,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": true
+      },
+      {
+        "time_utc": "2025-10-09T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 25.57020956,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2025-10-09T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "SOLUSDT",
+        "side": "SELL",
+        "notional_usdt": 1.32327589,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": true
+      },
+      {
+        "time_utc": "2025-10-21T08:00:00+00:00",
+        "regime": "bear",
+        "symbol": "ETHUSDT",
+        "side": "BUY",
+        "notional_usdt": 3.27898659,
+        "min_notional_usdt": 20.0,
+        "reduce_only_candidate": true
+      },
+      {
+        "time_utc": "2025-10-31T00:00:00+00:00",
+        "regime": "bear",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 44.64544418,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2025-11-09T08:00:00+00:00",
+        "regime": "bear",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 45.91246103,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2025-11-11T08:00:00+00:00",
+        "regime": "bear",
+        "symbol": "LINKUSDT",
+        "side": "BUY",
+        "notional_usdt": 2.82849149,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": true
+      },
+      {
+        "time_utc": "2025-11-18T16:00:00+00:00",
+        "regime": "bear",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 51.13719858,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2025-11-18T16:00:00+00:00",
+        "regime": "bear",
+        "symbol": "ETHUSDT",
+        "side": "SELL",
+        "notional_usdt": 11.73690892,
+        "min_notional_usdt": 20.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2025-11-26T16:00:00+00:00",
+        "regime": "bear",
+        "symbol": "ETHUSDT",
+        "side": "SELL",
+        "notional_usdt": 15.13621338,
+        "min_notional_usdt": 20.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2025-12-04T08:00:00+00:00",
+        "regime": "bear",
+        "symbol": "ETHUSDT",
+        "side": "SELL",
+        "notional_usdt": 7.68401651,
+        "min_notional_usdt": 20.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2025-12-11T08:00:00+00:00",
+        "regime": "bear",
+        "symbol": "ETHUSDT",
+        "side": "SELL",
+        "notional_usdt": 9.1107511,
+        "min_notional_usdt": 20.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2025-12-19T00:00:00+00:00",
+        "regime": "bear",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 54.08073186,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2025-12-21T16:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 26.56559122,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-01-14T00:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BCHUSDT",
+        "side": "SELL",
+        "notional_usdt": 0.28667861,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": true
+      },
+      {
+        "time_utc": "2026-01-14T00:00:00+00:00",
+        "regime": "bull",
+        "symbol": "LINKUSDT",
+        "side": "BUY",
+        "notional_usdt": 2.3189847,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": true
+      },
+      {
+        "time_utc": "2026-01-30T08:00:00+00:00",
+        "regime": "bear",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 58.43609648,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-02-01T16:00:00+00:00",
+        "regime": "bear",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 62.91616093,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-02-15T16:00:00+00:00",
+        "regime": "bear",
+        "symbol": "BCHUSDT",
+        "side": "BUY",
+        "notional_usdt": 4.98299507,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": true
+      },
+      {
+        "time_utc": "2026-02-15T16:00:00+00:00",
+        "regime": "bear",
+        "symbol": "LINKUSDT",
+        "side": "BUY",
+        "notional_usdt": 1.49127612,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": true
+      },
+      {
+        "time_utc": "2026-02-22T16:00:00+00:00",
+        "regime": "bear",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 63.266434,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-02-22T16:00:00+00:00",
+        "regime": "bear",
+        "symbol": "LINKUSDT",
+        "side": "BUY",
+        "notional_usdt": 0.47675044,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": true
+      },
+      {
+        "time_utc": "2026-03-02T16:00:00+00:00",
+        "regime": "bear",
+        "symbol": "LINKUSDT",
+        "side": "BUY",
+        "notional_usdt": 4.80876271,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": true
+      },
+      {
+        "time_utc": "2026-03-15T00:00:00+00:00",
+        "regime": "bull",
+        "symbol": "AVAXUSDT",
+        "side": "SELL",
+        "notional_usdt": 0.43648637,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-03-15T00:00:00+00:00",
+        "regime": "bull",
+        "symbol": "DOTUSDT",
+        "side": "BUY",
+        "notional_usdt": 1.84689802,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-03-15T00:00:00+00:00",
+        "regime": "bull",
+        "symbol": "LINKUSDT",
+        "side": "SELL",
+        "notional_usdt": 0.25215898,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-03-16T00:00:00+00:00",
+        "regime": "bull",
+        "symbol": "AVAXUSDT",
+        "side": "BUY",
+        "notional_usdt": 0.3111421,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": true
+      },
+      {
+        "time_utc": "2026-03-16T00:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BTCUSDT",
+        "side": "BUY",
+        "notional_usdt": 30.83540368,
+        "min_notional_usdt": 100.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-03-16T00:00:00+00:00",
+        "regime": "bull",
+        "symbol": "DOTUSDT",
+        "side": "BUY",
+        "notional_usdt": 1.23376707,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-03-16T00:00:00+00:00",
+        "regime": "bull",
+        "symbol": "LINKUSDT",
+        "side": "BUY",
+        "notional_usdt": 0.91519829,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": true
+      },
+      {
+        "time_utc": "2026-03-21T00:00:00+00:00",
+        "regime": "bull",
+        "symbol": "DOTUSDT",
+        "side": "BUY",
+        "notional_usdt": 0.91994733,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-03-25T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "ADAUSDT",
+        "side": "SELL",
+        "notional_usdt": 0.9175876,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": true
+      },
+      {
+        "time_utc": "2026-03-25T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "DOTUSDT",
+        "side": "BUY",
+        "notional_usdt": 2.8034787,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-04-18T16:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BTCUSDT",
+        "side": "BUY",
+        "notional_usdt": 29.4637844,
+        "min_notional_usdt": 50.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-04-18T16:00:00+00:00",
+        "regime": "bull",
+        "symbol": "DOTUSDT",
+        "side": "BUY",
+        "notional_usdt": 0.6799668,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-04-18T16:00:00+00:00",
+        "regime": "bull",
+        "symbol": "LINKUSDT",
+        "side": "BUY",
+        "notional_usdt": 0.02507441,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": true
+      },
+      {
+        "time_utc": "2026-04-20T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BTCUSDT",
+        "side": "BUY",
+        "notional_usdt": 29.52097841,
+        "min_notional_usdt": 50.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-04-20T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "DOTUSDT",
+        "side": "BUY",
+        "notional_usdt": 1.48117697,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-04-20T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "LINKUSDT",
+        "side": "SELL",
+        "notional_usdt": 0.46165505,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-04-27T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "DOTUSDT",
+        "side": "BUY",
+        "notional_usdt": 1.93940719,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-04-27T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "LINKUSDT",
+        "side": "SELL",
+        "notional_usdt": 0.05685979,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-05-04T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "DOTUSDT",
+        "side": "BUY",
+        "notional_usdt": 1.08340765,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-05-11T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BTCUSDT",
+        "side": "BUY",
+        "notional_usdt": 29.30496953,
+        "min_notional_usdt": 50.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-05-11T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "ETHUSDT",
+        "side": "BUY",
+        "notional_usdt": 1.10379832,
+        "min_notional_usdt": 20.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-06-16T00:00:00+00:00",
+        "regime": "bear",
+        "symbol": "LINKUSDT",
+        "side": "BUY",
+        "notional_usdt": 4.88549646,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": true
+      },
+      {
+        "time_utc": "2026-07-02T00:00:00+00:00",
+        "regime": "bear",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 2.27605657,
+        "min_notional_usdt": 50.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-07-07T00:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BTCUSDT",
+        "side": "BUY",
+        "notional_usdt": 43.01963183,
+        "min_notional_usdt": 50.0,
+        "reduce_only_candidate": true
+      },
+      {
+        "time_utc": "2026-07-22T00:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BCHUSDT",
+        "side": "BUY",
+        "notional_usdt": 1.76105164,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-07-22T00:00:00+00:00",
+        "regime": "bull",
+        "symbol": "TRXUSDT",
+        "side": "SELL",
+        "notional_usdt": 0.91107826,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": true
+      },
+      {
+        "time_utc": "2026-07-25T16:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BNBUSDT",
+        "side": "SELL",
+        "notional_usdt": 0.27786154,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-08-20T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 35.0868418,
+        "min_notional_usdt": 50.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-08-20T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "TRXUSDT",
+        "side": "BUY",
+        "notional_usdt": 0.52301282,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-08-27T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "TRXUSDT",
+        "side": "BUY",
+        "notional_usdt": 1.73784617,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-09-03T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BCHUSDT",
+        "side": "SELL",
+        "notional_usdt": 3.35710375,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-09-03T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 37.24788011,
+        "min_notional_usdt": 50.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-09-03T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "TRXUSDT",
+        "side": "BUY",
+        "notional_usdt": 3.51315455,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-09-11T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "TRXUSDT",
+        "side": "BUY",
+        "notional_usdt": 3.27156565,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-09-18T16:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BCHUSDT",
+        "side": "SELL",
+        "notional_usdt": 3.66325257,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": true
+      },
+      {
+        "time_utc": "2026-09-18T16:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BTCUSDT",
+        "side": "SELL",
+        "notional_usdt": 38.75245385,
+        "min_notional_usdt": 50.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-09-18T16:00:00+00:00",
+        "regime": "bull",
+        "symbol": "TRXUSDT",
+        "side": "BUY",
+        "notional_usdt": 3.61666263,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-09-22T00:00:00+00:00",
+        "regime": "bull",
+        "symbol": "TRXUSDT",
+        "side": "BUY",
+        "notional_usdt": 2.48048108,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-09-29T00:00:00+00:00",
+        "regime": "bull",
+        "symbol": "LTCUSDT",
+        "side": "BUY",
+        "notional_usdt": 3.67622505,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": true
+      },
+      {
+        "time_utc": "2026-09-29T00:00:00+00:00",
+        "regime": "bull",
+        "symbol": "TRXUSDT",
+        "side": "BUY",
+        "notional_usdt": 4.20685205,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-10-05T16:00:00+00:00",
+        "regime": "bull",
+        "symbol": "BCHUSDT",
+        "side": "BUY",
+        "notional_usdt": 0.61085198,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": true
+      },
+      {
+        "time_utc": "2026-10-05T16:00:00+00:00",
+        "regime": "bull",
+        "symbol": "TRXUSDT",
+        "side": "BUY",
+        "notional_usdt": 4.16022733,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      },
+      {
+        "time_utc": "2026-10-15T08:00:00+00:00",
+        "regime": "bull",
+        "symbol": "TRXUSDT",
+        "side": "BUY",
+        "notional_usdt": 0.74904531,
+        "min_notional_usdt": 5.0,
+        "reduce_only_candidate": false
+      }
+    ]
+  },
+  "interpretation_limits": [
+    "This is a sensitivity backtest using known historical BTC/ETH minimums and a 5 USDT baseline assumption for other symbols.",
+    "Other-symbol historical filter changes have not been verified; the default-5 scenarios are not an exact reconstruction of every past Binance filter.",
+    "The current exchangeInfo endpoint was blocked with HTTP 451; quantity step-size and minQty rules are not modeled.",
+    "The reduce-only exemption is a modeled execution policy; the simulator does not prove the live bot sends reduceOnly=true.",
+    "No changes to MEAFLOW-72 or MEAFLOW-52. All code changes are isolated to this research branch."
+  ]
+}
