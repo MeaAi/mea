@@ -1,0 +1,44 @@
+name: EXP-044 cross-crypto lead-lag screen
+
+on:
+  push:
+    branches:
+      - research/exp044-cross-crypto-leadlag
+    paths:
+      - "research/exp044_cross_crypto_leadlag.py"
+      - "research/EXP044_cross_crypto_leadlag_preregistration.md"
+      - ".github/workflows/exp044-cross-crypto-leadlag.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: exp044-cross-crypto-leadlag
+  cancel-in-progress: false
+
+jobs:
+  screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/exp044-cross-crypto-leadlag
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install numeric dependency
+        run: python -m pip install --disable-pip-version-check numpy
+      - name: Download verified Binance Vision archives and run frozen screen
+        run: |
+          python research/exp044_cross_crypto_leadlag.py \
+            --start 2023-01 --end 2026-10 \
+            --out exp044_results.json --data exp044-data
+      - name: Upload compact diagnostic only
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp044-cross-crypto-leadlag-results
+          path: exp044_results.json
+          if-no-files-found: error
+          retention-days: 30
