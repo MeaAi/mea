@@ -494,3 +494,28 @@ The following run SHAs are GitHub Actions `head_sha` values (workflow-trigger co
 1. If revisiting the short-horizon maker/taker pilot, first build a separate corrected evaluator that charges funding on positions crossing actual settlement timestamps and explicitly models entry/exit slippage by execution side. Do not rerun the old model unchanged; prior OOS edge is strongly negative.
 2. Extend Binance Vision aggTrades + BookDepth to a genuinely separate period (candidate 2024-07-01 through 2024-08-31) only after checking archive availability, checksums, and download volume. Keep the May-June 2024 pilot as training/calibration only; do not reuse its OOS split as independent validation.
 3. For MEAFLOW-72 strategy work, prioritize a fresh independent market window and explicit regime coverage (bull/bear/sideways) before proposing another parameter tweak. EXP-025's Nov 1-26 partial period had only three rebalances, all bear; it does not validate bull or sideways behavior.
+
+
+### EXP-027 — Per-symbol hard-stop screen (2026-11-28)
+- Status: COMPLETED; REJECTED under joint acceptance rule.
+- Research branch: `research/exp027-per-symbol-stop-loss-v1`.
+- Final evaluator commit `b1d82160b381b3581700a3475bc683deff2fd1fa`; simulator hook commit `8a0bf367588b8f31e84c06134e5a8ab5a158ef6f`; report commit `af5f41e6afe96f72e10b22e44af9526956f2ff89`; report `research/EXP027_PER_SYMBOL_STOP_LOSS.md`.
+- Final Actions run `46131284255`, job `140936763175`, success. Artifact ID `15258026545`, SHA-256 `2d86d2756b3fdf1ec6d30314fcdb655a47833406ea59fccbb8029175d5482add`. An earlier run `46131205211` was superseded by the final run after correcting report metadata and explicitly setting sideways policy to hold.
+- Scope: 2026-11-01 00:00 UTC through 2026-11-26 23:00 UTC; 13/13 symbols, 78 aligned funding events, zero data errors; 100 USDT, 1x, 5 bp one-way fee + 2 bp one-way slippage. Frozen MEAFLOW-72 settings otherwise unchanged.
+- Method: hourly OHLC adverse stop measured from weighted-average entry; fill at stop or worse bar open on gap-through; stopped symbol stays flat until next scheduled/regime rebalance; stop exits pay fee/slippage. Screened 1%, 1.5%, 2%, 3%, 5%, 7.5%.
+- Baseline: 100 -> 114.305877 USDT; +14.3059%; hourly adverse-mark DD -14.7901%.
+- Stop results (final equity / return / max DD / stop exits):
+  - 1%: 113.712476 / +13.7125% / -4.8825% / 4.
+  - 1.5%: 112.564058 / +12.5641% / -4.8825% / 4.
+  - 2%: 111.421469 / +11.4215% / -5.4875% / 4.
+  - 3%: 109.157749 / +9.1577% / -7.4077% / 4.
+  - 5%: 113.547749 / +13.5477% / -9.2893% / 2.
+  - 7.5%: 110.672481 / +10.6725% / -10.5362% / 2.
+- All stop thresholds improved DD but reduced net return; none passed the required joint gate. Reject and do not add to MEAFLOW-72.
+- Limitations: only 26 calendar days and three rebalance events, all bear; bull/sideways not validated. Stop fills use hourly OHLC and fixed costs, not tick/queue/market-impact execution. No protected strategy branch was modified.
+- Note: EXP-027 reuses the EXP-025 partial-November data loader; report metadata and regime mapping are corrected in the EXP-027 branch. Do not call this a full-November test.
+
+### Updated next queue after EXP-027
+1. Do not repeat the per-symbol hard-stop thresholds on this same November sample. If revisited, require a new independent period and a predeclared threshold from validation data.
+2. The proposed 2024-07/08 order-flow extension is already covered by completed EXP-014 (54/54 OOS combinations negative); do not rerun it as a new experiment.
+3. For MEAFLOW-72, next useful work is a genuinely new independent market window with enough rebalances in bull, bear, and sideways regimes. EXP-025/027's 26-day November sample is bear-only at rebalance points and cannot validate all regimes.
