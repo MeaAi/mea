@@ -155,6 +155,22 @@ def main():
         regime_policy=POLICY, regime_threshold_pct=5.0,
         sideways_action="flat",
     )
+    # Unfiltered base funding-rank control: both long and short legs in every regime.
+    unfiltered = sim.run(
+        data, (first, last), 1.0, 5, slip_bp=2,
+        lookback_days=7, rebalance_days=7, tail_fraction=.20,
+        side_mode="both", regime_policy=None, regime_threshold_pct=5.0,
+        sideways_action="flat",
+    )
+    unfiltered_comparison = {
+        "net_return_delta_percentage_points": round(result["net_return_pct"] - unfiltered["net_return_pct"], 4),
+        "max_drawdown_delta_percentage_points": round(result["max_drawdown_pct"] - unfiltered["max_drawdown_pct"], 4),
+        "end_equity_delta_usdt": round(result["end_equity_usdt"] - unfiltered["end_equity_usdt"], 6),
+        "acceptance_gate_passed_vs_unfiltered_control": (
+            result["net_return_pct"] > unfiltered["net_return_pct"] and
+            result["max_drawdown_pct"] > unfiltered["max_drawdown_pct"]
+        )
+    }
     comparison = {
         "net_return_delta_percentage_points": round(result["net_return_pct"] - control["net_return_pct"], 4),
         "max_drawdown_delta_percentage_points": round(result["max_drawdown_pct"] - control["max_drawdown_pct"], 4),
@@ -214,6 +230,15 @@ def main():
                 "trading_fees_usdt", "slippage_usdt", "rebalance_count",
                 "hourly_adverse_checks", "hourly_sideways_exits")},
             "comparison_vs_hold": comparison
+        },
+        "unfiltered_base_control": {
+            "name": "base funding-rank control, both long and short legs in all regimes",
+            "strategy_metrics": {k: unfiltered[k] for k in (
+                "start_equity_usdt", "end_equity_usdt", "net_return_pct",
+                "max_drawdown_pct", "liquidated", "liquidation_time_utc",
+                "trading_fees_usdt", "slippage_usdt", "rebalance_count",
+                "hourly_adverse_checks", "hourly_sideways_exits")},
+            "comparison_vs_regime_policy": unfiltered_comparison
         },
         "rebalance_events_by_regime": regime_events,
         "rebalance_log": log,
