@@ -1,0 +1,39 @@
+name: EXP-020 expanded-regime actual-order L2 sample
+
+on:
+  push:
+    branches:
+      - research/meaflow-exp020-expanded-regime-l2-sample-v1
+    paths:
+      - research/exp020_expanded_regime_l2_sample.py
+      - .github/workflows/exp020-expanded-regime-l2-sample.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: exp020-expanded-regime-l2-sample
+  cancel-in-progress: false
+
+jobs:
+  l2-sweep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - name: Checkout isolated research branch
+        uses: actions/checkout@v4
+        with:
+          ref: research/meaflow-exp020-expanded-regime-l2-sample-v1
+      - name: Reconstruct L2 and sweep actual BTC/ETH/SOL orders
+        run: python research/exp020_expanded_regime_l2_sample.py
+      - name: Publish compact report only
+        if: always()
+        run: |
+          if [ -f research-results/exp020_expanded_regime_l2_sample.json ]; then
+            test "$(stat -c%s research-results/exp020_expanded_regime_l2_sample.json)" -lt 1000000
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add research-results/exp020_expanded_regime_l2_sample.json
+            git commit -m "Publish EXP-020 expanded-regime L2 sample" || exit 0
+            git push origin HEAD:research/meaflow-exp020-expanded-regime-l2-sample-v1
+          fi
