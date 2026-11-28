@@ -114,7 +114,7 @@ Protected strategy base: `MEAFLOW-72` at `a1e5293e9e7b7258ab43b6c95ff13bfeefe2ab
 
 **Expected limitations:** fixed-universe survivorship; daily studies in literature are not direct evidence for weekly portfolio; hourly Binance archive quality and symbol listing histories; basis can be mechanically related to funding; 2025-09-18 methodology change; signal screen does not create account-level equity/DD.
 
-**Status:** Preregistered before implementation. Research branch created from protected SHA. Preregistration commit `0f0f33fdda3f63f9132bcc99857367b3c074c344`; analysis script commit `c07db05aad623469822d76184645e700f271782e`; workflow commit `0fe1ef850b33986baa362d008eee8f3d828d0fee`. Workflow is configured for branch push and manual dispatch. Run status has not yet been independently confirmed; no result/artifact is recorded yet.
+**Status:** Preregistered before implementation. Research branch created from protected SHA. Preregistration commit `0f0f33fdda3f63f9132bcc99857367b3c074c344`; analysis script commit `c07db05aad623469822d76184645e700f271782e`; workflow commit `0fe1ef850b33986baa362d008eee8f3d828d0fee`. Workflow is configured for branch push and manual dispatch. GitHub Actions run `46178535457` started 2026-11-28T18:56:32Z; job `screen` is currently executing the preregistered script (data download/analysis stage). No result/artifact is available yet.
 
 ## Current status / handoff
 - EXP038–046 records above; EXP039 VWAP looked promising in one window but EXP040/042 failed robustness, so it is not promoted.
