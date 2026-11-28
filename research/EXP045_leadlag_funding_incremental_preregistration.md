@@ -13,8 +13,7 @@ Preregistered research diagnostic. No strategy integration and no portfolio back
 ## Question
 Does the 1h/4h cross-asset peer-return predictor from EXP-044 contain incremental information about subsequent target returns after conditioning on:
 1. the target's own completed 1h return;
-2. the broad market's completed 1h return;
-3. the exact cross-sectional 7-day trailing funding score/rank used by MEAFLOW-72?
+2. the exact cross-sectional 7-day trailing funding score/rank used by MEAFLOW-72?
 
 This is a predictive diagnostic, not a profitability claim.
 
@@ -29,10 +28,11 @@ This is a predictive diagnostic, not a profitability claim.
 
 ## Estimator
 At each timestamp, cross-sectionally demean target returns and predictors to remove the common market component. Estimate nested models:
-- M0: own lag + market lag;
-- M1: M0 + 7-day funding score/rank;
+- First cross-sectionally demean each timestamp's outcome and predictors. This is equivalent to timestamp fixed effects and absorbs any common market return; do not claim a separate market-lag coefficient is estimated.
+- M0: target's own completed 1h return;
+- M1: M0 + 7-day funding score;
 - M2: M1 + peer-ex-target lagged return.
-Use timestamp-clustered inference with a 24-hour moving-block bootstrap over timestamps. Report incremental OOS R-squared of M2 over M1, peer coefficient, confidence interval, and per-symbol results. Also report the same comparisons by three chronological OOS subperiods and BTC bull/bear/sideways regimes.
+Fit pooled nested OLS models on the training split only. Estimate per-symbol peer slopes on training data only, controlling for own lag and funding. Use a paired 24-hour moving-block bootstrap over timestamp rows, recomputing the ratio of summed squared-error improvement to summed demeaned outcome variation on every draw. Report incremental OOS R-squared of M2 over M1, pooled peer coefficient, confidence interval, per-symbol training peer-slope signs and OOS prediction gains. Also report the same comparisons by three chronological OOS subperiods and BTC bull/bear/sideways regimes.
 Do not treat a raw correlation or an in-sample coefficient as proof of incremental value.
 
 ## Advancement gates
