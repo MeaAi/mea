@@ -1,0 +1,29 @@
+name: EXP-033 relative-momentum multiwindow robustness
+on:
+  push:
+    branches:
+      - research/exp033-relative-momentum-robustness-v1
+    paths:
+      - research/exp033_relative_momentum_robustness.py
+      - research/exp025_forward_simulator.py
+      - .github/workflows/exp033-relative-momentum-robustness.yml
+permissions:
+  contents: read
+jobs:
+  relative-momentum-robustness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run fixed multiwindow robustness validation
+        run: python research/exp033_relative_momentum_robustness.py
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp033-relative-momentum-robustness-report
+          path: research-results/exp033_relative_momentum_robustness.json
+          if-no-files-found: warn
