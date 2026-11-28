@@ -1,0 +1,30 @@
+name: EXP-028 independent 2021-2022 regime validation
+on:
+  push:
+    branches:
+      - research/exp028-2021-2022-regime-validation-v1
+    paths:
+      - research/exp028_2021_2022_regime_validation.py
+      - research/exp025_forward_simulator.py
+      - .github/workflows/exp028-2021-2022-regime-validation.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  independent-regime-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run independent 2021-2022 validation
+        run: python research/exp028_2021_2022_regime_validation.py
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp028-2021-2022-regime-report
+          path: research-results/exp028_2021_2022_regime_validation.json
+          if-no-files-found: warn
