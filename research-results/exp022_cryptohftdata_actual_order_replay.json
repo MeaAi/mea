@@ -107,6 +107,111 @@
       "updates_ignored_invalid": 324731
     },
     {
+      "date": "2026-09-11",
+      "hour": "08",
+      "symbol": "BTCUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-09-11/08/BTCUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 15656534,
+          "sha256": "de2b8749fbba5010855579bb159e17113b5689b6289882ba9345089589bd7d18",
+          "rows": 3570435,
+          "first_received_time_ns": 1789113600007329750,
+          "last_received_time_ns": 1789117199995039530,
+          "snapshot_messages": 0
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 0,
+      "updates_ignored_invalid": 133599
+    },
+    {
+      "date": "2026-09-11",
+      "hour": "08",
+      "symbol": "SOLUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-09-11/08/SOLUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 9554284,
+          "sha256": "ceaa615921f344f8e7694f2ae7b7ac8d1ea6c7e69e6a088dd5fab4fa86449145",
+          "rows": 789415,
+          "first_received_time_ns": 1789113600000000000,
+          "last_received_time_ns": 1789117199992199855,
+          "snapshot_messages": 3128
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 1,
+      "updates_ignored_invalid": 0
+    },
+    {
+      "date": "2026-09-18",
+      "hour": "16",
+      "symbol": "BTCUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-09-18/16/BTCUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 29206568,
+          "sha256": "d1deb8cab25200cf9e1bf4ae649bcea14ba350b83743868e58db574e5c14d4b2",
+          "rows": 7454228,
+          "first_received_time_ns": 1789747200000000000,
+          "last_received_time_ns": 1789750799995669206,
+          "snapshot_messages": 45273
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 1,
+      "updates_ignored_invalid": 0
+    },
+    {
+      "date": "2026-09-22",
+      "hour": "00",
+      "symbol": "BTCUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-09-22/00/BTCUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 25594339,
+          "sha256": "3b46dd14ee046a6fa71fe4a60d317809b169b11d23cf9744bc88290f06ddfd33",
+          "rows": 6571608,
+          "first_received_time_ns": 1790035200000000000,
+          "last_received_time_ns": 1790038799983996160,
+          "snapshot_messages": 46845
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 1,
+      "updates_ignored_invalid": 0
+    },
+    {
+      "date": "2026-10-15",
+      "hour": "08",
+      "symbol": "SOLUSDT",
+      "metadata": [
+        {
+          "path": "binance_futures/2026-10-15/08/SOLUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 12742322,
+          "sha256": "5d021ac3da3e08e092cc9d03c53ac388aa9e85e6515ea6c942461badd5e4bb42",
+          "rows": 1400312,
+          "first_received_time_ns": 1792051200000000000,
+          "last_received_time_ns": 1792054799990754979,
+          "snapshot_messages": 5043
+        }
+      ],
+      "sequence_gaps": 0,
+      "gap_examples": [],
+      "snapshots_applied": 1,
+      "updates_ignored_invalid": 0
+    },
+    {
       "date": "2026-10-24",
       "hour": "16",
       "symbol": "BTCUSDT",
@@ -262,6 +367,215 @@
         "status": "stale_book_after_signal",
         "book_delay_ms": 2341674.70835,
         "book_age_ms": -2379971.0
+      }
+    },
+    {
+      "time_utc": "2026-09-11T08:00:00+00:00",
+      "regime": "bull",
+      "symbol": "BTCUSDT",
+      "side": "BUY",
+      "order_delta_notional_usdt": 38.18095371,
+      "asof_execution": {
+        "status": "no_valid_asof_book"
+      },
+      "first_after_execution": {
+        "status": "no_valid_post_signal_book"
+      }
+    },
+    {
+      "time_utc": "2026-09-11T08:00:00+00:00",
+      "regime": "bull",
+      "symbol": "SOLUSDT",
+      "side": "SELL",
+      "order_delta_notional_usdt": 38.13984502,
+      "asof_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 0.382614685585,
+        "strategy_order_notional_usdt": 38.13984502,
+        "reference_mark_price": 99.68212528,
+        "best_bid": 99.68,
+        "best_ask": 99.69,
+        "mid": 99.685,
+        "spread_bp": 1.0031599538537297,
+        "vwap": 99.68,
+        "filled_qty": 0.382614685585,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.5016051364359342,
+        "market_cost_vs_mark_bp": 0.2132057271067775,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 0.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11529854017016
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 0.382614685585,
+        "strategy_order_notional_usdt": 38.13984502,
+        "reference_mark_price": 99.68212528,
+        "best_bid": 99.68,
+        "best_ask": 99.69,
+        "mid": 99.685,
+        "spread_bp": 1.0031599538537297,
+        "vwap": 99.68,
+        "filled_qty": 0.382614685585,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.5016051364359342,
+        "market_cost_vs_mark_bp": 0.2132057271067775,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 0.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11529854017016
+      }
+    },
+    {
+      "time_utc": "2026-09-18T16:00:00+00:00",
+      "regime": "bull",
+      "symbol": "BTCUSDT",
+      "side": "SELL",
+      "order_delta_notional_usdt": 40.11186132,
+      "asof_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 0.00049711808,
+        "strategy_order_notional_usdt": 40.11186132,
+        "reference_mark_price": 80688.8,
+        "best_bid": 80688.7,
+        "best_ask": 80688.8,
+        "mid": 80688.75,
+        "spread_bp": 0.01239330142130356,
+        "vwap": 80688.7,
+        "filled_qty": 0.00049711808,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.0061966545494840375,
+        "market_cost_vs_mark_bp": 0.012393293741612315,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 0.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11591676642552
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 0.00049711808,
+        "strategy_order_notional_usdt": 40.11186132,
+        "reference_mark_price": 80688.8,
+        "best_bid": 80688.7,
+        "best_ask": 80688.8,
+        "mid": 80688.75,
+        "spread_bp": 0.01239330142130356,
+        "vwap": 80688.7,
+        "filled_qty": 0.00049711808,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.0061966545494840375,
+        "market_cost_vs_mark_bp": 0.012393293741612315,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 0.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11591676642552
+      }
+    },
+    {
+      "time_utc": "2026-09-22T00:00:00+00:00",
+      "regime": "bull",
+      "symbol": "BTCUSDT",
+      "side": "BUY",
+      "order_delta_notional_usdt": 43.04263048,
+      "asof_execution": {
+        "status": "full_depth_sweep",
+        "side": "BUY",
+        "quantity": 0.00049711808,
+        "strategy_order_notional_usdt": 43.04263048,
+        "reference_mark_price": 86584.31915217,
+        "best_bid": 86578.7,
+        "best_ask": 86578.8,
+        "mid": 86578.75,
+        "spread_bp": 0.011550178306549905,
+        "vwap": 86578.8,
+        "filled_qty": 0.00049711808,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.005775089153559065,
+        "market_cost_vs_mark_bp": -0.6374309140555479,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 0.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11621091574925
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "BUY",
+        "quantity": 0.00049711808,
+        "strategy_order_notional_usdt": 43.04263048,
+        "reference_mark_price": 86584.31915217,
+        "best_bid": 86578.7,
+        "best_ask": 86578.8,
+        "mid": 86578.75,
+        "spread_bp": 0.011550178306549905,
+        "vwap": 86578.8,
+        "filled_qty": 0.00049711808,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.005775089153559065,
+        "market_cost_vs_mark_bp": -0.6374309140555479,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 0.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11621091574925
+      }
+    },
+    {
+      "time_utc": "2026-10-15T08:00:00+00:00",
+      "regime": "bull",
+      "symbol": "SOLUSDT",
+      "side": "SELL",
+      "order_delta_notional_usdt": 41.65435009,
+      "asof_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 0.403498528006,
+        "strategy_order_notional_usdt": 41.65435009,
+        "reference_mark_price": 103.23296667,
+        "best_bid": 103.22,
+        "best_ask": 103.23,
+        "mid": 103.225,
+        "spread_bp": 0.968757568418999,
+        "vwap": 103.22000000000001,
+        "filled_qty": 0.403498528006,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.4844022476246934,
+        "market_cost_vs_mark_bp": 1.2560590301965293,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 149.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11824111516946
+      },
+      "first_after_execution": {
+        "status": "full_depth_sweep",
+        "side": "SELL",
+        "quantity": 0.403498528006,
+        "strategy_order_notional_usdt": 41.65435009,
+        "reference_mark_price": 103.23296667,
+        "best_bid": 103.22,
+        "best_ask": 103.23,
+        "mid": 103.225,
+        "spread_bp": 0.968757568418999,
+        "vwap": 103.22000000000001,
+        "filled_qty": 0.403498528006,
+        "remaining_qty": 0.0,
+        "market_cost_vs_mid_bp": 0.4844022476246934,
+        "market_cost_vs_mark_bp": 1.2560590301965293,
+        "book_delay_ms": 0.0,
+        "book_age_ms": 149.0,
+        "sequence_gaps_before_capture": 0,
+        "snapshots_before_capture": 1,
+        "last_update_id": 11824111516946
       }
     },
     {
@@ -560,28 +874,28 @@
     }
   ],
   "summary": {
-    "orders": 8,
+    "orders": 13,
     "asof": {
-      "valid_orders": 6,
-      "all_orders": 8,
-      "full_depth_fill_count": 6,
+      "valid_orders": 10,
+      "all_orders": 13,
+      "full_depth_fill_count": 10,
       "median_cost_vs_mid_bp": 0.02219908584066843,
       "max_cost_vs_mid_bp": 0.5229578496002141,
-      "median_cost_vs_mark_bp": 1.874942759885832,
+      "median_cost_vs_mark_bp": 0.2132057271067775,
       "max_cost_vs_mark_bp": 3.918276191473764,
-      "notional_weighted_cost_vs_mid_bp": 0.1517699305528679,
-      "notional_weighted_cost_vs_mark_bp": 1.0896919190546532
+      "notional_weighted_cost_vs_mid_bp": 0.1757790915280534,
+      "notional_weighted_cost_vs_mark_bp": 0.8602690665433471
     },
     "first_after": {
-      "valid_orders": 6,
-      "all_orders": 8,
-      "full_depth_fill_count": 6,
+      "valid_orders": 10,
+      "all_orders": 13,
+      "full_depth_fill_count": 10,
       "median_cost_vs_mid_bp": 0.02219908584066843,
       "max_cost_vs_mid_bp": 0.5229578496002141,
-      "median_cost_vs_mark_bp": 1.874942759885832,
+      "median_cost_vs_mark_bp": 0.2132057271067775,
       "max_cost_vs_mark_bp": 3.918276191473764,
-      "notional_weighted_cost_vs_mid_bp": 0.1517699305528679,
-      "notional_weighted_cost_vs_mark_bp": 1.0896919190546532
+      "notional_weighted_cost_vs_mid_bp": 0.1757790915280534,
+      "notional_weighted_cost_vs_mark_bp": 0.8602690665433471
     }
   }
 }
