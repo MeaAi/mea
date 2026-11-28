@@ -1,0 +1,30 @@
+name: EXP-029 bull-flat regime policy screen
+on:
+  push:
+    branches:
+      - research/exp029-bull-flat-regime-policy-v1
+    paths:
+      - research/exp029_bull_flat_policy_screen.py
+      - research/exp025_forward_simulator.py
+      - .github/workflows/exp029-bull-flat-regime-policy.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  bull-flat-policy-screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run EXP-029 bull-flat policy screen
+        run: python research/exp029_bull_flat_policy_screen.py
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp029-bull-flat-policy-report
+          path: research-results/exp029_bull_flat_policy_screen.json
+          if-no-files-found: warn
