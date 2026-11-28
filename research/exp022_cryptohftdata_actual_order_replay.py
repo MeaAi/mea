@@ -24,7 +24,7 @@ BASES = [
 SOURCE = Path("research-results/exp019_full_oos_order_events.json")
 OUT = Path("research-results/exp022_cryptohftdata_actual_order_replay.json")
 SELECT_DATES = {"2026-09-03", "2026-09-11", "2026-09-18", "2026-09-22", "2026-10-15", "2026-10-24", "2026-10-30"}
-SYMBOLS = {"BTCUSDT", "ETHUSDT", "SOLUSDT"}
+SYMBOLS = {"BTCUSDT", "ETHUSDT", "SOLUSDT", "BCHUSDT", "DOTUSDT", "TRXUSDT", "XRPUSDT"}
 COLUMNS = [
     "received_time","event_time","transaction_time","symbol","event_type",
     "first_update_id","final_update_id","prev_final_update_id","last_update_id",
