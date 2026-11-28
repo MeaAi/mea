@@ -1,0 +1,30 @@
+name: EXP-031 24h EWMA multiwindow robustness
+on:
+  push:
+    branches:
+      - research/exp031-ewma24-multiwindow-validation-v1
+    paths:
+      - research/exp031_ewma24_multiwindow_validation.py
+      - research/exp025_forward_simulator.py
+      - .github/workflows/exp031-ewma24-multiwindow-validation.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ewma24-multiwindow-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run EXP-031 multiwindow validation
+        run: python research/exp031_ewma24_multiwindow_validation.py
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp031-ewma24-multiwindow-report
+          path: research-results/exp031_ewma24_multiwindow_validation.json
+          if-no-files-found: warn
