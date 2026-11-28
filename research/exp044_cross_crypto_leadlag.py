@@ -120,6 +120,23 @@ def main():
               "pooled_btc_predictor_corr":corr(pooled_btc,pooled_y),
               "pooled_own_predictor_corr":corr(pooled_own,pooled_y)}
         results["splits"][split]=sp
+    # OOS calendar-year and BTC 30d regime stability for each horizon.
+    btc30=np.full(n,np.nan)
+    for t in range(720,n): btc30[t]=close[t,0]/close[t-720,0]-1
+    stability={}
+    for h in (1,4,24):
+        by_year={}; by_regime={}
+        for t in range(va,n-h):
+            y=np.log(close[t+h]/close[t]); x=peer[t-1]
+            ic=corr(x,y)
+            if ic is None: continue
+            year=datetime.fromtimestamp(common[t]*3600,timezone.utc).strftime("%Y")
+            by_year.setdefault(year,[]).append(ic)
+            regime=("bull" if btc30[t]>=.05 else "bear" if btc30[t]<=-.05 else "sideways") if np.isfinite(btc30[t]) else "unknown"
+            by_regime.setdefault(regime,[]).append(ic)
+        stability[str(h)]={"year_mean_cs_ic":{k:float(np.mean(v)) for k,v in by_year.items()},
+                           "regime_mean_cs_ic":{k:float(np.mean(v)) for k,v in by_regime.items()}}
+    results["oos_stability"]=stability
     # Per-target OOS correlations; evaluate breadth not just aggregate.
     target={}
     for j,s in enumerate(SYMBOLS):
