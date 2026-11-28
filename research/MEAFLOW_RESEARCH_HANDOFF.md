@@ -730,3 +730,20 @@ The following run SHAs are GitHub Actions `head_sha` values (workflow-trigger co
 - Initial screen: 2021-10-01..2022-12-31 UTC with 2021-09 context; 100 USDT, 1x, 5bp one-way fee + 2bp slippage; 13 frozen symbols. Candidate must beat frozen baseline on BOTH net return and hourly adverse-mark max DD before fixed multiwindow validation. No protected strategy branch modified.
 
 - Diagnostic note: first successful Actions run `46137393442` produced matched baseline/candidate metrics, but an evaluator variable name collision caused the candidate-comparison JSON field to contain the older EXP-028 control comparison. The metric values themselves are present and permit direct comparison; a corrected evaluator commit `28103b52980f520e80967e04463da922ac5a412b` is rerunning the same fixed screen as Actions run `46137472421`. Treat the first artifact as diagnostic only until the corrected report is available.
+
+
+### EXP-037 — Causal rolling BTC-beta-neutral long/short allocation screen (2026-11-28)
+- Status: COMPLETED; REJECTED at initial screen. No multiwindow run warranted.
+- Corrected Actions run `46137472421`, job `140955890884`, success. The earlier run `46137393442` also completed but its candidate comparison JSON key was wrong due a variable collision; the corrected evaluator run is authoritative. Corrected evaluator commit `28103b52980f520e80967e04463da922ac5a412b`. Artifact ID `15260485982`, SHA-256 `dce370fcfdf3d42d6a48b6887c31e7414fe8793d60c4cf2315b2493ea3156c74`.
+- Matched 2021-10-01..2022-12-31 UTC screen with September 2021 context; 13/13 symbols; no data errors; same corrected EXP-028 baseline and hourly adverse-mark DD calculation.
+- Frozen baseline: 100 -> 218.133618 USDT; +118.1336%; DD -47.1792%.
+- Beta-neutral candidate: 100 -> 212.738304 USDT; +112.7383%; DD -47.4449%. Return delta -5.3953 pp; DD delta -0.2657 pp. Joint gate FAILED on both metrics.
+- Beta split was active on all 35 bull/both-side rebalances, with no fallbacks. Mean long basket beta 0.9575; mean short basket beta 1.0404; mean long gross share 51.67%. The observed beta mismatch was modest, so the resulting split remained close to 50/50 and did not improve the portfolio.
+- Candidate fee sensitivity: 2bp -> +118.1466% / DD -46.9738%; 8bp -> +107.4607% / DD -47.9122%. This does not reverse the 5bp joint-gate rejection.
+- Decision: REJECT; no robustness test, no retuning, no promotion.
+- No protected MEAFLOW-72 or MEAFLOW-52 branch modified.
+
+### Updated next queue after EXP-037
+1. Reject DAR forecast and beta-neutral gross split; do not retune these on the same windows.
+2. Search for a distinct mechanism beyond the already tested funding-score variants, inverse-volatility sizing, symbol risk caps, DD scaling, and market-regime rules. Candidate research should be checked against all branches before implementation.
+3. Keep MEAFLOW-72 frozen at `a1e5293e9e7b7258ab43b6c95ff13bfeefe2abb1`.
