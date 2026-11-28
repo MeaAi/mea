@@ -1,0 +1,43 @@
+name: EXP-048 MEAFLOW-72 leverage and regime risk sweep
+on:
+  push:
+    branches:
+      - research/exp048-meaflow72-leverage-regimes
+    paths:
+      - "research/exp048_meaflow72_leverage_regimes.py"
+      - "research/funding_carry_liquidation.py"
+      - ".github/workflows/exp048-meaflow72-leverage-regimes.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: exp048-meaflow72-leverage-regimes
+  cancel-in-progress: false
+jobs:
+  leverage-sweep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/exp048-meaflow72-leverage-regimes
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install numerical dependency
+        run: pip install numpy
+      - name: Download free Binance Vision mark/funding archives and run leverage sweep
+        run: |
+          cd research
+          python exp048_meaflow72_leverage_regimes.py --start 2023-01 --end 2026-10 --out ../research-output/exp048_leverage_regimes.json
+          cd ..
+      - name: Publish report
+        run: |
+          mkdir -p research-results
+          cp research-output/exp048_leverage_regimes.json research-results/
+          rm -rf research-output
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research-results/exp048_leverage_regimes.json
+          git commit -m "Publish EXP-048 MEAFLOW-72 leverage regime results"
+          git push origin HEAD:research/exp048-meaflow72-leverage-regimes
