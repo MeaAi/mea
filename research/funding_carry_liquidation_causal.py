@@ -68,7 +68,7 @@ def load_symbol(sym,months,root):
   verified_download(f"{BASE}/markPriceKlines/{sym}/1h/{mn}",mp);marks.update(readzip(mp,"mark"))
  return sym,fund,marks
 
-def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20,side_mode='both',regime_filter=None,regime_policy=None,regime_threshold_pct=5.0,trade_universe=None,sideways_action='flat',sideways_confirm_hours=1):
+def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,rebalance_days=7,tail_fraction=.20,side_mode='both',regime_filter=None,regime_policy=None,regime_threshold_pct=5.0,trade_universe=None,sideways_action='flat',sideways_confirm_hours=1,order_min_notional_policy=None,reduce_only_min_notional_exempt=True):
  symbols=sorted(data); trade_symbols=sorted(trade_universe) if trade_universe is not None else symbols; first,last=period
  if not set(trade_symbols).issubset(set(symbols)) or 'BTCUSDT' not in data: raise ValueError('invalid trade universe or missing BTC regime benchmark')
  mark_times={s:sorted(data[s]["marks"]) for s in symbols}
@@ -89,6 +89,7 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
   threshold=regime_threshold_pct/100.0
   return 'bull' if ret>threshold else ('bear' if ret<-threshold else 'sideways')
  rebalances=0; hourly_checks=0; hourly_sideways_exits=0; sideways_streak=0; rebalance_log=[]
+ attempted_order_count=0; rejected_order_count=0; rejected_order_notional=0.; rejected_by_symbol={z:0 for z in symbols}
  lookback=lookback_days*DAY; interval=rebalance_days*DAY
  for ix,t in enumerate(events):
   # Walk the union of hourly mark candles once; update portfolio equity close-to-close.
@@ -187,10 +188,32 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
       for s in longs:target[s]=leg/k/px[s]
      if active_mode in ('both','short_only'):
       for s in shorts:target[s]=-leg/k/px[s]
-    turnover=sum(abs((target[s]-qty[s])*px[s]) for s in symbols if s in px)
+    executed_target=target.copy()
+    rejected_orders=[]
+    for z in symbols:
+     delta=executed_target[z]-qty[z]
+     if abs(delta)<=1e-12 or z not in px or order_min_notional_policy is None: continue
+     rule=order_min_notional_policy.get("symbols",{}).get(z)
+     if isinstance(rule,dict):
+      min_n=rule.get("before",0.) if t<rule.get("change_time_ms",0) else rule.get("after",0.)
+     elif rule is not None: min_n=rule
+     else: min_n=order_min_notional_policy.get("default",0.)
+     if min_n<=0: continue
+     old_q=qty[z];new_q=executed_target[z]
+     same_direction=(new_q==0 or old_q*new_q>0)
+     reduce_only_candidate=(old_q!=0 and same_direction and abs(new_q)<abs(old_q))
+     delta_notional=abs(delta*px[z])
+     if delta_notional+1e-12<min_n and not (reduce_only_min_notional_exempt and reduce_only_candidate):
+      executed_target[z]=qty[z]
+      rejected_orders.append({"symbol":z,"side":"BUY" if delta>0 else "SELL",
+       "notional_usdt":round(delta_notional,8),"min_notional_usdt":float(min_n),
+       "reduce_only_candidate":reduce_only_candidate})
+      rejected_order_count+=1;rejected_order_notional+=delta_notional;rejected_by_symbol[z]+=1
+    attempted_order_count+=sum(1 for z in symbols if abs(target[z]-qty[z])>1e-12 and z in px)
+    turnover=sum(abs((executed_target[s]-qty[s])*px[s]) for s in symbols if s in px)
     fee=turnover*fee_bp/10000;slip=turnover*slip_bp/10000
     for z in symbols:
-     tr=abs((target[z]-qty[z])*px[z]) if z in px else 0.
+     tr=abs((executed_target[z]-qty[z])*px[z]) if z in px else 0.
      fees_by_symbol[z]+=tr*fee_bp/10000;slippage_by_symbol[z]+=tr*slip_bp/10000
      regime_pnl[rg]['fees_usdt']+=tr*fee_bp/10000;regime_pnl[rg]['slippage_usdt']+=tr*slip_bp/10000
     equity-=fee+slip;fee_total+=fee;slip_total+=slip
@@ -214,12 +237,13 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
        "quantity_delta":round(delta,12),"reference_price":px[z],
        "notional_usdt":round(abs(delta*px[z]),8),
        "from_notional_usdt":round(qty[z]*px[z],8),
-       "to_notional_usdt":round(target[z]*px[z],8)})
+       "to_notional_usdt":round(executed_target[z]*px[z],8)})
     rebalance_log.append({"time_utc":datetime.fromtimestamp(t/1000,timezone.utc).isoformat(),
      "regime":rg,"active_mode":active_mode,"equity_after_cost_usdt":round(equity,8),
      "turnover_usdt":round(turnover,8),"fee_usdt":round(fee,8),"slippage_usdt":round(slip,8),
-     "long_candidates":longs,"short_candidates":shorts,"orders":order_deltas})
-    qty=target;last_rebal=t;last_regime=rg;rebalances+=1
+     "long_candidates":longs,"short_candidates":shorts,"orders":order_deltas,
+     "rejected_orders":rejected_orders})
+    qty=executed_target;last_rebal=t;last_regime=rg;rebalances+=1
   # Save latest event mark as anchor for next interval.
   prev=px.copy()
   peak=max(peak,equity);maxdd=min(maxdd,(equity/peak-1)*100 if peak else -100)
@@ -232,7 +256,11 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
   "liquidated":liquidated,"liquidation_time_utc":liq_time,"equity_at_liquidation_usdt":liq_equity,
   "price_pnl_usdt":round(price_pnl,6),"funding_pnl_usdt":round(funding_pnl,6),
   "trading_fees_usdt":round(fee_total,6),"slippage_usdt":round(slip_total,6),
-  "rebalance_count":rebalances,"hourly_adverse_checks":hourly_checks,"hourly_sideways_exits":hourly_sideways_exits,"rebalance_log":rebalance_log,"sideways_action":sideways_action,"lookback_days":lookback_days,"rebalance_days":rebalance_days,"tail_fraction":tail_fraction,"side_mode":side_mode,"regime_filter":regime_filter,"regime_policy":regime_policy,
+  "rebalance_count":rebalances,"hourly_adverse_checks":hourly_checks,"hourly_sideways_exits":hourly_sideways_exits,
+  "attempted_order_count":attempted_order_count,"rejected_order_count":rejected_order_count,
+  "rejected_order_notional_usdt":round(rejected_order_notional,6),"rejected_orders_by_symbol":rejected_by_symbol,
+  "order_min_notional_policy":order_min_notional_policy,"reduce_only_min_notional_exempt":reduce_only_min_notional_exempt,
+  "rebalance_log":rebalance_log,"sideways_action":sideways_action,"lookback_days":lookback_days,"rebalance_days":rebalance_days,"tail_fraction":tail_fraction,"side_mode":side_mode,"regime_filter":regime_filter,"regime_policy":regime_policy,
   "symbol_attribution":{z:{"price_pnl_usdt":round(price_by_symbol[z],6),"funding_pnl_usdt":round(funding_by_symbol[z],6),"fees_usdt":round(fees_by_symbol[z],6),"slippage_usdt":round(slippage_by_symbol[z],6),"net_contribution_usdt":round(price_by_symbol[z]+funding_by_symbol[z]-fees_by_symbol[z]-slippage_by_symbol[z],6)} for z in symbols},
   "market_regime_attribution":{k:{q:round(v,6) for q,v in vals.items()}|{"net_contribution_usdt":round(vals['price_pnl_usdt']+vals['funding_pnl_usdt']-vals['fees_usdt']-vals['slippage_usdt'],6)} for k,vals in regime_pnl.items()},
   "entry_regime_attribution":{k:{q:round(v,6) for q,v in vals.items()}|{"net_contribution_usdt":round(vals['price_pnl_usdt']+vals['funding_pnl_usdt'],6)} for k,vals in entry_regime_pnl.items()},
