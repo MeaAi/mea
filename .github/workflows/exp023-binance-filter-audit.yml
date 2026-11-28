@@ -1,0 +1,43 @@
+name: EXP-023 Binance current order-filter audit
+
+on:
+  push:
+    branches:
+      - research/meaflow-exp023-binance-filter-audit-v1
+    paths:
+      - research/exp023_binance_filter_audit.py
+      - .github/workflows/exp023-binance-filter-audit.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: exp023-binance-filter-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout isolated research branch
+        uses: actions/checkout@v4
+        with:
+          ref: research/meaflow-exp023-binance-filter-audit-v1
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compare all actual OOS order deltas with current Binance filters
+        run: python research/exp023_binance_filter_audit.py
+      - name: Publish compact filter report only
+        if: always()
+        run: |
+          if [ -f research-results/exp023_binance_filter_audit.json ]; then
+            test "$(stat -c%s research-results/exp023_binance_filter_audit.json)" -lt 1000000
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add research-results/exp023_binance_filter_audit.json
+            git commit -m "Publish EXP-023 Binance order filter audit" || exit 0
+            git push origin HEAD:research/meaflow-exp023-binance-filter-audit-v1
+          fi
