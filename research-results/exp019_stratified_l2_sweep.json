@@ -1,0 +1,317 @@
+{
+  "experiment": "EXP-019-MEAFLOW72-STRATIFIED-ACTUAL-ORDER-L2-SWEEP",
+  "status": "completed_with_errors",
+  "strategy_branch": "MEAFLOW-72 (read-only replay; no strategy changes)",
+  "research_branch": "research/meaflow-exp019-stratified-l2-sweep-v1",
+  "source": "Official free Binance Vision fundingRate + 1h markPriceKlines; Tardis public Binance Futures incremental_book_L2",
+  "oos_period_utc": {
+    "start": "2025-09-06T18:24:00+00:00",
+    "end": "2026-10-31T16:00:00+00:00"
+  },
+  "configuration": {
+    "capital_usdt": 100,
+    "leverage": 1,
+    "lookback_days": 7,
+    "rebalance_days": 7,
+    "tail_fraction": 0.2,
+    "regime": "BTC trailing 30d mark-price return, +/-5%, last completed hourly candle",
+    "regime_policy": {
+      "bull": "both",
+      "bear": "short_only",
+      "sideways": "flat",
+      "unknown": "flat"
+    },
+    "sideways_action": "hold",
+    "fee_bp_one_way_model": 5,
+    "slippage_bp_one_way_model": 2
+  },
+  "data_errors": {},
+  "loaded_symbols": [
+    "ADAUSDT",
+    "AVAXUSDT",
+    "BCHUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "DOGEUSDT",
+    "DOTUSDT",
+    "ETHUSDT",
+    "LINKUSDT",
+    "LTCUSDT",
+    "SOLUSDT",
+    "TRXUSDT",
+    "XRPUSDT"
+  ],
+  "strategy_replay_metrics": {
+    "start_equity_usdt": 100.0,
+    "end_equity_usdt": 172.94281,
+    "net_return_pct": 72.9428,
+    "max_drawdown_pct": -26.5454,
+    "rebalance_count": 98,
+    "hourly_adverse_checks": 10072,
+    "liquidated": false,
+    "trading_fees_usdt": 4.498733,
+    "slippage_usdt": 1.799493
+  },
+  "rebalance_events_by_regime": {
+    "bull": {
+      "rebalance_events": 31,
+      "events_with_orders": 31,
+      "order_deltas": 177,
+      "selected_events": 3
+    },
+    "bear": {
+      "rebalance_events": 25,
+      "events_with_orders": 25,
+      "order_deltas": 91,
+      "selected_events": 3
+    },
+    "sideways": {
+      "rebalance_events": 42,
+      "events_with_orders": 0,
+      "order_deltas": 0,
+      "selected_events": 0
+    },
+    "unknown": {
+      "rebalance_events": 0,
+      "events_with_orders": 0,
+      "order_deltas": 0,
+      "selected_events": 0
+    }
+  },
+  "selected_event_timestamps": {
+    "bull": [
+      {
+        "time_utc": "2026-03-13T16:00:00+00:00",
+        "order_count": 5,
+        "turnover_usdt": 229.34557713,
+        "active_mode": "both"
+      },
+      {
+        "time_utc": "2026-05-04T08:00:00+00:00",
+        "order_count": 6,
+        "turnover_usdt": 134.39961202,
+        "active_mode": "both"
+      },
+      {
+        "time_utc": "2026-09-11T08:00:00+00:00",
+        "order_count": 6,
+        "turnover_usdt": 230.28799903,
+        "active_mode": "both"
+      }
+    ],
+    "bear": [
+      {
+        "time_utc": "2025-11-18T16:00:00+00:00",
+        "order_count": 3,
+        "turnover_usdt": 106.27903481,
+        "active_mode": "short_only"
+      },
+      {
+        "time_utc": "2026-02-08T16:00:00+00:00",
+        "order_count": 3,
+        "turnover_usdt": 143.63372627,
+        "active_mode": "short_only"
+      },
+      {
+        "time_utc": "2026-06-09T00:00:00+00:00",
+        "order_count": 4,
+        "turnover_usdt": 259.4547399,
+        "active_mode": "short_only"
+      }
+    ],
+    "sideways": [],
+    "unknown": []
+  },
+  "selection_quantiles": [
+    0.2,
+    0.5,
+    0.8
+  ],
+  "selected_event_count": 6,
+  "selected_order_count": 27,
+  "files": [
+    {
+      "date_utc": "2025-11-18",
+      "symbol": "BTCUSDT",
+      "error": "HTTP Error 401: Unauthorized",
+      "orders": []
+    },
+    {
+      "date_utc": "2025-11-18",
+      "symbol": "ETHUSDT",
+      "error": "HTTP Error 401: Unauthorized",
+      "orders": []
+    },
+    {
+      "date_utc": "2025-11-18",
+      "symbol": "LINKUSDT",
+      "error": "HTTP Error 401: Unauthorized",
+      "orders": []
+    },
+    {
+      "date_utc": "2026-02-08",
+      "symbol": "BCHUSDT",
+      "error": "HTTP Error 401: Unauthorized",
+      "orders": []
+    },
+    {
+      "date_utc": "2026-02-08",
+      "symbol": "BTCUSDT",
+      "error": "HTTP Error 401: Unauthorized",
+      "orders": []
+    },
+    {
+      "date_utc": "2026-02-08",
+      "symbol": "LINKUSDT",
+      "error": "HTTP Error 401: Unauthorized",
+      "orders": []
+    },
+    {
+      "date_utc": "2026-03-13",
+      "symbol": "AVAXUSDT",
+      "error": "HTTP Error 401: Unauthorized",
+      "orders": []
+    },
+    {
+      "date_utc": "2026-03-13",
+      "symbol": "BNBUSDT",
+      "error": "HTTP Error 401: Unauthorized",
+      "orders": []
+    },
+    {
+      "date_utc": "2026-03-13",
+      "symbol": "DOTUSDT",
+      "error": "HTTP Error 401: Unauthorized",
+      "orders": []
+    },
+    {
+      "date_utc": "2026-03-13",
+      "symbol": "LINKUSDT",
+      "error": "HTTP Error 401: Unauthorized",
+      "orders": []
+    },
+    {
+      "date_utc": "2026-03-13",
+      "symbol": "TRXUSDT",
+      "error": "HTTP Error 401: Unauthorized",
+      "orders": []
+    },
+    {
+      "date_utc": "2026-05-04",
+      "symbol": "BCHUSDT",
+      "error": "HTTP Error 401: Unauthorized",
+      "orders": []
+    },
+    {
+      "date_utc": "2026-05-04",
+      "symbol": "DOGEUSDT",
+      "error": "HTTP Error 401: Unauthorized",
+      "orders": []
+    },
+    {
+      "date_utc": "2026-05-04",
+      "symbol": "DOTUSDT",
+      "error": "HTTP Error 401: Unauthorized",
+      "orders": []
+    },
+    {
+      "date_utc": "2026-05-04",
+      "symbol": "ETHUSDT",
+      "error": "HTTP Error 401: Unauthorized",
+      "orders": []
+    },
+    {
+      "date_utc": "2026-05-04",
+      "symbol": "LINKUSDT",
+      "error": "HTTP Error 401: Unauthorized",
+      "orders": []
+    },
+    {
+      "date_utc": "2026-05-04",
+      "symbol": "TRXUSDT",
+      "error": "HTTP Error 401: Unauthorized",
+      "orders": []
+    },
+    {
+      "date_utc": "2026-06-09",
+      "symbol": "BNBUSDT",
+      "error": "HTTP Error 401: Unauthorized",
+      "orders": []
+    },
+    {
+      "date_utc": "2026-06-09",
+      "symbol": "BTCUSDT",
+      "error": "HTTP Error 401: Unauthorized",
+      "orders": []
+    },
+    {
+      "date_utc": "2026-06-09",
+      "symbol": "ETHUSDT",
+      "error": "HTTP Error 401: Unauthorized",
+      "orders": []
+    },
+    {
+      "date_utc": "2026-06-09",
+      "symbol": "LINKUSDT",
+      "error": "HTTP Error 401: Unauthorized",
+      "orders": []
+    },
+    {
+      "date_utc": "2026-09-11",
+      "symbol": "BCHUSDT",
+      "error": "HTTP Error 401: Unauthorized",
+      "orders": []
+    },
+    {
+      "date_utc": "2026-09-11",
+      "symbol": "BTCUSDT",
+      "error": "HTTP Error 401: Unauthorized",
+      "orders": []
+    },
+    {
+      "date_utc": "2026-09-11",
+      "symbol": "DOTUSDT",
+      "error": "HTTP Error 401: Unauthorized",
+      "orders": []
+    },
+    {
+      "date_utc": "2026-09-11",
+      "symbol": "LTCUSDT",
+      "error": "HTTP Error 401: Unauthorized",
+      "orders": []
+    },
+    {
+      "date_utc": "2026-09-11",
+      "symbol": "SOLUSDT",
+      "error": "HTTP Error 401: Unauthorized",
+      "orders": []
+    },
+    {
+      "date_utc": "2026-09-11",
+      "symbol": "TRXUSDT",
+      "error": "HTTP Error 401: Unauthorized",
+      "orders": []
+    }
+  ],
+  "limitations": [
+    "L2 sweep is a snapshot taker-cost estimate at the first completed local_timestamp group at/after the signal.",
+    "No extra network latency, hidden liquidity, matching-engine queue, post-snapshot impact, or live fill guarantee is modeled.",
+    "Only order-bearing events are sampled; sideways/hold events intentionally generate zero order delta and are reported as such.",
+    "The selected events are stratified across the existing OOS period, not an unseen profitability holdout.",
+    "A successful displayed-depth sweep does not establish maker execution or full live execution quality."
+  ],
+  "order_results": [],
+  "summary_by_regime": {},
+  "summary_by_symbol": {},
+  "summary_overall": {
+    "orders_selected": 0,
+    "full_depth_fills": 0,
+    "partial_or_missing": 0,
+    "median_mid_cost_bp": null,
+    "p90_mid_cost_bp": null,
+    "max_mid_cost_bp": null,
+    "notional_weighted_mid_cost_bp": null,
+    "orders_over_2bp_mid_cost": 0,
+    "notional_usdt_full_depth": 0
+  }
+}
