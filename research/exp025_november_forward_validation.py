@@ -139,6 +139,22 @@ def main():
         regime_policy=POLICY, regime_threshold_pct=5.0,
         sideways_action="hold",
     )
+    # Matched control: identical inputs and regime policy, but flatten on sideways.
+    control = sim.run(
+        data, (first, last), 1.0, 5, slip_bp=2,
+        lookback_days=7, rebalance_days=7, tail_fraction=.20,
+        regime_policy=POLICY, regime_threshold_pct=5.0,
+        sideways_action="flat",
+    )
+    comparison = {
+        "net_return_delta_percentage_points": round(result["net_return_pct"] - control["net_return_pct"], 4),
+        "max_drawdown_delta_percentage_points": round(result["max_drawdown_pct"] - control["max_drawdown_pct"], 4),
+        "end_equity_delta_usdt": round(result["end_equity_usdt"] - control["end_equity_usdt"], 6),
+        "acceptance_gate_passed_vs_sideways_flat_control": (
+            result["net_return_pct"] > control["net_return_pct"] and
+            result["max_drawdown_pct"] > control["max_drawdown_pct"]
+        )
+    }
 
     log = result["rebalance_log"]
     regime_events = {}
@@ -181,13 +197,22 @@ def main():
             "max_drawdown_pct", "liquidated", "liquidation_time_utc",
             "trading_fees_usdt", "slippage_usdt", "rebalance_count",
             "hourly_adverse_checks", "hourly_sideways_exits")},
+        "matched_control": {
+            "name": "same regime policy, flatten positions on sideways",
+            "strategy_metrics": {k: control[k] for k in (
+                "start_equity_usdt", "end_equity_usdt", "net_return_pct",
+                "max_drawdown_pct", "liquidated", "liquidation_time_utc",
+                "trading_fees_usdt", "slippage_usdt", "rebalance_count",
+                "hourly_adverse_checks", "hourly_sideways_exits")},
+            "comparison_vs_hold": comparison
+        },
         "rebalance_events_by_regime": regime_events,
         "rebalance_log": log,
         "market_regime_attribution": result["market_regime_attribution"],
         "entry_regime_attribution": result["entry_regime_attribution"],
         "interpretation_limits": [
             "This is a partial new forward window after the previously inspected OOS period ended on 2026-10-31. November 27-30 are excluded.",
-            "The forward sample is only 27 days and will contain few weekly rebalances; it is an early generalization check, not final validation.",
+            "The forward sample covers 26 calendar days (Nov 1-26 inclusive) and contains few weekly rebalances; it is an early generalization check, not final validation.",
             "Execution still uses the existing 5 bp one-way fee and 2 bp one-way slippage assumptions; no new L2 replay is available for November in this experiment.",
             "Hourly OHLC adverse-mark drawdown remains a simulator approximation, not an exchange liquidation-engine result.",
             "No parameter tuning, strategy promotion, or changes to MEAFLOW-72/MEAFLOW-52 are made."
