@@ -181,6 +181,32 @@ def main():
         )
     }
 
+    # EXP-027 exploratory per-symbol hard-stop screen. Each threshold is
+    # compared with the identical frozen MEAFLOW-72 rules on this same window.
+    stop_tests = {}
+    for threshold in (1.0, 1.5, 2.0, 3.0, 5.0, 7.5):
+        stopped = sim.run(
+            data, (first, last), 1.0, 5, slip_bp=2,
+            lookback_days=7, rebalance_days=7, tail_fraction=.20,
+            regime_policy=POLICY, regime_threshold_pct=5.0,
+            sideways_action="hold", position_stop_pct=threshold,
+        )
+        stop_tests[f"{threshold:g}%"] = {
+            "metrics": {k: stopped[k] for k in (
+                "end_equity_usdt", "net_return_pct", "max_drawdown_pct",
+                "liquidated", "trading_fees_usdt", "slippage_usdt",
+                "rebalance_count", "position_stop_count", "hourly_adverse_checks")},
+            "stop_log": stopped["position_stop_log"],
+            "comparison_vs_frozen_baseline": {
+                "return_delta_percentage_points": round(stopped["net_return_pct"] - result["net_return_pct"], 4),
+                "max_drawdown_delta_percentage_points": round(stopped["max_drawdown_pct"] - result["max_drawdown_pct"], 4),
+                "joint_acceptance_gate_passed": (
+                    stopped["net_return_pct"] > result["net_return_pct"] and
+                    stopped["max_drawdown_pct"] > result["max_drawdown_pct"]
+                )
+            }
+        }
+
     log = result["rebalance_log"]
     regime_events = {}
     for regime in ("bull", "bear", "sideways", "unknown"):
@@ -240,6 +266,16 @@ def main():
                 "hourly_adverse_checks", "hourly_sideways_exits")},
             "comparison_vs_regime_policy": unfiltered_comparison
         },
+        "exp027_per_symbol_stop_tests": {
+            "hypothesis": "A hard adverse-price stop per symbol may reduce hourly adverse-mark drawdown without sacrificing net return.",
+            "execution_rule": "Trigger when hourly mark OHLC crosses the stop from the position's weighted-average entry; fill at stop price, or at the worse bar open if the bar gaps through. Closed symbols remain flat until the next scheduled/regime rebalance. Fees and slippage are charged on stop-exit notional.",
+            "thresholds": stop_tests,
+            "limitations": [
+                "Exploratory screening on the partial Nov 1-26 window only; no threshold is selected or promoted.",
+                "Hourly OHLC cannot reveal intrabar path or stop queue/market impact; fills are modeled at stop/open plus fixed costs.",
+                "Only three base rebalance events occurred in this window, all in bear regime."
+            ]
+        },
         "rebalance_events_by_regime": regime_events,
         "rebalance_log": log,
         "market_regime_attribution": result["market_regime_attribution"],
@@ -249,7 +285,7 @@ def main():
             "The forward sample covers 26 calendar days (Nov 1-26 inclusive) and contains few weekly rebalances; it is an early generalization check, not final validation.",
             "Execution still uses the existing 5 bp one-way fee and 2 bp one-way slippage assumptions; no new L2 replay is available for November in this experiment.",
             "Hourly OHLC adverse-mark drawdown remains a simulator approximation, not an exchange liquidation-engine result.",
-            "No parameter tuning, strategy promotion, or changes to MEAFLOW-72/MEAFLOW-52 are made."
+            "No parameter tuning, strategy promotion, or changes to MEAFLOW-72/MEAFLOW-52 are made. EXP-027 stop thresholds are a separate exploratory screen only."
         ],
     }
     OUT.parent.mkdir(exist_ok=True)
