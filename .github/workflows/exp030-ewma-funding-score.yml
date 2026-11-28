@@ -1,0 +1,30 @@
+name: EXP-030 causal EWMA funding-score screen
+on:
+  push:
+    branches:
+      - research/exp030-ewma-funding-score-v1
+    paths:
+      - research/exp030_ewma_funding_score.py
+      - research/exp025_forward_simulator.py
+      - .github/workflows/exp030-ewma-funding-score.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ewma-funding-score-screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run EXP-030 EWMA funding-score screen
+        run: python research/exp030_ewma_funding_score.py
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp030-ewma-funding-score-report
+          path: research-results/exp030_ewma_funding_score.json
+          if-no-files-found: warn
