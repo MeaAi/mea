@@ -83,7 +83,6 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
  regime_pnl={k:{'price_pnl_usdt':0.,'funding_pnl_usdt':0.,'fees_usdt':0.,'slippage_usdt':0.} for k in ('bull','bear','sideways','unknown')}
  btc_times=mark_times.get('BTCUSDT',[]); btc_marks=data.get('BTCUSDT',{}).get('marks',{})
  def trailing_beta(symbol,ts):
-  if symbol=="BTCUSDT":return 1.0,0
   sym_times=mark_times[symbol]
   end_idx=bisect.bisect_left(sym_times,ts)
   candidate_times=sym_times[max(0,end_idx-(beta_lookback_hours+200)):end_idx]
