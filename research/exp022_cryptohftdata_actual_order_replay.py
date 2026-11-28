@@ -119,8 +119,8 @@ def state_copy(state,recv_ns,signal_ns,tag):
     asks=sorted(state["asks"].items())[:100]
     return {
         "tag":tag,"valid":state["valid"],"last_update_id":state["last_update_id"],
-        "received_time_ns":recv_ns,
-        "delay_ms":(recv_ns-signal_ns)/1_000_000,
+        "received_time_ns":state["last_received_time_ns"],
+        "delay_ms":(state["last_received_time_ns"]-signal_ns)/1_000_000 if state["last_received_time_ns"] is not None else None,
         "last_event_time_ms":state["last_event_time_ms"],
         "last_transaction_time_ms":state["last_transaction_time_ms"],
         "book_age_ms":(signal_ns/1_000_000-state["last_transaction_time_ms"])
@@ -144,11 +144,13 @@ def process_file(path,state,signal_ns=None,stop_at_first_after=False):
         recv=int(recv)
         if signal_ns is not None and recv>signal_ns and before is None:
             if state["valid"]:
-                before=state_copy(state,recv,signal_ns,"asof_before_first_post_signal_message")
+                before=state_copy(state,state["last_received_time_ns"],signal_ns,"asof_before_first_post_signal_message")
         kind=apply_message(group,state)
         if signal_ns is not None and recv>=signal_ns and after is None and state["valid"]:
             after=state_copy(state,recv,signal_ns,"after_first_message_at_or_after_signal")
             after_recv=recv
+            if recv==signal_ns and before is None:
+                before=after
             if stop_at_first_after:
                 break
     return meta,before,after,after_recv
