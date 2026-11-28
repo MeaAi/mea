@@ -24,6 +24,102 @@
         },
         "snapshot_rows": 5000,
         "snapshot_groups": 5,
+        "first_snapshot_received_time_ns": 1788424733711722141,
+        "last_snapshot_received_time_ns": 1788424973568532384,
+        "snapshot_details": [
+          {
+            "received_time_ns": 1788424733711722141,
+            "event_time_ms": 1788424733954,
+            "last_update_id": 11462637224882,
+            "final_update_id": 11462637224882,
+            "side": "ask"
+          },
+          {
+            "received_time_ns": 1788424733954000000,
+            "event_time_ms": 1788424733954,
+            "last_update_id": 11462637224882,
+            "final_update_id": 11462637224882,
+            "side": "ask"
+          },
+          {
+            "received_time_ns": 1788424733967000000,
+            "event_time_ms": 1788424733967,
+            "last_update_id": 11462637226061,
+            "final_update_id": 11462637226061,
+            "side": "ask"
+          },
+          {
+            "received_time_ns": 1788424973212000000,
+            "event_time_ms": 1788424973212,
+            "last_update_id": 11462660646944,
+            "final_update_id": 11462660646944,
+            "side": "ask"
+          },
+          {
+            "received_time_ns": 1788424973568532384,
+            "event_time_ms": 1788424973212,
+            "last_update_id": 11462660646944,
+            "final_update_id": 11462660646944,
+            "side": "ask"
+          }
+        ],
+        "first_rows": [
+          {
+            "received_time": 1788422400023396321,
+            "event_time": 1788422399894,
+            "transaction_time": 1788422399890,
+            "event_type": "update",
+            "first_update_id": 11462362006666.0,
+            "final_update_id": 11462362008373,
+            "prev_final_update_id": 11462362006645.0,
+            "last_update_id": NaN,
+            "side": "ask"
+          },
+          {
+            "received_time": 1788422400023396321,
+            "event_time": 1788422399894,
+            "transaction_time": 1788422399890,
+            "event_type": "update",
+            "first_update_id": 11462362006666.0,
+            "final_update_id": 11462362008373,
+            "prev_final_update_id": 11462362006645.0,
+            "last_update_id": NaN,
+            "side": "ask"
+          },
+          {
+            "received_time": 1788422400023396321,
+            "event_time": 1788422399894,
+            "transaction_time": 1788422399890,
+            "event_type": "update",
+            "first_update_id": 11462362006666.0,
+            "final_update_id": 11462362008373,
+            "prev_final_update_id": 11462362006645.0,
+            "last_update_id": NaN,
+            "side": "ask"
+          },
+          {
+            "received_time": 1788422400023396321,
+            "event_time": 1788422399894,
+            "transaction_time": 1788422399890,
+            "event_type": "update",
+            "first_update_id": 11462362006666.0,
+            "final_update_id": 11462362008373,
+            "prev_final_update_id": 11462362006645.0,
+            "last_update_id": NaN,
+            "side": "ask"
+          },
+          {
+            "received_time": 1788422400023396321,
+            "event_time": 1788422399894,
+            "transaction_time": 1788422399890,
+            "event_type": "update",
+            "first_update_id": 11462362006666.0,
+            "final_update_id": 11462362008373,
+            "prev_final_update_id": 11462362006645.0,
+            "last_update_id": NaN,
+            "side": "ask"
+          }
+        ],
         "first_received_time_ns": 1788422400023396321,
         "hour_start_ns": 1788422400000000000,
         "first_group_is_snapshot": false,
@@ -78,6 +174,109 @@
         },
         "snapshot_rows": 6000,
         "snapshot_groups": 6,
+        "first_snapshot_received_time_ns": 1788424741674708350,
+        "last_snapshot_received_time_ns": 1788424856589172053,
+        "snapshot_details": [
+          {
+            "received_time_ns": 1788424741674708350,
+            "event_time_ms": 1788424779976,
+            "last_update_id": 11462641695324,
+            "final_update_id": 11462641695324,
+            "side": "ask"
+          },
+          {
+            "received_time_ns": 1788424779976000000,
+            "event_time_ms": 1788424779976,
+            "last_update_id": 11462641695324,
+            "final_update_id": 11462641695324,
+            "side": "ask"
+          },
+          {
+            "received_time_ns": 1788424793188000000,
+            "event_time_ms": 1788424793188,
+            "last_update_id": 11462643093153,
+            "final_update_id": 11462643093153,
+            "side": "ask"
+          },
+          {
+            "received_time_ns": 1788424793779407223,
+            "event_time_ms": 1788424793188,
+            "last_update_id": 11462643093153,
+            "final_update_id": 11462643093153,
+            "side": "ask"
+          },
+          {
+            "received_time_ns": 1788424856458000000,
+            "event_time_ms": 1788424856458,
+            "last_update_id": 11462649579409,
+            "final_update_id": 11462649579409,
+            "side": "ask"
+          },
+          {
+            "received_time_ns": 1788424856589172053,
+            "event_time_ms": 1788424856458,
+            "last_update_id": 11462649579409,
+            "final_update_id": 11462649579409,
+            "side": "ask"
+          }
+        ],
+        "first_rows": [
+          {
+            "received_time": 1788422400004902679,
+            "event_time": 1788422399878,
+            "transaction_time": 1788422399874,
+            "event_type": "update",
+            "first_update_id": 11462362005763.0,
+            "final_update_id": 11462362007234,
+            "prev_final_update_id": 11462362003082.0,
+            "last_update_id": NaN,
+            "side": "ask"
+          },
+          {
+            "received_time": 1788422400004902679,
+            "event_time": 1788422399878,
+            "transaction_time": 1788422399874,
+            "event_type": "update",
+            "first_update_id": 11462362005763.0,
+            "final_update_id": 11462362007234,
+            "prev_final_update_id": 11462362003082.0,
+            "last_update_id": NaN,
+            "side": "ask"
+          },
+          {
+            "received_time": 1788422400004902679,
+            "event_time": 1788422399878,
+            "transaction_time": 1788422399874,
+            "event_type": "update",
+            "first_update_id": 11462362005763.0,
+            "final_update_id": 11462362007234,
+            "prev_final_update_id": 11462362003082.0,
+            "last_update_id": NaN,
+            "side": "ask"
+          },
+          {
+            "received_time": 1788422400004902679,
+            "event_time": 1788422399878,
+            "transaction_time": 1788422399874,
+            "event_type": "update",
+            "first_update_id": 11462362005763.0,
+            "final_update_id": 11462362007234,
+            "prev_final_update_id": 11462362003082.0,
+            "last_update_id": NaN,
+            "side": "bid"
+          },
+          {
+            "received_time": 1788422400004902679,
+            "event_time": 1788422399878,
+            "transaction_time": 1788422399874,
+            "event_type": "update",
+            "first_update_id": 11462362005763.0,
+            "final_update_id": 11462362007234,
+            "prev_final_update_id": 11462362003082.0,
+            "last_update_id": NaN,
+            "side": "bid"
+          }
+        ],
         "first_received_time_ns": 1788422400004902679,
         "hour_start_ns": 1788422400000000000,
         "first_group_is_snapshot": false,
@@ -132,6 +331,74 @@
         },
         "snapshot_rows": 53153,
         "snapshot_groups": 1,
+        "first_snapshot_received_time_ns": 1792857600000000000,
+        "last_snapshot_received_time_ns": 1792857600000000000,
+        "snapshot_details": [
+          {
+            "received_time_ns": 1792857600000000000,
+            "event_time_ms": 1792857599857,
+            "last_update_id": 11912262793930,
+            "final_update_id": 11912262793930,
+            "side": "bid"
+          }
+        ],
+        "first_rows": [
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599857,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262793930,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262793930.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599857,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262793930,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262793930.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599857,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262793930,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262793930.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599857,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262793930,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262793930.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599857,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262793930,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262793930.0,
+            "side": "bid"
+          }
+        ],
         "first_received_time_ns": 1792857600000000000,
         "hour_start_ns": 1792857600000000000,
         "first_group_is_snapshot": true,
@@ -180,6 +447,74 @@
         },
         "snapshot_rows": 50010,
         "snapshot_groups": 1,
+        "first_snapshot_received_time_ns": 1792857600000000000,
+        "last_snapshot_received_time_ns": 1792857600000000000,
+        "snapshot_details": [
+          {
+            "received_time_ns": 1792857600000000000,
+            "event_time_ms": 1792857599857,
+            "last_update_id": 11912262794094,
+            "final_update_id": 11912262794094,
+            "side": "bid"
+          }
+        ],
+        "first_rows": [
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599857,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262794094,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262794094.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599857,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262794094,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262794094.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599857,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262794094,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262794094.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599857,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262794094,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262794094.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599857,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262794094,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262794094.0,
+            "side": "bid"
+          }
+        ],
         "first_received_time_ns": 1792857600000000000,
         "hour_start_ns": 1792857600000000000,
         "first_group_is_snapshot": true,
@@ -228,6 +563,74 @@
         },
         "snapshot_rows": 9181,
         "snapshot_groups": 1,
+        "first_snapshot_received_time_ns": 1792857600000000000,
+        "last_snapshot_received_time_ns": 1792857600000000000,
+        "snapshot_details": [
+          {
+            "received_time_ns": 1792857600000000000,
+            "event_time_ms": 1792857599860,
+            "last_update_id": 11912262794459,
+            "final_update_id": 11912262794459,
+            "side": "bid"
+          }
+        ],
+        "first_rows": [
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599860,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262794459,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262794459.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599860,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262794459,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262794459.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599860,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262794459,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262794459.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599860,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262794459,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262794459.0,
+            "side": "bid"
+          },
+          {
+            "received_time": 1792857600000000000,
+            "event_time": 1792857599860,
+            "transaction_time": NaN,
+            "event_type": "snapshot",
+            "first_update_id": NaN,
+            "final_update_id": 11912262794459,
+            "prev_final_update_id": NaN,
+            "last_update_id": 11912262794459.0,
+            "side": "bid"
+          }
+        ],
         "first_received_time_ns": 1792857600000000000,
         "hour_start_ns": 1792857600000000000,
         "first_group_is_snapshot": true,
