@@ -78,10 +78,24 @@ def qa(path, date, hour, symbol):
     first_group_snapshot=bool((first_group["event_type"]=="snapshot").any())
     # Count distinct snapshot message groups; pre-2026-09-30 duplicate REST copies are documented.
     snapshot_groups=snaps.drop_duplicates(["received_time","last_update_id","final_update_id"])
+    snapshot_details=[]
+    for _, row in snapshot_groups.head(10).iterrows():
+        snapshot_details.append({
+            "received_time_ns": int(row["received_time"]),
+            "event_time_ms": int(row["event_time"]),
+            "last_update_id": int(row["last_update_id"]) if row["last_update_id"] is not None else None,
+            "final_update_id": int(row["final_update_id"]) if row["final_update_id"] is not None else None,
+            "side": str(row["side"]),
+        })
+    first_rows=df.head(5)[["received_time","event_time","transaction_time","event_type","first_update_id","final_update_id","prev_final_update_id","last_update_id","side"]].to_dict("records")
     return {
         "date":date,"hour_utc":hour,"symbol":symbol,
         "rows":len(df),"event_type_counts":{str(k):int(v) for k,v in counts.items()},
         "snapshot_rows":len(snaps),"snapshot_groups":len(snapshot_groups),
+        "first_snapshot_received_time_ns":int(snapshot_groups["received_time"].min()) if len(snapshot_groups) else None,
+        "last_snapshot_received_time_ns":int(snapshot_groups["received_time"].max()) if len(snapshot_groups) else None,
+        "snapshot_details":snapshot_details,
+        "first_rows":first_rows,
         "first_received_time_ns":first_recv,"hour_start_ns":hour_start_ns,
         "first_group_is_snapshot":first_group_snapshot,
         "first_group_rows":len(first_group),
