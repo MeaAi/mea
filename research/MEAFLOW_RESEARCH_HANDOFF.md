@@ -358,3 +358,17 @@ This update records an audit of existing repository artifacts and the two workfl
 - Interpretation: deterministic fill-rate selection is a sensitivity assumption, not observed fill probability; no queue position, cancellation priority, partial-fill dynamics, funding or liquidation is simulated. Reject as a strategy improvement; retain as execution-cost sensitivity only.
 - EXP-013 run IDs are now recovered for its two workflows above. The prior statement that those IDs remain unrecovered is superseded.
 
+
+
+### EXP-010–013 Actions provenance recovery — 2026-11-28
+- EXP-010 aggTrades + 1m kline acquisition / QA, EXP-011 BookDepth acquisition / coverage QA, and EXP-012 taker-flow / OBI-OFI diagnostics were all executed by the combined `Binance public-data research pilot` workflow. Verified successful run `45285733460` on `research/binance-data-pipeline`, workflow `.github/workflows/binance-research.yml`, run head SHA `3b430cdc7d720bf9a39800603493a5e11802bb40`, created 2026-11-23 23:05:41Z. Its job `138081444725` completed successfully and logs confirm production of `qa_report.json`, `bookdepth_qa_report.json`, `orderflow_diagnostic.json`, `bookdepth_signal_diagnostic.json`, and `report_strategy_backtest.json`. This run combines the three registry stages; do not count it as three separate workflows.
+- An earlier successful run `45279379794` on the same branch/workflow, head SHA `730613558cb04b5ec80bc63780ea2bdbef986b9d`, also completed the `acquire-and-qa` job (`138059497908`) and produced the same family of reports. It is an earlier successful iteration, not an independent data period.
+- EXP-013 BookDepth cost-aware workflow provenance: run `45283056380`, run head SHA `c62f8315f32d8b32c971d5ef64d85dc3a77d3b90`, job `138072189972` success. Its logs explicitly confirm 86,340 matched minutes per symbol and publication of `research-results/bookdepth_cost_backtest.json`.
+- EXP-013 maker trade-through workflow provenance: run `45357701812`, run head SHA `b8079e7c328508c94ce9645e035f2df71532e2ba`, job `138319549492` success. Its logs confirm publication of `research-results/maker_trade_through_backtest.json`.
+- These are workflow run head SHAs, not necessarily the final report-blob SHAs: the jobs themselves commit generated reports after running. Report blob SHAs are separately recorded above. No report artifact ZIPs were retained by these runs; the committed repository reports are the durable outputs.
+- EXP-010–013 run IDs and run head SHAs are now recovered sufficiently to establish successful execution provenance. Earlier queue wording that their IDs were unrecovered is superseded. The exact per-file publishing commit SHA for the generated QA/diagnostic reports remains to be recovered from Git history; do not substitute the workflow head SHA for it.
+
+### Queue status correction
+- Queue item 1 (recover EXP-010–013 Actions IDs and run head SHAs): COMPLETED to the extent described above; exact generated-report publishing commit SHA remains an archival detail.
+- Queue item 2 (audit BookDepth cost report and reconcile maker model): COMPLETED. BookDepth JSON is valid and fully retrieved by blob SHA; 864 OOS cells were checked, none positive. Maker trade-through remains a separate, queue-unaware proxy and all listed OOS returns are negative.
+- Next work is provenance/report reconciliation for EXP-014–024, then independent-period data availability research. No new strategy experiment is authorized by this audit; do not dispatch a workflow or create an experiment branch merely to recover missing provenance.
