@@ -156,6 +156,10 @@ def main():
   Y=np.full((n,k),np.nan); Y[h:]=np.log(close[h:]/close[:-h])
   Xown=np.full((n,k),np.nan); Xfund=fundscore.copy(); Xpeer=peer.copy()
   Xown[1:]=ret[:-1]
+  # Peer signal must use only the last fully completed bar (t-1), exactly
+  # matching own-lag timing. Using peer[t] would leak the outcome interval
+  # for h=1 and mechanically produce beta=-12 after cross-sectional demeaning.
+  Xpeer[1:]=peer[:-1]
   # demean cross-section at each timestamp; no look-ahead.
   def demean(mat):
    out=mat.copy()
