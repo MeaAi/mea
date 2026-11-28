@@ -230,7 +230,7 @@ def main():
                "last_received_time_ns":None,"gap_count":0,"gap_examples":[],
                "snapshot_count":0,"updates_ignored_invalid":0}
         hours=[hour]
-        if date=="2026-09-03" and hour=="08": hours=[ "07","08" ]
+        if date=="2026-09-03" and hour=="08": hours=[ "06","07","08" ]
         file_meta=[]; before=None; after=None
         for h in hours:
             path,meta=download_hour(date,int(h),symbol)
