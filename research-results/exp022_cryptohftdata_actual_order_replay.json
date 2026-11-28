@@ -21,7 +21,8 @@
     "No network delay beyond the archive receive timestamp, hidden liquidity, impact after the snapshot, or exchange liquidation engine is modeled.",
     "The two dates are a small bull/bear execution sample, not all 268 OOS order deltas.",
     "No profitability, final capital, or strategy drawdown is recalculated.",
-    "A first-after-signal book arriving more than 1,000 ms after the signal is marked stale and excluded from execution-cost aggregates."
+    "A first-after-signal book arriving more than 1,000 ms after the signal is marked stale and excluded from execution-cost aggregates.",
+    "The provider documents historical empty-snapshot omissions before its 2026-10 data-quality release; crossed books are rejected, but a non-crossed stale level cannot always be identified from this caveat alone."
   ],
   "files": [
     {
