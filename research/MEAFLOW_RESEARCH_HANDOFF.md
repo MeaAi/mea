@@ -593,3 +593,47 @@ The following run SHAs are GitHub Actions `head_sha` values (workflow-trigger co
 1. Reject the 24h EWMA funding-score change; do not repeat 24h/72h/168h half-life sweeps on the same windows.
 2. Search the ledger for a distinct, untested signal mechanism before opening another experiment. Avoid revisiting funding score half-life, regime mappings, per-symbol stop-loss, leverage, volatility sizing, pair selection, and previously tested microstructure ideas.
 3. Keep MEAFLOW-72 frozen. A new candidate must be predeclared, tested on copies, and pass higher net return AND lower hourly adverse-mark DD on matched data before any promotion.
+
+
+### EXP-032 — Causal 7-day relative-momentum gate screen (2026-11-28)
+- Status: COMPLETED; SCREEN PASSED, pending independent multiwindow robustness (EXP-033).
+- Branch: `research/exp032-relative-momentum-gate-v1`; base commit `33eb7483889eba449566290d5a8a1303a497b347`; simulator change commit `8518d73030ea44dbac11421a06bfe82034ca456a`; evaluator commit `11c6faded1ab282bfed8b1bb9b7a82d45328b0b3`; workflow/head commit `c2f4a40a8b1f3358f1d26bfb359ad9db965c9337`.
+- Actions run `46134089725`, job `140945414692`, success. Artifact ID `15259051414`, SHA-256 `f537124dbb75842b301052d36a3e00159984ef60b6c756bd8cb645ef39ed566b`.
+- Hypothesis: preserve the frozen 7d funding-rank, 7d rebalance, 20% tails, BTC 30d +/-5% regime policy, and sideways hold. On each rebalance, filter original long-tail candidates to those whose causal 7d price return relative to BTC is positive; filter original short-tail candidates to negative relative return. Momentum uses only completed hourly marks as of t-1h. Remaining candidates on each side are reweighted equally to that side's original gross notional. No threshold tuning.
+- Window: 2021-10-01 00:00 UTC through 2022-12-31 23:00 UTC; 2021-09 loaded for context. 100 USDT, 1x, 5bp one-way fee + 2bp one-way slippage. 13/13 symbols; 1,446 usable funding events; 1,371 full 13-symbol events; 18 checksum-verified daily mark supplements; no data errors.
+- Frozen baseline: 100 -> 218.133618 USDT; +118.1336%; hourly adverse-mark max DD -47.1792%; no liquidation; 145 rebalances; 10,960 hourly adverse checks.
+- Relative-momentum candidate: 100 -> 331.225188 USDT; +231.2252%; max DD -33.9552%; no liquidation; 145 rebalances; 10,960 hourly adverse checks. Return delta +113.0916 pp; DD improvement +13.2240 pp. Joint gate PASSED on this screen.
+- Candidate fee sensitivity: 2bp fee -> +239.1166% / DD -33.8779%; 5bp -> +231.2252% / -33.9552%; 8bp -> +223.5126% / -34.0883%.
+- Candidate regime contribution: bull +51.7260 USDT; bear +203.9603; sideways -24.4611. In the baseline's rebalance log, bull had 35 rebalances, bear 53, sideways 57 (sideways hold caused zero order deltas).
+- Candidate notable symbol contributions: ETH +124.4890; SOL +48.4487; BCH +53.6184; DOGE +28.4170; DOT +29.0208; LTC -72.4747; XRP -34.3169; BNB -4.0158 USDT.
+- Decision: retain only as a robustness candidate. This is a single historical screen, not promotion. The gate must pass across the fixed 2023-2026 windows before any consideration.
+- Limitations: reweighting surviving candidates can concentrate a side in fewer symbols; static universe survivorship; hourly OHLC DD is approximate; no L2 execution/market impact. No protected strategy branch changed.
+
+### EXP-033 — Relative-momentum gate multiwindow robustness (2026-11-28)
+- Status: COMPLETED; REJECTED. The EXP-032 screen result did not generalize.
+- Branch: `research/exp033-relative-momentum-robustness-v1`; base `c2f4a40a8b1f3358f1d26bfb359ad9db965c9337`; evaluator commit `489911fb4bac84b6812890f799b2e5484fbcfd73`; workflow/head commit `6c9054bea54543e6406e86ed41a97b85a6e8dfd7`.
+- Actions run `46134195475`, job `140945744758`, success. Artifact ID `15258767695`, SHA-256 `2dc8fdd28010671dbc0422b2d8e5ef861365c1579dbef35251b96f20b8685ffb`.
+- Fixed candidate only; no retuning. Matched frozen baseline, 100 USDT per window, 1x, 5bp one-way fee + 2bp one-way slippage. 13/13 symbols, 94 monthly archives per symbol, 26 SHA-256-verified daily mark supplements, zero data errors.
+- 2023: baseline +64.9657% / DD -20.6707%; candidate +16.0179% / DD -34.9856%; deltas -48.9478 pp return / -14.3149 pp DD; fail.
+- 2024: baseline -7.8040% / DD -34.5262%; candidate -73.9408% / DD -77.7585%; deltas -66.1368 pp / -43.2323 pp; fail.
+- 2025-01-01 08:00 to 2025-09-06 16:00 UTC: baseline +6.9240% / DD -38.1966%; candidate -34.7300% / DD -40.8760%; deltas -41.6540 pp / -2.6794 pp; fail.
+- 2025-09-07 to 2026-10-31 16:00 UTC: baseline +96.8362% / DD -27.0350%; candidate +1.1864% / DD -32.9077%; deltas -95.6498 pp / -5.8727 pp; fail.
+- All four windows failed the joint gate. Candidate regime net contributions: 2023 bull -17.879 / bear +28.131 / sideways +5.766; 2024 bull -28.375 / bear -45.911 / sideways +0.346; 2025 Jan-Sep bull -23.242 / bear -16.057 / sideways +4.569; late 2025-26 bull +24.353 / bear +2.056 / sideways -25.223 USDT.
+- Decision: REJECT; do not promote or retune on these windows. The strong 2021-2022 screen was regime/window-specific.
+- No MEAFLOW-72 or MEAFLOW-52 branch modified.
+
+### Historical research branch audit — additional prior work found (2026-11-28)
+- Open-interest positioning was already tested in `research/oi-positioning-validation-v2` and `research/oi-positioning-extended-v1`. The existing reports test OI expansion momentum, OI contraction reversal, and crowding reversal on BTC/ETH/SOL with chronological train/validation/OOS splits, 15/60/240m horizons and 2/5/8bp fee sensitivities. OOS results are predominantly deeply negative; do not repeat as an untested signal.
+- Spot/perpetual basis carry was already tested in `research/basis-carry-risk-v1` across multiple two-month periods from 2024-07 through 2026-04. The March-April 2026 5bp report shows all four basis-level / 5d-change direction variants negative (-5.1767% to -9.8010%) with 2bp slippage per side. Do not rerun unchanged.
+- Aggressive-flow absorption / maker trade-through OOS was already tested in `research/absorption-maker-oos-v1`; trade-through is a queue-agnostic proxy, not proof of queue fills. Existing report's OOS results are strongly negative. Do not repeat unchanged.
+- These branch/report audits are additional historical work that was not fully represented in the previous chat summary. Check these branches before proposing another mechanism.
+
+### Reconciliation note — older vs corrected 2023 baseline
+- Older sideways-retention report (`research/meaflow72-retention-multiwindow-v1`) reports 2023 +42.1559% / DD -22.2601%. Corrected research-copy simulator in EXP-031/033 reports +64.9657% / DD -20.6707% on the same calendar year.
+- This is not a matched comparison between simulator versions. The older simulator filtered the funding-event union to timestamps with >=80% symbol coverage; the corrected simulator processes the union of all per-symbol settlement events, including symbol-specific SOL settlements, while only allowing rebalances at >=80% coverage. The corrected pipeline also normalizes fundingTime offsets within 100ms and supplements missing hourly marks with checksum-verified daily archives. These are material event-accounting and coverage changes.
+- Use corrected simulator values for matched EXP-031/033 comparisons. Preserve the old report values as historical records; do not silently overwrite or claim the entire delta is attributable to any single correction. A dedicated old-vs-new parity run would be needed to isolate each effect.
+
+### Updated next queue after EXP-033
+1. Reject the relative-momentum gate; do not retune it on the same 2023-2026 windows.
+2. Continue searching for a genuinely distinct signal or risk mechanism not already present in the registry or audited research branches. Do not repeat OI positioning, basis carry, absorption/maker trade-through, order-flow/OBI/OFI, funding EWMA, regime mappings, hard stops, leverage, volatility sizing, or symbol-universe selection.
+3. Keep MEAFLOW-72 frozen at `a1e5293e9e7b7258ab43b6c95ff13bfeefe2abb1`. Any new experiment must use a research copy and the strict joint gate (higher net return AND lower hourly adverse-mark max DD), then independent robustness validation.
