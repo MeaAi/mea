@@ -32,6 +32,10 @@ FILES = [
     ("2026-09-18", "16", "BTCUSDT"),
     ("2026-09-22", "00", "BTCUSDT"),
     ("2026-10-15", "08", "SOLUSDT"),
+    ("2026-10-24", "16", "BCHUSDT"),
+    ("2026-10-24", "16", "DOTUSDT"),
+    ("2026-10-24", "16", "TRXUSDT"),
+    ("2026-10-30", "00", "XRPUSDT"),
 ]
 BASES = [
     "https://api.cryptohftdata.com/v1/download?file=",
