@@ -224,11 +224,13 @@ def summarize(results):
 
 def main():
     source = json.loads(SOURCE_REPORT.read_text(encoding="utf-8"))
-    events = [e for e in source["matched_first_of_month_events"]
+    events = [e for e in source["all_oos_order_events"]
               if e["time_utc"][:10] in DATES and e.get("orders")]
     grouped = defaultdict(list)
     for event in events:
         for order in event["orders"]:
+            if order["symbol"] not in L2_SYMBOLS:
+                continue
             grouped[(event["time_utc"][:10], order["symbol"])].append({
                 **order, "time_utc": event["time_utc"], "regime": event["regime"],
                 "active_mode": event["active_mode"],
@@ -238,7 +240,7 @@ def main():
         "status": "running",
         "strategy_source": "EXP-017 frozen MEAFLOW-72 OOS signal-alignment audit",
         "scope_dates_utc": sorted(DATES),
-        "scope_note": Only actual BTC/ETH/SOL order deltas on 2026-09-03 and 2026-10-24; regime-stratified extension of the earlier three-date sample.",
+        "scope_note": "Only actual BTC/ETH/SOL order deltas on 2026-09-03 and 2026-10-24; one bull and one bear regime, selected from full OOS event export.",
         "execution_method": "At the first completed Tardis incremental_book_L2 local_timestamp at or after each actual strategy signal timestamp, sweep the displayed asks for BUY or bids for SELL using the exact absolute strategy quantity delta.",
         "assumptions": {
             "initial_capital_usdt": 100,
