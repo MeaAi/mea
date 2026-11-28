@@ -5,7 +5,7 @@ Loads 2021-09 context plus 2021-10..2022-12 monthly Binance Vision
 fundingRate and 1h markPriceKlines for the frozen 13-symbol universe.
 No strategy files or live endpoints are used.
 """
-import json, math
+import json, math, hashlib, urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -31,6 +31,23 @@ def regime_at(data, btc_times, ts):
     btc = data["BTCUSDT"]["marks"]
     ret = btc[btc_times[j]][3] / btc[btc_times[k]][3] - 1
     return "bull" if ret > .05 else ("bear" if ret < -.05 else "sideways")
+
+def supplement_daily_mark(symbol, date, root):
+    name = f"{symbol}-1h-{date}.zip"
+    url = sim.BASE.replace("/monthly", "/daily") + f"/markPriceKlines/{symbol}/1h/{name}"
+    path = root / "cache" / symbol / "mark_daily" / name
+    sim.download(url, path)
+    checksum_path = Path(str(path) + ".CHECKSUM")
+    sim.download(url + ".CHECKSUM", checksum_path)
+    tokens = checksum_path.read_text(encoding="utf-8").strip().split()
+    if not tokens:
+        raise RuntimeError(f"Empty SHA-256 sidecar for {name}")
+    expected = tokens[0].lower()
+    digest = hashlib.sha256(path.read_bytes()).hexdigest()
+    if digest != expected:
+        raise RuntimeError(f"SHA-256 mismatch for daily supplement {name}: {digest} != {expected}")
+    rows = sim.readzip(path, "mark")
+    return rows, {"archive": name, "sha256": digest, "bytes": path.stat().st_size, "rows": len(rows)}
 
 def metrics(v):
     keys = ("start_equity_usdt", "end_equity_usdt", "net_return_pct",
@@ -83,7 +100,20 @@ def main():
     data = {s: data[s] for s in sorted(data)}
     first, last = ms(START), ms(END)
     expected_hours = list(range(first, last + 1, 3600000))
+    daily_supplements = {}
+    supplement_errors = {}
     for symbol in sorted(data):
+        actual = set(data[symbol]["marks"])
+        missing_before = [t for t in expected_hours if t not in actual]
+        dates_to_supplement = sorted({datetime.fromtimestamp(t/1000, timezone.utc).strftime("%Y-%m-%d") for t in missing_before})
+        daily_supplements[symbol] = {}
+        for date in dates_to_supplement:
+            try:
+                rows, meta = supplement_daily_mark(symbol, date, root)
+                data[symbol]["marks"].update(rows)
+                daily_supplements[symbol][date] = meta
+            except Exception as exc:
+                supplement_errors.setdefault(symbol, []).append({"date": date, "error": str(exc)})
         actual = set(data[symbol]["marks"])
         missing = [t for t in expected_hours if t not in actual]
         gap_ranges = []
@@ -111,6 +141,12 @@ def main():
         monthly_meta[symbol]["evaluation_missing_hourly_bars"] = len(missing)
         monthly_meta[symbol]["evaluation_mark_coverage_pct"] = round(100*(len(expected_hours)-len(missing))/len(expected_hours),4)
         monthly_meta[symbol]["evaluation_missing_hour_ranges"] = gap_ranges
+        monthly_meta[symbol]["daily_supplements"] = daily_supplements[symbol]
+    if supplement_errors:
+        raise RuntimeError("BLOCKED: daily mark supplements failed checksum/download: " + json.dumps(supplement_errors))
+    unresolved = {s: monthly_meta[s]["evaluation_missing_hourly_bars"] for s in data if monthly_meta[s]["evaluation_missing_hourly_bars"]}
+    if unresolved:
+        raise RuntimeError("BLOCKED: hourly mark gaps remain after daily supplements: " + json.dumps(unresolved))
     all_times = sorted(set(t for s in data for t in data[s]["fund"] if first <= t <= last))
     required = math.ceil(.8 * len(data))
     coverage = {t: sum(t in data[s]["fund"] and t in data[s]["marks"] for s in data) for t in all_times}
@@ -188,6 +224,7 @@ def main():
             "usable_funding_events_any_symbol": len(usable_events),
             "events_with_80pct_symbol_coverage": len(aligned_80pct),
             "events_with_full_13_symbol_coverage": len(full_coverage_events),
+            "daily_mark_supplement_archive_count": sum(len(v) for v in daily_supplements.values()),
             "required_symbols_per_event": required,
             "event_coverage_histogram": {str(n): sum(v == n for v in coverage.values()) for n in range(len(data)+1) if any(v == n for v in coverage.values())},
             "errors": errors, "per_symbol": monthly_meta
