@@ -177,7 +177,7 @@ def main():
       "source_candidate_branch":"research/exp039-binance-vwap",
       "oos_utc":{"start":iso(oos_start),"end":iso(oos_end)},
       "regime_definition":"BTC trailing 30d return >+5% bull, <-5% bear, otherwise sideways; uses completed hourly mark bars only.",
-      "segment_method":"All contiguous pure-regime OOS blocks >=45 days; each block is independently restarted with 100 USDT and 7d funding warmup. Compound independent block returns by regime; report worst segment drawdown. No positions or PnL are carried between segments.",
+      "segment_method":f"All contiguous pure-regime OOS blocks >={MIN_SEGMENT_DAYS} days; each block is independently restarted with 100 USDT and 7d funding warmup. Compound independent block returns by regime; report worst segment drawdown. No positions or PnL are carried between segments.",
       "capital_usdt":100,"leverage":1,"baseline_costs":"5bp one-way fee + 2bp one-way slippage",
       "candidate_rule":"155d rolling BTC close*quote-volume VWAP; when last completed BTC close is below VWAP, permit shorts only.",
       "loaded_symbols":list(data),"data_errors":errors,
@@ -185,7 +185,7 @@ def main():
       "regime_results":by_regime,"cost_stress":costs,"window_sensitivity":windows,
       "decision_rule":"Reject unless candidate increases compounded return and improves worst segment hourly adverse drawdown, with zero liquidations; require segment-level consistency plus cost and window robustness.",
       "limitations":["Regime blocks are historical contiguous samples, not independent market cycles.",
-       Only blocks >=14d are included; shorter regime episodes are separately counted and listed.",
+       "Only blocks >=14d are included; shorter regime episodes are separately counted and listed."",
        "Each segment restarts at 100 USDT; compounded return is a regime-conditional growth factor, not a tradable continuous portfolio equity curve.",
        "VWAP is a volume-weighted traded-price proxy, not holder cost basis.",
        "Static 13-symbol universe survivorship bias; portfolio hourly adverse/liquidation remains an approximation."]}
