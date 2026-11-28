@@ -51,3 +51,15 @@ Before live deployment or merging into a production branch, MEAFLOW-72 must pass
 7. Reproducible comparison against the frozen MEAFLOW-52 baseline on identical dates and costs.
 
 **Safety rule:** Do not edit or overwrite MEAFLOW-52. All further experiments must branch from MEAFLOW-72 or its research descendants. Do not describe MEAFLOW-72 as production-ready until the promotion gates pass.
+
+
+## EXP-045 — Cross-crypto peer return incremental to funding rank (2026-11-28)
+- Branch: `research/exp045-leadlag-funding-incremental`
+- Preregistration: `research/EXP045_leadlag_funding_incremental_preregistration.md`
+- Final corrected run: [GitHub Actions run 46171072438](https://github.com/MeaAi/mea/actions/runs/46171072438); artifact ID `15273284997`; code SHA `0ee8407dfbc678fb8942f8a6b69ae108d2d6b19b`.
+- Data: Binance Vision USD-M 1h mark-price and funding archives, 2023-01-01 through 2026-10-31 UTC; 13 symbols; 33,552 common hourly timestamps; 1,196 archives; no load errors; archive QA reports checksums verified.
+- Timing correction: peer signal shifted to the last completed bar (t-1), removing contemporaneous-return lookahead found in the earlier invalid run.
+- Corrected output: incremental OOS R² of M2 over M1 was 0.000000 for both 1h and 4h; all three chronological OOS subperiods were effectively 0. The 9/13 positive train-only peer-slope gate was not met (0/13).
+- **Interpretation / design limitation:** the chosen peer-ex-target arithmetic mean, when cross-sectionally demeaned at each timestamp alongside own lag, is algebraically collinear with demeaned own lag: demeaned peer mean = - demeaned own return / 12 for a 13-asset universe. This estimator therefore cannot identify an independent coefficient for that peer mean. The zero incremental result is not evidence that every possible cross-asset lead-lag signal has no value; it shows this particular peer-mean feature is not separately identifiable under the preregistered timestamp fixed-effects specification.
+- Decision: advancement gates fail; no portfolio simulation, no final equity/DD, no strategy integration, no promotion. Do not retune horizons or thresholds on this OOS. Any future cross-asset study must preregister a genuinely identifiable feature (e.g. independently defined peer groups/leader basket) and a separate design before testing.
+- Protected MEAFLOW-72 lineage remains unchanged.
