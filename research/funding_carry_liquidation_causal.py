@@ -218,7 +218,7 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
      regime_pnl[rg]['fees_usdt']+=tr*fee_bp/10000;regime_pnl[rg]['slippage_usdt']+=tr*slip_bp/10000
     equity-=fee+slip;fee_total+=fee;slip_total+=slip
     for z in symbols:
-     old_q=qty[z];new_q=target[z]
+     old_q=qty[z];new_q=executed_target[z]
      if old_q:
       same_direction=(new_q!=0 and old_q*new_q>0)
       close_amt=(abs(old_q)-abs(new_q)) if same_direction and abs(new_q)<abs(old_q) else (abs(old_q) if not same_direction else 0.)
@@ -231,7 +231,7 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
      cohort_qty[z][rg]+=add_q
     order_deltas=[]
     for z in symbols:
-     delta=target[z]-qty[z]
+     delta=executed_target[z]-qty[z]
      if abs(delta)>1e-12 and z in px:
       order_deltas.append({"symbol":z,"side":"BUY" if delta>0 else "SELL",
        "quantity_delta":round(delta,12),"reference_price":px[z],
