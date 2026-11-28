@@ -440,3 +440,10 @@ The following run SHAs are GitHub Actions `head_sha` values (workflow-trigger co
 - Repository validation: EXP-015 successfully downloaded 2024-07-01 BTC/ETH/SOL L2 + trades, but those L2 files alone totaled about 1.13 GB for one day. EXP-018 probed first-of-month 2025/2026 dates and downloaded a small set of actual signal-time book observations. This confirms sampled-day availability, not a free continuous multi-month dataset.
 - Practical conclusion: for free continuous OOS strategy validation, Binance Vision aggTrades + klines + monthly fundingRate + markPriceKlines are feasible. For queue-aware L2 calibration, Tardis can supply selected first-of-month samples, but a dense continuous multi-month replay has a prohibitive data-volume burden unless a carefully justified event subset is used. Do not start a full L2 download or new workflow without first measuring exact data volume and selecting a separate OOS period.
 
+
+
+### Repository state check — 2026-11-28
+- GitHub Actions query `status=in_progress` returned 0 active runs.
+- Current `MEAFLOW-72` branch head observed: `a1e5293e9e7b7258ab43b6c95ff13bfeefe2abb1`. This audit made no writes to `MEAFLOW-72`; all ledger writes were confined to `research/meaflow-ledger-orderflow-audit-v1`.
+- A branch named `MEAFLOW-52` is not currently returned by the repository branch search. No writes were made to any strategy branch or main branch during this audit. If the historical MEAFLOW-52 snapshot is needed, locate it by commit/tag or file history rather than assuming a current branch name.
+- Current ledger branch head after this update will be the next audit checkpoint; new chats should read this file before any research action.
