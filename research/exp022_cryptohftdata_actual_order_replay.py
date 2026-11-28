@@ -214,13 +214,15 @@ def main():
                 "first_after":"Book after first complete message received at or after signal; delay is measured from received_time."
             },
             "assumptions":{"fee_bp_one_way":5,"existing_model_slippage_bp_one_way":2,
-                           "capital_reference_usdt":100,"leverage":1},
+                           "capital_reference_usdt":100,"leverage":1,
+                           "max_acceptable_first_after_delay_ms":1000},
             "limitations":[
                 "L2 is aggregated price-level data, not L3/FIFO queue position.",
                 "A displayed-depth sweep is a snapshot taker-cost estimate, not a guarantee of live fills.",
                 "No network delay beyond the archive receive timestamp, hidden liquidity, impact after the snapshot, or exchange liquidation engine is modeled.",
                 "The two dates are a small bull/bear execution sample, not all 268 OOS order deltas.",
-                "No profitability, final capital, or strategy drawdown is recalculated."
+                "No profitability, final capital, or strategy drawdown is recalculated.",
+                "A first-after-signal book arriving more than 1,000 ms after the signal is marked stale and excluded from execution-cost aggregates."
             ],
             "files":[],"orders":[]}
     for (date,hour,symbol),sym_orders in sorted(grouped.items()):
@@ -249,7 +251,13 @@ def main():
                                 "updates_ignored_invalid":state["updates_ignored_invalid"]})
         for o in sym_orders:
             asof_result=execute(o,before,target_ns) if before else {"status":"no_valid_asof_book"}
-            after_result=execute(o,after,target_ns) if after else {"status":"no_valid_post_signal_book"}
+            if after and after["delay_ms"] is not None and after["delay_ms"] <= 1000:
+                after_result=execute(o,after,target_ns)
+            elif after:
+                after_result={"status":"stale_book_after_signal","book_delay_ms":after["delay_ms"],
+                              "book_age_ms":after["book_age_ms"]}
+            else:
+                after_result={"status":"no_valid_post_signal_book"}
             report["orders"].append({
                 "time_utc":o["time_utc"],"regime":o["regime"],"symbol":symbol,
                 "side":o["side"],"order_delta_notional_usdt":o["notional_usdt"],
