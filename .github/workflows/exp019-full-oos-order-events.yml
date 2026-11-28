@@ -1,0 +1,44 @@
+name: EXP-019 full OOS MEAFLOW-72 order event export
+
+on:
+  push:
+    branches:
+      - research/meaflow-exp019-full-oos-order-events-v1
+    paths:
+      - research/exp019_full_oos_order_events.py
+      - .github/workflows/exp019-full-oos-order-events.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: exp019-full-oos-order-events
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Checkout isolated research branch
+        uses: actions/checkout@v4
+        with:
+          ref: research/meaflow-exp019-full-oos-order-events-v1
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Export all actual OOS order events
+        run: python research/exp019_full_oos_order_events.py
+      - name: Publish compact report and discard raw market data
+        run: |
+          cp research-results/exp017_signal_alignment_audit.json /tmp/exp019_full_oos_order_events.json
+          rm -rf research-output
+          mkdir -p research-results
+          cp /tmp/exp019_full_oos_order_events.json research-results/exp019_full_oos_order_events.json
+          test "$(wc -c < research-results/exp019_full_oos_order_events.json)" -lt 1000000
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research-results/exp019_full_oos_order_events.json
+          git commit -m "Publish EXP-019 full OOS order event export" || exit 0
+          git push origin HEAD:research/meaflow-exp019-full-oos-order-events-v1
