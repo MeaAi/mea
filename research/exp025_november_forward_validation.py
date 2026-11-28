@@ -110,6 +110,9 @@ def main():
     nov_funding_counts = {s: sum(nov_first <= t <= nov_last for t in data[s]["fund"]) for s in sorted(data)}
     coverage_hist = {str(n): sum(v == n for v in coverage.values()) for n in range(len(data)+1) if any(v == n for v in coverage.values())}
     print("NOV_FUNDING_COUNTS", json.dumps(nov_funding_counts), flush=True)
+    off_hour = [t for t in all_times if nov_first <= t <= nov_last and t % 3600000 != 0]
+    print("OFF_HOUR_FUNDING_SAMPLE", [datetime.fromtimestamp(t/1000,timezone.utc).isoformat() for t in off_hour[:20]], flush=True)
+    print("OFF_HOUR_MODULUS_MS", sorted(set(t % 3600000 for t in off_hour))[:20], flush=True)
     print("EVENT_COVERAGE_HISTOGRAM", json.dumps(coverage_hist), flush=True)
     required = math.ceil(.8 * len(data))
     aligned = [t for t in all_times if coverage[t] >= required]
