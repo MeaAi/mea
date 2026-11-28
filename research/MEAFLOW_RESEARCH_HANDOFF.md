@@ -637,3 +637,12 @@ The following run SHAs are GitHub Actions `head_sha` values (workflow-trigger co
 1. Reject the relative-momentum gate; do not retune it on the same 2023-2026 windows.
 2. Continue searching for a genuinely distinct signal or risk mechanism not already present in the registry or audited research branches. Do not repeat OI positioning, basis carry, absorption/maker trade-through, order-flow/OBI/OFI, funding EWMA, regime mappings, hard stops, leverage, volatility sizing, or symbol-universe selection.
 3. Keep MEAFLOW-72 frozen at `a1e5293e9e7b7258ab43b6c95ff13bfeefe2abb1`. Any new experiment must use a research copy and the strict joint gate (higher net return AND lower hourly adverse-mark max DD), then independent robustness validation.
+
+
+### EXP-034 — Funding-rank entry/exit hysteresis screen (2026-11-28)
+- Status: RUNNING; no result available yet.
+- Research branch: `research/exp034-funding-rank-hysteresis-v1`; base EXP-028 corrected simulator commit `33eb7483889eba449566290d5a8a1303a497b347`; simulator option commit `c900c6b8012e94614f142b10f2b57bbae0999369`; evaluator commit `aab3d130e7817fb4e96d5b7f57dd8cf257a39e6c`; workflow/head commit `6ec80d4c205b208abd7b4619c1f6ea853c224995`.
+- Actions run `46134399127`, job `140946360730`; currently in progress at the latest check.
+- Predeclared hypothesis: reduce marginal rank churn without changing the frozen funding score, lookback, rebalance cadence, tails, regime policy, or exposure. New long entries must be in the original bottom 20%; existing longs may remain until leaving the bottom 30%. New shorts must be in the original top 20%; existing shorts may remain until leaving the top 30%. Keep at most the original k positions per side; equal-weight selected positions to the same side gross exposure. This is cross-regime funding-rank hysteresis, not sideways retention or regime debounce.
+- Screen window: 2021-10-01 through 2022-12-31 UTC, with 2021-09 context; 100 USDT, 1x, 5bp one-way fee + 2bp one-way slippage; 13-symbol frozen universe. Baseline and candidate are matched on the corrected EXP-028 simulator. The candidate has no tuned thresholds beyond the single predeclared 20% entry / 30% exit bands.
+- Report/artifact and decision will be appended after the workflow completes. No MEAFLOW-72 or MEAFLOW-52 branch is modified.
