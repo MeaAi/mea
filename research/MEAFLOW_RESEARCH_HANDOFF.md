@@ -686,3 +686,23 @@ The following run SHAs are GitHub Actions `head_sha` values (workflow-trigger co
 - Initial screen window: 2021-10-01 through 2022-12-31 UTC, with September 2021 context; corrected EXP-028 data loader, 13 symbols, checksum-verified daily mark supplements. Candidate is not eligible for robustness or promotion unless the screen beats frozen baseline on both net return and hourly adverse-mark maximum DD.
 - Literature context: Inan (2026), DOI 10.1016/j.irfa.2026.105464, reports one-step DAR forecasts outperforming no-change for BTC Binance/Bybit funding rates, but does not demonstrate 13-symbol cross-sectional strategy profitability. Source: https://www.sciencedirect.com/science/article/pii/S1057521926003911.
 - No protected MEAFLOW-72 or MEAFLOW-52 branch modified.
+
+
+### EXP-035 — DAR(1)-inspired funding forecast screen result (2026-11-28)
+- Status: SCREEN PASSED; not promoted; fixed-candidate multiwindow validation EXP-036 is running.
+- Corrected Actions run `46136952069`, job `140954263145`, success. Artifact ID `15260306536`, SHA-256 `52e6a826461f363824e4e9140adb3d42df8ce848dd15ae544c2b18fafb91930b`. Initial failed syntax-only diagnostic run `46136902230` produced no data/result; corrected source is the version evaluated.
+- Matched 2021-10-01..2022-12-31 UTC window, 2021-09 context; 13/13 symbols, no loader errors; 1,446 usable funding events, 1,371 full 13-symbol events; 18 checksum-verified daily mark supplements.
+- Frozen baseline: 100 -> 218.133618 USDT; +118.1336%; hourly adverse DD -47.1792%; 145 rebalances; 10,960 adverse checks.
+- DAR-inspired candidate: 100 -> 229.785040 USDT; +129.7850%; DD -37.6645%; no liquidation; 145 rebalances; 10,960 adverse checks. Return delta +11.6514 pp; DD improvement +9.5147 pp. Joint gate PASSED on this initial screen.
+- Turnover delta -8,429.966257 USDT vs baseline; order deltas -45. Candidate fee sensitivity: 2bp -> +133.1250% / DD -37.4933%; 8bp -> +126.4912% / DD -37.8353%.
+- Forecast diagnostic vs no-change benchmark over 1,885 symbol/rebalance one-step observations: DAR MAE 0.0000737583, RMSE 0.0002198205, directional accuracy 76.2865%; no-change MAE 0.0000710706, RMSE 0.0002181374, directional accuracy 77.7188%. Thus the DAR-inspired model's point forecasts were WORSE than no-change on all three metrics despite the strategy screen passing. This is a major caution; the model's ranking/portfolio effect, not forecast accuracy, may explain the backtest result.
+- Candidate regime net contribution: bull -44.6725 USDT; bear +98.4807; sideways +75.9769. Candidate did not improve every regime; this is not a universal regime result.
+- Decision: candidate may proceed to the already predeclared fixed 2023-2026 robustness test only. Do not promote or retune based on the 2021-2022 screen. If EXP-036 fails, reject the candidate.
+- Report artifact is retained under the Actions run. No protected strategy branch modified.
+
+### EXP-036 — Fixed DAR forecast multiwindow robustness (2026-11-28)
+- Status: RUNNING; no result yet.
+- Branch: `research/exp036-dar1-multiwindow-robustness-v1`; simulator commit `28337bc784ac6488ed82a9603604a20415e985a8`; evaluator commit `e0a09acb4576c2fb93240ce6a858f3a072b76922`; workflow/head commit `ad0b5c5b41f9be00595feb5b683eefcf7de0f4e9`.
+- Actions run `46137115601` currently in progress at registration. This uses the same fixed model and parameters from EXP-035, without retuning, against matched frozen baselines in 2023, 2024, 2025-01-01..2025-09-06, and 2025-09-07..2026-10-31.
+- Model forecast diagnostics are calculated only for realized next settlements whose timestamp falls within the corresponding window. Candidate must pass the joint gate in every independent window; any failure rejects promotion.
+- No protected MEAFLOW-72 or MEAFLOW-52 branch modified.
