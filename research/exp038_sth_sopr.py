@@ -72,7 +72,7 @@ def make_sopr_sim(series):
     if src.count(anchor)!=1: raise RuntimeError("Simulator target turnover anchor not unique; refusing patch")
     src=src.replace(anchor,inject,1)
     # Expose source functions in an isolated namespace; no repository source is edited.
-    ns={"__name__":"exp038_isolated_sim"}
+    ns={"__name__":"exp038_isolated_sim","trailing_avg":trailing_avg,"datetime":datetime,"timezone":timezone,"timedelta":timedelta}
     exec(compile(src,"research/funding_carry_liquidation_causal.py [EXP038 isolated copy]","exec"),ns)
     def run(*args,**kwargs):
         kwargs["sopr_series"]=series
