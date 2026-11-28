@@ -1,0 +1,3996 @@
+{
+  "experiment": "EXP-019-MEAFLOW72-FULL-OOS-ORDER-EVENT-EXPORT",
+  "purpose": "Export every actual frozen MEAFLOW-72 OOS rebalance timestamp and order delta so execution-quality samples can be selected without guessing dates or repeating first-of-month-only coverage.",
+  "strategy_branch": "MEAFLOW-72",
+  "audit_branch": "research/meaflow-exp017-signal-alignment-audit-v1",
+  "source": "Official free Binance Vision monthly fundingRate and 1h markPriceKlines",
+  "oos_period_utc": {
+    "start": "2025-09-06T18:24:00+00:00",
+    "end": "2026-10-31T16:00:00+00:00"
+  },
+  "configuration": {
+    "capital_usdt": 100,
+    "leverage": 1,
+    "lookback_days": 7,
+    "rebalance_days": 7,
+    "tail_fraction": 0.2,
+    "regime": "BTC trailing 30d mark-price return, +/-5%, last completed hourly candle",
+    "policy": {
+      "bull": "both",
+      "bear": "short_only",
+      "sideways": "flat",
+      "unknown": "flat"
+    },
+    "sideways_action": "hold",
+    "fee_bp_one_way": 5,
+    "slippage_bp_one_way": 2
+  },
+  "data_errors": {},
+  "loaded_symbols": [
+    "ADAUSDT",
+    "AVAXUSDT",
+    "BCHUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "DOGEUSDT",
+    "DOTUSDT",
+    "ETHUSDT",
+    "LINKUSDT",
+    "LTCUSDT",
+    "SOLUSDT",
+    "TRXUSDT",
+    "XRPUSDT"
+  ],
+  "strategy_replay_metrics": {
+    "start_equity_usdt": 100.0,
+    "end_equity_usdt": 172.94281,
+    "net_return_pct": 72.9428,
+    "max_drawdown_pct": -26.5454,
+    "rebalance_count": 98,
+    "hourly_adverse_checks": 10072,
+    "liquidated": false,
+    "trading_fees_usdt": 4.498733,
+    "slippage_usdt": 1.799493
+  },
+  "rebalance_event_count": 98,
+  "rebalance_events_with_orders": 56,
+  "total_order_delta_count": 268,
+  "monthly_l2_sample_dates_in_oos": [
+    "2025-10-01",
+    "2025-11-01",
+    "2025-12-01",
+    "2026-01-01",
+    "2026-02-01",
+    "2026-03-01",
+    "2026-04-01",
+    "2026-05-01",
+    "2026-06-01",
+    "2026-07-01",
+    "2026-08-01",
+    "2026-09-01",
+    "2026-10-01"
+  ],
+  "matched_first_of_month_rebalance_events": 5,
+  "matched_first_of_month_order_count": 15,
+  "matched_first_of_month_events": [
+    {
+      "time_utc": "2025-10-01T00:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 99.93,
+      "turnover_usdt": 100.0,
+      "fee_usdt": 0.05,
+      "slippage_usdt": 0.02,
+      "long_candidates": [
+        "SOLUSDT",
+        "TRXUSDT"
+      ],
+      "short_candidates": [
+        "XRPUSDT",
+        "ADAUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ADAUSDT",
+          "side": "SELL",
+          "quantity_delta": -30.982351597417,
+          "reference_price": 0.80691099,
+          "notional_usdt": 25.0,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -25.0
+        },
+        {
+          "symbol": "SOLUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.119840851349,
+          "reference_price": 208.61,
+          "notional_usdt": 25.0,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 25.0
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "BUY",
+          "quantity_delta": 74.973759184285,
+          "reference_price": 0.33345,
+          "notional_usdt": 25.0,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 25.0
+        },
+        {
+          "symbol": "XRPUSDT",
+          "side": "SELL",
+          "quantity_delta": -8.7862888711,
+          "reference_price": 2.84534237,
+          "notional_usdt": 25.0,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -25.0
+        }
+      ]
+    },
+    {
+      "time_utc": "2025-10-01T08:00:00+00:00",
+      "regime": "sideways",
+      "active_mode": "flat",
+      "equity_after_cost_usdt": 100.17821199,
+      "turnover_usdt": 0.0,
+      "fee_usdt": 0.0,
+      "slippage_usdt": 0.0,
+      "long_candidates": [
+        "SOLUSDT",
+        "TRXUSDT"
+      ],
+      "short_candidates": [
+        "XRPUSDT",
+        "ADAUSDT"
+      ],
+      "orders": []
+    },
+    {
+      "time_utc": "2025-10-01T16:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 99.90622127,
+      "turnover_usdt": 3.81119002,
+      "fee_usdt": 0.0019056,
+      "slippage_usdt": 0.00076224,
+      "long_candidates": [
+        "SOLUSDT",
+        "TRXUSDT"
+      ],
+      "short_candidates": [
+        "XRPUSDT",
+        "ADAUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ADAUSDT",
+          "side": "BUY",
+          "quantity_delta": 1.261715857078,
+          "reference_price": 0.8404,
+          "notional_usdt": 1.06034601,
+          "from_notional_usdt": -26.03756828,
+          "to_notional_usdt": -24.97722228
+        },
+        {
+          "symbol": "SOLUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.006371679568,
+          "reference_price": 220.12342105,
+          "notional_usdt": 1.4025559,
+          "from_notional_usdt": 26.37977818,
+          "to_notional_usdt": 24.97722228
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "SELL",
+          "quantity_delta": -1.443411659761,
+          "reference_price": 0.3396859,
+          "notional_usdt": 0.49030659,
+          "from_notional_usdt": 25.46752886,
+          "to_notional_usdt": 24.97722228
+        },
+        {
+          "symbol": "XRPUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.291790749694,
+          "reference_price": 2.9404,
+          "notional_usdt": 0.85798152,
+          "from_notional_usdt": -25.8352038,
+          "to_notional_usdt": -24.97722228
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-02-01T16:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 134.52084703,
+      "turnover_usdt": 129.01820471,
+      "fee_usdt": 0.0645091,
+      "slippage_usdt": 0.02580364,
+      "long_candidates": [
+        "TRXUSDT",
+        "AVAXUSDT"
+      ],
+      "short_candidates": [
+        "LINKUSDT",
+        "BTCUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "BTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.000134085925,
+          "reference_price": 77554.9,
+          "notional_usdt": 10.39902052,
+          "from_notional_usdt": -56.90655937,
+          "to_notional_usdt": -67.30557989
+        },
+        {
+          "symbol": "ETHUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.022175570257,
+          "reference_price": 2313.97,
+          "notional_usdt": 51.31360431,
+          "from_notional_usdt": -51.31360431,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "SELL",
+          "quantity_delta": -7.063236424209,
+          "reference_price": 9.529,
+          "notional_usdt": 67.30557989,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -67.30557989
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-06-01T16:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 129.62790413,
+      "turnover_usdt": 238.25513322,
+      "fee_usdt": 0.11912757,
+      "slippage_usdt": 0.04765103,
+      "long_candidates": [
+        "BCHUSDT",
+        "TRXUSDT"
+      ],
+      "short_candidates": [
+        "ETHUSDT",
+        "BTCUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ADAUSDT",
+          "side": "BUY",
+          "quantity_delta": 115.259799514549,
+          "reference_price": 0.2269,
+          "notional_usdt": 26.15244851,
+          "from_notional_usdt": -26.15244851,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "BTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.001309151359,
+          "reference_price": 71103.79261594,
+          "notional_usdt": 93.08562674,
+          "from_notional_usdt": 28.18828538,
+          "to_notional_usdt": -64.89734136
+        },
+        {
+          "symbol": "ETHUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.046716660578,
+          "reference_price": 1967.68379845,
+          "notional_usdt": 91.92361614,
+          "from_notional_usdt": 27.02627478,
+          "to_notional_usdt": -64.89734136
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "BUY",
+          "quantity_delta": 3.041167222245,
+          "reference_price": 8.90889578,
+          "notional_usdt": 27.09344183,
+          "from_notional_usdt": -27.09344183,
+          "to_notional_usdt": 0.0
+        }
+      ]
+    }
+  ],
+  "all_oos_order_events": [
+    {
+      "time_utc": "2025-10-01T00:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 99.93,
+      "turnover_usdt": 100.0,
+      "fee_usdt": 0.05,
+      "slippage_usdt": 0.02,
+      "long_candidates": [
+        "SOLUSDT",
+        "TRXUSDT"
+      ],
+      "short_candidates": [
+        "XRPUSDT",
+        "ADAUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ADAUSDT",
+          "side": "SELL",
+          "quantity_delta": -30.982351597417,
+          "reference_price": 0.80691099,
+          "notional_usdt": 25.0,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -25.0
+        },
+        {
+          "symbol": "SOLUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.119840851349,
+          "reference_price": 208.61,
+          "notional_usdt": 25.0,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 25.0
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "BUY",
+          "quantity_delta": 74.973759184285,
+          "reference_price": 0.33345,
+          "notional_usdt": 25.0,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 25.0
+        },
+        {
+          "symbol": "XRPUSDT",
+          "side": "SELL",
+          "quantity_delta": -8.7862888711,
+          "reference_price": 2.84534237,
+          "notional_usdt": 25.0,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -25.0
+        }
+      ]
+    },
+    {
+      "time_utc": "2025-10-01T16:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 99.90622127,
+      "turnover_usdt": 3.81119002,
+      "fee_usdt": 0.0019056,
+      "slippage_usdt": 0.00076224,
+      "long_candidates": [
+        "SOLUSDT",
+        "TRXUSDT"
+      ],
+      "short_candidates": [
+        "XRPUSDT",
+        "ADAUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ADAUSDT",
+          "side": "BUY",
+          "quantity_delta": 1.261715857078,
+          "reference_price": 0.8404,
+          "notional_usdt": 1.06034601,
+          "from_notional_usdt": -26.03756828,
+          "to_notional_usdt": -24.97722228
+        },
+        {
+          "symbol": "SOLUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.006371679568,
+          "reference_price": 220.12342105,
+          "notional_usdt": 1.4025559,
+          "from_notional_usdt": 26.37977818,
+          "to_notional_usdt": 24.97722228
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "SELL",
+          "quantity_delta": -1.443411659761,
+          "reference_price": 0.3396859,
+          "notional_usdt": 0.49030659,
+          "from_notional_usdt": 25.46752886,
+          "to_notional_usdt": 24.97722228
+        },
+        {
+          "symbol": "XRPUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.291790749694,
+          "reference_price": 2.9404,
+          "notional_usdt": 0.85798152,
+          "from_notional_usdt": -25.8352038,
+          "to_notional_usdt": -24.97722228
+        }
+      ]
+    },
+    {
+      "time_utc": "2025-10-09T08:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 102.07705003,
+      "turnover_usdt": 149.7340278,
+      "fee_usdt": 0.07486701,
+      "slippage_usdt": 0.02994681,
+      "long_candidates": [
+        "SOLUSDT",
+        "AVAXUSDT"
+      ],
+      "short_candidates": [
+        "BTCUSDT",
+        "LTCUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ADAUSDT",
+          "side": "BUY",
+          "quantity_delta": 29.720635740339,
+          "reference_price": 0.8143,
+          "notional_usdt": 24.20151368,
+          "from_notional_usdt": -24.20151368,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "AVAXUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.900882073692,
+          "reference_price": 28.35605981,
+          "notional_usdt": 25.54546596,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 25.54546596
+        },
+        {
+          "symbol": "BTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.000209650613,
+          "reference_price": 121847.8,
+          "notional_usdt": 25.54546596,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -25.54546596
+        },
+        {
+          "symbol": "LTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.217816046755,
+          "reference_price": 117.28,
+          "notional_usdt": 25.54546596,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -25.54546596
+        },
+        {
+          "symbol": "SOLUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.000364730288,
+          "reference_price": 224.41,
+          "notional_usdt": 0.08184912,
+          "from_notional_usdt": 25.46361684,
+          "to_notional_usdt": 25.54546596
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "SELL",
+          "quantity_delta": -73.530347524525,
+          "reference_price": 0.33859,
+          "notional_usdt": 24.89664037,
+          "from_notional_usdt": 24.89664037,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "XRPUSDT",
+          "side": "BUY",
+          "quantity_delta": 8.494498121406,
+          "reference_price": 2.81566096,
+          "notional_usdt": 23.91762674,
+          "from_notional_usdt": -23.91762674,
+          "to_notional_usdt": 0.0
+        }
+      ]
+    },
+    {
+      "time_utc": "2025-10-18T00:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 98.84875901,
+      "turnover_usdt": 179.56904741,
+      "fee_usdt": 0.08978452,
+      "slippage_usdt": 0.03591381,
+      "long_candidates": [
+        "SOLUSDT",
+        "DOTUSDT"
+      ],
+      "short_candidates": [
+        "ETHUSDT",
+        "LINKUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "AVAXUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.900882073692,
+          "reference_price": 19.943,
+          "notional_usdt": 17.9662912,
+          "from_notional_usdt": 17.9662912,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "BTCUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.000209650613,
+          "reference_price": 106378.6,
+          "notional_usdt": 22.3023387,
+          "from_notional_usdt": -22.3023387,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "ETHUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.012920782548,
+          "reference_price": 3830.04887597,
+          "notional_usdt": 49.48722867,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -49.48722867
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "SELL",
+          "quantity_delta": -2.982415999103,
+          "reference_price": 16.593,
+          "notional_usdt": 49.48722867,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -49.48722867
+        },
+        {
+          "symbol": "LTCUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.217816046755,
+          "reference_price": 90.08,
+          "notional_usdt": 19.62086949,
+          "from_notional_usdt": -19.62086949,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "SOLUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.113833902069,
+          "reference_price": 181.88861404,
+          "notional_usdt": 20.70509068,
+          "from_notional_usdt": 20.70509068,
+          "to_notional_usdt": 0.0
+        }
+      ]
+    },
+    {
+      "time_utc": "2025-10-21T08:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 93.73215922,
+      "turnover_usdt": 10.35242088,
+      "fee_usdt": 0.00517621,
+      "slippage_usdt": 0.00207048,
+      "long_candidates": [
+        "DOTUSDT",
+        "TRXUSDT"
+      ],
+      "short_candidates": [
+        "ETHUSDT",
+        "LINKUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ETHUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.000874245558,
+          "reference_price": 3890.72004651,
+          "notional_usdt": 3.40144472,
+          "from_notional_usdt": -50.27114767,
+          "to_notional_usdt": -46.86970296
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.385180990923,
+          "reference_price": 18.046,
+          "notional_usdt": 6.95097616,
+          "from_notional_usdt": -53.82067912,
+          "to_notional_usdt": -46.86970296
+        }
+      ]
+    },
+    {
+      "time_utc": "2025-10-27T16:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 89.34787377,
+      "turnover_usdt": 187.50958034,
+      "fee_usdt": 0.09375479,
+      "slippage_usdt": 0.03750192,
+      "long_candidates": [
+        "TRXUSDT",
+        "BCHUSDT"
+      ],
+      "short_candidates": [
+        "ADAUSDT",
+        "DOGEUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ADAUSDT",
+          "side": "SELL",
+          "quantity_delta": -33.189588456875,
+          "reference_price": 0.674,
+          "notional_usdt": 22.36978262,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -22.36978262
+        },
+        {
+          "symbol": "BCHUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.03974165474,
+          "reference_price": 562.88,
+          "notional_usdt": 22.36978262,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 22.36978262
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "side": "SELL",
+          "quantity_delta": -110.244850524536,
+          "reference_price": 0.20291,
+          "notional_usdt": 22.36978262,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -22.36978262
+        },
+        {
+          "symbol": "ETHUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.01204653699,
+          "reference_price": 4171.25,
+          "notional_usdt": 50.24911742,
+          "from_notional_usdt": -50.24911742,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "BUY",
+          "quantity_delta": 2.59723500818,
+          "reference_price": 18.397,
+          "notional_usdt": 47.78133245,
+          "from_notional_usdt": -47.78133245,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "BUY",
+          "quantity_delta": 74.915547956911,
+          "reference_price": 0.2986,
+          "notional_usdt": 22.36978262,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 22.36978262
+        }
+      ]
+    },
+    {
+      "time_utc": "2025-10-31T00:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 92.55913578,
+      "turnover_usdt": 176.16163211,
+      "fee_usdt": 0.08808082,
+      "slippage_usdt": 0.03523233,
+      "long_candidates": [
+        "TRXUSDT",
+        "BCHUSDT"
+      ],
+      "short_candidates": [
+        "BTCUSDT",
+        "XRPUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ADAUSDT",
+          "side": "BUY",
+          "quantity_delta": 33.189588456875,
+          "reference_price": 0.6012,
+          "notional_usdt": 19.95358058,
+          "from_notional_usdt": -19.95358058,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "BCHUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.03974165474,
+          "reference_price": 540.78,
+          "notional_usdt": 21.49149205,
+          "from_notional_usdt": 21.49149205,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "BTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.000428041071,
+          "reference_price": 108263.5,
+          "notional_usdt": 46.34122446,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -46.34122446
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "side": "BUY",
+          "quantity_delta": 110.244850524536,
+          "reference_price": 0.18256,
+          "notional_usdt": 20.12629991,
+          "from_notional_usdt": -20.12629991,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "SELL",
+          "quantity_delta": -74.915547956911,
+          "reference_price": 0.29243343,
+          "notional_usdt": 21.90781065,
+          "from_notional_usdt": 21.90781065,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "XRPUSDT",
+          "side": "SELL",
+          "quantity_delta": -19.011784393523,
+          "reference_price": 2.4375,
+          "notional_usdt": 46.34122446,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -46.34122446
+        }
+      ]
+    },
+    {
+      "time_utc": "2025-11-09T08:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 97.96721556,
+      "turnover_usdt": 98.04361851,
+      "fee_usdt": 0.04902181,
+      "slippage_usdt": 0.01960872,
+      "long_candidates": [
+        "DOTUSDT",
+        "BCHUSDT"
+      ],
+      "short_candidates": [
+        "BTCUSDT",
+        "LINKUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "BTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -5.3006907e-05,
+          "reference_price": 101898.2,
+          "notional_usdt": 5.40130842,
+          "from_notional_usdt": -43.61661463,
+          "to_notional_usdt": -49.01792305
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "SELL",
+          "quantity_delta": -3.190922120256,
+          "reference_price": 15.36167954,
+          "notional_usdt": 49.01792305,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -49.01792305
+        },
+        {
+          "symbol": "XRPUSDT",
+          "side": "BUY",
+          "quantity_delta": 19.011784393523,
+          "reference_price": 2.29459719,
+          "notional_usdt": 43.62438705,
+          "from_notional_usdt": -43.62438705,
+          "to_notional_usdt": 0.0
+        }
+      ]
+    },
+    {
+      "time_utc": "2025-11-11T08:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 94.5496941,
+      "turnover_usdt": 101.39450137,
+      "fee_usdt": 0.05069725,
+      "slippage_usdt": 0.0202789,
+      "long_candidates": [
+        "DOTUSDT",
+        "BCHUSDT"
+      ],
+      "short_candidates": [
+        "ETHUSDT",
+        "LINKUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "BTCUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.000481047978,
+          "reference_price": 104737.0,
+          "notional_usdt": 50.38352205,
+          "from_notional_usdt": -50.38352205,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "ETHUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.013354353648,
+          "reference_price": 3542.69,
+          "notional_usdt": 47.31033512,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -47.31033512
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.231488742045,
+          "reference_price": 15.98628152,
+          "notional_usdt": 3.7006442,
+          "from_notional_usdt": -51.01097932,
+          "to_notional_usdt": -47.31033512
+        }
+      ]
+    },
+    {
+      "time_utc": "2025-11-18T16:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 107.10523515,
+      "turnover_usdt": 106.27903481,
+      "fee_usdt": 0.05313952,
+      "slippage_usdt": 0.02125581,
+      "long_candidates": [
+        "AVAXUSDT",
+        "BCHUSDT"
+      ],
+      "short_candidates": [
+        "ETHUSDT",
+        "BTCUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "BTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.0005771229,
+          "reference_price": 92856.85111694,
+          "notional_usdt": 53.58981524,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -53.58981524
+        },
+        {
+          "symbol": "ETHUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.00390349748,
+          "reference_price": 3105.24264234,
+          "notional_usdt": 12.12130683,
+          "from_notional_usdt": -41.46850841,
+          "to_notional_usdt": -53.58981524
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "BUY",
+          "quantity_delta": 2.95943337821,
+          "reference_price": 13.708,
+          "notional_usdt": 40.56791275,
+          "from_notional_usdt": -40.56791275,
+          "to_notional_usdt": 0.0
+        }
+      ]
+    },
+    {
+      "time_utc": "2025-11-26T16:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 113.5923617,
+      "turnover_usdt": 113.33387462,
+      "fee_usdt": 0.05666694,
+      "slippage_usdt": 0.02266677,
+      "long_candidates": [
+        "DOTUSDT",
+        "AVAXUSDT"
+      ],
+      "short_candidates": [
+        "ETHUSDT",
+        "ADAUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ADAUSDT",
+          "side": "SELL",
+          "quantity_delta": -137.743932493305,
+          "reference_price": 0.41261961,
+          "notional_usdt": 56.83584771,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -56.83584771
+        },
+        {
+          "symbol": "BTCUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.0005771229,
+          "reference_price": 86929.20776087,
+          "notional_usdt": 50.16883651,
+          "from_notional_usdt": -50.16883651,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "ETHUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.002162650067,
+          "reference_price": 2926.59016038,
+          "notional_usdt": 6.32919041,
+          "from_notional_usdt": -50.5066573,
+          "to_notional_usdt": -56.83584771
+        }
+      ]
+    },
+    {
+      "time_utc": "2025-12-04T08:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 103.1110767,
+      "turnover_usdt": 124.10997785,
+      "fee_usdt": 0.06205499,
+      "slippage_usdt": 0.024822,
+      "long_candidates": [
+        "DOTUSDT",
+        "AVAXUSDT"
+      ],
+      "short_candidates": [
+        "ETHUSDT",
+        "LINKUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ADAUSDT",
+          "side": "BUY",
+          "quantity_delta": 137.743932493305,
+          "reference_price": 0.4514,
+          "notional_usdt": 62.17761113,
+          "from_notional_usdt": -62.17761113,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "ETHUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.003240302624,
+          "reference_price": 3189.02,
+          "notional_usdt": 10.33338988,
+          "from_notional_usdt": -61.93236672,
+          "to_notional_usdt": -51.59897684
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "SELL",
+          "quantity_delta": -3.550225460573,
+          "reference_price": 14.534,
+          "notional_usdt": 51.59897684,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -51.59897684
+        }
+      ]
+    },
+    {
+      "time_utc": "2025-12-11T08:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 106.44791996,
+      "turnover_usdt": 102.77826521,
+      "fee_usdt": 0.05138913,
+      "slippage_usdt": 0.02055565,
+      "long_candidates": [
+        "BCHUSDT",
+        "DOTUSDT"
+      ],
+      "short_candidates": [
+        "LTCUSDT",
+        "ETHUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ETHUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.000463686333,
+          "reference_price": 3199.97,
+          "notional_usdt": 1.48378235,
+          "from_notional_usdt": -51.77615002,
+          "to_notional_usdt": -53.25993237
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "BUY",
+          "quantity_delta": 3.550225460573,
+          "reference_price": 13.53,
+          "notional_usdt": 48.03455048,
+          "from_notional_usdt": -48.03455048,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "LTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.65883142469,
+          "reference_price": 80.84,
+          "notional_usdt": 53.25993237,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -53.25993237
+        }
+      ]
+    },
+    {
+      "time_utc": "2025-12-19T00:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 116.86858735,
+      "turnover_usdt": 212.99400442,
+      "fee_usdt": 0.106497,
+      "slippage_usdt": 0.0425988,
+      "long_candidates": [
+        "DOTUSDT",
+        "BCHUSDT"
+      ],
+      "short_candidates": [
+        "LINKUSDT",
+        "BTCUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "BTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.000684524355,
+          "reference_price": 85473.71786232,
+          "notional_usdt": 58.50884158,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -58.50884158
+        },
+        {
+          "symbol": "ETHUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.016643884903,
+          "reference_price": 2827.35,
+          "notional_usdt": 47.05808798,
+          "from_notional_usdt": -47.05808798,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "SELL",
+          "quantity_delta": -4.906813282196,
+          "reference_price": 11.924,
+          "notional_usdt": 58.50884158,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -58.50884158
+        },
+        {
+          "symbol": "LTCUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.65883142469,
+          "reference_price": 74.25,
+          "notional_usdt": 48.91823328,
+          "from_notional_usdt": -48.91823328,
+          "to_notional_usdt": 0.0
+        }
+      ]
+    },
+    {
+      "time_utc": "2025-12-21T16:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 113.1009234,
+      "turnover_usdt": 120.72750036,
+      "fee_usdt": 0.06036375,
+      "slippage_usdt": 0.0241455,
+      "long_candidates": [
+        "DOTUSDT",
+        "BCHUSDT"
+      ],
+      "short_candidates": [
+        "LINKUSDT",
+        "BTCUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "BCHUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.04882976093,
+          "reference_price": 579.49,
+          "notional_usdt": 28.29635816,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 28.29635816
+        },
+        {
+          "symbol": "BTCUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.000363065423,
+          "reference_price": 88024.8,
+          "notional_usdt": 31.95876127,
+          "from_notional_usdt": -60.25511943,
+          "to_notional_usdt": -28.29635816
+        },
+        {
+          "symbol": "DOTUSDT",
+          "side": "BUY",
+          "quantity_delta": 16.001591136914,
+          "reference_price": 1.76834653,
+          "notional_usdt": 28.29635816,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 28.29635816
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "BUY",
+          "quantity_delta": 2.610807338179,
+          "reference_price": 12.3241659,
+          "notional_usdt": 32.17602277,
+          "from_notional_usdt": -60.47238093,
+          "to_notional_usdt": -28.29635816
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-01-14T00:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 116.787483,
+      "turnover_usdt": 129.56093485,
+      "fee_usdt": 0.06478047,
+      "slippage_usdt": 0.02591219,
+      "long_candidates": [
+        "BCHUSDT",
+        "XRPUSDT"
+      ],
+      "short_candidates": [
+        "ADAUSDT",
+        "LINKUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ADAUSDT",
+          "side": "SELL",
+          "quantity_delta": -69.276141720458,
+          "reference_price": 0.42178365,
+          "notional_usdt": 29.21954391,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -29.21954391
+        },
+        {
+          "symbol": "BCHUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.00144543609,
+          "reference_price": 616.65,
+          "notional_usdt": 0.89132816,
+          "from_notional_usdt": 30.11087208,
+          "to_notional_usdt": 29.21954391
+        },
+        {
+          "symbol": "BTCUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.000321458932,
+          "reference_price": 95375.2,
+          "notional_usdt": 30.65920989,
+          "from_notional_usdt": -30.65920989,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "DOTUSDT",
+          "side": "SELL",
+          "quantity_delta": -16.001591136914,
+          "reference_price": 2.28197735,
+          "notional_usdt": 36.51526854,
+          "from_notional_usdt": 36.51526854,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.217399223839,
+          "reference_price": 14.05727386,
+          "notional_usdt": 3.05604043,
+          "from_notional_usdt": -32.27558434,
+          "to_notional_usdt": -29.21954391
+        },
+        {
+          "symbol": "XRPUSDT",
+          "side": "BUY",
+          "quantity_delta": 13.496948548557,
+          "reference_price": 2.1649,
+          "notional_usdt": 29.21954391,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 29.21954391
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-01-30T08:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 121.34045095,
+      "turnover_usdt": 216.29126255,
+      "fee_usdt": 0.10814563,
+      "slippage_usdt": 0.04325825,
+      "long_candidates": [
+        "TRXUSDT",
+        "AVAXUSDT"
+      ],
+      "short_candidates": [
+        "ETHUSDT",
+        "BTCUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ADAUSDT",
+          "side": "BUY",
+          "quantity_delta": 69.276141720458,
+          "reference_price": 0.32532411,
+          "notional_usdt": 22.53719915,
+          "from_notional_usdt": -22.53719915,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "BCHUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.04738432484,
+          "reference_price": 548.6698934,
+          "notional_usdt": 25.99835246,
+          "from_notional_usdt": 25.99835246,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "BTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.0007337584,
+          "reference_price": 82787.36895652,
+          "notional_usdt": 60.74592742,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -60.74592742
+        },
+        {
+          "symbol": "ETHUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.022175570257,
+          "reference_price": 2739.31748837,
+          "notional_usdt": 60.74592742,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -60.74592742
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "BUY",
+          "quantity_delta": 2.078606720178,
+          "reference_price": 10.84113742,
+          "notional_usdt": 22.5344611,
+          "from_notional_usdt": -22.5344611,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "XRPUSDT",
+          "side": "SELL",
+          "quantity_delta": -13.496948548557,
+          "reference_price": 1.75813036,
+          "notional_usdt": 23.72939501,
+          "from_notional_usdt": 23.72939501,
+          "to_notional_usdt": 0.0
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-02-01T16:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 134.52084703,
+      "turnover_usdt": 129.01820471,
+      "fee_usdt": 0.0645091,
+      "slippage_usdt": 0.02580364,
+      "long_candidates": [
+        "TRXUSDT",
+        "AVAXUSDT"
+      ],
+      "short_candidates": [
+        "LINKUSDT",
+        "BTCUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "BTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.000134085925,
+          "reference_price": 77554.9,
+          "notional_usdt": 10.39902052,
+          "from_notional_usdt": -56.90655937,
+          "to_notional_usdt": -67.30557989
+        },
+        {
+          "symbol": "ETHUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.022175570257,
+          "reference_price": 2313.97,
+          "notional_usdt": 51.31360431,
+          "from_notional_usdt": -51.31360431,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "SELL",
+          "quantity_delta": -7.063236424209,
+          "reference_price": 9.529,
+          "notional_usdt": 67.30557989,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -67.30557989
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-02-08T16:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 144.53096541,
+      "turnover_usdt": 143.63372627,
+      "fee_usdt": 0.07181686,
+      "slippage_usdt": 0.02872675,
+      "long_candidates": [
+        "TRXUSDT",
+        "SOLUSDT"
+      ],
+      "short_candidates": [
+        "LINKUSDT",
+        "BCHUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "BCHUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.136326498717,
+          "reference_price": 530.46,
+          "notional_usdt": 72.31575451,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -72.31575451
+        },
+        {
+          "symbol": "BTCUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.000867844326,
+          "reference_price": 71150.8,
+          "notional_usdt": 61.74781804,
+          "from_notional_usdt": -61.74781804,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "SELL",
+          "quantity_delta": -1.077306735766,
+          "reference_price": 8.88340656,
+          "notional_usdt": 9.57015372,
+          "from_notional_usdt": -62.74560079,
+          "to_notional_usdt": -72.31575451
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-02-15T16:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 140.96430971,
+      "turnover_usdt": 7.24627032,
+      "fee_usdt": 0.00362314,
+      "slippage_usdt": 0.00144925,
+      "long_candidates": [
+        "SOLUSDT",
+        "XRPUSDT"
+      ],
+      "short_candidates": [
+        "BCHUSDT",
+        "LINKUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "BCHUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.009975882872,
+          "reference_price": 557.85,
+          "notional_usdt": 5.56504626,
+          "from_notional_usdt": -76.04973731,
+          "to_notional_usdt": -70.48469105
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.189647384592,
+          "reference_price": 8.865,
+          "notional_usdt": 1.68122406,
+          "from_notional_usdt": -72.16591511,
+          "to_notional_usdt": -70.48469105
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-02-22T16:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 140.67522857,
+      "turnover_usdt": 143.46179062,
+      "fee_usdt": 0.0717309,
+      "slippage_usdt": 0.02869236,
+      "long_candidates": [
+        "DOTUSDT",
+        "SOLUSDT"
+      ],
+      "short_candidates": [
+        "LINKUSDT",
+        "BTCUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "BCHUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.126350615844,
+          "reference_price": 569.33331593,
+          "notional_usdt": 71.93561509,
+          "from_notional_usdt": -71.93561509,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "BTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.001040318208,
+          "reference_price": 67659.9,
+          "notional_usdt": 70.38782591,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -70.38782591
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.130699893217,
+          "reference_price": 8.70964458,
+          "notional_usdt": 1.13834962,
+          "from_notional_usdt": -69.2494763,
+          "to_notional_usdt": -70.38782591
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-03-02T16:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 135.92822798,
+      "turnover_usdt": 145.44515205,
+      "fee_usdt": 0.07272258,
+      "slippage_usdt": 0.02908903,
+      "long_candidates": [
+        "BCHUSDT",
+        "TRXUSDT"
+      ],
+      "short_candidates": [
+        "ADAUSDT",
+        "LINKUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ADAUSDT",
+          "side": "SELL",
+          "quantity_delta": -239.320970425701,
+          "reference_price": 0.2842,
+          "notional_usdt": 68.01501979,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -68.01501979
+        },
+        {
+          "symbol": "BTCUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.001040318208,
+          "reference_price": 69089.01905797,
+          "notional_usdt": 71.87456449,
+          "from_notional_usdt": -71.87456449,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.610269047589,
+          "reference_price": 9.10347295,
+          "notional_usdt": 5.55556777,
+          "from_notional_usdt": -73.57058756,
+          "to_notional_usdt": -68.01501979
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-03-09T00:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 148.60500367,
+      "turnover_usdt": 144.73184816,
+      "fee_usdt": 0.07236592,
+      "slippage_usdt": 0.02894637,
+      "long_candidates": [
+        "DOTUSDT",
+        "TRXUSDT"
+      ],
+      "short_candidates": [
+        "LINKUSDT",
+        "BNBUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ADAUSDT",
+          "side": "BUY",
+          "quantity_delta": 239.320970425701,
+          "reference_price": 0.24918784,
+          "notional_usdt": 59.63587569,
+          "from_notional_usdt": -59.63587569,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "BNBUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.12153089678,
+          "reference_price": 611.80456947,
+          "notional_usdt": 74.35315798,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -74.35315798
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "SELL",
+          "quantity_delta": -1.261792838879,
+          "reference_price": 8.51392888,
+          "notional_usdt": 10.74281449,
+          "from_notional_usdt": -63.61034349,
+          "to_notional_usdt": -74.35315798
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-03-13T16:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 135.78910791,
+      "turnover_usdt": 229.34557713,
+      "fee_usdt": 0.11467279,
+      "slippage_usdt": 0.04586912,
+      "long_candidates": [
+        "DOTUSDT",
+        "TRXUSDT"
+      ],
+      "short_candidates": [
+        "AVAXUSDT",
+        "LINKUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "AVAXUSDT",
+          "side": "SELL",
+          "quantity_delta": -3.435848408243,
+          "reference_price": 9.892,
+          "notional_usdt": 33.98741245,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -33.98741245
+        },
+        {
+          "symbol": "BNBUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.12153089678,
+          "reference_price": 662.4,
+          "notional_usdt": 80.50206603,
+          "from_notional_usdt": -80.50206603,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "DOTUSDT",
+          "side": "BUY",
+          "quantity_delta": 22.576346911706,
+          "reference_price": 1.5054434,
+          "notional_usdt": 33.98741245,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 33.98741245
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "BUY",
+          "quantity_delta": 5.062772542574,
+          "reference_price": 9.26,
+          "notional_usdt": 46.88127374,
+          "from_notional_usdt": -80.8686862,
+          "to_notional_usdt": -33.98741245
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "BUY",
+          "quantity_delta": 117.41661180936,
+          "reference_price": 0.28946,
+          "notional_usdt": 33.98741245,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 33.98741245
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-03-15T00:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 135.56750896,
+      "turnover_usdt": 71.63455828,
+      "fee_usdt": 0.03581728,
+      "slippage_usdt": 0.01432691,
+      "long_candidates": [
+        "DOTUSDT",
+        "XRPUSDT"
+      ],
+      "short_candidates": [
+        "AVAXUSDT",
+        "LINKUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "AVAXUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.04923278879,
+          "reference_price": 9.72844286,
+          "notional_usdt": 0.47895837,
+          "from_notional_usdt": -33.42545492,
+          "to_notional_usdt": -33.90441329
+        },
+        {
+          "symbol": "DOTUSDT",
+          "side": "BUY",
+          "quantity_delta": 1.435277229793,
+          "reference_price": 1.412,
+          "notional_usdt": 2.02661145,
+          "from_notional_usdt": 31.87780184,
+          "to_notional_usdt": 33.90441329
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.030200265374,
+          "reference_price": 9.162,
+          "notional_usdt": 0.27669483,
+          "from_notional_usdt": -33.62771846,
+          "to_notional_usdt": -33.90441329
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "SELL",
+          "quantity_delta": -117.41661180936,
+          "reference_price": 0.29764,
+          "notional_usdt": 34.94788034,
+          "from_notional_usdt": 34.94788034,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "XRPUSDT",
+          "side": "BUY",
+          "quantity_delta": 24.122670428883,
+          "reference_price": 1.4055,
+          "notional_usdt": 33.90441329,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 33.90441329
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-03-16T00:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 135.3147766,
+      "turnover_usdt": 71.60043515,
+      "fee_usdt": 0.03580022,
+      "slippage_usdt": 0.01432009,
+      "long_candidates": [
+        "DOTUSDT",
+        "BTCUSDT"
+      ],
+      "short_candidates": [
+        "AVAXUSDT",
+        "LINKUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "AVAXUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.08301750156,
+          "reference_price": 9.94726356,
+          "notional_usdt": 0.82579697,
+          "from_notional_usdt": -34.66702119,
+          "to_notional_usdt": -33.84122423
+        },
+        {
+          "symbol": "BTCUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.00046498739,
+          "reference_price": 72778.8,
+          "notional_usdt": 33.84122423,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 33.84122423
+        },
+        {
+          "symbol": "DOTUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.490597026258,
+          "reference_price": 1.43876473,
+          "notional_usdt": 0.7058537,
+          "from_notional_usdt": 34.54707792,
+          "to_notional_usdt": 33.84122423
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.135432643655,
+          "reference_price": 9.49232454,
+          "notional_usdt": 1.28557061,
+          "from_notional_usdt": -35.12679483,
+          "to_notional_usdt": -33.84122423
+        },
+        {
+          "symbol": "XRPUSDT",
+          "side": "SELL",
+          "quantity_delta": -24.122670428883,
+          "reference_price": 1.4485125,
+          "notional_usdt": 34.94198965,
+          "from_notional_usdt": 34.94198965,
+          "to_notional_usdt": 0.0
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-03-21T00:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 138.14893982,
+      "turnover_usdt": 202.19319465,
+      "fee_usdt": 0.1010966,
+      "slippage_usdt": 0.04043864,
+      "long_candidates": [
+        "DOTUSDT",
+        "ADAUSDT"
+      ],
+      "short_candidates": [
+        "TRXUSDT",
+        "LTCUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ADAUSDT",
+          "side": "BUY",
+          "quantity_delta": 130.04684704043,
+          "reference_price": 0.26584742,
+          "notional_usdt": 34.57261876,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 34.57261876
+        },
+        {
+          "symbol": "AVAXUSDT",
+          "side": "BUY",
+          "quantity_delta": 3.402063695473,
+          "reference_price": 9.56688231,
+          "notional_usdt": 32.54714299,
+          "from_notional_usdt": -32.54714299,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "BTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.00046498739,
+          "reference_price": 70475.13728261,
+          "notional_usdt": 32.77005011,
+          "from_notional_usdt": 32.77005011,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "DOTUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.449906470338,
+          "reference_price": 1.4985236,
+          "notional_usdt": 0.67419546,
+          "from_notional_usdt": 35.24681423,
+          "to_notional_usdt": 34.57261876
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "BUY",
+          "quantity_delta": 3.565114539034,
+          "reference_price": 9.11161463,
+          "notional_usdt": 32.48394979,
+          "from_notional_usdt": -32.48394979,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "LTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.615828620677,
+          "reference_price": 56.14,
+          "notional_usdt": 34.57261876,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -34.57261876
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "SELL",
+          "quantity_delta": -111.710433994419,
+          "reference_price": 0.30948424,
+          "notional_usdt": 34.57261876,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -34.57261876
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-03-25T08:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 135.94492981,
+      "turnover_usdt": 140.24135118,
+      "fee_usdt": 0.07012068,
+      "slippage_usdt": 0.02804827,
+      "long_candidates": [
+        "DOTUSDT",
+        "ADAUSDT"
+      ],
+      "short_candidates": [
+        "LINKUSDT",
+        "BCHUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ADAUSDT",
+          "side": "SELL",
+          "quantity_delta": -3.800467344396,
+          "reference_price": 0.2694,
+          "notional_usdt": 1.0238459,
+          "from_notional_usdt": 35.03462059,
+          "to_notional_usdt": 34.01077469
+        },
+        {
+          "symbol": "BCHUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.071167136828,
+          "reference_price": 477.9,
+          "notional_usdt": 34.01077469,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -34.01077469
+        },
+        {
+          "symbol": "DOTUSDT",
+          "side": "BUY",
+          "quantity_delta": 1.520907330594,
+          "reference_price": 1.383,
+          "notional_usdt": 2.10341484,
+          "from_notional_usdt": 31.90735985,
+          "to_notional_usdt": 34.01077469
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "SELL",
+          "quantity_delta": -3.66337512819,
+          "reference_price": 9.284,
+          "notional_usdt": 34.01077469,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -34.01077469
+        },
+        {
+          "symbol": "LTCUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.615828620677,
+          "reference_price": 56.37,
+          "notional_usdt": 34.71425935,
+          "from_notional_usdt": -34.71425935,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "BUY",
+          "quantity_delta": 111.710433994419,
+          "reference_price": 0.30774459,
+          "notional_usdt": 34.37828171,
+          "from_notional_usdt": -34.37828171,
+          "to_notional_usdt": 0.0
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-04-04T00:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 134.21044554,
+      "turnover_usdt": 195.67693675,
+      "fee_usdt": 0.09783847,
+      "slippage_usdt": 0.03913539,
+      "long_candidates": [
+        "DOTUSDT",
+        "SOLUSDT"
+      ],
+      "short_candidates": [
+        "DOGEUSDT",
+        "LINKUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ADAUSDT",
+          "side": "SELL",
+          "quantity_delta": -126.246379696034,
+          "reference_price": 0.24625054,
+          "notional_usdt": 31.08823917,
+          "from_notional_usdt": 31.08823917,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "BCHUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.071167136828,
+          "reference_price": 442.8,
+          "notional_usdt": 31.51280819,
+          "from_notional_usdt": -31.51280819,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "side": "SELL",
+          "quantity_delta": -733.996356086531,
+          "reference_price": 0.09151777,
+          "notional_usdt": 67.1737097,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -67.1737097
+        },
+        {
+          "symbol": "DOTUSDT",
+          "side": "SELL",
+          "quantity_delta": -24.592027975496,
+          "reference_price": 1.23751991,
+          "notional_usdt": 30.43312425,
+          "from_notional_usdt": 30.43312425,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "SELL",
+          "quantity_delta": -4.09834008813,
+          "reference_price": 8.65449296,
+          "notional_usdt": 35.46905544,
+          "from_notional_usdt": -31.70465426,
+          "to_notional_usdt": -67.1737097
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-04-08T00:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 126.68129328,
+      "turnover_usdt": 205.15471266,
+      "fee_usdt": 0.10257736,
+      "slippage_usdt": 0.04103094,
+      "long_candidates": [
+        "DOTUSDT",
+        "SOLUSDT"
+      ],
+      "short_candidates": [
+        "ADAUSDT",
+        "LINKUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ADAUSDT",
+          "side": "SELL",
+          "quantity_delta": -120.647737425387,
+          "reference_price": 0.2628,
+          "notional_usdt": 31.7062254,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -31.7062254
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "side": "BUY",
+          "quantity_delta": 733.996356086531,
+          "reference_price": 0.0949305,
+          "notional_usdt": 69.67864108,
+          "from_notional_usdt": -69.67864108,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "DOTUSDT",
+          "side": "BUY",
+          "quantity_delta": 24.129547485077,
+          "reference_price": 1.314,
+          "notional_usdt": 31.7062254,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 31.7062254
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "BUY",
+          "quantity_delta": 4.346750919273,
+          "reference_price": 9.28449689,
+          "notional_usdt": 40.35739539,
+          "from_notional_usdt": -72.06362079,
+          "to_notional_usdt": -31.7062254
+        },
+        {
+          "symbol": "SOLUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.370598289705,
+          "reference_price": 85.55416006,
+          "notional_usdt": 31.7062254,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 31.7062254
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-04-18T16:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 127.92500667,
+      "turnover_usdt": 127.17581193,
+      "fee_usdt": 0.06358791,
+      "slippage_usdt": 0.02543516,
+      "long_candidates": [
+        "DOTUSDT",
+        "BTCUSDT"
+      ],
+      "short_candidates": [
+        "AVAXUSDT",
+        "LINKUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ADAUSDT",
+          "side": "BUY",
+          "quantity_delta": 120.647737425387,
+          "reference_price": 0.2509,
+          "notional_usdt": 30.27051732,
+          "from_notional_usdt": -30.27051732,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "AVAXUSDT",
+          "side": "SELL",
+          "quantity_delta": -3.402590107046,
+          "reference_price": 9.40563113,
+          "notional_usdt": 32.00350743,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -32.00350743
+        },
+        {
+          "symbol": "BTCUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.000420408427,
+          "reference_price": 76124.8,
+          "notional_usdt": 32.00350743,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 32.00350743
+        },
+        {
+          "symbol": "DOTUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.570017691591,
+          "reference_price": 1.29571137,
+          "notional_usdt": 0.7385784,
+          "from_notional_usdt": 31.26492903,
+          "to_notional_usdt": 32.00350743
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.002903776309,
+          "reference_price": 9.37952514,
+          "notional_usdt": 0.02723604,
+          "from_notional_usdt": -32.03074348,
+          "to_notional_usdt": -32.00350743
+        },
+        {
+          "symbol": "SOLUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.370598289705,
+          "reference_price": 86.70430001,
+          "notional_usdt": 32.13246529,
+          "from_notional_usdt": 32.13246529,
+          "to_notional_usdt": 0.0
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-04-20T08:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 127.61881969,
+      "turnover_usdt": 64.85401073,
+      "fee_usdt": 0.03242701,
+      "slippage_usdt": 0.0129708,
+      "long_candidates": [
+        "DOTUSDT",
+        "BTCUSDT"
+      ],
+      "short_candidates": [
+        "XRPUSDT",
+        "LINKUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "AVAXUSDT",
+          "side": "BUY",
+          "quantity_delta": 3.402590107046,
+          "reference_price": 9.213,
+          "notional_usdt": 31.34806266,
+          "from_notional_usdt": -31.34806266,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "BTCUSDT",
+          "side": "BUY",
+          "quantity_delta": 6.302463e-06,
+          "reference_price": 74795.5,
+          "notional_usdt": 0.47139586,
+          "from_notional_usdt": 31.44465851,
+          "to_notional_usdt": 31.91605437
+        },
+        {
+          "symbol": "DOTUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.58610022263,
+          "reference_price": 1.26221928,
+          "notional_usdt": 0.739787,
+          "from_notional_usdt": 31.17626737,
+          "to_notional_usdt": 31.91605437
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.040973149788,
+          "reference_price": 9.24290274,
+          "notional_usdt": 0.37871084,
+          "from_notional_usdt": -31.53734354,
+          "to_notional_usdt": -31.91605437
+        },
+        {
+          "symbol": "XRPUSDT",
+          "side": "SELL",
+          "quantity_delta": -22.564464063093,
+          "reference_price": 1.41443884,
+          "notional_usdt": 31.91605437,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -31.91605437
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-04-27T08:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 127.80114283,
+      "turnover_usdt": 129.91089534,
+      "fee_usdt": 0.06495545,
+      "slippage_usdt": 0.02598218,
+      "long_candidates": [
+        "TRXUSDT",
+        "DOTUSDT"
+      ],
+      "short_candidates": [
+        "LINKUSDT",
+        "DOGEUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "BTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.00042671089,
+          "reference_price": 77557.34418116,
+          "notional_usdt": 33.09456336,
+          "from_notional_usdt": 33.09456336,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "side": "SELL",
+          "quantity_delta": -327.021572231254,
+          "reference_price": 0.09777037,
+          "notional_usdt": 31.97302012,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -31.97302012
+        },
+        {
+          "symbol": "DOTUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.666461317448,
+          "reference_price": 1.232,
+          "notional_usdt": 0.82108034,
+          "from_notional_usdt": 31.15193977,
+          "to_notional_usdt": 31.97302012
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.016508680021,
+          "reference_price": 9.30388116,
+          "notional_usdt": 0.1535948,
+          "from_notional_usdt": -32.12661491,
+          "to_notional_usdt": -31.97302012
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "BUY",
+          "quantity_delta": 98.898883711316,
+          "reference_price": 0.32329,
+          "notional_usdt": 31.97302012,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 31.97302012
+        },
+        {
+          "symbol": "XRPUSDT",
+          "side": "BUY",
+          "quantity_delta": 22.564464063093,
+          "reference_price": 1.41353309,
+          "notional_usdt": 31.89561661,
+          "from_notional_usdt": -31.89561661,
+          "to_notional_usdt": 0.0
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-05-04T08:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 124.67227833,
+      "turnover_usdt": 134.39961202,
+      "fee_usdt": 0.06719981,
+      "slippage_usdt": 0.02687992,
+      "long_candidates": [
+        "DOTUSDT",
+        "ETHUSDT"
+      ],
+      "short_candidates": [
+        "BCHUSDT",
+        "DOGEUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "BCHUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.06985485424,
+          "reference_price": 446.52,
+          "notional_usdt": 31.19158952,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -31.19158952
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "side": "BUY",
+          "quantity_delta": 49.170595781783,
+          "reference_price": 0.11226014,
+          "notional_usdt": 5.51989797,
+          "from_notional_usdt": -36.71148748,
+          "to_notional_usdt": -31.19158952
+        },
+        {
+          "symbol": "DOTUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.765369634939,
+          "reference_price": 1.23841229,
+          "notional_usdt": 0.94784316,
+          "from_notional_usdt": 32.13943268,
+          "to_notional_usdt": 31.19158952
+        },
+        {
+          "symbol": "ETHUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.013205597796,
+          "reference_price": 2361.99754054,
+          "notional_usdt": 31.19158952,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 31.19158952
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "BUY",
+          "quantity_delta": 3.436524990505,
+          "reference_price": 9.317,
+          "notional_usdt": 32.01810334,
+          "from_notional_usdt": -32.01810334,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "SELL",
+          "quantity_delta": -98.898883711316,
+          "reference_price": 0.3390391,
+          "notional_usdt": 33.53058852,
+          "from_notional_usdt": 33.53058852,
+          "to_notional_usdt": 0.0
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-05-11T08:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 127.84915229,
+      "turnover_usdt": 193.3272754,
+      "fee_usdt": 0.09666364,
+      "slippage_usdt": 0.03866546,
+      "long_candidates": [
+        "BTCUSDT",
+        "ETHUSDT"
+      ],
+      "short_candidates": [
+        "ADAUSDT",
+        "LINKUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ADAUSDT",
+          "side": "SELL",
+          "quantity_delta": -115.259799514549,
+          "reference_price": 0.2776,
+          "notional_usdt": 31.99612035,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -31.99612035
+        },
+        {
+          "symbol": "BCHUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.06985485424,
+          "reference_price": 449.84,
+          "notional_usdt": 31.42350763,
+          "from_notional_usdt": -31.42350763,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "BTCUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.000396438563,
+          "reference_price": 80708.9,
+          "notional_usdt": 31.99612035,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 31.99612035
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "side": "BUY",
+          "quantity_delta": 277.850976449472,
+          "reference_price": 0.10924,
+          "notional_usdt": 30.35244067,
+          "from_notional_usdt": -30.35244067,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "DOTUSDT",
+          "side": "SELL",
+          "quantity_delta": -25.186757081807,
+          "reference_price": 1.363,
+          "notional_usdt": 34.3295499,
+          "from_notional_usdt": 34.3295499,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "ETHUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.000529472238,
+          "reference_price": 2329.52,
+          "notional_usdt": 1.23341617,
+          "from_notional_usdt": 30.76270418,
+          "to_notional_usdt": 31.99612035
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "SELL",
+          "quantity_delta": -3.041167222245,
+          "reference_price": 10.521,
+          "notional_usdt": 31.99612035,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -31.99612035
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-06-01T16:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 129.62790413,
+      "turnover_usdt": 238.25513322,
+      "fee_usdt": 0.11912757,
+      "slippage_usdt": 0.04765103,
+      "long_candidates": [
+        "BCHUSDT",
+        "TRXUSDT"
+      ],
+      "short_candidates": [
+        "ETHUSDT",
+        "BTCUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ADAUSDT",
+          "side": "BUY",
+          "quantity_delta": 115.259799514549,
+          "reference_price": 0.2269,
+          "notional_usdt": 26.15244851,
+          "from_notional_usdt": -26.15244851,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "BTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.001309151359,
+          "reference_price": 71103.79261594,
+          "notional_usdt": 93.08562674,
+          "from_notional_usdt": 28.18828538,
+          "to_notional_usdt": -64.89734136
+        },
+        {
+          "symbol": "ETHUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.046716660578,
+          "reference_price": 1967.68379845,
+          "notional_usdt": 91.92361614,
+          "from_notional_usdt": 27.02627478,
+          "to_notional_usdt": -64.89734136
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "BUY",
+          "quantity_delta": 3.041167222245,
+          "reference_price": 8.90889578,
+          "notional_usdt": 27.09344183,
+          "from_notional_usdt": -27.09344183,
+          "to_notional_usdt": 0.0
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-06-09T00:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 145.99461596,
+      "turnover_usdt": 259.4547399,
+      "fee_usdt": 0.12972737,
+      "slippage_usdt": 0.05189095,
+      "long_candidates": [
+        "TRXUSDT",
+        "SOLUSDT"
+      ],
+      "short_candidates": [
+        "BNBUSDT",
+        "LINKUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "BNBUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.121384465147,
+          "reference_price": 602.1208484,
+          "notional_usdt": 73.08811714,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -73.08811714
+        },
+        {
+          "symbol": "BTCUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.000912712796,
+          "reference_price": 63060.2,
+          "notional_usdt": 57.55585145,
+          "from_notional_usdt": -57.55585145,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "ETHUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.032981590544,
+          "reference_price": 1689.5077907,
+          "notional_usdt": 55.72265417,
+          "from_notional_usdt": -55.72265417,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "SELL",
+          "quantity_delta": -9.142871795988,
+          "reference_price": 7.994,
+          "notional_usdt": 73.08811714,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -73.08811714
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-06-16T00:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 141.22776624,
+      "turnover_usdt": 150.87229713,
+      "fee_usdt": 0.07543615,
+      "slippage_usdt": 0.03017446,
+      "long_candidates": [
+        "TRXUSDT",
+        "SOLUSDT"
+      ],
+      "short_candidates": [
+        "LINKUSDT",
+        "DOGEUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "BNBUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.121384465147,
+          "reference_price": 618.15,
+          "notional_usdt": 75.03380713,
+          "from_notional_usdt": -75.03380713,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "side": "SELL",
+          "quantity_delta": -802.21010810798,
+          "reference_price": 0.08809,
+          "notional_usdt": 70.66668842,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -70.66668842
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.623497630159,
+          "reference_price": 8.29482155,
+          "notional_usdt": 5.17180158,
+          "from_notional_usdt": -75.83849,
+          "to_notional_usdt": -70.66668842
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-06-25T00:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 158.21165648,
+      "turnover_usdt": 156.13031977,
+      "fee_usdt": 0.07806516,
+      "slippage_usdt": 0.03122606,
+      "long_candidates": [
+        "BCHUSDT",
+        "ADAUSDT"
+      ],
+      "short_candidates": [
+        "LINKUSDT",
+        "BTCUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "BTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.001296626496,
+          "reference_price": 61051.1,
+          "notional_usdt": 79.16047385,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -79.16047385
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "side": "BUY",
+          "quantity_delta": 802.21010810798,
+          "reference_price": 0.07609,
+          "notional_usdt": 61.04016713,
+          "from_notional_usdt": -61.04016713,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "SELL",
+          "quantity_delta": -2.14627846833,
+          "reference_price": 7.422,
+          "notional_usdt": 15.92967879,
+          "from_notional_usdt": -63.23079506,
+          "to_notional_usdt": -79.16047385
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-07-02T00:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 160.28038808,
+      "turnover_usdt": 161.03124834,
+      "fee_usdt": 0.08051562,
+      "slippage_usdt": 0.03220625,
+      "long_candidates": [
+        "TRXUSDT",
+        "XRPUSDT"
+      ],
+      "short_candidates": [
+        "SOLUSDT",
+        "BTCUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "BTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -3.9991665e-05,
+          "reference_price": 59999.6,
+          "notional_usdt": 2.39948389,
+          "from_notional_usdt": -77.79707109,
+          "to_notional_usdt": -80.19655498
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "BUY",
+          "quantity_delta": 10.665652634159,
+          "reference_price": 7.354,
+          "notional_usdt": 78.43520947,
+          "from_notional_usdt": -78.43520947,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "SOLUSDT",
+          "side": "SELL",
+          "quantity_delta": -1.035863536282,
+          "reference_price": 77.42,
+          "notional_usdt": 80.19655498,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -80.19655498
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-07-07T00:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 150.19085382,
+      "turnover_usdt": 245.60394334,
+      "fee_usdt": 0.12280197,
+      "slippage_usdt": 0.04912079,
+      "long_candidates": [
+        "TRXUSDT",
+        "BCHUSDT"
+      ],
+      "short_candidates": [
+        "BTCUSDT",
+        "ADAUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ADAUSDT",
+          "side": "SELL",
+          "quantity_delta": -204.218759747958,
+          "reference_price": 0.18407072,
+          "notional_usdt": 37.59069414,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -37.59069414
+        },
+        {
+          "symbol": "BCHUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.15541050994,
+          "reference_price": 241.88,
+          "notional_usdt": 37.59069414,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 37.59069414
+        },
+        {
+          "symbol": "BTCUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.000749479155,
+          "reference_price": 64023.5,
+          "notional_usdt": 47.98427865,
+          "from_notional_usdt": -85.57497279,
+          "to_notional_usdt": -37.59069414
+        },
+        {
+          "symbol": "SOLUSDT",
+          "side": "BUY",
+          "quantity_delta": 1.035863536282,
+          "reference_price": 81.91,
+          "notional_usdt": 84.84758226,
+          "from_notional_usdt": -84.84758226,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "BUY",
+          "quantity_delta": 114.032137552901,
+          "reference_price": 0.32965,
+          "notional_usdt": 37.59069414,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 37.59069414
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-07-22T00:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 148.06917444,
+      "turnover_usdt": 151.41366028,
+      "fee_usdt": 0.07570683,
+      "slippage_usdt": 0.03028273,
+      "long_candidates": [
+        "TRXUSDT",
+        "BCHUSDT"
+      ],
+      "short_candidates": [
+        "LINKUSDT",
+        "BNBUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ADAUSDT",
+          "side": "BUY",
+          "quantity_delta": 204.218759747958,
+          "reference_price": 0.1736,
+          "notional_usdt": 35.45237669,
+          "from_notional_usdt": -35.45237669,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "BCHUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.010170533327,
+          "reference_price": 223.72,
+          "notional_usdt": 2.27535172,
+          "from_notional_usdt": 34.76843928,
+          "to_notional_usdt": 37.043791
+        },
+        {
+          "symbol": "BNBUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.064497687649,
+          "reference_price": 574.34293151,
+          "notional_usdt": 37.043791,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -37.043791
+        },
+        {
+          "symbol": "BTCUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.000587139006,
+          "reference_price": 66522.3,
+          "notional_usdt": 39.05783709,
+          "from_notional_usdt": -39.05783709,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "SELL",
+          "quantity_delta": -4.280045176173,
+          "reference_price": 8.655,
+          "notional_usdt": 37.043791,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -37.043791
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "SELL",
+          "quantity_delta": -1.639935342106,
+          "reference_price": 0.32959396,
+          "notional_usdt": 0.54051278,
+          "from_notional_usdt": 37.58430378,
+          "to_notional_usdt": 37.043791
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-07-25T16:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 147.29241917,
+      "turnover_usdt": 218.53709445,
+      "fee_usdt": 0.10926855,
+      "slippage_usdt": 0.04370742,
+      "long_candidates": [
+        "DOTUSDT",
+        "AVAXUSDT"
+      ],
+      "short_candidates": [
+        "LTCUSDT",
+        "BNBUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "AVAXUSDT",
+          "side": "BUY",
+          "quantity_delta": 5.601185244049,
+          "reference_price": 6.58099084,
+          "notional_usdt": 36.86134878,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 36.86134878
+        },
+        {
+          "symbol": "BCHUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.165581043267,
+          "reference_price": 209.7342785,
+          "notional_usdt": 34.72802064,
+          "from_notional_usdt": 34.72802064,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "BNBUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.000484206056,
+          "reference_price": 567.25568743,
+          "notional_usdt": 0.27466864,
+          "from_notional_usdt": -36.58668014,
+          "to_notional_usdt": -36.86134878
+        },
+        {
+          "symbol": "DOTUSDT",
+          "side": "BUY",
+          "quantity_delta": 44.876246389372,
+          "reference_price": 0.8214,
+          "notional_usdt": 36.86134878,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 36.86134878
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "BUY",
+          "quantity_delta": 4.280045176173,
+          "reference_price": 8.381,
+          "notional_usdt": 35.87105862,
+          "from_notional_usdt": -35.87105862,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "LTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.800308721498,
+          "reference_price": 46.05891176,
+          "notional_usdt": 36.86134878,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -36.86134878
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "SELL",
+          "quantity_delta": -112.392202210795,
+          "reference_price": 0.3299099,
+          "notional_usdt": 37.07930019,
+          "from_notional_usdt": 37.07930019,
+          "to_notional_usdt": 0.0
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-08-07T16:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 144.19958322,
+      "turnover_usdt": 292.02417015,
+      "fee_usdt": 0.14601209,
+      "slippage_usdt": 0.05840483,
+      "long_candidates": [
+        "TRXUSDT",
+        "LTCUSDT"
+      ],
+      "short_candidates": [
+        "DOTUSDT",
+        "ADAUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ADAUSDT",
+          "side": "SELL",
+          "quantity_delta": -179.785856741564,
+          "reference_price": 0.2008,
+          "notional_usdt": 36.10100003,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -36.10100003
+        },
+        {
+          "symbol": "AVAXUSDT",
+          "side": "SELL",
+          "quantity_delta": -5.601185244049,
+          "reference_price": 6.437,
+          "notional_usdt": 36.05482942,
+          "from_notional_usdt": 36.05482942,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "BNBUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.064981893705,
+          "reference_price": 592.7,
+          "notional_usdt": 38.5147684,
+          "from_notional_usdt": -38.5147684,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "DOTUSDT",
+          "side": "SELL",
+          "quantity_delta": -89.505990527962,
+          "reference_price": 0.8089,
+          "notional_usdt": 72.40139574,
+          "from_notional_usdt": 36.3003957,
+          "to_notional_usdt": -36.10100003
+        },
+        {
+          "symbol": "LTCUSDT",
+          "side": "BUY",
+          "quantity_delta": 1.586480325019,
+          "reference_price": 45.92,
+          "notional_usdt": 72.85117652,
+          "from_notional_usdt": -36.75017649,
+          "to_notional_usdt": 36.10100003
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "BUY",
+          "quantity_delta": 110.238793311671,
+          "reference_price": 0.32748,
+          "notional_usdt": 36.10100003,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 36.10100003
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-08-20T08:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 149.33700231,
+      "turnover_usdt": 217.84353255,
+      "fee_usdt": 0.10892177,
+      "slippage_usdt": 0.04356871,
+      "long_candidates": [
+        "BCHUSDT",
+        "TRXUSDT"
+      ],
+      "short_candidates": [
+        "BTCUSDT",
+        "LINKUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "ADAUSDT",
+          "side": "BUY",
+          "quantity_delta": 179.785856741564,
+          "reference_price": 0.18403659,
+          "notional_usdt": 33.087176,
+          "from_notional_usdt": -33.087176,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "BCHUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.174931535273,
+          "reference_price": 213.64,
+          "notional_usdt": 37.3723732,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 37.3723732
+        },
+        {
+          "symbol": "BTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.000535295096,
+          "reference_price": 69816.39373913,
+          "notional_usdt": 37.3723732,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -37.3723732
+        },
+        {
+          "symbol": "DOTUSDT",
+          "side": "BUY",
+          "quantity_delta": 44.629744138591,
+          "reference_price": 0.79018591,
+          "notional_usdt": 35.26579499,
+          "from_notional_usdt": -35.26579499,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "SELL",
+          "quantity_delta": -3.545429579335,
+          "reference_price": 10.541,
+          "notional_usdt": 37.3723732,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -37.3723732
+        },
+        {
+          "symbol": "LTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.786171603521,
+          "reference_price": 46.83,
+          "notional_usdt": 36.81641619,
+          "from_notional_usdt": 36.81641619,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "BUY",
+          "quantity_delta": 1.667941613995,
+          "reference_price": 0.33396,
+          "notional_usdt": 0.55702578,
+          "from_notional_usdt": 36.81534741,
+          "to_notional_usdt": 37.3723732
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-08-27T08:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 150.01975307,
+      "turnover_usdt": 243.42501153,
+      "fee_usdt": 0.12171251,
+      "slippage_usdt": 0.048685,
+      "long_candidates": [
+        "TRXUSDT",
+        "DOTUSDT"
+      ],
+      "short_candidates": [
+        "DOGEUSDT",
+        "BCHUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "BCHUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.31456981314,
+          "reference_price": 268.89144021,
+          "notional_usdt": 84.5851301,
+          "from_notional_usdt": 47.03759246,
+          "to_notional_usdt": -37.54753764
+        },
+        {
+          "symbol": "BTCUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.000535295096,
+          "reference_price": 79059.7635942,
+          "notional_usdt": 42.32030375,
+          "from_notional_usdt": -42.32030375,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "side": "SELL",
+          "quantity_delta": -431.048374307206,
+          "reference_price": 0.08710748,
+          "notional_usdt": 37.54753764,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -37.54753764
+        },
+        {
+          "symbol": "DOTUSDT",
+          "side": "BUY",
+          "quantity_delta": 42.851322538449,
+          "reference_price": 0.87622821,
+          "notional_usdt": 37.54753764,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 37.54753764
+        },
+        {
+          "symbol": "LINKUSDT",
+          "side": "BUY",
+          "quantity_delta": 3.545429579335,
+          "reference_price": 11.667,
+          "notional_usdt": 41.3645269,
+          "from_notional_usdt": -41.3645269,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.179037012197,
+          "reference_price": 0.33498933,
+          "notional_usdt": 0.05997549,
+          "from_notional_usdt": 37.48756216,
+          "to_notional_usdt": 37.54753764
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-09-03T08:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 153.47282101,
+      "turnover_usdt": 155.3054044,
+      "fee_usdt": 0.0776527,
+      "slippage_usdt": 0.03106108,
+      "long_candidates": [
+        "TRXUSDT",
+        "SOLUSDT"
+      ],
+      "short_candidates": [
+        "BCHUSDT",
+        "BTCUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "BCHUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.013759764128,
+          "reference_price": 250.29904684,
+          "notional_usdt": 3.44405585,
+          "from_notional_usdt": -34.95132785,
+          "to_notional_usdt": -38.3953837
+        },
+        {
+          "symbol": "BTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.000494648187,
+          "reference_price": 77621.6,
+          "notional_usdt": 38.3953837,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -38.3953837
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "side": "BUY",
+          "quantity_delta": 431.048374307206,
+          "reference_price": 0.08286,
+          "notional_usdt": 35.7166683,
+          "from_notional_usdt": -35.7166683,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "DOTUSDT",
+          "side": "SELL",
+          "quantity_delta": -42.851322538449,
+          "reference_price": 0.87495049,
+          "notional_usdt": 37.49278565,
+          "from_notional_usdt": 37.49278565,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "SOLUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.382614685585,
+          "reference_price": 100.35,
+          "notional_usdt": 38.3953837,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 38.3953837
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "BUY",
+          "quantity_delta": 5.709870689794,
+          "reference_price": 0.3259491,
+          "notional_usdt": 1.86112721,
+          "from_notional_usdt": 36.53425649,
+          "to_notional_usdt": 38.3953837
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-09-11T08:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 158.37422175,
+      "turnover_usdt": 230.28799903,
+      "fee_usdt": 0.115144,
+      "slippage_usdt": 0.0460576,
+      "long_candidates": [
+        "TRXUSDT",
+        "BCHUSDT"
+      ],
+      "short_candidates": [
+        "LTCUSDT",
+        "DOTUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "BCHUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.327874600853,
+          "reference_price": 227.15862862,
+          "notional_usdt": 74.47954469,
+          "from_notional_usdt": -34.84568885,
+          "to_notional_usdt": 39.63385584
+        },
+        {
+          "symbol": "BTCUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.000494648187,
+          "reference_price": 77188.1,
+          "notional_usdt": 38.18095371,
+          "from_notional_usdt": -38.18095371,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "DOTUSDT",
+          "side": "SELL",
+          "quantity_delta": -35.241679034867,
+          "reference_price": 1.12463018,
+          "notional_usdt": 39.63385584,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -39.63385584
+        },
+        {
+          "symbol": "LTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.746822231703,
+          "reference_price": 53.07,
+          "notional_usdt": 39.63385584,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -39.63385584
+        },
+        {
+          "symbol": "SOLUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.382614685585,
+          "reference_price": 99.68212528,
+          "notional_usdt": 38.13984502,
+          "from_notional_usdt": 38.13984502,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.650086997105,
+          "reference_price": 0.33833,
+          "notional_usdt": 0.21994393,
+          "from_notional_usdt": 39.85379977,
+          "to_notional_usdt": 39.63385584
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-09-18T16:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 160.3312179,
+      "turnover_usdt": 166.03914281,
+      "fee_usdt": 0.08301957,
+      "slippage_usdt": 0.03320783,
+      "long_candidates": [
+        "TRXUSDT",
+        "BCHUSDT"
+      ],
+      "short_candidates": [
+        "DOGEUSDT",
+        "BTCUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "BCHUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.015081123435,
+          "reference_price": 251.65,
+          "notional_usdt": 3.79516471,
+          "from_notional_usdt": 43.90702604,
+          "to_notional_usdt": 40.11186132
+        },
+        {
+          "symbol": "BTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.00049711808,
+          "reference_price": 80688.8,
+          "notional_usdt": 40.11186132,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -40.11186132
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "side": "SELL",
+          "quantity_delta": -458.526078236031,
+          "reference_price": 0.08748,
+          "notional_usdt": 40.11186132,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -40.11186132
+        },
+        {
+          "symbol": "DOTUSDT",
+          "side": "BUY",
+          "quantity_delta": 35.241679034867,
+          "reference_price": 1.1334672,
+          "notional_usdt": 39.94528726,
+          "from_notional_usdt": -39.94528726,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "LTCUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.746822231703,
+          "reference_price": 55.88,
+          "notional_usdt": 41.73242631,
+          "from_notional_usdt": -41.73242631,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "BUY",
+          "quantity_delta": 1.009000395034,
+          "reference_price": 0.33948637,
+          "notional_usdt": 0.34254188,
+          "from_notional_usdt": 39.76931944,
+          "to_notional_usdt": 40.11186132
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-09-22T00:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 154.74757666,
+      "turnover_usdt": 94.70298412,
+      "fee_usdt": 0.04735149,
+      "slippage_usdt": 0.0189406,
+      "long_candidates": [
+        "TRXUSDT",
+        "BCHUSDT"
+      ],
+      "short_candidates": [
+        "DOGEUSDT",
+        "LTCUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "BCHUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.014476623172,
+          "reference_price": 267.07,
+          "notional_usdt": 3.86627175,
+          "from_notional_usdt": 42.56973894,
+          "to_notional_usdt": 38.70346719
+        },
+        {
+          "symbol": "BTCUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.00049711808,
+          "reference_price": 86584.31915217,
+          "notional_usdt": 43.04263048,
+          "from_notional_usdt": -43.04263048,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "side": "BUY",
+          "quantity_delta": 70.896744196016,
+          "reference_price": 0.09984659,
+          "notional_usdt": 7.07879815,
+          "from_notional_usdt": -45.78226534,
+          "to_notional_usdt": -38.70346719
+        },
+        {
+          "symbol": "LTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.624450511406,
+          "reference_price": 61.98003922,
+          "notional_usdt": 38.70346719,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -38.70346719
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "SELL",
+          "quantity_delta": -5.838232444297,
+          "reference_price": 0.34459343,
+          "notional_usdt": 2.01181654,
+          "from_notional_usdt": 40.71528373,
+          "to_notional_usdt": 38.70346719
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-09-29T00:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 157.71865897,
+      "turnover_usdt": 165.80930424,
+      "fee_usdt": 0.08290465,
+      "slippage_usdt": 0.03316186,
+      "long_candidates": [
+        "TRXUSDT",
+        "BNBUSDT"
+      ],
+      "short_candidates": [
+        "LTCUSDT",
+        "BCHUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "BCHUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.272150190556,
+          "reference_price": 310.13325404,
+          "notional_usdt": 84.40282418,
+          "from_notional_usdt": 44.94414282,
+          "to_notional_usdt": -39.45868137
+        },
+        {
+          "symbol": "BNBUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.051627438474,
+          "reference_price": 764.29670997,
+          "notional_usdt": 39.45868137,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 39.45868137
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "side": "BUY",
+          "quantity_delta": 387.629334040014,
+          "reference_price": 0.0939,
+          "notional_usdt": 36.39839447,
+          "from_notional_usdt": -36.39839447,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "LTCUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.054238352886,
+          "reference_price": 69.2,
+          "notional_usdt": 3.75329402,
+          "from_notional_usdt": -43.21197539,
+          "to_notional_usdt": -39.45868137
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "BUY",
+          "quantity_delta": 5.356312341881,
+          "reference_price": 0.33532589,
+          "notional_usdt": 1.7961102,
+          "from_notional_usdt": 37.66257117,
+          "to_notional_usdt": 39.45868137
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-10-05T16:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 157.93476539,
+      "turnover_usdt": 160.23491487,
+      "fee_usdt": 0.08011746,
+      "slippage_usdt": 0.03204698,
+      "long_candidates": [
+        "TRXUSDT",
+        "SOLUSDT"
+      ],
+      "short_candidates": [
+        "BCHUSDT",
+        "DOGEUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "BCHUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.001920628702,
+          "reference_price": 315.31,
+          "notional_usdt": 0.60559344,
+          "from_notional_usdt": -40.11732589,
+          "to_notional_usdt": -39.51173246
+        },
+        {
+          "symbol": "BNBUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.051627438474,
+          "reference_price": 787.64681889,
+          "notional_usdt": 40.66418768,
+          "from_notional_usdt": 40.66418768,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "side": "SELL",
+          "quantity_delta": -418.035183847862,
+          "reference_price": 0.09451772,
+          "notional_usdt": 39.51173246,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -39.51173246
+        },
+        {
+          "symbol": "LTCUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.57021215852,
+          "reference_price": 69.97,
+          "notional_usdt": 39.89774473,
+          "from_notional_usdt": -39.89774473,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "SOLUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.331279722119,
+          "reference_price": 119.27,
+          "notional_usdt": 39.51173246,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 39.51173246
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.130668179363,
+          "reference_price": 0.33615,
+          "notional_usdt": 0.04392411,
+          "from_notional_usdt": 39.55565657,
+          "to_notional_usdt": 39.51173246
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-10-09T16:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 163.52087267,
+      "turnover_usdt": 161.84621604,
+      "fee_usdt": 0.08092311,
+      "slippage_usdt": 0.03236924,
+      "long_candidates": [
+        "TRXUSDT",
+        "XRPUSDT"
+      ],
+      "short_candidates": [
+        "LTCUSDT",
+        "BCHUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "BCHUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.023658083239,
+          "reference_price": 274.61141015,
+          "notional_usdt": 6.4967796,
+          "from_notional_usdt": -34.41176166,
+          "to_notional_usdt": -40.90854125
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "side": "BUY",
+          "quantity_delta": 418.035183847862,
+          "reference_price": 0.08460383,
+          "notional_usdt": 35.36737763,
+          "from_notional_usdt": -35.36737763,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "LTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.643181554621,
+          "reference_price": 63.60341176,
+          "notional_usdt": 40.90854125,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -40.90854125
+        },
+        {
+          "symbol": "SOLUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.331279722119,
+          "reference_price": 109.68778748,
+          "notional_usdt": 36.33733976,
+          "from_notional_usdt": 36.33733976,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "BUY",
+          "quantity_delta": 5.496904376818,
+          "reference_price": 0.33248469,
+          "notional_usdt": 1.82763655,
+          "from_notional_usdt": 39.08090471,
+          "to_notional_usdt": 40.90854125
+        },
+        {
+          "symbol": "XRPUSDT",
+          "side": "BUY",
+          "quantity_delta": 29.597735326394,
+          "reference_price": 1.38215106,
+          "notional_usdt": 40.90854125,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": 40.90854125
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-10-15T08:00:00+00:00",
+      "regime": "bull",
+      "active_mode": "both",
+      "equity_after_cost_usdt": 166.44848833,
+      "turnover_usdt": 241.3029105,
+      "fee_usdt": 0.12065146,
+      "slippage_usdt": 0.04826058,
+      "long_candidates": [
+        "TRXUSDT",
+        "BCHUSDT"
+      ],
+      "short_candidates": [
+        "SOLUSDT",
+        "DOTUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "BCHUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.307278159738,
+          "reference_price": 263.12,
+          "notional_usdt": 80.85102939,
+          "from_notional_usdt": -39.1966793,
+          "to_notional_usdt": 41.65435009
+        },
+        {
+          "symbol": "DOTUSDT",
+          "side": "SELL",
+          "quantity_delta": -38.042287055102,
+          "reference_price": 1.09494863,
+          "notional_usdt": 41.65435009,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -41.65435009
+        },
+        {
+          "symbol": "LTCUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.643181554621,
+          "reference_price": 58.31773529,
+          "notional_usdt": 37.50889165,
+          "from_notional_usdt": -37.50889165,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "SOLUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.403498528006,
+          "reference_price": 103.23296667,
+          "notional_usdt": 41.65435009,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -41.65435009
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "BUY",
+          "quantity_delta": 2.286368102772,
+          "reference_price": 0.33237,
+          "notional_usdt": 0.75992017,
+          "from_notional_usdt": 40.89442993,
+          "to_notional_usdt": 41.65435009
+        },
+        {
+          "symbol": "XRPUSDT",
+          "side": "SELL",
+          "quantity_delta": -29.597735326394,
+          "reference_price": 1.31342377,
+          "notional_usdt": 38.87436912,
+          "from_notional_usdt": 38.87436912,
+          "to_notional_usdt": 0.0
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-10-24T16:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 170.4468911,
+      "turnover_usdt": 334.39812147,
+      "fee_usdt": 0.16719906,
+      "slippage_usdt": 0.06687962,
+      "long_candidates": [
+        "TRXUSDT",
+        "AVAXUSDT"
+      ],
+      "short_candidates": [
+        "ETHUSDT",
+        "BTCUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "BCHUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.158309326897,
+          "reference_price": 270.08172271,
+          "notional_usdt": 42.75645573,
+          "from_notional_usdt": 42.75645573,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "BTCUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.001069742546,
+          "reference_price": 79776.65766667,
+          "notional_usdt": 85.34048489,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -85.34048489
+        },
+        {
+          "symbol": "DOTUSDT",
+          "side": "BUY",
+          "quantity_delta": 38.042287055102,
+          "reference_price": 1.03830083,
+          "notional_usdt": 39.49933822,
+          "from_notional_usdt": -39.49933822,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "ETHUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.037013900167,
+          "reference_price": 2305.63341085,
+          "notional_usdt": 85.34048489,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -85.34048489
+        },
+        {
+          "symbol": "SOLUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.403498528006,
+          "reference_price": 99.72,
+          "notional_usdt": 40.23687321,
+          "from_notional_usdt": -40.23687321,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "TRXUSDT",
+          "side": "SELL",
+          "quantity_delta": -125.325240223397,
+          "reference_price": 0.32894,
+          "notional_usdt": 41.22448452,
+          "from_notional_usdt": 41.22448452,
+          "to_notional_usdt": 0.0
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-10-30T00:00:00+00:00",
+      "regime": "bear",
+      "active_mode": "short_only",
+      "equity_after_cost_usdt": 174.21211204,
+      "turnover_usdt": 341.24539534,
+      "fee_usdt": 0.1706227,
+      "slippage_usdt": 0.06824908,
+      "long_candidates": [
+        "TRXUSDT",
+        "DOTUSDT"
+      ],
+      "short_candidates": [
+        "SOLUSDT",
+        "XRPUSDT"
+      ],
+      "orders": [
+        {
+          "symbol": "BTCUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.001069742546,
+          "reference_price": 77972.6,
+          "notional_usdt": 83.41060765,
+          "from_notional_usdt": -83.41060765,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "ETHUSDT",
+          "side": "BUY",
+          "quantity_delta": 0.037013900167,
+          "reference_price": 2252.77,
+          "notional_usdt": 83.38380388,
+          "from_notional_usdt": -83.38380388,
+          "to_notional_usdt": 0.0
+        },
+        {
+          "symbol": "SOLUSDT",
+          "side": "SELL",
+          "quantity_delta": -0.912018945073,
+          "reference_price": 95.64,
+          "notional_usdt": 87.22549191,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -87.22549191
+        },
+        {
+          "symbol": "XRPUSDT",
+          "side": "SELL",
+          "quantity_delta": -70.496639381535,
+          "reference_price": 1.2373,
+          "notional_usdt": 87.22549191,
+          "from_notional_usdt": 0.0,
+          "to_notional_usdt": -87.22549191
+        }
+      ]
+    }
+  ],
+  "all_oos_order_deltas": 268,
+  "per_symbol_order_size_summary": {
+    "ADAUSDT": {
+      "oos_order_count": 22,
+      "oos_order_notional_usdt": {
+        "min": 1.0238459,
+        "median": 31.08823917,
+        "p90": 59.63587569,
+        "max": 68.01501979
+      },
+      "first_of_month_sample_order_count": 3,
+      "first_of_month_sample_notional_usdt": {
+        "min": 1.06034601,
+        "median": 25.0,
+        "max": 26.15244851
+      }
+    },
+    "AVAXUSDT": {
+      "oos_order_count": 10,
+      "oos_order_notional_usdt": {
+        "min": 0.47895837,
+        "median": 31.34806266,
+        "p90": 36.05482942,
+        "max": 36.86134878
+      },
+      "first_of_month_sample_order_count": 0,
+      "first_of_month_sample_notional_usdt": {
+        "min": null,
+        "median": null,
+        "max": null
+      }
+    },
+    "BCHUSDT": {
+      "oos_order_count": 26,
+      "oos_order_notional_usdt": {
+        "min": 0.60559344,
+        "median": 31.19158952,
+        "p90": 80.85102939,
+        "max": 84.5851301
+      },
+      "first_of_month_sample_order_count": 0,
+      "first_of_month_sample_notional_usdt": {
+        "min": null,
+        "median": null,
+        "max": null
+      }
+    },
+    "BNBUSDT": {
+      "oos_order_count": 9,
+      "oos_order_notional_usdt": {
+        "min": 0.27466864,
+        "median": 40.66418768,
+        "p90": 80.50206603,
+        "max": 80.50206603
+      },
+      "first_of_month_sample_order_count": 0,
+      "first_of_month_sample_notional_usdt": {
+        "min": null,
+        "median": null,
+        "max": null
+      }
+    },
+    "BTCUSDT": {
+      "oos_order_count": 35,
+      "oos_order_notional_usdt": {
+        "min": 0.47139586,
+        "median": 40.11186132,
+        "p90": 79.16047385,
+        "max": 93.08562674
+      },
+      "first_of_month_sample_order_count": 2,
+      "first_of_month_sample_notional_usdt": {
+        "min": 10.39902052,
+        "median": 10.39902052,
+        "max": 93.08562674
+      }
+    },
+    "DOGEUSDT": {
+      "oos_order_count": 16,
+      "oos_order_notional_usdt": {
+        "min": 5.51989797,
+        "median": 35.7166683,
+        "p90": 69.67864108,
+        "max": 70.66668842
+      },
+      "first_of_month_sample_order_count": 0,
+      "first_of_month_sample_notional_usdt": {
+        "min": null,
+        "median": null,
+        "max": null
+      }
+    },
+    "DOTUSDT": {
+      "oos_order_count": 23,
+      "oos_order_notional_usdt": {
+        "min": 0.67419546,
+        "median": 33.98741245,
+        "p90": 39.94528726,
+        "max": 72.40139574
+      },
+      "first_of_month_sample_order_count": 0,
+      "first_of_month_sample_notional_usdt": {
+        "min": null,
+        "median": null,
+        "max": null
+      }
+    },
+    "ETHUSDT": {
+      "oos_order_count": 17,
+      "oos_order_notional_usdt": {
+        "min": 1.23341617,
+        "median": 47.31033512,
+        "p90": 85.34048489,
+        "max": 91.92361614
+      },
+      "first_of_month_sample_order_count": 2,
+      "first_of_month_sample_notional_usdt": {
+        "min": 51.31360431,
+        "median": 51.31360431,
+        "max": 91.92361614
+      }
+    },
+    "LINKUSDT": {
+      "oos_order_count": 39,
+      "oos_order_notional_usdt": {
+        "min": 0.02723604,
+        "median": 32.17602277,
+        "p90": 58.50884158,
+        "max": 78.43520947
+      },
+      "first_of_month_sample_order_count": 2,
+      "first_of_month_sample_notional_usdt": {
+        "min": 27.09344183,
+        "median": 27.09344183,
+        "max": 67.30557989
+      }
+    },
+    "LTCUSDT": {
+      "oos_order_count": 16,
+      "oos_order_notional_usdt": {
+        "min": 3.75329402,
+        "median": 37.50889165,
+        "p90": 53.25993237,
+        "max": 72.85117652
+      },
+      "first_of_month_sample_order_count": 0,
+      "first_of_month_sample_notional_usdt": {
+        "min": null,
+        "median": null,
+        "max": null
+      }
+    },
+    "SOLUSDT": {
+      "oos_order_count": 15,
+      "oos_order_notional_usdt": {
+        "min": 0.08184912,
+        "median": 38.13984502,
+        "p90": 84.84758226,
+        "max": 87.22549191
+      },
+      "first_of_month_sample_order_count": 2,
+      "first_of_month_sample_notional_usdt": {
+        "min": 1.4025559,
+        "median": 1.4025559,
+        "max": 25.0
+      }
+    },
+    "TRXUSDT": {
+      "oos_order_count": 26,
+      "oos_order_notional_usdt": {
+        "min": 0.04392411,
+        "median": 21.90781065,
+        "p90": 37.07930019,
+        "max": 41.22448452
+      },
+      "first_of_month_sample_order_count": 2,
+      "first_of_month_sample_notional_usdt": {
+        "min": 0.49030659,
+        "median": 0.49030659,
+        "max": 25.0
+      }
+    },
+    "XRPUSDT": {
+      "oos_order_count": 14,
+      "oos_order_notional_usdt": {
+        "min": 0.85798152,
+        "median": 31.91605437,
+        "p90": 46.34122446,
+        "max": 87.22549191
+      },
+      "first_of_month_sample_order_count": 2,
+      "first_of_month_sample_notional_usdt": {
+        "min": 0.85798152,
+        "median": 0.85798152,
+        "max": 25.0
+      }
+    }
+  },
+  "l2_symbol_coverage": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "SOLUSDT"
+  ],
+  "interpretation_limits": [
+    "The order deltas are target changes at the simulator's funding-event mark, not exchange fills.",
+    "The audit uses the already-inspected MEAFLOW-72 OOS window; it is not a new unseen profitability result.",
+    "Only BTC, ETH and SOL have been covered by the EXP-015 event-level L2 pilot; other strategy symbols have no L2 replay coverage here.",
+    "A first-of-month L2 sample is useful only when an actual rebalance occurs on that UTC date; no date/time matching is assumed.",
+    "Actual order sizes must replace EXP-015's fixed 100 USDT probes before any fill-rate transfer is attempted.",
+    "No strategy files on MEAFLOW-72 or MEAFLOW-52 are modified.",
+    "This export is an execution-data selection aid, not a new profitability test or strategy change."
+  ]
+}
