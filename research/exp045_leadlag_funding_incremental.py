@@ -80,17 +80,20 @@ def ols_fit_predict(xtr,ytr,xte):
  beta=np.linalg.lstsq(a,ytr,rcond=None)[0]
  return b@beta,beta,mu,sd
 
-def block_ci(values,seed,reps=1500,block=24):
- # values is a [timestamps, symbols] matrix; resample contiguous timestamp blocks.
- x=np.asarray(values,float); n=len(x)
+def block_ci(improvement, total_variation, seed, reps=1500, block=24):
+ # Paired moving-block bootstrap of the OOS incremental R2 ratio.
+ # Resample timestamp rows and recompute sum(error improvement)/sum(y^2)
+ # within each draw; this avoids scaling a mean CI by an approximate sample count.
+ x=np.asarray(improvement,float); d=np.asarray(total_variation,float); n=len(x)
  if n<200:return [None,None]
  rng=np.random.default_rng(seed); out=[]
  for _ in range(reps):
   ids=[]
   while len(ids)<n:
    s=int(rng.integers(0,n)); ids.extend((s+j)%n for j in range(block))
-  z=x[np.asarray(ids[:n])]
-  out.append(float(np.nanmean(z)))
+  ix=np.asarray(ids[:n]); num=float(np.nansum(x[ix])); den=float(np.nansum(d[ix]))
+  if den>0: out.append(num/den)
+ if len(out)<reps*.9:return [None,None]
  return [float(np.quantile(out,.025)),float(np.quantile(out,.975))]
 
 def metrics(y,p1,p2):
@@ -182,12 +185,11 @@ def main():
   p1,b1,_,_=ols_fit_predict(m1tr,ytr,m1te)
   p2,b2,_,_=ols_fit_predict(m2tr,ytr,m2te)
   # Build timestamp x symbol residual-improvement matrix for paired block bootstrap.
-  dmat=np.full((n,k),np.nan)
-  for q,(ti,j) in enumerate(zip(tte,ste)): dmat[ti,j]=((yte[q]-p1[q])**2-(yte[q]-p2[q])**2)
-  # R2 improvement expressed as reduction in squared error / total OOS demeaned variation.
-  denom=float(np.nansum(np.array([yd[t,j]**2 for t,j in zip(tte,ste)])))
-  ci_raw=block_ci(dmat,45000+h)
-  ci=[v/denom*len(tte) if v is not None and denom else None for v in ci_raw]
+  dmat=np.full((n,k),np.nan); vmat=np.full((n,k),np.nan)
+  for q,(ti,j) in enumerate(zip(tte,ste)):
+   dmat[ti,j]=((yte[q]-p1[q])**2-(yte[q]-p2[q])**2)
+   vmat[ti,j]=yte[q]**2
+  ci=block_ci(dmat,vmat,45000+h)
   met=metrics(yte,p1,p2)
   met.update({"horizon_hours":h,"m1_coefficients_standardized":b1.tolist(),"m2_coefficients_standardized":b2.tolist(),
               "peer_beta_standardized":float(b2[-1]),"incremental_oos_r2_95pct_block_ci":ci,
@@ -210,13 +212,31 @@ def main():
    keep=np.array([maskreg[t] for t in tte])
    regout[rg]=metrics(yte[keep],p1[keep],p2[keep]) if keep.any() else {}
   output["oos_regimes"][str(h)]=regout
-  # Per-symbol peer beta signs and incremental prediction gain using same pooled coefficients.
-  ps={}
+  # Train-only per-symbol peer slopes, controlling for own lag and funding.
+  # These slopes are estimated without using OOS outcomes; OOS gain is reported separately.
+  ps={}; positive_beta_symbols=0
   for j,s in enumerate(SYMBOLS):
+   # Rebuild the training rows with symbol IDs to avoid leaking OOS information.
+   tx,ty,tsym,ttm=build(*splits["train"])
+   ixtr=np.where(tsym==j)[0]; beta_peer=None
+   if len(ixtr)>=100:
+    base=np.column_stack([tx[ixtr,0],tx[ixtr,1]])
+    peer_col=tx[ixtr,2]
+    base=np.column_stack([np.ones(len(base)),base])
+    resid_peer=peer_col-base@np.linalg.lstsq(base,peer_col,rcond=None)[0]
+    resid_y=ty[ixtr]-base@np.linalg.lstsq(base,ty[ixtr],rcond=None)[0]
+    den=float(resid_peer@resid_peer)
+    if den>1e-12: beta_peer=float((resid_peer@resid_y)/den)
    ix=np.where(ste==j)[0]
    if len(ix):
-    mm=metrics(yte[ix],p1[ix],p2[ix]); mm["n"]=len(ix); ps[s]=mm
-  output["per_symbol"][str(h)]=ps
+    mm=metrics(yte[ix],p1[ix],p2[ix]); mm["n_oos"]=len(ix)
+    mm["train_only_peer_beta_raw"]=beta_peer
+    mm["train_only_peer_beta_positive"]=bool(beta_peer is not None and beta_peer>0)
+    if beta_peer is not None and beta_peer>0: positive_beta_symbols+=1
+    ps[s]=mm
+  output["per_symbol"][str(h)]={"positive_train_peer_beta_symbols":positive_beta_symbols,
+                                  "peer_beta_positive_gate_required":9,
+                                  "symbols":ps}
  Path(a.out).write_text(json.dumps(output,indent=2),encoding="utf-8")
  print(json.dumps({k:v for k,v in output.items() if k!="archive_qa"},indent=2),flush=True)
 if __name__=="__main__":main()
