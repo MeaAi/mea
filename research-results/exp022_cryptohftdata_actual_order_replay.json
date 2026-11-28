@@ -12,14 +12,16 @@
     "fee_bp_one_way": 5,
     "existing_model_slippage_bp_one_way": 2,
     "capital_reference_usdt": 100,
-    "leverage": 1
+    "leverage": 1,
+    "max_acceptable_first_after_delay_ms": 1000
   },
   "limitations": [
     "L2 is aggregated price-level data, not L3/FIFO queue position.",
     "A displayed-depth sweep is a snapshot taker-cost estimate, not a guarantee of live fills.",
     "No network delay beyond the archive receive timestamp, hidden liquidity, impact after the snapshot, or exchange liquidation engine is modeled.",
     "The two dates are a small bull/bear execution sample, not all 268 OOS order deltas.",
-    "No profitability, final capital, or strategy drawdown is recalculated."
+    "No profitability, final capital, or strategy drawdown is recalculated.",
+    "A first-after-signal book arriving more than 1,000 ms after the signal is marked stale and excluded from execution-cost aggregates."
   ],
   "files": [
     {
@@ -179,25 +181,9 @@
         "status": "no_valid_asof_book"
       },
       "first_after_execution": {
-        "status": "full_depth_sweep",
-        "side": "SELL",
-        "quantity": 0.000494648187,
-        "strategy_order_notional_usdt": 38.3953837,
-        "reference_mark_price": 77621.6,
-        "best_bid": 77917.7,
-        "best_ask": 77917.8,
-        "mid": 77917.75,
-        "spread_bp": 0.012834046158394046,
-        "vwap": 77917.7,
-        "filled_qty": 0.000494648187,
-        "remaining_qty": 0.0,
-        "market_cost_vs_mid_bp": 0.006417027196281566,
-        "market_cost_vs_mark_bp": -38.14659836952488,
+        "status": "stale_book_after_signal",
         "book_delay_ms": 2333711.722141,
-        "book_age_ms": -2333945.0,
-        "sequence_gaps_before_capture": 0,
-        "snapshots_before_capture": 1,
-        "last_update_id": 11462637224882
+        "book_age_ms": -2333945.0
       }
     },
     {
@@ -210,25 +196,9 @@
         "status": "no_valid_asof_book"
       },
       "first_after_execution": {
-        "status": "full_depth_sweep",
-        "side": "BUY",
-        "quantity": 0.382614685585,
-        "strategy_order_notional_usdt": 38.3953837,
-        "reference_mark_price": 100.35,
-        "best_bid": 100.74,
-        "best_ask": 100.75,
-        "mid": 100.745,
-        "spread_bp": 0.99260509206463,
-        "vwap": 100.75000000000001,
-        "filled_qty": 0.382614685585,
-        "remaining_qty": 0.0,
-        "market_cost_vs_mid_bp": 0.49630254603361124,
-        "market_cost_vs_mark_bp": 39.86048829098365,
+        "status": "stale_book_after_signal",
         "book_delay_ms": 2341674.70835,
-        "book_age_ms": -2379971.0,
-        "sequence_gaps_before_capture": 0,
-        "snapshots_before_capture": 1,
-        "last_update_id": 11462641695324
+        "book_age_ms": -2379971.0
       }
     },
     {
@@ -393,15 +363,15 @@
       "notional_weighted_cost_vs_mark_bp": 2.3440222381110045
     },
     "first_after": {
-      "valid_orders": 5,
+      "valid_orders": 3,
       "all_orders": 5,
-      "full_depth_fill_count": 5,
+      "full_depth_fill_count": 3,
       "median_cost_vs_mid_bp": 0.021694515190961994,
       "max_cost_vs_mid_bp": 0.5014290728566628,
       "median_cost_vs_mark_bp": 1.874942759885832,
-      "max_cost_vs_mark_bp": 39.86048829098365,
-      "notional_weighted_cost_vs_mid_bp": 0.1455098646589119,
-      "notional_weighted_cost_vs_mark_bp": 1.9471143904159245
+      "max_cost_vs_mark_bp": 3.918276191473764,
+      "notional_weighted_cost_vs_mid_bp": 0.10697212588344296,
+      "notional_weighted_cost_vs_mark_bp": 2.3440222381110045
     }
   }
 }
