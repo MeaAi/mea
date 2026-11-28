@@ -14,7 +14,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import exp025_forward_simulator as sim
 
 SYMBOLS = "BTCUSDT,ETHUSDT,BNBUSDT,XRPUSDT,ADAUSDT,DOGEUSDT,SOLUSDT,LINKUSDT,LTCUSDT,BCHUSDT,DOTUSDT,TRXUSDT,AVAXUSDT".split(",")
-POLICY = {"bull": "both", "bear": "short_only", "sideways": "flat", "unknown": "flat"}
+POLICY = {"bull": "both", "bear": "short_only", "sideways": "hold", "unknown": "flat"}
 START = "2026-11-01T00:00:00+00:00"
 END = "2026-11-26T23:00:00+00:00"
 OUT = Path("research-results/exp025_november_forward_validation.json")
@@ -218,10 +218,10 @@ def main():
         }
 
     report = {
-        "experiment": "EXP-025-MEAFLOW72-NOVEMBER-2026-FORWARD-VALIDATION",
+        "experiment": "EXP-027-MEAFLOW72-PER-SYMBOL-STOP-LOSS-SCREEN",
         "status": "completed_with_data_gaps" if errors else "completed",
         "strategy_branch": "MEAFLOW-72 (frozen, read-only)",
-        "research_branch": "research/meaflow-exp025-nov-forward-validation-v1",
+        "research_branch": "research/exp027-per-symbol-stop-loss-v1",
         "data_source": "October monthly Binance Vision context + November 1-26 daily markPriceKlines + public Binance USD-M fundingRate mirror, cross-checked against October Vision archives",
         "forward_period_utc": {"start": START, "end": END},
         "sample_scope": "PARTIAL NOVEMBER 1-26 UTC; not a full-month validation.",
