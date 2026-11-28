@@ -447,3 +447,13 @@ The following run SHAs are GitHub Actions `head_sha` values (workflow-trigger co
 - Current `MEAFLOW-72` branch head observed: `a1e5293e9e7b7258ab43b6c95ff13bfeefe2abb1`. This audit made no writes to `MEAFLOW-72`; all ledger writes were confined to `research/meaflow-ledger-orderflow-audit-v1`.
 - A branch named `MEAFLOW-52` is not currently returned by the repository branch search. No writes were made to any strategy branch or main branch during this audit. If the historical MEAFLOW-52 snapshot is needed, locate it by commit/tag or file history rather than assuming a current branch name.
 - Current ledger branch head after this update will be the next audit checkpoint; new chats should read this file before any research action.
+
+
+### EXP-025 corrected-loader preparation — isolated copy (2026-11-28)
+- Created preparation-only branch `research/meaflow-exp025-monthly-funding-fix-prep-v1` from the failed EXP-025 branch head `f5a2e2f0433f813833efe572326e1bbd309ea5b4`; this is not the protected MEAFLOW-72/MEAFLOW-52 branch.
+- Corrected loader commit: `93e032461343f5398949cafaf636175a89bcb836`; updated file `research/exp025_november_forward_validation.py`, blob SHA `2b55e741f7769e42b85f98055a9d74656aa1f161`.
+- The copy now loads November 2026 funding from the single monthly USD-M `fundingRate` archive, while retaining daily 1h `markPriceKlines` for each date in the forward window. It verifies each November archive using Binance's sibling `.CHECKSUM` SHA-256 and ZIP CRC before parsing.
+- The corrected copy requires all 13 symbols and all requested daily mark archives to pass; any missing archive/checksum blocks the simulation rather than silently changing the universe or producing a partial result.
+- No workflow was added or dispatched. The existing workflow is push-triggered only on the original `research/meaflow-exp025-nov-forward-validation-v1` branch; the preparation branch is outside that trigger. No Actions run was intentionally started.
+- Current date is 2026-11-28. November's monthly funding archive is not assumed available yet; check its actual presence and checksum after the documented first-Monday publication cycle (expected 2026-12-07), then verify every daily mark archive and timestamp alignment before any corrected run.
+- This is code preparation only, NOT a completed experiment and NOT a strategy result. EXP-025 remains FAILED/NO RESULT until the separate corrected run completes. No MEAFLOW-72 or MEAFLOW-52 files or refs were changed.
