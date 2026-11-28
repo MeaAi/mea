@@ -457,3 +457,13 @@ The following run SHAs are GitHub Actions `head_sha` values (workflow-trigger co
 - No workflow was added or dispatched. The existing workflow is push-triggered only on the original `research/meaflow-exp025-nov-forward-validation-v1` branch; the preparation branch is outside that trigger. No Actions run was intentionally started.
 - Current date is 2026-11-28. November's monthly funding archive is not assumed available yet; check its actual presence and checksum after the documented first-Monday publication cycle (expected 2026-12-07), then verify every daily mark archive and timestamp alignment before any corrected run.
 - This is code preparation only, NOT a completed experiment and NOT a strategy result. EXP-025 remains FAILED/NO RESULT until the separate corrected run completes. No MEAFLOW-72 or MEAFLOW-52 files or refs were changed.
+
+
+### EXP-025 partial November forward test — public REST funding data (2026-11-28)
+- User correctly noted that research need not wait for the November monthly funding archive. The isolated EXP-025 copy was adapted to retrieve November 1-26 funding settlements from Binance USD-M public `/fapi/v1/fundingRate` REST endpoint (no API key), while retaining October monthly history for lookback/regime context and November 1-26 daily 1h markPriceKlines.
+- Forward window explicitly ends `2026-11-26T23:00:00+00:00`; Nov 27-30 are excluded. Any resulting report must be labelled PARTIAL NOVEMBER, not a full-month validation.
+- Research branch: `research/meaflow-exp025-monthly-funding-fix-prep-v1`.
+- Evaluator update commit: `e4213f9205f18bda6293ede9366015e7f645546e`; file blob SHA: `f70df9293b1343a4f863e4e582db5321b2a91344`.
+- Isolated workflow added at `.github/workflows/exp025-partial-november.yml`; workflow commit: `22f9d3fa7459e0acc8c52b5466ed49fc01a4a83c`.
+- GitHub Actions run `46128060060`, job `140926954658`, was observed IN_PROGRESS at 2026-11-28 08:55 UTC. This is a real run, but no performance result is available until it completes and its report is inspected.
+- This run is a partial forward generalization check only; do not compare it as a complete November month. No MEAFLOW-72 or MEAFLOW-52 strategy files/branches were modified.
