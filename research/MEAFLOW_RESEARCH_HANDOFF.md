@@ -542,3 +542,19 @@ The following run SHAs are GitHub Actions `head_sha` values (workflow-trigger co
 1. EXP-029 candidate hypothesis: test bull=flat, bear=short_only, sideways=hold, unknown=flat on a separate research copy. Rationale: bull-regime net contribution was negative (-31.31 USDT) in EXP-028 while bear was +121.40 USDT. Predeclare this as a single policy screen, not a parameter sweep; compare against frozen MEAFLOW-72 on the same 2021-2022 period and require both return improvement and lower max DD before considering any further validation. No promotion from one window.
 2. If EXP-029 passes the initial screen, run it across the previously recorded 2023-2026 windows as a robustness check, clearly labeling those windows as previously inspected rather than pristine OOS.
 3. Keep MEAFLOW-72 and MEAFLOW-52 protected branches unchanged.
+
+
+### EXP-029 — Bull-flat regime policy screen (2026-11-28)
+- Status: COMPLETED; REJECTED under the joint acceptance rule.
+- Branch: research/exp029-bull-flat-regime-policy-v1; evaluator commit b5cc13a854b3fbc81659fcc29e0504215e498bcd; workflow commit ae3022e23b467accda15490290a16e3fde78cace; report commit e875eea84e72dea3e2e74bae1afef4d2b18802af; report research/EXP029_BULL_FLAT_POLICY_SCREEN.md.
+- Actions run 46132399208, job 140940218312, success. Artifact ID 15258172111, SHA-256 8000ccae20e8a69e2cc28b9712eeac41aa9b9efe9c91cbfc4bdf01eb5203e3d6.
+- Predeclared variant: bull=flat, bear=short_only, sideways=hold, unknown=flat. Same 2021-10-01 to 2022-12-31 window and same corrected 13-symbol data as EXP-028; 100 USDT, 1x, 5 bp one-way fee + 2 bp one-way slippage.
+- Frozen MEAFLOW-72 baseline: final 218.133618 USDT; +118.1336%; max DD -47.1792%.
+- Bull-flat variant: final 207.480120 USDT; +107.4801%; max DD -43.3646%. Return delta -10.6535 pp; DD delta +3.8146 pp. It reduces DD but also reduces return; joint gate fails. Bull net contribution improves from -31.3099 to +1.6012 USDT, but bear and sideways contributions fall; reject.
+- This was a hypothesis screen on the same window that motivated it, not independent confirmation. Do not promote and do not repeat this mapping unchanged.
+- MEAFLOW-72/MEAFLOW-52 protected branches remain untouched.
+
+### Updated next queue after EXP-029
+1. Do not repeat bull-flat or the rejected per-symbol stop-loss screen on the same historical window.
+2. Existing policy variants (bull long-only/both, bear short-only/both), debounce, exposure caps, drawdown scaling, volatility sizing, and sideways retention have already been tested on prior 2023-2026 windows. Do not re-run those as novel ideas. A new candidate must have a distinct mechanism and a predeclared acceptance test.
+3. Continue research only on a genuinely untested mechanism or a genuinely new market window; keep all work on research branches and preserve MEAFLOW-72.
