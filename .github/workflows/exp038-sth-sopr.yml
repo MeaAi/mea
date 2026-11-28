@@ -1,0 +1,33 @@
+name: EXP-038 STH-SOPR research
+on:
+  push:
+    branches: [research/exp038-sth-sopr]
+    paths:
+      - ".github/workflows/exp038-sth-sopr.yml"
+      - "research/exp038_sth_sopr.py"
+      - "research/funding_carry_liquidation_causal.py"
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/exp038-sth-sopr
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download STH-SOPR and Binance Vision data; run matched tests
+        run: python research/exp038_sth_sopr.py
+      - name: Upload EXP-038 report and source data
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp038-sth-sopr-results
+          path: |
+            research-results/exp038_sth_sopr.json
+            research-output/sth-sopr-source.json
+          retention-days: 30
