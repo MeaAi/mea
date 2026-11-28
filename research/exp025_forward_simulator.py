@@ -165,7 +165,8 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
     for cohort,cohort_q in cohort_qty[z].items(): entry_regime_pnl[cohort]['funding_pnl_usdt']+=-cohort_q*px[z]*rates[z]
   equity+=fpnl;funding_pnl+=fpnl
   if equity<=0:liquidated=True;liq_time=datetime.fromtimestamp(t/1000,timezone.utc).isoformat();liq_equity=0.;equity=0.;break
-  if last_rebal is None and t>=first+lookback or last_rebal is not None and (t-last_rebal>=interval or ((regime_filter is not None or regime_policy is not None) and rg!=last_regime)):
+  rebalance_event_coverage=sum(t in data[s]["fund"] and t in data[s]["marks"] for s in symbols)
+  if rebalance_event_coverage>=math.ceil(.8*len(symbols)) and (last_rebal is None and t>=first+lookback or last_rebal is not None and (t-last_rebal>=interval or ((regime_filter is not None or regime_policy is not None) and rg!=last_regime))):
    scores={}
    for s in trade_symbols:
     vals=[r for et,r in data[s]["fund"].items() if t-lookback<et<=t]
