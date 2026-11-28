@@ -1,0 +1,35 @@
+name: EXP-046 large-coin leader-follower diagnostic
+on:
+  push:
+    branches: [research/exp046-large-coin-leadership]
+    paths:
+      - "research/exp046_large_coin_leadership.py"
+      - "research/EXP046_large_coin_leadership_preregistration.md"
+      - ".github/workflows/exp046-large-coin-leadership.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: exp046-large-coin-leadership
+  cancel-in-progress: false
+jobs:
+  diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/exp046-large-coin-leadership
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install --disable-pip-version-check numpy scikit-learn
+      - name: Run preregistered diagnostic
+        run: |
+          python research/exp046_large_coin_leadership.py --start 2023-01 --end 2026-10 --out exp046_results.json --data exp046-data
+      - uses: actions/upload-artifact@v4
+        with:
+          name: exp046-large-coin-leadership-results
+          path: exp046_results.json
+          if-no-files-found: error
+          retention-days: 30
