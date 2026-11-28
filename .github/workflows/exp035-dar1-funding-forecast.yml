@@ -1,0 +1,29 @@
+name: EXP-035 DAR-inspired funding forecast screen
+on:
+  push:
+    branches:
+      - research/exp035-dar1-funding-forecast-v1
+    paths:
+      - research/exp035_dar1_funding_forecast.py
+      - research/exp025_forward_simulator.py
+      - .github/workflows/exp035-dar1-funding-forecast.yml
+permissions:
+  contents: read
+jobs:
+  dar1-funding-forecast:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run causal DAR-inspired funding forecast screen
+        run: python research/exp035_dar1_funding_forecast.py
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp035-dar1-funding-forecast-report
+          path: research-results/exp035_dar1_funding_forecast.json
+          if-no-files-found: warn
