@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""EXP-018 actual MEAFLOW-72 order market-sweep replay against Tardis L2.
+"""EXP-020 expanded-regime MEAFLOW-72 order market-sweep replay against Tardis L2.
 
 Scope is deliberately limited to two OOS first-of-month dates whose exact
 rebalance events generated orders: 2025-10-01 and 2026-06-01. It uses the
@@ -73,7 +73,7 @@ def sweep(levels, quantity):
 def replay_symbol_day(date, symbol, orders):
     y, m, d = date.split("-")
     url = f"{BASE}/incremental_book_L2/{y}/{m}/{d}/{symbol}.csv.gz"
-    path = Path(f"/tmp/exp018_{date}_{symbol}_l2.csv.gz")
+    path = Path(f"/tmp/exp020_{date}_{symbol}_l2.csv.gz")
     size, sha = download(url, path)
     targets = sorted(
         [{"target_us": to_us(o["time_utc"]), "order": o} for o in orders],
@@ -251,7 +251,7 @@ def main():
             "Tardis incremental_book_L2 is market-by-price aggregated depth, not market-by-order FIFO queue.",
             "This is an immediate taker sweep of displayed depth, not a maker fill model.",
             "No hidden liquidity, exchange matching-engine behavior, additional network latency, market impact after the snapshot, or funding/PnL is modeled.",
-            "The two sampled dates are a subset of actual OOS order events; results cannot be extrapolated to all 268 order deltas or to other symbols/dates.",
+            "The two sampled dates and BTC/ETH/SOL subset are a subset of actual OOS order events; results cannot be extrapolated to all 268 order deltas or to other symbols/dates.",
             "A full displayed-depth sweep is a snapshot estimate, not a guarantee of live execution.",
         ],
         "files": [],
