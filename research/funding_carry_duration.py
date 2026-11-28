@@ -214,6 +214,31 @@ def run(data,period,lev,fee_bp,slip_bp=2,mmr=.005,liq_fee=.01,lookback_days=7,re
   prev=px.copy()
   peak=max(peak,equity);maxdd=min(maxdd,(equity/peak-1)*100 if peak else -100)
   if equity<=0:liquidated=True;equity=0.;break
+ # Summarize completed episodes and separately retain still-open episodes.
+ closed_hours=[x["duration_hours"] for x in closed_episodes]
+ sorted_hours=sorted(closed_hours)
+ n_closed=len(sorted_hours)
+ median_hours=(sorted_hours[n_closed//2] if n_closed%2 else
+               (sorted_hours[n_closed//2-1]+sorted_hours[n_closed//2])/2) if n_closed else None
+ diagnostic_ts=events[-1] if events else first
+ open_episodes=[]
+ for z in symbols:
+  if qty[z] and position_started[z] is not None:
+   age_h=max(0.,(diagnostic_ts-position_started[z])/3600000.0)
+   open_episodes.append({"symbol":z,"entry_ts":position_started[z],
+                         "age_hours":age_h,"age_days":age_h/24.0,
+                         "direction":"long" if qty[z]>0 else "short"})
+ duration_stats={
+  "closed_episode_count":n_closed,
+  "mean_closed_days":(sum(sorted_hours)/n_closed/24.0) if n_closed else None,
+  "median_closed_days":(median_hours/24.0) if median_hours is not None else None,
+  "max_closed_days":(max(sorted_hours)/24.0) if n_closed else None,
+  "min_closed_days":(min(sorted_hours)/24.0) if n_closed else None,
+  "open_episode_count":len(open_episodes),
+  "open_episode_ages":open_episodes,
+  "duration_unit":"days",
+  "definition":"continuous non-zero symbol position; partial resize preserves episode; flat or direction flip closes it"
+ }
  gross=sum(abs(qty[s]*prev.get(s,0)) for s in symbols)
  return {"leverage":lev,"fee_bp_one_way":fee_bp,"slippage_bp_one_way":slip_bp,
   "maintenance_margin_rate_assumption":mmr,"liquidation_fee_assumption":liq_fee,
