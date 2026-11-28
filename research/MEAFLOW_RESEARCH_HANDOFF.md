@@ -701,8 +701,21 @@ The following run SHAs are GitHub Actions `head_sha` values (workflow-trigger co
 - Report artifact is retained under the Actions run. No protected strategy branch modified.
 
 ### EXP-036 — Fixed DAR forecast multiwindow robustness (2026-11-28)
-- Status: RUNNING; no result yet.
+- Status: COMPLETED; REJECTED. The 2021-2022 screen pass did not generalize.
 - Branch: `research/exp036-dar1-multiwindow-robustness-v1`; simulator commit `28337bc784ac6488ed82a9603604a20415e985a8`; evaluator commit `e0a09acb4576c2fb93240ce6a858f3a072b76922`; workflow/head commit `ad0b5c5b41f9be00595feb5b683eefcf7de0f4e9`.
-- Actions run `46137115601` currently in progress at registration. This uses the same fixed model and parameters from EXP-035, without retuning, against matched frozen baselines in 2023, 2024, 2025-01-01..2025-09-06, and 2025-09-07..2026-10-31.
-- Model forecast diagnostics are calculated only for realized next settlements whose timestamp falls within the corresponding window. Candidate must pass the joint gate in every independent window; any failure rejects promotion.
+- Actions run `46137115601`, job `140954762505`, success. Artifact ID `15259648627`, SHA-256 `8db35e1db859813ff44bbf3e5299fb91cf527b4d79bd665efcdbd5e4050dd158`.
+- Fixed candidate, no retuning. Matched frozen baseline; 100 USDT per window, 1x, 5bp one-way fee + 2bp one-way slippage. 13/13 symbols; 94 monthly archives per symbol; 26 SHA-256-verified daily mark supplements; zero data errors.
+- 2023: baseline +64.9657% / DD -20.6707%; DAR +29.4619% / DD -40.9252%; return delta -35.5038 pp, DD delta -20.2545 pp; FAIL.
+- 2024: baseline -7.8040% / DD -34.5262%; DAR -21.6402% / DD -57.2802%; return delta -13.8362 pp, DD delta -22.7540 pp; FAIL.
+- 2025-01-01 08:00..2025-09-06 16:00 UTC: baseline +6.9240% / DD -38.1966%; DAR -1.2519% / DD -46.8729%; return delta -8.1759 pp, DD delta -8.6763 pp; FAIL.
+- 2025-09-07..2026-10-31 16:00 UTC: baseline +96.8362% / DD -27.0350%; DAR +43.9497% / DD -23.5086%; return delta -52.8865 pp, DD improvement +3.5264 pp; FAIL.
+- Joint gate failed in all 4 windows. The candidate improved DD only in the final window but gave up 52.89 pp of return there; in the first 3 windows both return and DD were worse.
+- Forecast accuracy vs no-change was mixed, not consistently superior: 2023/2024 DAR RMSE was lower but directional accuracy lower; 2025 windows DAR MAE/RMSE were lower but directional accuracy also lower. This does not rescue the portfolio result.
+- Decision: REJECT; do not retune DAR model parameters on these same windows and do not promote. EXP-035's 2021-2022 pass was window-specific.
 - No protected MEAFLOW-72 or MEAFLOW-52 branch modified.
+
+### Updated next queue after EXP-036
+1. Reject the DAR(1)-inspired funding forecast for MEAFLOW-72. Do not retune it on the same 2023-2026 windows.
+2. Keep all EXP-032 through EXP-036 candidates rejected or unpromoted; none passed independent validation.
+3. Before another signal experiment, inspect additional historical branches and the exact MEAFLOW-72 decision path again. Avoid repeated funding-score variants unless a new independent mechanism and hypothesis are clearly identified.
+4. Keep MEAFLOW-72 frozen at `a1e5293e9e7b7258ab43b6c95ff13bfeefe2abb1`.
