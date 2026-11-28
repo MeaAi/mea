@@ -29,7 +29,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install Parquet reader
-        run: python -m pip install --disable-pip-version-check pyarrow
+        run: python -m pip install --disable-pip-version-check pyarrow pandas
       - name: Download and inspect five exact signal-hour L2 files
         run: python research/exp021_cryptohftdata_l2_source_qa.py
       - name: Publish compact QA report only
