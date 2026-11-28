@@ -28,6 +28,16 @@
       "symbol": "BTCUSDT",
       "metadata": [
         {
+          "path": "binance_futures/2026-09-03/06/BTCUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 17715078,
+          "sha256": "1545a3fafec85c3c1a81dad36fa7c14dc2880b7044a182273e5ef3f16de741ca",
+          "rows": 4059176,
+          "first_received_time_ns": 1788415200021449874,
+          "last_received_time_ns": 1788418799986290564,
+          "snapshot_messages": 0
+        },
+        {
           "path": "binance_futures/2026-09-03/07/BTCUSDT_orderbook.parquet",
           "http_status": 200,
           "bytes": 23649422,
@@ -51,13 +61,23 @@
       "sequence_gaps": 0,
       "gap_examples": [],
       "snapshots_applied": 1,
-      "updates_ignored_invalid": 221575
+      "updates_ignored_invalid": 355321
     },
     {
       "date": "2026-09-03",
       "hour": "08",
       "symbol": "SOLUSDT",
       "metadata": [
+        {
+          "path": "binance_futures/2026-09-03/06/SOLUSDT_orderbook.parquet",
+          "http_status": 200,
+          "bytes": 10535915,
+          "sha256": "4ed106856c0f81ad4e42a8bc4c9e1a28a8c33be39f04ab5513689e7ded7a3be1",
+          "rows": 902743,
+          "first_received_time_ns": 1788415200010985679,
+          "last_received_time_ns": 1788418799992403618,
+          "snapshot_messages": 0
+        },
         {
           "path": "binance_futures/2026-09-03/07/SOLUSDT_orderbook.parquet",
           "http_status": 200,
@@ -82,7 +102,7 @@
       "sequence_gaps": 0,
       "gap_examples": [],
       "snapshots_applied": 1,
-      "updates_ignored_invalid": 202726
+      "updates_ignored_invalid": 324731
     },
     {
       "date": "2026-10-24",
