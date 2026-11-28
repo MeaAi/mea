@@ -1,0 +1,29 @@
+name: EXP-034 funding-rank hysteresis screen
+on:
+  push:
+    branches:
+      - research/exp034-funding-rank-hysteresis-v1
+    paths:
+      - research/exp034_funding_rank_hysteresis.py
+      - research/exp025_forward_simulator.py
+      - .github/workflows/exp034-funding-rank-hysteresis.yml
+permissions:
+  contents: read
+jobs:
+  funding-rank-hysteresis:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run fixed 20/30 rank hysteresis screen
+        run: python research/exp034_funding_rank_hysteresis.py
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp034-funding-rank-hysteresis-report
+          path: research-results/exp034_funding_rank_hysteresis.json
+          if-no-files-found: warn
